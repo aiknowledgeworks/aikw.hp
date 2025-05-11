@@ -287,10 +287,7 @@
         margin-bottom: 2rem;
       }
       
-      /* 会社概要テーブル調整 */
-      #company table, #company th, #company td {
-        font-size: 0.9rem;
-      }
+      /* 会社概要テーブル調整は.company-tableクラスに移行 */
       
       /* セクションの余白調整 */
       section {
@@ -777,34 +774,71 @@
   <section id="company">
     <div class="container">
       <h2 class="section-title">会社概要</h2>
-      <div class="card reveal" style="max-width: 800px; margin: 0 auto;">
-        <table style="width: 100%; border-collapse: collapse;">
-          <tr>
-            <th style="text-align: left; padding: 10px; border-bottom: 1px solid #eee;">会社名</th>
-            <td style="padding: 10px; border-bottom: 1px solid #eee;">AIナレッジワークス合同会社</td>
-          </tr>
-          <tr>
-            <th style="text-align: left; padding: 10px; border-bottom: 1px solid #eee;">本店住所</th>
-            <td style="padding: 10px; border-bottom: 1px solid #eee;">大阪府大阪市浪速区湊町2丁目2番5号 2119号室</td>
-          </tr>
-          <tr>
-            <th style="text-align: left; padding: 10px; border-bottom: 1px solid #eee;">資本金</th>
-            <td style="padding: 10px; border-bottom: 1px solid #eee;">10万円</td>
-          </tr>
-          <tr>
-            <th style="text-align: left; padding: 10px; border-bottom: 1px solid #eee;">社員</th>
-            <td style="padding: 10px; border-bottom: 1px solid #eee;">3名</td>
-          </tr>
-          <tr>
-            <th style="text-align: left; padding: 10px; border-bottom: 1px solid #eee; vertical-align: top;">事業目的</th>
-            <td style="padding: 10px; border-bottom: 1px solid #eee;">
-              AI技術を活用したソフトウェア及びシステムの研究、企画、開発、販売、保守及びコンサルティング<br>
-              AIを活用した教育、研修、セミナー及びコンサルティング業務<br>
-              AI・データ分析を活用した市場調査及びコンサルティング業務<br>
-              他
-            </td>
-          </tr>
-        </table>
+      <div class="card reveal" style="max-width: 800px; margin: 0 auto; overflow-x: auto;">
+        <style>
+          .company-table th {
+            text-align: left;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            width: 100px;
+            font-size: 1.1rem;
+            vertical-align: middle;
+            white-space: nowrap;
+          }
+                     .company-table td {
+             padding: 15px 25px;
+             border-bottom: 1px solid #eee;
+           }
+           .company-table td:not(:last-child) {
+             white-space: nowrap;
+           }
+          @media (max-width: 768px) {
+            .company-table th {
+              width: 80px !important;
+              font-size: 1rem !important;
+            }
+            .company-table td {
+              padding: 12px 15px !important;
+            }
+          }
+          @media (max-width: 600px) {
+            .company-table-container {
+              overflow-x: auto;
+            }
+            .company-table {
+              min-width: 500px;
+            }
+          }
+        </style>
+        <div class="company-table-container">
+          <table class="company-table" style="width: 100%; border-collapse: collapse;">
+            <tr>
+              <th>会社名</th>
+              <td>AIナレッジワークス合同会社</td>
+            </tr>
+            <tr>
+              <th>本店住所</th>
+              <td>大阪府大阪市浪速区湊町2丁目2番5号 2119号室</td>
+            </tr>
+            <tr>
+              <th>資本金</th>
+              <td>10万円</td>
+            </tr>
+            <tr>
+              <th>社員</th>
+              <td>3名</td>
+            </tr>
+                          <tr>
+                <th>事業目的</th>
+                <td style="white-space: normal;">
+                  <div style="margin-bottom: 5px;">・AI技術を活用したソフトウェア及びシステムの研究、企画、開発、販売、保守及びコンサルティング</div>
+                  <div style="margin-bottom: 5px;">・AIを活用した教育、研修、セミナー及びコンサルティング業務</div>
+                  <div style="margin-bottom: 5px;">・AI・データ分析を活用した市場調査及びコンサルティング業務</div>
+                  <div style="text-align: right;">他</div>
+                </td>
+              </tr>
+          </table>
+        </div>
       </div>
     </div>
   </section>
