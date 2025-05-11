@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AIナレッジワークス合同会社 | 公式ランディングページ</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* === カラーパレット & ベース === */
+    :root {
+      --primary-gradient: linear-gradient(135deg, #6db5ff 0%, #a1e9d9 100%);
+      --dark: #121212;
+      --light: #ffffff;
+      --accent: #00c9a7;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Noto Sans JP", "Nunito", sans-serif;
+      background: #f9f9f9;
+      color: var(--dark);
+      line-height: 1.7;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+
+    /* === ヘッダー === */
+    header {
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+      background: rgba(255, 255, 255, .9); backdrop-filter: blur(6px);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, .05);
+    }
+    .container { width: 90%; max-width: 1200px; margin: 0 auto; }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; padding: .75rem 0; }
+    .logo { display: flex; align-items: center; }
+    .logo img { height: 44px; }
+    nav ul { display: flex; flex-wrap: wrap; gap: 1rem; }
+    nav a { font-weight: 600; transition: color .2s; }
+    nav a:hover { color: var(--accent); }
+
+    /* === セクション共通 === */
+    section { padding: 110px 0; }
+    .section-title { font-size: 2.4rem; font-weight: 700; text-align: center; margin-bottom: .75rem; }
+    .section-subtitle { text-align: center; color: #666; margin-bottom: 2.5rem; font-size: 1rem; }
+
+    /* === Hero === */
+    .hero {
+      height: 100vh; background: var(--primary-gradient);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; color: var(--light);
+    }
+    .hero h1 { font-size: 3rem; margin-bottom: .5rem; letter-spacing: 1px; }
+    .hero p.tagline { font-size: 1.4rem; }
+    .typing { font-size: 1.25rem; margin-top: .5rem; min-height: 1.4rem; display: inline-block; }
+
+    /* === グリッド・カード === */
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+    .card { background: var(--light); border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,.05); padding: 1.8rem; opacity: 0; transform: translateY(40px); transition: all .6s ease; }
+    .card.active { opacity: 1; transform: translateY(0); }
+    .card h3 { margin-bottom: .75rem; color: var(--accent); font-size: 1.25rem; }
+
+    /* === Values === */
+    .values-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 1.5rem; }
+    .value-item { 
+      background: var(--light); 
+      padding: 1.5rem; 
+      border-radius: 12px; 
+      box-shadow: 0 4px 12px rgba(0,0,0,.05); 
+      opacity: 0; 
+      transform: translateY(40px); 
+      transition: all .6s ease; 
+      position: relative;
+      overflow: hidden;
+    }
+    .value-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: var(--primary-gradient);
+    }
+    .value-item.active { opacity: 1; transform: translateY(0); }
+    .value-item h4 { 
+      color: var(--accent); 
+      margin-bottom: .5rem; 
+      font-size: 1.1rem; 
+      display: flex;
+      align-items: center;
+    }
+    .value-item h4::before {
+      content: attr(data-icon);
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      width: 28px;
+      height: 28px;
+      margin-right: 10px;
+      border-radius: 50%;
+      font-size: 14px;
+      color: white;
+      background: #2bc4a9;
+    }
+
+    /* === Pillars === */
+    .pillars-section-title {
+      position: relative;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .pillars-section-title:after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: var(--primary-gradient);
+      margin: 1rem auto;
+      border-radius: 2px;
+    }
+    .pillars-grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); 
+      gap: 2rem; 
+      margin-top: 2rem; 
+    }
+    .pillar { 
+      background: var(--light); 
+      padding: 2.5rem 1.5rem; 
+      border-radius: 12px; 
+      text-align: center; 
+      box-shadow: 0 8px 24px rgba(0,0,0,.1); 
+      opacity: 0; 
+      transform: translateY(40px); 
+      transition: all .6s ease; 
+      position: relative;
+      overflow: hidden;
+      border-bottom: 5px solid var(--accent);
+    }
+    .pillar.active { 
+      opacity: 1; 
+      transform: translateY(0); 
+    }
+    .pillar:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 30px rgba(0,0,0,.15);
+    }
+    .pillar:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: var(--primary-gradient);
+    }
+    .pillar-icon {
+      font-size: 2.5rem;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      display: inline-block;
+    }
+    .pillar h4 { 
+      font-size: 1.4rem; 
+      margin-bottom: 1rem; 
+      color: var(--dark);
+    }
+    .pillar p {
+      color: #666;
+      font-size: 1.05rem;
+    }
+
+    /* === Matrix === */
+    .matrix-table { width: 100%; border-collapse: collapse; font-size: .95rem; margin-top: 1.25rem; opacity: 0; transform: translateY(40px); transition: all .6s ease; }
+    .matrix-table.active { opacity: 1; transform: translateY(0); }
+    .matrix-table th, .matrix-table td { border: 1px solid #ddd; padding: .75rem; }
+    .matrix-table th { background: #e6f4ff; }
+
+    /* === Q&A === */
+    .qa-item { background: var(--light); padding: 1rem 1.25rem; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,.05); margin-bottom: 1rem; opacity: 0; transform: translateY(40px); transition: all .6s ease; }
+    .qa-item.active { opacity: 1; transform: translateY(0); }
+    .qa-item summary { font-weight: 700; cursor: pointer; position: relative; padding: .5rem 0; }
+    .qa-item summary::-webkit-details-marker { display:none; }
+    .qa-item summary::after { content:'+'; position: absolute; right: 0; transition: transform .3s; }
+    .qa-item[open] summary::after { transform: rotate(45deg); }
+
+    /* === Footer === */
+    footer { background: #1a1a1a; color: #e6e6e6; padding: 3rem 0; text-align: center; }
+    footer p { font-size: .85rem; }
+    footer a { color: #e6e6e6; text-decoration: underline; }
+
+    /* 好きのスタイル */
+    .suki {
+      font-size: 1.2em;
+      font-weight: 700;
+      color: #2bc4a9;
+      display: inline-block;
+      position: relative;
+      padding: 0 5px;
+      transform: rotate(-3deg);
+    }
+    .suki::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      background: var(--primary-gradient);
+      border-radius: 3px;
+      opacity: 0.7;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.3rem; }
+      .hero p.tagline { font-size: 1.1rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- === Header === -->
+  <header>
+    <div class="container header-inner">
+      <a href="#home" class="logo">
+        <img src="https://raw.githubusercontent.com/kumeS/aiknowledgeworks/main/AI%E3%83%8A%E3%83%AC%E3%83%83%E3%82%B7%E3%82%99%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9_logo.png" alt="AIナレッジワークス ロゴ">
+        <span style="font-weight: 700; margin-left: 10px; font-size: 1.1rem;">AIナレッジワークス</span>
+      </a>
+      <nav>
+        <ul>
+          <li><a href="#background">社会背景</a></li>
+          <li><a href="#founding">創業のきっかけ</a></li>
+          <li><a href="#vision">ミッション</a></li>
+          <li><a href="#pillars">事業内容</a></li>
+          <li><a href="#achievements">実績</a></li>
+          <li><a href="#company">会社概要</a></li>
+          <li><a href="#contact">お問い合わせ</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- === Hero === -->
+  <section id="home" class="hero">
+    <h1>AIナレッジワークス合同会社</h1>
+    <p class="tagline"><span class="suki">"好き"</span>を信じ合える運命共同体を育てる</p>
+    <span id="typing" class="typing"></span>
+  </section>
+
+  <!-- === Section A1: Background === -->
+  <section id="background">
+    <div class="container">
+      <h2 class="section-title">社会背景</h2>
+      <div class="grid-2 reveal-group">
+        <div class="card reveal"><h3>AI技術の急速な進化</h3><p>AI技術の急速な進化により、企業や教育現場の多くの課題を解決する可能性が広がっています</p></div>
+        <div class="card reveal"><h3>国内生成AI利用率 9.1%</h3><p>日本国内で、生成AI経験がある人の割合は約9.1%。他国より低水準です。</p></div>
+        <div class="card reveal"><h3>認知ギャップの存在</h3><p>生成AIの存在や活用方法が十分に浸透しておらず、生成AIの理解不足が導入の壁になっています。</p></div>
+        <div class="card reveal"><h3>クリエイティブ分野での基盤拡大</h3><p>生成AIで独創的な表現や新たなクリエイティブプロセスが生まれ始めている。"好き" を探究できる基盤が拡大中。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === Founding === -->
+  <section id="founding">
+    <div class="container">
+      <h2 class="section-title">創業のきっかけ</h2>
+      <p class="section-subtitle"><span class="suki">"好き"</span>を実現できる社会をAIで実現する</p>
+      <div class="grid-2">
+        <div class="reveal">
+          <div style="padding: 2rem; position: relative;">
+            <h3 style="color: var(--accent); font-size: 1.4rem; margin-bottom: 1.2rem;">私たちのミッション</h3>
+            <p style="font-size: 1.1rem; line-height: 1.8; position: relative;">
+              <span style="position: relative; font-weight: 600; font-size: 1.5rem; color: #6db5ff; display: inline-block; margin-right: 8px;">"</span>
+              生成AIの可能性を活かし、誰もが自己実現できる世界を目指して創業しました。
+              <br><br>
+              <span style="background: linear-gradient(135deg, #6db5ff 0%, #a1e9d9 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700; font-size: 1.2rem;">企業や教育現場へAI活用を広め、"できない"を"できる"に変えます。</span>
+              <span style="position: relative; font-weight: 600; font-size: 1.5rem; color: #6db5ff; display: inline-block; margin-left: 8px;">"</span>
+            </p>
+          </div>
+        </div>
+        <div class="reveal"><img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=800&q=60" alt="創業イメージ" style="border-radius: 12px; box-shadow: 0 12px 30px rgba(0,0,0,.15);"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === Vision & Values === -->
+  <section id="vision" style="background:#f0f8ff;">
+    <div class="container">
+      <h2 class="section-title">ミッション・ビジョン</h2>
+      <p class="section-subtitle"><span class="suki">"好き"</span>が未来を創る</p>
+      
+      <div class="mission-vision-container" style="margin-bottom: 3rem;">
+        <div class="mission-box" style="background: var(--light); border-radius: 12px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 12px rgba(0,0,0,.05); border-left: 5px solid var(--accent);">
+          <h3 style="font-size: 1.4rem; margin-bottom: 1rem; color: var(--accent); display: inline-flex; align-items: center;">
+            <span style="background: var(--accent); color: white; width: 32px; height: 32px; display: inline-flex; justify-content: center; align-items: center; border-radius: 50%; margin-right: 10px;">M</span>
+            ミッション
+          </h3>
+          <p style="font-size: 1.1rem; font-weight: 500;">自己実現の大量生産 ─ 自分の<span class="suki">"好き"</span>が実現しまくる社会をつくる</p>
+        </div>
+        
+        <div class="vision-box" style="background: var(--light); border-radius: 12px; padding: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,.05); border-left: 5px solid #6db5ff;">
+          <h3 style="font-size: 1.4rem; margin-bottom: 1rem; color: #6db5ff; display: inline-flex; align-items: center;">
+            <span style="background: #6db5ff; color: white; width: 32px; height: 32px; display: inline-flex; justify-content: center; align-items: center; border-radius: 50%; margin-right: 10px;">V</span>
+            ビジョン
+          </h3>
+          <p style="font-size: 1.1rem; font-weight: 500;">"余裕"が連鎖する未来 ─ 誰もが<span class="suki">"好き"</span>を起点に生きられる世界</p>
+        </div>
+      </div>
+      
+      <div class="value-heading-box" style="background: var(--light); border-radius: 12px; padding: 1.5rem 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 12px rgba(0,0,0,.05); border-left: 5px solid #2bc4a9; text-align: center;">
+        <h3 style="font-size: 1.4rem; color: #2bc4a9; display: inline-flex; align-items: center; justify-content: center;">
+          <span style="background: #2bc4a9; color: white; width: 32px; height: 32px; display: inline-flex; justify-content: center; align-items: center; border-radius: 50%; margin-right: 10px;">V</span>
+          バリュー
+        </h3>
+      </div>
+      
+      <div class="values-list reveal-group">
+        <div class="value-item reveal"><h4 data-icon="♥">Self First</h4><p>まず自分を幸せに。その幸せを社会へ。</p></div>
+        <div class="value-item reveal"><h4 data-icon="★">Live from <span class="suki">"好き"</span></h4><p>"やりたい"を人生の起点に。</p></div>
+        <div class="value-item reveal"><h4 data-icon="?">Curiosity is Power</h4><p>好奇心が可能性をひらく。</p></div>
+        <div class="value-item reveal"><h4 data-icon="∞">Be Fluid, Not Fixed</h4><p>変わり続けることを恐れない。</p></div>
+        <div class="value-item reveal"><h4 data-icon="⟳">Go at Your Own Pace</h4><p>速さより納得感。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === Pillars === -->
+  <section id="pillars">
+    <div class="container">
+      <h2 class="section-title">3本柱の事業</h2>
+      
+      <div class="pillars-grid reveal-group">
+        <div class="pillar reveal">
+          <h4>企業向けAI研修</h4>
+          <p>現場に効くAI人材育成のための実践的プログラムを提供。業務改善につながる研修で、組織全体のAIリテラシーを向上させます。</p>
+        </div>
+        <div class="pillar reveal">
+          <h4>子ども向けAI研修</h4>
+          <p>楽しく学ぶAI体験を通じて、次世代を担う子どもたちの創造力とデジタルスキルやAIリテラシーを育みます。</p>
+        </div>
+        <div class="pillar reveal">
+          <h4>BtoB AI導入支援</h4>
+          <p>自社業務にAIを実装するためのコンサルティングから開発支援まで。業務効率化と問題解決につながるAIソリューションを提案します。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === Corporate Training === -->
+  <section id="corp-training">
+    <div class="container">
+      <h2 class="section-title">企業向けAI研修</h2>
+      <p class="section-subtitle">Starter / Expert / 営業向けプログラム</p>
+      <div class="grid-2 reveal-group">
+        <div class="card reveal"><h3>Starter</h3><p>生成AIに初めて触れる方向けの90分集中基礎研修プラン。</p></div>
+        <div class="card reveal"><h3>Expert</h3><p>業務効率化・自動化を極める上級者向け。既に生成AIを活用している方のスキルアップを目指すプラン。</p></div>
+        <div class="card reveal"><h3>営業特化プログラム</h3><p>競合分析やレポート作成の自動化、SNSでの発信最適化をサポートするプラン。</p></div>
+        <div class="card reveal"><h3>研修費用はダイナミックプライシング</h3><p>顧客満足度に応じた投げ銭料金モデル（ビジネス特許申請中）</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === Kids Lab === -->
+  <section id="kids" style="background:#f0f8ff;">
+    <div class="container">
+      <h2 class="section-title">子ども向けAI研修 (AIまなびラボ)</h2>      
+      <div style="background: var(--light); border-radius: 12px; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,.05);">
+        <h3 style="font-size: 1.4rem; margin-bottom: 1rem; color: #6db5ff; text-align: center;">教育コンセプト: Play × Create 探究学習</h3>
+        <p style="text-align: center; margin-bottom: 1.5rem;">遊びながら創造し、AIと共に未来を描く。<br>「できない」を「できる」に変える体験を通じて、好奇心と創造力を育みます。</p>
+      </div>
+      
+      <div class="grid-2 reveal-group">
+        <div class="card reveal">
+          <h3>体験型AI活用授業 </h3>
+          <p>画像生成、音楽作曲、動画制作など、AIツールを使って自分だけの作品を創り、発表する体験を通じてデジタルリテラシーを育成します。</p>
+        </div>
+        <div class="card reveal">
+          <h3>教科学習へのAI活用</h3>
+          <p>国語・算数・英語・理科・社会のそれぞれの教科学習にAIを活用し、子どもたちの理解度と学習効率を大幅に向上させます。</p>
+        </div>
+        <div class="card reveal">
+          <h3>家庭導入サポート</h3>
+          <p>オリジナル教材と専用アプリで家庭でも継続的に学べる環境を提供。保護者向けガイダンスでAIリテラシーを家族全体で高められます。</p>
+        </div>
+        <div class="card reveal">
+          <h3>月額制価格モデル</h3>
+          <p>月額制で授業時間・教材費・サポート費をすべて含む安心の料金体系。追加費用なしで質の高い学習体験を提供します。</p>
+        </div>
+      </div>
+      
+      <div style="margin-top: 3rem;">
+        <h3 style="text-align: center; font-size: 1.4rem; margin-bottom: 1.5rem; color: #6db5ff;">保護者の声</h3>
+        <div class="grid-2 reveal-group">
+          <div class="card reveal" style="border-left: 4px solid #6db5ff;">
+            <p style="font-style: italic; color: #555;">"子どもが自分からアイデアを出すようになりました。AIを使いこなす姿を見て、親の方が驚いています。"</p>
+            <p style="text-align: right; margin-top: 0.5rem; font-weight: 600;">小学4年生の保護者様</p>
+          </div>
+          <div class="card reveal" style="border-left: 4px solid #6db5ff;">
+            <p style="font-style: italic; color: #555;">"苦手だった国語の読解問題にAIを活用し始めてから、考え方が整理できるようになったと子ども自身が実感しています。"</p>
+            <p style="text-align: right; margin-top: 0.5rem; font-weight: 600;">中学1年生の保護者様</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === AI Support === -->
+  <section id="ai-support">
+    <div class="container">
+      <h2 class="section-title">BtoB AI導入支援サービス</h2>
+      <p class="section-subtitle">企業の課題をAIで解決する包括的支援</p>
+      
+      <div style="background: var(--light); border-radius: 12px; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,.05);">
+        <h3 style="font-size: 1.4rem; margin-bottom: 1rem; color: var(--accent); text-align: center;">企業DXを加速するAI実装パートナー</h3>
+        <p style="text-align: center; margin-bottom: 1.5rem;">単なる技術導入ではなく、貴社の業務課題を理解した上で<br>最適なAIソリューションを設計・実装・運用までサポートします。</p>
+      </div>
+      
+      <div class="grid-2 reveal-group">
+        <div class="card reveal">
+          <h3>業務棚卸し・課題発見</h3>
+          <p>現状業務の詳細分析から、AI導入による効果が高い領域を特定。ROIを重視した導入計画から実証実験（PoC）の設計まで一気通貫でサポートします。</p>
+        </div>
+        <div class="card reveal">
+          <h3>社内ナレッジ活用</h3>
+          <p>社内ドキュメント検索や業務マニュアル活用のためのチャットボット構築。散在する情報資産を有効活用し、業務効率と品質を向上させます。</p>
+        </div>
+        <div class="card reveal">
+          <h3>プロンプト設計・自動化</h3>
+          <p>開発者不要でAPI連携を実現するプロンプト最適化。業務プロセスに合わせた最適なプロンプト設計と自動化により、AIの活用範囲を拡大します。</p>
+        </div>
+        <div class="card reveal">
+          <h3>ドキュメント生成支援</h3>
+          <p>AIによる提案書・プレゼン資料・議事録・マニュアルなどの自動作成システムを構築。作成時間を大幅に削減しながらクオリティを向上させます。</p>
+        </div>
+        <div class="card reveal">
+          <h3>セキュアAI環境構築</h3>
+          <p>オンプレミスで稼働するローカルLLMの導入支援。機密情報を外部に送信せず、セキュアな環境でのAI活用を実現します。</p>
+        </div>
+        <div class="card reveal">
+          <h3>継続的改善・運用支援</h3>
+          <p>導入後のモニタリングと継続的な改善支援。利用状況の分析と最適化提案により、長期的なAI活用の効果を最大化します。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === Achievements === -->
+  <section id="achievements">
+    <div class="container">
+      <h2 class="section-title">実績と展望</h2>
+      <div class="grid-2 reveal-group">
+        <div class="card reveal"><h3>研修事例 A社</h3><p>営業部門への生成AI研修(Starter)導入。受講者がマインドの変化（95％の人がこれからAIを業務に活用していきたいとのこと）を実感。提案書作成やメール作成の時間が50%短縮。</p></div>
+        <div class="card reveal"><h3>研修事例 B社</h3><p>生成AI研修(Starter)を導入。社内会議の議事録の要約にかかる時間を大幅改善（80%の作業時間短縮）。</p></div>
+        <div class="card reveal"><h3>研修事例 C社</h3><p>生成AI研修(Expert)を導入。企業内ニーズを掘り起こし、紙ベースの社内資料のチャットボット化を提案、導入検討。</p></div>
+        <div class="card reveal"><h3>研修事例 D社 AI本格導入検討</h3><p>自社チャットボット構築やローカルLLMを利用して、社内システムの構築支援。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === 会社概要 === -->
+  <section id="company">
+    <div class="container">
+      <h2 class="section-title">会社概要</h2>
+      <div class="card reveal" style="max-width: 800px; margin: 0 auto;">
+        <table style="width: 100%; border-collapse: collapse;">
+          <tr>
+            <th style="text-align: left; padding: 10px; border-bottom: 1px solid #eee;">会社名</th>
+            <td style="padding: 10px; border-bottom: 1px solid #eee;">AIナレッジワークス合同会社</td>
+          </tr>
+          <tr>
+            <th style="text-align: left; padding: 10px; border-bottom: 1px solid #eee;">本店住所</th>
+            <td style="padding: 10px; border-bottom: 1px solid #eee;">大阪府大阪市浪速区湊町2丁目2番5号</td>
+          </tr>
+          <tr>
+            <th style="text-align: left; padding: 10px; border-bottom: 1px solid #eee;">資本金</th>
+            <td style="padding: 10px; border-bottom: 1px solid #eee;">10万円</td>
+          </tr>
+          <tr>
+            <th style="text-align: left; padding: 10px; border-bottom: 1px solid #eee;">社員</th>
+            <td style="padding: 10px; border-bottom: 1px solid #eee;">3名</td>
+          </tr>
+          <tr>
+            <th style="text-align: left; padding: 10px; border-bottom: 1px solid #eee; vertical-align: top;">事業目的</th>
+            <td style="padding: 10px; border-bottom: 1px solid #eee;">
+              AI技術を活用したソフトウェア及びシステムの研究、企画、開発、販売、保守及びコンサルティング<br>
+              AIを活用した教育、研修、セミナー及びコンサルティング業務<br>
+              AI・データ分析を活用した市場調査及びコンサルティング業務<br>
+              他
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- === Contact === -->
+  <section id="contact" style="background:#f0f8ff;">
+    <div class="container">
+      <h2 class="section-title">お問い合わせ</h2>
+      <p class="section-subtitle">ご質問・ご相談はこちらから</p>
+      <div class="card reveal" style="max-width: 600px; margin: 0 auto; text-align: center;">
+        <h3>お気軽にご連絡ください</h3>
+        <p style="margin-bottom: 1rem;">AIナレッジワークスへのお問い合わせは下記メールアドレスまで</p>
+        <p><a href="mailto:otoiawase20250416@aiknowledgeworks.net" style="color: var(--accent); font-weight: bold;">otoiawase20250416@aiknowledgeworks.net</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- === Footer === -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 AI Knowledge Works, LLC. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- === Scripts === -->
+  <script>
+    /* Typing Effect */
+    const phrases = ["企業向けAI研修 Starter / Expert / 営業向けプログラム", "子ども向けAI研修 (AIまなびラボ) & Play × Create 探究学習", "BtoB AI導入支援サービス"];    let idx = 0, charIdx = 0, deleting = false;
+    const typingEl = document.getElementById("typing");
+    function typeLoop(){
+      typingEl.textContent = phrases[idx].substring(0, charIdx);
+      if(!deleting && charIdx === phrases[idx].length){ deleting = true; setTimeout(typeLoop, 1300); return; }
+      else if(deleting && charIdx===0){ deleting = false; idx = (idx+1)%phrases.length; }
+      charIdx += deleting ? -1 : 1;
+      setTimeout(typeLoop, deleting ? 45 : 95);
+    }
+    typeLoop();
+
+    /* Scroll Reveal */
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{ if(entry.isIntersecting){ entry.target.classList.add('active'); observer.unobserve(entry.target);} });
+    }, {threshold:0.15});
+    document.querySelectorAll('.reveal, .card, .pillar, .value-item, .matrix-table, .qa-item').forEach(el=> observer.observe(el));
+  </script>
+</body>
+</html>
