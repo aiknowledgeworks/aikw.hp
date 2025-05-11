@@ -31,13 +31,15 @@
     /* === ヘッダー === */
     header {
       position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
-      background: rgba(255, 255, 255, .9); backdrop-filter: blur(6px);
-      box-shadow: 0 2px 4px rgba(0, 0, 0, .05);
+      background: rgba(255, 255, 255, .95); backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, .1);
     }
     .container { width: 90%; max-width: 1200px; margin: 0 auto; }
     .header-inner { display: flex; align-items: center; justify-content: space-between; padding: .75rem 0; }
     .logo { display: flex; align-items: center; }
     .logo img { height: 44px; }
+    .logo span { font-weight: 700; margin-left: 10px; font-size: 1.1rem; }
     nav ul { display: flex; flex-wrap: wrap; gap: 1rem; }
     nav a { font-weight: 600; transition: color .2s; }
     nav a:hover { color: var(--accent); }
@@ -214,10 +216,250 @@
       border-radius: 3px;
       opacity: 0.7;
     }
+    
+    /* できない→できる変換のスタイル */
+    .transform-text span {
+      display: inline-block;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    .transform-text span:hover {
+      transform: translateY(-5px);
+    }
+    .transform-text .negative {
+      color: #ff5757;
+    }
+    .transform-text .positive {
+      color: #00c9a7;
+    }
+    .transform-text .divider {
+      font-weight: normal;
+      color: #333;
+    }
+    .transform-text .action {
+      color: #333;
+    }
+    
+    .transform-underline {
+      width: 0;
+      height: 4px;
+      background: var(--primary-gradient);
+      margin: 15px auto;
+      border-radius: 2px;
+      transition: width 1.2s ease;
+    }
+    .transform-text.active + .transform-underline {
+      width: 70%;
+    }
 
     @media (max-width: 768px) {
       .hero h1 { font-size: 2.3rem; }
       .hero p.tagline { font-size: 1.1rem; }
+      
+      /* グリッドレイアウト調整 */
+      .background-grid,
+      .training-grid,
+      .kids-lab-grid,
+      .achievements-grid,
+      .mission-vision-container {
+        grid-template-columns: 1fr !important;
+      }
+      
+      /* ミッションスタイル調整 */
+      #founding .transform-text {
+        font-size: 1.6rem !important;
+      }
+      
+      #founding .transform-text .positive {
+        font-size: 1.9rem !important;
+      }
+      
+      #founding .transform-text .action {
+        font-size: 1.4rem !important;
+      }
+      
+      /* 創業のきっかけセクション調整 */
+      #founding .container > div {
+        grid-template-columns: 1fr !important;
+      }
+      
+      #founding .reveal:first-child {
+        margin-bottom: 2rem;
+      }
+      
+      /* 会社概要テーブル調整 */
+      #company table, #company th, #company td {
+        font-size: 0.9rem;
+      }
+      
+      /* セクションの余白調整 */
+      section {
+        padding: 80px 0;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      /* 値グリッドは480px以下で1列に */
+      .values-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+      }
+      
+      @media (max-width: 480px) {
+        .values-grid {
+          grid-template-columns: 1fr !important;
+        }
+        
+        .section-title {
+          font-size: 1.8rem;
+        }
+        
+        .hero h1 {
+          font-size: 2rem;
+        }
+        
+        .card {
+          padding: 1.4rem;
+        }
+        
+        .card h3 {
+          font-size: 1.15rem;
+        }
+        
+        .section-subtitle {
+          font-size: 0.9rem;
+          margin-bottom: 1.5rem;
+        }
+      }
+      
+      /* Mobile navigation */
+      .header-inner {
+        padding: 0.75rem 0;
+        position: relative;
+      }
+      
+      .hamburger {
+        display: block;
+        width: 30px;
+        height: 30px;
+        position: relative;
+        cursor: pointer;
+        z-index: 1010;
+        margin-right: 0;
+        padding: 10px;
+        box-sizing: content-box;
+        margin: -10px;
+      }
+      
+      .hamburger span {
+        display: block;
+        position: absolute;
+        height: 3px;
+        width: 100%;
+        background: var(--dark);
+        border-radius: 3px;
+        opacity: 1;
+        left: 0;
+        transform: rotate(0deg);
+        transition: .25s ease-in-out;
+      }
+      
+      .hamburger span:nth-child(1) {
+        top: 0px;
+      }
+      
+      .hamburger span:nth-child(2) {
+        top: 9px;
+      }
+      
+      .hamburger span:nth-child(3) {
+        top: 18px;
+      }
+      
+      .hamburger.active span:nth-child(1) {
+        top: 9px;
+        transform: rotate(135deg);
+      }
+      
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+        left: -60px;
+      }
+      
+      .hamburger.active span:nth-child(3) {
+        top: 9px;
+        transform: rotate(-135deg);
+      }
+      
+      nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+        background: white;
+        box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+        transition: 0.3s ease;
+        padding-top: 70px;
+        z-index: 1000;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      
+      nav.active {
+        right: 0;
+      }
+      
+      nav ul {
+        flex-direction: column;
+        gap: 0;
+        padding: 0;
+        margin: 0;
+      }
+      
+      nav ul li {
+        width: 100%;
+      }
+      
+      nav ul li a {
+        padding: 15px 20px;
+        display: block;
+        border-bottom: 1px solid #eee;
+        font-size: 1.1rem;
+        position: relative;
+      }
+      
+      nav ul li a::after {
+        content: "›";
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.4rem;
+        opacity: 0.5;
+      }
+      
+      .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+        z-index: 990;
+        -webkit-backdrop-filter: blur(2px);
+        backdrop-filter: blur(2px);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      
+      .overlay.active {
+        display: block;
+        opacity: 1;
+      }
     }
   </style>
 </head>
@@ -227,8 +469,13 @@
     <div class="container header-inner">
       <a href="#home" class="logo">
         <img src="https://raw.githubusercontent.com/aiknowledgeworks/aikw.hp/main/AI%E3%83%8A%E3%83%AC%E3%83%83%E3%82%B7%E3%82%99%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9_logo_transparen.png" alt="AIナレッジワークス ロゴ">
-        <span style="font-weight: 700; margin-left: 10px; font-size: 1.1rem;">AIナレッジワークス</span>
+        <span>AIナレッジワークス / AIKW</span>
       </a>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
       <nav>
         <ul>
           <li><a href="#background">社会背景</a></li>
@@ -240,6 +487,7 @@
           <li><a href="#contact">お問い合わせ</a></li>
         </ul>
       </nav>
+      <div class="overlay"></div>
     </div>
   </header>
 
@@ -254,11 +502,23 @@
   <section id="background">
     <div class="container">
       <h2 class="section-title">社会背景</h2>
-      <div class="grid-2 reveal-group">
-        <div class="card reveal"><h3>AI技術の急速な進化</h3><p>AI技術の急速な進化により、企業や教育現場の多くの課題を解決する可能性が広がっています</p></div>
-        <div class="card reveal"><h3>国内生成AI利用率 9.1%</h3><p>日本国内で、生成AI経験がある人の割合は約9.1%。他国より低水準です。</p></div>
-        <div class="card reveal"><h3>認知ギャップの存在</h3><p>生成AIの存在や活用方法が十分に浸透しておらず、生成AIの理解不足が導入の壁になっています。</p></div>
-        <div class="card reveal"><h3>クリエイティブ分野での基盤拡大</h3><p>生成AIで独創的な表現や新たなクリエイティブプロセスが生まれ始めている。"好き" を探究できる基盤が拡大中。</p></div>
+      <div class="background-grid reveal-group" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; max-width: 900px; margin: 0 auto;">
+        <div class="card reveal" style="height: 100%;">
+          <h3>AI技術の急速な進化</h3>
+          <p>AI技術の急速な進化により、企業や教育現場の多くの課題を解決する可能性が広がっています</p>
+        </div>
+        <div class="card reveal" style="height: 100%;">
+          <h3>国内生成AI利用率 9.1%</h3>
+          <p>日本国内で、生成AI経験がある人の割合は約9.1%。他国より低水準です。</p>
+        </div>
+        <div class="card reveal" style="height: 100%;">
+          <h3>認知ギャップの存在</h3>
+          <p>生成AIの存在や活用方法が十分に浸透しておらず、生成AIの理解不足が導入の壁になっています。</p>
+        </div>
+        <div class="card reveal" style="height: 100%;">
+          <h3>クリエイティブ分野での基盤拡大</h3>
+          <p>生成AIで独創的な表現や新たなクリエイティブプロセスが生まれ始めている。"好き" を探究できる基盤が拡大中。</p>
+        </div>
       </div>
     </div>
   </section>
@@ -268,20 +528,29 @@
     <div class="container">
       <h2 class="section-title">創業のきっかけ</h2>
       <p class="section-subtitle"><span class="suki">"好き"</span>を実現できる社会をAIで実現する</p>
-      <div class="grid-2">
-        <div class="reveal">
-          <div style="padding: 2rem; position: relative;">
-            <h3 style="color: var(--accent); font-size: 1.4rem; margin-bottom: 1.2rem;">私たちのミッション</h3>
+      
+      <div style="max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center;">
+        <div class="reveal" style="background: var(--light); border-radius: 12px; padding: 2.5rem; box-shadow: 0 8px 24px rgba(0,0,0,.1);">
+          <div style="position: relative;">
+            <h3 style="color: var(--accent); font-size: 1.6rem; margin-bottom: 2rem; font-weight: 700;">私たちのミッション</h3>
             <p style="font-size: 1.1rem; line-height: 1.8; position: relative;">
-              <span style="position: relative; font-weight: 600; font-size: 1.5rem; color: #6db5ff; display: inline-block; margin-right: 8px;">"</span>
-              生成AIの可能性を活かし、誰もが自己実現できる世界を目指して創業しました。
-              <br><br>
-              <span style="background: linear-gradient(135deg, #6db5ff 0%, #a1e9d9 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700; font-size: 1.2rem;">企業や教育現場へAI活用を広め、"できない"を"できる"に変えます。</span>
-              <span style="position: relative; font-weight: 600; font-size: 1.5rem; color: #6db5ff; display: inline-block; margin-left: 8px;">"</span>
+              <span style="font-size: 1.3rem; font-weight: 600; display: block; margin-bottom: 30px;">生成AIの可能性を活かし、<br>誰もが自己実現できる世界を目指して創業しました。</span>
+              
+              <div style="margin: 20px 0; padding: 0;">
+                <div class="transform-text reveal" style="font-size: 1.8rem; font-weight: 800; line-height: 1.5;">
+                  <span class="negative" style="text-align: left; display: block; color: #ff5757; margin-bottom: 0.5rem;">できないを</span>
+                  <span class="positive" style="font-size: 2.4rem; text-align: center; display: block; color: #00c9a7; margin: 0.7rem 0;">できるに</span>
+                  <span class="action" style="font-size: 1.6rem; text-align: right; display: block; margin-top: 0.5rem;">変えます</span>
+                </div>
+                <div class="transform-underline" style="max-width: 250px; margin-left: auto;"></div>
+              </div>
             </p>
           </div>
         </div>
-        <div class="reveal"><img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=800&q=60" alt="創業イメージ" style="border-radius: 12px; box-shadow: 0 12px 30px rgba(0,0,0,.15);"></div>
+        
+        <div class="reveal">
+          <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=800&q=60" alt="創業イメージ" style="border-radius: 12px; box-shadow: 0 12px 30px rgba(0,0,0,.15); width: 100%;">
+        </div>
       </div>
     </div>
   </section>
@@ -292,8 +561,8 @@
       <h2 class="section-title">ミッション・ビジョン</h2>
       <p class="section-subtitle"><span class="suki">"好き"</span>が未来を創る</p>
       
-      <div class="mission-vision-container" style="margin-bottom: 3rem;">
-        <div class="mission-box" style="background: var(--light); border-radius: 12px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 12px rgba(0,0,0,.05); border-left: 5px solid var(--accent);">
+      <div class="mission-vision-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 3rem;">
+        <div class="mission-box" style="background: var(--light); border-radius: 12px; padding: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,.05); border-left: 5px solid var(--accent); height: 100%;">
           <h3 style="font-size: 1.4rem; margin-bottom: 1rem; color: var(--accent); display: inline-flex; align-items: center;">
             <span style="background: var(--accent); color: white; width: 32px; height: 32px; display: inline-flex; justify-content: center; align-items: center; border-radius: 50%; margin-right: 10px;">M</span>
             ミッション
@@ -301,7 +570,7 @@
           <p style="font-size: 1.1rem; font-weight: 500;">自己実現の大量生産 ─ 自分の<span class="suki">"好き"</span>が実現しまくる社会をつくる</p>
         </div>
         
-        <div class="vision-box" style="background: var(--light); border-radius: 12px; padding: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,.05); border-left: 5px solid #6db5ff;">
+        <div class="vision-box" style="background: var(--light); border-radius: 12px; padding: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,.05); border-left: 5px solid #6db5ff; height: 100%;">
           <h3 style="font-size: 1.4rem; margin-bottom: 1rem; color: #6db5ff; display: inline-flex; align-items: center;">
             <span style="background: #6db5ff; color: white; width: 32px; height: 32px; display: inline-flex; justify-content: center; align-items: center; border-radius: 50%; margin-right: 10px;">V</span>
             ビジョン
@@ -317,12 +586,31 @@
         </h3>
       </div>
       
-      <div class="values-list reveal-group">
-        <div class="value-item reveal"><h4 data-icon="♥">Self First</h4><p>まず自分を幸せに。その幸せを社会へ。</p></div>
-        <div class="value-item reveal"><h4 data-icon="★">Live from <span class="suki">"好き"</span></h4><p>"やりたい"を人生の起点に。</p></div>
-        <div class="value-item reveal"><h4 data-icon="?">Curiosity is Power</h4><p>好奇心が可能性をひらく。</p></div>
-        <div class="value-item reveal"><h4 data-icon="∞">Be Fluid, Not Fixed</h4><p>変わり続けることを恐れない。</p></div>
-        <div class="value-item reveal"><h4 data-icon="⟳">Go at Your Own Pace</h4><p>速さより納得感。</p></div>
+      <div class="values-grid reveal-group" style="display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, auto); gap: 1.2rem; max-width: 1000px; margin: 0 auto;">
+        <div class="value-item reveal" style="height: 100%;">
+          <h4 data-icon="♥">Self First</h4>
+          <p>まず自分を幸せに。その幸せを社会へ。</p>
+        </div>
+        <div class="value-item reveal" style="height: 100%;">
+          <h4 data-icon="★">Live from <span class="suki">"好き"</span></h4>
+          <p>"やりたい"を人生の起点に。</p>
+        </div>
+        <div class="value-item reveal" style="height: 100%;">
+          <h4 data-icon="?">Curiosity is Power</h4>
+          <p>好奇心が可能性をひらく。</p>
+        </div>
+        <div class="value-item reveal" style="height: 100%;">
+          <h4 data-icon="∞">Be Fluid, Not Fixed</h4>
+          <p>変わり続けることを恐れない。</p>
+        </div>
+        <div class="value-item reveal" style="height: 100%;">
+          <h4 data-icon="⟳">Go at Your Own Pace</h4>
+          <p>速さより納得感。</p>
+        </div>
+        <div class="value-item reveal" style="height: 100%;">
+          <h4 data-icon="✓">Trust the Process</h4>
+          <p>結果だけでなく、過程を信じる。</p>
+        </div>
       </div>
     </div>
   </section>
@@ -354,11 +642,24 @@
     <div class="container">
       <h2 class="section-title">企業向けAI研修</h2>
       <p class="section-subtitle">Starter / Expert / 営業向けプログラム</p>
-      <div class="grid-2 reveal-group">
-        <div class="card reveal"><h3>Starter</h3><p>生成AIに初めて触れる方向けの90分集中基礎研修プラン。</p></div>
-        <div class="card reveal"><h3>Expert</h3><p>業務効率化・自動化を極める上級者向け。既に生成AIを活用している方のスキルアップを目指すプラン。</p></div>
-        <div class="card reveal"><h3>営業特化プログラム</h3><p>競合分析やレポート作成の自動化、SNSでの発信最適化をサポートするプラン。</p></div>
-        <div class="card reveal"><h3>研修費用はダイナミックプライシング</h3><p>顧客満足度に応じた投げ銭料金モデル（ビジネス特許申請中）</p></div>
+      
+      <div class="training-grid reveal-group" style="display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, auto); gap: 1.5rem; max-width: 900px; margin: 0 auto;">
+        <div class="card reveal" style="height: 100%;">
+          <h3>Starter</h3>
+          <p>生成AIに初めて触れる方向けの90分集中基礎研修プラン。</p>
+        </div>
+        <div class="card reveal" style="height: 100%;">
+          <h3>Expert</h3>
+          <p>業務効率化・自動化を極める上級者向け。既に生成AIを活用している方のスキルアップを目指すプラン。</p>
+        </div>
+        <div class="card reveal" style="height: 100%;">
+          <h3>営業特化プログラム</h3>
+          <p>競合分析やレポート作成の自動化、SNSでの発信最適化をサポートするプラン。</p>
+        </div>
+        <div class="card reveal" style="height: 100%;">
+          <h3>研修費用はダイナミックプライシング</h3>
+          <p>顧客満足度に応じた投げ銭料金モデル（ビジネス特許申請中）</p>
+        </div>
       </div>
     </div>
   </section>
@@ -372,20 +673,20 @@
         <p style="text-align: center; margin-bottom: 1.5rem;">遊びながら創造し、AIと共に未来を描く。<br>「できない」を「できる」に変える体験を通じて、好奇心と創造力を育みます。</p>
       </div>
       
-      <div class="grid-2 reveal-group">
-        <div class="card reveal">
-          <h3>体験型AI活用授業 </h3>
+      <div class="kids-lab-grid reveal-group" style="display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, auto); gap: 1.5rem; max-width: 900px; margin: 0 auto;">
+        <div class="card reveal" style="height: 100%;">
+          <h3>体験型AI活用授業</h3>
           <p>画像生成、音楽作曲、動画制作など、AIツールを使って自分だけの作品を創り、発表する体験を通じてデジタルリテラシーを育成します。</p>
         </div>
-        <div class="card reveal">
+        <div class="card reveal" style="height: 100%;">
           <h3>教科学習へのAI活用</h3>
           <p>国語・算数・英語・理科・社会のそれぞれの教科学習にAIを活用し、子どもたちの理解度と学習効率を大幅に向上させます。</p>
         </div>
-        <div class="card reveal">
+        <div class="card reveal" style="height: 100%;">
           <h3>家庭導入サポート</h3>
           <p>オリジナル教材と専用アプリで家庭でも継続的に学べる環境を提供。保護者向けガイダンスでAIリテラシーを家族全体で高められます。</p>
         </div>
-        <div class="card reveal">
+        <div class="card reveal" style="height: 100%;">
           <h3>月額制価格モデル</h3>
           <p>月額制で授業時間・教材費・サポート費をすべて含む安心の料金体系。追加費用なしで質の高い学習体験を提供します。</p>
         </div>
@@ -451,11 +752,23 @@
   <section id="achievements">
     <div class="container">
       <h2 class="section-title">実績と展望</h2>
-      <div class="grid-2 reveal-group">
-        <div class="card reveal"><h3>研修事例 A社</h3><p>営業部門への生成AI研修(Starter)導入。受講者がマインドの変化（95％の人がこれからAIを業務に活用していきたいとのこと）を実感。提案書作成やメール作成の時間が50%短縮。</p></div>
-        <div class="card reveal"><h3>研修事例 B社</h3><p>生成AI研修(Starter)を導入。社内会議の議事録の要約にかかる時間を大幅改善（80%の作業時間短縮）。</p></div>
-        <div class="card reveal"><h3>研修事例 C社</h3><p>生成AI研修(Expert)を導入。企業内ニーズを掘り起こし、紙ベースの社内資料のチャットボット化を提案、導入検討。</p></div>
-        <div class="card reveal"><h3>研修事例 D社 AI本格導入検討</h3><p>自社チャットボット構築やローカルLLMを利用して、社内システムの構築支援。</p></div>
+      <div class="achievements-grid reveal-group" style="display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, auto); gap: 1.5rem; max-width: 900px; margin: 0 auto;">
+        <div class="card reveal" style="height: 100%;">
+          <h3>研修事例 A社</h3>
+          <p>営業部門への生成AI研修(Starter)導入。受講者がマインドの変化（95％の人がこれからAIを業務に活用していきたいとのこと）を実感。提案書作成やメール作成の時間が50%短縮。</p>
+        </div>
+        <div class="card reveal" style="height: 100%;">
+          <h3>研修事例 B社</h3>
+          <p>生成AI研修(Starter)を導入。社内会議の議事録の要約にかかる時間を大幅改善（80%の作業時間短縮）。</p>
+        </div>
+        <div class="card reveal" style="height: 100%;">
+          <h3>研修事例 C社</h3>
+          <p>生成AI研修(Expert)を導入。企業内ニーズを掘り起こし、紙ベースの社内資料のチャットボット化を提案、導入検討。</p>
+        </div>
+        <div class="card reveal" style="height: 100%;">
+          <h3>研修事例 D社 AI本格導入検討</h3>
+          <p>自社チャットボット構築やローカルLLMを利用して、社内システムの構築支援。</p>
+        </div>
       </div>
     </div>
   </section>
@@ -518,23 +831,109 @@
 
   <!-- === Scripts === -->
   <script>
-    /* Typing Effect */
-    const phrases = ["企業向けAI研修 Starter / Expert / 営業向けプログラム", "子ども向けAI研修 (AIまなびラボ) & Play × Create 探究学習", "BtoB AI導入支援サービス"];    let idx = 0, charIdx = 0, deleting = false;
-    const typingEl = document.getElementById("typing");
-    function typeLoop(){
-      typingEl.textContent = phrases[idx].substring(0, charIdx);
-      if(!deleting && charIdx === phrases[idx].length){ deleting = true; setTimeout(typeLoop, 1300); return; }
-      else if(deleting && charIdx===0){ deleting = false; idx = (idx+1)%phrases.length; }
-      charIdx += deleting ? -1 : 1;
-      setTimeout(typeLoop, deleting ? 45 : 95);
-    }
-    typeLoop();
+    document.addEventListener('DOMContentLoaded', function() {
+      // Animation with IntersectionObserver
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      }, { threshold: 0.1 });
 
-    /* Scroll Reveal */
-    const observer = new IntersectionObserver((entries)=>{
-      entries.forEach(entry=>{ if(entry.isIntersecting){ entry.target.classList.add('active'); observer.unobserve(entry.target);} });
-    }, {threshold:0.15});
-    document.querySelectorAll('.reveal, .card, .pillar, .value-item, .matrix-table, .qa-item').forEach(el=> observer.observe(el));
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+      document.querySelectorAll('.value-item').forEach(el => observer.observe(el));
+      document.querySelectorAll('.matrix-table').forEach(el => observer.observe(el));
+      document.querySelectorAll('.qa-item').forEach(el => observer.observe(el));
+      document.querySelectorAll('.transform-text').forEach(el => {
+        observer.observe(el);
+        el.addEventListener('animationend', () => {
+          el.classList.add('active');
+        });
+      });
+      
+      // Check for hash in URL and scroll to that section after a delay
+      if (window.location.hash) {
+        setTimeout(() => {
+          const targetElement = document.querySelector(window.location.hash);
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+          }
+        }, 500);
+      }
+      
+      // Typing effect for hero
+      const typingElement = document.getElementById('typing');
+      const phrases = ['企業向けAI研修', '子ども向けAI研修', 'BtoB AI導入支援'];
+      let phraseIndex = 0;
+      let charIndex = 0;
+      let isDeleting = false;
+      let typingSpeed = 100;
+
+      function typeEffect() {
+        const currentPhrase = phrases[phraseIndex];
+        
+        if (isDeleting) {
+          typingElement.textContent = currentPhrase.substring(0, charIndex - 1);
+          charIndex--;
+          typingSpeed = 50;
+        } else {
+          typingElement.textContent = currentPhrase.substring(0, charIndex + 1);
+          charIndex++;
+          typingSpeed = 100;
+        }
+        
+        if (!isDeleting && charIndex === currentPhrase.length) {
+          isDeleting = true;
+          typingSpeed = 1500; // Pause at end
+        } else if (isDeleting && charIndex === 0) {
+          isDeleting = false;
+          phraseIndex = (phraseIndex + 1) % phrases.length;
+          typingSpeed = 500; // Pause before typing next
+        }
+        
+        setTimeout(typeEffect, typingSpeed);
+      }
+      
+      setTimeout(typeEffect, 1000);
+      
+      // Mobile menu functionality
+      const hamburger = document.querySelector('.hamburger');
+      const nav = document.querySelector('nav');
+      const overlay = document.querySelector('.overlay');
+      const navLinks = document.querySelectorAll('nav a');
+      
+      function toggleMenu() {
+        hamburger.classList.toggle('active');
+        nav.classList.toggle('active');
+        overlay.classList.toggle('active');
+        document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
+      }
+      
+      hamburger.addEventListener('click', toggleMenu);
+      overlay.addEventListener('click', toggleMenu);
+      
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          if (nav.classList.contains('active')) {
+            toggleMenu();
+            // スクロールをスムーズにするために少し遅延を入れる
+            setTimeout(() => {
+              const targetId = link.getAttribute('href');
+              if (targetId.startsWith('#')) {
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                  targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+              }
+            }, 300);
+          }
+        });
+      });
+    });
   </script>
 </body>
 </html>
