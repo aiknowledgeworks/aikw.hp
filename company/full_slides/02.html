@@ -1,0 +1,274 @@
+<html lang="ja"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIナレッジワークス合同会社 会社紹介</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&amp;family=Montserrat:wght@600;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #000;
+        }
+        .slide {
+            width: 1280px;
+            min-height: 720px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e1f3f8 100%);
+            font-family: 'Noto Sans JP', sans-serif;
+            color: #5170c6;
+        }
+        .title-container {
+            position: relative;
+            padding-top: 80px;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+        .title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 64px;
+            font-weight: 700;
+            color: #5170c6;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 0;
+            text-shadow: 2px 2px 0px rgba(102, 230, 208, 0.2);
+            position: relative;
+            z-index: 5;
+        }
+        .title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 5px;
+            background: linear-gradient(90deg, #66e6d0, #6ea3d3);
+            border-radius: 5px;
+        }
+        .content {
+            width: 80%;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px 40px;
+        }
+        .toc-item {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(98, 200, 213, 0.1);
+            transform: translateY(30px);
+            opacity: 0;
+            animation: fadeUp 0.5s ease forwards;
+            position: relative;
+            overflow: hidden;
+        }
+        .toc-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, #66e6d0, #6ea3d3);
+        }
+        .toc-item:hover {
+            transform: translateY(0) scale(1.02);
+            box-shadow: 0 8px 25px rgba(98, 200, 213, 0.2);
+            transition: all 0.3s ease;
+        }
+        .toc-number {
+            font-size: 36px;
+            font-weight: 700;
+            color: rgba(98, 200, 213, 0.2);
+            margin-right: 20px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .toc-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #66e6d0, #6ea3d3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        .toc-icon i {
+            color: #fff;
+            font-size: 20px;
+        }
+        .toc-text {
+            font-size: 20px;
+            font-weight: 500;
+        }
+        .copyright {
+            position: absolute;
+            bottom: 20px;
+            right: 30px;
+            color: #6ea3d3;
+            font-size: 10px;
+            opacity: 0.7;
+        }
+        .decoration {
+            position: absolute;
+            z-index: 1;
+        }
+        .decoration-1 {
+            top: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(102, 230, 208, 0.1) 0%, rgba(102, 230, 208, 0) 70%);
+        }
+        .decoration-2 {
+            bottom: -150px;
+            left: -100px;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(110, 163, 211, 0.08) 0%, rgba(110, 163, 211, 0) 70%);
+        }
+        .decoration-3 {
+            bottom: 100px;
+            right: 150px;
+            width: 80px;
+            height: 80px;
+            background: rgba(102, 230, 208, 0.1);
+            border-radius: 20px;
+            transform: rotate(45deg);
+        }
+        .decoration-4 {
+            top: 150px;
+            left: 100px;
+            width: 60px;
+            height: 60px;
+            background: rgba(110, 163, 211, 0.1);
+            border-radius: 15px;
+            transform: rotate(30deg);
+        }
+        .page-indicator {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+            color: #6ea3d3;
+            letter-spacing: 1px;
+        }
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .toc-item:nth-child(1) { animation-delay: 0.1s; }
+        .toc-item:nth-child(2) { animation-delay: 0.2s; }
+        .toc-item:nth-child(3) { animation-delay: 0.3s; }
+        .toc-item:nth-child(4) { animation-delay: 0.4s; }
+        .toc-item:nth-child(5) { animation-delay: 0.5s; }
+        .toc-item:nth-child(6) { animation-delay: 0.6s; }
+        .toc-item:nth-child(7) { animation-delay: 0.7s; }
+    </style>
+</head>
+<body>
+    <div class="slide" data-slide-hover-selected="true">
+        <!-- Decorative elements -->
+        <div class="decoration decoration-1"></div>
+        <div class="decoration decoration-2"></div>
+        <div class="decoration decoration-3"></div>
+        <div class="decoration decoration-4"></div>
+        
+        <!-- Title -->
+        <div class="title-container">
+            <h1 class="title">Table of Contents</h1>
+        </div>
+        
+        <!-- Main content -->
+        <div class="content">
+            <div class="toc-item">
+                <div class="toc-number">01</div>
+                <div class="toc-icon">
+                    <i class="fas fa-flag"></i>
+                </div>
+                <div class="toc-text">はじめに</div>
+            </div>
+            
+            <div class="toc-item">
+                <div class="toc-number">02</div>
+                <div class="toc-icon">
+                    <i class="fas fa-building"></i>
+                </div>
+                <div class="toc-text">会社概要と全体像</div>
+            </div>
+            
+            <div class="toc-item">
+                <div class="toc-number">03</div>
+                <div class="toc-icon">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <div class="toc-text">企業向けAI研修<br>（AI実践プログラム研修）</div>
+            </div>
+            
+            <div class="toc-item">
+                <div class="toc-number">04</div>
+                <div class="toc-icon">
+                    <i class="fas fa-child"></i>
+                </div>
+                <div class="toc-text">子供向けAI研修<br>（AIまなびラボ）</div>
+            </div>
+            
+            <div class="toc-item">
+                <div class="toc-number">05</div>
+                <div class="toc-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="toc-text">AI導入支援</div>
+            </div>
+            
+            <div class="toc-item">
+                <div class="toc-number">06</div>
+                <div class="toc-icon">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <div class="toc-text">開発の効率化支援</div>
+            </div>
+            
+            <div class="toc-item">
+                <div class="toc-number">07</div>
+                <div class="toc-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="toc-text">実績と展望</div>
+            </div>
+        </div>
+        
+        <!-- Page indicator -->
+        <div class="page-indicator"></div>
+        
+        <!-- Copyright -->
+        <div class="copyright">© 2025 AI Knowledge Works, LLC. All rights reserved.</div>
+    </div>
+
+<script src="https://www.genspark.ai/slide-inner.js?_v=1"></script>
+    <script id="html_badge_script1">
+        window.__genspark_remove_badge_link = "https://www.genspark.ai/api/html_badge/" +
+            "remove_badge?token=To%2FBnjzloZ3UfQdcSaYfDg8I68KPx2vVXPTdiXPTUisvblz%2BDNNEs4OFvibz2jHulgiOjUYnQqwGbJqK%2FPbzwb1dsgMl7t1DX0HhRUdeH37mjio6j8ZL1Jtw6h%2B%2FCd9WptzzPjryUHR5b0QRetmHFnMgq7KeBuaW1Q3KwUZc4y5pOY09VJzgUuIW1Dk6BWuvjnY3KOvZTEuYx20XoOiseG9ZX2T6iqOoOvFD43lkKBuBwdKWhkkXMOj0pi0JAljwRdDAO%2B7S69pgtaXI5LMwjboC%2FCWKuI3FhCOn1kav4T5j4A1h4fS9HF%2FPKLnZK9qdrM4xvDeeJqf%2BzudUP8nnNuUsHjrkyjpKDqQopOVcWnBZfrIuQkkKD4p3huITOxrAV5nognCkTV5EDRCA1njXjYN6jpe%2FryYCDmUXAdtMA3FvTj2c1qthjsQMaM73voZ8HmFUYupRzB%2B%2BLlGDiKiw4nriWIEKPpoCaKjSGwMrKJ8v9wkOQuLp9zkVoylfU2r%2Be6qFfZg4OBCdQyZZIPKoaZ0mz0zwANnVDBntbzA1gvC0CWPPk82fWE6TyL2JNUldYR7WMUnoGZdZ53E%2F8VCalnWtogOX1Kyjd%2FxAkbiW0nYVtdotLjeWZsGgk%2B14Z%2FuqD5qr%2BtAAqMaOnVEduni6pIsJS9rwEECvJ0Y0UuS7AHQR9aXdQjk2NYw3zkBi4rErdMSpxiITuUotvOUif6YiD74tJ5EwlFo4tVLT5tj6jmcMtgQxelg2sq6DWSZyaN0X";
+        window.__genspark_locale = "ja-JP";
+        window.__genspark_token = "To/BnjzloZ3UfQdcSaYfDg8I68KPx2vVXPTdiXPTUisvblz+DNNEs4OFvibz2jHulgiOjUYnQqwGbJqK/Pbzwb1dsgMl7t1DX0HhRUdeH37mjio6j8ZL1Jtw6h+/Cd9WptzzPjryUHR5b0QRetmHFnMgq7KeBuaW1Q3KwUZc4y5pOY09VJzgUuIW1Dk6BWuvjnY3KOvZTEuYx20XoOiseG9ZX2T6iqOoOvFD43lkKBuBwdKWhkkXMOj0pi0JAljwRdDAO+7S69pgtaXI5LMwjboC/CWKuI3FhCOn1kav4T5j4A1h4fS9HF/PKLnZK9qdrM4xvDeeJqf+zudUP8nnNuUsHjrkyjpKDqQopOVcWnBZfrIuQkkKD4p3huITOxrAV5nognCkTV5EDRCA1njXjYN6jpe/ryYCDmUXAdtMA3FvTj2c1qthjsQMaM73voZ8HmFUYupRzB++LlGDiKiw4nriWIEKPpoCaKjSGwMrKJ8v9wkOQuLp9zkVoylfU2r+e6qFfZg4OBCdQyZZIPKoaZ0mz0zwANnVDBntbzA1gvC0CWPPk82fWE6TyL2JNUldYR7WMUnoGZdZ53E/8VCalnWtogOX1Kyjd/xAkbiW0nYVtdotLjeWZsGgk+14Z/uqD5qr+tAAqMaOnVEduni6pIsJS9rwEECvJ0Y0UuS7AHQR9aXdQjk2NYw3zkBi4rErdMSpxiITuUotvOUif6YiD74tJ5EwlFo4tVLT5tj6jmcMtgQxelg2sq6DWSZyaN0X";
+    </script>
+    <script defer src="./slide-nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,329 @@
+<html lang="ja"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIナレッジワークス合同会社 会社紹介</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&amp;family=Montserrat:wght@600;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #000;
+        }
+        .slide {
+            width: 1280px;
+            min-height: 720px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e1f3f8 100%);
+            font-family: 'Noto Sans JP', sans-serif;
+            color: #5170c6;
+        }
+        .section-title {
+            position: absolute;
+            top: 40px;
+            left: 60px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #6ea3d3;
+            display: flex;
+            align-items: center;
+        }
+        .section-number {
+            font-size: 42px;
+            margin-right: 15px;
+            background: linear-gradient(135deg, #66e6d0, #6ea3d3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .main-container {
+            display: flex;
+            justify-content: space-between;
+            width: 1120px;
+            margin: 100px auto 0;
+            padding: 20px;
+        }
+        .chart-container {
+            width: 400px;
+            height: 400px;
+            position: relative;
+            margin-right: 20px;
+        }
+        .chart-title {
+            font-size: 20px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 15px;
+            color: #5170c6;
+        }
+        .chart-source {
+            font-size: 12px;
+            text-align: center;
+            color: #6ea3d3;
+            opacity: 0.8;
+            margin-top: 10px;
+        }
+        .points-container {
+            width: 650px;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-gap: 20px;
+        }
+        .point-card {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            align-items: flex-start;
+            box-shadow: 0 4px 15px rgba(98, 200, 213, 0.1);
+            transform: translateX(50px);
+            opacity: 0;
+            animation: slideIn 0.5s ease forwards;
+        }
+        .point-card:nth-child(odd) {
+            border-left: 5px solid #66e6d0;
+        }
+        .point-card:nth-child(even) {
+            border-left: 5px solid #6ea3d3;
+        }
+        .point-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #66e6d0, #6ea3d3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        .point-icon i {
+            color: #fff;
+            font-size: 24px;
+        }
+        .point-content h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin: 0 0 5px;
+            color: #5170c6;
+        }
+        .point-content p {
+            font-size: 16px;
+            line-height: 1.5;
+            margin: 0;
+            color: #5170c6;
+            opacity: 0.9;
+        }
+        .highlight {
+            color: #62c8d5;
+            font-weight: 700;
+        }
+        .copyright {
+            position: absolute;
+            bottom: 20px;
+            right: 30px;
+            color: #6ea3d3;
+            font-size: 10px;
+            opacity: 0.7;
+        }
+        .decoration {
+            position: absolute;
+            z-index: 1;
+        }
+        .decoration-1 {
+            top: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(102, 230, 208, 0.1) 0%, rgba(102, 230, 208, 0) 70%);
+        }
+        .decoration-2 {
+            bottom: -150px;
+            left: -100px;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(110, 163, 211, 0.08) 0%, rgba(110, 163, 211, 0) 70%);
+        }
+        .page-indicator {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+            color: #6ea3d3;
+            letter-spacing: 1px;
+        }
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        .point-card:nth-child(1) { animation-delay: 0.1s; }
+        .point-card:nth-child(2) { animation-delay: 0.3s; }
+        .point-card:nth-child(3) { animation-delay: 0.5s; }
+        .point-card:nth-child(4) { animation-delay: 0.7s; }
+        .stat-highlight {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 72px;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #66e6d0, #6ea3d3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0;
+            line-height: 1;
+        }
+        .stat-label {
+            font-size: 20px;
+            font-weight: 500;
+            color: #5170c6;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide" data-slide-hover-selected="true">
+        <!-- Decorative elements -->
+        <div class="decoration decoration-1"></div>
+        <div class="decoration decoration-2"></div>
+        
+        <!-- Section title -->
+        <div class="section-title">
+            <span class="section-number">01</span>はじめに
+        </div>
+        
+        <!-- Main content -->
+        <div class="main-container">
+            <!-- Chart section -->
+            <div class="chart-container">
+                <div class="chart-title">日本国内の生成AI利用経験者の割合</div>
+                <canvas id="aiAdoptionChart" width="480" height="480" style="display: block; box-sizing: border-box; height: 400px; width: 400px;"></canvas>
+                <div class="stat-highlight">
+                    <p class="stat-number">9.1%</p>
+                    <p class="stat-label">利用経験者</p>
+                </div>
+                <div class="chart-source">出典：ICT白書 令和6年版</div>
+            </div>
+            
+            <!-- Points section -->
+            <div class="points-container">
+                <div class="point-card">
+                    <div class="point-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <div class="point-content">
+                        <h3>AI技術の急速な進化</h3>
+                        <p>企業や教育現場の多くの課題を解決する<span class="highlight">可能性</span>が広がっている</p>
+                    </div>
+                </div>
+                
+                <div class="point-card">
+                    <div class="point-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <div class="point-content">
+                        <h3>他国と比較して低水準</h3>
+                        <p>日本国内の生成AI利用経験者は<span class="highlight">わずか9.1%</span>と、普及が十分に進んでいない現状</p>
+                    </div>
+                </div>
+                
+                <div class="point-card">
+                    <div class="point-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="point-content">
+                        <h3>理解不足と消極的姿勢</h3>
+                        <p>認知のギャップが企業や教育現場での<span class="highlight">導入障壁</span>となっている</p>
+                    </div>
+                </div>
+                
+                <div class="point-card">
+                    <div class="point-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <div class="point-content">
+                        <h3>創作分野での活用進展</h3>
+                        <p>独創的な表現や新たなプロセスにより、個人の<span class="highlight">「好き」や「得意」</span>をより深く探求できる社会基盤が整いつつある</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Page indicator -->
+        <div class="page-indicator"></div>
+        
+        <!-- Copyright -->
+        <div class="copyright">© 2025 AI Knowledge Works, LLC. All rights reserved.</div>
+    </div>
+    
+    <script>
+        // Chart.js implementation
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('aiAdoptionChart').getContext('2d');
+            
+            const aiAdoptionChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['利用経験者', '利用未経験者'],
+                    datasets: [{
+                        data: [9.1, 90.9],
+                        backgroundColor: [
+                            '#66e6d0',
+                            '#e1f3f8'
+                        ],
+                        borderColor: [
+                            '#ffffff',
+                            '#ffffff'
+                        ],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '70%',
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.label + ': ' + context.raw + '%';
+                                }
+                            }
+                        }
+                    },
+                    animation: {
+                        animateRotate: true,
+                        animateScale: true
+                    }
+                }
+            });
+        });
+    </script>
+
+<script src="https://www.genspark.ai/slide-inner.js?_v=1"></script>
+    <script id="html_badge_script1">
+        window.__genspark_remove_badge_link = "https://www.genspark.ai/api/html_badge/" +
+            "remove_badge?token=To%2FBnjzloZ3UfQdcSaYfDpRjGnpVrNBuZ4DlfsNFB0e%2FCqAdLmmpEJNJl00U%2BZ3GFyLpguWfeADaOfMOMkuFQIKtICWDJ0gWFsg2T0q2Jx9NLzpp79MlPHaAnRKy6cNn6LHJlK8be1PlpvS1K4gXwxL2J5n7Y9IhpFsbe7Hols7h4ILzRI%2BgdTJOt2%2FMM9Rsu2v3jrwPj8z7m7IKMJL8cG12pLZIpNuxbZiOHFsHh6z%2FZuO9q49OAeskrptcvKcovvQSb5iPGHMqTRW%2B2Txw3Wel2myt5nx3ZELiM1SLort%2B29Shb%2B4U7Qkl8xOfbfqZ7keK8hYJLrg%2F9835VzEq1Bh4Gh%2BObB1vsfIRZnpRrWlbWy9D8QQNIrXXmx2pIyRMEyosLup8TVGSDpATK7AkGwVNdQS7JKFdKeg3yg1KvX30qFgzmQv8sr4k5L%2FZiIJj54zkMS5x9Ln%2FUapzAZJgDF0ErUVONZaEqiRh40zBdJC6ctKUICYKiiuYdfmI7RwnHRvJkva7Y2%2BP8Ob75hpA2ejLX5L4kViKdO3%2BjYJn0Bu2geLQ5KOcowFZtZAXAKJko%2Fdx4f64sdE%2BWmuPN4S7ENnXAhGfP1CnxadW1wKOOZNJcKk%2FfZTHMJB7AeUH1H7ZqU4rgPZbGpbqv%2F7RURjWG52DYPnxIkygSm4lsceX4fMqyEliNohvqzPfs7INn84K4de1%2BQLq4P3RnQ%2BjwFOPBHYki2u7mJfdvBnH09msLkrqWOQgA3RTvLFBnKeueelZ";
+        window.__genspark_locale = "ja-JP";
+        window.__genspark_token = "To/BnjzloZ3UfQdcSaYfDpRjGnpVrNBuZ4DlfsNFB0e/CqAdLmmpEJNJl00U+Z3GFyLpguWfeADaOfMOMkuFQIKtICWDJ0gWFsg2T0q2Jx9NLzpp79MlPHaAnRKy6cNn6LHJlK8be1PlpvS1K4gXwxL2J5n7Y9IhpFsbe7Hols7h4ILzRI+gdTJOt2/MM9Rsu2v3jrwPj8z7m7IKMJL8cG12pLZIpNuxbZiOHFsHh6z/ZuO9q49OAeskrptcvKcovvQSb5iPGHMqTRW+2Txw3Wel2myt5nx3ZELiM1SLort+29Shb+4U7Qkl8xOfbfqZ7keK8hYJLrg/9835VzEq1Bh4Gh+ObB1vsfIRZnpRrWlbWy9D8QQNIrXXmx2pIyRMEyosLup8TVGSDpATK7AkGwVNdQS7JKFdKeg3yg1KvX30qFgzmQv8sr4k5L/ZiIJj54zkMS5x9Ln/UapzAZJgDF0ErUVONZaEqiRh40zBdJC6ctKUICYKiiuYdfmI7RwnHRvJkva7Y2+P8Ob75hpA2ejLX5L4kViKdO3+jYJn0Bu2geLQ5KOcowFZtZAXAKJko/dx4f64sdE+WmuPN4S7ENnXAhGfP1CnxadW1wKOOZNJcKk/fZTHMJB7AeUH1H7ZqU4rgPZbGpbqv/7RURjWG52DYPnxIkygSm4lsceX4fMqyEliNohvqzPfs7INn84K4de1+QLq4P3RnQ+jwFOPBHYki2u7mJfdvBnH09msLkrqWOQgA3RTvLFBnKeueelZ";
+    </script>
+    <script defer src="./slide-nav.js"></script>
+</body>
+</html>
