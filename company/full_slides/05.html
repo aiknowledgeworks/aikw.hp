@@ -1,0 +1,407 @@
+<html lang="ja"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIナレッジワークス合同会社 会社紹介</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&amp;family=Montserrat:wght@600;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #000;
+        }
+        .slide {
+            width: 1280px;
+            height: 720px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e1f3f8 100%);
+            font-family: 'Noto Sans JP', sans-serif;
+            color: #5170c6;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding-bottom: 50px;
+        }
+        .section-title {
+            position: absolute;
+            top: 40px;
+            left: 60px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #6ea3d3;
+            display: flex;
+            align-items: center;
+        }
+        .section-number {
+            font-size: 42px;
+            margin-right: 15px;
+            background: linear-gradient(135deg, #66e6d0, #6ea3d3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .content-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+            padding-top: 30px;
+        }
+        .subtitle {
+            text-align: center;
+            font-size: 38px;
+            font-weight: 700;
+            color: #5170c6;
+            margin-top: 60px;
+            position: relative;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+        }
+        .subtitle:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #66e6d0, #6ea3d3);
+            border-radius: 2px;
+        }
+        .vision-container {
+            width: 800px;
+            margin: 0 auto 18px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 16px;
+            padding: 20px 25px;
+            box-shadow: 0 10px 30px rgba(98, 200, 213, 0.2);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+        .vision-container:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #66e6d0, #6ea3d3);
+        }
+        .vision-text {
+            font-size: 30px;
+            font-weight: 700;
+            margin: 0;
+            line-height: 1.5;
+        }
+        .vision-highlight {
+            color: #62c8d5;
+            background: rgba(102, 230, 208, 0.1);
+            padding: 3px 12px;
+            border-radius: 6px;
+            position: relative;
+        }
+        .vision-highlight::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #66e6d0, #6ea3d3);
+        }
+        .community-visualization {
+            width: 900px;
+            height: 180px;
+            margin: 10px auto 0;
+            position: relative;
+        }
+        .community-circle {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background: white;
+            box-shadow: 0 6px 25px rgba(110, 163, 211, 0.25);
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards;
+            z-index: 2;
+        }
+        .community-circle:hover {
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 12px 30px rgba(110, 163, 211, 0.3);
+        }
+        .circle-1 {
+            top: 25px;
+            left: 140px;
+            animation-delay: 0.2s;
+            border: 3px solid rgba(102, 230, 208, 0.3);
+        }
+        .circle-2 {
+            top: 45px;
+            left: 400px;
+            animation-delay: 0.4s;
+            border: 3px solid rgba(110, 163, 211, 0.3);
+            width: 140px;
+            height: 140px;
+        }
+        .circle-3 {
+            top: 25px;
+            left: 660px;
+            animation-delay: 0.6s;
+            border: 3px solid rgba(98, 200, 213, 0.3);
+        }
+        .connection-line {
+            position: absolute;
+            height: 4px;
+            background: linear-gradient(90deg, #66e6d0, #6ea3d3);
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+            animation-delay: 0.8s;
+            z-index: 1;
+        }
+        .line-1 {
+            width: 240px;
+            top: 85px;
+            left: 230px;
+            transform: rotate(10deg);
+        }
+        .line-2 {
+            width: 240px;
+            top: 85px;
+            left: 520px;
+            transform: rotate(-10deg);
+        }
+        .circle-icon {
+            font-size: 32px;
+            color: #66e6d0;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #66e6d0, #6ea3d3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .circle-text {
+            font-size: 16px;
+            font-weight: 700;
+            color: #5170c6;
+            text-align: center;
+        }
+        .key-points {
+            display: flex;
+            justify-content: space-between;
+            width: 920px;
+            margin: 25px auto 0;
+        }
+        .key-point {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 16px;
+            padding: 18px 15px;
+            margin: 0 10px;
+            box-shadow: 0 8px 20px rgba(98, 200, 213, 0.15);
+            transform: translateY(30px);
+            opacity: 0;
+            animation: fadeIn 0.5s ease forwards;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .key-point:hover {
+            transform: translateY(0) scale(1.02);
+            box-shadow: 0 12px 30px rgba(98, 200, 213, 0.25);
+        }
+        .key-point:before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+        }
+        .key-point:nth-child(1):before {
+            background: #66e6d0;
+        }
+        .key-point:nth-child(2):before {
+            background: linear-gradient(90deg, #66e6d0, #6ea3d3);
+        }
+        .key-point:nth-child(3):before {
+            background: #6ea3d3;
+        }
+        .key-point-icon {
+            font-size: 25px;
+            margin-bottom: 12px;
+            height: 44px;
+            width: 44px;
+            line-height: 44px;
+            text-align: center;
+            color: white;
+            background: linear-gradient(135deg, #66e6d0, #6ea3d3);
+            border-radius: 50%;
+            display: inline-block;
+        }
+        .key-point-title {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #5170c6;
+        }
+        .key-point-text {
+            font-size: 13px;
+            line-height: 1.6;
+            color: #5170c6;
+            opacity: 0.9;
+        }
+        .copyright {
+            position: absolute;
+            bottom: 20px;
+            right: 30px;
+            color: #6ea3d3;
+            font-size: 10px;
+            opacity: 0.7;
+        }
+        .decoration {
+            position: absolute;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .decoration-1 {
+            top: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(102, 230, 208, 0.1) 0%, rgba(102, 230, 208, 0) 70%);
+        }
+        .decoration-2 {
+            bottom: -150px;
+            left: -100px;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(110, 163, 211, 0.08) 0%, rgba(110, 163, 211, 0) 70%);
+        }
+        .decoration-3 {
+            top: 250px;
+            right: 100px;
+            width: 80px;
+            height: 80px;
+            border-radius: 20%;
+            background: radial-gradient(circle, rgba(102, 230, 208, 0.1) 0%, rgba(102, 230, 208, 0) 70%);
+            transform: rotate(45deg);
+        }
+        .page-indicator {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+            color: #6ea3d3;
+            letter-spacing: 1px;
+        }
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .key-point:nth-child(1) { animation-delay: 0.3s; }
+        .key-point:nth-child(2) { animation-delay: 0.5s; }
+        .key-point:nth-child(3) { animation-delay: 0.7s; }
+    </style>
+</head>
+<body>
+    <div class="slide" data-slide-hover-selected="true">
+        <!-- Decorative elements -->
+        <div class="decoration decoration-1"></div>
+        <div class="decoration decoration-2"></div>
+        <div class="decoration decoration-3"></div>
+        
+        <!-- Section title -->
+        <div class="section-title">
+            <span class="section-number">01</span>はじめに
+        </div>
+        
+        <div class="content-wrapper">
+            <!-- Subtitle -->
+            <h2 class="subtitle">私たちが目指す社会</h2>
+            
+            <!-- Main content -->
+            <div class="vision-container">
+                <p class="vision-text">
+                    <span class="vision-highlight">「"好き"を信じ合える運命共同体」</span>を育てる
+                </p>
+            </div>
+            
+            <!-- Community visualization -->
+            <div class="community-visualization">
+                <div class="connection-line line-1"></div>
+                <div class="connection-line line-2"></div>
+                
+                <div class="community-circle circle-1">
+                    <i class="fas fa-user-friends circle-icon"></i>
+                    <div class="circle-text">人と人</div>
+                </div>
+                
+                <div class="community-circle circle-2">
+                    <i class="fas fa-hands-helping circle-icon"></i>
+                    <div class="circle-text">共創</div>
+                </div>
+                
+                <div class="community-circle circle-3">
+                    <i class="fas fa-robot circle-icon"></i>
+                    <div class="circle-text">人と技術</div>
+                </div>
+            </div>
+            
+            <!-- Key points -->
+            <div class="key-points">
+                <div class="key-point">
+                    <i class="fas fa-users key-point-icon"></i>
+                    <h3 class="key-point-title">共に成長するコミュニティ</h3>
+                    <p class="key-point-text">単なる技術活用を超え、社会全体が「運命共同体」として相互に支え合う環境を構築</p>
+                </div>
+                
+                <div class="key-point">
+                    <i class="fas fa-network-wired key-point-icon"></i>
+                    <h3 class="key-point-title">有機的なつながり</h3>
+                    <p class="key-point-text">生成AIを活用し、人と人、人と技術が有機的に結びつき、共創を促進する場を創出</p>
+                </div>
+                
+                <div class="key-point">
+                    <i class="fas fa-seedling key-point-icon"></i>
+                    <h3 class="key-point-title">持続可能な社会</h3>
+                    <p class="key-point-text">一人ひとりの成長が全体の成長へとつながる持続可能な社会の実現を目指す</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Page indicator -->
+        <div class="page-indicator"></div>
+        
+        <!-- Copyright -->
+        <div class="copyright">© 2025 AI Knowledge Works, LLC. All rights reserved.</div>
+    </div>
+
+<script src="https://www.genspark.ai/slide-inner.js?_v=1"></script>
+    <script id="html_badge_script1">
+        window.__genspark_remove_badge_link = "https://www.genspark.ai/api/html_badge/" +
+            "remove_badge?token=To%2FBnjzloZ3UfQdcSaYfDtU7nAQjFGZvbBlnj3YPBZpKhIBuQ87cUkkeKKo3bl5kZEyzsmBb2ooK3ft5%2BYcWmP%2BzIWvSau66yQl%2FDJ7RHVdRnpBE%2FJFn2Eqe4YugQaGvraNljdDaDn6qXLWaHZIpGsrpFC%2BosDShMpcGHP4J45g8MvpCaf52SYLrKjVo3qxmVl1UFhp5niFCiFJiiyDr8GNvSBq7iq%2F4IMXi8BsOQ7O1g3bR0thksmd%2FW6r0jB3jkcV4Xv%2FvqT0wERrU79yJO2LJSS3OvF%2B3hnOxBdwxZzU2lZE7mJtmUKTKM3V21iLW6BFo4rR0pWy3K8aH37IwkfGYYzpOdwoy6MS9V3O7JcOPVorM3BXKtcL1z1AQsnl0zu0C4Iv%2B89U9TdT00qXU%2BUbd2aGuwYYiZSerO%2FVZ7jZgtiMtm0K%2BKxja17EGAikKka3ZKsCtSwGO9Hc2Ye%2BDtBGNUuC%2FcmM6Mg09neIT0b60vRmCrL%2FcNRxiJNrgRObnuO3ckAOmIxkN3yLfrLKL0wKZjPtscZCGYFeI6wwEMuCR4%2FcSQEbxltDqWVDWO25xGOILeUSlwmL9aqp%2BKoIIAESjk4xOuMaiAodASHRxaOjTL2QY1jJG0kaKqCUcjBovicpETuvOpyRYuIySnpIRuXgJV8%2F5yQ3xATFBC0WhvRUR8eL7imSH%2BUNMT0yb6O8ItjPOboCDK0creGoC77X%2BIgKPzGwsQM4lg3Gs5NEpxnCfcBgVLfUuiEAwF3sRxlYe";
+        window.__genspark_locale = "ja-JP";
+        window.__genspark_token = "To/BnjzloZ3UfQdcSaYfDtU7nAQjFGZvbBlnj3YPBZpKhIBuQ87cUkkeKKo3bl5kZEyzsmBb2ooK3ft5+YcWmP+zIWvSau66yQl/DJ7RHVdRnpBE/JFn2Eqe4YugQaGvraNljdDaDn6qXLWaHZIpGsrpFC+osDShMpcGHP4J45g8MvpCaf52SYLrKjVo3qxmVl1UFhp5niFCiFJiiyDr8GNvSBq7iq/4IMXi8BsOQ7O1g3bR0thksmd/W6r0jB3jkcV4Xv/vqT0wERrU79yJO2LJSS3OvF+3hnOxBdwxZzU2lZE7mJtmUKTKM3V21iLW6BFo4rR0pWy3K8aH37IwkfGYYzpOdwoy6MS9V3O7JcOPVorM3BXKtcL1z1AQsnl0zu0C4Iv+89U9TdT00qXU+Ubd2aGuwYYiZSerO/VZ7jZgtiMtm0K+Kxja17EGAikKka3ZKsCtSwGO9Hc2Ye+DtBGNUuC/cmM6Mg09neIT0b60vRmCrL/cNRxiJNrgRObnuO3ckAOmIxkN3yLfrLKL0wKZjPtscZCGYFeI6wwEMuCR4/cSQEbxltDqWVDWO25xGOILeUSlwmL9aqp+KoIIAESjk4xOuMaiAodASHRxaOjTL2QY1jJG0kaKqCUcjBovicpETuvOpyRYuIySnpIRuXgJV8/5yQ3xATFBC0WhvRUR8eL7imSH+UNMT0yb6O8ItjPOboCDK0creGoC77X+IgKPzGwsQM4lg3Gs5NEpxnCfcBgVLfUuiEAwF3sRxlYe";
+    </script>
+    <script defer src="./slide-nav.js"></script>
+</body>
+</html>
