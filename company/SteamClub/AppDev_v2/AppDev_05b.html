@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ステップ1：データを登録しよう！</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap');
+    
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      font-family: 'M PLUS Rounded 1c', sans-serif;
+    }
+    
+    .slide-container {
+      width: 1280px;
+      height: 720px;
+      margin: 0 auto;
+      background-color: #a8e1f8;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .title {
+      color: #ff5a87;
+      text-shadow: 3px 3px 0 #ffffff, 5px 5px 0 #3bb4d7;
+      font-weight: 800;
+    }
+    
+    .content-box {
+      background-color: white;
+      border: 3px solid #3bb4d7;
+      border-radius: 20px;
+      box-shadow: 5px 5px 0 rgba(0,0,0,0.1);
+    }
+    
+    .icon-box {
+      background-color: white;
+      border: 3px solid #ffbe3d;
+      border-radius: 20px;
+      box-shadow: 5px 5px 0 rgba(0,0,0,0.1);
+    }
+    
+    .bubble {
+      position: absolute;
+      background-color: white;
+      border-radius: 50%;
+      opacity: 0.5;
+    }
+    
+    .decoration {
+      position: absolute;
+    }
+  </style>
+</head>
+<body>
+  <div class="slide-container p-8 flex flex-col">
+    <!-- 背景の装飾 -->
+    <div class="bubble" style="width: 80px; height: 80px; top: 10%; left: 5%;"></div>
+    <div class="bubble" style="width: 60px; height: 60px; top: 20%; right: 15%;"></div>
+    <div class="bubble" style="width: 100px; height: 100px; bottom: 15%; right: 5%;"></div>
+    <div class="bubble" style="width: 40px; height: 40px; bottom: 30%; left: 10%;"></div>
+    
+    <div class="decoration" style="top: 5%; right: 5%;">
+      <svg width="80" height="80" viewBox="0 0 100 100">
+        <polygon points="50,10 61,35 90,35 65,55 75,80 50,65 25,80 35,55 10,35 39,35" fill="#5ce68a" />
+      </svg>
+    </div>
+    
+    <div class="decoration" style="bottom: 5%; left: 5%;">
+      <svg width="60" height="60" viewBox="0 0 100 100">
+        <polygon points="50,10 61,35 90,35 65,55 75,80 50,65 25,80 35,55 10,35 39,35" fill="#ffbe3d" />
+      </svg>
+    </div>
+    
+    <!-- タイトル -->
+    <h1 class="title text-center text-5xl mb-6 mt-4">AIに指示してデータ登録システムを作ろう！</h1>
+    
+    <div class="flex h-full">
+      <!-- 左側：プロンプト例 -->
+      <div class="w-1/2 px-4 flex flex-col justify-center">
+        <div class="content-box p-5 mb-4">
+          <p class="text-2xl font-bold text-red-500 mb-3">🎯 プロンプト例1（シンプル）</p>
+          <div class="bg-gray-100 p-4 rounded-lg border-l-4 border-blue-500">
+            <p class="text-xl font-mono leading-relaxed text-center py-4">
+              「冷蔵庫の食材を管理するWebアプリを作って」
+            </p>
+          </div>
+        </div>
+        
+        <div class="content-box p-5">
+          <p class="text-2xl font-bold text-green-600 mb-3">🚀 プロンプト例2（機能追加）</p>
+          <div class="bg-gray-100 p-4 rounded-lg border-l-4 border-green-500">
+            <p class="text-lg font-mono leading-relaxed">
+              「さっき作った食材管理アプリに、便利な機能を追加して。<br>
+              ・期限切れが近い食材は赤色で警告表示<br>
+              ・食材を編集できるボタンも追加<br>
+              ・データがブラウザを閉じても残るように保存<br>
+              ・スマホでも使いやすいデザインに調整<br>
+              より便利で実用的なアプリにして」
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 右側：AIツール紹介 -->
+      <div class="w-1/2 px-4 flex flex-col justify-center items-center">
+        <div class="content-box p-5 w-4/5 mb-4">
+          <p class="text-2xl font-bold text-blue-600 mb-3">💡 初心者向けのコツ</p>
+          <ul class="text-lg space-y-2">
+            <li>✅ 何を作りたいか具体的に</li>
+            <li>✅ 必要な機能を箇条書きで</li>
+            <li>✅ デザインの希望も伝える</li>
+            <li>✅ 「子供向け」など対象も明記</li>
+          </ul>
+        </div>
+        
+
+        
+        <div class="content-box p-5 w-4/5">
+          <p class="text-xl font-bold text-green-600 mb-2">🎯 今日の目標</p>
+          <p class="text-lg">AIに上記のプロンプトを入力して、<br>実際に動く食材管理アプリを<br>一緒に作ってみよう！</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="slide-nav-plusPDF.js"></script>
+</body>
+</html>

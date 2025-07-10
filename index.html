@@ -270,9 +270,22 @@
       .background-grid,
       .training-grid,
       .kids-lab-grid,
-      .achievements-grid,
-      .mission-vision-container {
+      .mission-vision-container,
+      .video-content-grid {
         grid-template-columns: 1fr !important;
+      }
+      
+      /* 動画セクション調整 */
+      .video-content-grid {
+        gap: 2rem !important;
+      }
+      
+      .video-container {
+        min-height: 350px !important;
+      }
+      
+      .video-container iframe {
+        height: 350px !important;
       }
       
       /* ミッションスタイル調整 */
@@ -485,13 +498,11 @@
       </div>
       <nav>
         <ul>
-          <li><a href="#background">社会背景</a></li>
-          <li><a href="#founding">創業のきっかけ</a></li>
-          <li><a href="#vision">ミッション</a></li>
+          <li><a href="#background">創業のきっかけ</a></li>
           <li><a href="#pillars">事業内容</a></li>
-          <li><a href="#achievements">実績</a></li>
-          <li><a href="#company">会社概要</a></li>
-          <li><a href="#contact">お問い合わせ</a></li>
+          <li><a href="achievements.html">実績・展望</a></li>
+          <li><a href="company.html">会社概要</a></li>
+          <li><a href="contact.html">お問い合わせ</a></li>
         </ul>
       </nav>
       <div class="overlay"></div>
@@ -617,6 +628,40 @@
         <div class="value-item reveal" style="height: 100%;">
           <h4 data-icon="✓">Trust the Process</h4>
           <p>結果だけでなく、過程を信じる。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === Brand Video === -->
+  <section id="brand-video">
+    <div class="container">
+      <h2 class="section-title">光が織りなす<span class="suki">"好き"</span>の物語</h2>
+      
+      <div class="video-content-grid reveal-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; max-width: 1000px; margin: 0 auto;">
+        <div class="video-container reveal" style="position: relative; width: 100%; height: auto; min-height: 550px; border-radius: 16px; overflow: hidden; box-shadow: 0 12px 30px rgba(0,0,0,.15);">
+          <iframe 
+            src="https://www.youtube.com/embed/8cyoIow_exs?si=WNus0JQf759BVPb0&amp;controls=1&amp;rel=0&amp;playsinline=1&amp;modestbranding=1&amp;autoplay=0" 
+            title="AIナレッジワークス ブランドムービー" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen
+            style="width: 100%; height: 550px; border-radius: 16px;">
+          </iframe>
+        </div>
+        
+        <div class="video-description reveal" style="background: var(--light); border-radius: 12px; padding: 2.5rem; box-shadow: 0 8px 24px rgba(0,0,0,.1); border-left: 5px solid var(--accent);">
+          <h3 style="color: var(--accent); font-size: 1.4rem; margin-bottom: 1.5rem; font-weight: 700;">Light to Breath, Breath to Code</h3>
+          <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem;">
+            暗闇の中の小さな光点から始まり、一人ひとりの心に眠る<span class="suki">"好き"</span>の種が芽吹き、やがて世界を結ぶ大きなネットワークへと成長していく物語。
+          </p>
+          <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem;">
+            個人の情熱が他者との出会いによって共鳴し、コミュニティを形成し、最終的には宇宙規模のビジョンへと昇華する様子を光の軌跡で表現しています。
+          </p>
+          <p style="font-size: 1.1rem; line-height: 1.8; color: #666;">
+            私たちAIナレッジワークスが目指す「自己実現の大量生産」の世界観を、美しい映像詩として描きました。
+          </p>
         </div>
       </div>
     </div>
@@ -755,103 +800,9 @@
     </div>
   </section>
 
-  <!-- === Achievements === -->
-  <section id="achievements">
-    <div class="container">
-      <h2 class="section-title">実績と展望</h2>
-      <div class="achievements-grid reveal-group" style="display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, auto); gap: 1.5rem; max-width: 900px; margin: 0 auto;">
-        <div class="card reveal" style="height: 100%;">
-          <h3>研修事例 A社</h3>
-          <p>営業部門への生成AI研修(Starter)導入。受講者がマインドの変化（95％の人がこれからAIを業務に活用していきたいとのこと）を実感。提案書作成やメール作成の時間が50%短縮。</p>
-        </div>
-        <div class="card reveal" style="height: 100%;">
-          <h3>研修事例 B社</h3>
-          <p>生成AI研修(Starter)を導入。社内会議の議事録の要約にかかる時間を大幅改善（80%の作業時間短縮）。</p>
-        </div>
-        <div class="card reveal" style="height: 100%;">
-          <h3>研修事例 C社</h3>
-          <p>生成AI研修(Expert)を導入。企業内ニーズを掘り起こし、紙ベースの社内資料のチャットボット化を提案、導入検討。</p>
-        </div>
-        <div class="card reveal" style="height: 100%;">
-          <h3>研修事例 D社 AI本格導入検討</h3>
-          <p>自社チャットボット構築やローカルLLMを利用して、社内システムの構築支援。</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- === 会社概要 === -->
-  <section id="company">
-    <div class="container">
-      <h2 class="section-title">会社概要</h2>
-      <div class="card reveal" style="max-width: 800px; margin: 0 auto; overflow-x: auto;">
-        <style>
-          .company-table th {
-            text-align: left;
-            padding: 15px;
-            border-bottom: 1px solid #eee;
-            width: 100px;
-            font-size: 1.1rem;
-            vertical-align: middle;
-            white-space: nowrap;
-          }
-                     .company-table td {
-             padding: 15px 25px;
-             border-bottom: 1px solid #eee;
-           }
-           .company-table td:not(:last-child) {
-             white-space: nowrap;
-           }
-          @media (max-width: 768px) {
-            .company-table th {
-              width: 80px !important;
-              font-size: 1rem !important;
-            }
-            .company-table td {
-              padding: 12px 15px !important;
-            }
-          }
-          @media (max-width: 600px) {
-            .company-table-container {
-              overflow-x: auto;
-            }
-            .company-table {
-              min-width: 500px;
-            }
-          }
-        </style>
-        <div class="company-table-container">
-          <table class="company-table" style="width: 100%; border-collapse: collapse;">
-            <tr>
-              <th>会社名</th>
-              <td>AIナレッジワークス合同会社</td>
-            </tr>
-            <tr>
-              <th>本店住所</th>
-              <td>大阪府大阪市浪速区湊町2丁目2番5号 2119号室</td>
-            </tr>
-            <tr>
-              <th>資本金</th>
-              <td>10万円</td>
-            </tr>
-            <tr>
-              <th>社員</th>
-              <td>3名</td>
-            </tr>
-                          <tr>
-                <th>事業目的</th>
-                <td style="white-space: normal;">
-                  <div style="margin-bottom: 5px;">・AI技術を活用したソフトウェア及びシステムの研究、企画、開発、販売、保守及びコンサルティング</div>
-                  <div style="margin-bottom: 5px;">・AIを活用した教育、研修、セミナー及びコンサルティング業務</div>
-                  <div style="margin-bottom: 5px;">・AI・データ分析を活用した市場調査及びコンサルティング業務</div>
-                  <div style="text-align: right;">他</div>
-                </td>
-              </tr>
-          </table>
-        </div>
-      </div>
-    </div>
-  </section>
+
+
 
   <!-- === Contact === -->
   <section id="contact" style="background:#f0f8ff;">

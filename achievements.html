@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>実績と展望 | AIナレッジワークス合同会社</title>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWFLPN1EZH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-DWFLPN1EZH');
+  </script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* === カラーパレット & ベース === */
+    :root {
+      --primary-gradient: linear-gradient(135deg, #6db5ff 0%, #a1e9d9 100%);
+      --dark: #121212;
+      --light: #ffffff;
+      --accent: #00c9a7;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Noto Sans JP", "Nunito", sans-serif;
+      background: #f9f9f9;
+      color: var(--dark);
+      line-height: 1.7;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+
+    /* === ヘッダー === */
+    header {
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+      background: rgba(255, 255, 255, .95); backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, .1);
+    }
+    .container { width: 90%; max-width: 1200px; margin: 0 auto; }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; padding: .75rem 0; }
+    .logo { display: flex; align-items: center; }
+    .logo img { height: 44px; }
+    .logo span { font-weight: 700; margin-left: 10px; font-size: 1.1rem; }
+    nav ul { display: flex; flex-wrap: wrap; gap: 1rem; }
+    nav a { font-weight: 600; transition: color .2s; }
+    nav a:hover { color: var(--accent); }
+
+    /* === セクション共通 === */
+    section { padding: 110px 0; }
+    .section-title { 
+      font-size: 2.4rem; 
+      font-weight: 700; 
+      text-align: center; 
+      margin-bottom: .75rem;
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+      display: inline-block;
+      width: 100%;
+    }
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--primary-gradient);
+      border-radius: 2px;
+    }
+    .section-subtitle { 
+      text-align: center; 
+      color: #666; 
+      margin-bottom: 2.5rem; 
+      font-size: 1rem;
+      font-weight: 500;
+      position: relative;
+      padding: 0 20px;
+    }
+    .section-subtitle::before,
+    .section-subtitle::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 30px;
+      height: 2px;
+      background: var(--accent);
+      opacity: 0.5;
+    }
+    .section-subtitle::before {
+      left: 0;
+    }
+    .section-subtitle::after {
+      right: 0;
+    }
+
+    /* === Hero === */
+    .hero {
+      height: 50vh; background: var(--primary-gradient);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; color: var(--light);
+    }
+    .hero h1 { font-size: 3rem; margin-bottom: .5rem; letter-spacing: 1px; }
+    .hero p.tagline { font-size: 1.4rem; }
+
+    /* === グリッド・カード === */
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+    .card { background: var(--light); border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,.05); padding: 1.8rem; opacity: 0; transform: translateY(40px); transition: all .6s ease; }
+    .card.active { opacity: 1; transform: translateY(0); }
+    .card h3 { margin-bottom: .75rem; color: var(--accent); font-size: 1.25rem; }
+
+    /* === Achievements Grid === */
+    .achievements-grid { 
+      display: grid; 
+      grid-template-columns: repeat(2, 1fr); 
+      grid-template-rows: repeat(2, auto);
+      gap: 2rem; 
+      margin-top: 2rem;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .achievement-card { 
+      background: var(--light); 
+      padding: 2.5rem 1.5rem; 
+      border-radius: 12px; 
+      text-align: left; 
+      box-shadow: 0 8px 24px rgba(0,0,0,.1); 
+      opacity: 0; 
+      transform: translateY(40px); 
+      transition: all .6s ease; 
+      position: relative;
+      overflow: hidden;
+      border-left: 5px solid var(--accent);
+    }
+    .achievement-card.active { 
+      opacity: 1; 
+      transform: translateY(0); 
+    }
+    .achievement-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0,0,0,.15);
+    }
+    .achievement-card:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: var(--primary-gradient);
+    }
+    .achievement-card h3 { 
+      font-size: 1.4rem; 
+      margin-bottom: 1rem; 
+      color: var(--accent);
+    }
+    .achievement-card p {
+      color: #666;
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    /* === Stats === */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, auto);
+      gap: 2rem;
+      margin: 3rem 0;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .stat-item {
+      background: var(--light);
+      padding: 2rem;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,.05);
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all .6s ease;
+    }
+    .stat-item.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    .stat-label {
+      font-size: 1.1rem;
+      color: #666;
+    }
+
+    /* === Footer === */
+    footer { background: #1a1a1a; color: #e6e6e6; padding: 3rem 0; text-align: center; }
+    footer p { font-size: .85rem; }
+    footer a { color: #e6e6e6; text-decoration: underline; }
+
+    /* 好きのスタイル */
+    .suki {
+      font-size: 1.2em;
+      font-weight: 700;
+      color: #2bc4a9;
+      display: inline-block;
+      position: relative;
+      padding: 0 5px;
+      transform: rotate(-3deg);
+    }
+    .suki::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      background: var(--primary-gradient);
+      border-radius: 3px;
+      opacity: 0.7;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.3rem; }
+      .hero p.tagline { font-size: 1.1rem; }
+      
+      /* グリッドレイアウト調整 */
+      .achievements-grid {
+        grid-template-columns: 1fr !important;
+        grid-template-rows: auto !important;
+      }
+      
+      .stats-grid {
+        grid-template-columns: 1fr !important;
+        grid-template-rows: auto !important;
+      }
+      
+      /* セクションの余白調整 */
+      section {
+        padding: 80px 0;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      /* Mobile navigation */
+      .header-inner {
+        padding: 0.75rem 0;
+        position: relative;
+      }
+      
+      .hamburger {
+        display: block;
+        width: 30px;
+        height: 30px;
+        position: relative;
+        cursor: pointer;
+        z-index: 1010;
+        margin-right: 0;
+        padding: 10px;
+        box-sizing: content-box;
+        margin: -10px;
+      }
+      
+      .hamburger span {
+        display: block;
+        position: absolute;
+        height: 3px;
+        width: 100%;
+        background: var(--dark);
+        border-radius: 3px;
+        opacity: 1;
+        left: 0;
+        transform: rotate(0deg);
+        transition: .25s ease-in-out;
+      }
+      
+      .hamburger span:nth-child(1) {
+        top: 0px;
+      }
+      
+      .hamburger span:nth-child(2) {
+        top: 9px;
+      }
+      
+      .hamburger span:nth-child(3) {
+        top: 18px;
+      }
+      
+      .hamburger.active span:nth-child(1) {
+        top: 9px;
+        transform: rotate(135deg);
+      }
+      
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+        left: -60px;
+      }
+      
+      .hamburger.active span:nth-child(3) {
+        top: 9px;
+        transform: rotate(-135deg);
+      }
+      
+      nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+        background: white;
+        box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+        transition: 0.3s ease;
+        padding-top: 70px;
+        z-index: 1000;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      
+      nav.active {
+        right: 0;
+      }
+      
+      nav ul {
+        flex-direction: column;
+        gap: 0;
+        padding: 0;
+        margin: 0;
+      }
+      
+      nav ul li {
+        width: 100%;
+      }
+      
+      nav ul li a {
+        padding: 15px 20px;
+        display: block;
+        border-bottom: 1px solid #eee;
+        font-size: 1.1rem;
+        position: relative;
+      }
+      
+      nav ul li a::after {
+        content: "›";
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.4rem;
+        opacity: 0.5;
+      }
+      
+      .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+        z-index: 990;
+        -webkit-backdrop-filter: blur(2px);
+        backdrop-filter: blur(2px);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      
+      .overlay.active {
+        display: block;
+        opacity: 1;
+      }
+      
+              /* タイムラインのモバイル対応 */
+        .timeline-container .timeline-item {
+          flex-direction: column !important;
+          text-align: center;
+        }
+        
+        .timeline-content {
+          width: 90% !important;
+          margin: 0 auto !important;
+        }
+        
+        .timeline-axis {
+          left: 30px !important;
+          transform: none !important;
+        }
+        
+        .timeline-dot {
+          left: 30px !important;
+          transform: translateX(-50%) !important;
+        }
+      }
+      
+      /* === タイムラインホバーエフェクト === */
+      .timeline-item {
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      
+      .timeline-item:hover .timeline-content {
+        transform: scale(1.05);
+        box-shadow: 0 15px 40px rgba(0,0,0,.2) !important;
+        background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+      }
+      
+      .timeline-item:hover .timeline-dot {
+        transform: translateX(-50%) scale(1.3);
+        box-shadow: 0 0 0 8px white, 0 0 0 12px var(--accent), 0 0 20px rgba(0, 201, 167, 0.3);
+        animation: pulse 1.5s infinite;
+      }
+      
+      .timeline-item:hover .timeline-date {
+        color: var(--accent) !important;
+        font-size: 1.2rem !important;
+        transform: translateY(-2px);
+      }
+      
+      .timeline-item:hover h3 {
+        color: var(--accent) !important;
+        transform: translateY(-2px);
+      }
+      
+      .timeline-item:hover p {
+        color: #333 !important;
+      }
+      
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 8px white, 0 0 0 12px var(--accent), 0 0 20px rgba(0, 201, 167, 0.3);
+        }
+        50% {
+          box-shadow: 0 0 0 8px white, 0 0 0 16px var(--accent), 0 0 25px rgba(0, 201, 167, 0.5);
+        }
+        100% {
+          box-shadow: 0 0 0 8px white, 0 0 0 12px var(--accent), 0 0 20px rgba(0, 201, 167, 0.3);
+        }
+      }
+      
+      /* タイムライン軸のアニメーション */
+      .timeline-axis {
+        background: var(--primary-gradient);
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .timeline-axis::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: 0;
+        width: 100%;
+        height: 200%;
+        background: linear-gradient(
+          to bottom,
+          transparent 0%,
+          rgba(255, 255, 255, 0.3) 45%,
+          rgba(255, 255, 255, 0.8) 50%,
+          rgba(255, 255, 255, 0.3) 55%,
+          transparent 100%
+        );
+        transform: translateY(-100%);
+        animation: shimmer 3s ease-in-out infinite;
+      }
+      
+      @keyframes shimmer {
+        0% {
+          transform: translateY(-100%);
+        }
+        50% {
+          transform: translateY(0%);
+        }
+        100% {
+          transform: translateY(100%);
+        }
+    }
+  </style>
+</head>
+<body>
+  <!-- === Header === -->
+  <header>
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <img src="https://raw.githubusercontent.com/aiknowledgeworks/aikw.hp/main/logo/AI%E3%83%8A%E3%83%AC%E3%83%83%E3%82%B8%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9_logo_transparen.png" alt="AIナレッジワークス ロゴ">
+        <span>AIナレッジワークス / AIKW</span>
+      </a>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html#background">創業のきっかけ</a></li>
+          <li><a href="index.html#pillars">事業内容</a></li>
+          <li><a href="achievements.html">実績・展望</a></li>
+          <li><a href="company.html">会社概要</a></li>
+          <li><a href="contact.html">お問い合わせ</a></li>
+        </ul>
+      </nav>
+      <div class="overlay"></div>
+    </div>
+  </header>
+
+  <!-- === Hero === -->
+  <section id="home" class="hero">
+    <h1>実績と展望</h1>
+    <p class="tagline"><span class="suki">"好き"</span>を実現するAI導入実績</p>
+  </section>
+
+  <!-- === Stats === -->
+  <section id="stats">
+    <div class="container">
+      <h2 class="section-title">実績サマリー</h2>
+      <div class="stats-grid reveal-group">
+        <div class="stat-item reveal">
+          <span class="stat-number">95%</span>
+          <span class="stat-label">研修受講者のAI活用意向向上</span>
+        </div>
+        <div class="stat-item reveal">
+          <span class="stat-number">80%</span>
+          <span class="stat-label">議事録作成時間短縮</span>
+        </div>
+        <div class="stat-item reveal">
+          <span class="stat-number">50%</span>
+          <span class="stat-label">提案書作成時間短縮</span>
+        </div>
+        <div class="stat-item reveal">
+          <span class="stat-number">4+</span>
+          <span class="stat-label">導入実績企業数</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === Achievements === -->
+  <section id="achievements">
+    <div class="container">
+      <h2 class="section-title">導入事例詳細</h2>
+      <p class="section-subtitle">企業様のAI活用成功事例をご紹介</p>
+      
+      <div class="achievements-grid reveal-group">
+        <div class="achievement-card reveal">
+          <h3>研修事例 A社</h3>
+          <p>営業部門への生成AI研修(Starter)を導入。受講者のマインドに大きな変化が見られ、95％の方が「これからAIを業務に活用していきたい」と回答。実際に提案書作成やメール作成の時間が50%短縮され、営業効率の大幅な向上を実現しました。</p>
+        </div>
+        
+        <div class="achievement-card reveal">
+          <h3>研修事例 B社</h3>
+          <p>生成AI研修(Starter)を導入し、社内会議の効率化を図りました。特に議事録の要約作業において、従来の手動作業と比較して80%の作業時間短縮を実現。会議後の作業負担が大幅に軽減され、より本質的な業務に集中できる環境を構築しました。</p>
+        </div>
+        
+        <div class="achievement-card reveal">
+          <h3>研修事例 C社</h3>
+          <p>生成AI研修(Expert)を実施し、企業内のより深いニーズを発掘。研修を通じて紙ベースで保管されていた社内資料のデジタル化とチャットボット化の提案を行い、現在導入を検討中。知識の共有とアクセシビリティの向上を目指しています。</p>
+        </div>
+        
+        <div class="achievement-card reveal">
+          <h3>研修事例 D社 - AI本格導入プロジェクト</h3>
+          <p>研修をきっかけに本格的なAI導入支援に発展した事例。自社専用チャットボットの構築とローカルLLMを活用した社内システムの開発支援を実施。セキュアな環境でのAI活用により、業務効率化と情報セキュリティの両立を実現しています。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === Timeline === -->
+  <section id="timeline">
+    <div class="container">
+      <h2 class="section-title">創業から現在までの歩み</h2>
+      
+      <div class="timeline-container reveal-group" style="max-width: 800px; margin: 0 auto; position: relative;">
+        <!-- タイムライン軸 -->
+        <div class="timeline-axis" style="position: absolute; left: 50%; transform: translateX(-50%); width: 4px; height: 100%; background: var(--primary-gradient); border-radius: 2px; z-index: 1;"></div>
+        
+        <!-- タイムラインアイテム -->
+        <div class="timeline-item reveal" style="position: relative; display: flex; align-items: center; margin-bottom: 3rem; z-index: 2;">
+          <div class="timeline-content" style="background: var(--light); border-radius: 12px; padding: 1.5rem; box-shadow: 0 8px 24px rgba(0,0,0,.1); width: 45%; margin-right: 10%;">
+            <div class="timeline-date" style="color: var(--accent); font-weight: 700; font-size: 1.1rem; margin-bottom: 0.5rem;">2025年4月</div>
+            <h3 style="color: var(--dark); margin-bottom: 0.5rem; font-size: 1.2rem;">AIナレッジワークス合同会社 創業</h3>
+            <p style="color: #666; font-size: 0.95rem;">「"好き"を信じ合える運命共同体を育てる」をミッションに掲げ、AI技術を通じた自己実現支援事業をスタート</p>
+          </div>
+          <div class="timeline-dot" style="position: absolute; left: 50%; transform: translateX(-50%); width: 20px; height: 20px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 0 6px white, 0 0 0 8px var(--accent);"></div>
+        </div>
+        
+        <div class="timeline-item reveal" style="position: relative; display: flex; flex-direction: row-reverse; align-items: center; margin-bottom: 3rem; z-index: 2;">
+          <div class="timeline-content" style="background: var(--light); border-radius: 12px; padding: 1.5rem; box-shadow: 0 8px 24px rgba(0,0,0,.1); width: 45%; margin-left: 10%;">
+            <div class="timeline-date" style="color: var(--accent); font-weight: 700; font-size: 1.1rem; margin-bottom: 0.5rem;">2025年5月</div>
+            <h3 style="color: var(--dark); margin-bottom: 0.5rem; font-size: 1.2rem;">SHAIKE* トップアーティスト受賞</h3>
+            <p style="color: #666; font-size: 0.95rem;">AI技術を活用した創造的な取り組みが評価され、業界で注目される実績を獲得<br>*最も感動的なAI映画を発見・共有するための究極のプラットフォーム。</p>
+          </div>
+          <div class="timeline-dot" style="position: absolute; left: 50%; transform: translateX(-50%); width: 20px; height: 20px; background: #6db5ff; border-radius: 50%; box-shadow: 0 0 0 6px white, 0 0 0 8px #6db5ff;"></div>
+        </div>
+        
+        <div class="timeline-item reveal" style="position: relative; display: flex; align-items: center; z-index: 2;">
+          <div class="timeline-content" style="background: var(--light); border-radius: 12px; padding: 1.5rem; box-shadow: 0 8px 24px rgba(0,0,0,.1); width: 45%; margin-right: 10%;">
+            <div class="timeline-date" style="color: var(--accent); font-weight: 700; font-size: 1.1rem; margin-bottom: 0.5rem;">2025年6月</div>
+            <h3 style="color: var(--dark); margin-bottom: 0.5rem; font-size: 1.2rem;">AIまなびラボ 学童施設へ導入決定</h3>
+            <p style="color: #666; font-size: 0.95rem;">子ども向けAI研修プログラムが大阪市内の教育施設（学童）で正式導入。次世代AI人材育成への第一歩</p>
+          </div>
+          <div class="timeline-dot" style="position: absolute; left: 50%; transform: translateX(-50%); width: 20px; height: 20px; background: #2bc4a9; border-radius: 50%; box-shadow: 0 0 0 6px white, 0 0 0 8px #2bc4a9;"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === Future Vision === -->
+  <section id="future" style="background:#f0f8ff;">
+    <div class="container">
+      <h2 class="section-title">今後の展望</h2>
+      <p class="section-subtitle">更なる<span class="suki">"好き"</span>の実現に向けて</p>
+      
+      <div class="grid-2 reveal-group">
+        <div class="card reveal">
+          <h3>教育分野への拡大</h3>
+          <p>子ども向けAI研修「AIまなびラボ」の本格展開により、次世代のAIネイティブ人材育成を加速。学校教育への導入から家庭学習まで、包括的なAI教育エコシステムの構築を目指します。</p>
+        </div>
+        
+        <div class="card reveal">
+          <h3>地域創生プロジェクト</h3>
+          <p>地方企業や自治体との連携を通じて、AIによる地域課題解決に取り組みます。人口減少や労働力不足といった課題をAI技術で解決し、地域の持続可能な発展をサポートします。</p>
+        </div>
+        
+
+        
+        <div class="card reveal">
+          <h3>AI×創造性の新領域</h3>
+          <p>AIを単なる効率化ツールではなく、創造性を拡張するパートナーとして位置づけ、アート、音楽、文学など様々な創作分野でのAI活用支援を展開します。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === Contact === -->
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title">お問い合わせ</h2>
+      <p class="section-subtitle">AI導入や研修についてお気軽にご相談ください</p>
+      <div class="card reveal" style="max-width: 600px; margin: 0 auto; text-align: center;">
+        <h3>まずはお気軽にご相談ください</h3>
+        <p style="margin-bottom: 1rem;">貴社の課題やご要望をお聞かせください。最適なAIソリューションをご提案いたします。</p>
+        <p style="word-break: break-all;"><a href="mailto:otoiawase20250416@aiknowledgeworks.net" style="color: var(--accent); font-weight: bold;">otoiawase20250416@aiknowledgeworks.net</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- === Footer === -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 AI Knowledge Works, LLC. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- === Scripts === -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Animation with IntersectionObserver
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+      document.querySelectorAll('.achievement-card').forEach(el => observer.observe(el));
+      document.querySelectorAll('.stat-item').forEach(el => observer.observe(el));
+      document.querySelectorAll('.timeline-item').forEach(el => observer.observe(el));
+      
+      // Mobile menu functionality
+      const hamburger = document.querySelector('.hamburger');
+      const nav = document.querySelector('nav');
+      const overlay = document.querySelector('.overlay');
+      const navLinks = document.querySelectorAll('nav a');
+      
+      function toggleMenu() {
+        hamburger.classList.toggle('active');
+        nav.classList.toggle('active');
+        overlay.classList.toggle('active');
+        document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
+      }
+      
+      hamburger.addEventListener('click', toggleMenu);
+      overlay.addEventListener('click', toggleMenu);
+      
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          if (nav.classList.contains('active')) {
+            toggleMenu();
+          }
+        });
+      });
+      
+      // タイムラインアイテムのホバーエフェクト
+      const timelineItems = document.querySelectorAll('.timeline-item');
+      
+      timelineItems.forEach((item, index) => {
+        item.addEventListener('mouseenter', () => {
+          // 他のアイテムを少し薄くする
+          timelineItems.forEach((otherItem, otherIndex) => {
+            if (otherIndex !== index) {
+              otherItem.style.opacity = '0.6';
+              otherItem.style.transform = 'scale(0.95)';
+            }
+          });
+          
+          // ホバーされたアイテムの日付を強調
+          const date = item.querySelector('.timeline-date');
+          if (date) {
+            date.style.textShadow = '0 0 10px rgba(0, 201, 167, 0.5)';
+          }
+        });
+        
+        item.addEventListener('mouseleave', () => {
+          // すべてのアイテムを元に戻す
+          timelineItems.forEach((otherItem) => {
+            otherItem.style.opacity = '1';
+            otherItem.style.transform = 'scale(1)';
+          });
+          
+          // 日付の強調を解除
+          const date = item.querySelector('.timeline-date');
+          if (date) {
+            date.style.textShadow = 'none';
+          }
+        });
+        
+        // クリック時の追加エフェクト
+        item.addEventListener('click', () => {
+          const dot = item.querySelector('.timeline-dot');
+          if (dot) {
+            // 一時的にクリックエフェクトを追加
+            dot.style.animation = 'none';
+            setTimeout(() => {
+              dot.style.animation = 'pulse 0.5s ease-out';
+            }, 10);
+            
+            setTimeout(() => {
+              dot.style.animation = '';
+            }, 500);
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html> 

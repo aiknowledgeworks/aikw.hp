@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>会社概要 | AIナレッジワークス合同会社</title>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWFLPN1EZH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-DWFLPN1EZH');
+  </script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* === カラーパレット & ベース === */
+    :root {
+      --primary-gradient: linear-gradient(135deg, #6db5ff 0%, #a1e9d9 100%);
+      --dark: #121212;
+      --light: #ffffff;
+      --accent: #00c9a7;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Noto Sans JP", "Nunito", sans-serif;
+      background: #f9f9f9;
+      color: var(--dark);
+      line-height: 1.7;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+
+    /* === ヘッダー === */
+    header {
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+      background: rgba(255, 255, 255, .95); backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, .1);
+    }
+    .container { width: 90%; max-width: 1200px; margin: 0 auto; }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; padding: .75rem 0; }
+    .logo { display: flex; align-items: center; }
+    .logo img { height: 44px; }
+    .logo span { font-weight: 700; margin-left: 10px; font-size: 1.1rem; }
+    nav ul { display: flex; flex-wrap: wrap; gap: 1rem; }
+    nav a { font-weight: 600; transition: color .2s; }
+    nav a:hover { color: var(--accent); }
+
+    /* === セクション共通 === */
+    section { padding: 110px 0; }
+    .section-title { font-size: 2.4rem; font-weight: 700; text-align: center; margin-bottom: .75rem; }
+    .section-subtitle { text-align: center; color: #666; margin-bottom: 2.5rem; font-size: 1rem; }
+
+    /* === Hero === */
+    .hero {
+      height: 50vh; background: var(--primary-gradient);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; color: var(--light);
+    }
+    .hero h1 { font-size: 3rem; margin-bottom: .5rem; letter-spacing: 1px; }
+    .hero p.tagline { font-size: 1.4rem; }
+
+    /* === カード === */
+    .card { 
+      background: var(--light); 
+      border-radius: 12px; 
+      box-shadow: 0 4px 12px rgba(0,0,0,.05); 
+      padding: 1.8rem; 
+      opacity: 0; 
+      transform: translateY(40px); 
+      transition: all .6s ease; 
+    }
+    .card.active { opacity: 1; transform: translateY(0); }
+    .card h3 { margin-bottom: .75rem; color: var(--accent); font-size: 1.25rem; }
+
+    /* 好きのスタイル */
+    .suki {
+      font-size: 1.2em;
+      font-weight: 700;
+      color: #2bc4a9;
+      display: inline-block;
+      position: relative;
+      padding: 0 5px;
+      transform: rotate(-3deg);
+    }
+    .suki::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      background: var(--primary-gradient);
+      border-radius: 3px;
+      opacity: 0.7;
+    }
+
+    /* === 会社概要テーブル === */
+    .company-table th {
+      text-align: left;
+      padding: 15px;
+      border-bottom: 1px solid #eee;
+      width: 120px;
+      font-size: 1.1rem;
+      vertical-align: middle;
+      white-space: nowrap;
+      background: #f8f9fa;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .company-table td {
+      padding: 15px 25px;
+      border-bottom: 1px solid #eee;
+    }
+    .company-table td:not(:last-child) {
+      white-space: nowrap;
+    }
+
+    /* === アニメーション === */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all .6s ease;
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* === Pillars === */
+    .pillars-grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); 
+      gap: 2rem; 
+      margin-top: 2rem; 
+    }
+    .pillar { 
+      background: var(--light); 
+      padding: 2.5rem 1.5rem; 
+      border-radius: 12px; 
+      text-align: center; 
+      box-shadow: 0 8px 24px rgba(0,0,0,.1); 
+      opacity: 0; 
+      transform: translateY(40px); 
+      transition: all .6s ease; 
+      position: relative;
+      overflow: hidden;
+      border-bottom: 5px solid var(--accent);
+    }
+    .pillar.active { 
+      opacity: 1; 
+      transform: translateY(0); 
+    }
+    .pillar:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 30px rgba(0,0,0,.15);
+    }
+    .pillar:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: var(--primary-gradient);
+    }
+    .pillar h4 { 
+      font-size: 1.4rem; 
+      margin-bottom: 1rem; 
+      color: var(--dark);
+    }
+    .pillar p {
+      color: #666;
+      font-size: 1.05rem;
+    }
+
+    /* === Footer === */
+    footer { 
+      background: #1a1a1a; 
+      color: #e6e6e6; 
+      padding: 3rem 0; 
+      text-align: center; 
+    }
+    footer p { font-size: .85rem; }
+    footer a { color: #e6e6e6; text-decoration: underline; }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.3rem; }
+      .hero p.tagline { font-size: 1.1rem; }
+      
+      .company-table th {
+        width: 80px !important;
+        font-size: 1rem !important;
+        padding: 12px !important;
+      }
+      .company-table td {
+        padding: 12px 15px !important;
+      }
+      
+      section {
+        padding: 80px 0;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      /* Mobile navigation */
+      .header-inner {
+        padding: 0.75rem 0;
+        position: relative;
+      }
+      
+      .hamburger {
+        display: block;
+        width: 30px;
+        height: 30px;
+        position: relative;
+        cursor: pointer;
+        z-index: 1010;
+        margin-right: 0;
+        padding: 10px;
+        box-sizing: content-box;
+        margin: -10px;
+      }
+      
+      .hamburger span {
+        display: block;
+        position: absolute;
+        height: 3px;
+        width: 100%;
+        background: var(--dark);
+        border-radius: 3px;
+        opacity: 1;
+        left: 0;
+        transform: rotate(0deg);
+        transition: .25s ease-in-out;
+      }
+      
+      .hamburger span:nth-child(1) {
+        top: 0px;
+      }
+      
+      .hamburger span:nth-child(2) {
+        top: 9px;
+      }
+      
+      .hamburger span:nth-child(3) {
+        top: 18px;
+      }
+      
+      .hamburger.active span:nth-child(1) {
+        top: 9px;
+        transform: rotate(135deg);
+      }
+      
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+        left: -60px;
+      }
+      
+      .hamburger.active span:nth-child(3) {
+        top: 9px;
+        transform: rotate(-135deg);
+      }
+      
+      nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+        background: white;
+        box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+        transition: 0.3s ease;
+        padding-top: 70px;
+        z-index: 1000;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      
+      nav.active {
+        right: 0;
+      }
+      
+      nav ul {
+        flex-direction: column;
+        gap: 0;
+        padding: 0;
+        margin: 0;
+      }
+      
+      nav ul li {
+        width: 100%;
+      }
+      
+      nav ul li a {
+        padding: 15px 20px;
+        display: block;
+        border-bottom: 1px solid #eee;
+        font-size: 1.1rem;
+        position: relative;
+      }
+      
+      nav ul li a::after {
+        content: "›";
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.4rem;
+        opacity: 0.5;
+      }
+      
+      .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+        z-index: 990;
+        -webkit-backdrop-filter: blur(2px);
+        backdrop-filter: blur(2px);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      
+      .overlay.active {
+        display: block;
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .company-table-container {
+        overflow-x: auto;
+      }
+      .company-table {
+        min-width: 500px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- === Header === -->
+  <header>
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <img src="https://raw.githubusercontent.com/aiknowledgeworks/aikw.hp/main/logo/AI%E3%83%8A%E3%83%AC%E3%83%83%E3%82%B8%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9_logo_transparen.png" alt="AIナレッジワークス ロゴ">
+        <span>AIナレッジワークス / AIKW</span>
+      </a>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html#background">創業のきっかけ</a></li>
+          <li><a href="index.html#pillars">事業内容</a></li>
+          <li><a href="achievements.html">実績・展望</a></li>
+          <li><a href="company.html">会社概要</a></li>
+          <li><a href="contact.html">お問い合わせ</a></li>
+        </ul>
+      </nav>
+      <div class="overlay"></div>
+    </div>
+  </header>
+
+  <!-- === Hero === -->
+  <section class="hero">
+    <h1>会社概要</h1>
+    <p class="tagline"><span class="suki">"好き"</span>を信じ合える運命共同体</p>
+  </section>
+
+  <!-- === 会社基本情報 === -->
+  <section id="basic-info">
+    <div class="container">
+      <h2 class="section-title">基本情報</h2>
+      <p class="section-subtitle">AIナレッジワークス合同会社の会社概要</p>
+      
+      <div class="card reveal" style="max-width: 800px; margin: 0 auto; overflow-x: auto;">
+        <div class="company-table-container">
+          <table class="company-table" style="width: 100%; border-collapse: collapse;">
+            <tr>
+              <th>会社名</th>
+              <td>AIナレッジワークス合同会社</td>
+            </tr>
+            <tr>
+              <th>本店住所</th>
+              <td>大阪府大阪市浪速区湊町2丁目2番5号 2119号室</td>
+            </tr>
+            <tr>
+              <th>資本金</th>
+              <td>10万円</td>
+            </tr>
+            <tr>
+              <th>社員</th>
+              <td>3名</td>
+            </tr>
+            <tr>
+              <th>事業目的</th>
+              <td style="white-space: normal;">
+                <div style="margin-bottom: 5px;">・AI技術を活用したソフトウェア及びシステムの研究、企画、開発、販売、保守及びコンサルティング</div>
+                <div style="margin-bottom: 5px;">・AIを活用した教育、研修、セミナー及びコンサルティング業務</div>
+                <div style="margin-bottom: 5px;">・AI・データ分析を活用した市場調査及びコンサルティング業務</div>
+                <div style="text-align: right;">他</div>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === 経営理念 === -->
+  <section id="philosophy" style="background:#f0f8ff;">
+    <div class="container">
+      <h2 class="section-title">経営理念</h2>
+      <p class="section-subtitle">私たちが大切にしている考え方</p>
+      
+      <div style="max-width: 800px; margin: 0 auto;">
+        <div class="card reveal" style="text-align: center; margin-bottom: 2rem;">
+          <h3 style="font-size: 1.6rem; margin-bottom: 1rem;">ミッション</h3>
+          <p style="font-size: 1.2rem; font-weight: 500;">自己実現の大量生産 ─ 自分の<span class="suki">"好き"</span>が実現しまくる社会をつくる</p>
+        </div>
+        
+        <div class="card reveal" style="text-align: center; margin-bottom: 2rem;">
+          <h3 style="font-size: 1.6rem; margin-bottom: 1rem;">ビジョン</h3>
+          <p style="font-size: 1.2rem; font-weight: 500;">"余裕"が連鎖する未来 ─ 誰もが<span class="suki">"好き"</span>を起点に生きられる世界</p>
+        </div>
+        
+        <div class="card reveal" style="text-align: center;">
+          <h3 style="font-size: 1.6rem; margin-bottom: 1.5rem;">コアバリュー</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; text-align: left;">
+            <div style="padding: 1rem; border-left: 4px solid var(--accent); background: #f8f9fa;">
+              <h4 style="color: var(--accent); margin-bottom: 0.5rem;">♥ Self First</h4>
+              <p>まず自分を幸せに。その幸せを社会へ。</p>
+            </div>
+            <div style="padding: 1rem; border-left: 4px solid var(--accent); background: #f8f9fa;">
+              <h4 style="color: var(--accent); margin-bottom: 0.5rem;">★ Live from <span class="suki">"好き"</span></h4>
+              <p>"やりたい"を人生の起点に。</p>
+            </div>
+            <div style="padding: 1rem; border-left: 4px solid var(--accent); background: #f8f9fa;">
+              <h4 style="color: var(--accent); margin-bottom: 0.5rem;">? Curiosity is Power</h4>
+              <p>好奇心が可能性をひらく。</p>
+            </div>
+            <div style="padding: 1rem; border-left: 4px solid var(--accent); background: #f8f9fa;">
+              <h4 style="color: var(--accent); margin-bottom: 0.5rem;">∞ Be Fluid, Not Fixed</h4>
+              <p>変わり続けることを恐れない。</p>
+            </div>
+            <div style="padding: 1rem; border-left: 4px solid var(--accent); background: #f8f9fa;">
+              <h4 style="color: var(--accent); margin-bottom: 0.5rem;">⟳ Go at Your Own Pace</h4>
+              <p>速さより納得感。</p>
+            </div>
+            <div style="padding: 1rem; border-left: 4px solid var(--accent); background: #f8f9fa;">
+              <h4 style="color: var(--accent); margin-bottom: 0.5rem;">✓ Trust the Process</h4>
+              <p>結果だけでなく、過程を信じる。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- === お問い合わせ === -->
+  <section id="contact" style="background:#f0f8ff;">
+    <div class="container">
+      <h2 class="section-title">お問い合わせ</h2>
+      <p class="section-subtitle">ご質問・ご相談はお気軽にどうぞ</p>
+      
+      <div class="card reveal" style="max-width: 600px; margin: 0 auto; text-align: center;">
+        <h3>まずはお気軽にご相談ください</h3>
+        <p style="margin-bottom: 1.5rem;">貴社の課題やご要望をお聞かせください。最適なAIソリューションをご提案いたします。</p>
+        <p style="word-break: break-all;">
+          <a href="mailto:otoiawase20250416@aiknowledgeworks.net" 
+             style="color: var(--accent); font-weight: bold; font-size: 1.1rem;">
+            otoiawase20250416@aiknowledgeworks.net
+          </a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- === Footer === -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 AI Knowledge Works, LLC. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- === Scripts === -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Animation with IntersectionObserver
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+      document.querySelectorAll('.pillar').forEach(el => observer.observe(el));
+      
+      // Mobile menu functionality
+      const hamburger = document.querySelector('.hamburger');
+      const nav = document.querySelector('nav');
+      const overlay = document.querySelector('.overlay');
+      const navLinks = document.querySelectorAll('nav a');
+      
+      function toggleMenu() {
+        hamburger.classList.toggle('active');
+        nav.classList.toggle('active');
+        overlay.classList.toggle('active');
+        document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
+      }
+      
+      hamburger.addEventListener('click', toggleMenu);
+      overlay.addEventListener('click', toggleMenu);
+      
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          if (nav.classList.contains('active')) {
+            toggleMenu();
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html> 
