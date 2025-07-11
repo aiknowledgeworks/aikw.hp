@@ -200,6 +200,38 @@
     .qa-item summary::after { content:'+'; position: absolute; right: 0; transition: transform .3s; }
     .qa-item[open] summary::after { transform: rotate(45deg); }
 
+    /* === CTA セクション === */
+    .cta-section {
+      background: var(--primary-gradient);
+      color: var(--light);
+      text-align: center;
+      padding: 60px 0;
+    }
+    .cta-section h2 {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+    }
+    .cta-section p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+    .cta-button {
+      display: inline-block;
+      background: var(--light);
+      color: var(--accent);
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-size: 1.1rem;
+    }
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
     /* === Footer === */
     footer { background: #1a1a1a; color: #e6e6e6; padding: 3rem 0; text-align: center; }
     footer p { font-size: .85rem; }
@@ -500,6 +532,7 @@
         <ul>
           <li><a href="#background">創業のきっかけ</a></li>
           <li><a href="#pillars">事業内容</a></li>
+          <li><a href="service.html">サービス</a></li>
           <li><a href="achievements.html">実績・展望</a></li>
           <li><a href="company.html">会社概要</a></li>
           <li><a href="contact.html">お問い合わせ</a></li>
@@ -805,15 +838,11 @@
 
 
   <!-- === Contact === -->
-  <section id="contact" style="background:#f0f8ff;">
+  <section id="contact" class="cta-section">
     <div class="container">
-      <h2 class="section-title">お問い合わせ</h2>
-      <p class="section-subtitle">ご質問・ご相談はこちらから</p>
-      <div class="card reveal" style="max-width: 600px; margin: 0 auto; text-align: center;">
-        <h3>お気軽にご連絡ください</h3>
-        <p style="margin-bottom: 1rem;">AIナレッジワークスへのお問い合わせは下記メールアドレスまで</p>
-        <p style="word-break: break-all;"><a href="mailto:otoiawase20250416@aiknowledgeworks.net" style="color: var(--accent); font-weight: bold;">otoiawase20250416@aiknowledgeworks.net</a></p>
-      </div>
+      <h2>AIソリューションで未来を創造しませんか？</h2>
+      <p>あなたの<span class="suki">"好き"</span>を実現するお手伝いをいたします</p>
+      <a href="contact.html" class="cta-button">お問い合わせはこちら</a>
     </div>
   </section>
 

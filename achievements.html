@@ -210,6 +210,60 @@
       color: #666;
     }
 
+    /* === CTA セクション === */
+    .cta-section {
+      background: var(--primary-gradient);
+      color: var(--light);
+      text-align: center;
+      padding: 60px 0;
+    }
+    .cta-section h2 {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+    }
+    .cta-section p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+    .cta-button {
+      display: inline-block;
+      background: var(--light);
+      color: var(--accent);
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-size: 1.1rem;
+    }
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    /* 好きのスタイル */
+    .suki {
+      font-size: 1.2em;
+      font-weight: 700;
+      color: #2bc4a9;
+      display: inline-block;
+      position: relative;
+      padding: 0 5px;
+      transform: rotate(-3deg);
+    }
+    .suki::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      background: var(--primary-gradient);
+      border-radius: 3px;
+      opacity: 0.7;
+    }
+
     /* === Footer === */
     footer { background: #1a1a1a; color: #e6e6e6; padding: 3rem 0; text-align: center; }
     footer p { font-size: .85rem; }
@@ -409,6 +463,20 @@
           left: 30px !important;
           transform: translateX(-50%) !important;
         }
+        
+        /* ポートフォリオセクションのモバイル対応 */
+        .portfolio-content {
+          grid-template-columns: 1fr !important;
+          gap: 2rem !important;
+        }
+        
+        .video-container {
+          min-height: 250px !important;
+        }
+        
+        .video-container iframe {
+          height: 250px !important;
+        }
       }
       
       /* === タイムラインホバーエフェクト === */
@@ -512,6 +580,7 @@
         <ul>
           <li><a href="index.html#background">創業のきっかけ</a></li>
           <li><a href="index.html#pillars">事業内容</a></li>
+          <li><a href="service.html">サービス</a></li>
           <li><a href="achievements.html">実績・展望</a></li>
           <li><a href="company.html">会社概要</a></li>
           <li><a href="contact.html">お問い合わせ</a></li>
@@ -586,6 +655,7 @@
   <section id="timeline">
     <div class="container">
       <h2 class="section-title">創業から現在までの歩み</h2>
+      <p class="section-subtitle"></p>
       
       <div class="timeline-container reveal-group" style="max-width: 800px; margin: 0 auto; position: relative;">
         <!-- タイムライン軸 -->
@@ -622,6 +692,41 @@
     </div>
   </section>
 
+  <!-- === 制作物 === -->
+  <section id="portfolio">
+    <div class="container">
+      <h2 class="section-title">制作物 - AIナレッジワークスの創造的な取り組み -</h2>
+      <p class="section-subtitle"></p>
+      
+      <div class="portfolio-content reveal-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; max-width: 1100px; margin: 0 auto;">
+        <div class="video-container reveal" style="position: relative; width: 100%; height: auto; min-height: 350px; border-radius: 16px; overflow: hidden; box-shadow: 0 12px 30px rgba(0,0,0,.15);">
+          <iframe 
+            src="https://www.youtube.com/embed/iHca8OIkf2I?si=controls=1&amp;rel=0&amp;playsinline=1&amp;modestbranding=1&amp;autoplay=0" 
+            title="AIナレッジワークス 制作物紹介" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen
+            style="width: 100%; height: 350px; border-radius: 16px;">
+          </iframe>
+        </div>
+        
+        <div class="portfolio-description reveal" style="background: var(--light); border-radius: 12px; padding: 2.5rem; box-shadow: 0 8px 24px rgba(0,0,0,.1); border-left: 5px solid var(--accent);">
+          <h3 style="color: var(--accent); font-size: 1.4rem; margin-bottom: 1.5rem; font-weight: 700;">創造性を拡張するAI活用</h3>
+          <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem;">
+            AIナレッジワークスでは、AIを単なる効率化ツールとしてではなく、人間の創造性を拡張するパートナーとして捉えています。
+          </p>
+          <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem;">
+            この動画では、AI技術を活用した私たちの創作活動や、クリエイティブな課題解決への取り組みをご紹介しています。
+          </p>
+          <p style="font-size: 1.1rem; line-height: 1.8; color: #666;">
+            技術と創造性の融合により、新たな可能性を切り拓く私たちの姿勢をご覧ください。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- === Future Vision === -->
   <section id="future" style="background:#f0f8ff;">
     <div class="container">
@@ -650,15 +755,11 @@
   </section>
 
   <!-- === Contact === -->
-  <section id="contact">
+  <section id="contact" class="cta-section">
     <div class="container">
-      <h2 class="section-title">お問い合わせ</h2>
-      <p class="section-subtitle">AI導入や研修についてお気軽にご相談ください</p>
-      <div class="card reveal" style="max-width: 600px; margin: 0 auto; text-align: center;">
-        <h3>まずはお気軽にご相談ください</h3>
-        <p style="margin-bottom: 1rem;">貴社の課題やご要望をお聞かせください。最適なAIソリューションをご提案いたします。</p>
-        <p style="word-break: break-all;"><a href="mailto:otoiawase20250416@aiknowledgeworks.net" style="color: var(--accent); font-weight: bold;">otoiawase20250416@aiknowledgeworks.net</a></p>
-      </div>
+      <h2>AIソリューションで未来を創造しませんか？</h2>
+      <p>あなたの<span class="suki">"好き"</span>を実現するお手伝いをいたします</p>
+      <a href="contact.html" class="cta-button">お問い合わせはこちら</a>
     </div>
   </section>
 

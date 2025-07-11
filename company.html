@@ -213,6 +213,12 @@
         font-size: 2rem;
       }
       
+      /* Why Choose Usセクションのモバイル対応 */
+      #why-choose div[style*="grid-template-columns: repeat(2, 1fr)"] {
+        grid-template-columns: 1fr !important;
+        grid-template-rows: auto !important;
+      }
+      
       /* Mobile navigation */
       .header-inner {
         padding: 0.75rem 0;
@@ -369,6 +375,7 @@
         <ul>
           <li><a href="index.html#background">創業のきっかけ</a></li>
           <li><a href="index.html#pillars">事業内容</a></li>
+          <li><a href="service.html">サービス</a></li>
           <li><a href="achievements.html">実績・展望</a></li>
           <li><a href="company.html">会社概要</a></li>
           <li><a href="contact.html">お問い合わせ</a></li>
@@ -474,7 +481,35 @@
     </div>
   </section>
 
-
+  <!-- === Why Choose Us === -->
+  <section id="why-choose">
+    <div class="container">
+      <h2 class="section-title">なぜAIナレッジワークスなのか</h2>
+      <p class="section-subtitle"><span class="suki">"好き"</span>を起点としたAI活用支援</p>
+      
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, auto); gap: 1.5rem; max-width: 900px; margin: 0 auto;">
+        <div class="card reveal">
+          <h3>実践重視のアプローチ</h3>
+          <p>単なる技術説明ではなく、実際の業務に即座に活用できる実践的な内容をお届けします。受講後すぐに効果を実感していただけます。</p>
+        </div>
+        
+        <div class="card reveal">
+          <h3>継続的なサポート</h3>
+          <p>導入後も継続的にサポート。AI活用の定着から発展的な活用まで、長期的なパートナーとして伴走します。</p>
+        </div>
+        
+        <div class="card reveal">
+          <h3>カスタマイズ対応</h3>
+          <p>業界や企業規模、課題に応じて研修内容や導入支援をカスタマイズ。お客様にとって最適なソリューションを提供します。</p>
+        </div>
+        
+        <div class="card reveal">
+          <h3>セキュアな環境構築</h3>
+          <p>機密情報を扱う企業様にも安心。オンプレミス環境でのAI活用やセキュアな運用方法もご提案可能です。</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- === お問い合わせ === -->
   <section id="contact" style="background:#f0f8ff;">
