@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ウェブアプリってなに？</title>
+  <title>ステップ2：バーコードや文字をカメラで読み取ろう！</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
   <style>
@@ -55,6 +55,8 @@
     .decoration {
       position: absolute;
     }
+    
+
   </style>
 </head>
 <body>
@@ -65,7 +67,7 @@
     <div class="bubble" style="width: 100px; height: 100px; bottom: 15%; right: 5%;"></div>
     <div class="bubble" style="width: 40px; height: 40px; bottom: 30%; left: 10%;"></div>
     
-    <div class="decoration" style="top: 5%; right: 5%;">
+    <div class="decoration" style="top: calc(5% + 50px); right: 5%;">
       <svg width="80" height="80" viewBox="0 0 100 100">
         <polygon points="50,10 61,35 90,35 65,55 75,80 50,65 25,80 35,55 10,35 39,35" fill="#5ce68a" />
       </svg>
@@ -78,50 +80,58 @@
     </div>
     
     <!-- タイトル -->
-    <h1 class="title text-center text-5xl mb-8 mt-4">ウェブについて、学んだことまとめ</h1>
+    <h1 class="title text-center text-5xl mb-6 mt-4">AIでカメラ読み取り機能を追加しよう！</h1>
     
     <div class="flex h-full">
-      <!-- 左側：説明文 -->
+      <!-- 左側：プロンプト例 -->
       <div class="w-1/2 px-4 flex flex-col justify-center">
-        <div class="content-box p-6 mb-4">
-          <p class="text-2xl font-bold text-blue-600 mb-2">ウェブアプリは、インターネットのブラウザで動くアプリだよ。</p>
-          <p class="text-xl">インストールしなくても、すぐに使えるよ！</p>
+        <div class="content-box p-5 mb-4">
+          <p class="text-2xl font-bold text-red-500 mb-3">📷 プロンプト例1（シンプル）</p>
+          <div class="bg-gray-100 p-4 rounded-lg border-l-4 border-blue-500">
+            <p class="text-xl font-mono leading-relaxed text-center py-4">
+              「食材管理アプリにバーコード読み取り機能を追加して」
+            </p>
+          </div>
         </div>
         
-        <div class="content-box p-6 mb-4">
-          <p class="text-2xl font-bold text-green-600 mb-2">パソコンやスマホでも遊べる＆使えるよ！</p>
-          <p class="text-xl">どんな機械でも同じように使えるのがすごいところ！</p>
-        </div>
-        
-        <div class="content-box p-6">
-          <p class="text-2xl font-bold text-purple-600 mb-2">ゲームやチャットも、ウェブアプリの一つなんだ！</p>
-          <p class="text-xl">みんなが毎日使っているものもウェブアプリかも！</p>
+        <div class="content-box p-5">
+          <p class="text-2xl font-bold text-green-600 mb-3">📝 プロンプト例2（機能追加）</p>
+          <div class="bg-gray-100 p-4 rounded-lg border-l-4 border-green-500">
+            <p class="text-lg font-mono leading-relaxed">
+              「賞味期限の文字も読み取れる機能を追加して<br>
+              ・「賞味期限を撮影」ボタン追加<br>
+              ・日付を自動で読み取り・入力<br>
+              ・手動修正も可能にして」
+            </p>
+          </div>
         </div>
       </div>
       
-      <!-- 右側：イラスト -->
+      <!-- 右側：技術解説とコツ -->
       <div class="w-1/2 px-4 flex flex-col justify-center items-center">
-        <div class="icon-box p-6 w-4/5 mb-6 flex items-center">
-          <i class="fas fa-globe text-5xl text-blue-500 mr-6"></i>
+        <div class="content-box p-5 w-4/5 mb-4">
+          <p class="text-2xl font-bold text-blue-600 mb-3">💡 初心者向けのコツ</p>
+          <ul class="text-lg space-y-2">
+            <li>✅ 既存アプリに「〜を追加して」</li>
+            <li>✅ 簡単な言葉で説明</li>
+            <li>✅ エラー対応も含める</li>
+          </ul>
+        </div>
+        
+        <div class="icon-box p-5 w-4/5 mb-4 flex items-center">
+          <i class="fas fa-lightbulb text-4xl text-orange-500 mr-4"></i>
           <div>
-            <p class="text-2xl font-bold">インターネットブラウザ</p>
-            <p class="text-lg">Chrome, Safari, Edge など</p>
+            <p class="text-xl font-bold">プロンプトのコツ</p>
+            <p class="text-lg">既存アプリに機能追加で依頼</p>
+            <p class="text-sm text-gray-600 mt-1">エラー処理も忘れずに！</p>
           </div>
         </div>
         
-        <div class="icon-box p-6 w-4/5 mb-6 flex items-center">
-          <i class="fas fa-laptop-mobile text-5xl text-green-500 mr-6"></i>
-          <div>
-            <p class="text-2xl font-bold">いろんな機械で使える</p>
-            <p class="text-lg">パソコン・タブレット・スマホ</p>
-          </div>
-        </div>
-        
-        <div class="icon-box p-6 w-4/5 flex items-center">
-          <i class="fas fa-gamepad text-5xl text-purple-500 mr-6"></i>
-          <div>
-            <p class="text-2xl font-bold">楽しいアプリがたくさん</p>
-            <p class="text-lg">ゲーム・チャット・検索など</p>
+        <div class="content-box p-5 w-4/5">
+          <p class="text-xl font-bold text-green-600 mb-2">🎯 今日の目標</p>
+          <p class="text-lg">ステップ1のアプリに<br>カメラ読み取り機能を追加！</p>
+          <div class="mt-3 text-sm text-purple-600">
+            <p>💡 <strong>ポイント</strong>：段階的に機能追加で複雑なアプリも作れる！</p>
           </div>
         </div>
       </div>

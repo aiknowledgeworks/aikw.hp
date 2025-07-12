@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>アプリを作る道具たち（HTML/CSS/JS）</title>
+  <title>ウェブアプリってなに？</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
   <style>
@@ -38,7 +38,7 @@
       box-shadow: 5px 5px 0 rgba(0,0,0,0.1);
     }
     
-    .tool-box {
+    .icon-box {
       background-color: white;
       border: 3px solid #ffbe3d;
       border-radius: 20px;
@@ -58,7 +58,7 @@
   </style>
 </head>
 <body>
-  <div class="slide-container p-6 flex flex-col">
+  <div class="slide-container p-8 flex flex-col">
     <!-- 背景の装飾 -->
     <div class="bubble" style="width: 80px; height: 80px; top: 10%; left: 5%;"></div>
     <div class="bubble" style="width: 60px; height: 60px; top: 20%; right: 15%;"></div>
@@ -78,72 +78,51 @@
     </div>
     
     <!-- タイトル -->
-    <h1 class="title text-center text-4xl mb-4 mt-2">アプリを作る道具たち（HTML/CSS/JS）</h1>
+    <h1 class="title text-center text-5xl mb-8 mt-4">ウェブについて、学んだことまとめ</h1>
     
-    <!-- 内容 -->
-    <div class="flex flex-col items-center justify-center flex-1">
-      <!-- HTML説明 -->
-      <div class="tool-box p-4 w-4/5 mb-3 flex items-center">
-        <div class="w-1/4 flex justify-center">
-          <div class="bg-blue-100 rounded-full p-4 w-16 h-16 flex items-center justify-center">
-            <i class="fas fa-cubes text-3xl text-blue-500"></i>
-          </div>
-        </div>
-        <div class="w-3/4">
-          <div class="flex items-center mb-1">
-            <h3 class="text-2xl font-bold text-blue-600">HTML</h3>
-            <span class="ml-3 bg-blue-100 text-blue-700 font-bold px-2 py-1 rounded-full text-sm">骨組み担当</span>
-          </div>
-          <p class="text-lg">ウェブページの「かたち」を作るよ。ボタンや文字、写真を置く場所を決めるんだ。家で言うと「柱や壁」みたいなもの！</p>
-        </div>
-      </div>
-      
-      <!-- CSS説明 -->
-      <div class="tool-box p-4 w-4/5 mb-3 flex items-center">
-        <div class="w-1/4 flex justify-center">
-          <div class="bg-pink-100 rounded-full p-4 w-16 h-16 flex items-center justify-center">
-            <i class="fas fa-paint-brush text-3xl text-pink-500"></i>
-          </div>
-        </div>
-        <div class="w-3/4">
-          <div class="flex items-center mb-1">
-            <h3 class="text-2xl font-bold text-pink-600">CSS</h3>
-            <span class="ml-3 bg-pink-100 text-pink-700 font-bold px-2 py-1 rounded-full text-sm">おしゃれ担当</span>
-          </div>
-          <p class="text-lg">ウェブページの「見た目」を美しくするよ。色や大きさ、文字の種類を決めるんだ。家で言うと「ペンキや家具」みたいなもの！</p>
-        </div>
-      </div>
-      
-      <!-- JavaScript説明 -->
-      <div class="tool-box p-4 w-4/5 mb-3 flex items-center">
-        <div class="w-1/4 flex justify-center">
-          <div class="bg-yellow-100 rounded-full p-4 w-16 h-16 flex items-center justify-center">
-            <i class="fas fa-magic text-3xl text-yellow-500"></i>
-          </div>
-        </div>
-        <div class="w-3/4">
-          <div class="flex items-center mb-1">
-            <h3 class="text-2xl font-bold text-yellow-600">JavaScript</h3>
-            <span class="ml-3 bg-yellow-100 text-yellow-700 font-bold px-2 py-1 rounded-full text-sm">魔法使い</span>
-          </div>
-          <p class="text-lg">ウェブページに「動き」を付けるよ。ボタンを押したときの反応や計算、データの保存をするんだ。家で言うと「電気やリモコン」みたいなもの！</p>
-        </div>
-      </div>
-      
-      <!-- イラスト・まとめ -->
-      <div class="content-box p-4 w-4/5 flex items-center justify-center">
-        <div class="text-center mx-3">
-          <i class="fas fa-laptop text-4xl text-purple-500 mb-1"></i>
-          <p class="text-base font-bold">この3つを組み合わせると...</p>
+    <div class="flex h-full">
+      <!-- 左側：説明文 -->
+      <div class="w-1/2 px-4 flex flex-col justify-center">
+        <div class="content-box p-6 mb-4">
+          <p class="text-2xl font-bold text-blue-600 mb-2">ウェブアプリは、インターネットのブラウザで動くアプリだよ。</p>
+          <p class="text-xl">インストールしなくても、すぐに使えるよ！</p>
         </div>
         
-        <div class="text-center mx-6">
-          <i class="fas fa-arrow-right text-3xl text-gray-500"></i>
+        <div class="content-box p-6 mb-4">
+          <p class="text-2xl font-bold text-green-600 mb-2">パソコンやスマホでも遊べる＆使えるよ！</p>
+          <p class="text-xl">どんな機械でも同じように使えるのがすごいところ！</p>
         </div>
         
-        <div class="text-center mx-3">
-          <i class="fas fa-mobile-alt text-4xl text-green-500 mb-1"></i>
-          <p class="text-xl font-bold text-green-600">すてきなアプリの完成！</p>
+        <div class="content-box p-6">
+          <p class="text-2xl font-bold text-purple-600 mb-2">ゲームやチャットも、ウェブアプリの一つなんだ！</p>
+          <p class="text-xl">みんなが毎日使っているものもウェブアプリかも！</p>
+        </div>
+      </div>
+      
+      <!-- 右側：イラスト -->
+      <div class="w-1/2 px-4 flex flex-col justify-center items-center">
+        <div class="icon-box p-6 w-4/5 mb-6 flex items-center">
+          <i class="fas fa-globe text-5xl text-blue-500 mr-6"></i>
+          <div>
+            <p class="text-2xl font-bold">インターネットブラウザ</p>
+            <p class="text-lg">Chrome, Safari, Edge など</p>
+          </div>
+        </div>
+        
+        <div class="icon-box p-6 w-4/5 mb-6 flex items-center">
+          <i class="fas fa-laptop-mobile text-5xl text-green-500 mr-6"></i>
+          <div>
+            <p class="text-2xl font-bold">いろんな機械で使える</p>
+            <p class="text-lg">パソコン・タブレット・スマホ</p>
+          </div>
+        </div>
+        
+        <div class="icon-box p-6 w-4/5 flex items-center">
+          <i class="fas fa-gamepad text-5xl text-purple-500 mr-6"></i>
+          <div>
+            <p class="text-2xl font-bold">楽しいアプリがたくさん</p>
+            <p class="text-lg">ゲーム・チャット・検索など</p>
+          </div>
         </div>
       </div>
     </div>

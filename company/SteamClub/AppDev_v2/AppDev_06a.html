@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ステップ2：バーコードや文字をカメラで読み取ろう！</title>
+  <title>実習のための準備・セットアップ</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
   <style>
@@ -55,8 +55,6 @@
     .decoration {
       position: absolute;
     }
-    
-
   </style>
 </head>
 <body>
@@ -67,7 +65,7 @@
     <div class="bubble" style="width: 100px; height: 100px; bottom: 15%; right: 5%;"></div>
     <div class="bubble" style="width: 40px; height: 40px; bottom: 30%; left: 10%;"></div>
     
-    <div class="decoration" style="top: calc(5% + 50px); right: 5%;">
+    <div class="decoration" style="top: 5%; right: 5%;">
       <svg width="80" height="80" viewBox="0 0 100 100">
         <polygon points="50,10 61,35 90,35 65,55 75,80 50,65 25,80 35,55 10,35 39,35" fill="#5ce68a" />
       </svg>
@@ -80,50 +78,59 @@
     </div>
     
     <!-- タイトル -->
-    <h1 class="title text-center text-5xl mb-8 mt-4">ステップ2：バーコードや文字をカメラで読み取ろう！</h1>
+    <h1 class="title text-center text-5xl mb-8 mt-4">実習のための準備・セットアップ</h1>
     
     <div class="flex h-full">
       <!-- 左側：説明文 -->
       <div class="w-1/2 px-4 flex flex-col justify-center">
         <div class="content-box p-6 mb-4">
-          <p class="text-2xl font-bold text-blue-600 mb-2">カメラで賞味期限を自動で読み取り！</p>
-          <p class="text-xl">食品のパッケージに書いてある賞味期限を、カメラで撮るだけで自動で入力できるよ！</p>
+          <p class="text-2xl font-bold text-blue-600 mb-2">実習にはGoogleアカウントが必要です</p>
+          <p class="text-xl">無料で作成できるので、お持ちでない方は事前に作成しておきましょう！</p>
         </div>
         
         <div class="content-box p-6 mb-4">
-          <p class="text-2xl font-bold text-green-600 mb-2">バーコードを読み取ってラクラク入力！</p>
-          <p class="text-xl">バーコードを読み取ると、商品名や情報を自動で登録できるよ！</p>
+          <p class="text-2xl font-bold text-green-600 mb-2">A. 無料でAIツールを使うなら</p>
+          <p class="text-xl">
+            • Bolt.new（無料枠）<br>
+            • Claude（無料枠）<br>
+            • Google AI Studio / Gemini CLI（無料枠）
+          </p>
         </div>
         
         <div class="content-box p-6">
-          <p class="text-2xl font-bold text-purple-600 mb-2">AIの力で文字認識！</p>
-          <p class="text-xl">OCR（もじをにんしきするぎじゅつ）とAIの力で、とっても便利になるよ！</p>
+          <p class="text-2xl font-bold text-purple-600 mb-2">B. 有料版のAIツールを使うなら（オプション）</p>
+          <p class="text-xl">
+            • Cursor、Claude Code を貸出します※<br>
+            <span class="text-sm text-gray-600">（※ 実際に契約すると、月額3000円程度かかります）</span>
+          </p>
         </div>
       </div>
       
       <!-- 右側：イラスト -->
       <div class="w-1/2 px-4 flex flex-col justify-center items-center">
         <div class="icon-box p-6 w-4/5 mb-6 flex items-center">
-          <i class="fas fa-camera text-5xl text-blue-500 mr-6"></i>
+          <i class="fab fa-google text-5xl text-blue-500 mr-6"></i>
           <div>
-            <p class="text-2xl font-bold">カメラで撮影</p>
-            <p class="text-lg">パッケージやバーコードを撮ってみよう</p>
+            <p class="text-2xl font-bold">Googleアカウント</p>
+            <p class="text-lg">実習で必要な基本アカウント</p>
           </div>
         </div>
         
         <div class="icon-box p-6 w-4/5 mb-6 flex items-center">
-          <i class="fas fa-barcode text-5xl text-green-500 mr-6"></i>
+          <i class="fas fa-gift text-5xl text-green-500 mr-6"></i>
           <div>
-            <p class="text-2xl font-bold">バーコード読み取り</p>
-            <p class="text-lg">商品情報が自動で入力されるよ</p>
+            <p class="text-2xl font-bold">無料AIツール</p>
+            <p class="text-lg">Bolt.new、Claude、Google AI Studio</p>
+            <p class="text-sm text-gray-600 mt-1">無料枠で十分実習できます！</p>
           </div>
         </div>
         
         <div class="icon-box p-6 w-4/5 flex items-center">
-          <i class="fas fa-magic text-5xl text-purple-500 mr-6"></i>
+          <i class="fas fa-crown text-5xl text-purple-500 mr-6"></i>
           <div>
-            <p class="text-2xl font-bold">AIが文字を認識</p>
-            <p class="text-lg">自分で入力しなくてもOK！</p>
+            <p class="text-2xl font-bold">有料AIツール（オプション）</p>
+            <p class="text-lg">Cursor、Claude Code</p>
+            <p class="text-sm text-gray-600 mt-1">貸出可能です（実際は月額3000円程度）</p>
           </div>
         </div>
       </div>

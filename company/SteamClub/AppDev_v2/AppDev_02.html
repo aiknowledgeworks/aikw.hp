@@ -7,22 +7,63 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap');
     
-    /* 基本スタイル */
+    /* PDF化対応の基本スタイル */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
     
+    html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+    }
+    
     body {
       font-family: 'M PLUS Rounded 1c', sans-serif;
-      background: #333;
       margin: 0;
       padding: 0;
       overflow: hidden;
+      width: 100%;
+      height: 100%;
+      background: white;
     }
     
-    /* メインコンテナ - 16:9比率 */
+    /* PDF化時の余白完全除去 */
+    @media print {
+      * {
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      
+      html, body {
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+      }
+      
+      @page {
+        margin: 0;
+        size: 1280px 720px;
+      }
+      
+      .main-container {
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 1280px !important;
+        height: 720px !important;
+        max-width: none !important;
+        max-height: none !important;
+        position: static !important;
+        left: auto !important;
+        transform: none !important;
+      }
+    }
+    
+    /* PDF化対応メインコンテナ */
     .main-container {
       width: 1280px;
       height: 720px;
@@ -30,10 +71,9 @@
       position: relative;
       overflow: hidden;
       background: linear-gradient(135deg, #a8e1f8 0%, #f8d4e6 100%);
-      box-shadow: 0 0 50px rgba(0,0,0,0.3);
     }
     
-    /* セクション共通スタイル */
+    /* PDF化対応セクション */
     .section {
       width: 1280px;
       height: 720px;
@@ -46,11 +86,34 @@
       opacity: 0;
       transform: translateX(100%);
       transition: all 0.5s ease-in-out;
+      visibility: hidden;
     }
     
     .section.active {
       opacity: 1;
       transform: translateX(0);
+      visibility: visible;
+    }
+    
+    /* PDF化時のセクション最適化 */
+    @media print {
+      .section {
+        position: static !important;
+        width: 1280px !important;
+        height: 720px !important;
+        padding: 30px 40px !important;
+        margin: 0 !important;
+        opacity: 1 !important;
+        transform: none !important;
+        visibility: visible !important;
+        transition: none !important;
+        display: flex !important;
+        flex-direction: column !important;
+      }
+      
+      .section:not(.active) {
+        display: none !important;
+      }
     }
     
     /* タイトルスタイル */
@@ -74,14 +137,12 @@
       background-color: white;
       border: 3px solid #3bb4d7;
       border-radius: 20px;
-      box-shadow: 5px 5px 0 rgba(0,0,0,0.1);
       padding: 15px 20px;
       transition: all 0.3s;
     }
     
     .content-box:hover {
       transform: scale(1.05);
-      box-shadow: 8px 8px 0 rgba(0,0,0,0.15);
     }
     
     /* デバイスカード */
@@ -105,7 +166,6 @@
     
     .device-card:hover {
       transform: translateY(-10px);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
     }
     
     .device-card.active {
@@ -134,12 +194,10 @@
       font-weight: bold;
       cursor: pointer;
       transition: all 0.3s;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     }
     
     .interactive-btn:hover {
       transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
     }
     
     .interactive-btn:active {
@@ -155,6 +213,13 @@
       display: flex;
       gap: 15px;
       z-index: 1000;
+    }
+    
+    /* PDF化時のナビゲーション非表示 */
+    @media print {
+      .navigation {
+        display: none !important;
+      }
     }
     
     .nav-dot {
@@ -183,12 +248,10 @@
       font-size: 80px;
       cursor: pointer;
       transition: all 0.3s;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
     
     .app-icon:hover {
       transform: scale(1.1) rotate(5deg);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
     }
     
     /* ミニゲーム要素 */
@@ -233,6 +296,44 @@
       animation: float 3s ease-in-out infinite;
     }
     
+    /* PDF化時の包括的最適化 */
+    @media print {
+      /* すべてのアニメーションを無効化 */
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+      
+      /* 浮動要素の固定 */
+      .floating {
+        animation: none !important;
+        transform: none !important;
+      }
+      
+      /* タイトルアニメーション無効化 */
+      .title {
+        animation: none !important;
+        transform: none !important;
+      }
+      
+      /* ホバー効果の無効化 */
+      .content-box:hover,
+      .device-card:hover,
+      .interactive-btn:hover,
+      .app-icon:hover,
+      .browser-window:hover {
+        transform: none !important;
+      }
+      
+      /* 余白の完全除去 */
+      body {
+        margin: 0 !important;
+        padding: 0 !important;
+        background: white !important;
+        overflow: visible !important;
+      }
+    }
+    
     /* プログレスバー */
     .progress-bar {
       position: absolute;
@@ -248,7 +349,6 @@
     .browser-window {
       background: white;
       border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
       overflow: hidden;
       margin: 10px;
       transition: all 0.3s ease;
@@ -256,7 +356,6 @@
     
     .browser-window:hover {
       transform: translateY(-5px);
-      box-shadow: 0 15px 40px rgba(0,0,0,0.3);
     }
     
     /* シンプルブラウザ（上の画像参考） */
@@ -453,7 +552,6 @@
       background: white;
       padding: 25px;
       border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
       z-index: 2000;
       transition: all 0.3s;
       max-width: 500px;
@@ -1394,16 +1492,16 @@
     });
     
     function handleSwipe() {
-      if (touchEndX < touchStartX - 50 && currentSection < 7) {
-        goToSection(currentSection + 1);
+      if (touchEndX < touchStartX - 50) {
+        navigateIntegrated('right');
       }
-      if (touchEndX > touchStartX + 50 && currentSection > 1) {
-        goToSection(currentSection - 1);
+      if (touchEndX > touchStartX + 50) {
+        navigateIntegrated('left');
       }
     }
 
     // === 統合されたスライド間ナビゲーション機能 ===
-    const slides = ["AppDev_01.html", "AppDev_02a.html", "AppDev_02b.html", "AppDev_03.html", "AppDev_04.html", "AppDev_05a.html", "AppDev_05b.html", "AppDev_06a.html", "AppDev_06b.html", "AppDev_07.html"];
+    const slides = ["AppDev_01.html", "AppDev_02.html", "AppDev_03.html", "AppDev_04.html", "AppDev_05.html", "AppDev_06a.html", "AppDev_06b.html", "AppDev_07.html", "AppDev_08.html", "AppDev_09.html", "AppDev_10.html"];
     
     let curName = location.pathname.split("/").pop();
     if (!curName || !curName.includes(".")) curName = "index.html";
@@ -1419,18 +1517,18 @@
     window.navigateIntegrated = function(direction) {
       if (direction === 'right') {
         if (currentSection < 7) {
-          // 内部ページ送り
+          // 最後のセクションでなければ次のセクションへ
           goToSection(currentSection + 1);
         } else {
-          // 次のスライドへ
+          // 最後のセクションでは次のスライドへ
           goToSlide(curIdx + 1);
         }
       } else if (direction === 'left') {
         if (currentSection > 1) {
-          // 内部ページ送り
+          // 最初のセクションでなければ前のセクションへ
           goToSection(currentSection - 1);
         } else {
-          // 前のスライドへ
+          // 最初のセクションでは前のスライドへ
           goToSlide(curIdx - 1);
         }
       }

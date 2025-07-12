@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>まとめ：今日学べること</title>
+  <title>ステップ1：データを登録しよう！</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
   <style>
@@ -38,6 +38,13 @@
       box-shadow: 5px 5px 0 rgba(0,0,0,0.1);
     }
     
+    .icon-box {
+      background-color: white;
+      border: 3px solid #ffbe3d;
+      border-radius: 20px;
+      box-shadow: 5px 5px 0 rgba(0,0,0,0.1);
+    }
+    
     .bubble {
       position: absolute;
       background-color: white;
@@ -47,19 +54,6 @@
     
     .decoration {
       position: absolute;
-    }
-    
-    .check-item {
-      display: flex;
-      align-items: center;
-      margin-bottom: 16px;
-    }
-    
-    .check-icon {
-      color: #5ce68a;
-      font-size: 32px;
-      margin-right: 16px;
-      flex-shrink: 0;
     }
   </style>
 </head>
@@ -73,93 +67,63 @@
     
     <div class="decoration" style="top: 5%; right: 5%;">
       <svg width="80" height="80" viewBox="0 0 100 100">
-        <polygon points="50,10 61,35 90,35 65,55 75,80 50,65 25,80 35,55 10,35 39,35" fill="#ffbe3d" />
+        <polygon points="50,10 61,35 90,35 65,55 75,80 50,65 25,80 35,55 10,35 39,35" fill="#5ce68a" />
       </svg>
     </div>
     
     <div class="decoration" style="bottom: 5%; left: 5%;">
       <svg width="60" height="60" viewBox="0 0 100 100">
-        <path d="M50,10 A40,40 0 1,1 50,90 A40,40 0 1,1 50,10 Z" fill="#5ce68a" />
+        <polygon points="50,10 61,35 90,35 65,55 75,80 50,65 25,80 35,55 10,35 39,35" fill="#ffbe3d" />
       </svg>
     </div>
     
     <!-- タイトル -->
-    <h1 class="title text-center text-5xl mb-8 mt-4">まとめ：今日学んだこと</h1>
+    <h1 class="title text-center text-5xl mb-6 mt-4">AIに指示してデータ登録システムを作ろう！</h1>
     
     <div class="flex h-full">
-      <!-- 左側：まとめ内容 -->
-      <div class="w-3/5 px-4">
-        <div class="content-box p-6" style="height: calc(100% - 100px);">
-          <div class="check-item">
-            <i class="fas fa-check-circle check-icon"></i>
-            <div>
-              <p class="text-2xl font-bold text-blue-600">ウェブアプリのしくみ</p>
-              <p class="text-xl">インターネットでどこからでも使えるアプリの仕組み</p>
-            </div>
+      <!-- 左側：プロンプト例 -->
+      <div class="w-1/2 px-4 flex flex-col justify-center">
+        <div class="content-box p-5 mb-4">
+          <p class="text-2xl font-bold text-red-500 mb-3">🎯 プロンプト例1（シンプル）</p>
+          <div class="bg-gray-100 p-4 rounded-lg border-l-4 border-blue-500">
+            <p class="text-xl font-mono leading-relaxed text-center py-4">
+              「冷蔵庫の食材を管理するWebアプリを作って」
+            </p>
           </div>
-          
-          <div class="check-item">
-            <i class="fas fa-check-circle check-icon"></i>
-            <div>
-              <p class="text-2xl font-bold text-blue-600">HTML/CSS/JSの役割</p>
-              <p class="text-xl">骨組み・おしゃれ・動きを作る3つの魔法</p>
-            </div>
-          </div>
-          
-          <div class="check-item">
-            <i class="fas fa-check-circle check-icon"></i>
-            <div>
-              <p class="text-2xl font-bold text-blue-600">AIコーディングの使い方</p>
-              <p class="text-xl">AIを助手にして、プログラミングを手伝ってもらおう</p>
-            </div>
-          </div>
-          
-          <div class="check-item">
-            <i class="fas fa-check-circle check-icon"></i>
-            <div>
-              <p class="text-2xl font-bold text-blue-600">アプリ開発の「ステップアップ」</p>
-              <p class="text-xl">少しずつ機能を増やして、もっと便利なアプリに</p>
-            </div>
-          </div>
-          
-          <div class="mt-6 p-4 bg-yellow-100 rounded-xl border-2 border-yellow-300">
-            <p class="text-2xl font-bold text-center text-purple-600">みんなで楽しくアプリを作って、</p>
-            <p class="text-2xl font-bold text-center text-purple-600">いろんな技術を身につけよう！</p>
+        </div>
+        
+        <div class="content-box p-5">
+          <p class="text-2xl font-bold text-green-600 mb-3">🚀 プロンプト例2（機能追加）</p>
+          <div class="bg-gray-100 p-4 rounded-lg border-l-4 border-green-500">
+            <p class="text-lg font-mono leading-relaxed">
+              「さっき作った食材管理アプリに、便利な機能を追加して。<br>
+              ・期限切れが近い食材は赤色で警告表示<br>
+              ・食材を編集できるボタンも追加<br>
+              ・データがブラウザを閉じても残るように保存<br>
+              ・スマホでも使いやすいデザインに調整<br>
+              より便利で実用的なアプリにして」
+            </p>
           </div>
         </div>
       </div>
       
-      <!-- 右側：イラスト -->
-      <div class="w-2/5 px-4 flex flex-col justify-center">
-        <div class="content-box p-6 mb-6 flex items-center justify-center">
-          <div class="w-1/3 text-center">
-            <i class="fas fa-code text-5xl text-blue-500"></i>
-            <p class="font-bold mt-2">HTML</p>
-          </div>
-          <div class="w-1/3 text-center">
-            <i class="fas fa-paint-brush text-5xl text-pink-500"></i>
-            <p class="font-bold mt-2">CSS</p>
-          </div>
-          <div class="w-1/3 text-center">
-            <i class="fas fa-cogs text-5xl text-yellow-500"></i>
-            <p class="font-bold mt-2">JavaScript</p>
-          </div>
+      <!-- 右側：AIツール紹介 -->
+      <div class="w-1/2 px-4 flex flex-col justify-center items-center">
+        <div class="content-box p-5 w-4/5 mb-4">
+          <p class="text-2xl font-bold text-blue-600 mb-3">💡 初心者向けのコツ</p>
+          <ul class="text-lg space-y-2">
+            <li>✅ 何を作りたいか具体的に</li>
+            <li>✅ 必要な機能を箇条書きで</li>
+            <li>✅ デザインの希望も伝える</li>
+            <li>✅ 「子供向け」など対象も明記</li>
+          </ul>
         </div>
         
-        <div class="content-box p-6 flex flex-col items-center">
-          <i class="fas fa-trophy text-6xl text-yellow-500 mb-4"></i>
-          <p class="text-2xl font-bold text-center">あなたもアプリクリエイター！</p>
-          <div class="flex mt-4">
-            <div class="mx-2">
-              <i class="fas fa-mobile-alt text-4xl text-blue-500"></i>
-            </div>
-            <div class="mx-2">
-              <i class="fas fa-robot text-4xl text-green-500"></i>
-            </div>
-            <div class="mx-2">
-              <i class="fas fa-share-alt text-4xl text-purple-500"></i>
-            </div>
-          </div>
+
+        
+        <div class="content-box p-5 w-4/5">
+          <p class="text-xl font-bold text-green-600 mb-2">🎯 今日の目標</p>
+          <p class="text-lg">AIに上記のプロンプトを入力して、<br>実際に動く食材管理アプリを<br>一緒に作ってみよう！</p>
         </div>
       </div>
     </div>

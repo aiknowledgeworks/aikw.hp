@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>まとめ：今日学べること</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap');
+    
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      font-family: 'M PLUS Rounded 1c', sans-serif;
+    }
+    
+    .slide-container {
+      width: 1280px;
+      height: 720px;
+      margin: 0 auto;
+      background-color: #a8e1f8;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .title {
+      color: #ff5a87;
+      text-shadow: 3px 3px 0 #ffffff, 5px 5px 0 #3bb4d7;
+      font-weight: 800;
+    }
+    
+    .content-box {
+      background-color: white;
+      border: 3px solid #3bb4d7;
+      border-radius: 20px;
+      box-shadow: 5px 5px 0 rgba(0,0,0,0.1);
+    }
+    
+    .bubble {
+      position: absolute;
+      background-color: white;
+      border-radius: 50%;
+      opacity: 0.5;
+    }
+    
+    .decoration {
+      position: absolute;
+    }
+    
+    .check-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    
+    .check-icon {
+      color: #5ce68a;
+      font-size: 32px;
+      margin-right: 16px;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="slide-container p-8 flex flex-col">
+    <!-- 背景の装飾 -->
+    <div class="bubble" style="width: 80px; height: 80px; top: 10%; left: 5%;"></div>
+    <div class="bubble" style="width: 60px; height: 60px; top: 20%; right: 15%;"></div>
+    <div class="bubble" style="width: 100px; height: 100px; bottom: 15%; right: 5%;"></div>
+    <div class="bubble" style="width: 40px; height: 40px; bottom: 30%; left: 10%;"></div>
+    
+    <div class="decoration" style="top: 5%; right: 5%;">
+      <svg width="80" height="80" viewBox="0 0 100 100">
+        <polygon points="50,10 61,35 90,35 65,55 75,80 50,65 25,80 35,55 10,35 39,35" fill="#ffbe3d" />
+      </svg>
+    </div>
+    
+    <div class="decoration" style="bottom: 5%; left: 5%;">
+      <svg width="60" height="60" viewBox="0 0 100 100">
+        <path d="M50,10 A40,40 0 1,1 50,90 A40,40 0 1,1 50,10 Z" fill="#5ce68a" />
+      </svg>
+    </div>
+    
+    <!-- タイトル -->
+    <h1 class="title text-center text-5xl mb-8 mt-4">今日学んだこと まとめ</h1>
+    
+    <div class="flex h-full">
+      <!-- 左側：まとめ内容 -->
+      <div class="w-3/5 px-4">
+        <div class="content-box p-6" style="height: calc(100% - 100px);">
+          <div class="check-item">
+            <i class="fas fa-check-circle check-icon"></i>
+            <div>
+              <p class="text-2xl font-bold text-blue-600">ウェブアプリのしくみ</p>
+              <p class="text-xl">インターネットでどこからでも使えるアプリの仕組み</p>
+            </div>
+          </div>
+          
+          <div class="check-item">
+            <i class="fas fa-check-circle check-icon"></i>
+            <div>
+              <p class="text-2xl font-bold text-blue-600">HTML/CSS/JSの役割</p>
+              <p class="text-xl">骨組み・おしゃれ・動きを作る3つの魔法</p>
+            </div>
+          </div>
+          
+          <div class="check-item">
+            <i class="fas fa-check-circle check-icon"></i>
+            <div>
+              <p class="text-2xl font-bold text-blue-600">AIコーディングの使い方</p>
+              <p class="text-xl">AIを助手にして、プログラミングを手伝ってもらおう</p>
+            </div>
+          </div>
+          
+          <div class="check-item">
+            <i class="fas fa-check-circle check-icon"></i>
+            <div>
+              <p class="text-2xl font-bold text-blue-600">アプリ開発の「ステップアップ」</p>
+              <p class="text-xl">少しずつ機能を増やして、もっと便利なアプリに</p>
+            </div>
+          </div>
+          
+          <div class="mt-6 p-4 bg-yellow-100 rounded-xl border-2 border-yellow-300">
+            <p class="text-2xl font-bold text-center text-purple-600">みんなで楽しくアプリを作って、</p>
+            <p class="text-2xl font-bold text-center text-purple-600">いろんな技術を身につけよう！</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 右側：イラスト -->
+      <div class="w-2/5 px-4 flex flex-col justify-center">
+        <div class="content-box p-6 mb-6 flex items-center justify-center">
+          <div class="w-1/3 text-center">
+            <i class="fas fa-code text-5xl text-blue-500"></i>
+            <p class="font-bold mt-2">HTML</p>
+          </div>
+          <div class="w-1/3 text-center">
+            <i class="fas fa-paint-brush text-5xl text-pink-500"></i>
+            <p class="font-bold mt-2">CSS</p>
+          </div>
+          <div class="w-1/3 text-center">
+            <i class="fas fa-cogs text-5xl text-yellow-500"></i>
+            <p class="font-bold mt-2">JavaScript</p>
+          </div>
+        </div>
+        
+        <div class="content-box p-6 flex flex-col items-center">
+          <i class="fas fa-trophy text-6xl text-yellow-500 mb-4"></i>
+          <p class="text-2xl font-bold text-center">あなたもアプリクリエイター！</p>
+          <div class="flex mt-4">
+            <div class="mx-2">
+              <i class="fas fa-mobile-alt text-4xl text-blue-500"></i>
+            </div>
+            <div class="mx-2">
+              <i class="fas fa-robot text-4xl text-green-500"></i>
+            </div>
+            <div class="mx-2">
+              <i class="fas fa-share-alt text-4xl text-purple-500"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="slide-nav-plusPDF.js"></script>
+</body>
+</html>
