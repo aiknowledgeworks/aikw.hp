@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ステップ1：データを登録しよう！</title>
+  <title>ステップ1：アプリの大枠を設計しよう！</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
   <style>
@@ -78,52 +78,52 @@
     </div>
     
     <!-- タイトル -->
-    <h1 class="title text-center text-5xl mb-6 mt-4">AIに指示してデータ登録システムを作ろう！</h1>
+    <h1 class="title text-center text-5xl mb-8 mt-4">ステップ1：アプリの大枠を設計しよう！</h1>
     
     <div class="flex h-full">
-      <!-- 左側：プロンプト例 -->
+      <!-- 左側：説明文 -->
       <div class="w-1/2 px-4 flex flex-col justify-center">
-        <div class="content-box p-5 mb-4">
-          <p class="text-2xl font-bold text-red-500 mb-3">🎯 プロンプト例1（シンプル）</p>
-          <div class="bg-gray-100 p-4 rounded-lg border-l-4 border-blue-500">
-            <p class="text-xl font-mono leading-relaxed text-center py-4">
-              「冷蔵庫の食材を管理するWebアプリを作って」
-            </p>
-          </div>
+        <div class="content-box p-6 mb-4">
+          <p class="text-2xl font-bold text-blue-600 mb-2">冷蔵庫に何が入っているか記録する</p>
+          <p class="text-xl">食材の名前や賞味期限を入力して保存できる機能。</p>
         </div>
         
-        <div class="content-box p-5">
-          <p class="text-2xl font-bold text-green-600 mb-3">🚀 プロンプト例2（機能追加）</p>
-          <div class="bg-gray-100 p-4 rounded-lg border-l-4 border-green-500">
-            <p class="text-lg font-mono leading-relaxed">
-              「さっき作った食材管理アプリに、便利な機能を追加して。<br>
-              ・期限切れが近い食材は赤色で警告表示<br>
-              ・食材を編集できるボタンも追加<br>
-              ・データがブラウザを閉じても残るように保存<br>
-              ・スマホでも使いやすいデザインに調整<br>
-              より便利で実用的なアプリにして」
-            </p>
-          </div>
+        <div class="content-box p-6 mb-4">
+          <p class="text-2xl font-bold text-green-600 mb-2">入力したデータはアプリに保存される</p>
+          <p class="text-xl">あとから確認したり、消したりもできたりする機能！</p>
+        </div>
+        
+        <div class="content-box p-6">
+          <p class="text-2xl font-bold text-purple-600 mb-2">賞味期限が近づいたことを教えてくれる！</p>
+          <p class="text-xl">賞味期限に近づいたり、賞味期限が過ぎると色が変わって知らせてくれる！</p>
         </div>
       </div>
       
-      <!-- 右側：AIツール紹介 -->
+      <!-- 右側：イラスト -->
       <div class="w-1/2 px-4 flex flex-col justify-center items-center">
-        <div class="content-box p-5 w-4/5 mb-4">
-          <p class="text-2xl font-bold text-blue-600 mb-3">💡 初心者向けのコツ</p>
-          <ul class="text-lg space-y-2">
-            <li>✅ 何を作りたいか具体的に</li>
-            <li>✅ 必要な機能を箇条書きで</li>
-            <li>✅ デザインの希望も伝える</li>
-            <li>✅ 「子供向け」など対象も明記</li>
-          </ul>
+        <div class="icon-box p-6 w-4/5 mb-6 flex items-center">
+          <i class="fas fa-utensils text-5xl text-blue-500 mr-6"></i>
+          <div>
+            <p class="text-2xl font-bold">食材登録</p>
+            <p class="text-lg">牛乳、卵、野菜などを記録</p>
+          </div>
         </div>
         
-
+        <div class="icon-box p-6 w-4/5 mb-6 flex items-center">
+          <i class="fas fa-calendar-alt text-5xl text-green-500 mr-6"></i>
+          <div>
+            <p class="text-2xl font-bold">賞味期限管理</p>
+            <p class="text-lg">いつまで食べられるかわかる</p>
+          </div>
+        </div>
         
-        <div class="content-box p-5 w-4/5">
-          <p class="text-xl font-bold text-green-600 mb-2">🎯 今日の目標</p>
-          <p class="text-lg">AIに上記のプロンプトを入力して、<br>実際に動く食材管理アプリを<br>一緒に作ってみよう！</p>
+        <div class="icon-box p-6 w-4/5 flex items-center">
+          <i class="fas fa-robot text-5xl text-purple-500 mr-6"></i>
+          <div>
+            <p class="text-2xl font-bold">入力したデータの保管機能</p>
+            <p class="text-lg">入力したデータが消えずにブラウザに残るようにする</p>
+            <p class="text-sm text-gray-600 mt-1">IndexedDBというデータベース機能を使うよ。</p>
+          </div>
         </div>
       </div>
     </div>
