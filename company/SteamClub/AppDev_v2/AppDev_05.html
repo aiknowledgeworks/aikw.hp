@@ -55,6 +55,25 @@
     .decoration {
       position: absolute;
     }
+    
+    /* ルビタグのスタイル */
+    ruby {
+      ruby-align: center;
+    }
+    
+    rt {
+      font-size: 0.6em;
+      color: #666;
+      font-weight: normal;
+    }
+    
+    /* PDF化時のルビスタイル */
+    @media print {
+      rt {
+        font-size: 0.5em !important;
+        color: #333 !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -78,7 +97,7 @@
     </div>
     
     <!-- タイトル -->
-    <h1 class="title text-center text-4xl mb-4 mt-2">アプリを作る道具たち（HTML/CSS/JS）</h1>
+    <h1 class="title text-center text-4xl mb-4 mt-2">アプリを<ruby>作<rt>つく</rt></ruby>る<ruby>道具<rt>どうぐ</rt></ruby>たち（HTML/CSS/JS）</h1>
     
     <!-- 内容 -->
     <div class="flex flex-col items-center justify-center flex-1">
@@ -86,7 +105,7 @@
       <div class="content-box p-6 w-4/5 mb-6 flex items-center justify-center text-center">
         <div class="mx-4">
           <i class="fas fa-laptop text-6xl text-purple-500 mb-2"></i>
-          <p class="text-2xl font-bold">この3つを組み合わせると...</p>
+          <p class="text-2xl font-bold">この3つを<ruby>組<rt>く</rt></ruby>み<ruby>合<rt>あ</rt></ruby>わせると...</p>
         </div>
         
         <div class="mx-8">
@@ -95,46 +114,43 @@
         
         <div class="mx-4">
           <i class="fas fa-mobile-alt text-6xl text-green-500 mb-2"></i>
-          <p class="text-3xl font-bold text-green-600">すてきなアプリの完成！</p>
+          <p class="text-3xl font-bold text-green-600">すてきなアプリの<ruby>完成<rt>かんせい</rt></ruby>！</p>
         </div>
       </div>
       
       <!-- 下部に補足説明 -->
       <div class="w-full flex justify-around mt-4">
         <!-- HTML説明 -->
-        <div class="tool-box p-3 w-1/4">
-          <div class="flex items-center justify-center mb-2">
-            <div class="bg-blue-100 rounded-full p-3 w-12 h-12 flex items-center justify-center">
-              <i class="fas fa-cubes text-2xl text-blue-500"></i>
+        <div class="tool-box p-6 w-1/4">
+          <div class="flex items-center justify-center mb-4">
+            <div class="bg-blue-100 rounded-full p-6 w-24 h-24 flex items-center justify-center">
+              <i class="fas fa-cubes text-5xl text-blue-500"></i>
             </div>
           </div>
-          <h3 class="text-xl font-bold text-blue-600 text-center">HTML</h3>
-          <span class="block text-center bg-blue-100 text-blue-700 font-bold px-2 py-1 rounded-full text-xs mb-1">骨組み担当</span>
-          <p class="text-sm">ウェブページの「かたち」を作るよ。ボタンや文字、写真を置く場所を決めるんだ。家で言うと「柱や壁」みたいなもの！</p>
+          <h3 class="text-2xl font-bold text-blue-600 text-center">HTML</h3>
+          <span class="block text-center bg-blue-100 text-blue-700 font-bold px-3 py-2 rounded-full text-sm mb-3"><ruby>骨組<rt>ほねぐ</rt></ruby>み<ruby>担当<rt>たんとう</rt></ruby></span>
         </div>
         
         <!-- CSS説明 -->
-        <div class="tool-box p-3 w-1/4">
-          <div class="flex items-center justify-center mb-2">
-            <div class="bg-pink-100 rounded-full p-3 w-12 h-12 flex items-center justify-center">
-              <i class="fas fa-paint-brush text-2xl text-pink-500"></i>
+        <div class="tool-box p-6 w-1/4">
+          <div class="flex items-center justify-center mb-4">
+            <div class="bg-pink-100 rounded-full p-6 w-24 h-24 flex items-center justify-center">
+              <i class="fas fa-paint-brush text-5xl text-pink-500"></i>
             </div>
           </div>
-          <h3 class="text-xl font-bold text-pink-600 text-center">CSS</h3>
-          <span class="block text-center bg-pink-100 text-pink-700 font-bold px-2 py-1 rounded-full text-xs mb-1">おしゃれ担当</span>
-          <p class="text-sm">ウェブページの「見た目」を美しくするよ。色や大きさ、文字の種類を決めるんだ。家で言うと「ペンキや家具」みたいなもの！</p>
+          <h3 class="text-2xl font-bold text-pink-600 text-center">CSS</h3>
+          <span class="block text-center bg-pink-100 text-pink-700 font-bold px-3 py-2 rounded-full text-sm mb-3">おしゃれ<ruby>担当<rt>たんとう</rt></ruby></span>
         </div>
         
         <!-- JavaScript説明 -->
-        <div class="tool-box p-3 w-1/4">
-          <div class="flex items-center justify-center mb-2">
-            <div class="bg-yellow-100 rounded-full p-3 w-12 h-12 flex items-center justify-center">
-              <i class="fas fa-magic text-2xl text-yellow-500"></i>
+        <div class="tool-box p-6 w-1/4">
+          <div class="flex items-center justify-center mb-4">
+            <div class="bg-yellow-100 rounded-full p-6 w-24 h-24 flex items-center justify-center">
+              <i class="fas fa-magic text-5xl text-yellow-500"></i>
             </div>
           </div>
-          <h3 class="text-xl font-bold text-yellow-600 text-center">JavaScript</h3>
-          <span class="block text-center bg-yellow-100 text-yellow-700 font-bold px-2 py-1 rounded-full text-xs mb-1">魔法使い</span>
-          <p class="text-sm">ウェブページに「動き」を付けるよ。ボタンを押したときの反応や計算、データの保存をするんだ。家で言うと「電気やリモコン」みたいなもの！</p>
+          <h3 class="text-2xl font-bold text-yellow-600 text-center">JavaScript</h3>
+          <span class="block text-center bg-yellow-100 text-yellow-700 font-bold px-3 py-2 rounded-full text-sm mb-3"><ruby>魔法使<rt>まほうつか</rt></ruby>い</span>
         </div>
       </div>
     </div>

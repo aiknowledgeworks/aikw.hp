@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AIまなびラボ：みんなでアプリを作ろう！</title>
+  <title>AIまなびラボ：みんなでアプリを作ろう実習！</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
   <style>
@@ -63,6 +63,25 @@
       padding: 20px;
       box-shadow: 5px 5px 0 rgba(0,0,0,0.1);
     }
+    
+    /* ルビタグのスタイル */
+    ruby {
+      ruby-align: center;
+    }
+    
+    rt {
+      font-size: 0.6em;
+      color: #666;
+      font-weight: normal;
+    }
+    
+    /* PDF化時のルビスタイル */
+    @media print {
+      rt {
+        font-size: 0.5em !important;
+        color: #333 !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -87,8 +106,8 @@
     </div>
     
     <!-- タイトル -->
-    <h1 class="title text-center text-6xl mb-4 mt-10">AIまなびラボ</h1>
-    <h2 class="subtitle text-center text-5xl mb-10">みんなでアプリを作ろう！</h2>
+    <h1 class="title text-center text-6xl mb-4 mt-10">AI<ruby>学<rt>まな</rt></ruby>びラボ</h1>
+    <h2 class="subtitle text-center text-5xl mb-10">みんなでアプリを<ruby>作<rt>つく</rt></ruby>ろう<ruby>実習<rt>じっしゅう</rt></ruby>！</h2>
     
     <!-- アイコンとイラスト -->
     <div class="flex justify-around w-full mb-8">
@@ -104,14 +123,15 @@
       
       <div class="icon-container">
         <i class="fas fa-utensils text-6xl text-red-500"></i>
-        <p class="text-center mt-2 font-bold">冷蔵庫</p>
+        <p class="text-center mt-2 font-bold"><ruby>冷蔵庫<rt>れいぞうこ</rt></ruby></p>
       </div>
     </div>
     
     <!-- 説明文 -->
     <div class="description p-5 mx-auto w-4/5 text-center text-xl">
-      <p class="mb-2">AIツールを使った、<span class="font-bold text-red-600">はじめての体験！</span> <span class="font-bold text-blue-600">言葉で、冷蔵庫管理アプリ</span>をみんなで作るよ！</p>
-      <p>どんなふうにアプリを作るのか、楽しく学んでいきましょう！</p>
+      <p class="mb-2">AIツールを<ruby>使<rt>つか</rt></ruby>った、<span class="font-bold text-red-600">はじめての<ruby>体験<rt>たいけん</rt></ruby>！</span> <span class="font-bold text-blue-600">"<ruby>言葉<rt>ことば</rt></ruby>で、<ruby>冷蔵庫<rt>れいぞうこ</rt></ruby><ruby>管理<rt>かんり</rt></ruby>アプリ"</span>を<ruby>作<rt>つく</rt></ruby>ろう！</p>
+      <p><ruby>言葉<rt>ことば</rt></ruby>で？ <ruby>実<rt>じつ</rt></ruby>は、<ruby>言葉<rt>ことば</rt></ruby>を<ruby>学<rt>まな</rt></ruby>べば、アプリができます。
+      </p>どんなふうにアプリを<ruby>作<rt>つく</rt></ruby>るの? <ruby>楽<rt>たの</rt></ruby>しく<ruby>学<rt>まな</rt></ruby>んでいきましょう！</p>
     </div>
   </div>
 

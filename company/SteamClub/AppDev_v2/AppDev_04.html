@@ -472,6 +472,25 @@
                 transform: scale(0.65);
             }
         }
+        
+        /* ルビタグのスタイル */
+        ruby {
+            ruby-align: center;
+        }
+        
+        rt {
+            font-size: 0.6em;
+            color: #666;
+            font-weight: normal;
+        }
+        
+        /* PDF化時のルビスタイル */
+        @media print {
+            rt {
+                font-size: 0.5em !important;
+                color: #333 !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -491,11 +510,11 @@
                         <div class="step-header">
                             <div class="step-number">1</div>
                             <div class="step-icon">📝</div>
-                            <div class="step-title">HTML（エイチティーエムエル）<br>中身をつくる</div>
+                            <div class="step-title">HTML（エイチティーエムエル）<br><ruby>中身<rt>なかみ</rt></ruby>をつくる</div>
                         </div>
                         <div class="step-description">
-                            ウェブサイトの<strong>骨組み</strong>をつくる言葉だよ！<br>
-                            タイトル、文章、ボタンなどの中身を配置するんだ。
+                            ウェブサイトの<strong><ruby>骨組<rt>ほねぐ</rt></ruby>み</strong>をつくる<ruby>役割<rt>やくわり</rt></ruby>！<br>
+                            タイトル、<ruby>文章<rt>ぶんしょう</rt></ruby>、ボタンなどの<ruby>中身<rt>なかみ</rt></ruby>を<ruby>配置<rt>はいち</rt></ruby>する。
                         </div>
                     </div>
 
@@ -506,8 +525,8 @@
                             <div class="step-title">CSS（シーエスエス）<br>きれいにする</div>
                         </div>
                         <div class="step-description">
-                            ウェブサイトを<strong>美しく</strong>する言葉だよ！<br>
-                            色、影、グラデーションなどのデザインを追加するんだ。
+                            ウェブサイトを<strong><ruby>美<rt>うつく</rt></ruby>しく</strong>する<ruby>役割<rt>やくわり</rt></ruby>！<br>
+                            <ruby>色<rt>いろ</rt></ruby>、<ruby>影<rt>かげ</rt></ruby>、グラデーションなどのデザインを<ruby>追加<rt>ついか</rt></ruby>する。
                         </div>
                     </div>
 
@@ -515,11 +534,11 @@
                         <div class="step-header">
                             <div class="step-number">3</div>
                             <div class="step-icon">⚡</div>
-                            <div class="step-title">JavaScript（ジャバスクリプト）<br>動きをつける</div>
+                            <div class="step-title">JavaScript（ジャバスクリプト, ジェーエス）<br><ruby>動<rt>うご</rt></ruby>きをつける</div>
                         </div>
                         <div class="step-description">
-                            ウェブサイトに<strong>魔法</strong>をかける言葉だよ！<br>
-                            ボタンを押すと何かが起こるようにできるんだ。
+                            ウェブサイトに<strong><ruby>動<rt>うご</rt></ruby>きや<ruby>機能<rt>きのう</rt></ruby></strong>をかける<ruby>役割<rt>やくわり</rt></ruby>！<br>
+                            ボタンを<ruby>押<rt>お</rt></ruby>すと<ruby>何<rt>なに</rt></ruby>かが<ruby>起<rt>お</rt></ruby>こるようにできる。
                         </div>
                     </div>
                 </div>
@@ -547,12 +566,12 @@
                         <div class="site-part site-main">
                             <div class="content-box">
                                 <div class="content-title">🎉 ようこそ！</div>
-                                <div class="content-text">ここは私のウェブサイトです。</div>
+                                <div class="content-text">ここは<ruby>私<rt>わたし</rt></ruby>のウェブサイトです。</div>
                                 <button class="site-button" id="magicButton">✨ まほうのボタン ✨</button>
                             </div>
                             <div class="content-box">
-                                <div class="content-title">📚 お知らせ</div>
-                                <div class="content-text">新しいコンテンツを追加しました！</div>
+                                <div class="content-title">📚 お<ruby>知<rt>し</rt></ruby>らせ</div>
+                                <div class="content-text"><ruby>新<rt>あたら</rt></ruby>しいコンテンツを<ruby>追加<rt>ついか</rt></ruby>しました！</div>
                             </div>
                         </div>
                         <div class="site-part site-footer">
@@ -607,10 +626,10 @@
                 
                 magicButton.onclick = function() {
                     const magicMessages = [
-                        "🎉 わあ！ボタンが動いたよ！",
-                        "⚡ これがJavaScriptの魔法だよ！",
+                        "🎉 わあ！ボタンが<ruby>動<rt>うご</rt></ruby>いたよ！",
+                        "⚡ これがJavaScriptの<ruby>魔法<rt>まほう</rt></ruby>だよ！",
                         "🌟 すごいでしょ？",
-                        "🚀 君もプログラマーになれる！"
+                        "🚀 <ruby>君<rt>きみ</rt></ruby>もプログラマーになれる！"
                     ];
                     
                     const randomMessage = magicMessages[Math.floor(Math.random() * magicMessages.length)];

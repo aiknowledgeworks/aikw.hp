@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ステップ1：データを登録しよう！</title>
+  <title>ステップ1：データを<ruby>登録<rt>とうろく</rt></ruby>しよう！</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
   <style>
@@ -59,7 +59,7 @@
 </head>
 <body>
   <div class="slide-container p-8 flex flex-col">
-    <!-- 背景の装飾 -->
+    <!-- <ruby>背景<rt>はいけい</rt></ruby>の<ruby>装飾<rt>そうしょく</rt></ruby> -->
     <div class="bubble" style="width: 80px; height: 80px; top: 10%; left: 5%;"></div>
     <div class="bubble" style="width: 60px; height: 60px; top: 20%; right: 15%;"></div>
     <div class="bubble" style="width: 100px; height: 100px; bottom: 15%; right: 5%;"></div>
@@ -71,58 +71,65 @@
       </svg>
     </div>
     
-    <div class="decoration" style="bottom: 5%; left: 5%;">
+    <div class="decoration" style="bottom: 5%; left: calc(5% - 50px);">
       <svg width="60" height="60" viewBox="0 0 100 100">
         <polygon points="50,10 61,35 90,35 65,55 75,80 50,65 25,80 35,55 10,35 39,35" fill="#ffbe3d" />
       </svg>
     </div>
     
     <!-- タイトル -->
-    <h1 class="title text-center text-5xl mb-6 mt-4">AIに指示してアプリのシステムを作ろう！</h1>
+    <h1 class="title text-center text-5xl mb-6 mt-4">AIに<ruby>指示<rt>しじ</rt></ruby>してアプリのシステムを<ruby>作<rt>つく</rt></ruby>ろう！</h1>
     
     <div class="flex h-full">
-      <!-- 左側：プロンプト例 -->
+      <!-- <ruby>左側<rt>ひだりがわ</rt></ruby>：プロンプト<ruby>例<rt>れい</rt></ruby> -->
       <div class="w-1/2 px-4 flex flex-col justify-center">
-        <div class="content-box p-5 mb-4">
-          <p class="text-2xl font-bold text-red-500 mb-3">🎯 指示する言葉(1)（シンプル）</p>
-          <div class="bg-gray-100 p-4 rounded-lg border-l-4 border-blue-500">
-            <p class="text-xl font-mono leading-relaxed text-center py-4">
-              冷蔵庫の食材を管理するWebアプリを作って
+        <div class="content-box p-3 mb-3">
+          <p class="text-2xl font-bold text-red-500 mb-2">🎯 <ruby>指示<rt>しじ</rt></ruby>する<ruby>言葉<rt>ことば</rt></ruby>(1)（シンプル）</p>
+          <div class="bg-gray-100 p-3 rounded-lg border-l-4 border-blue-500">
+            <p class="text-xl font-mono leading-relaxed text-center py-3">
+              ⭐️冷蔵庫の食材を管理するウェブアプリを作って<br>
+              ⭐️HTML,CSS,JavaScriptを使って作って
             </p>
           </div>
         </div>
         
-        <div class="content-box p-5">
-          <p class="text-2xl font-bold text-green-600 mb-3">🚀 指示する言葉(2)（機能追加）</p>
-          <div class="bg-gray-100 p-4 rounded-lg border-l-4 border-green-500">
-            <p class="text-lg font-mono leading-relaxed">
-              さっき作った食材管理アプリに、便利な機能を追加して。<br>
-              ・期限切れが近い食材は赤色で警告表示<br>
-              ・食材を編集できるボタンも追加<br>
-              ・データがブラウザを閉じても残るように保存<br>
-              ・スマホでも使いやすいデザインに調整<br>
-              より便利で実用的なアプリにして
+        <div class="content-box p-3 mb-3">
+          <p class="text-2xl font-bold text-green-600 mb-2">🚀 <ruby>指示<rt>しじ</rt></ruby>する<ruby>言葉<rt>ことば</rt></ruby>(2)（<ruby>機能<rt>きのう</rt></ruby><ruby>追加<rt>ついか</rt></ruby>・<ruby>表示<rt>ひょうじ</rt></ruby><ruby>編<rt>へん</rt></ruby>）</p>
+          <div class="bg-gray-100 p-3 rounded-lg border-l-4 border-green-500">
+            <p class="text-lg font-mono leading-relaxed text-center">
+              🌟期限切れが近い食材は赤色で警告表示<br>
+              🌟食材を編集できるボタンも追加<br>
+            </p>
+          </div>
+        </div>
+        
+        <div class="content-box p-3">
+          <p class="text-2xl font-bold text-purple-600 mb-2">⚡ <ruby>指示<rt>しじ</rt></ruby>する<ruby>言葉<rt>ことば</rt></ruby>(3)（<ruby>高度<rt>こうど</rt></ruby>な<ruby>機能<rt>きのう</rt></ruby><ruby>追加<rt>ついか</rt></ruby>）</p>
+          <div class="bg-gray-100 p-3 rounded-lg border-l-4 border-purple-500">
+            <p class="text-lg font-mono leading-relaxed text-center">
+              🍎データがブラウザを閉じても残るように保存(IndexedDB)<br>
+              🍎スマホ・タブレットでも使いやすいデザインに調整して<br>
             </p>
           </div>
         </div>
       </div>
       
-      <!-- 右側：AIツール紹介 -->
+      <!-- <ruby>右側<rt>みぎがわ</rt></ruby>：AIツール<ruby>紹介<rt>しょうかい</rt></ruby> -->
       <div class="w-1/2 px-4 flex flex-col justify-center items-center">
         <div class="content-box p-5 w-4/5 mb-4">
-          <p class="text-2xl font-bold text-blue-600 mb-3">💡 初心者向けのコツ</p>
+          <p class="text-2xl font-bold text-blue-600 mb-3">💡 <ruby>作<rt>つく</rt></ruby>るときのコツ</p>
           <ul class="text-lg space-y-2">
-            <li>✅ 何を作りたいか具体的につたえる</li>
-            <li>✅ 必要な機能は箇条書きでいい</li>
-            <li>✅ デザインやレイアウト、色の希望も伝える</li>
+            <li>✅ <ruby>何<rt>なに</rt></ruby>を<ruby>作<rt>つく</rt></ruby>りたいか<ruby>具体的<rt>ぐたいてき</rt></ruby>につたえる</li>
+            <li>✅ <ruby>必要<rt>ひつよう</rt></ruby>な<ruby>機能<rt>きのう</rt></ruby>は<ruby>箇条書<rt>かじょうが</rt></ruby>きでつたえる</li>
+            <li>✅ デザインやレイアウト、<ruby>色<rt>いろ</rt></ruby>の<ruby>希望<rt>きぼう</rt></ruby>もつたえる</li>
            </ul>
         </div>
         
 
         
         <div class="content-box p-5 w-4/5">
-          <p class="text-xl font-bold text-green-600 mb-2">🎯 はじめの目標</p>
-          <p class="text-lg">AIツールに言葉を入力して、実際に動く管理アプリを作ってみよう！</p>
+          <p class="text-xl font-bold text-green-600 mb-2">🎯 はじめの<ruby>目標<rt>もくひょう</rt></ruby></p>
+          <p class="text-lg">AIツールに、さっき<ruby>学<rt>まな</rt></ruby>んだ<ruby>言葉<rt>ことば</rt></ruby>を<ruby>入力<rt>にゅうりょく</rt></ruby>して、<ruby>実際<rt>じっさい</rt></ruby>に<ruby>動<rt>うご</rt></ruby>く<ruby>管理<rt>かんり</rt></ruby>アプリを<ruby>作<rt>つく</rt></ruby>ってみよう！</p>
         </div>
       </div>
     </div>

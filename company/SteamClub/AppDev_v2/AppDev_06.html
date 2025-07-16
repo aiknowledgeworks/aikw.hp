@@ -55,6 +55,25 @@
     .decoration {
       position: absolute;
     }
+    
+    /* ルビタグのスタイル */
+    ruby {
+      ruby-align: center;
+    }
+    
+    rt {
+      font-size: 0.6em;
+      color: #666;
+      font-weight: normal;
+    }
+    
+    /* PDF化時のルビスタイル */
+    @media print {
+      rt {
+        font-size: 0.5em !important;
+        color: #333 !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -71,37 +90,37 @@
       </svg>
     </div>
     
-    <div class="decoration" style="bottom: 5%; left: 5%;">
+    <div class="decoration" style="bottom: 5%; left: calc(5% - 50px);">
       <svg width="60" height="60" viewBox="0 0 100 100">
         <polygon points="50,10 61,35 90,35 65,55 75,80 50,65 25,80 35,55 10,35 39,35" fill="#ffbe3d" />
       </svg>
     </div>
     
     <!-- タイトル -->
-    <h1 class="title text-center text-5xl mb-8 mt-4">実習のための準備・セットアップ</h1>
+    <h1 class="title text-center text-5xl mb-8 mt-4"><ruby>実習<rt>じっしゅう</rt></ruby>のための<ruby>準備<rt>じゅんび</rt></ruby>・セットアップ</h1>
     
     <div class="flex h-full">
       <!-- 左側：説明文 -->
       <div class="w-1/2 px-4 flex flex-col justify-center">
         <div class="content-box p-6 mb-4">
-          <p class="text-2xl font-bold text-blue-600 mb-2">実習にはGoogleアカウントが必要です</p>
-          <p class="text-xl">無料で作成できるので、お持ちでない方は事前に作成しておきましょう！（今回、設定済みです）</p>
+          <p class="text-2xl font-bold text-blue-600 mb-2"><ruby>実習<rt>じっしゅう</rt></ruby>にはGoogle アカウント が<ruby>必要<rt>ひつよう</rt></ruby>です</p>
+          <p class="text-xl">（<ruby>今回<rt>こんかい</rt></ruby>は<ruby>設定済<rt>せっていず</rt></ruby>み・<ruby>登録不要<rt>とうろくふよう</rt></ruby>です）</p>
         </div>
         
         <div class="content-box p-6 mb-4">
-          <p class="text-2xl font-bold text-green-600 mb-2">A. 無料でAIツールを使うなら</p>
+          <p class="text-2xl font-bold text-green-600 mb-2">A. <ruby>無料<rt>むりょう</rt></ruby>でAIツールを<ruby>使<rt>つか</rt></ruby>うなら</p>
           <p class="text-xl">
-            • Bolt.new（無料枠）<br>
-            • Claude（無料枠）<br>
-            • Google AI Studio / Gemini CLI（無料枠）
+            • Bolt.new（<ruby>無料枠<rt>むりょうわく</rt></ruby>）<br>
+            • Claude（<ruby>無料枠<rt>むりょうわく</rt></ruby>）<br>
+            • Google AI Studio / Gemini CLI（<ruby>無料枠<rt>むりょうわく</rt></ruby>） ⭐️⭐️⭐️
           </p>
         </div>
         
         <div class="content-box p-6">
-          <p class="text-2xl font-bold text-purple-600 mb-2">B. 有料版のAIツールを使うなら（オプション）</p>
+          <p class="text-2xl font-bold text-purple-600 mb-2">B. <ruby>有料版<rt>ゆうりょうばん</rt></ruby>のAIツールを<ruby>使<rt>つか</rt></ruby>う（オプション）</p>
           <p class="text-xl">
-            • Cursor、Claude Code を貸出します※<br>
-            <span class="text-sm text-gray-600">（※ 実際に契約すると、月額3000円程度かかります）</span>
+            • Cursor、Claude Code を<ruby>貸出<rt>かしだし</rt></ruby>できます
+            <span class="text-sm text-gray-600"></span>
           </p>
         </div>
       </div>
@@ -111,27 +130,27 @@
         <div class="icon-box p-6 w-4/5 mb-6 flex items-center">
           <i class="fab fa-google text-5xl text-blue-500 mr-6"></i>
           <div>
-            <p class="text-2xl font-bold">Googleアカウント</p>
-            <p class="text-lg">実習で必要な基本アカウント</p>
-            <p class="text-sm text-gray-600 mt-1">Google Chromeブラウザ + 日本語翻訳プラグインを<br>使用します</p>
+            <p class="text-2xl font-bold">Google アカウント</p>
+            <p class="text-lg"><ruby>実習<rt>じっしゅう</rt></ruby>で<ruby>必要<rt>ひつよう</rt></ruby>な<ruby>基本<rt>きほん</rt></ruby>アカウント</p>
+            <p class="text-sm text-gray-600 mt-1"><ruby>追加<rt>ついか</rt></ruby>で、Google Chromeブラウザ + <ruby>日本語<rt>にほんご</rt></ruby><ruby>翻訳<rt>ほんやく</rt></ruby>プラグインを<ruby>使用<rt>しよう</rt></ruby>します</p>
           </div>
         </div>
         
         <div class="icon-box p-6 w-4/5 mb-6 flex items-center">
-          <i class="fas fa-gift text-5xl text-green-500 mr-6"></i>
+          <i class="fas fa-shopping-basket text-5xl text-green-500 mr-6"></i>
           <div>
-            <p class="text-2xl font-bold">無料AIツール</p>
-            <p class="text-lg">Bolt.new、Claude、Google AI Studio</p>
-            <p class="text-sm text-gray-600 mt-1">無料枠で十分実習できます！</p>
+            <p class="text-2xl font-bold"><ruby>冷蔵庫<rt>れいぞうこ</rt></ruby>の<ruby>食材<rt>しょくざい</rt></ruby>と<ruby>果物<rt>くだもの</rt></ruby></p>
+            <p class="text-lg"><ruby>魚<rt>さかな</rt></ruby>、<ruby>肉<rt>にく</rt></ruby>、<ruby>野菜<rt>やさい</rt></ruby>、りんご、<ruby>塩<rt>しお</rt></ruby>、<ruby>砂糖<rt>さとう</rt></ruby></p>
+            <p class="text-sm text-gray-600 mt-1"><ruby>新鮮<rt>しんせん</rt></ruby>な<ruby>食材<rt>しょくざい</rt></ruby>と<ruby>料理<rt>りょうり</rt></ruby>に<ruby>必要<rt>ひつよう</rt></ruby>な<ruby>材料<rt>ざいりょう</rt></ruby>を<ruby>保存<rt>ほぞん</rt></ruby>します</p>
           </div>
         </div>
         
         <div class="icon-box p-6 w-4/5 flex items-center">
-          <i class="fas fa-crown text-5xl text-purple-500 mr-6"></i>
+          <i class="fas fa-barcode text-5xl text-purple-500 mr-6"></i>
           <div>
-            <p class="text-2xl font-bold">有料AIツール（オプション）</p>
-            <p class="text-lg">Cursor、Claude Code</p>
-            <p class="text-sm text-gray-600 mt-1">貸出可能です（実際は月額3000円程度）</p>
+            <p class="text-2xl font-bold"><ruby>冷蔵庫<rt>れいぞうこ</rt></ruby>を<ruby>使<rt>つか</rt></ruby>うイメージ</p>
+            <p class="text-lg"><ruby>賞味期限<rt>しょうみきげん</rt></ruby>、<ruby>商品名<rt>しょうひんめい</rt></ruby>、バーコード</p>
+            <p class="text-sm text-gray-600 mt-1"><ruby>食品<rt>しょくひん</rt></ruby>の<ruby>情報<rt>じょうほう</rt></ruby>を<ruby>確認<rt>かくにん</rt></ruby>する<ruby>大切<rt>たいせつ</rt></ruby>な<ruby>言葉<rt>ことば</rt></ruby>です</p>
           </div>
         </div>
       </div>

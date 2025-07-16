@@ -55,6 +55,25 @@
     .decoration {
       position: absolute;
     }
+    
+    /* ルビタグのスタイル */
+    ruby {
+      ruby-align: center;
+    }
+    
+    rt {
+      font-size: 0.6em;
+      color: #666;
+      font-weight: normal;
+    }
+    
+    /* PDF化時のルビスタイル */
+    @media print {
+      rt {
+        font-size: 0.5em !important;
+        color: #333 !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -71,31 +90,31 @@
       </svg>
     </div>
     
-    <div class="decoration" style="bottom: 5%; left: 5%;">
+    <div class="decoration" style="bottom: 5%; left: calc(5% - 50px);">
       <svg width="60" height="60" viewBox="0 0 100 100">
         <polygon points="50,10 61,35 90,35 65,55 75,80 50,65 25,80 35,55 10,35 39,35" fill="#ffbe3d" />
       </svg>
     </div>
     
     <!-- タイトル -->
-    <h1 class="title text-center text-5xl mb-8 mt-4">ウェブアプリについて、学んだことまとめ</h1>
+    <h1 class="title text-center text-5xl mb-8 mt-4">ウェブアプリについて、<ruby>学<rt>まな</rt></ruby>んだことまとめ</h1>
     
     <div class="flex h-full">
       <!-- 左側：説明文 -->
       <div class="w-1/2 px-4 flex flex-col justify-center">
         <div class="content-box p-6 mb-4">
-          <p class="text-2xl font-bold text-blue-600 mb-2">ウェブアプリは、インターネットのブラウザで動くアプリだよ。</p>
-          <p class="text-xl">インストールしなくても、すぐに使えるよ！</p>
+          <p class="text-2xl font-bold text-blue-600 mb-2">ウェブアプリは、インターネットブラウザの<ruby>中<rt>なか</rt></ruby>で<ruby>動<rt>うご</rt></ruby>くアプリだよ。</p>
+          <p class="text-xl">インストールしなくても、すぐに<ruby>使<rt>つか</rt></ruby>えるよ！</p>
         </div>
         
         <div class="content-box p-6 mb-4">
-          <p class="text-2xl font-bold text-green-600 mb-2">パソコンやスマホでも遊べる＆使えるよ！</p>
-          <p class="text-xl">どんな機械でも同じように使えるのがすごいところ！</p>
+          <p class="text-2xl font-bold text-green-600 mb-2">パソコンやスマホでも<ruby>遊<rt>あそ</rt></ruby>べて＆<ruby>使<rt>つか</rt></ruby>える！</p>
+          <p class="text-xl">どんな<ruby>機械<rt>きかい</rt></ruby>でも<ruby>同<rt>おな</rt></ruby>じように<ruby>使<rt>つか</rt></ruby>えるのがすごいところ！</p>
         </div>
         
         <div class="content-box p-6">
-          <p class="text-2xl font-bold text-purple-600 mb-2">みんなが使う、ゲームやチャットも、ウェブアプリかも！</p>
-          <p class="text-xl">みんなが毎日使っているものもウェブアプリかも！</p>
+          <p class="text-2xl font-bold text-purple-600 mb-2">みんなが<ruby>使<rt>つか</rt></ruby>う、ゲームやチャットも、ウェブアプリかも！</p>
+          <p class="text-xl">みんなが<ruby>毎日<rt>まいにち</rt></ruby><ruby>使<rt>つか</rt></ruby>っているのも、ウェブアプリかも！</p>
         </div>
       </div>
       
@@ -112,7 +131,7 @@
         <div class="icon-box p-6 w-4/5 mb-6 flex items-center">
           <i class="fas fa-laptop-mobile text-5xl text-green-500 mr-6"></i>
           <div>
-            <p class="text-2xl font-bold">いろんな機械で使える</p>
+            <p class="text-2xl font-bold">いろんな<ruby>機械<rt>きかい</rt></ruby>で<ruby>使<rt>つか</rt></ruby>える</p>
             <p class="text-lg">パソコン・タブレット・スマホ</p>
           </div>
         </div>
@@ -120,8 +139,8 @@
         <div class="icon-box p-6 w-4/5 flex items-center">
           <i class="fas fa-gamepad text-5xl text-purple-500 mr-6"></i>
           <div>
-            <p class="text-2xl font-bold">楽しいアプリがたくさん</p>
-            <p class="text-lg">ゲーム・チャット・検索など</p>
+            <p class="text-2xl font-bold"><ruby>楽<rt>たの</rt></ruby>しいアプリがたくさん</p>
+            <p class="text-lg">ゲーム・チャット・<ruby>検索<rt>けんさく</rt></ruby>・レシピサイトなど</p>
           </div>
         </div>
       </div>

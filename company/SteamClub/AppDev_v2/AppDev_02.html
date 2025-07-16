@@ -31,6 +31,17 @@
       background: white;
     }
     
+    /* ルビタグのスタイル */
+    ruby {
+      ruby-align: center;
+    }
+    
+    rt {
+      font-size: 0.6em;
+      color: #666;
+      font-weight: normal;
+    }
+    
     /* PDF化時の余白完全除去 */
     @media print {
       * {
@@ -60,6 +71,12 @@
         position: static !important;
         left: auto !important;
         transform: none !important;
+      }
+      
+      /* PDF化時のルビスタイル */
+      rt {
+        font-size: 0.5em !important;
+        color: #333 !important;
       }
     }
     
@@ -589,26 +606,26 @@
     
     <!-- セクション1: イントロダクション -->
     <section class="section active" id="section1">
-      <h1 class="title">インターネットとアプリの世界を探検しよう！</h1>
+      <h1 class="title">インターネットとアプリの<ruby>世界<rt>せかい</rt></ruby>を<ruby>探検<rt>たんけん</rt></ruby>しよう！</h1>
       
       <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center;">
         <div class="content-box" style="max-width: 600px; margin-bottom: 20px;">
-          <h2 style="color: #3bb4d7; margin-bottom: 15px; font-size: 1.8rem;">今日は楽しい冒険に出かけよう！</h2>
+          <h2 style="color: #3bb4d7; margin-bottom: 15px; font-size: 1.8rem;"><ruby>今日<rt>きょう</rt></ruby>は<ruby>楽<rt>たの</rt></ruby>しい<ruby>冒険<rt>ぼうけん</rt></ruby>に出かけよう！</h2>
           <p style="font-size: 1.1rem; line-height: 1.6;">
             パソコン、タブレット、スマートフォン...<br>
-            これらの機械（きかい）の中にある、<br>
-            不思議（ふしぎ）な世界を一緒（いっしょ）に探検（たんけん）しよう！
+            これらの<ruby>機械<rt>きかい</rt></ruby>の中にある、<br>
+            <ruby>不思議<rt>ふしぎ</rt></ruby>な<ruby>世界<rt>せかい</rt></ruby>を<ruby>一緒<rt>いっしょ</rt></ruby>に<ruby>探検<rt>たんけん</rt></ruby>しよう！
           </p>
         </div>
         
         <div style="display: flex; gap: 15px; justify-content: center; align-items: center;">
           <button class="interactive-btn" onclick="startAdventure()">
-            🚀 冒険をはじめる！
+            🚀 <ruby>冒険<rt>ぼうけん</rt></ruby>をはじめる！
           </button>
           
           <button class="interactive-btn" onclick="resetProgress()" 
                   style="background: linear-gradient(45deg, #ff5a87, #ffbe3d); font-size: 0.9rem; padding: 10px 20px;">
-            🔄 進行状況リセット
+            🔄 <ruby>進行<rt>しんこう</rt></ruby><ruby>状況<rt>じょうきょう</rt></ruby>リセット
           </button>
         </div>
       </div>
@@ -627,31 +644,31 @@
     
     <!-- セクション2: デバイスの紹介 -->
     <section class="section" id="section2">
-      <h1 class="title" style="margin-bottom: 15px;">いろんな機械（きかい）を知ろう！</h1>
+      <h1 class="title" style="margin-bottom: 15px;">いろんな<ruby>機械<rt>きかい</rt></ruby>を知ろう！</h1>
       
       <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-between; padding: 0 20px;">
         <div style="flex-shrink: 0;">
           <p style="font-size: 1.3rem; margin-bottom: 15px; text-align: center; font-weight: 600;">
-            👇 それぞれの機械をクリックしてみよう！
+            👇 それぞれの<ruby>機械<rt>きかい</rt></ruby>をクリックしてみよう！
           </p>
           
           <div style="display: flex; gap: 20px; justify-content: center; align-items: flex-start;">
             <div class="device-card" onclick="showDeviceInfo('pc')" style="width: 300px;">
               <div class="device-icon">💻</div>
               <h3 style="color: #ff5a87; margin-bottom: 8px; font-size: 1.3rem; font-weight: bold;">パソコン</h3>
-              <p style="font-size: 1rem; font-weight: 500; line-height: 1.4;">大きな画面で<br>たくさんの作業ができる</p>
+              <p style="font-size: 1rem; font-weight: 500; line-height: 1.4;"><ruby>大<rt>おお</rt></ruby>きな<ruby>画面<rt>がめん</rt></ruby>で<br>たくさんの<ruby>作業<rt>さぎょう</rt></ruby>ができる</p>
             </div>
             
             <div class="device-card" onclick="showDeviceInfo('tablet')" style="width: 300px;">
               <div class="device-icon tablet-icon">📱</div>
               <h3 style="color: #5ce68a; margin-bottom: 8px; font-size: 1.3rem; font-weight: bold;">タブレット</h3>
-              <p style="font-size: 1rem; font-weight: 500; line-height: 1.4;">持ち運びやすくて<br>タッチで操作できる</p>
+              <p style="font-size: 1rem; font-weight: 500; line-height: 1.4;"><ruby>持<rt>も</rt></ruby>ち<ruby>運<rt>はこ</rt></ruby>びやすくて<br>タッチで<ruby>操作<rt>そうさ</rt></ruby>できる</p>
             </div>
             
             <div class="device-card" onclick="showDeviceInfo('smartphone')" style="width: 300px;">
               <div class="device-icon">📱</div>
               <h3 style="color: #3bb4d7; margin-bottom: 8px; font-size: 1.3rem; font-weight: bold;">スマートフォン</h3>
-              <p style="font-size: 1rem; font-weight: 500; line-height: 1.4;">いつでもどこでも<br>使える小さなコンピューター</p>
+              <p style="font-size: 1rem; font-weight: 500; line-height: 1.4;">いつでもどこでも<br><ruby>使<rt>つか</rt></ruby>える<ruby>小<rt>ちい</rt></ruby>さなコンピューター</p>
             </div>
           </div>
         </div>
@@ -669,27 +686,27 @@
       <div style="flex: 1; display: flex; gap: 30px; align-items: center;">
         <div style="flex: 1;">
           <div class="content-box" style="margin-bottom: 15px;">
-            <h3 style="color: #ff5a87; margin-bottom: 10px; font-size: 1.3rem;">アプリは「道具（どうぐ）」みたい！</h3>
+            <h3 style="color: #ff5a87; margin-bottom: 10px; font-size: 1.3rem;">アプリは「<ruby>道具<rt>どうぐ</rt></ruby>」みたい！</h3>
             <p style="font-size: 1rem; line-height: 1.5;">
-              えんぴつで字を書くように、<br>
-              アプリを使っていろんなことができるよ！
+              えんぴつで<ruby>字<rt>じ</rt></ruby>を<ruby>書<rt>か</rt></ruby>くように、<br>
+              アプリを<ruby>使<rt>つか</rt></ruby>っていろんなことができるよ！
             </p>
           </div>
           
           <div class="content-box">
-            <h3 style="color: #5ce68a; margin-bottom: 10px; font-size: 1.3rem;">いろんな種類があるよ</h3>
+            <h3 style="color: #5ce68a; margin-bottom: 10px; font-size: 1.3rem;">いろんな<ruby>種類<rt>しゅるい</rt></ruby>があるよ</h3>
             <ul style="font-size: 1rem; line-height: 1.6; list-style: none; padding-left: 0;">
               <li>🎮 ゲームアプリ</li>
-              <li>📚 勉強アプリ</li>
-              <li>🎨 お絵かきアプリ</li>
-              <li>💬 お話しアプリ</li>
+              <li>📚 <ruby>勉強<rt>べんきょう</rt></ruby>アプリ</li>
+              <li>🎨 お<ruby>絵<rt>え</rt></ruby>かきアプリ</li>
+              <li>💬 お<ruby>話<rt>はなし</rt></ruby>しアプリ</li>
             </ul>
           </div>
         </div>
         
         <div style="flex: 1;">
           <p style="text-align: center; margin-bottom: 15px; font-size: 1.1rem;">
-            👇 アプリをクリックして体験しよう！
+            👇 アプリをクリックして<ruby>体験<rt>たいけん</rt></ruby>しよう！
           </p>
           <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; max-width: 200px; margin: 0 auto;">
             <div class="app-icon" onclick="openMiniApp('paint')">🎨</div>
@@ -703,12 +720,12 @@
     
     <!-- セクション4: インターネットの仕組み -->
     <section class="section" id="section4">
-      <h1 class="title">インターネットでつながる世界</h1>
+      <h1 class="title">インターネットでつながる<ruby>世界<rt>せかい</rt></ruby></h1>
       
       <div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;">
         <div class="mini-game" style="width: 90%; max-width: 800px;">
-          <h2 style="color: #3bb4d7; margin-bottom: 15px; font-size: 1.5rem;">メッセージを送ってみよう！</h2>
-          <p style="margin-bottom: 15px; font-size: 1rem;">インターネットを使って、世界中にメッセージが届くよ！</p>
+          <h2 style="color: #3bb4d7; margin-bottom: 15px; font-size: 1.5rem;">メッセージを<ruby>送<rt>おく</rt></ruby>ってみよう！</h2>
+          <p style="margin-bottom: 15px; font-size: 1rem;">インターネットを<ruby>使<rt>つか</rt></ruby>って、<ruby>世界中<rt>せかいじゅう</rt></ruby>にメッセージが<ruby>届<rt>とど</rt></ruby>くよ！</p>
           
           <div style="display: flex; align-items: center; justify-content: center; gap: 20px; margin: 20px 0;">
             <div style="text-align: center;">
@@ -731,15 +748,15 @@
             
             <div style="text-align: center;">
               <div style="font-size: 100px;">👧</div>
-              <p style="font-size: 0.9rem;">友だち</p>
+              <p style="font-size: 0.9rem;"><ruby>友<rt>とも</rt></ruby>だち</p>
             </div>
           </div>
           
           <div style="margin-top: 15px;">
-            <input type="text" id="messageInput" placeholder="メッセージを入力してね" 
+            <input type="text" id="messageInput" placeholder="メッセージを<ruby>入力<rt>にゅうりょく</rt></ruby>してね" 
                    style="padding: 8px 15px; border-radius: 20px; border: 2px solid #3bb4d7; font-size: 1rem; width: 250px;">
             <button class="interactive-btn" onclick="sendMessage()" style="margin-left: 10px;">
-              送信！
+              <ruby>送信<rt>そうしん</rt></ruby>！
             </button>
           </div>
           
@@ -755,10 +772,10 @@
       <div style="flex: 1; display: flex; gap: 30px; align-items: center;">
         <div style="flex: 1;">
           <div class="content-box" style="margin-bottom: 15px;">
-            <h3 style="color: #ff5a87; margin-bottom: 10px; font-size: 1.3rem;">ブラウザは「インターネットの入り口」</h3>
+            <h3 style="color: #ff5a87; margin-bottom: 10px; font-size: 1.3rem;">ブラウザは「インターネットの<ruby>入<rt>い</rt></ruby>り<ruby>口<rt>ぐち</rt></ruby>」</h3>
             <p style="font-size: 1rem; line-height: 1.6;">
-              YouTube、Google、ゲームサイトを見るために使う<strong>特別なアプリ</strong>だよ！<br>
-              スマホやパソコンに最初から入っているんだ。
+              YouTube、Google、ゲームサイトを<ruby>見<rt>み</rt></ruby>るために<ruby>使<rt>つか</rt></ruby>う<strong><ruby>特別<rt>とくべつ</rt></ruby>なアプリ</strong>だよ！<br>
+              スマホやパソコンに<ruby>最初<rt>さいしょ</rt></ruby>から<ruby>入<rt>はい</rt></ruby>っているんだ。
             </p>
           </div>
           
@@ -768,30 +785,30 @@
               <div style="font-size: 40px;">🌐</div>
               <div>
                 <p style="font-weight: bold; margin-bottom: 3px;">Chrome（クローム）</p>
-                <p style="font-size: 0.9rem; color: #666;">Googleが作った人気No.1ブラウザ</p>
+                <p style="font-size: 0.9rem; color: #666;">Google が<ruby>作<rt>つく</rt></ruby>った<ruby>人気<rt>にんき</rt></ruby>No.1ブラウザ</p>
               </div>
             </div>
             <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 10px;">
               <div style="font-size: 40px;">🧭</div>
               <div>
                 <p style="font-weight: bold; margin-bottom: 3px;">Safari（サファリ）</p>
-                <p style="font-size: 0.9rem; color: #666;">iPhone・iPadに入っているブラウザ</p>
+                <p style="font-size: 0.9rem; color: #666;">iPhone・iPad に<ruby>入<rt>はい</rt></ruby>っているブラウザ</p>
               </div>
             </div>
             <div style="display: flex; gap: 10px; align-items: center;">
               <div style="font-size: 40px;">🌟</div>
               <div>
                 <p style="font-weight: bold; margin-bottom: 3px;">Edge（エッジ）</p>
-                <p style="font-size: 0.9rem; color: #666;">Windowsパソコンに入っているブラウザ</p>
+                <p style="font-size: 0.9rem; color: #666;">Windows パソコンに<ruby>入<rt>はい</rt></ruby>っているブラウザ</p>
               </div>
             </div>
           </div>
           
           <div class="content-box">
-            <h3 style="color: #3bb4d7; margin-bottom: 10px; font-size: 1.3rem;">ブラウザとアプリの違い</h3>
+            <h3 style="color: #3bb4d7; margin-bottom: 10px; font-size: 1.3rem;">ブラウザとアプリの<ruby>違<rt>ちが</rt></ruby>い</h3>
             <p style="font-size: 1rem; line-height: 1.6;">
-              <strong>📱 普通のアプリ：</strong> インストールが必要<br>
-              <strong>🌐 ブラウザで見るもの：</strong> すぐに使える！
+              <strong>📱 <ruby>普通<rt>ふつう</rt></ruby>のアプリ：</strong> インストールが<ruby>必要<rt>ひつよう</rt></ruby><br>
+              <strong>🌐 ブラウザで<ruby>見<rt>み</rt></ruby>るもの：</strong> すぐに<ruby>使<rt>つか</rt></ruby>える！
             </p>
           </div>
         </div>
@@ -812,7 +829,7 @@
                 <div style="text-align: center;">
                   <div style="font-size: 60px; margin-bottom: 10px;">📺</div>
                   <p style="font-size: 1rem; font-weight: bold;">YouTube</p>
-                  <p style="font-size: 0.8rem; color: #666;">動画を見よう！</p>
+                  <p style="font-size: 0.8rem; color: #666;"><ruby>動画<rt>どうが</rt></ruby>を<ruby>見<rt>み</rt></ruby>よう！</p>
                 </div>
               </div>
             </div>
@@ -830,14 +847,14 @@
               </button>
             </div>
             
-                         <div class="content-box" style="max-width: 400px;">
+            <div class="content-box" style="max-width: 400px;">
                <p style="font-size: 0.95rem; text-align: center; color: #3bb4d7;">
                  <strong>すごいでしょ？</strong><br>
-                 ブラウザがあれば、世界中のサイトに行ける！
+                 ブラウザがあれば、<ruby>世界中<rt>せかいじゅう</rt></ruby>のサイトに<ruby>行<rt>い</rt></ruby>ける！
                </p>
                <div style="margin-top: 10px; padding: 10px; background: #fff8e1; border-radius: 8px; border-left: 4px solid #ffbe3d;">
                  <p style="font-size: 0.9rem; color: #ff6f00; font-weight: bold; text-align: center;">
-                   💡 次はブラウザで使える「ウェブアプリ」について学ぼう！
+                   💡 <ruby>次<rt>つぎ</rt></ruby>はブラウザで<ruby>使<rt>つか</rt></ruby>える「ウェブアプリ」について<ruby>学<rt>まな</rt></ruby>ぼう！
                  </p>
                </div>
              </div>
@@ -848,17 +865,17 @@
     
     <!-- セクション6: ウェブアプリ体験 -->
     <section class="section" id="section6">
-      <h1 class="title">ウェブアプリを使ってみよう！</h1>
+      <h1 class="title">ウェブアプリを<ruby>使<rt>つか</rt></ruby>ってみよう！</h1>
       
       <div style="flex: 1; display: flex; gap: 20px;">
         <div style="flex: 1;">
           <div class="content-box">
-            <h3 style="color: #ff5a87; margin-bottom: 10px; font-size: 1.2rem;">ウェブアプリの特徴</h3>
+            <h3 style="color: #ff5a87; margin-bottom: 10px; font-size: 1.2rem;">ウェブアプリの<ruby>特徴<rt>とくちょう</rt></ruby></h3>
             <ul style="font-size: 0.95rem; line-height: 1.6;">
-              <li>✨ インストール不要！</li>
-              <li>🌍 どこからでもアクセス可能</li>
-              <li>🔄 いつも最新版</li>
-              <li>📱 どんな機械でも使える</li>
+              <li>✨ インストール<ruby>不要<rt>ふよう</rt></ruby>！</li>
+              <li>🌍 どこからでもアクセス<ruby>可能<rt>かのう</rt></ruby></li>
+              <li>🔄 いつも<ruby>最新版<rt>さいしんばん</rt></ruby></li>
+              <li>📱 どんな<ruby>機械<rt>きかい</rt></ruby>でも<ruby>使<rt>つか</rt></ruby>える</li>
             </ul>
           </div>
         </div>
@@ -866,7 +883,7 @@
         <div style="flex: 2;">
           <div class="mini-game">
             <h3 style="color: #3bb4d7; margin-bottom: 15px; font-size: 1.3rem;">ドラッグ＆ドロップゲーム</h3>
-            <p style="margin-bottom: 15px; font-size: 0.95rem;">正しい場所にアイコンをドラッグしてね！</p>
+            <p style="margin-bottom: 15px; font-size: 0.95rem;"><ruby>正<rt>ただ</rt></ruby>しい<ruby>場所<rt>ばしょ</rt></ruby>にアイコンをドラッグしてね！</p>
             
             <div style="display: flex; gap: 15px; justify-content: center; margin-bottom: 20px;">
               <div class="app-icon draggable" draggable="true" data-type="game" style="width: 140px; height: 140px; font-size: 70px;">🎮</div>
@@ -879,7 +896,7 @@
                 <p style="margin: 0;">ゲーム</p>
               </div>
               <div class="drop-zone" data-accept="study">
-                <p style="margin: 0;">勉強</p>
+                <p style="margin: 0;"><ruby>勉強<rt>べんきょう</rt></ruby></p>
               </div>
               <div class="drop-zone" data-accept="art">
                 <p style="margin: 0;">アート</p>
@@ -894,28 +911,28 @@
     
     <!-- セクション7: まとめとクイズ -->
     <section class="section" id="section7">
-      <h1 class="title">今日のまとめクイズ！</h1>
+      <h1 class="title"><ruby>今日<rt>きょう</rt></ruby>のまとめクイズ！</h1>
       
       <div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;">
         <div class="content-box" style="max-width: 700px;">
           <div id="quizContainer">
-            <h2 id="quizQuestion" style="color: #3bb4d7; margin-bottom: 20px; font-size: 1.5rem;">準備はいい？</h2>
+            <h2 id="quizQuestion" style="color: #3bb4d7; margin-bottom: 20px; font-size: 1.5rem;"><ruby>準備<rt>じゅんび</rt></ruby>はいい？</h2>
             <div id="quizOptions" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
               <!-- クイズオプションがここに表示される -->
             </div>
             <div id="quizResult" style="margin-top: 20px; font-size: 1.1rem; text-align: center;"></div>
             <button class="interactive-btn" onclick="startQuiz()" style="margin-top: 15px;">
-              クイズを始める！
+              クイズを<ruby>始<rt>はじ</rt></ruby>める！
             </button>
           </div>
           
           <div id="congratulations" style="display: none; text-align: center;">
             <h2 style="color: #5ce68a; font-size: 2rem; margin-bottom: 15px;">🎉 おめでとう！ 🎉</h2>
             <p style="font-size: 1.2rem; margin-bottom: 20px;">
-              インターネットとアプリの世界をマスターしたね！
+              インターネットとアプリの<ruby>世界<rt>せかい</rt></ruby>をマスターしたね！
             </p>
             <button class="interactive-btn" onclick="goToSection(1)">
-              最初から見る
+              <ruby>最初<rt>さいしょ</rt></ruby>から<ruby>見<rt>み</rt></ruby>る
             </button>
           </div>
         </div>
@@ -938,7 +955,7 @@
     <div class="popup" id="popup">
       <div id="popupContent"></div>
       <button class="interactive-btn" onclick="closePopup()" style="margin-top: 20px;">
-        閉じる
+        <ruby>閉<rt>と</rt></ruby>じる
       </button>
     </div>
   </div>
@@ -1438,7 +1455,7 @@
             <div style="text-align: center;">
               <div style="font-size: 60px; margin-bottom: 10px;">📺</div>
               <p style="font-size: 1rem; font-weight: bold;">YouTube</p>
-              <p style="font-size: 0.8rem; color: #666;">動画を見よう！</p>
+              <p style="font-size: 0.8rem; color: #666;"><ruby>動画<rt>どうが</rt></ruby>を<ruby>見<rt>み</rt></ruby>よう！</p>
             </div>
           `;
         } else if (siteType === 'google') {
@@ -1447,7 +1464,7 @@
             <div style="text-align: center;">
               <div style="font-size: 60px; margin-bottom: 10px;">🔍</div>
               <p style="font-size: 1rem; font-weight: bold;">Google</p>
-              <p style="font-size: 0.8rem; color: #666;">なんでも検索！</p>
+              <p style="font-size: 0.8rem; color: #666;">なんでも<ruby>検索<rt>けんさく</rt></ruby>！</p>
             </div>
           `;
         } else if (siteType === 'game') {
@@ -1456,7 +1473,7 @@
             <div style="text-align: center;">
               <div style="font-size: 60px; margin-bottom: 10px;">🎮</div>
               <p style="font-size: 1rem; font-weight: bold;">ゲームサイト</p>
-              <p style="font-size: 0.8rem; color: #666;">楽しく遊ぼう！</p>
+              <p style="font-size: 0.8rem; color: #666;"><ruby>楽<rt>たの</rt></ruby>しく<ruby>遊<rt>あそ</rt></ruby>ぼう！</p>
             </div>
           `;
         }
