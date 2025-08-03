@@ -37,6 +37,15 @@
     img { max-width: 100%; display: block; }
     a { color: inherit; text-decoration: none; }
     ul { list-style: none; }
+    
+    /* === 通常のstrongタグのスタイル === */
+    strong {
+      background: linear-gradient(135deg, #6db5ff 0%, #a1e9d9 100%);
+      color: #000000;
+      font-weight: 700;
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+    }
 
     /* === ヘッダー === */
     header {
@@ -180,6 +189,268 @@
     .pillar p {
       color: #666;
       font-size: 1.05rem;
+    }
+
+    /* === 社員紹介 === */
+    .staff-intro {
+      background: linear-gradient(135deg, #f8fffe 0%, #f0f9ff 50%, #fff8f8 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .staff-intro::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%23a1e9d9" fill-opacity="0.02"><circle cx="30" cy="30" r="4"/></g></g></svg>');
+      pointer-events: none;
+    }
+    .staff-member {
+      margin-bottom: 4rem;
+      position: relative;
+    }
+    .staff-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 2.5rem;
+      gap: 2.5rem;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.08);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    .staff-photo {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid transparent;
+      background: linear-gradient(white, white) padding-box,
+                  linear-gradient(135deg, #6db5ff, #a1e9d9, #ff9a9a) border-box;
+      box-shadow: 0 15px 35px rgba(0,0,0,.15);
+      transition: all 0.3s ease;
+    }
+    .staff-photo:hover {
+      transform: scale(1.05);
+      box-shadow: 0 20px 40px rgba(0,0,0,.2);
+    }
+    .staff-info h3 {
+      font-size: 2.2rem;
+      background: linear-gradient(135deg, #6db5ff, #00c9a7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+      font-weight: 800;
+    }
+    .staff-info .position {
+      font-size: 1.2rem;
+      color: #666;
+      margin-bottom: 1rem;
+      padding: 0.5rem 1rem;
+      background: linear-gradient(135deg, #e8f4fd, #f0f9ff);
+      border-radius: 25px;
+      display: inline-block;
+      border: 1px solid #a1e9d9;
+    }
+    .staff-info p:last-child {
+      font-style: italic;
+      color: #555;
+      font-size: 1.1rem;
+      margin-top: 0.5rem;
+    }
+    .story-section {
+      margin-bottom: 3rem;
+      background: rgba(255, 255, 255, 0.6);
+      padding: 2rem;
+      border-radius: 15px;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .story-section h4 {
+      font-size: 1.6rem;
+      color: #2c3e50;
+      background: rgba(255, 255, 255, 0.9);
+      margin-bottom: 1.5rem;
+      padding: 1rem 1.5rem;
+      border-left: 5px solid #00c9a7;
+      border-radius: 8px;
+      font-weight: 700;
+      position: relative;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .story-section h5 {
+      font-size: 1.3rem;
+      color: var(--accent);
+      margin: 2rem 0 1rem 0;
+      font-weight: 700;
+    }
+    .story-content {
+      line-height: 1.9;
+      font-size: 1.1rem;
+    }
+    .story-content p {
+      margin-bottom: 1.5rem;
+      text-align: justify;
+    }
+    .story-content strong {
+      background: linear-gradient(135deg, #6db5ff 0%, #a1e9d9 100%);
+      color: #000000;
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      font-weight: 700;
+    }
+    .story-content ul {
+      background: rgba(240, 249, 255, 0.5);
+      padding: 1rem;
+      border-radius: 10px;
+      border-left: 4px solid #6db5ff;
+    }
+    .story-content ul li {
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+    .highlight-quote {
+      background: linear-gradient(135deg, #e8f4fd 0%, #f0f9ff 50%, #fff8f8 100%);
+      border: none;
+      border-left: 6px solid transparent;
+      background-image: linear-gradient(135deg, #e8f4fd 0%, #f0f9ff 50%, #fff8f8 100%), 
+                        linear-gradient(135deg, #6db5ff, #a1e9d9, #ff9a9a);
+      background-origin: border-box;
+      background-clip: padding-box, border-box;
+      padding: 2rem;
+      margin: 2rem 0;
+      border-radius: 15px;
+      font-style: italic;
+      font-weight: 600;
+      font-size: 1.5rem;
+      box-shadow: 0 8px 25px rgba(0,0,0,.1);
+      position: relative;
+      text-align: center;
+    }
+    .highlight-quote::before {
+      content: '"';
+      position: absolute;
+      top: -0.5rem;
+      left: 1rem;
+      font-size: 3rem;
+      color: var(--accent);
+      font-family: Georgia, serif;
+      opacity: 0.3;
+    }
+    .chapter-divider {
+      text-align: center;
+      margin: 3rem 0;
+      font-size: 1.8rem;
+      background: linear-gradient(135deg, #6db5ff, #a1e9d9, #ff9a9a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 800;
+      position: relative;
+      padding: 1rem 0;
+    }
+    .chapter-divider::before,
+    .chapter-divider::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(135deg, #6db5ff, #a1e9d9);
+      border-radius: 2px;
+    }
+    .chapter-divider::before {
+      left: calc(50% - 200px);
+    }
+    .chapter-divider::after {
+      right: calc(50% - 200px);
+    }
+
+    /* === ハイライト用のクラス === */
+    .highlight-text {
+      background: linear-gradient(135deg, #ffe066, #ff9a9a);
+      padding: 0.3rem 0.6rem;
+      border-radius: 6px;
+      font-weight: 800;
+      color: #000000;
+    }
+    .tech-highlight {
+      background: linear-gradient(135deg, #e8f4fd, #f0f9ff);
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      font-weight: 600;
+      color: #000000;
+      border: 1px solid #a1e9d9;
+    }
+    .key-insight {
+      background: transparent !important;
+      padding: 0 !important;
+      border-radius: 0 !important;
+      font-weight: 700 !important;
+      color: #000000 !important;
+      border: none !important;
+    }
+    .vision-highlight {
+      background: linear-gradient(135deg, #e8f8f5, #d5f4e6);
+      padding: 0.3rem 0.6rem;
+      border-radius: 6px;
+      font-weight: 700;
+      color: #000000;
+      border: 2px solid #00c9a7;
+    }
+    .character-highlight {
+      background: linear-gradient(135deg, #f8e8ff, #f0e6ff);
+      padding: 0.2rem 0.5rem;
+      border-radius: 5px;
+      font-weight: 600;
+      color: #000000;
+      font-style: normal;
+    }
+    .turning-point {
+      background: linear-gradient(135deg, #e8f4fd, #f0f9ff);
+      padding: 0.3rem 0.6rem;
+      border-radius: 6px;
+      font-weight: 700;
+      color: #000000;
+      border: 2px solid #2196f3;
+    }
+    .future-vision {
+      background: linear-gradient(135deg, #e3f2fd, #e8f5e8);
+      padding: 0.3rem 0.6rem;
+      border-radius: 6px;
+      font-weight: 700;
+      color: #000000;
+      border: 2px solid #2196f3;
+    }
+    .commitment {
+      background: linear-gradient(135deg, #e8f8f5, #d5f4e6);
+      padding: 0.3rem 0.6rem;
+      border-radius: 6px;
+      font-weight: 800;
+      color: #000000;
+      border: 2px solid #00c9a7;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+    .impact-highlight {
+      background: linear-gradient(135deg, #e8f4fd, #f0f9ff);
+      padding: 0.3rem 0.6rem;
+      border-radius: 6px;
+      font-weight: 700;
+      color: #000000;
+      border: 2px solid #6db5ff;
+    }
+    .result-highlight {
+      background: linear-gradient(135deg, #e8f8f5, #d5f4e6);
+      padding: 0.3rem 0.6rem;
+      border-radius: 6px;
+      font-weight: 700;
+      color: #000000;
+      border: 2px solid #a1e9d9;
     }
 
     /* === Footer === */
@@ -346,6 +617,31 @@
         display: block;
         opacity: 1;
       }
+      
+      /* 社員紹介のモバイル対応 */
+      .staff-header {
+        flex-direction: column !important;
+        text-align: center !important;
+        gap: 1rem !important;
+      }
+      
+      .staff-photo {
+        width: 120px !important;
+        height: 120px !important;
+        margin: 0 auto !important;
+      }
+      
+      .story-content {
+        font-size: 1rem !important;
+      }
+      
+      .story-section h5 {
+        font-size: 1.1rem !important;
+      }
+      
+      .chapter-divider {
+        font-size: 1.3rem !important;
+      }
     }
 
     @media (max-width: 600px) {
@@ -389,6 +685,127 @@
   <section class="hero">
     <h1>会社概要</h1>
     <p class="tagline"><span class="suki">"好き"</span>を信じ合える運命共同体</p>
+  </section>
+
+  <!-- === 社員紹介 === -->
+  <section id="staff-intro" class="staff-intro">
+    <div class="container">
+      <h2 class="section-title">社員紹介</h2>
+      <p class="section-subtitle">人生をかけてAI革命に挑む仲間たち</p>
+      
+      <!-- 内堀代表社員 -->
+      <div class="card reveal staff-member">
+        <div class="staff-header">
+          <img src="images/uchibori.jpg" alt="内堀代表社員" class="staff-photo">
+          <div class="staff-info">
+            <h3>内堀 善史</h3>
+            <p class="position">代表社員（社長）</p>
+            <p>視力0.02から見えた "AI革命"</p>
+          </div>
+        </div>
+        
+        <div class="story-content">
+          <div class="story-section">
+            <h4>この仕事に人生をかける理由</h4>
+            
+            <h5>1. Aidemyで始まった挑戦（2018年）</h5>
+            <p>2018年、私はオンライン学習サービスAidemyですべてのAI（機械学習）講座を修了し、ディープラーニングの世界にのめり込みました。ところが「深層強化学習」だけは、講師の説明を聞いても腑に落ちません。フィボナッチ数列や漸化式が絡む難解な数式に悩み、ついにはケンブリッジ大学院生を個別に雇って徹底的に教わるという"裏技"に走ります。</p>
+            
+            <p>ところが――。<br>
+            1日10時間に及ぶコードと数式のにらめっこが続いた結果、もともと悪かった視力がさらに低下し、<span class="tech-highlight">右0.02／左0.03という失明寸前のレベル</span>に。泣く泣くキーボードを置き、AIエンジニアの道をいったん諦めました。</p>
+            
+            <h5>2. ChatGPTの衝撃（2022–2024年）</h5>
+            <p>2022年11月、ChatGPTが登場し、連日ニュースを賑わせます。友人・園田氏(アステリアART合同会社 代表)がメディア取材に引っ張りだこになっているのを横目に、「世の中、すごい時代になってきたな」と静観していました。</p>
+            
+            <p>転機は2024年11月。久しぶりに再会したデザイナーが、</p>
+            
+            <div class="highlight-quote">
+              　AIツールのおかげで、仕事の手間が9割減った
+            </div>
+            
+            <p>と鼻息荒く語るので、実際のワークフローを見せてもらいました。<br>
+            結果、私は<strong>二重の衝撃</strong>を受けます。</p>
+            
+            <p>1. <span class="tech-highlight">本当に90%業務が削減</span>できている。<br>
+            2. <span class="tech-highlight">アウトプット品質が10倍</span>に跳ね上がっている。</p>
+            
+            <p>この瞬間、<strong>「視力を理由にAIを諦めるのは、ただの言い訳だ」</strong>と確信しました。</p>
+            
+            <h5>3. "ツール芸"探究の日々（2024年末〜）</h5>
+            <p>それからというもの、<span class="tech-highlight">ChatGPT、Midjourney、NovelAI、Stable Diffusion、Make.com、Claude、Dify</span>… ――あらゆる生成系ツールを浴びるように使い倒し、</p>
+            
+            <ul style="margin-left: 1.5rem; margin-bottom: 1.2rem;">
+              <li>• イラスト生成</li>
+              <li>• 文章執筆</li>
+              <li>• 日常の疑問解決</li>
+              <li>• 機械操作の手順書作成</li>
+              <li>• アイデアブレスト</li>
+              <li>• プレゼン資料のたたき台</li>
+              <li>• LINEスタンプ＆チャットボット制作</li>
+            </ul>
+            
+            <p>――を次々と"視力0.02"でも達成。もはや<span class="tech-highlight">「アイデアさえあれば、視力なんて関係ない」</span>という確信が芽生えました。</p>
+            
+            <h5>4. "運命のもくもく会"と会長との邂逅（2025.01.19）</h5>
+            <p>さらに学びを深めようと、2025年1月19日、大阪・天満の<span class="tech-highlight">「生成AIもくもく会」</span>に参加。ここで運命的に出会ったのが<strong>会長</strong>――博士号を持ち、10年以上AI研究に携わる元・理化学研究所の研究員でした。</p>
+            
+            <p>彼は開口一番、</p>
+            
+            <div class="highlight-quote">
+            　そのうちプログラマーは不要になりますよ
+            </div>
+            
+            <p>とさらり。研究者とは思えない大胆な"未来予測"と、<strong>「AIで知の格差・資本格差をなくしたい」</strong>という志に胸を打たれ、その日の打ち上げで意気投合。しかも彼、5年前にシングルマザーと"駆け落ち結"して親と絶縁していたという破天荒エピソードまで披露し、場を沸かせました。もはや<strong>"推せる研究者"</strong>です。</p>
+            
+            <h5>5. 狂気のイケメン──康平くん（当時20歳）参戦（2025.02.03）</h5>
+            
+            <div class="staff-header" style="margin-top: 1.5rem; margin-bottom: 2rem;">
+              <img src="images/yamamoto.png" alt="康平くん" class="staff-photo">
+              <div class="staff-info">
+                <h3>康平くん</h3>
+                <p class="position">特別顧問</p> <p class="position">天才エンジニア</p> <p class="position">Finding AIサークル代表</p>
+                <p>狂気のイケメン AI中毒者</p>
+              </div>
+            </div>
+            <p>AIの急速な進化に食らいつくなら、<span class="tech-highlight">若き天才</span>の力は不可欠。そこで注目したのが、学生起業家が集うイベントで出逢った同志社大学理工学部・<strong>康平くん</strong>（当時2回生）。モデル級のルックスとは裏腹に、AIの話になると<span class="tech-highlight">"満月を見たオオカミ男"のごとく目が光るAI中毒者</span>です笑</p>
+            
+            <p>ビジョンを語ったところ、彼は二つ返事で参画。</p>
+            
+            <div class="highlight-quote">
+            　技術も情熱も全部ぶっ込みます！
+            </div>
+            
+            <p>と即答し、我々のコアメンバーが揃いました。</p>
+            
+            <h5>6. AIナレッジワークス合同会社誕生（2025.04.16）</h5>
+            <p>こうして2025年4月16日、私・会長・康平くんの3名で<strong class="highlight-text">AIナレッジワークス合同会社</strong>を設立。</p>
+            
+            <ul style="margin-left: 1.5rem; margin-bottom: 1.2rem;">
+              <li>• <strong>会長</strong>：学会から講演依頼が舞い込む、"研究×実装"の求道者。</li>
+              <li>• <strong>康平くん</strong>：動画生成界隈で密かに有名、Finding AIサークル代表。7月のNotion公式セミナーでは満員御礼＆アンケート1位を獲得。</li>
+              <li>• <strong>私</strong>：20年間の零細企業経営で培った"現場感覚"と"泥臭い営業力"。</li>
+            </ul>
+            
+            <p>まったく毛色の違う3人が、<strong>AIでエリート専用の武器を大衆の手に届ける</strong>という一点でタッグを組みました。</p>
+            
+            <h5>7. そして今――あなたへ</h5>
+            <p>AIツールの急激な進化は、<strong>多数派が少数派のエリートに勝てる時代</strong>を切り拓きつつあります。</p>
+            
+            <ul style="margin-left: 1.5rem; margin-bottom: 1.2rem;">
+              <li>プログラミングができなくても、発想を形にできる。</li>
+              <li>資本や学歴に頼らなくても、世界に挑戦できる。</li>
+            </ul>
+            
+            <p>私たちは、この流れを本気で加速させるために人生を賭けています。</p>
+            
+            <div class="highlight-quote">
+              AIを"見て見ぬふり"するのは、今日で終わりにしませんか？<br><br>
+              私たちと一緒に、次の歴史をつくりましょう。
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- === 会社基本情報 === -->
