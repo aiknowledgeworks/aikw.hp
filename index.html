@@ -751,10 +751,17 @@
       }
       
       /* 社員紹介のモバイル対応 */
+      .staff-intro {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+      }
+      
       .staff-header {
         flex-direction: column !important;
         text-align: center !important;
         gap: 1rem !important;
+        padding: 1.5rem !important;
       }
       
       .staff-photo {
@@ -765,19 +772,86 @@
       
       .staff-info h3 {
         font-size: 1.8rem !important;
+        margin-bottom: 0.5rem !important;
+      }
+      
+      .staff-info .position {
+        font-size: 1rem !important;
+        margin: 0.5rem auto !important;
+        display: block !important;
+        width: fit-content !important;
+      }
+      
+      .story-section {
+        padding: 1.5rem !important;
+        margin-bottom: 2rem !important;
       }
       
       .story-section h4 {
         font-size: 1.3rem !important;
+        padding: 1rem !important;
       }
       
       .story-section h5 {
         font-size: 1.1rem !important;
+        margin: 1.5rem 0 1rem 0 !important;
+      }
+      
+      .story-content {
+        font-size: 1rem !important;
+      }
+      
+      .story-content p {
+        text-align: left !important;
+        margin-bottom: 1rem !important;
       }
       
       .highlight-quote {
         font-size: 1.2rem !important;
         padding: 1.5rem !important;
+        margin: 1.5rem 0 !important;
+      }
+      
+      .story-content ul {
+        margin-left: 1rem !important;
+        padding: 1rem !important;
+      }
+      
+      .chapter-divider::before,
+      .chapter-divider::after {
+        display: none !important;
+      }
+    }
+    
+    /* タブレット対応 */
+    @media (max-width: 1024px) and (min-width: 769px) {
+      .staff-intro {
+        display: block !important;
+        visibility: visible !important;
+      }
+      
+      .staff-header {
+        flex-direction: row !important;
+        text-align: left !important;
+        gap: 2rem !important;
+      }
+      
+      .staff-photo {
+        width: 150px !important;
+        height: 150px !important;
+        flex-shrink: 0 !important;
+      }
+      
+      .story-section h4 {
+        font-size: 1.4rem !important;
+      }
+      
+      .story-section h5 {
+        font-size: 1.2rem !important;
+      }
+      
+      .highlight-quote {
+        font-size: 1.3rem !important;
       }
     }
   </style>
