@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ステップ1：データを<ruby>登録<rt>とうろく</rt></ruby>しよう！</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap');
+    
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      font-family: 'M PLUS Rounded 1c', sans-serif;
+    }
+    
+    .slide-container {
+      width: 1280px;
+      height: 720px;
+      margin: 0 auto;
+      background-color: #a8e1f8;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .title {
+      color: #ff5a87;
+      text-shadow: 3px 3px 0 #ffffff, 5px 5px 0 #3bb4d7;
+      font-weight: 800;
+    }
+    
+    .content-box {
+      background-color: white;
+      border: 3px solid #3bb4d7;
+      border-radius: 20px;
+      box-shadow: 5px 5px 0 rgba(0,0,0,0.1);
+    }
+    
+    .icon-box {
+      background-color: white;
+      border: 3px solid #ffbe3d;
+      border-radius: 20px;
+      box-shadow: 5px 5px 0 rgba(0,0,0,0.1);
+    }
+    
+    .bubble {
+      position: absolute;
+      background-color: white;
+      border-radius: 50%;
+      opacity: 0.5;
+    }
+    
+    .decoration {
+      position: absolute;
+    }
+  </style>
+</head>
+<body>
+  <div class="slide-container p-8 flex flex-col">
+    <!-- <ruby>背景<rt>はいけい</rt></ruby>の<ruby>装飾<rt>そうしょく</rt></ruby> -->
+    <div class="bubble" style="width: 80px; height: 80px; top: 10%; left: 5%;"></div>
+    <div class="bubble" style="width: 60px; height: 60px; top: 20%; right: 15%;"></div>
+    <div class="bubble" style="width: 100px; height: 100px; bottom: 15%; right: 5%;"></div>
+    <div class="bubble" style="width: 40px; height: 40px; bottom: 30%; left: 10%;"></div>
+    
+    <div class="decoration" style="top: 5%; right: 5%;">
+      <svg width="80" height="80" viewBox="0 0 100 100">
+        <polygon points="50,10 61,35 90,35 65,55 75,80 50,65 25,80 35,55 10,35 39,35" fill="#5ce68a" />
+      </svg>
+    </div>
+    
+    <div class="decoration" style="bottom: 5%; left: calc(5% - 50px);">
+      <svg width="60" height="60" viewBox="0 0 100 100">
+        <polygon points="50,10 61,35 90,35 65,55 75,80 50,65 25,80 35,55 10,35 39,35" fill="#ffbe3d" />
+      </svg>
+    </div>
+    
+    <!-- タイトル -->
+    <h1 class="title text-center text-5xl mb-6 mt-4">AIに<ruby>指示<rt>しじ</rt></ruby>してアプリのシステムを<ruby>作<rt>つく</rt></ruby>ろう！</h1>
+    
+    <div class="flex h-full">
+      <!-- <ruby>左側<rt>ひだりがわ</rt></ruby>：プロンプト<ruby>例<rt>れい</rt></ruby> -->
+      <div class="w-1/2 px-4 flex flex-col justify-center">
+        <div class="content-box p-3 mb-3">
+          <p class="text-2xl font-bold text-red-500 mb-2">🎯 <ruby>指示<rt>しじ</rt></ruby>する<ruby>言葉<rt>ことば</rt></ruby>(1)（シンプル）</p>
+          <div class="bg-gray-100 p-3 rounded-lg border-l-4 border-blue-500">
+            <p class="text-xl font-mono leading-relaxed text-center py-3">
+              ⭐️冷蔵庫の食材を管理するウェブアプリを作って<br>
+              ⭐️HTML,CSS,JavaScriptだけを使うこと
+            </p>
+          </div>
+        </div>
+        
+        <div class="content-box p-3 mb-3">
+          <p class="text-2xl font-bold text-green-600 mb-2">🚀 <ruby>指示<rt>しじ</rt></ruby>する<ruby>言葉<rt>ことば</rt></ruby>(2)（<ruby>機能<rt>きのう</rt></ruby><ruby>追加<rt>ついか</rt></ruby>・<ruby>表示<rt>ひょうじ</rt></ruby><ruby>編<rt>へん</rt></ruby>）</p>
+          <div class="bg-gray-100 p-3 rounded-lg border-l-4 border-green-500">
+            <p class="text-lg font-mono leading-relaxed text-center">
+              🌟期限切れが近い食材は赤色で警告表示<br>
+              🌟食材を編集できるボタンも追加<br>
+            </p>
+          </div>
+        </div>
+        
+        <div class="content-box p-3">
+          <p class="text-2xl font-bold text-purple-600 mb-2">⚡ <ruby>指示<rt>しじ</rt></ruby>する<ruby>言葉<rt>ことば</rt></ruby>(3)（<ruby>高度<rt>こうど</rt></ruby>な<ruby>機能<rt>きのう</rt></ruby><ruby>追加<rt>ついか</rt></ruby>）</p>
+          <div class="bg-gray-100 p-3 rounded-lg border-l-4 border-purple-500">
+            <p class="text-lg font-mono leading-relaxed text-center">
+              🍎データがブラウザを閉じても残るように保存(IndexedDB)<br>
+              🍎スマホ・タブレットでも使いやすいデザインに調整して<br>
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- <ruby>右側<rt>みぎがわ</rt></ruby>：AIツール<ruby>紹介<rt>しょうかい</rt></ruby> -->
+      <div class="w-1/2 px-4 flex flex-col justify-center items-center">
+        <div class="content-box p-5 w-4/5 mb-4">
+          <p class="text-2xl font-bold text-blue-600 mb-3">💡 <ruby>作<rt>つく</rt></ruby>るときのコツ</p>
+          <ul class="text-lg space-y-2">
+            <li>✅ <ruby>何<rt>なに</rt></ruby>を<ruby>作<rt>つく</rt></ruby>りたいか<ruby>具体的<rt>ぐたいてき</rt></ruby>につたえる</li>
+            <li>✅ <ruby>必要<rt>ひつよう</rt></ruby>な<ruby>機能<rt>きのう</rt></ruby>は<ruby>箇条書<rt>かじょうが</rt></ruby>きでつたえる</li>
+            <li>✅ デザインやレイアウト、<ruby>色<rt>いろ</rt></ruby>の<ruby>希望<rt>きぼう</rt></ruby>もつたえる</li>
+           </ul>
+        </div>
+        
+
+        
+        <div class="content-box p-5 w-4/5">
+          <p class="text-xl font-bold text-green-600 mb-2">🎯 はじめの<ruby>目標<rt>もくひょう</rt></ruby></p>
+          <p class="text-lg">AIツールに、さっき<ruby>学<rt>まな</rt></ruby>んだ<ruby>言葉<rt>ことば</rt></ruby>を<ruby>入力<rt>にゅうりょく</rt></ruby>して、<ruby>実際<rt>じっさい</rt></ruby>に<ruby>動<rt>うご</rt></ruby>く<ruby>管理<rt>かんり</rt></ruby>アプリを<ruby>作<rt>つく</rt></ruby>ってみよう！</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="slide-nav-plusPDF.js"></script>
+</body>
+</html>

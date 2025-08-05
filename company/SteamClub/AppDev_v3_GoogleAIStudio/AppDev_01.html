@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AIまなびラボ：みんなでアプリを作ろう実習！</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap');
+    
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      font-family: 'M PLUS Rounded 1c', sans-serif;
+    }
+    
+    .slide-container {
+      width: 1280px;
+      height: 720px;
+      margin: 0 auto;
+      background-color: #a8e1f8;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .title {
+      color: #ff5a87;
+      text-shadow: 3px 3px 0 #ffffff, 5px 5px 0 #3bb4d7;
+      font-weight: 800;
+    }
+    
+    .subtitle {
+      color: #2d84a3;
+      font-weight: 700;
+      text-shadow: 1px 1px 0 #ffffff;
+    }
+    
+    .description {
+      background-color: white;
+      border: 3px solid #3bb4d7;
+      border-radius: 20px;
+      color: #555;
+      font-weight: 500;
+    }
+    
+    .bubble {
+      position: absolute;
+      background-color: white;
+      border-radius: 50%;
+      opacity: 0.5;
+    }
+    
+    .decoration {
+      position: absolute;
+    }
+    
+    .icon-container {
+      background-color: white;
+      border: 3px solid #ffbe3d;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 5px 5px 0 rgba(0,0,0,0.1);
+    }
+    
+    /* ルビタグのスタイル */
+    ruby {
+      ruby-align: center;
+    }
+    
+    rt {
+      font-size: 0.6em;
+      color: #666;
+      font-weight: normal;
+    }
+    
+    /* PDF化時のルビスタイル */
+    @media print {
+      rt {
+        font-size: 0.5em !important;
+        color: #333 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="slide-container p-8 flex flex-col items-center justify-center">
+    <!-- 背景の装飾 -->
+    <div class="bubble" style="width: 80px; height: 80px; top: 10%; left: 5%;"></div>
+    <div class="bubble" style="width: 60px; height: 60px; top: 20%; right: 15%;"></div>
+    <div class="bubble" style="width: 100px; height: 100px; bottom: 15%; right: 5%;"></div>
+    <div class="bubble" style="width: 40px; height: 40px; bottom: 30%; left: 10%;"></div>
+    
+    <div class="decoration" style="top: 5%; right: 5%;">
+      <svg width="100" height="100" viewBox="0 0 100 100">
+        <polygon points="50,10 61,35 90,35 65,55 75,80 50,65 25,80 35,55 10,35 39,35" fill="#ffbe3d" />
+      </svg>
+    </div>
+    
+    <div class="decoration" style="bottom: 5%; left: 5%;">
+      <svg width="80" height="80" viewBox="0 0 100 100">
+        <path d="M50,10 A40,40 0 1,1 50,90 A40,40 0 1,1 50,10 Z" fill="#5ce68a" />
+        <path d="M50,20 A30,30 0 1,1 50,80 A30,30 0 1,1 50,20 Z" fill="#a8e1f8" />
+      </svg>
+    </div>
+    
+    <!-- タイトル -->
+    <h1 class="title text-center text-6xl mb-4 mt-10">AI<ruby>学<rt>まな</rt></ruby>びラボ</h1>
+    <h2 class="subtitle text-center text-5xl mb-10">みんなでアプリを<ruby>作<rt>つく</rt></ruby>ろう<ruby>実習<rt>じっしゅう</rt></ruby>！</h2>
+    
+    <!-- アイコンとイラスト -->
+    <div class="flex justify-around w-full mb-8">
+      <div class="icon-container">
+        <i class="fas fa-robot text-6xl text-blue-500"></i>
+        <p class="text-center mt-2 font-bold">AI</p>
+      </div>
+      
+      <div class="icon-container">
+        <i class="fas fa-mobile-alt text-6xl text-green-500"></i>
+        <p class="text-center mt-2 font-bold">アプリ</p>
+      </div>
+      
+      <div class="icon-container">
+        <i class="fas fa-utensils text-6xl text-red-500"></i>
+        <p class="text-center mt-2 font-bold"><ruby>冷蔵庫<rt>れいぞうこ</rt></ruby></p>
+      </div>
+    </div>
+    
+    <!-- 説明文 -->
+    <div class="description p-5 mx-auto w-4/5 text-center text-xl">
+      <p class="mb-2">AIツールを<ruby>使<rt>つか</rt></ruby>った、<span class="font-bold text-red-600">はじめての<ruby>体験<rt>たいけん</rt></ruby>！</span> <span class="font-bold text-blue-600">"<ruby>言葉<rt>ことば</rt></ruby>で、<ruby>冷蔵庫<rt>れいぞうこ</rt></ruby><ruby>管理<rt>かんり</rt></ruby>アプリ"</span>を<ruby>作<rt>つく</rt></ruby>ろう！</p>
+      <p><ruby>実<rt>じつ</rt></ruby>は2025年<ruby>現在<rt>げんざい</rt></ruby>、ウェブアプリの<ruby>言葉<rt>ことば</rt></ruby>を<ruby>学<rt>まな</rt></ruby>べば、ウェブアプリができます。
+      </p>どんなふうにアプリを<ruby>作<rt>つく</rt></ruby>るの? <ruby>楽<rt>たの</rt></ruby>しく<ruby>学<rt>まな</rt></ruby>んでいきましょう！</p>
+    </div>
+  </div>
+
+  <script src="slide-nav-plusPDF.js"></script>
+</body>
+</html>

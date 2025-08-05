@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ステップ2：バーコードや<ruby>文字<rt>もじ</rt></ruby>をカメラで<ruby>読<rt>よ</rt></ruby>み<ruby>取<rt>と</rt></ruby>ろう！</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap');
+    
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      font-family: 'M PLUS Rounded 1c', sans-serif;
+    }
+    
+    .slide-container {
+      width: 1280px;
+      height: 720px;
+      margin: 0 auto;
+      background-color: #a8e1f8;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .title {
+      color: #ff5a87;
+      text-shadow: 3px 3px 0 #ffffff, 5px 5px 0 #3bb4d7;
+      font-weight: 800;
+    }
+    
+    .content-box {
+      background-color: white;
+      border: 3px solid #3bb4d7;
+      border-radius: 20px;
+      box-shadow: 5px 5px 0 rgba(0,0,0,0.1);
+    }
+    
+    .icon-box {
+      background-color: white;
+      border: 3px solid #ffbe3d;
+      border-radius: 20px;
+      box-shadow: 5px 5px 0 rgba(0,0,0,0.1);
+    }
+    
+    .bubble {
+      position: absolute;
+      background-color: white;
+      border-radius: 50%;
+      opacity: 0.5;
+    }
+    
+    .decoration {
+      position: absolute;
+    }
+    
+
+  </style>
+</head>
+<body>
+  <div class="slide-container p-8 flex flex-col">
+    <!-- 背景の装飾 -->
+    <div class="bubble" style="width: 80px; height: 80px; top: 10%; left: 5%;"></div>
+    <div class="bubble" style="width: 60px; height: 60px; top: 20%; right: 15%;"></div>
+    <div class="bubble" style="width: 100px; height: 100px; bottom: 15%; right: 5%;"></div>
+    <div class="bubble" style="width: 40px; height: 40px; bottom: 30%; left: 10%;"></div>
+    
+    <div class="decoration" style="top: calc(5% + 50px); right: 5%;">
+      <svg width="80" height="80" viewBox="0 0 100 100">
+        <polygon points="50,10 61,35 90,35 65,55 75,80 50,65 25,80 35,55 10,35 39,35" fill="#5ce68a" />
+      </svg>
+    </div>
+    
+    <div class="decoration" style="bottom: 5%; left: 5%;">
+      <svg width="60" height="60" viewBox="0 0 100 100">
+        <polygon points="50,10 61,35 90,35 65,55 75,80 50,65 25,80 35,55 10,35 39,35" fill="#ffbe3d" />
+      </svg>
+    </div>
+    
+    <!-- タイトル -->
+    <h1 class="title text-center text-5xl mb-6 mt-4">AIに<ruby>指示<rt>しじ</rt></ruby>してカメラ<ruby>読<rt>よ</rt></ruby>み<ruby>取<rt>と</rt></ruby>り<ruby>機能<rt>きのう</rt></ruby>を<ruby>追加<rt>ついか</rt></ruby>しよう！</h1>
+    
+    <div class="flex h-full">
+      <!-- 左側：プロンプト例 -->
+      <div class="w-1/2 px-4 flex flex-col justify-center">
+        <div class="content-box p-5 mb-4">
+          <p class="text-2xl font-bold text-red-500 mb-3">📷 <ruby>指示<rt>しじ</rt></ruby>する<ruby>言葉<rt>ことば</rt></ruby>(1)（<ruby>機能<rt>きのう</rt></ruby><ruby>追加<rt>ついか</rt></ruby>）</p>
+          <div class="bg-gray-100 p-4 rounded-lg border-l-4 border-blue-500">
+            <p class="text-xl font-mono leading-relaxed text-center py-2">
+              🌟商品パッケージのカメラ読み取り機能を追加して<br>
+              ⭐️バーコードのカメラ読み取り機能を追加して
+            </p>
+          </div>
+        </div>
+        
+        <div class="content-box p-5 mb-4">
+          <p class="text-2xl font-bold text-green-600 mb-3">📝 <ruby>指示<rt>しじ</rt></ruby>する<ruby>言葉<rt>ことば</rt></ruby>(2)（<ruby>機能<rt>きのう</rt></ruby><ruby>追加<rt>ついか</rt></ruby>）</p>
+          <div class="bg-gray-100 p-4 rounded-lg border-l-4 border-green-500">
+            <p class="text-lg font-mono leading-relaxed text-center">
+              ⭐️賞味期限の文字を読み取るカメラ機能を追加して<br>
+              ⭐️食材の写真を一緒に保存できるようにして
+            </p>
+          </div>
+        </div>
+        
+        <div class="content-box p-5">
+          <p class="text-2xl font-bold text-purple-600 mb-3">📝 <ruby>指示<rt>しじ</rt></ruby>する<ruby>言葉<rt>ことば</rt></ruby>(3)（<ruby>機能<rt>きのう</rt></ruby><ruby>追加<rt>ついか</rt></ruby>）</p>
+          <div class="bg-gray-100 p-4 rounded-lg border-l-4 border-purple-500">
+            <p class="text-lg font-mono leading-relaxed text-center">
+              ⭐️選択した食材でレシピを提案するボタンを追加して。
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 右側：技術解説とコツ -->
+      <div class="w-1/2 px-4 flex flex-col justify-center items-center">
+        <div class="content-box p-5 w-4/5 mb-4">
+          <p class="text-2xl font-bold text-blue-600 mb-3">💡 <ruby>作<rt>つく</rt></ruby>るときのコツ</p>
+          <ul class="text-lg space-y-2">
+            <li>✅ <ruby>既存<rt>きぞん</rt></ruby>アプリに「〜を<ruby>追加<rt>ついか</rt></ruby>して」</li>
+            <li>✅ <ruby>簡単<rt>かんたん</rt></ruby>な<ruby>言葉<rt>ことば</rt></ruby>で<ruby>説明<rt>せつめい</rt></ruby>する</li>
+            <li>✅ "エラーを<ruby>解決<rt>かいけつ</rt></ruby>して"と<ruby>伝<rt>つた</rt></ruby>える</li>
+          </ul>
+        </div>
+        
+
+        
+        <div class="content-box p-5 w-4/5">
+          <p class="text-xl font-bold text-green-600 mb-2">🎯 <ruby>今日<rt>きょう</rt></ruby>の<ruby>目標<rt>もくひょう</rt></ruby></p>
+          <p class="text-lg">ステップ1のアプリに、カメラ<ruby>機能<rt>きのう</rt></ruby>を<ruby>追加<rt>ついか</rt></ruby>！</p>
+          <div class="mt-3 text-sm text-purple-600">
+            <p>💡 <strong>ポイント</strong>：<ruby>段階的<rt>だんかいてき</rt></ruby>に<ruby>機能<rt>きのう</rt></ruby><ruby>追加<rt>ついか</rt></ruby>で<ruby>複雑<rt>ふくざつ</rt></ruby>なアプリも<ruby>作<rt>つく</rt></ruby>れる！</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="slide-nav-plusPDF.js"></script>
+</body>
+</html>
