@@ -220,6 +220,27 @@
       position: relative;
       overflow: hidden;
     }
+    
+    /* モバイル表示保証 - JavaScript無効時のフォールバック */
+    @media (max-width: 768px) {
+      .staff-intro .staff-member,
+      .staff-intro .reveal {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+      }
+    }
+    
+    /* アニメーション軽減設定 */
+    @media (prefers-reduced-motion: reduce) {
+      .staff-intro .staff-member,
+      .staff-intro .reveal,
+      .card,
+      .value-item {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+    }
     .staff-intro::before {
       content: '';
       position: absolute;
@@ -258,8 +279,16 @@
       transition: all 0.3s ease;
     }
     .staff-photo:hover {
-      transform: scale(1.05);
-      box-shadow: 0 20px 40px rgba(0,0,0,.2);
+      transform: scale(1.02);
+      box-shadow: 0 15px 30px rgba(0,0,0,.15);
+    }
+    
+    /* モバイルではhover効果を無効化 */
+    @media (max-width: 768px) {
+      .staff-photo:hover {
+        transform: none;
+        box-shadow: 0 15px 35px rgba(0,0,0,.15);
+      }
     }
     .staff-info h3 {
       font-size: 2.2rem;
@@ -1196,14 +1225,26 @@
   <!-- === Scripts === -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Animation with IntersectionObserver
+      // Animation with IntersectionObserver - Improved for mobile
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             entry.target.classList.add('active');
           }
         });
-      }, { threshold: 0.1 });
+      }, { 
+        threshold: 0.05,
+        rootMargin: '50px 0px -10px 0px'
+      });
+
+      // Fallback for cases where IntersectionObserver might not work
+      const fallbackTimer = setTimeout(() => {
+        document.querySelectorAll('.reveal, .staff-member, .value-item').forEach(el => {
+          if (!el.classList.contains('active')) {
+            el.classList.add('active');
+          }
+        });
+      }, 3000);
 
       document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
       document.querySelectorAll('.value-item').forEach(el => observer.observe(el));
