@@ -345,9 +345,43 @@
     #dify-chatbot-bubble-button {
       background-color: #1C64F2 !important;
     }
+    
+    /* デスクトップ・タブレット用のサイズ */
     #dify-chatbot-bubble-window {
       width: 24rem !important;
       height: 40rem !important;
+    }
+    
+    /* タブレット用のサイズ調整 */
+    @media (max-width: 1024px) and (min-width: 769px) {
+      #dify-chatbot-bubble-window {
+        width: 22rem !important;
+        height: 36rem !important;
+      }
+    }
+    
+    /* スマホ用のサイズ調整 */
+    @media (max-width: 768px) {
+      #dify-chatbot-bubble-window {
+        width: 90vw !important;
+        max-width: 20rem !important;
+        height: 70vh !important;
+        max-height: 32rem !important;
+        right: 1rem !important;
+        bottom: 1rem !important;
+      }
+    }
+    
+    /* 小さなスマホ用のさらなる調整 */
+    @media (max-width: 480px) {
+      #dify-chatbot-bubble-window {
+        width: 95vw !important;
+        max-width: 18rem !important;
+        height: 65vh !important;
+        max-height: 28rem !important;
+        right: 0.5rem !important;
+        bottom: 0.5rem !important;
+      }
     }
   </style>
 </head>

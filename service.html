@@ -437,6 +437,31 @@
         display: block;
         opacity: 1;
       }
+      
+      /* Service tabs mobile styles */
+      .service-tabs {
+        gap: 1rem !important;
+        padding: 0 1rem;
+      }
+      
+      .service-tab {
+        min-width: auto !important;
+        padding: 1rem 1.5rem !important;
+        flex: 1;
+        max-width: 280px;
+      }
+      
+      .service-tab h3 {
+        font-size: 1rem !important;
+      }
+      
+      .service-tab p {
+        font-size: 0.8rem !important;
+      }
+      
+      .service-tab div[style*="font-size: 2.5rem"] {
+        font-size: 2rem !important;
+      }
     }
   </style>
 </head>
@@ -473,8 +498,26 @@
     <p class="tagline">AIで<span class="suki">"好き"</span>を実現するソリューション</p>
   </section>
 
+  <!-- === サービス選択タブ === -->
+  <section style="background: white; padding: 2rem 0; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+    <div class="container">
+      <div class="service-tabs" style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
+        <div class="service-tab active" data-service="startup-support" style="cursor: pointer; padding: 1.5rem 2rem; border-radius: 12px; background: var(--primary-gradient); color: white; text-align: center; min-width: 200px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+          <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🚀</div>
+          <h3 style="font-size: 1.2rem; font-weight: 700; margin: 0;">創業サポートパック</h3>
+          <p style="font-size: 0.9rem; margin: 0.5rem 0 0; opacity: 0.9;">起業の全準備を1日で</p>
+        </div>
+        <div class="service-tab" data-service="ai-video" style="cursor: pointer; padding: 1.5rem 2rem; border-radius: 12px; background: white; color: var(--dark); text-align: center; min-width: 200px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 2px solid #e9ecef;">
+          <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🎬</div>
+          <h3 style="font-size: 1.2rem; font-weight: 700; margin: 0;">ロゴ・チラシのAI映像制作</h3>
+          <p style="font-size: 0.9rem; margin: 0.5rem 0 0; opacity: 0.7;">静止画に命を吹き込む</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- === 創業サポートパック === -->
-  <section id="startup-support" style="background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%); position: relative; overflow: hidden;">
+  <section id="startup-support" class="service-content" data-service="startup-support" style="background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%); position: relative; overflow: hidden;">
     <!-- 背景装飾 -->
     <div style="position: absolute; top: -50px; right: -50px; width: 200px; height: 200px; background: var(--primary-gradient); border-radius: 50%; opacity: 0.1; z-index: 0;"></div>
     <div style="position: absolute; bottom: -100px; left: -100px; width: 300px; height: 300px; background: var(--primary-gradient); border-radius: 50%; opacity: 0.05; z-index: 0;"></div>
@@ -570,6 +613,104 @@
     </div>
   </section>
 
+  <!-- === ロゴ・チラシのAI映像制作 === -->
+  <section id="ai-video" class="service-content" data-service="ai-video" style="background: linear-gradient(135deg, #f0f4ff 0%, #ffffff 100%); position: relative; overflow: hidden; display: none;">
+    <!-- 背景装飾 -->
+    <div style="position: absolute; top: -50px; right: -50px; width: 200px; height: 200px; background: linear-gradient(135deg, #ff6b9d 0%, #ffd93d 100%); border-radius: 50%; opacity: 0.1; z-index: 0;"></div>
+    <div style="position: absolute; bottom: -100px; left: -100px; width: 300px; height: 300px; background: linear-gradient(135deg, #6c5ce7 0%, #fd79a8 100%); border-radius: 50%; opacity: 0.05; z-index: 0;"></div>
+    
+    <div class="container" style="position: relative; z-index: 1;">
+      <!-- ヒーローヘッダー -->
+      <div style="text-align: center; margin-bottom: 4rem;">
+        <div class="reveal" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 3rem 2rem; border-radius: 20px; margin-bottom: 2rem; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
+          <h2 style="font-size: 2.8rem; font-weight: 800; margin-bottom: 1rem; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">ロゴ・チラシのAI映像制作</h2>
+          <div style="background: rgba(255,255,255,0.2); border-radius: 12px; padding: 1.5rem; margin: 2rem auto; max-width: 700px;">
+            <p style="font-size: 1.8rem; font-weight: 700; margin-bottom: 0.75rem; line-height: 1.3;">止まったデザインが、語り出す。</p>
+            <p style="font-size: 1.2rem; opacity: 0.95; font-weight: 500;">──あなたのブランドに"声"と"動き"を。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- メインメッセージ -->
+      <div class="reveal" style="max-width: 900px; margin: 0 auto 4rem;">
+        <div style="background: white; border-radius: 16px; padding: 3rem; text-align: center; box-shadow: 0 15px 35px rgba(0,0,0,0.08); border: 1px solid #e9ecef;">
+          <h3 style="font-size: 2rem; margin-bottom: 1.5rem; font-weight: 600; line-height: 1.6; font-family: 'Nunito', 'Noto Sans JP', sans-serif;">
+            <span style="background: linear-gradient(135deg, #ff6b9d 0%, #ff8a80 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700;">チラシのキャラクター</span>が、あなたの想いを言葉にして<span style="color: #667eea; font-weight: 700;">語り出す。</span><br>
+            <span style="background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700;">Tシャツのロゴ</span>が、ぴょんと跳ねて<span style="color: #ff6b9d; font-weight: 700;">自己紹介を始める。</span>
+          </h3>
+          <div style="font-size: 1.6rem; font-weight: 700; line-height: 1.6;">
+            <span style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">私たちは、「静止画」だった素材に命を吹き込み、</span><br>
+            <span style="background: linear-gradient(135deg, #ff6b9d 0%, #ffd93d 100%); color: white; padding: 0.3rem 1rem; border-radius: 25px; font-weight: 800; text-shadow: 0 2px 4px rgba(0,0,0,0.2); display: inline-block; margin: 0.5rem 0; transform: rotate(-1deg);">✨ 伝わる短尺ムービー ✨</span>
+            <span style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">に生まれ変わらせます。</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- サービス詳細 -->
+      <div style="margin-bottom: 4rem;">
+        <div class="reveal" style="background: white; border-radius: 16px; padding: 3rem; box-shadow: 0 15px 35px rgba(0,0,0,0.08); border: 1px solid #e9ecef; text-align: center; margin-bottom: 3rem;">
+          <p style="font-size: 1.3rem; color: #555; line-height: 1.7; margin-bottom: 2rem;">
+            紙・ロゴ・写真——どんな素材でもOK。SNS、店内サイネージ、ECサイトなどにそのまま使える形で納品。<br>
+            <span style="color: var(--accent); font-weight: 700;">字幕付き・サイズ最適化までワンストップ</span>で対応します。
+          </p>
+          <div style="background: linear-gradient(135deg, #ff6b9d 0%, #ffd93d 100%); color: white; padding: 2rem; border-radius: 12px; display: inline-block;">
+            <p style="font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem;">たった<span style="text-shadow: 0 2px 4px rgba(0,0,0,0.2);">1本2万円〜</span></p>
+            <p style="font-size: 1.2rem; opacity: 0.95;">今日の告知を、"動き出す第一声"に変えてみませんか？</p>
+          </div>
+        </div>
+
+        <!-- 導入事例 -->
+        <h3 class="reveal" style="text-align: center; font-size: 2.2rem; margin-bottom: 3rem; color: var(--dark); font-weight: 700;">導入事例</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; margin-bottom: 4rem;">
+          
+          <div class="card reveal" style="background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%); border: none; padding: 2.5rem; border-radius: 16px; box-shadow: 0 10px 30px rgba(102, 92, 231, 0.1); position: relative; overflow: hidden;">
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: linear-gradient(90deg, #667eea, #764ba2);"></div>
+            <div style="position: absolute; top: 20px; right: 20px; width: 60px; height: 60px; background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 50%; opacity: 0.1;"></div>
+            <h4 style="color: #667eea; font-size: 1.5rem; margin-bottom: 1rem; font-weight: 700;">「話すチラシ」</h4>
+            <p style="font-size: 1.1rem; line-height: 1.6; color: #555;">キャラが口パク＆目パチで商品の魅力を30秒で紹介</p>
+          </div>
+
+          <div class="card reveal" style="background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%); border: none; padding: 2.5rem; border-radius: 16px; box-shadow: 0 10px 30px rgba(255, 107, 157, 0.1); position: relative; overflow: hidden;">
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: linear-gradient(90deg, #ff6b9d, #ffd93d);"></div>
+            <div style="position: absolute; top: 20px; right: 20px; width: 60px; height: 60px; background: linear-gradient(135deg, #ff6b9d, #ffd93d); border-radius: 50%; opacity: 0.1;"></div>
+            <h4 style="color: #ff6b9d; font-size: 1.5rem; margin-bottom: 1rem; font-weight: 700;">「ロゴが踊る」</h4>
+            <p style="font-size: 1.1rem; line-height: 1.6; color: #555;">Tシャツやアイコンを使ったブランド動画</p>
+          </div>
+
+          <div class="card reveal" style="background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%); border: none; padding: 2.5rem; border-radius: 16px; box-shadow: 0 10px 30px rgba(108, 92, 231, 0.1); position: relative; overflow: hidden;">
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: linear-gradient(90deg, #6c5ce7, #fd79a8);"></div>
+            <div style="position: absolute; top: 20px; right: 20px; width: 60px; height: 60px; background: linear-gradient(135deg, #6c5ce7, #fd79a8); border-radius: 50%; opacity: 0.1;"></div>
+            <h4 style="color: #6c5ce7; font-size: 1.5rem; margin-bottom: 1rem; font-weight: 700;">「キャスト紹介」</h4>
+            <p style="font-size: 1.1rem; line-height: 1.6; color: #555;">ナレーション付きの自己紹介ムービー（店内表示やSNS用に）</p>
+          </div>
+
+          <div class="card reveal" style="background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%); border: none; padding: 2.5rem; border-radius: 16px; box-shadow: 0 10px 30px rgba(255, 193, 7, 0.1); position: relative; overflow: hidden;">
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: linear-gradient(90deg, #ffc107, #ff8c42);"></div>
+            <div style="position: absolute; top: 20px; right: 20px; width: 60px; height: 60px; background: linear-gradient(135deg, #ffc107, #ff8c42); border-radius: 50%; opacity: 0.1;"></div>
+            <h4 style="color: #ffc107; font-size: 1.5rem; margin-bottom: 1rem; font-weight: 700;">「アイコン動画化」</h4>
+            <p style="font-size: 1.1rem; line-height: 1.6; color: #555;">シンボルやマスコットが"要点"を解説する短尺映像</p>
+          </div>
+        </div>
+
+        <!-- 費用 -->
+        <div class="reveal" style="margin-bottom: 3rem;">
+          <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-align: center; padding: 3.5rem 2rem; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.15); position: relative; overflow: hidden;">
+            <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: rgba(255,255,255,0.1); border-radius: 50%;"></div>
+            <div style="position: absolute; bottom: -75px; left: -75px; width: 200px; height: 200px; background: rgba(255,255,255,0.05); border-radius: 50%;"></div>
+            
+            <div style="position: relative; z-index: 1;">
+              <h3 style="font-size: 2.5rem; margin-bottom: 1rem; color: white; font-weight: 800; text-shadow: 0 2px 4px rgba(0,0,0,0.2);">費用</h3>
+              <div style="background: rgba(255,255,255,0.2); border-radius: 12px; padding: 2rem; margin: 2rem auto; max-width: 600px;">
+                <p style="font-size: 2.2rem; font-weight: 800; margin-bottom: 1rem; line-height: 1.3;">2万円 / 件〜</p>
+                <p style="font-size: 1.2rem; opacity: 0.95; font-weight: 500;">字幕・BGM・SNS用リサイズ含む。<br>まとめて発注でお得なパックもご用意</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- === お問い合わせ === -->
   <section class="cta-section">
     <div class="container">
@@ -601,6 +742,101 @@
       document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
       document.querySelectorAll('.service-card').forEach(el => observer.observe(el));
       document.querySelectorAll('.process-step').forEach(el => observer.observe(el));
+      
+      // Service tab switching functionality
+      const serviceTabs = document.querySelectorAll('.service-tab');
+      const serviceContents = document.querySelectorAll('.service-content');
+      
+      function switchService(targetService, updateUrl = true) {
+        // Update tab styles
+        serviceTabs.forEach(tab => {
+          const isActive = tab.dataset.service === targetService;
+          if (isActive) {
+            tab.classList.add('active');
+            tab.style.background = 'var(--primary-gradient)';
+            tab.style.color = 'white';
+            tab.style.border = 'none';
+          } else {
+            tab.classList.remove('active');
+            tab.style.background = 'white';
+            tab.style.color = 'var(--dark)';
+            tab.style.border = '2px solid #e9ecef';
+          }
+        });
+        
+        // Update content visibility
+        serviceContents.forEach(content => {
+          if (content.dataset.service === targetService) {
+            content.style.display = 'block';
+            // Re-trigger animations for newly visible content
+            setTimeout(() => {
+              content.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+            }, 100);
+          } else {
+            content.style.display = 'none';
+          }
+        });
+        
+        // Update URL hash if requested
+        if (updateUrl) {
+          history.replaceState(null, null, `#${targetService}`);
+        }
+        
+        // Save scroll position
+        sessionStorage.setItem('serviceScrollPosition', window.scrollY);
+      }
+      
+      function getServiceFromHash() {
+        const hash = window.location.hash.substring(1);
+        const validServices = ['startup-support', 'ai-video'];
+        return validServices.includes(hash) ? hash : 'startup-support';
+      }
+      
+      function restoreScrollPosition() {
+        const savedScrollPosition = sessionStorage.getItem('serviceScrollPosition');
+        if (savedScrollPosition) {
+          setTimeout(() => {
+            window.scrollTo(0, parseInt(savedScrollPosition));
+          }, 300);
+        }
+      }
+      
+      // Initialize with current hash or default after DOM is fully loaded
+      const initialService = getServiceFromHash();
+      
+      // Ensure proper initialization timing
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+          switchService(initialService, false);
+        });
+      } else {
+        switchService(initialService, false);
+      }
+      
+      // Handle hash changes (browser back/forward)
+      window.addEventListener('hashchange', () => {
+        const service = getServiceFromHash();
+        switchService(service, false);
+        restoreScrollPosition();
+      });
+      
+      // Handle tab clicks
+      serviceTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const targetService = tab.dataset.service;
+          switchService(targetService);
+        });
+      });
+      
+      // Save scroll position before page unload
+      window.addEventListener('beforeunload', () => {
+        sessionStorage.setItem('serviceScrollPosition', window.scrollY);
+      });
+      
+      // Restore scroll position after page load
+      window.addEventListener('load', () => {
+        restoreScrollPosition();
+      });
       
       // Mobile menu functionality
       const hamburger = document.querySelector('.hamburger');
