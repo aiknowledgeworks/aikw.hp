@@ -29,6 +29,32 @@
     gtag('config', 'G-DWFLPN1EZH');
   </script>
 
+  <!-- Dify Chatbot -->
+  <script>
+   window.difyChatbotConfig = {
+    token: 'uDS18hCB69G3xp8H',
+    inputs: {
+      // You can define the inputs from the Start node here
+      // key is the variable name
+      // e.g.
+      // name: "NAME"
+    },
+    systemVariables: {
+      // user_id: 'YOU CAN DEFINE USER ID HERE',
+      // conversation_id: 'YOU CAN DEFINE CONVERSATION ID HERE, IT MUST BE A VALID UUID',
+    },
+    userVariables: {
+      // avatar_url: 'YOU CAN DEFINE USER AVATAR URL HERE',
+      // name: 'YOU CAN DEFINE USER NAME HERE',
+    },
+   }
+  </script>
+  <script
+   src="https://udify.app/embed.min.js"
+   id="uDS18hCB69G3xp8H"
+   defer>
+  </script>
+
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet" />
 
@@ -889,6 +915,15 @@
       .highlight-quote {
         font-size: 1.3rem !important;
       }
+    }
+
+    /* === Dify Chatbot Styles === */
+    #dify-chatbot-bubble-button {
+      background-color: #1C64F2 !important;
+    }
+    #dify-chatbot-bubble-window {
+      width: 24rem !important;
+      height: 40rem !important;
     }
   </style>
 </head>
