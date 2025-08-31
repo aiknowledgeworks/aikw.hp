@@ -905,282 +905,64 @@
       }
     }
 
-    /* === Dify Chatbot Styles === */
-    #dify-chatbot-bubble-button {
-      background-color: #1C64F2 !important;
-      position: fixed !important;
-      bottom: 20px !important;
-      right: 20px !important;
-      z-index: 9999 !important;
-      width: 60px !important;
-      height: 60px !important;
-      border-radius: 50% !important;
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      box-shadow: 0 4px 12px rgba(28, 100, 242, 0.3) !important;
-      cursor: pointer !important;
-      transition: all 0.3s ease !important;
-    }
-
-    #dify-chatbot-bubble-button:hover {
-      transform: scale(1.1) !important;
-      box-shadow: 0 6px 16px rgba(28, 100, 242, 0.4) !important;
-    }
-
-    /* スマホ用チャットボットボタン調整 */
-    @media (max-width: 768px) {
-      #dify-chatbot-bubble-button {
-        width: 56px !important;
-        height: 56px !important;
-        bottom: 16px !important;
-        right: 16px !important;
-        z-index: 10000 !important;
-      }
-    }
-
-    @media (max-width: 480px) {
-      #dify-chatbot-bubble-button {
-        width: 52px !important;
-        height: 52px !important;
-        bottom: 12px !important;
-        right: 12px !important;
-      }
-    }
-
-    /* === FAQ Overlay Styles === */
-    #faq-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: 2000000000 !important;
-      display: none;
-      align-items: center;
-      justify-content: center;
-    }
-
-    #faq-popup {
-      background: white;
-      border-radius: 12px;
-      padding: 24px;
-      width: 90vw;
-      max-width: 400px;
-      max-height: 80vh;
-      overflow-y: auto;
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-      font-family: 'Noto Sans JP', sans-serif;
-      animation: fadeInScale 0.3s ease-out;
-    }
-
-    @keyframes fadeInScale {
-      from {
-        opacity: 0;
-        transform: scale(0.9);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-
-    #faq-popup .faq-header {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    #faq-popup .faq-title {
-      font-size: 18px;
-      font-weight: bold;
-      color: #1C64F2;
-      margin-bottom: 8px;
-    }
-
-    #faq-popup .faq-subtitle {
-      font-size: 14px;
-      color: #6B7280;
-    }
-
-    #faq-popup .faq-close {
-      background: #6B7280;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      padding: 8px 16px;
-      font-size: 14px;
-      cursor: pointer;
-      width: 100%;
-      margin-top: 16px;
-      transition: background 0.2s;
-    }
-
-    #faq-popup .faq-close:hover {
-      background: #4B5563;
-    }
-
-    /* === レスポンシブデザイン：スマホ対応 === */
-    @media (max-width: 768px) {
-      #faq-popup {
-        width: 95vw;
-        max-width: none;
-        padding: 20px;
-        margin: 10px;
-        border-radius: 16px;
-        max-height: 85vh;
-      }
-      
-      #faq-popup .faq-title {
-        font-size: 20px;
-        margin-bottom: 6px;
-      }
-      
-      #faq-popup .faq-subtitle {
-        font-size: 14px;
-        margin-bottom: 16px;
-      }
-      
-      #faq-popup .faq-item {
-        padding: 18px;
-        margin-bottom: 12px;
-        font-size: 15px;
-        line-height: 1.4;
-        border-radius: 10px;
-        min-height: 50px;
-        display: flex;
-        align-items: center;
-      }
-      
-      #faq-popup .faq-close {
-        padding: 12px 20px;
-        font-size: 16px;
-        margin-top: 20px;
-        min-height: 48px;
-        border-radius: 8px;
-      }
-    }
-    
-    @media (max-width: 480px) {
-      #faq-overlay {
-        padding: 5px;
-      }
-      
-      #faq-popup {
-        width: calc(100vw - 20px);
-        padding: 16px;
-        margin: 10px;
-        max-height: 90vh;
-      }
-      
-      #faq-popup .faq-header {
-        margin-bottom: 16px;
-      }
-      
-      #faq-popup .faq-title {
-        font-size: 18px;
-      }
-      
-      #faq-popup .faq-subtitle {
-        font-size: 13px;
-      }
-      
-      #faq-popup .faq-item {
-        padding: 16px;
-        font-size: 14px;
-        margin-bottom: 10px;
-        min-height: 56px;
-      }
-      
-      #faq-popup .faq-close {
-        padding: 14px 18px;
-        font-size: 15px;
-        margin-top: 16px;
-        min-height: 52px;
-      }
-    }
-    
-    /* 横向きスマホ対応 */
-    @media (max-width: 768px) and (orientation: landscape) {
-      #faq-popup {
-        max-height: 95vh;
-        width: 80vw;
-        max-width: 500px;
-      }
-      
-      #faq-popup .faq-item {
-        padding: 14px 16px;
-        margin-bottom: 8px;
-        min-height: 44px;
-      }
-      
-      #faq-popup .faq-close {
-        padding: 10px 16px;
-        margin-top: 12px;
-        min-height: 40px;
-      }
-    }
-
-    #faq-popup .faq-item {
-      background: #F8FAFC;
-      border: 1px solid #E2E8F0;
-      border-radius: 8px;
-      padding: 16px;
-      margin-bottom: 12px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      font-size: 14px;
-      line-height: 1.5;
-    }
-
-    #faq-popup .faq-item:hover {
-      background: #1C64F2;
-      color: white;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(28, 100, 242, 0.3);
-    }
-
-
-    
-
-    
-    /* デスクトップ・タブレット用のサイズ */
+    /* === Dify Chatbot Styles - Custom Responsive Fix === */
+    /* Custom styles for Dify chatbot responsive behavior */
     #dify-chatbot-bubble-window {
-      width: 24rem !important;
-      height: 40rem !important;
+      max-width: calc(100vw - 2rem) !important;
+      max-height: calc(100vh - 6rem) !important;
     }
-    
-    /* タブレット用のサイズ調整 */
-    @media (max-width: 1024px) and (min-width: 769px) {
-      #dify-chatbot-bubble-window {
-        width: 22rem !important;
-        height: 36rem !important;
-      }
-    }
-    
-    /* スマホ用のサイズ調整 */
-    @media (max-width: 768px) {
-      #dify-chatbot-bubble-window {
-        width: 90vw !important;
-        max-width: 20rem !important;
-        height: 70vh !important;
-        max-height: 32rem !important;
-        right: 1rem !important;
-        bottom: 1rem !important;
-      }
-    }
-    
-    /* 小さなスマホ用のさらなる調整 */
+
+    /* Ensure proper sizing for different screen sizes */
     @media (max-width: 480px) {
       #dify-chatbot-bubble-window {
-        width: 95vw !important;
-        max-width: 18rem !important;
-        height: 65vh !important;
-        max-height: 28rem !important;
-        right: 0.5rem !important;
-        bottom: 0.5rem !important;
+        width: calc(100vw - 2rem) !important;
+        height: calc(100vh - 6rem) !important;
+        max-width: calc(100vw - 2rem) !important;
+        max-height: calc(100vh - 6rem) !important;
       }
     }
+
+    @media (min-width: 481px) and (max-width: 768px) {
+      #dify-chatbot-bubble-window {
+        width: 24rem !important;
+        height: calc(100vh - 8rem) !important;
+        max-width: 24rem !important;
+        max-height: calc(100vh - 8rem) !important;
+      }
+    }
+
+    @media (min-width: 769px) {
+      #dify-chatbot-bubble-window {
+        width: 24rem !important;
+        height: 43.75rem !important;
+        max-width: 24rem !important;
+        max-height: 43.75rem !important;
+      }
+    }
+
+
+
+
+
+
+    
+
+    
+
+
+
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
   </style>
 </head>
 <body>
@@ -1633,286 +1415,6 @@
     });
   </script>
 
-  <!-- FAQ Overlay -->
-  <div id="faq-overlay" onclick="closeFAQPopup(event)">
-    <div id="faq-popup" onclick="event.stopPropagation()">
-      <div class="faq-header">
-        <div class="faq-title">よくある質問</div>
-        <div class="faq-subtitle">気になる質問をクリックしてください</div>
-      </div>
-      <div class="faq-item" onclick="selectFAQ('AIナレッジワークス合同会社の事業概要を教えてください。')">
-        AIナレッジワークス合同会社の事業概要を教えてください。
-      </div>
-      <div class="faq-item" onclick="selectFAQ('AIナレッジワークス合同会社のサービスは？')">
-        AIナレッジワークス合同会社のサービスは？
-      </div>
-      <div class="faq-item" onclick="selectFAQ('創業サポートパックとは？')">
-        創業サポートパックとは？
-      </div>
-      <button class="faq-close" onclick="closeFAQPopup()">閉じる</button>
-    </div>
-  </div>
-
-  <!-- FAQ Functionality Script -->
-  <script>
-    let faqShown = false;
-
-    // Difyチャットボット起動監視
-    function monitorChatbotLaunch() {
-      const observer = new MutationObserver(function(mutations) {
-        const chatbotWindow = document.querySelector('#dify-chatbot-bubble-window');
-        if (chatbotWindow && !faqShown) {
-          // チャットボットウィンドウが表示されたかチェック
-          const style = window.getComputedStyle(chatbotWindow);
-          if (style.display !== 'none' && style.visibility !== 'hidden') {
-            console.log('FAQ: チャットボット起動を検知');
-            setTimeout(showFAQOverlay, 1000); // 1秒後にFAQを表示
-            faqShown = true;
-          }
-        }
-      });
-      
-      observer.observe(document.body, {
-        childList: true,
-        subtree: true,
-        attributes: true,
-        attributeFilter: ['style', 'class']
-      });
-    }
-
-    // FAQオーバーレイを表示
-    function showFAQOverlay() {
-      console.log('FAQ: オーバーレイを表示');
-      const overlay = document.getElementById('faq-overlay');
-      if (overlay) {
-        overlay.style.display = 'flex';
-      }
-    }
-
-    // FAQポップアップを閉じる
-    function closeFAQPopup(event) {
-      console.log('FAQ: ポップアップを閉じる');
-      const overlay = document.getElementById('faq-overlay');
-      if (overlay) {
-        overlay.style.display = 'none';
-      }
-    }
-
-    // FAQ項目選択時の処理
-    function selectFAQ(question) {
-      console.log('FAQ: 質問選択:', question);
-      
-      // FAQを閉じる
-      closeFAQPopup();
-      
-      // チャットボットに質問を入力
-      setTimeout(() => {
-        inputQuestionToChatbot(question);
-      }, 500);
-    }
-
-    // チャットボットに質問を入力（複数の方法を試行）
-    function inputQuestionToChatbot(question) {
-      console.log('FAQ: チャットボットに質問を入力:', question);
-      
-      // 方法1: iframe内の要素に直接アクセスを試行
-      let success = false;
-      
-      try {
-        const chatbotIframe = document.querySelector('#dify-chatbot-bubble-window');
-        if (chatbotIframe && chatbotIframe.contentDocument) {
-          const doc = chatbotIframe.contentDocument;
-          const textbox = doc.querySelector('input[type="text"], textarea, [role="textbox"], [placeholder*="話す"]');
-          
-          if (textbox) {
-            // 複数の方法で値を設定
-            textbox.value = question;
-            textbox.setAttribute('value', question);
-            
-            // フォーカスを当てる
-            textbox.focus();
-            textbox.click();
-            
-            // 様々なイベントをトリガー
-            const events = [
-              new Event('input', { bubbles: true, cancelable: true }),
-              new Event('change', { bubbles: true, cancelable: true }),
-              new Event('keyup', { bubbles: true, cancelable: true }),
-              new Event('keydown', { bubbles: true, cancelable: true }),
-              new Event('paste', { bubbles: true, cancelable: true }),
-              new InputEvent('input', { data: question, bubbles: true, cancelable: true })
-            ];
-            
-            events.forEach(event => {
-              textbox.dispatchEvent(event);
-            });
-            
-            // React/Vue向けの直接的なプロパティ設定
-            const reactInternalKey = Object.keys(textbox).find(key => key.startsWith('__reactInternalInstance'));
-            if (reactInternalKey) {
-              const reactInstance = textbox[reactInternalKey];
-              if (reactInstance && reactInstance.memoizedProps) {
-                reactInstance.memoizedProps.value = question;
-              }
-            }
-            
-            console.log('FAQ: 質問を入力しました（方法1成功）');
-            success = true;
-          }
-        }
-      } catch (error) {
-        console.log('FAQ: 方法1でエラー:', error);
-      }
-      
-      // 方法2: postMessageを使用してiframeに通信を試行
-      if (!success) {
-        try {
-          const chatbotIframe = document.querySelector('#dify-chatbot-bubble-window');
-          if (chatbotIframe && chatbotIframe.contentWindow) {
-            chatbotIframe.contentWindow.postMessage({
-              type: 'faq_input',
-              question: question
-            }, '*');
-            console.log('FAQ: postMessageで質問を送信しました（方法2）');
-            success = true;
-          }
-        } catch (error) {
-          console.log('FAQ: 方法2でエラー:', error);
-        }
-      }
-      
-      // 方法3: クリップボードにコピーして通知表示
-      if (!success) {
-        try {
-          navigator.clipboard.writeText(question).then(() => {
-            console.log('FAQ: 質問をクリップボードにコピーしました（方法3）');
-            showCopyNotification(question);
-            success = true;
-          }).catch(() => {
-            // フォールバック: テキスト選択可能な要素を作成
-            const tempInput = document.createElement('textarea');
-            tempInput.value = question;
-            document.body.appendChild(tempInput);
-            tempInput.select();
-            document.execCommand('copy');
-            document.body.removeChild(tempInput);
-            console.log('FAQ: 質問をクリップボードにコピーしました（フォールバック）');
-            showCopyNotification(question);
-            success = true;
-          });
-        } catch (error) {
-          console.log('FAQ: 方法3でエラー:', error);
-        }
-      }
-      
-      // 方法4: DOM操作でキーボード入力をシミュレート
-      if (!success) {
-        setTimeout(() => {
-          simulateTyping(question);
-        }, 1000);
-      }
-    }
-    
-    // コピー通知を表示
-    function showCopyNotification(question) {
-      const notification = document.createElement('div');
-      notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: #1C64F2;
-        color: white;
-        padding: 12px 20px;
-        border-radius: 8px;
-        font-family: 'Noto Sans JP', sans-serif;
-        font-size: 14px;
-        z-index: 999999;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        animation: slideInRight 0.3s ease-out;
-        max-width: 280px;
-        text-align: center;
-        line-height: 1.4;
-      `;
-      
-      // スマホ対応の位置調整
-      if (window.innerWidth <= 768) {
-        notification.style.cssText += `
-          top: 50%;
-          left: 50%;
-          right: auto;
-          transform: translate(-50%, -50%);
-          animation: fadeInScale 0.3s ease-out;
-          max-width: 90vw;
-          width: auto;
-          min-width: 250px;
-        `;
-      }
-      notification.innerHTML = `
-        📋 質問をコピーしました<br>
-        <small>チャット欄に貼り付けてください</small>
-      `;
-      
-      // アニメーション用CSS
-      const style = document.createElement('style');
-      style.textContent = `
-        @keyframes slideInRight {
-          from { transform: translateX(100%); opacity: 0; }
-          to { transform: translateX(0); opacity: 1; }
-        }
-        @keyframes fadeInScale {
-          from { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
-          to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-        }
-      `;
-      document.head.appendChild(style);
-      
-      document.body.appendChild(notification);
-      
-      // 3秒後に自動削除
-      setTimeout(() => {
-        notification.style.animation = 'slideInRight 0.3s ease-out reverse';
-        setTimeout(() => {
-          document.body.removeChild(notification);
-          document.head.removeChild(style);
-        }, 300);
-      }, 3000);
-    }
-    
-    // キーボード入力をシミュレート
-    function simulateTyping(text) {
-      console.log('FAQ: キーボード入力をシミュレート:', text);
-      
-      // フォーカスされた要素に文字を送信
-      const activeElement = document.activeElement;
-      if (activeElement && (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA')) {
-        activeElement.value = text;
-        
-        // イベントをトリガー
-        ['input', 'change', 'keyup'].forEach(eventType => {
-          activeElement.dispatchEvent(new Event(eventType, { bubbles: true }));
-        });
-        
-        console.log('FAQ: アクティブ要素に入力しました');
-      }
-    }
-
-    // ページリセット時にfaqShownをリセット
-    function resetFAQState() {
-      faqShown = false;
-      const overlay = document.getElementById('faq-overlay');
-      if (overlay) {
-        overlay.style.display = 'none';
-      }
-    }
-
-    // DOMロード時に初期化
-    document.addEventListener('DOMContentLoaded', function() {
-      console.log('FAQ: 初期化開始');
-      monitorChatbotLaunch();
-    });
-
-    // ページ離脱時に状態をリセット
-    window.addEventListener('beforeunload', resetFAQState);
 
 
 
@@ -1920,14 +1422,6 @@
 
 
 
-
-
-
-
-
-
-  </script>
 
 </body>
 </html>
-
