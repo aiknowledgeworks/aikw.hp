@@ -1,0 +1,89 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: github-pages
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        
+    - name: Build site with API key
+      env:
+        DIFY_API_KEY: ${{ secrets.DIFY_API_KEY }}
+      run: |
+        # Create build directory
+        mkdir -p build
+        
+        # Copy all files to build directory
+        cp -r . build/
+        
+        # Remove git directories and workflows from build
+        rm -rf build/.git build/.github
+        
+        # Verify API key is available
+        if [ -z "$DIFY_API_KEY" ]; then
+          echo "❌ Error: DIFY_API_KEY environment secret not found"
+          exit 1
+        fi
+        
+        echo "✅ API key found, replacing placeholder..."
+        
+        # Replace API key placeholder in JavaScript file
+        sed -i "s/DIFY_API_KEY_PLACEHOLDER/$DIFY_API_KEY/g" build/js/chatbot.js
+        
+        # Verify replacement was successful
+        if grep -q "DIFY_API_KEY_PLACEHOLDER" build/js/chatbot.js; then
+          echo "❌ Error: API key placeholder was not replaced"
+          exit 1
+        else
+          echo "✅ API key placeholder successfully replaced"
+        fi
+        
+        # List build directory contents for debugging
+        echo "📁 Build directory contents:"
+        ls -la build/
+        
+        echo "📄 Chatbot.js first 10 lines (API key should be replaced):"
+        head -10 build/js/chatbot.js
+        
+    - name: Setup Pages
+      uses: actions/configure-pages@v4
+      
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: './build'
+        
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    
+    steps:
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4

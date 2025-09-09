@@ -22,56 +22,15 @@
     gtag('config', 'G-DWFLPN1EZH');
   </script>
 
-  <!-- Dify Chatbot -->
-  <script>
-   window.difyChatbotConfig = {
-    token: 'uDS18hCB69G3xp8H',
-    inputs: {
-      // You can define the inputs from the Start node here
-      // key is the variable name
-      // e.g.
-      // name: "NAME"
-    },
-    systemVariables: {
-      // user_id: 'YOU CAN DEFINE USER ID HERE',
-      // conversation_id: 'YOU CAN DEFINE CONVERSATION ID HERE, IT MUST BE A VALID UUID',
-    },
-    userVariables: {
-      // avatar_url: 'YOU CAN DEFINE USER AVATAR URL HERE',
-      // name: 'YOU CAN DEFINE USER NAME HERE',
-    },
-    // FAQ項目（起動時に表示されるクリック可能な質問）
-    starterQuestions: [
-      '企業向けAI研修について詳しく教えてください',
-      'AI導入支援のサービス内容と流れを知りたいです',
-      '料金や相談の流れについて教えてください'
-    ],
-    // ウェルカムメッセージ
-    welcomeMessage: 'こんにちは！AIナレッジワークスです。AI研修や導入支援について、お気軽にご質問ください。',
-    // 代替設定（異なるパラメータ名の場合）
-    conversationStarters: [
-      '企業向けAI研修について詳しく教えてください',
-      'AI導入支援のサービス内容と流れを知りたいです',
-      '料金や相談の流れについて教えてください'
-    ],
-    suggestedQueries: [
-      '企業向けAI研修について詳しく教えてください',
-      'AI導入支援のサービス内容と流れを知りたいです',
-      '料金や相談の流れについて教えてください'
-    ]
-   }
-  </script>
-  <script
-   src="https://udify.app/embed.min.js"
-   id="uDS18hCB69G3xp8H"
-   defer>
-  </script>
+  <!-- Dify Chatbot - Removed for security -->
+  <!-- API key now managed via GitHub Actions and Environment Secrets -->
+  <!-- Custom chatbot implementation is used instead -->
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet" />
 
-  <!-- 暗号化ユーティリティ -->
-  <script src="js/encryption.js" defer></script>
+  <!-- カスタムチャットボット -->
+  <script src="js/chatbot.js" defer></script>
 
   <style>
     /* === カラーパレット & ベース === */
@@ -178,6 +137,95 @@
     }
     footer p { font-size: .85rem; }
     footer a { color: #e6e6e6; text-decoration: underline; }
+
+    /* === AIKW Chatbot Styles === */
+    .aikw-chatbot-button {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #6db5ff 0%, #00c9a7 100%);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 1100;
+      transition: transform .2s ease, opacity .2s ease;
+    }
+    .aikw-chatbot-button:hover { transform: translateY(-2px); }
+    .aikw-chatbot-button.aikw-hidden { opacity: 0; pointer-events: none; }
+    .aikw-chat-icon svg { display: block; }
+
+    .aikw-chatbot-window {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      width: 360px;
+      height: 560px;
+      max-height: calc(100vh - 80px);
+      display: none;
+      flex-direction: column;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.2);
+      overflow: hidden;
+      z-index: 1101;
+      transform: translateY(10px);
+      opacity: 0;
+      transition: transform .25s ease, opacity .25s ease;
+    }
+    .aikw-chatbot-window.aikw-open { transform: translateY(0); opacity: 1; }
+
+    .aikw-chatbot-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 14px; background: linear-gradient(135deg, #6db5ff 0%, #a1e9d9 100%);
+      color: #fff;
+    }
+    .aikw-chatbot-title { display: flex; align-items: center; gap: 10px; font-weight: 700; }
+    .aikw-chatbot-logo { width: 28px; height: 28px; border-radius: 4px; }
+    
+    .aikw-header-actions { display: flex; align-items: center; gap: 12px; }
+    .aikw-clear-button { 
+      background: rgba(255,255,255,0.15); 
+      border: 1px solid rgba(255,255,255,0.3); 
+      color: #fff; 
+      padding: 4px 10px; 
+      border-radius: 6px; 
+      font-size: 11px; 
+      font-weight: 500; 
+      cursor: pointer; 
+      transition: all 0.2s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .aikw-clear-button:hover { 
+      background: rgba(255,255,255,0.25); 
+      transform: translateY(-1px);
+    }
+    .aikw-chatbot-close { 
+      background: transparent; 
+      border: none; 
+      color: #fff; 
+      font-size: 22px; 
+      cursor: pointer; 
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      transition: background 0.2s ease;
+    }
+    .aikw-chatbot-close:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    @media (max-width: 480px) {
+      .aikw-chatbot-window { right: 10px; left: 10px; width: auto; height: calc(100vh - 80px); }
+    }
 
     /* === お問い合わせオプション === */
     .contact-options {

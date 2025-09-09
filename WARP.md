@@ -83,7 +83,7 @@ Each HTML file contains:
 
 ### External Integrations
 - **Google Analytics**: gtag.js implementation with ID `G-DWFLPN1EZH`
-- **Dify Chatbot**: Embedded chatbot with token `uDS18hCB69G3xp8H`
+- **Dify Chatbot**: Custom implementation with secure API key management
 - **Google Fonts**: Nunito and Noto Sans JP font families
 
 ## Common Development Patterns

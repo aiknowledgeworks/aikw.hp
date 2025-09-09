@@ -29,6 +29,7 @@ class AIKWChatbot {
     this.conversationId = null;
     this.userId = this.generateUserId();
     this.currentTab = 0;
+    this.isDevelopmentMode = false;
     
     // 暗号化用のキー（セッション毎に生成）
     this.cryptoKey = null;
@@ -74,8 +75,18 @@ class AIKWChatbot {
       
       await this.initCrypto();
       
-      // 注意：本番環境では環境変数やサーバーサイドから取得すべき
-      await this.encryptApiKey('app-Qsc3Wsr97FoX997AfuDaOeyV');
+      // GitHub ActionsでEnvironment Secretから取得したAPI keyを使用
+      let apiKey = 'DIFY_API_KEY_PLACEHOLDER'; // ビルド時に実際のAPI keyに置換される
+      
+      // 開発環境用フォールバック（localhostでのテスト用）
+      if (apiKey === 'DIFY_API_KEY_PLACEHOLDER') {
+        console.warn('⚠️ 開発環境: API keyがプレースホルダーのままです。チャットボットは動作しません。');
+        console.log('ℹ️ 本番環境では GitHub Actions が自動的にAPI keyを設定します。');
+        // 開発環境ではUIは表示するが、API呼び出しは無効化
+        this.isDevelopmentMode = true;
+      }
+      
+      await this.encryptApiKey(apiKey);
       
       console.log('🎨 UIを作成中...');
       this.createChatbotUI();
@@ -545,6 +556,11 @@ class AIKWChatbot {
     const loadingMessageId = this.addBotMessage('', true);
     
     try {
+      // 開発モードではAPI呼び出しをスキップ
+      if (this.isDevelopmentMode) {
+        throw new Error('開発モード: API keyが設定されていません');
+      }
+      
       const apiKey = await this.decryptApiKey();
       if (!apiKey) {
         throw new Error('API key復号化に失敗しました');
