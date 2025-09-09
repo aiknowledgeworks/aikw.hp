@@ -204,6 +204,53 @@
       font-weight: bold;
     }
 
+    /* === HP制作: レイアウト改善 === */
+    .services-grid { align-items: stretch; }
+    .service-card { display: flex; flex-direction: column; height: 100%; }
+    .icon-badge {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: var(--primary-gradient);
+      color: #fff; display: inline-flex; align-items: center; justify-content: center;
+      box-shadow: 0 6px 18px rgba(0,0,0,.12);
+      font-size: 1.8rem; margin-bottom: 1rem;
+    }
+
+    .badge {
+      display: inline-block; background: var(--accent); color: #fff;
+      border-radius: 999px; padding: 0.25rem 0.6rem; font-size: 0.75rem;
+      margin-left: 0.5rem; vertical-align: middle;
+    }
+
+    .table-scroll { position: relative; overflow-x: auto; }
+    .pricing-table { width: 100%; border-collapse: separate; border-spacing: 0; min-width: 720px; }
+    .pricing-table thead th {
+      background: #f1f6ff; color: #2b3a4a; font-weight: 700;
+      padding: 12px 14px; border-bottom: 2px solid #e3ecf8; text-align: center;
+    }
+    .pricing-table tbody td { padding: 12px 14px; border-bottom: 1px solid #eef2f6; text-align: center; }
+    .pricing-table tbody tr:nth-child(even) td { background: #fafbfe; }
+    .pricing-table th:first-child, .pricing-table td:first-child { position: sticky; left: 0; background: inherit; z-index: 1; }
+    .pricing-table .highlight { background: rgba(0, 201, 167, 0.06); font-weight: 700; }
+
+    .value-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
+    .value-card { background: #fff; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,.06); padding: 1.5rem; border: 1px solid #e9ecef; position: relative; overflow: hidden; }
+    .value-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: var(--primary-gradient); }
+    .value-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem; }
+    .value-icon { width: 40px; height: 40px; border-radius: 50%; background: var(--primary-gradient); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 1.1rem; box-shadow: 0 3px 10px rgba(0,0,0,.08); }
+    .value-title { font-size: 1.15rem; margin: 0; color: var(--dark); font-weight: 800; }
+    .value-card p { margin-top: 0.25rem; color: #555; }
+
+    .quote-card { background: #f7f9fb; border-left: 6px solid var(--accent); padding: 1.5rem 1.25rem; border-radius: 12px; font-weight: 700; color: #334; }
+    .callout { background: #fff; border: 1px solid #e9ecef; border-left: 6px solid var(--accent); padding: 1rem; border-radius: 10px; }
+
+    .problem-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0.75rem; padding: 0; margin: 0; text-align: center; }
+    .problem-list li { position: relative; list-style: none; background: #fff; border: 1px solid #e9ecef; border-radius: 12px; padding: 0.9rem 1rem; font-size: 1.05rem; color: #333; box-shadow: 0 3px 10px rgba(0,0,0,.04); transition: transform .2s ease, box-shadow .2s ease; }
+    .problem-list li::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: var(--primary-gradient); border-radius: 12px 0 0 12px; }
+    .problem-list li:nth-child(even) { background: #fcfefe; }
+    .problem-list li:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,.08); }
+
+    .highlight-text { background: linear-gradient(135deg, #ff6b9d 0%, #ffd93d 100%); color: white; padding: 0.1rem 0.4rem; border-radius: 4px; font-weight: 700; box-shadow: 0 2px 4px rgba(0,0,0,.1); }
+
     /* === プロセスカード === */
     .process-grid {
       display: grid;
@@ -464,6 +511,15 @@
       .service-tab div[style*="font-size: 2.5rem"] {
         font-size: 2rem !important;
       }
+      
+      /* HP制作セクションのモバイル対応 */
+      .service-card .icon-badge { width: 52px; height: 52px; font-size: 1.4rem; }
+      .value-card .value-icon { width: 36px; height: 36px; font-size: 1rem; }
+      .value-grid { grid-template-columns: 1fr; }
+      .pricing-table { font-size: 0.9rem; }
+      .service-content th, .service-content td { padding: 8px !important; }
+      .service-content .card { padding: 1.5rem !important; }
+      .service-content .section-title { font-size: 1.8rem !important; }
     }
 
 
@@ -510,6 +566,11 @@
           <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🚀</div>
           <h3 style="font-size: 1.2rem; font-weight: 700; margin: 0;">創業サポートパック</h3>
           <p style="font-size: 0.9rem; margin: 0.5rem 0 0; opacity: 0.9;">起業の全準備を1日で</p>
+        </div>
+        <div class="service-tab" data-service="hp-creation" style="cursor: pointer; padding: 1.5rem 2rem; border-radius: 12px; background: white; color: var(--dark); text-align: center; min-width: 200px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 2px solid #e9ecef;">
+          <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">💻</div>
+          <h3 style="font-size: 1.2rem; font-weight: 700; margin: 0;">AI-powered ホームページの制作</h3>
+          <p style="font-size: 0.9rem; margin: 0.5rem 0 0; opacity: 0.7;">安心・成果が見えるWeb</p>
         </div>
         <div class="service-tab" data-service="ai-video" style="cursor: pointer; padding: 1.5rem 2rem; border-radius: 12px; background: white; color: var(--dark); text-align: center; min-width: 200px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 2px solid #e9ecef;">
           <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🎬</div>
@@ -614,6 +675,122 @@
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- === HP制作 === -->
+  <section id="hp-creation" class="service-content" data-service="hp-creation" style="background: linear-gradient(135deg, #f8fffc 0%, #ffffff 100%); position: relative; overflow: hidden; display: none;">
+    <div style="position: absolute; top: -60px; right: -60px; width: 220px; height: 220px; background: linear-gradient(135deg, #00c9a7 0%, #6db5ff 100%); border-radius: 50%; opacity: 0.1; z-index: 0;"></div>
+    <div style="position: absolute; bottom: -120px; left: -120px; width: 340px; height: 340px; background: linear-gradient(135deg, #6db5ff 0%, #a1e9d9 100%); border-radius: 50%; opacity: 0.06; z-index: 0;"></div>
+
+    <div class="container" style="position: relative; z-index: 1;">
+      <!-- ヒーローヘッダー -->
+      <div style="text-align: center; margin-bottom: 4rem;">
+        <div class="reveal" style="background: var(--primary-gradient); color: white; padding: 3rem 2rem; border-radius: 20px; margin-bottom: 2rem; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
+          <h2 style="font-size: 2.8rem; font-weight: 800; margin-bottom: 1rem; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">AI-powered ホームページの制作</h2>
+          <div style="background: rgba(255,255,255,0.2); border-radius: 12px; padding: 1.5rem; margin: 2rem auto; max-width: 600px;">
+            <p style="font-size: 1.8rem; font-weight: 700; margin-bottom: 0.75rem; line-height: 1.3;">『面倒ゼロで、売れるHP。<br>月4,980円、全部込み。』</p>
+            <p style="font-size: 1.2rem; opacity: 0.95; font-weight: 500;">安心して任せられる、成果が見えるWebパートナー</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- メインメッセージ -->
+      <div class="reveal" style="max-width: 900px; margin: 0 auto 4rem;">
+        <div style="background: white; border-radius: 16px; padding: 3rem; text-align: center; box-shadow: 0 15px 35px rgba(0,0,0,0.08); border: 1px solid #e9ecef;">
+          <h3 style="font-size: 2rem; color: var(--dark); margin-bottom: 1.5rem; font-weight: 700; line-height: 1.5;">初期費用0円。ドメインもサーバーもお任せ。<br><span class="suki">AI導入で</span><br>24時間お客様対応。最短5日で集客開始。</h3>
+          <div style="background: var(--primary-gradient); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 1.6rem; font-weight: 700; line-height: 1.6;">
+            『AI技術による未来志向の成長支援』で、<br>あなたのビジネスを、<br>次のレベルへ押し上げます。
+          </div>
+        </div>
+      </div>
+
+      <!-- 課題提示 -->
+      <div class="reveal" style="margin: 3rem 0;">
+        <h3 class="section-title" style="font-size: 2rem; background: var(--primary-gradient); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">こんなお悩み、すべて解決します</h3>
+        <div class="card reveal" style="margin-top: 1.25rem;">
+          <ul class="problem-list">
+            <li>制作会社の見積もりが<span class="highlight-text">50万円以上</span>で手が出ない</li>
+            <li>古いホームページが<span class="highlight-text">恥ずかしくて</span>名刺に載せられない</li>
+            <li>問い合わせが<span class="highlight-text">月に1件も来ない</span></li>
+            <li>更新方法が分からず<span class="highlight-text">放置している</span></li>
+            <li><span class="highlight-text">夜間や休日</span>の問い合わせを逃している</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 選ばれる3つの理由 -->
+      <div class="reveal" style="margin: 3rem 0;">
+        <h3 class="section-title" style="font-size: 2rem;">3つの選ばれる理由</h3>
+        <div class="services-grid" style="margin-top: 1.5rem;">
+          <div class="service-card">
+            <h3>価格が明快で安心</h3>
+            <p class="description">月額4,980円〜。ドメイン・サーバー・SSL証明書すべて込み。追加料金は一切ありません。年間契約なら10%オフでさらにお得です。</p>
+          </div>
+          <div class="service-card">
+            <h3>最短5日のスピード対応</h3>
+            <p class="description">面倒な設定は全てお任せ。スマホで素材を送るだけで、プロが48時間以内に初回デザインをお見せします。修正も月3回まで無料対応。</p>
+          </div>
+          <div class="service-card">
+            <h3>AIで24時間売上アップ</h3>
+            <p class="description">AIチャットボットが深夜でも休日でも自動対応。よくある質問への回答から予約受付まで、取りこぼしゼロの営業体制を構築できます。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 料金表 -->
+      <div class="reveal" style="margin: 3rem 0;">
+        <h3 class="section-title" style="font-size: 2rem;">料金プラン</h3>
+        <div class="card reveal table-scroll">
+          <table class="pricing-table">
+            <thead>
+              <tr>
+                <th>項目</th>
+                <th class="highlight">ベーシックプラン <span class="badge">おすすめ</span></th>
+                <th>AIフルサポートプラン</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>月額料金</td><td class="highlight">4,980円</td><td>8,800円</td></tr>
+              <tr><td>初期費用</td><td class="highlight">0円</td><td>0円</td></tr>
+              <tr><td>レスポンシブデザイン</td><td class="highlight">✓</td><td>✓</td></tr>
+              <tr><td>ドメイン・サーバー</td><td class="highlight">✓</td><td>✓</td></tr>
+              <tr><td>SSL証明書</td><td class="highlight">✓</td><td>✓</td></tr>
+              <tr><td>問い合わせフォーム</td><td class="highlight">✓</td><td>✓</td></tr>
+              <tr><td>月間修正回数</td><td class="highlight">3回</td><td>5回</td></tr>
+              <tr><td>Google Analytics設定</td><td class="highlight">✓</td><td>✓</td></tr>
+              <tr><td>基本SEO対策(Google Console)</td><td class="highlight">✓</td><td>✓</td></tr>
+              <tr><td>AIチャットボット</td><td class="highlight">-</td><td>✓</td></tr>
+              <tr><td>FAQ自動作成</td><td class="highlight">-</td><td>✓</td></tr>
+              <tr><td>月次レポート</td><td class="highlight">-</td><td>有り</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 価値向上ポイント -->
+      <div class="reveal" style="margin: 3rem 0;">
+        <h3 class="section-title" style="font-size: 2rem;">弊社が提供するホームページ制作の特典</h3>
+        <div class="value-grid">
+          <div class="value-card">
+            <div class="value-header">
+              <h4 class="value-title">月3回までの無料修正</h4>
+            </div>
+            <p>お客様からの「ちょっとした修正をもう少し気軽にお願いしたい」という声に応え、月3回まで無料修正に対応します。これにより、営業時間の変更、新商品の追加、季節的なお知らせの更新など、日常的なビジネス変化に柔軟に対応できます。</p>
+          </div>
+          <div class="value-card">
+            <div class="value-header">
+              <h4 class="value-title">効果測定の標準化</h4>
+            </div>
+            <p>Google AnalyticsとSearch Consoleの設定を標準で提供することで、サイト公開と同時に効果測定が可能になります。これまで「ホームページを作ったけれど効果が分からない」という課題を解決し、データに基づいた改善提案が可能となります。</p>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
     </div>
   </section>
 
@@ -752,6 +929,8 @@
       const serviceContents = document.querySelectorAll('.service-content');
       
       function switchService(targetService, updateUrl = true) {
+        console.log('Switching to service:', targetService); // Debug log
+        
         // Update tab styles
         serviceTabs.forEach(tab => {
           const isActive = tab.dataset.service === targetService;
@@ -771,10 +950,17 @@
         // Update content visibility
         serviceContents.forEach(content => {
           if (content.dataset.service === targetService) {
+            console.log('Showing content for:', targetService); // Debug log
             content.style.display = 'block';
             // Re-trigger animations for newly visible content
             setTimeout(() => {
-              content.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+              content.querySelectorAll('.reveal').forEach(el => {
+                observer.observe(el);
+                // Force trigger the reveal animation
+                if (!el.classList.contains('active')) {
+                  el.classList.add('active');
+                }
+              });
             }, 100);
           } else {
             content.style.display = 'none';
@@ -792,7 +978,7 @@
       
       function getServiceFromHash() {
         const hash = window.location.hash.substring(1);
-        const validServices = ['startup-support', 'ai-video'];
+        const validServices = ['startup-support', 'hp-creation', 'ai-video'];
         return validServices.includes(hash) ? hash : 'startup-support';
       }
       
@@ -805,17 +991,12 @@
         }
       }
       
-      // Initialize with current hash or default after DOM is fully loaded
-      const initialService = getServiceFromHash();
-      
-      // Ensure proper initialization timing
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', () => {
-          switchService(initialService, false);
-        });
-      } else {
+      // Initialize after a short delay to ensure all elements are ready
+      setTimeout(() => {
+        const initialService = getServiceFromHash();
+        console.log('Initial service:', initialService); // Debug log
         switchService(initialService, false);
-      }
+      }, 100);
       
       // Handle hash changes (browser back/forward)
       window.addEventListener('hashchange', () => {

@@ -1,0 +1,1610 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AIナレッジワークス合同会社 | 公式ホームページ </title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="logo/AIナレッジワークス_logo_transparen.png">
+  <link rel="shortcut icon" type="image/x-icon" href="logo/AIナレッジワークス_logo_transparen.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="logo/AIナレッジワークス_logo_transparen.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="logo/AIナレッジワークス_logo_transparen.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="logo/AIナレッジワークス_logo_transparen.png">
+
+  <!-- Open Graph Protocol -->
+  <meta property="og:title" content="AIナレッジワークス合同会社｜公式ホームページ" />
+  <meta property="og:description" content="AIツールを使って自分だけの作品を創り、発表する体験を通じてデジタルリテラシーを育成します。" />
+  <meta property="og:image" content="https://aiknowledgeworks.net/logo/AIナレッジワークス_logo_transparen.png" />
+  <meta property="og:url" content="https://aiknowledgeworks.net" />
+  <meta property="og:type" content="website" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWFLPN1EZH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-DWFLPN1EZH');
+  </script>
+
+  
+
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* === カラーパレット & ベース === */
+    :root {
+      --primary-gradient: linear-gradient(135deg, #6db5ff 0%, #a1e9d9 100%);
+      --dark: #121212;
+      --light: #ffffff;
+      --accent: #00c9a7;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Noto Sans JP", "Nunito", sans-serif;
+      background: #f9f9f9;
+      color: var(--dark);
+      line-height: 1.7;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+
+    /* === ヘッダー === */
+    header {
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+      background: rgba(255, 255, 255, .95); backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, .1);
+    }
+    .container { width: 90%; max-width: 1200px; margin: 0 auto; }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; padding: .75rem 0; }
+    .logo { display: flex; align-items: center; }
+    .logo img { height: 44px; }
+    .logo span { font-weight: 700; margin-left: 10px; font-size: 1.1rem; }
+    nav ul { display: flex; flex-wrap: wrap; gap: 1rem; }
+    nav a { font-weight: 600; transition: color .2s; }
+    nav a:hover { color: var(--accent); }
+
+    /* === セクション共通 === */
+    section { padding: 110px 0; }
+    .section-title { font-size: 2.4rem; font-weight: 700; text-align: center; margin-bottom: .75rem; }
+    .section-subtitle { text-align: center; color: #666; margin-bottom: 2.5rem; font-size: 1rem; }
+
+    /* === Hero === */
+    .hero {
+      height: 100vh; background: var(--primary-gradient);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; color: var(--light);
+    }
+    .hero h1 { font-size: 3rem; margin-bottom: .5rem; letter-spacing: 1px; }
+    .hero p.tagline { font-size: 1.4rem; }
+    .typing { font-size: 1.25rem; margin-top: .5rem; min-height: 1.4rem; display: inline-block; }
+
+    /* === グリッド・カード === */
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+    .card { background: var(--light); border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,.05); padding: 1.8rem; opacity: 0; transform: translateY(40px); transition: all .6s ease; }
+    .card.active { opacity: 1; transform: translateY(0); }
+    .card h3 { margin-bottom: .75rem; color: var(--accent); font-size: 1.25rem; }
+
+    /* === Values === */
+    .values-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 1.5rem; }
+    .value-item { 
+      background: var(--light); 
+      padding: 1.5rem; 
+      border-radius: 12px; 
+      box-shadow: 0 4px 12px rgba(0,0,0,.05); 
+      opacity: 0; 
+      transform: translateY(40px); 
+      transition: all .6s ease; 
+      position: relative;
+      overflow: hidden;
+    }
+    .value-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: var(--primary-gradient);
+    }
+    .value-item.active { opacity: 1; transform: translateY(0); }
+    .value-item h4 { 
+      color: var(--accent); 
+      margin-bottom: .5rem; 
+      font-size: 1.1rem; 
+      display: flex;
+      align-items: center;
+    }
+    .value-item h4::before {
+      content: attr(data-icon);
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      width: 28px;
+      height: 28px;
+      margin-right: 10px;
+      border-radius: 50%;
+      font-size: 14px;
+      color: white;
+      background: #2bc4a9;
+    }
+
+    /* === Pillars === */
+    .pillars-section-title {
+      position: relative;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .pillars-section-title:after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: var(--primary-gradient);
+      margin: 1rem auto;
+      border-radius: 2px;
+    }
+    .pillars-grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); 
+      gap: 2rem; 
+      margin-top: 2rem; 
+    }
+    .pillar { 
+      background: var(--light); 
+      padding: 2.5rem 1.5rem; 
+      border-radius: 12px; 
+      text-align: center; 
+      box-shadow: 0 8px 24px rgba(0,0,0,.1); 
+      opacity: 0; 
+      transform: translateY(40px); 
+      transition: all .6s ease; 
+      position: relative;
+      overflow: hidden;
+      border-bottom: 5px solid var(--accent);
+    }
+    .pillar.active { 
+      opacity: 1; 
+      transform: translateY(0); 
+    }
+    .pillar:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 30px rgba(0,0,0,.15);
+    }
+    .pillar:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: var(--primary-gradient);
+    }
+    .pillar-icon {
+      font-size: 2.5rem;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      display: inline-block;
+    }
+    .pillar h4 { 
+      font-size: 1.4rem; 
+      margin-bottom: 1rem; 
+      color: var(--dark);
+    }
+    .pillar p {
+      color: #666;
+      font-size: 1.05rem;
+    }
+
+    /* === Matrix === */
+    .matrix-table { width: 100%; border-collapse: collapse; font-size: .95rem; margin-top: 1.25rem; opacity: 0; transform: translateY(40px); transition: all .6s ease; }
+    .matrix-table.active { opacity: 1; transform: translateY(0); }
+    .matrix-table th, .matrix-table td { border: 1px solid #ddd; padding: .75rem; }
+    .matrix-table th { background: #e6f4ff; }
+
+    /* === Q&A === */
+    .qa-item { background: var(--light); padding: 1rem 1.25rem; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,.05); margin-bottom: 1rem; opacity: 0; transform: translateY(40px); transition: all .6s ease; }
+    .qa-item.active { opacity: 1; transform: translateY(0); }
+    .qa-item summary { font-weight: 700; cursor: pointer; position: relative; padding: .5rem 0; }
+    .qa-item summary::-webkit-details-marker { display:none; }
+    .qa-item summary::after { content:'+'; position: absolute; right: 0; transition: transform .3s; }
+    .qa-item[open] summary::after { transform: rotate(45deg); }
+
+    /* === 社員紹介 === */
+    .staff-intro {
+      background: linear-gradient(135deg, #f8fffe 0%, #f0f9ff 50%, #fff8f8 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    /* モバイル表示保証 - JavaScript無効時のフォールバック */
+    @media (max-width: 768px) {
+      .staff-intro .staff-member,
+      .staff-intro .reveal {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+      }
+    }
+    
+    /* アニメーション軽減設定 */
+    @media (prefers-reduced-motion: reduce) {
+      .staff-intro .staff-member,
+      .staff-intro .reveal,
+      .card,
+      .value-item {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+    }
+    .staff-intro::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%23a1e9d9" fill-opacity="0.02"><circle cx="30" cy="30" r="4"/></g></g></svg>');
+      pointer-events: none;
+    }
+    .staff-member {
+      margin-bottom: 4rem;
+      position: relative;
+    }
+    .staff-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 2.5rem;
+      gap: 2.5rem;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.08);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    .staff-photo {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid transparent;
+      background: linear-gradient(white, white) padding-box,
+                  linear-gradient(135deg, #6db5ff, #a1e9d9, #ff9a9a) border-box;
+      box-shadow: 0 15px 35px rgba(0,0,0,.15);
+      transition: all 0.3s ease;
+    }
+    .staff-photo:hover {
+      transform: scale(1.02);
+      box-shadow: 0 15px 30px rgba(0,0,0,.15);
+    }
+    
+    /* モバイルではhover効果を無効化 */
+    @media (max-width: 768px) {
+      .staff-photo:hover {
+        transform: none;
+        box-shadow: 0 15px 35px rgba(0,0,0,.15);
+      }
+    }
+    .staff-info h3 {
+      font-size: 2.2rem;
+      background: linear-gradient(135deg, #6db5ff, #00c9a7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+      font-weight: 800;
+    }
+    .staff-info .position {
+      font-size: 1.2rem;
+      color: #666;
+      margin-bottom: 1rem;
+      padding: 0.5rem 1rem;
+      background: linear-gradient(135deg, #e8f4fd, #f0f9ff);
+      border-radius: 25px;
+      display: inline-block;
+      border: 1px solid #a1e9d9;
+    }
+    .staff-info p:last-child {
+      font-style: italic;
+      color: #555;
+      font-size: 1.1rem;
+      margin-top: 0.5rem;
+    }
+    .story-section {
+      margin-bottom: 3rem;
+      background: rgba(255, 255, 255, 0.6);
+      padding: 2rem;
+      border-radius: 15px;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .story-section h4 {
+      font-size: 1.6rem;
+      color: #2c3e50;
+      background: rgba(255, 255, 255, 0.9);
+      margin-bottom: 1.5rem;
+      padding: 1rem 1.5rem;
+      border-left: 5px solid #00c9a7;
+      border-radius: 8px;
+      font-weight: 700;
+      position: relative;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .story-section h5 {
+      font-size: 1.3rem;
+      color: var(--accent);
+      margin: 2rem 0 1rem 0;
+      font-weight: 700;
+    }
+    .story-content {
+      line-height: 1.9;
+      font-size: 1.1rem;
+    }
+    .story-content p {
+      margin-bottom: 1.5rem;
+      text-align: justify;
+    }
+    .story-content strong {
+      background: linear-gradient(135deg, #6db5ff 0%, #a1e9d9 100%);
+      color: #000000;
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      font-weight: 700;
+    }
+    .story-content ul {
+      background: rgba(240, 249, 255, 0.5);
+      padding: 1rem;
+      border-radius: 10px;
+      border-left: 4px solid #6db5ff;
+    }
+    .story-content ul li {
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+    .highlight-quote {
+      background: linear-gradient(135deg, #e8f4fd 0%, #f0f9ff 50%, #fff8f8 100%);
+      border: none;
+      border-left: 6px solid transparent;
+      background-image: linear-gradient(135deg, #e8f4fd 0%, #f0f9ff 50%, #fff8f8 100%), 
+                        linear-gradient(135deg, #6db5ff, #a1e9d9, #ff9a9a);
+      background-origin: border-box;
+      background-clip: padding-box, border-box;
+      padding: 2rem;
+      margin: 2rem 0;
+      border-radius: 15px;
+      font-style: italic;
+      font-weight: 600;
+      font-size: 1.5rem;
+      box-shadow: 0 8px 25px rgba(0,0,0,.1);
+      position: relative;
+      text-align: center;
+    }
+    .highlight-quote::before {
+      content: '"';
+      position: absolute;
+      top: -0.5rem;
+      left: 1rem;
+      font-size: 3rem;
+      color: var(--accent);
+      font-family: Georgia, serif;
+      opacity: 0.3;
+    }
+    .chapter-divider {
+      text-align: center;
+      margin: 3rem 0;
+      font-size: 1.8rem;
+      background: linear-gradient(135deg, #6db5ff, #a1e9d9, #ff9a9a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 800;
+      position: relative;
+      padding: 1rem 0;
+    }
+    .chapter-divider::before,
+    .chapter-divider::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(135deg, #6db5ff, #a1e9d9);
+      border-radius: 2px;
+    }
+    .chapter-divider::before {
+      left: calc(50% - 200px);
+    }
+    .chapter-divider::after {
+      right: calc(50% - 200px);
+    }
+    /* === 特別テキストスタイル === */
+    .special-text {
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #333333;
+    }
+    /* === ハイライト用のクラス === */
+    .highlight-text {
+      background: linear-gradient(135deg, #ffe066, #ff9a9a);
+      padding: 0.3rem 0.6rem;
+      border-radius: 6px;
+      font-weight: 800;
+      color: #000000;
+    }
+    .tech-highlight {
+      background: linear-gradient(135deg, #e8f4fd, #f0f9ff);
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      font-weight: 600;
+      color: #000000;
+    }
+
+    /* === CTA セクション === */
+    .cta-section {
+      background: var(--primary-gradient);
+      color: var(--light);
+      text-align: center;
+      padding: 60px 0;
+    }
+    .cta-section h2 {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+    }
+    .cta-section p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+    .cta-button {
+      display: inline-block;
+      background: var(--light);
+      color: var(--accent);
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-size: 1.1rem;
+    }
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    /* === Footer === */
+    footer { background: #1a1a1a; color: #e6e6e6; padding: 3rem 0; text-align: center; }
+    footer p { font-size: .85rem; }
+    footer a { color: #e6e6e6; text-decoration: underline; }
+
+    /* 引用ボックスのスタイル */
+    blockquote {
+      background: #e6f4ff;
+      border-left: 5px solid #2196F3;
+      margin: 1.5em 0;
+      padding: 1.2em 1.5em;
+      border-radius: 0 8px 8px 0;
+      font-style: italic;
+      position: relative;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    blockquote::before {
+      content: '"';
+      font-size: 3em;
+      color: #2196F3;
+      position: absolute;
+      left: 0.2em;
+      top: 0.1em;
+      font-family: Georgia, serif;
+      opacity: 0.3;
+    }
+    
+    blockquote p {
+      margin: 0;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    /* 好きのスタイル */
+    .suki {
+      font-size: 1.2em;
+      font-weight: 700;
+      color: #2bc4a9;
+      display: inline-block;
+      position: relative;
+      padding: 0 5px;
+      transform: rotate(-3deg);
+    }
+    .suki::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      background: var(--primary-gradient);
+      border-radius: 3px;
+      opacity: 0.7;
+    }
+    
+    /* できない→できる変換のスタイル */
+    .transform-text span {
+      display: inline-block;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    .transform-text span:hover {
+      transform: translateY(-5px);
+    }
+    .transform-text .negative {
+      color: #ff5757;
+    }
+    .transform-text .positive {
+      color: #00c9a7;
+    }
+    .transform-text .divider {
+      font-weight: normal;
+      color: #333;
+    }
+    .transform-text .action {
+      color: #333;
+    }
+    
+    .transform-underline {
+      width: 0;
+      height: 4px;
+      background: var(--primary-gradient);
+      margin: 15px auto;
+      border-radius: 2px;
+      transition: width 1.2s ease;
+    }
+    .transform-text.active + .transform-underline {
+      width: 70%;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.3rem; }
+      .hero p.tagline { font-size: 1.1rem; }
+      
+      /* グリッドレイアウト調整 */
+      .background-grid,
+      .training-grid,
+      .kids-lab-grid,
+      .mission-vision-container,
+      .video-content-grid {
+        grid-template-columns: 1fr !important;
+      }
+      
+      /* 動画セクション調整 */
+      .video-content-grid {
+        gap: 2rem !important;
+      }
+      
+      .video-container {
+        min-height: 350px !important;
+      }
+      
+      .video-container iframe {
+        height: 350px !important;
+      }
+      
+      /* ミッションスタイル調整 */
+      #founding .transform-text {
+        font-size: 1.6rem !important;
+      }
+      
+      #founding .transform-text .positive {
+        font-size: 1.9rem !important;
+      }
+      
+      #founding .transform-text .action {
+        font-size: 1.4rem !important;
+      }
+      
+      /* 創業のきっかけセクション調整 */
+      #founding .container > div {
+        grid-template-columns: 1fr !important;
+      }
+      
+      #founding .reveal:first-child {
+        margin-bottom: 2rem;
+      }
+      
+      /* 会社概要テーブル調整は.company-tableクラスに移行 */
+      
+      /* セクションの余白調整 */
+      section {
+        padding: 80px 0;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      /* 値グリッドは480px以下で1列に */
+      .values-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+      }
+      
+      @media (max-width: 480px) {
+        .values-grid {
+          grid-template-columns: 1fr !important;
+        }
+        
+        .section-title {
+          font-size: 1.8rem;
+        }
+        
+        .hero h1 {
+          font-size: 2rem;
+        }
+        
+        .card {
+          padding: 1.4rem;
+        }
+        
+        .card h3 {
+          font-size: 1.15rem;
+        }
+        
+        .section-subtitle {
+          font-size: 0.9rem;
+          margin-bottom: 1.5rem;
+        }
+      }
+      
+      /* Mobile navigation */
+      .header-inner {
+        padding: 0.75rem 0;
+        position: relative;
+      }
+      
+      .hamburger {
+        display: block;
+        width: 30px;
+        height: 30px;
+        position: relative;
+        cursor: pointer;
+        z-index: 1010;
+        margin-right: 0;
+        padding: 10px;
+        box-sizing: content-box;
+        margin: -10px;
+      }
+      
+      .hamburger span {
+        display: block;
+        position: absolute;
+        height: 3px;
+        width: 100%;
+        background: var(--dark);
+        border-radius: 3px;
+        opacity: 1;
+        left: 0;
+        transform: rotate(0deg);
+        transition: .25s ease-in-out;
+      }
+      
+      .hamburger span:nth-child(1) {
+        top: 0px;
+      }
+      
+      .hamburger span:nth-child(2) {
+        top: 9px;
+      }
+      
+      .hamburger span:nth-child(3) {
+        top: 18px;
+      }
+      
+      .hamburger.active span:nth-child(1) {
+        top: 9px;
+        transform: rotate(135deg);
+      }
+      
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+        left: -60px;
+      }
+      
+      .hamburger.active span:nth-child(3) {
+        top: 9px;
+        transform: rotate(-135deg);
+      }
+      
+      nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+        background: white;
+        box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+        transition: 0.3s ease;
+        padding-top: 70px;
+        z-index: 1000;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      
+      nav.active {
+        right: 0;
+      }
+      
+      nav ul {
+        flex-direction: column;
+        gap: 0;
+        padding: 0;
+        margin: 0;
+      }
+      
+      nav ul li {
+        width: 100%;
+      }
+      
+      nav ul li a {
+        padding: 15px 20px;
+        display: block;
+        border-bottom: 1px solid #eee;
+        font-size: 1.1rem;
+        position: relative;
+      }
+      
+      nav ul li a::after {
+        content: "›";
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.4rem;
+        opacity: 0.5;
+      }
+      
+      .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+        z-index: 990;
+        -webkit-backdrop-filter: blur(2px);
+        backdrop-filter: blur(2px);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      
+      .overlay.active {
+        display: block;
+        opacity: 1;
+      }
+      
+      /* 社員紹介のモバイル対応 */
+      .staff-intro {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+      }
+      
+      .staff-header {
+        flex-direction: column !important;
+        text-align: center !important;
+        gap: 1rem !important;
+        padding: 1.5rem !important;
+      }
+      
+      .staff-photo {
+        width: 120px !important;
+        height: 120px !important;
+        margin: 0 auto !important;
+      }
+      
+      .staff-info h3 {
+        font-size: 1.8rem !important;
+        margin-bottom: 0.5rem !important;
+      }
+      
+      .staff-info .position {
+        font-size: 1rem !important;
+        margin: 0.5rem auto !important;
+        display: block !important;
+        width: fit-content !important;
+      }
+      
+      .story-section {
+        padding: 1.5rem !important;
+        margin-bottom: 2rem !important;
+      }
+      
+      .story-section h4 {
+        font-size: 1.3rem !important;
+        padding: 1rem !important;
+      }
+      
+      .story-section h5 {
+        font-size: 1.1rem !important;
+        margin: 1.5rem 0 1rem 0 !important;
+      }
+      
+      .story-content {
+        font-size: 1rem !important;
+      }
+      
+      .story-content p {
+        text-align: left !important;
+        margin-bottom: 1rem !important;
+      }
+      
+      .highlight-quote {
+        font-size: 1.2rem !important;
+        padding: 1.5rem !important;
+        margin: 1.5rem 0 !important;
+      }
+      
+      .story-content ul {
+        margin-left: 1rem !important;
+        padding: 1rem !important;
+      }
+      
+      .chapter-divider::before,
+      .chapter-divider::after {
+        display: none !important;
+      }
+    }
+    
+    /* タブレット対応 */
+    @media (max-width: 1024px) and (min-width: 769px) {
+      .staff-intro {
+        display: block !important;
+        visibility: visible !important;
+      }
+      
+      .staff-header {
+        flex-direction: row !important;
+        text-align: left !important;
+        gap: 2rem !important;
+      }
+      
+      .staff-photo {
+        width: 150px !important;
+        height: 150px !important;
+        flex-shrink: 0 !important;
+      }
+      
+      .story-section h4 {
+        font-size: 1.4rem !important;
+      }
+      
+      .story-section h5 {
+        font-size: 1.2rem !important;
+      }
+      
+      .highlight-quote {
+        font-size: 1.3rem !important;
+      }
+    }
+
+
+
+
+
+
+
+    
+
+    
+
+
+
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+    /* === AIKW Chatbot Styles === */
+    .aikw-chatbot-button {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #6db5ff 0%, #00c9a7 100%);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 1100;
+      transition: transform .2s ease, opacity .2s ease;
+    }
+    .aikw-chatbot-button:hover { transform: translateY(-2px); }
+    .aikw-chatbot-button.aikw-hidden { opacity: 0; pointer-events: none; }
+    .aikw-chat-icon svg { display: block; }
+
+    .aikw-chatbot-window {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      width: 360px;
+      height: 560px;
+      max-height: calc(100vh - 80px);
+      display: none;
+      flex-direction: column;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.2);
+      overflow: hidden;
+      z-index: 1101;
+      transform: translateY(10px);
+      opacity: 0;
+      transition: transform .25s ease, opacity .25s ease;
+    }
+    .aikw-chatbot-window.aikw-open { transform: translateY(0); opacity: 1; }
+
+    .aikw-chatbot-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 14px; background: linear-gradient(135deg, #6db5ff 0%, #a1e9d9 100%);
+      color: #fff;
+    }
+    .aikw-chatbot-title { display: flex; align-items: center; gap: 10px; font-weight: 700; }
+    .aikw-chatbot-logo { width: 28px; height: 28px; border-radius: 4px; }
+    
+    .aikw-header-actions { display: flex; align-items: center; gap: 12px; }
+    .aikw-clear-button { 
+      background: rgba(255,255,255,0.15); 
+      border: 1px solid rgba(255,255,255,0.3); 
+      color: #fff; 
+      padding: 4px 10px; 
+      border-radius: 6px; 
+      font-size: 11px; 
+      font-weight: 500; 
+      cursor: pointer; 
+      transition: all 0.2s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .aikw-clear-button:hover { 
+      background: rgba(255,255,255,0.25); 
+      transform: translateY(-1px);
+    }
+    .aikw-chatbot-close { 
+      background: transparent; 
+      border: none; 
+      color: #fff; 
+      font-size: 22px; 
+      cursor: pointer; 
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      transition: background 0.2s ease;
+    }
+    .aikw-chatbot-close:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    .aikw-chatbot-body { display: flex; flex-direction: column; height: 100%; }
+    .aikw-chat-messages { flex: 1; padding: 14px; overflow-y: auto; background: #f7fafc; }
+
+    .aikw-message { display: flex; margin-bottom: 10px; }
+    .aikw-bot-message { justify-content: flex-start; }
+    .aikw-user-message { justify-content: flex-end; }
+    .aikw-message-content { max-width: 80%; padding: 10px 12px; border-radius: 12px; font-size: 14px; line-height: 1.5; box-shadow: 0 2px 6px rgba(0,0,0,0.06); }
+    .aikw-bot-message .aikw-message-content { background: #fff; border: 1px solid #e6f0f7; }
+    .aikw-user-message .aikw-message-content { background: #00c9a7; color: #fff; }
+    
+    /* Markdownハイライト用スタイル */
+    .aikw-message-content h2 { font-size: 1.1rem; margin: 0.4rem 0 0.2rem; color: #2c3e50; border-left: 3px solid #6db5ff; padding-left: 8px; }
+    .aikw-message-content h3 { font-size: 1.0rem; margin: 0.35rem 0 0.15rem; color: #334e68; }
+    .aikw-message-content h4 { font-size: 0.95rem; margin: 0.3rem 0 0.1rem; color: #486581; }
+    .aikw-message-content strong { font-weight: 700; color: #2c3e50; }
+    .aikw-user-message .aikw-message-content strong { color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,0.1); }
+    .aikw-message-content em { font-style: italic; color: #34495e; }
+    .aikw-user-message .aikw-message-content em { color: #f0f9ff; }
+    .aikw-message-content code { background: #f8f9fa; color: #e83e8c; padding: 2px 4px; border-radius: 4px; font-family: 'Courier New', monospace; font-size: 12px; }
+    .aikw-user-message .aikw-message-content code { background: rgba(255,255,255,0.2); color: #fff; }
+
+    .aikw-typing-indicator { display: inline-flex; gap: 4px; align-items: center; }
+    .aikw-typing-indicator span { width: 6px; height: 6px; background: #9aa9b2; border-radius: 50%; display: inline-block; animation: aikw-bounce 1.2s infinite ease-in-out; }
+    .aikw-typing-indicator span:nth-child(2) { animation-delay: .2s; }
+    .aikw-typing-indicator span:nth-child(3) { animation-delay: .4s; }
+    @keyframes aikw-bounce { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
+
+    .aikw-question-options { padding: 10px 14px; background: #fff; border-top: 1px solid #eef3f7; max-height: 220px; overflow-y: auto; }
+    
+    .aikw-tab-container { width: 100%; }
+    .aikw-tab-header {
+      display: flex;
+      border-bottom: 1px solid #e6f0f7;
+      background: #f8fafc;
+      border-radius: 8px 8px 0 0;
+    }
+    
+    .aikw-tab-btn {
+      flex: 1;
+      padding: 8px 12px;
+      background: transparent;
+      border: none;
+      color: #64748b;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border-radius: 8px 8px 0 0;
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .aikw-tab-arrow {
+      font-size: 10px;
+      transition: transform 0.2s ease;
+      opacity: 0.6;
+    }
+    
+    .aikw-tab-btn:hover {
+      background: rgba(0, 169, 142, 0.1);
+      color: #00a98e;
+    }
+    
+    .aikw-tab-btn.active {
+      background: #fff;
+      color: #00a98e;
+      font-weight: 600;
+    }
+    
+    .aikw-tab-btn.active .aikw-tab-arrow {
+      transform: rotate(180deg);
+      opacity: 1;
+    }
+    
+    .aikw-tab-btn.active::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: #00a98e;
+    }
+    
+    .aikw-tab-content {
+      background: #fff;
+      border-radius: 0 0 8px 8px;
+      overflow: hidden;
+      transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+    }
+    
+    .aikw-tab-content.expanded {
+      padding: 12px 8px 8px;
+      max-height: 200px;
+      opacity: 1;
+    }
+    
+    .aikw-tab-content.collapsed {
+      padding: 0;
+      max-height: 0;
+      opacity: 0;
+    }
+    
+    .aikw-questions-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    
+    .aikw-question-btn { 
+      padding: 6px 12px; 
+      border-radius: 16px; 
+      background: #eef9f7; 
+      color: #007e6a; 
+      border: 1px solid #d6f3ee; 
+      cursor: pointer; 
+      font-size: 11px; 
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .aikw-question-btn:hover { 
+      background: #dff3ef; 
+      transform: translateY(-1px);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .aikw-chat-input-area { padding: 10px 12px; background: #fff; border-top: 1px solid #eef3f7; }
+    .aikw-chat-input-container { display: flex; gap: 8px; }
+    #aikw-chat-input { flex: 1; padding: 10px 12px; border: 1px solid #e1e8ee; border-radius: 10px; font-size: 14px; }
+    #aikw-chat-send { padding: 10px 14px; background: #00c9a7; color: #fff; border: none; border-radius: 10px; cursor: pointer; font-weight: 600; }
+    #aikw-chat-send:disabled { background: #b7e8df; cursor: not-allowed; }
+
+    .aikw-back-button { margin-top: 8px; padding: 6px 10px; border: 1px solid #e1e8ee; background: #fff; border-radius: 8px; font-size: 12px; cursor: pointer; }
+    .aikw-chat-actions { display: flex; flex-wrap: wrap; }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .aikw-chatbot-window { right: 10px; left: 10px; width: auto; height: calc(100vh - 80px); }
+    }
+  </style>
+</head>
+<body>
+  <!-- === Header === -->
+  <header>
+    <div class="container header-inner">
+      <a href="#home" class="logo">
+        <img src="https://raw.githubusercontent.com/aiknowledgeworks/aikw.hp/main/logo/AI%E3%83%8A%E3%83%AC%E3%83%83%E3%82%B8%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9_logo_transparen.png" alt="AIナレッジワークス ロゴ">
+        <span>AIナレッジワークス / AIKW</span>
+      </a>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#background">創業のきっかけ</a></li>
+          <li><a href="businesspillars.html">事業内容</a></li>
+          <li><a href="service.html">サービス</a></li>
+          <li><a href="achievements.html">実績・展望</a></li>
+          <li><a href="company.html">会社概要</a></li>
+          <li><a href="contact.html">お問い合わせ</a></li>
+        </ul>
+      </nav>
+      <div class="overlay"></div>
+    </div>
+  </header>
+
+  <!-- === Hero === -->
+  <section id="home" class="hero">
+    <h1>AIナレッジワークス合同会社</h1>
+    <p class="tagline"><span class="suki">"好き"</span>を信じ合える運命共同体を育てる</p>
+    <span id="typing" class="typing"></span>
+  </section>
+
+  <!-- === Section A1: Background === -->
+  <section id="background">
+    <div class="container">
+      <h2 class="section-title">社会背景</h2>
+      <div class="background-grid reveal-group" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; max-width: 900px; margin: 0 auto;">
+        <div class="card reveal" style="height: 100%;">
+          <h3>AI技術の急速な進化</h3>
+          <p>AI技術の急速な進化により、企業や教育現場の多くの課題を解決する可能性が広がっています</p>
+        </div>
+        <div class="card reveal" style="height: 100%;">
+          <h3>国内生成AI利用率 9.1%</h3>
+          <p>日本国内で、生成AI経験がある人の割合は約9.1%。他国より低水準です。</p>
+        </div>
+        <div class="card reveal" style="height: 100%;">
+          <h3>認知ギャップの存在</h3>
+          <p>生成AIの存在や活用方法が十分に浸透しておらず、生成AIの理解不足が導入の壁になっています。</p>
+        </div>
+        <div class="card reveal" style="height: 100%;">
+          <h3>クリエイティブ分野での基盤拡大</h3>
+          <p>生成AIで独創的な表現や新たなクリエイティブプロセスが生まれ始めている。"好き" を探究できる基盤が拡大中。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === Founding === -->
+  <section id="founding">
+    <div class="container">
+      <h2 class="section-title">創業のきっかけ</h2>
+      <p class="section-subtitle"><span class="suki">"好き"</span>を実現できる社会をAIで実現する</p>
+      
+      <div style="max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center;">
+        <div class="reveal" style="background: var(--light); border-radius: 12px; padding: 2.5rem; box-shadow: 0 8px 24px rgba(0,0,0,.1);">
+          <div style="position: relative;">
+            <h3 style="color: var(--accent); font-size: 1.6rem; margin-bottom: 2rem; font-weight: 700;">私たちのミッション</h3>
+            <p style="font-size: 1.1rem; line-height: 1.8; position: relative;">
+              <span style="font-size: 1.3rem; font-weight: 600; display: block; margin-bottom: 30px;">生成AIの可能性を活かし、<br>誰もが自己実現できる世界を目指して創業しました。</span>
+              
+              <div style="margin: 20px 0; padding: 0;">
+                <div class="transform-text reveal" style="font-size: 1.8rem; font-weight: 800; line-height: 1.5;">
+                  <span class="negative" style="text-align: left; display: block; color: #ff5757; margin-bottom: 0.5rem;">できないを</span>
+                  <span class="positive" style="font-size: 2.4rem; text-align: center; display: block; color: #00c9a7; margin: 0.7rem 0;">できるに</span>
+                  <span class="action" style="font-size: 1.6rem; text-align: right; display: block; margin-top: 0.5rem;">変えます</span>
+                </div>
+                <div class="transform-underline" style="max-width: 250px; margin-left: auto;"></div>
+              </div>
+            </p>
+          </div>
+        </div>
+        
+        <div class="reveal">
+          <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=800&q=60" alt="創業イメージ" style="border-radius: 12px; box-shadow: 0 12px 30px rgba(0,0,0,.15); width: 100%;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === Vision & Values === -->
+  <section id="vision" style="background:#f0f8ff;">
+    <div class="container">
+      <h2 class="section-title">ミッション・ビジョン</h2>
+      <p class="section-subtitle"><span class="suki">"好き"</span>が未来を創る</p>
+      
+      <div class="mission-vision-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 3rem;">
+        <div class="mission-box" style="background: var(--light); border-radius: 12px; padding: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,.05); border-left: 5px solid var(--accent); height: 100%;">
+          <h3 style="font-size: 1.4rem; margin-bottom: 1rem; color: var(--accent); display: inline-flex; align-items: center;">
+            <span style="background: var(--accent); color: white; width: 32px; height: 32px; display: inline-flex; justify-content: center; align-items: center; border-radius: 50%; margin-right: 10px;">M</span>
+            ミッション
+          </h3>
+          <p style="font-size: 1.1rem; font-weight: 500;">自己実現の大量生産 ─ 自分の<span class="suki">"好き"</span>が実現しまくる社会をつくる</p>
+        </div>
+        
+        <div class="vision-box" style="background: var(--light); border-radius: 12px; padding: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,.05); border-left: 5px solid #6db5ff; height: 100%;">
+          <h3 style="font-size: 1.4rem; margin-bottom: 1rem; color: #6db5ff; display: inline-flex; align-items: center;">
+            <span style="background: #6db5ff; color: white; width: 32px; height: 32px; display: inline-flex; justify-content: center; align-items: center; border-radius: 50%; margin-right: 10px;">V</span>
+            ビジョン
+          </h3>
+          <p style="font-size: 1.1rem; font-weight: 500;">"余裕"が連鎖する未来 ─ 誰もが<span class="suki">"好き"</span>を起点に生きられる世界</p>
+        </div>
+      </div>
+      
+      <div class="value-heading-box" style="background: var(--light); border-radius: 12px; padding: 1.5rem 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 12px rgba(0,0,0,.05); border-left: 5px solid #2bc4a9; text-align: center;">
+        <h3 style="font-size: 1.4rem; color: #2bc4a9; display: inline-flex; align-items: center; justify-content: center;">
+          <span style="background: #2bc4a9; color: white; width: 32px; height: 32px; display: inline-flex; justify-content: center; align-items: center; border-radius: 50%; margin-right: 10px;">V</span>
+          バリュー
+        </h3>
+      </div>
+      
+      <div class="values-grid reveal-group" style="display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, auto); gap: 1.2rem; max-width: 1000px; margin: 0 auto;">
+        <div class="value-item reveal" style="height: 100%;">
+          <h4 data-icon="♥">Self First</h4>
+          <p>まず自分を幸せに。その幸せを社会へ。</p>
+        </div>
+        <div class="value-item reveal" style="height: 100%;">
+          <h4 data-icon="★">Live from <span class="suki">"好き"</span></h4>
+          <p>"やりたい"を人生の起点に。</p>
+        </div>
+        <div class="value-item reveal" style="height: 100%;">
+          <h4 data-icon="?">Curiosity is Power</h4>
+          <p>好奇心が可能性をひらく。</p>
+        </div>
+        <div class="value-item reveal" style="height: 100%;">
+          <h4 data-icon="∞">Be Fluid, Not Fixed</h4>
+          <p>変わり続けることを恐れない。</p>
+        </div>
+        <div class="value-item reveal" style="height: 100%;">
+          <h4 data-icon="⟳">Go at Your Own Pace</h4>
+          <p>速さより納得感。</p>
+        </div>
+        <div class="value-item reveal" style="height: 100%;">
+          <h4 data-icon="✓">Trust the Process</h4>
+          <p>結果だけでなく、過程を信じる。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === Brand Video === -->
+  <section id="brand-video">
+    <div class="container">
+      <h2 class="section-title">光が織りなす<span class="suki">"好き"</span>の物語</h2>
+      
+      <div class="video-content-grid reveal-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; max-width: 1000px; margin: 0 auto;">
+        <div class="video-container reveal" style="position: relative; width: 100%; height: auto; min-height: 550px; border-radius: 16px; overflow: hidden; box-shadow: 0 12px 30px rgba(0,0,0,.15);">
+          <iframe 
+            src="https://www.youtube.com/embed/8cyoIow_exs?si=WNus0JQf759BVPb0&amp;controls=1&amp;rel=0&amp;playsinline=1&amp;modestbranding=1&amp;autoplay=0" 
+            title="AIナレッジワークス ブランドムービー" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen
+            style="width: 100%; height: 550px; border-radius: 16px;">
+          </iframe>
+        </div>
+        
+        <div class="video-description reveal" style="background: var(--light); border-radius: 12px; padding: 2.5rem; box-shadow: 0 8px 24px rgba(0,0,0,.1); border-left: 5px solid var(--accent);">
+          <h3 style="color: var(--accent); font-size: 1.4rem; margin-bottom: 1.5rem; font-weight: 700;">Light to Breath, Breath to Code</h3>
+          <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem;">
+            暗闇の中の小さな光点から始まり、一人ひとりの心に眠る<span class="suki">"好き"</span>の種が芽吹き、やがて世界を結ぶ大きなネットワークへと成長していく物語。
+          </p>
+          <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem;">
+            個人の情熱が他者との出会いによって共鳴し、コミュニティを形成し、最終的には宇宙規模のビジョンへと昇華する様子を光の軌跡で表現しています。
+          </p>
+          <p style="font-size: 1.1rem; line-height: 1.8; color: #666;">
+            私たちAIナレッジワークスが目指す「自己実現の大量生産」の世界観を、美しい映像詩として描きました。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === 社員紹介 === -->
+  <section id="staff-intro" class="staff-intro">
+    <div class="container">
+      <h2 class="section-title">社員紹介</h2>
+      <p class="section-subtitle">人生をかけてAI革命に挑む仲間たち</p>
+      
+      <!-- 内堀代表社員 -->
+      <div class="card reveal staff-member">
+        <div class="staff-header">
+          <img src="images/uchibori.jpg" alt="内堀代表社員" class="staff-photo">
+          <div class="staff-info">
+            <h3>内堀 善史</h3>
+            <p class="position">代表社員（社長）</p>
+            <p><span class="special-text">視力0.02から見えた "AI革命"</span></p>
+          </div>
+        </div>
+        
+        <div class="story-content">
+          <div class="story-section">
+            <h4>この仕事に人生をかける理由</h4>
+            
+            <h5>1. Aidemyで始まった挑戦（2018年）</h5>
+            <p>2018年、私はオンライン学習サービスAidemyですべてのAI（機械学習）講座を修了し、ディープラーニングの世界にのめり込みました。ところが「深層強化学習」だけは、講師の説明を聞いても腑に落ちません。フィボナッチ数列や漸化式が絡む難解な数式に悩み、ついにはケンブリッジ大学院生を個別に雇って徹底的に教わるという"裏技"に走ります。</p>
+            
+            <p>ところが――。<br>
+            1日10時間に及ぶコードと数式のにらめっこが続いた結果、もともと悪かった視力がさらに低下し、<span class="tech-highlight">右0.02／左0.03という失明寸前のレベル</span>に。泣く泣くキーボードを置き、AIエンジニアの道をいったん諦めました。</p>
+            
+            <h5>2. ChatGPTの衝撃（2022–2024年）</h5>
+            <p>2022年11月、ChatGPTが登場し、連日ニュースを賑わせます。友人・園田氏(アステリアART合同会社 代表)がメディア取材に引っ張りだこになっているのを横目に、「世の中、すごい時代になってきたな」と静観していました。</p>
+            
+            <p>転機は2024年11月。久しぶりに再会したデザイナーが、</p>
+            
+            <div class="highlight-quote">
+              　AIツールのおかげで、仕事の手間が9割減った
+            </div>
+            
+            <p>と鼻息荒く語るので、実際のワークフローを見せてもらいました。<br>
+            結果、私は<strong>二重の衝撃</strong>を受けます。</p>
+            
+            <p>1. <span class="tech-highlight">本当に90%業務が削減</span>できている。<br>
+            2. <span class="tech-highlight">アウトプット品質が10倍</span>に跳ね上がっている。</p>
+            
+            <p>この瞬間、<strong>「視力を理由にAIを諦めるのは、ただの言い訳だ」</strong>と確信しました。</p>
+            
+            <h5>3. "ツール芸"探究の日々（2024年末〜）</h5>
+            <p>それからというもの、<span class="tech-highlight">ChatGPT、Midjourney、NovelAI、Stable Diffusion、Make.com、Claude、Dify</span>… ――あらゆる生成系ツールを浴びるように使い倒し、</p>
+            
+            <ul style="margin-left: 1.5rem; margin-bottom: 1.2rem;">
+              <li>• イラスト生成</li>
+              <li>• 文章執筆</li>
+              <li>• 日常の疑問解決</li>
+              <li>• 機械操作の手順書作成</li>
+              <li>• アイデアブレスト</li>
+              <li>• プレゼン資料のたたき台</li>
+              <li>• LINEスタンプ＆チャットボット制作</li>
+            </ul>
+            
+            <p>――を次々と"視力0.02"でも達成。もはや<span class="tech-highlight">「アイデアさえあれば、視力なんて関係ない」</span>という確信が芽生えました。</p>
+            
+            <h5>4. "運命のもくもく会"と会長との邂逅（2025.01.19）</h5>
+            <p>さらに学びを深めようと、2025年1月19日、大阪・天満の<span class="tech-highlight">「生成AIもくもく会」</span>に参加。ここで運命的に出会ったのが<strong>会長</strong>――博士号を持ち、10年以上AI研究に携わる元・理化学研究所の研究員でした。</p>
+            
+            <p>彼は開口一番、</p>
+            
+            <div class="highlight-quote">
+            　そのうちプログラマーは不要になりますよ
+            </div>
+            
+            <p>とさらり。研究者とは思えない大胆な"未来予測"と、<strong>「AIで知の格差・資本格差をなくしたい」</strong>という志に胸を打たれ、その日の打ち上げで意気投合。しかも彼、5年前にシングルマザーと"駆け落ち婚"して親と絶縁していたという破天荒エピソードまで披露し、場を沸かせました。もはや<strong>"推せる研究者"</strong>です。</p>
+            
+            <h5>5. 狂気のイケメン──康平くん（当時20歳）参戦（2025.02.03）</h5>
+            
+            <div class="staff-header" style="margin-top: 1.5rem; margin-bottom: 2rem;">
+              <img src="images/yamamoto.png" alt="康平くん" class="staff-photo">
+              <div class="staff-info">
+                <h3>康平くん</h3>
+                <p class="position">特別顧問</p> <p class="position">天才エンジニア</p> <p class="position">Finding AIサークル代表</p>
+                <p><span class="special-text">狂気のイケメン AI中毒者</span></p>
+              </div>
+            </div>
+            <p>AIの急速な進化に食らいつくなら、<span class="tech-highlight">若き天才</span>の力は不可欠。そこで注目したのが、学生起業家が集うイベントで出逢った同志社大学理工学部・<strong>康平くん</strong>（当時2回生）。モデル級のルックスとは裏腹に、AIの話になると<span class="tech-highlight">"満月を見たオオカミ男"のごとく目が光るAI中毒者</span>です笑</p>
+            
+            <p>ビジョンを語ったところ、彼は二つ返事で参画。</p>
+            
+            <div class="highlight-quote">
+            　技術も情熱も全部ぶっ込みます！
+            </div>
+            
+            <p>と即答し、我々のコアメンバーが揃いました。</p>
+            
+            <h5>6. AIナレッジワークス合同会社誕生（2025.04.16）</h5>
+            <p>こうして2025年4月16日、私・会長・康平くんの3名で<strong class="highlight-text">AIナレッジワークス合同会社</strong>を設立。</p>
+            
+            <ul style="margin-left: 1.5rem; margin-bottom: 1.2rem;">
+              <li>• <strong>会長</strong>：学会から講演依頼が舞い込む、"研究×実装"の求道者。</li>
+              <li>• <strong>康平くん</strong>：動画生成界隈で密かに有名、Finding AIサークル代表。7月のNotion公式セミナーでは満員御礼＆アンケート1位を獲得。</li>
+              <li>• <strong>私</strong>：20年間の零細企業経営で培った"現場感覚"と"泥臭い営業力"。</li>
+            </ul>
+            
+            <p>まったく毛色の違う3人が、<strong>AIでエリート専用の武器を大衆の手に届ける</strong>という一点でタッグを組みました。</p>
+            
+            <h5>7. そして今――あなたへ</h5>
+            <p>AIツールの急激な進化は、<strong>多数派が少数派のエリートに勝てる時代</strong>を切り拓きつつあります。</p>
+            
+            <ul style="margin-left: 1.5rem; margin-bottom: 1.2rem;">
+              <li>プログラミングができなくても、発想を形にできる。</li>
+              <li>資本や学歴に頼らなくても、世界に挑戦できる。</li>
+            </ul>
+            
+            <p>私たちは、この流れを本気で加速させるために人生を賭けています。</p>
+            
+            <div class="highlight-quote">
+              AIを"見て見ぬふり"するのは、今日で終わりにしませんか？<br><br>
+              私たちと一緒に、次の歴史をつくりましょう。
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+
+
+
+
+  <!-- === Contact === -->
+  <section id="contact" class="cta-section">
+    <div class="container">
+      <h2>AIソリューションで未来を創造しませんか？</h2>
+      <p>あなたの<span class="suki">"好き"</span>を実現するお手伝いをいたします</p>
+      <a href="contact.html" class="cta-button">お問い合わせはこちら</a>
+    </div>
+  </section>
+
+  <!-- === Footer === -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 AI Knowledge Works, LLC. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- === Scripts === -->
+  <script src="js/chatbot.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Animation with IntersectionObserver - Improved for mobile
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      }, { 
+        threshold: 0.05,
+        rootMargin: '50px 0px -10px 0px'
+      });
+
+      // Fallback for cases where IntersectionObserver might not work
+      const fallbackTimer = setTimeout(() => {
+        document.querySelectorAll('.reveal, .staff-member, .value-item').forEach(el => {
+          if (!el.classList.contains('active')) {
+            el.classList.add('active');
+          }
+        });
+      }, 3000);
+
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+      document.querySelectorAll('.value-item').forEach(el => observer.observe(el));
+      document.querySelectorAll('.matrix-table').forEach(el => observer.observe(el));
+      document.querySelectorAll('.qa-item').forEach(el => observer.observe(el));
+      document.querySelectorAll('.staff-member').forEach(el => observer.observe(el));
+      document.querySelectorAll('.transform-text').forEach(el => {
+        observer.observe(el);
+        el.addEventListener('animationend', () => {
+          el.classList.add('active');
+        });
+      });
+      
+      // Check for hash in URL and scroll to that section after a delay
+      if (window.location.hash) {
+        setTimeout(() => {
+          const targetElement = document.querySelector(window.location.hash);
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+          }
+        }, 500);
+      }
+      
+      // Typing effect for hero
+      const typingElement = document.getElementById('typing');
+      const phrases = ['企業向けAI研修', '子ども向けAI研修', 'BtoB AI導入支援'];
+      let phraseIndex = 0;
+      let charIndex = 0;
+      let isDeleting = false;
+      let typingSpeed = 100;
+
+      function typeEffect() {
+        const currentPhrase = phrases[phraseIndex];
+        
+        if (isDeleting) {
+          typingElement.textContent = currentPhrase.substring(0, charIndex - 1);
+          charIndex--;
+          typingSpeed = 50;
+        } else {
+          typingElement.textContent = currentPhrase.substring(0, charIndex + 1);
+          charIndex++;
+          typingSpeed = 100;
+        }
+        
+        if (!isDeleting && charIndex === currentPhrase.length) {
+          isDeleting = true;
+          typingSpeed = 1500; // Pause at end
+        } else if (isDeleting && charIndex === 0) {
+          isDeleting = false;
+          phraseIndex = (phraseIndex + 1) % phrases.length;
+          typingSpeed = 500; // Pause before typing next
+        }
+        
+        setTimeout(typeEffect, typingSpeed);
+      }
+      
+      setTimeout(typeEffect, 1000);
+      
+      // Mobile menu functionality
+      const hamburger = document.querySelector('.hamburger');
+      const nav = document.querySelector('nav');
+      const overlay = document.querySelector('.overlay');
+      const navLinks = document.querySelectorAll('nav a');
+      
+      function toggleMenu() {
+        hamburger.classList.toggle('active');
+        nav.classList.toggle('active');
+        overlay.classList.toggle('active');
+        document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
+      }
+      
+      hamburger.addEventListener('click', toggleMenu);
+      overlay.addEventListener('click', toggleMenu);
+      
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          if (nav.classList.contains('active')) {
+            toggleMenu();
+            // スクロールをスムーズにするために少し遅延を入れる
+            setTimeout(() => {
+              const targetId = link.getAttribute('href');
+              if (targetId.startsWith('#')) {
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                  targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+              }
+            }, 300);
+          }
+        });
+      });
+    });
+  </script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>
