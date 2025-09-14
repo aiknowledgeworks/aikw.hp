@@ -1,6 +1,5 @@
 name: Deploy to GitHub Pages
 
-# Trigger for main branch pushes
 on:
   push:
     branches: [ main ]
@@ -66,10 +65,14 @@ jobs:
         if [ -f "build/js/runtime-config.js" ]; then
           echo "✅ runtime-config.js exists"
           ls -la build/js/runtime-config.js
+          echo "📄 Final runtime-config.js content preview:"
+          head -3 build/js/runtime-config.js
         else
           echo "❌ runtime-config.js not found!"
           exit 1
         fi
+
+        echo "🚀 Build process completed successfully!"
         
     - name: Setup Pages
       uses: actions/configure-pages@v4
