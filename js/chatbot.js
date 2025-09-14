@@ -244,12 +244,18 @@ class AIKWChatbot {
       sendButton.disabled = false;
     }
     
+    // 本番環境かローカル環境かを判定
+    const isProduction = window.location.hostname !== 'localhost' && !window.location.protocol.includes('file:');
+    const modeMessage = isProduction ? 
+      '🛠️ **本番環境・開発モード**: GitHub SecretsでDIFY_API_KEYが設定されていない可能性があります。\n\n管理者の方は、GitHubリポジトリの Settings > Secrets and variables > Actions で `DIFY_API_KEY` を設定してください。\n\nお問い合わせは **otoiawase20250416@aiknowledgeworks.net** までお願いいたします。' :
+      '🛠️ **ローカル開発モード**: チャットボUIのみ表示しています。\n\n実際API機能はGitHub Pages本番環境で自動有効になります。\n\nお問い合わせは **otoiawase20250416@aiknowledgeworks.net** までお願いします。';
+    
     // 開発モードの通知メッセージを追加
     setTimeout(() => {
-      this.addBotMessage('🛠️ **開発モード**: チャットボUIのみ表示しています。\n\n実際API機能はGitHub Pages本番環境で自動有効になります。\n\nお問い合わせは **otoiawase20250416@aiknowledgeworks.net** までお願いします。');
+      this.addBotMessage(modeMessage);
     }, 500);
     
-    console.log('✅ 開発モードセットアップ完了');
+    console.log(`✅ 開発モードセットアップ完了 (${isProduction ? 'Production' : 'Local'} environment)`);
   }
 
   // API key取得（GitHub Actionsビルド時に置換）

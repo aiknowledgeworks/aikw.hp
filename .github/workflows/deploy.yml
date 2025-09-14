@@ -18,7 +18,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment: github-pages
+    environment:
+      name: github-pages
     
     steps:
     - name: Checkout
@@ -61,12 +62,17 @@ jobs:
         ls -la build/
         
         # Verify API key is available
-        if [ -z "$DIFY_API_KEY" ]; then
-          echo "❌ Error: DIFY_API_KEY environment secret not found"
-          exit 1
-        fi
+        echo "🔍 Checking API key availability..."
+        echo "Environment variables:"
+        env | grep -E "(DIFY|API)" || echo "No DIFY/API env vars found"
         
-        echo "✅ API key found, replacing placeholder..."
+        if [ -z "$DIFY_API_KEY" ]; then
+          echo "❌ Warning: DIFY_API_KEY environment secret not found"
+          echo "⚠️ Proceeding without API key - site will run in development mode"
+          # Don't exit, continue with development mode
+        else
+          echo "✅ API key found (${#DIFY_API_KEY} characters), replacing placeholder..."
+        fi
         
         # Check if chatbot.js exists before replacement
         if [ ! -f "build/js/chatbot.js" ]; then
@@ -77,28 +83,48 @@ jobs:
         fi
         
         # Replace API key placeholder in JavaScript file (escape sed specials)
-        ESCAPED_KEY=$(printf '%s' "$DIFY_API_KEY" | sed -e 's/[\\/&]/\\&/g')
-        sed -i "s/DIFY_API_KEY_PLACEHOLDER/${ESCAPED_KEY}/g" build/js/chatbot.js
+        if [ -n "$DIFY_API_KEY" ]; then
+          ESCAPED_KEY=$(printf '%s' "$DIFY_API_KEY" | sed -e 's/[\\/&]/\\&/g')
+          sed -i "s/DIFY_API_KEY_PLACEHOLDER/${ESCAPED_KEY}/g" build/js/chatbot.js
+          echo "✅ API key placeholder replaced in chatbot.js"
+        fi
 
-        # Also generate a runtime config that the page loads before chatbot.js
+        # Always generate a runtime config that the page loads before chatbot.js
         # Use Node to JSON-escape the secret safely for JS string literal
-        JS_SAFE_KEY=$(node -e 'process.stdout.write(JSON.stringify(process.env.DIFY_API_KEY || ""))')
-        echo "window.DIFY_API_KEY = ${JS_SAFE_KEY};" > build/js/runtime-config.js
-        
-        # Verify replacement was successful
-        if grep -q "DIFY_API_KEY_PLACEHOLDER" build/js/chatbot.js; then
-          echo "❌ Error: API key placeholder was not replaced"
-          echo "Current content around API key:"
-          grep -n "DIFY_API_KEY" build/js/chatbot.js || echo "No DIFY_API_KEY found"
-          exit 1
+        if [ -n "$DIFY_API_KEY" ]; then
+          JS_SAFE_KEY=$(node -e 'process.stdout.write(JSON.stringify(process.env.DIFY_API_KEY || ""))')
+          echo "window.DIFY_API_KEY = ${JS_SAFE_KEY};" > build/js/runtime-config.js
+          echo "✅ Runtime config created with API key"
         else
-          echo "✅ API key placeholder successfully replaced"
+          echo "window.DIFY_API_KEY = undefined;" > build/js/runtime-config.js
+          echo "console.log('⚠️ Development mode: API key not available in CI');" >> build/js/runtime-config.js
+          echo "⚠️ Runtime config created without API key"
         fi
         
-        echo "📄 Chatbot.js first 10 lines (API key should be replaced if sed path used):"
+        # Verify replacement was successful
+        if [ -n "$DIFY_API_KEY" ]; then
+          if grep -q "DIFY_API_KEY_PLACEHOLDER" build/js/chatbot.js; then
+            echo "❌ Error: API key placeholder was not replaced"
+            echo "Current content around API key:"
+            grep -n "DIFY_API_KEY" build/js/chatbot.js || echo "No DIFY_API_KEY found"
+            exit 1
+          else
+            echo "✅ API key placeholder successfully replaced"
+          fi
+        else
+          echo "⚠️ Skipping placeholder check - no API key available"
+        fi
+        
+        echo "📄 Final file contents:"
+        echo "📄 Chatbot.js first 10 lines:"
         head -10 build/js/chatbot.js || true
-        echo "📄 runtime-config.js (API key should be present here):"
-        head -5 build/js/runtime-config.js || true
+        echo "📄 runtime-config.js content:"
+        cat build/js/runtime-config.js || true
+        
+        echo "🔍 GitHub environment info:"
+        echo "GITHUB_REPOSITORY: $GITHUB_REPOSITORY"
+        echo "GITHUB_REF: $GITHUB_REF"
+        echo "GITHUB_ACTOR: $GITHUB_ACTOR"
         
     - name: Setup Pages
       uses: actions/configure-pages@v4
