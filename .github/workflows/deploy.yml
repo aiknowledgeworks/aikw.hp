@@ -3,8 +3,6 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
 permissions:
   contents: read
@@ -23,118 +21,27 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v4
-      
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18'
         
-    - name: Build site with API key
+    - name: Build site
       env:
         DIFY_API_KEY: ${{ secrets.DIFY_API_KEY }}
       run: |
-        # Create build directory
+        # Create build directory and copy files
         mkdir -p build
+        cp -r aitools company images js logo *.html CNAME build/ 2>/dev/null || true
         
-        # Copy specific directories and files (safer approach)
-        cp -r aitools build/ 2>/dev/null || echo "aitools not found, skipping"
-        cp -r company build/ 2>/dev/null || echo "company not found, skipping"
-        cp -r images build/ 2>/dev/null || echo "images not found, skipping"
-        cp -r js build/ 2>/dev/null || echo "js not found, skipping"
-        cp -r logo build/ 2>/dev/null || echo "logo not found, skipping"
-        
-        # Copy HTML files
-        cp *.html build/ 2>/dev/null || echo "No HTML files found"
-        
-        # Copy other important files
-        cp *.md build/ 2>/dev/null || echo "No Markdown files found"
-        cp CNAME build/ 2>/dev/null || echo "CNAME not found, skipping"
-        cp .gitignore build/ 2>/dev/null || echo ".gitignore not found, skipping"
-        cp test-deployment.txt build/ 2>/dev/null || echo "test file not found, skipping"
-        
-        # List current directory contents for debugging
-        echo "📁 Source directory contents:"
-        ls -la
-        
-        # List build directory contents after copy
-        echo "📁 Build directory contents after copy:"
-        ls -la build/
-        
-        # Verify API key is available
-        echo "🔍 Checking API key availability..."
-        echo "📋 Environment debug info:"
-        echo "GITHUB_REPOSITORY: $GITHUB_REPOSITORY"
-        echo "GITHUB_REF: $GITHUB_REF" 
-        echo "GITHUB_EVENT_NAME: $GITHUB_EVENT_NAME"
-        echo "RUNNER_ENVIRONMENT: $RUNNER_ENVIRONMENT"
-        
-        echo "📋 Checking environment variables:"
-        env | grep -E "(GITHUB|DIFY|API)" | grep -v TOKEN || echo "No matching env vars found"
-        
-        if [ -z "$DIFY_API_KEY" ]; then
-          echo "❌ CRITICAL: DIFY_API_KEY not available in this environment"
-          echo "📝 This could mean:"
-          echo "  1. Repository secret DIFY_API_KEY not set"
-          echo "  2. Environment secret not accessible"
-          echo "  3. Environment 'github-pages' not properly configured"
-          echo "⚠️ Proceeding without API key - site will run in development mode"
-          # Don't exit, continue with development mode
-        else
-          echo "✅ API key found and loaded (${#DIFY_API_KEY} characters)"
-          echo "🔑 First 4 characters: ${DIFY_API_KEY:0:4}****"
-        fi
-        
-        # Check if chatbot.js exists before replacement
-        if [ ! -f "build/js/chatbot.js" ]; then
-          echo "❌ Error: build/js/chatbot.js not found"
-          echo "Contents of build/js directory:"
-          ls -la build/js/ || echo "build/js directory does not exist"
-          exit 1
-        fi
-        
-        # Replace API key placeholder in JavaScript file (escape sed specials)
+        # Create runtime-config.js with API key
         if [ -n "$DIFY_API_KEY" ]; then
-          ESCAPED_KEY=$(printf '%s' "$DIFY_API_KEY" | sed -e 's/[\\/&]/\\&/g')
-          sed -i "s/DIFY_API_KEY_PLACEHOLDER/${ESCAPED_KEY}/g" build/js/chatbot.js
-          echo "✅ API key placeholder replaced in chatbot.js"
-        fi
-
-        # Always generate a runtime config that the page loads before chatbot.js
-        # Use Node to JSON-escape the secret safely for JS string literal
-        if [ -n "$DIFY_API_KEY" ]; then
-          JS_SAFE_KEY=$(node -e 'process.stdout.write(JSON.stringify(process.env.DIFY_API_KEY || ""))')
-          echo "window.DIFY_API_KEY = ${JS_SAFE_KEY};" > build/js/runtime-config.js
-          echo "✅ Runtime config created with API key"
+          echo "window.DIFY_API_KEY = \"$DIFY_API_KEY\";" > build/js/runtime-config.js
+          echo "✅ API key configured"
         else
           echo "window.DIFY_API_KEY = undefined;" > build/js/runtime-config.js
-          echo "console.log('⚠️ Development mode: API key not available in CI');" >> build/js/runtime-config.js
-          echo "⚠️ Runtime config created without API key"
+          echo "❌ No API key found"
         fi
         
-        # Verify replacement was successful
-        if [ -n "$DIFY_API_KEY" ]; then
-          if grep -q "DIFY_API_KEY_PLACEHOLDER" build/js/chatbot.js; then
-            echo "❌ Error: API key placeholder was not replaced"
-            echo "Current content around API key:"
-            grep -n "DIFY_API_KEY" build/js/chatbot.js || echo "No DIFY_API_KEY found"
-            exit 1
-          else
-            echo "✅ API key placeholder successfully replaced"
-          fi
-        else
-          echo "⚠️ Skipping placeholder check - no API key available"
-        fi
-        
-        echo "📄 Final file contents:"
-        echo "📄 Chatbot.js first 10 lines:"
-        head -10 build/js/chatbot.js || true
-        echo "📄 runtime-config.js content:"
-        cat build/js/runtime-config.js || true
-        
-        echo "🔍 GitHub environment info:"
-        echo "GITHUB_REPOSITORY: $GITHUB_REPOSITORY"
-        echo "GITHUB_REF: $GITHUB_REF"
-        echo "GITHUB_ACTOR: $GITHUB_ACTOR"
+        # Show what was created
+        echo "📄 runtime-config.js:"
+        cat build/js/runtime-config.js
         
     - name: Setup Pages
       uses: actions/configure-pages@v4
