@@ -54,8 +54,20 @@ jobs:
         echo "📄 runtime-config.js content:"
         if grep -q "undefined" build/js/runtime-config.js; then
           cat build/js/runtime-config.js
+          echo "⚠️  WARNING: API key was not configured properly!"
         else
           echo "window.DIFY_API_KEY = \"[CONFIGURED]\";"
+          echo "✅ API key successfully configured!"
+        fi
+
+        # Verify the file was created correctly
+        echo "🔍 Verifying runtime-config.js exists..."
+        if [ -f "build/js/runtime-config.js" ]; then
+          echo "✅ runtime-config.js exists"
+          ls -la build/js/runtime-config.js
+        else
+          echo "❌ runtime-config.js not found!"
+          exit 1
         fi
         
     - name: Setup Pages
