@@ -22,15 +22,20 @@
     gtag('config', 'G-DWFLPN1EZH');
   </script>
 
-  <!-- Dify Chatbot - Removed for security -->
-  <!-- API key now managed via GitHub Actions and Environment Secrets -->
-  <!-- Custom chatbot implementation is used instead -->
+  <!-- Dify Chatbot -->
+  <script>
+    window.difyChatbotConfig = {
+      token: 'app-dGOYWyZTRAXfLI6EoNHqMkY7'
+    }
+  </script>
+  <script
+    src="https://udify.app/embed.min.js"
+    id="dGOYWyZTRAXfLI6EoNHqMkY7"
+    defer>
+  </script>
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet" />
-
-  <!-- カスタムチャットボット -->
-  <script src="js/chatbot.js" defer></script>
 
   <style>
     /* === カラーパレット & ベース === */
@@ -138,93 +143,47 @@
     footer p { font-size: .85rem; }
     footer a { color: #e6e6e6; text-decoration: underline; }
 
-    /* === AIKW Chatbot Styles === */
-    .aikw-chatbot-button {
-      position: fixed;
-      right: 20px;
-      bottom: 20px;
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #6db5ff 0%, #00c9a7 100%);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      z-index: 1100;
-      transition: transform .2s ease, opacity .2s ease;
+    /* === Dify Chatbot Styles === */
+    #dify-chatbot-bubble-button {
+      background-color: #1C64F2 !important;
     }
-    .aikw-chatbot-button:hover { transform: translateY(-2px); }
-    .aikw-chatbot-button.aikw-hidden { opacity: 0; pointer-events: none; }
-    .aikw-chat-icon svg { display: block; }
-
-    .aikw-chatbot-window {
-      position: fixed;
-      right: 20px;
-      bottom: 20px;
-      width: 360px;
-      height: 560px;
-      max-height: calc(100vh - 80px);
-      display: none;
-      flex-direction: column;
-      background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 16px 40px rgba(0,0,0,0.2);
-      overflow: hidden;
-      z-index: 1101;
-      transform: translateY(10px);
-      opacity: 0;
-      transition: transform .25s ease, opacity .25s ease;
-    }
-    .aikw-chatbot-window.aikw-open { transform: translateY(0); opacity: 1; }
-
-    .aikw-chatbot-header {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 12px 14px; background: linear-gradient(135deg, #6db5ff 0%, #a1e9d9 100%);
-      color: #fff;
-    }
-    .aikw-chatbot-title { display: flex; align-items: center; gap: 10px; font-weight: 700; }
-    .aikw-chatbot-logo { width: 28px; height: 28px; border-radius: 4px; }
     
-    .aikw-header-actions { display: flex; align-items: center; gap: 12px; }
-    .aikw-clear-button { 
-      background: rgba(255,255,255,0.15); 
-      border: 1px solid rgba(255,255,255,0.3); 
-      color: #fff; 
-      padding: 4px 10px; 
-      border-radius: 6px; 
-      font-size: 11px; 
-      font-weight: 500; 
-      cursor: pointer; 
-      transition: all 0.2s ease;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
+    /* デスクトップ・タブレット用のサイズ */
+    #dify-chatbot-bubble-window {
+      width: 24rem !important;
+      height: 40rem !important;
     }
-    .aikw-clear-button:hover { 
-      background: rgba(255,255,255,0.25); 
-      transform: translateY(-1px);
+    
+    /* タブレット用のサイズ調整 */
+    @media (max-width: 1024px) and (min-width: 769px) {
+      #dify-chatbot-bubble-window {
+        width: 22rem !important;
+        height: 36rem !important;
+      }
     }
-    .aikw-chatbot-close { 
-      background: transparent; 
-      border: none; 
-      color: #fff; 
-      font-size: 22px; 
-      cursor: pointer; 
-      width: 32px;
-      height: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 6px;
-      transition: background 0.2s ease;
+    
+    /* スマホ用のサイズ調整 */
+    @media (max-width: 768px) {
+      #dify-chatbot-bubble-window {
+        width: 90vw !important;
+        max-width: 20rem !important;
+        height: 70vh !important;
+        max-height: 32rem !important;
+        right: 1rem !important;
+        bottom: 1rem !important;
+      }
     }
-    .aikw-chatbot-close:hover {
-      background: rgba(255,255,255,0.2);
-    }
-
+    
+    /* 小さなスマホ用のさらなる調整 */
     @media (max-width: 480px) {
-      .aikw-chatbot-window { right: 10px; left: 10px; width: auto; height: calc(100vh - 80px); }
+      #dify-chatbot-bubble-window {
+        width: 95vw !important;
+        max-width: 18rem !important;
+        height: 65vh !important;
+        max-height: 28rem !important;
+        right: 0.5rem !important;
+        bottom: 0.5rem !important;
+      }
     }
 
     /* === お問い合わせオプション === */
@@ -411,48 +370,6 @@
       }
     }
 
-    /* === Dify Chatbot Styles === */
-    #dify-chatbot-bubble-button {
-      background-color: #1C64F2 !important;
-    }
-    
-    /* デスクトップ・タブレット用のサイズ */
-    #dify-chatbot-bubble-window {
-      width: 24rem !important;
-      height: 40rem !important;
-    }
-    
-    /* タブレット用のサイズ調整 */
-    @media (max-width: 1024px) and (min-width: 769px) {
-      #dify-chatbot-bubble-window {
-        width: 22rem !important;
-        height: 36rem !important;
-      }
-    }
-    
-    /* スマホ用のサイズ調整 */
-    @media (max-width: 768px) {
-      #dify-chatbot-bubble-window {
-        width: 90vw !important;
-        max-width: 20rem !important;
-        height: 70vh !important;
-        max-height: 32rem !important;
-        right: 1rem !important;
-        bottom: 1rem !important;
-      }
-    }
-    
-    /* 小さなスマホ用のさらなる調整 */
-    @media (max-width: 480px) {
-      #dify-chatbot-bubble-window {
-        width: 95vw !important;
-        max-width: 18rem !important;
-        height: 65vh !important;
-        max-height: 28rem !important;
-        right: 0.5rem !important;
-        bottom: 0.5rem !important;
-      }
-    }
   </style>
 </head>
 <body>
@@ -487,8 +404,6 @@
     <h1>お問い合わせ</h1>
     <p class="tagline">AI導入・研修についてお気軽にご相談ください</p>
   </section>
-
-
 
   <!-- === Contact Details === -->
   <section id="contact-details" style="background:#f0f8ff;">

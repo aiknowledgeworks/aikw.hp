@@ -30,8 +30,6 @@
   </script>
 
   
-
-
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet" />
 
@@ -894,31 +892,6 @@
       }
     }
 
-
-
-
-
-
-
-    
-
-    
-
-
-
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-
     /* === AIKW Chatbot Styles === */
     .aikw-chatbot-button {
       position: fixed;
@@ -1319,22 +1292,23 @@
     
     .aikw-tab-header {
       display: flex;
-      flex-direction: column;
-      gap: 8px;
+      flex-direction: row;
+      gap: 4px;
     }
     
     .aikw-tab-btn {
       background: #f8f9fa;
       border: 1px solid #dee2e6;
       border-radius: 6px;
-      padding: 10px 12px;
-      font-size: 14px;
+      padding: 8px 12px;
+      font-size: 12px;
       cursor: pointer;
       transition: all 0.2s ease;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
-      width: 100%;
+      flex: 1;
+      white-space: nowrap;
     }
     
     .aikw-tab-btn:hover {
@@ -1484,6 +1458,23 @@
       }
     }
     
+    /* Tablet responsive */
+    @media (max-width: 768px) and (min-width: 481px) {
+      .aikw-chatbot-window {
+        width: 350px;
+        height: 500px;
+      }
+      
+      .aikw-tab-btn {
+        font-size: 11px;
+        padding: 7px 10px;
+      }
+      
+      .aikw-message-content {
+        font-size: 13px;
+      }
+    }
+    
     /* Mobile responsive */
     @media (max-width: 480px) {
       .aikw-chatbot-window {
@@ -1497,8 +1488,99 @@
         right: 20px;
         bottom: 20px;
       }
+      
+      /* スマホ用のタブヘッダー調整 */
+      .aikw-tab-header {
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+      
+      .aikw-tab-btn {
+        font-size: 11px;
+        padding: 6px 8px;
+        min-height: 40px;
+      }
+      
+      /* チャット入力エリアの調整 */
+      .aikw-chat-input-container input {
+        font-size: 14px;
+        padding: 8px 10px;
+      }
+      
+      .aikw-chat-input-container button {
+        font-size: 12px;
+        padding: 8px 12px;
+      }
+      
+      /* メッセージコンテンツの調整 */
+      .aikw-message-content {
+        font-size: 13px;
+        padding: 8px 12px;
+      }
+      
+      /* 質問ボタンの調整 */
+      .aikw-question-btn {
+        font-size: 12px;
+        padding: 6px 10px;
+      }
+      
+      /* チャットボットヘッダーの調整 */
+      .aikw-chatbot-header {
+        padding: 10px 12px;
+      }
+      
+      .aikw-chatbot-title {
+        font-size: 14px;
+      }
+      
+      .aikw-chatbot-logo {
+        width: 24px !important;
+        height: 24px !important;
+      }
+      
+      /* 質問オプションエリアの調整 */
+      .aikw-question-options {
+        padding: 8px 10px;
+        max-height: 180px;
+      }
+      
+      /* タブコンテンツの調整 */
+      .aikw-tab-content.expanded {
+        padding: 10px 6px 6px;
+        max-height: 150px;
+      }
     }
     
+    /* 極小スマホ対応 (iPhone SE等) */
+    @media (max-width: 375px) {
+      .aikw-chatbot-window {
+        width: calc(100vw - 16px);
+        right: 8px;
+        bottom: 80px;
+        height: 65vh;
+      }
+      
+      .aikw-tab-btn {
+        font-size: 10px;
+        padding: 5px 6px;
+        min-height: 36px;
+      }
+      
+      .aikw-message-content {
+        font-size: 12px;
+        padding: 6px 10px;
+      }
+      
+      .aikw-chat-input-container input {
+        font-size: 13px;
+        padding: 6px 8px;
+      }
+      
+      .aikw-chat-input-container button {
+        font-size: 11px;
+        padding: 6px 10px;
+      }
+    }
     </style>
 </head>
 <body>
@@ -1807,14 +1889,6 @@
     </div>
   </section>
 
-
-
-
-
-
-
-
-
   <!-- === Contact === -->
   <section id="contact" class="cta-section">
     <div class="container">
@@ -1951,14 +2025,6 @@
       });
     });
   </script>
-
-
-
-
-
-
-
-
 
 </body>
 </html>

@@ -226,6 +226,32 @@ class AIKWChatbot {
     return 'user_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
   }
 
+  // 開発モードのセットアップ
+  setupDevelopmentMode() {
+    console.log('🛠️ 開発モードをセットアップ中...');
+    this.isDevelopmentMode = true;
+    
+    // 入力フィールドを有効化し、開発モードのメッセージを表示
+    const chatInput = document.getElementById('aikw-chat-input');
+    const sendButton = document.getElementById('aikw-chat-send');
+    
+    if (chatInput) {
+      chatInput.disabled = false;
+      chatInput.placeholder = '開発モード: メッセージを入力してください';
+    }
+    
+    if (sendButton) {
+      sendButton.disabled = false;
+    }
+    
+    // 開発モードの通知メッセージを追加
+    setTimeout(() => {
+      this.addBotMessage('🛠️ **開発モード**: チャットボUIのみ表示しています。\n\n実際API機能はGitHub Pages本番環境で自動有効になります。\n\nお問い合わせは **otoiawase20250416@aiknowledgeworks.net** までお願いします。');
+    }, 500);
+    
+    console.log('✅ 開発モードセットアップ完了');
+  }
+
   // API key取得（GitHub Actionsビルド時のみ）
   async getApiKey() {
     // GitHub Actionsでビルド時に置換されたAPI keyをチェック
@@ -292,15 +318,12 @@ class AIKWChatbot {
               <div class="aikw-tab-header">
                 <button class="aikw-tab-btn" data-tab="0">
                   <span>サービスについて</span>
-                  <span class="aikw-tab-arrow">▼</span>
                 </button>
                 <button class="aikw-tab-btn" data-tab="1">
                   <span>会社について</span>
-                  <span class="aikw-tab-arrow">▼</span>
                 </button>
                 <button class="aikw-tab-btn" data-tab="2">
                   <span>お問い合わせ</span>
-                  <span class="aikw-tab-arrow">▼</span>
                 </button>
               </div>
               <div id="aikw-tab-content" class="aikw-tab-content">
@@ -636,8 +659,12 @@ class AIKWChatbot {
         loadingMessage.remove();
       }
       
-      // エラーメッセージを表示
-      this.addBotMessage('申し訳ございません。現在システムに問題が発生しております。お手数ですが、後ほど再度お試しいただくか、直接お問い合わせください。');
+      // 開発モード用またはエラーメッセージを表示
+      if (this.isDevelopmentMode) {
+        this.addBotMessage(`🛠️ **開発モードでの応答**\n\nあなたのメッセージ: "${message}"\n\nありがとうございます！現在は開発モードで動作しており、実際のAI応答は本番環境でのみ利用可能です。\n\n詳しいお問い合わせは **otoiawase20250416@aiknowledgeworks.net** までお願いいたします。`);
+      } else {
+        this.addBotMessage('申し訳ございません。現在システムに問題が発生しております。お手数ですが、後ほど再度お試しいただくか、直接お問い合わせください。');
+      }
     }
   }
 
