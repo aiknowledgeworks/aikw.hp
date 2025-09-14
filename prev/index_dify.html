@@ -29,6 +29,8 @@
     gtag('config', 'G-DWFLPN1EZH');
   </script>
 
+  <!-- Dify Chatbot - Removed for security -->
+  <!-- API key now managed via GitHub Actions and Environment Secrets -->
   
 
 
@@ -894,612 +896,65 @@
       }
     }
 
-
-
-
-
-
-
-    
-
-    
-
-
-
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-
-    /* === AIKW Chatbot Styles === */
-    .aikw-chatbot-button {
-      position: fixed;
-      right: 20px;
-      bottom: 20px;
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #6db5ff 0%, #00c9a7 100%);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      z-index: 1100;
-      transition: transform .2s ease, opacity .2s ease;
-    }
-    .aikw-chatbot-button:hover { transform: translateY(-2px); }
-    .aikw-chatbot-button.aikw-hidden { opacity: 0; pointer-events: none; }
-    .aikw-chat-icon svg { display: block; }
-
-    .aikw-chatbot-window {
-      position: fixed;
-      right: 20px;
-      bottom: 20px;
-      width: 360px;
-      height: 560px;
-      max-height: calc(100vh - 80px);
-      display: none;
-      flex-direction: column;
-      background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 16px 40px rgba(0,0,0,0.2);
-      overflow: hidden;
-      z-index: 1101;
-      transform: translateY(10px);
-      opacity: 0;
-      transition: transform .25s ease, opacity .25s ease;
-    }
-    .aikw-chatbot-window.aikw-open { transform: translateY(0); opacity: 1; }
-
-    .aikw-chatbot-header {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 12px 14px; background: linear-gradient(135deg, #6db5ff 0%, #a1e9d9 100%);
-      color: #fff;
-    }
-    .aikw-chatbot-title { display: flex; align-items: center; gap: 10px; font-weight: 700; }
-    .aikw-chatbot-logo { width: 28px; height: 28px; border-radius: 4px; }
-    
-    .aikw-header-actions { display: flex; align-items: center; gap: 12px; }
-    .aikw-clear-button { 
-      background: rgba(255,255,255,0.15); 
-      border: 1px solid rgba(255,255,255,0.3); 
-      color: #fff; 
-      padding: 4px 10px; 
-      border-radius: 6px; 
-      font-size: 11px; 
-      font-weight: 500; 
-      cursor: pointer; 
-      transition: all 0.2s ease;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-    .aikw-clear-button:hover { 
-      background: rgba(255,255,255,0.25); 
-      transform: translateY(-1px);
-    }
-    .aikw-chatbot-close { 
-      background: transparent; 
-      border: none; 
-      color: #fff; 
-      font-size: 22px; 
-      cursor: pointer; 
-      width: 32px;
-      height: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 6px;
-      transition: background 0.2s ease;
-    }
-    .aikw-chatbot-close:hover {
-      background: rgba(255,255,255,0.2);
+    /* === Dify Chatbot Styles - Custom Responsive Fix === */
+    /* Custom styles for Dify chatbot responsive behavior */
+    #dify-chatbot-bubble-window {
+      max-width: calc(100vw - 2rem) !important;
+      max-height: calc(100vh - 6rem) !important;
     }
 
-    .aikw-chatbot-body { display: flex; flex-direction: column; height: 100%; }
-    .aikw-chat-messages { flex: 1; padding: 14px; overflow-y: auto; background: #f7fafc; }
-
-    .aikw-message { display: flex; margin-bottom: 10px; }
-    .aikw-bot-message { justify-content: flex-start; }
-    .aikw-user-message { justify-content: flex-end; }
-    .aikw-message-content { max-width: 80%; padding: 10px 12px; border-radius: 12px; font-size: 14px; line-height: 1.5; box-shadow: 0 2px 6px rgba(0,0,0,0.06); }
-    .aikw-bot-message .aikw-message-content { background: #fff; border: 1px solid #e6f0f7; }
-    .aikw-user-message .aikw-message-content { background: #00c9a7; color: #fff; }
-    
-    /* Markdownハイライト用スタイル */
-    .aikw-message-content h2 { font-size: 1.1rem; margin: 0.4rem 0 0.2rem; color: #2c3e50; border-left: 3px solid #6db5ff; padding-left: 8px; }
-    .aikw-message-content h3 { font-size: 1.0rem; margin: 0.35rem 0 0.15rem; color: #334e68; }
-    .aikw-message-content h4 { font-size: 0.95rem; margin: 0.3rem 0 0.1rem; color: #486581; }
-    .aikw-message-content strong { font-weight: 700; color: #2c3e50; }
-    .aikw-user-message .aikw-message-content strong { color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,0.1); }
-    .aikw-message-content em { font-style: italic; color: #34495e; }
-    .aikw-user-message .aikw-message-content em { color: #f0f9ff; }
-    .aikw-message-content code { background: #f8f9fa; color: #e83e8c; padding: 2px 4px; border-radius: 4px; font-family: 'Courier New', monospace; font-size: 12px; }
-    .aikw-user-message .aikw-message-content code { background: rgba(255,255,255,0.2); color: #fff; }
-
-    .aikw-typing-indicator { display: inline-flex; gap: 4px; align-items: center; }
-    .aikw-typing-indicator span { width: 6px; height: 6px; background: #9aa9b2; border-radius: 50%; display: inline-block; animation: aikw-bounce 1.2s infinite ease-in-out; }
-    .aikw-typing-indicator span:nth-child(2) { animation-delay: .2s; }
-    .aikw-typing-indicator span:nth-child(3) { animation-delay: .4s; }
-    @keyframes aikw-bounce { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
-
-    .aikw-question-options { padding: 10px 14px; background: #fff; border-top: 1px solid #eef3f7; max-height: 220px; overflow-y: auto; }
-    
-    .aikw-tab-container { width: 100%; }
-    .aikw-tab-header {
-      display: flex;
-      border-bottom: 1px solid #e6f0f7;
-      background: #f8fafc;
-      border-radius: 8px 8px 0 0;
-    }
-    
-    .aikw-tab-btn {
-      flex: 1;
-      padding: 8px 12px;
-      background: transparent;
-      border: none;
-      color: #64748b;
-      font-size: 12px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      border-radius: 8px 8px 0 0;
-      position: relative;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    
-    .aikw-tab-arrow {
-      font-size: 10px;
-      transition: transform 0.2s ease;
-      opacity: 0.6;
-    }
-    
-    .aikw-tab-btn:hover {
-      background: rgba(0, 169, 142, 0.1);
-      color: #00a98e;
-    }
-    
-    .aikw-tab-btn.active {
-      background: #fff;
-      color: #00a98e;
-      font-weight: 600;
-    }
-    
-    .aikw-tab-btn.active .aikw-tab-arrow {
-      transform: rotate(180deg);
-      opacity: 1;
-    }
-    
-    .aikw-tab-btn.active::after {
-      content: '';
-      position: absolute;
-      bottom: -1px;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: #00a98e;
-    }
-    
-    .aikw-tab-content {
-      background: #fff;
-      border-radius: 0 0 8px 8px;
-      overflow: hidden;
-      transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
-    }
-    
-    .aikw-tab-content.expanded {
-      padding: 12px 8px 8px;
-      max-height: 200px;
-      opacity: 1;
-    }
-    
-    .aikw-tab-content.collapsed {
-      padding: 0;
-      max-height: 0;
-      opacity: 0;
-    }
-    
-    .aikw-questions-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-    
-    .aikw-question-btn { 
-      padding: 6px 12px; 
-      border-radius: 16px; 
-      background: #eef9f7; 
-      color: #007e6a; 
-      border: 1px solid #d6f3ee; 
-      cursor: pointer; 
-      font-size: 11px; 
-      transition: all 0.2s ease;
-      white-space: nowrap;
-    }
-    .aikw-question-btn:hover { 
-      background: #dff3ef; 
-      transform: translateY(-1px);
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-
-    .aikw-chat-input-area { padding: 10px 12px; background: #fff; border-top: 1px solid #eef3f7; }
-    .aikw-chat-input-container { display: flex; gap: 8px; }
-    #aikw-chat-input { flex: 1; padding: 10px 12px; border: 1px solid #e1e8ee; border-radius: 10px; font-size: 14px; }
-    #aikw-chat-send { padding: 10px 14px; background: #00c9a7; color: #fff; border: none; border-radius: 10px; cursor: pointer; font-weight: 600; }
-    #aikw-chat-send:disabled { background: #b7e8df; cursor: not-allowed; }
-
-    .aikw-back-button { margin-top: 8px; padding: 6px 10px; border: 1px solid #e1e8ee; background: #fff; border-radius: 8px; font-size: 12px; cursor: pointer; }
-    .aikw-chat-actions { display: flex; flex-wrap: wrap; }
-
-    /* Responsive */
+    /* Ensure proper sizing for different screen sizes */
     @media (max-width: 480px) {
-      .aikw-chatbot-window { right: 10px; left: 10px; width: auto; height: calc(100vh - 80px); }
-    }
-    
-    /* === Chatbot Styles === */
-    .aikw-chatbot-button {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      width: 60px;
-      height: 60px;
-      background: linear-gradient(135deg, #6db5ff 0%, #a1e9d9 100%);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      box-shadow: 0 4px 20px rgba(109, 181, 255, 0.3);
-      transition: all 0.3s ease;
-      z-index: 1000;
-      border: none;
-    }
-    
-    .aikw-chatbot-button:hover {
-      transform: scale(1.1);
-      box-shadow: 0 6px 30px rgba(109, 181, 255, 0.4);
-    }
-    
-    .aikw-chat-icon svg {
-      width: 24px;
-      height: 24px;
-      fill: white;
-    }
-    
-    .aikw-chatbot-window {
-      position: fixed;
-      bottom: 100px;
-      right: 30px;
-      width: 380px;
-      max-width: calc(100vw - 60px);
-      height: 500px;
-      max-height: calc(100vh - 150px);
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
-      display: none;
-      flex-direction: column;
-      z-index: 1001;
-      overflow: hidden;
-    }
-    
-    .aikw-chatbot-window.open {
-      display: flex;
-    }
-    
-    .aikw-chatbot-header {
-      background: linear-gradient(135deg, #6db5ff 0%, #a1e9d9 100%);
-      color: white;
-      padding: 15px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    
-    .aikw-chatbot-title {
-      display: flex;
-      align-items: center;
-      font-weight: 600;
-      font-size: 16px;
-    }
-    
-    .aikw-chatbot-logo {
-      width: 28px;
-      height: 28px;
-      margin-right: 8px;
-      border-radius: 4px;
-    }
-    
-    .aikw-header-actions {
-      display: flex;
-      gap: 8px;
-    }
-    
-    .aikw-clear-button {
-      background: rgba(255, 255, 255, 0.2);
-      color: white;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      border-radius: 4px;
-      padding: 4px 8px;
-      font-size: 12px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-    
-    .aikw-clear-button:hover {
-      background: rgba(255, 255, 255, 0.3);
-    }
-    
-    .aikw-chatbot-close {
-      background: none;
-      border: none;
-      color: white;
-      font-size: 20px;
-      cursor: pointer;
-      padding: 0;
-      width: 24px;
-      height: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      transition: all 0.2s ease;
-    }
-    
-    .aikw-chatbot-close:hover {
-      background: rgba(255, 255, 255, 0.2);
-    }
-    
-    .aikw-chatbot-body {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-    
-    .aikw-chat-messages {
-      flex: 1;
-      overflow-y: auto;
-      padding: 15px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    
-    .aikw-message {
-      max-width: 80%;
-      word-wrap: break-word;
-    }
-    
-    .aikw-bot-message {
-      align-self: flex-start;
-    }
-    
-    .aikw-user-message {
-      align-self: flex-end;
-    }
-    
-    .aikw-message-content {
-      padding: 10px 14px;
-      border-radius: 12px;
-      line-height: 1.4;
-      font-size: 14px;
-    }
-    
-    .aikw-bot-message .aikw-message-content {
-      background: #f8f9fa;
-      color: #333;
-      border-bottom-left-radius: 4px;
-    }
-    
-    .aikw-user-message .aikw-message-content {
-      background: linear-gradient(135deg, #6db5ff 0%, #a1e9d9 100%);
-      color: white;
-      border-bottom-right-radius: 4px;
-    }
-    
-    .aikw-question-options {
-      padding: 15px;
-      border-top: 1px solid #eee;
-    }
-    
-    .aikw-tab-container {
-      width: 100%;
-    }
-    
-    .aikw-tab-header {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    
-    .aikw-tab-btn {
-      background: #f8f9fa;
-      border: 1px solid #dee2e6;
-      border-radius: 6px;
-      padding: 10px 12px;
-      font-size: 14px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-    }
-    
-    .aikw-tab-btn:hover {
-      background: #e9ecef;
-      border-color: #adb5bd;
-    }
-    
-    .aikw-tab-btn.active {
-      background: linear-gradient(135deg, #6db5ff 0%, #a1e9d9 100%);
-      color: white;
-      border-color: transparent;
-    }
-    
-    .aikw-tab-arrow {
-      transition: transform 0.2s ease;
-      font-size: 12px;
-    }
-    
-    .aikw-tab-btn.active .aikw-tab-arrow {
-      transform: rotate(180deg);
-    }
-    
-    .aikw-tab-content {
-      margin-top: 12px;
-      overflow: hidden;
-      transition: all 0.3s ease;
-    }
-    
-    .aikw-tab-content.collapsed {
-      max-height: 0;
-      opacity: 0;
-    }
-    
-    .aikw-tab-content.expanded {
-      max-height: 200px;
-      opacity: 1;
-    }
-    
-    .aikw-questions-container {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    
-    .aikw-question-btn {
-      background: white;
-      border: 1px solid #dee2e6;
-      border-radius: 6px;
-      padding: 8px 12px;
-      font-size: 13px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      text-align: left;
-    }
-    
-    .aikw-question-btn:hover {
-      background: #f8f9fa;
-      border-color: #6db5ff;
-      transform: translateY(-1px);
-    }
-    
-    .aikw-chat-input-area {
-      padding: 15px;
-      border-top: 1px solid #eee;
-      background: white;
-    }
-    
-    .aikw-chat-input-container {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 8px;
-    }
-    
-    .aikw-chat-input-container input {
-      flex: 1;
-      padding: 8px 12px;
-      border: 1px solid #dee2e6;
-      border-radius: 6px;
-      font-size: 14px;
-      outline: none;
-      transition: border-color 0.2s ease;
-    }
-    
-    .aikw-chat-input-container input:focus {
-      border-color: #6db5ff;
-    }
-    
-    .aikw-chat-input-container button {
-      background: linear-gradient(135deg, #6db5ff 0%, #a1e9d9 100%);
-      color: white;
-      border: none;
-      border-radius: 6px;
-      padding: 8px 16px;
-      font-size: 14px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-    
-    .aikw-chat-input-container button:disabled {
-      background: #dee2e6;
-      cursor: not-allowed;
-    }
-    
-    .aikw-chat-input-container button:not(:disabled):hover {
-      transform: translateY(-1px);
-      box-shadow: 0 2px 8px rgba(109, 181, 255, 0.3);
-    }
-    
-    .aikw-back-button {
-      background: #6c757d;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      padding: 6px 12px;
-      font-size: 12px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-    
-    .aikw-back-button:hover {
-      background: #5a6268;
-      transform: translateY(-1px);
-    }
-    
-    .aikw-loading {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: #6c757d;
-      font-size: 14px;
-      font-style: italic;
-    }
-    
-    .aikw-loading::after {
-      content: '';
-      width: 12px;
-      height: 12px;
-      border: 2px solid #dee2e6;
-      border-top-color: #6db5ff;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-    }
-    
-    @keyframes spin {
-      to {
-        transform: rotate(360deg);
+      #dify-chatbot-bubble-window {
+        width: calc(100vw - 2rem) !important;
+        height: calc(100vh - 6rem) !important;
+        max-width: calc(100vw - 2rem) !important;
+        max-height: calc(100vh - 6rem) !important;
       }
     }
-    
-    /* Mobile responsive */
-    @media (max-width: 480px) {
-      .aikw-chatbot-window {
-        width: calc(100vw - 20px);
-        right: 10px;
-        bottom: 90px;
-        height: 70vh;
-      }
-      
-      .aikw-chatbot-button {
-        right: 20px;
-        bottom: 20px;
+
+    @media (min-width: 481px) and (max-width: 768px) {
+      #dify-chatbot-bubble-window {
+        width: 24rem !important;
+        height: calc(100vh - 8rem) !important;
+        max-width: 24rem !important;
+        max-height: calc(100vh - 8rem) !important;
       }
     }
+
+    @media (min-width: 769px) {
+      #dify-chatbot-bubble-window {
+        width: 24rem !important;
+        height: 43.75rem !important;
+        max-width: 24rem !important;
+        max-height: 43.75rem !important;
+      }
+    }
+
+
+
+
+
+
     
-    </style>
+
+    
+
+
+
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  </style>
 </head>
 <body>
   <!-- === Header === -->
@@ -1832,7 +1287,6 @@
   </footer>
 
   <!-- === Scripts === -->
-  <script src="js/chatbot.js" defer></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       // Animation with IntersectionObserver - Improved for mobile

@@ -73,26 +73,30 @@ class AIKWChatbot {
     try {
       console.log('🔄 チャットボット初期化開始...');
       
-      await this.initCrypto();
-      
-      // GitHub ActionsでEnvironment Secretから取得したAPI keyを使用
-      let apiKey = 'DIFY_API_KEY_PLACEHOLDER'; // ビルド時に実際のAPI keyに置換される
-      
-      // 開発環境用フォールバック（localhostでのテスト用）
-      if (apiKey === 'DIFY_API_KEY_PLACEHOLDER') {
-        console.warn('⚠️ 開発環境: API keyがプレースホルダーのままです。チャットボットは動作しません。');
-        console.log('ℹ️ 本番環境では GitHub Actions が自動的にAPI keyを設定します。');
-        // 開発環境ではUIは表示するが、API呼び出しは無効化
-        this.isDevelopmentMode = true;
-      }
-      
-      await this.encryptApiKey(apiKey);
-      
+      // まずUIを作成（エラーがあってもユーザーにはUIを表示）
       console.log('🎨 UIを作成中...');
       this.createChatbotUI();
       
       console.log('🔗 イベントをバインド中...');
       this.bindEvents();
+      
+      // 次に暗号化とAPI関連の処理
+      await this.initCrypto();
+      
+      // API key取得方法を選択
+      const apiKey = await this.getApiKey();
+      
+      if (!apiKey) {
+        console.warn('⚠️ API keyが取得できません。開発モードで動作します。');
+        console.info('ℹ️ ローカル開発環境ではチャットボットUIのみ表示されます。');
+        console.info('ℹ️ GitHub Pages本番環境では自動的にAPI機能が有効になります。');
+        this.isDevelopmentMode = true;
+        await this.encryptApiKey('placeholder'); // ダミーキー
+        this.setupDevelopmentMode();
+        return;
+      }
+      
+      await this.encryptApiKey(apiKey);
       
       // デバッグ用：暗号化確認
       console.log('✅ API key successfully encrypted and stored in memory');
@@ -109,8 +113,11 @@ class AIKWChatbot {
       // エラーがあってもUIだけは作成してみる
       try {
         console.log('🔄 エラー後のUI作成を試行...');
-        this.createChatbotUI();
+        if (!document.getElementById('aikw-chatbot-button')) {
+          this.createChatbotUI();
+        }
         this.bindEvents();
+        this.setupDevelopmentMode(); // 開発モードでフォールバック
       } catch (uiError) {
         console.error('❌ UI作成も失敗:', uiError);
         this.disableChatbot();
@@ -217,6 +224,24 @@ class AIKWChatbot {
   // ユーザーIDの生成
   generateUserId() {
     return 'user_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
+  }
+
+  // API key取得（GitHub Actionsビルド時のみ）
+  async getApiKey() {
+    // GitHub Actionsでビルド時に置換されたAPI keyをチェック
+    const buildTimeKey = 'DIFY_API_KEY_PLACEHOLDER';
+    
+    if (buildTimeKey !== 'DIFY_API_KEY_PLACEHOLDER') {
+      console.log('✅ GitHub Actionsで埋め込まれたAPI keyを使用します');
+      return buildTimeKey;
+    }
+
+    // プレースホルダーのままの場合（開発環境）
+    console.warn('⚠️ 開発環境: API keyはビルド時に設定されます');
+    console.info('ℹ️ GitHub Pages本番環境では自動的にAPI keyが設定されます');
+    console.info('ℹ️ ローカルではチャットボットUIのみ表示されます');
+    
+    return null;
   }
 
   // チャットボットUIの作成

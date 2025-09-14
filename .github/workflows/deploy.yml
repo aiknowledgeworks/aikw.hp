@@ -36,11 +36,29 @@ jobs:
         # Create build directory
         mkdir -p build
         
-        # Copy all files to build directory
-        cp -r . build/
+        # Copy specific directories and files (safer approach)
+        cp -r aitools build/ 2>/dev/null || echo "aitools not found, skipping"
+        cp -r company build/ 2>/dev/null || echo "company not found, skipping"
+        cp -r images build/ 2>/dev/null || echo "images not found, skipping"
+        cp -r js build/ 2>/dev/null || echo "js not found, skipping"
+        cp -r logo build/ 2>/dev/null || echo "logo not found, skipping"
         
-        # Remove git directories and workflows from build
-        rm -rf build/.git build/.github
+        # Copy HTML files
+        cp *.html build/ 2>/dev/null || echo "No HTML files found"
+        
+        # Copy other important files
+        cp *.md build/ 2>/dev/null || echo "No Markdown files found"
+        cp CNAME build/ 2>/dev/null || echo "CNAME not found, skipping"
+        cp .gitignore build/ 2>/dev/null || echo ".gitignore not found, skipping"
+        cp test-deployment.txt build/ 2>/dev/null || echo "test file not found, skipping"
+        
+        # List current directory contents for debugging
+        echo "📁 Source directory contents:"
+        ls -la
+        
+        # List build directory contents after copy
+        echo "📁 Build directory contents after copy:"
+        ls -la build/
         
         # Verify API key is available
         if [ -z "$DIFY_API_KEY" ]; then
@@ -50,20 +68,26 @@ jobs:
         
         echo "✅ API key found, replacing placeholder..."
         
+        # Check if chatbot.js exists before replacement
+        if [ ! -f "build/js/chatbot.js" ]; then
+          echo "❌ Error: build/js/chatbot.js not found"
+          echo "Contents of build/js directory:"
+          ls -la build/js/ || echo "build/js directory does not exist"
+          exit 1
+        fi
+        
         # Replace API key placeholder in JavaScript file
         sed -i "s/DIFY_API_KEY_PLACEHOLDER/$DIFY_API_KEY/g" build/js/chatbot.js
         
         # Verify replacement was successful
         if grep -q "DIFY_API_KEY_PLACEHOLDER" build/js/chatbot.js; then
           echo "❌ Error: API key placeholder was not replaced"
+          echo "Current content around API key:"
+          grep -n "DIFY_API_KEY" build/js/chatbot.js || echo "No DIFY_API_KEY found"
           exit 1
         else
           echo "✅ API key placeholder successfully replaced"
         fi
-        
-        # List build directory contents for debugging
-        echo "📁 Build directory contents:"
-        ls -la build/
         
         echo "📄 Chatbot.js first 10 lines (API key should be replaced):"
         head -10 build/js/chatbot.js
