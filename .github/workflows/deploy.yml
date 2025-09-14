@@ -76,8 +76,9 @@ jobs:
           exit 1
         fi
         
-        # Replace API key placeholder in JavaScript file
-        sed -i "s/DIFY_API_KEY_PLACEHOLDER/$DIFY_API_KEY/g" build/js/chatbot.js
+        # Replace API key placeholder in JavaScript file (escape sed specials)
+        ESCAPED_KEY=$(printf '%s' "$DIFY_API_KEY" | sed -e 's/[\\/&]/\\&/g')
+        sed -i "s/DIFY_API_KEY_PLACEHOLDER/${ESCAPED_KEY}/g" build/js/chatbot.js
         
         # Verify replacement was successful
         if grep -q "DIFY_API_KEY_PLACEHOLDER" build/js/chatbot.js; then

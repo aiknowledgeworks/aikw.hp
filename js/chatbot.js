@@ -252,21 +252,21 @@ class AIKWChatbot {
     console.log('✅ 開発モードセットアップ完了');
   }
 
-  // API key取得（GitHub Actionsビルド時のみ）
+  // API key取得（GitHub Actionsビルド時に置換）
   async getApiKey() {
-    // GitHub Actionsでビルド時に置換されたAPI keyをチェック
+    // GitHub Actionsでビルド時に置換されるAPI key
     const buildTimeKey = 'DIFY_API_KEY_PLACEHOLDER';
-    
+
     if (buildTimeKey !== 'DIFY_API_KEY_PLACEHOLDER') {
       console.log('✅ GitHub Actionsで埋め込まれたAPI keyを使用します');
       return buildTimeKey;
     }
 
     // プレースホルダーのままの場合（開発環境）
-    console.warn('⚠️ 開発環境: API keyはビルド時に設定されます');
+    console.warn('⚠️ 開発環境: API keyはGitHub Actionsビルド時に設定されます');
     console.info('ℹ️ GitHub Pages本番環境では自動的にAPI keyが設定されます');
     console.info('ℹ️ ローカルではチャットボットUIのみ表示されます');
-    
+
     return null;
   }
 
