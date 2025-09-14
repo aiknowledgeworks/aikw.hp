@@ -260,17 +260,27 @@ class AIKWChatbot {
 
   // API key取得（GitHub Actionsビルド時に置換）
   async getApiKey() {
+    console.log('🔑 API key取得を開始...');
+
     // runtime-config.jsの読み込みを待つ（最大3秒）
     for (let attempt = 0; attempt < 30; attempt++) {
       // 1) ランタイム設定（CIで生成される runtime-config.js）
       if (typeof window !== 'undefined' && window.DIFY_API_KEY && window.DIFY_API_KEY !== 'DIFY_API_KEY_PLACEHOLDER' && window.DIFY_API_KEY !== undefined) {
         console.log('✅ runtime-config.js からAPI keyを使用します');
+        console.log('🔑 API key type:', typeof window.DIFY_API_KEY);
+        console.log('🔑 API key length:', window.DIFY_API_KEY.length);
         return window.DIFY_API_KEY;
       }
-      
+
       // 最初の試行でない場合は少し待つ
       if (attempt > 0) {
         await new Promise(resolve => setTimeout(resolve, 100));
+      }
+
+      // 定期的に現在の状態をログ出力
+      if (attempt > 0 && attempt % 10 === 0) {
+        console.log(`⏳ API key取得試行中... (${attempt}/30)`);
+        console.log('🔍 Current window.DIFY_API_KEY:', typeof window !== 'undefined' ? window.DIFY_API_KEY : 'window undefined');
       }
     }
 
