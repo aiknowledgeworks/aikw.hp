@@ -16,7 +16,6 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment: github-pages
     
     steps:
     - name: Checkout
@@ -26,22 +25,38 @@ jobs:
       env:
         DIFY_API_KEY: ${{ secrets.DIFY_API_KEY }}
       run: |
+        # Debug: Check API key availability
+        echo "🔍 Checking API key..."
+        if [ -z "$DIFY_API_KEY" ]; then
+          echo "❌ DIFY_API_KEY not found in repository secrets"
+          echo "📝 Please set DIFY_API_KEY in: Settings > Secrets and variables > Actions > Repository secrets"
+        else
+          echo "✅ API key found (${#DIFY_API_KEY} characters)"
+          echo "🔑 First 4 characters: ${DIFY_API_KEY:0:4}****"
+        fi
+        
         # Create build directory and copy files
         mkdir -p build
         cp -r aitools company images js logo *.html CNAME build/ 2>/dev/null || true
         
-        # Create runtime-config.js with API key
-        if [ -n "$DIFY_API_KEY" ]; then
-          echo "window.DIFY_API_KEY = \"$DIFY_API_KEY\";" > build/js/runtime-config.js
-          echo "✅ API key configured"
+        # Create runtime-config.js with proper API key handling
+        if [ -n "$DIFY_API_KEY" ] && [ "$DIFY_API_KEY" != "" ]; then
+          # Escape the key properly for JavaScript
+          ESCAPED_KEY=$(printf '%s' "$DIFY_API_KEY" | sed 's/\\/\\\\/g; s/"/\\"/g')
+          echo "window.DIFY_API_KEY = \"$ESCAPED_KEY\";" > build/js/runtime-config.js
+          echo "✅ API key successfully configured in runtime-config.js"
         else
           echo "window.DIFY_API_KEY = undefined;" > build/js/runtime-config.js
-          echo "❌ No API key found"
+          echo "⚠️ No API key - creating development mode runtime-config.js"
         fi
         
-        # Show what was created
-        echo "📄 runtime-config.js:"
-        cat build/js/runtime-config.js
+        # Show final result (without exposing the actual key)
+        echo "📄 runtime-config.js content:"
+        if grep -q "undefined" build/js/runtime-config.js; then
+          cat build/js/runtime-config.js
+        else
+          echo "window.DIFY_API_KEY = \"[CONFIGURED]\";"
+        fi
         
     - name: Setup Pages
       uses: actions/configure-pages@v4
