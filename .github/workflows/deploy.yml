@@ -79,6 +79,11 @@ jobs:
         # Replace API key placeholder in JavaScript file (escape sed specials)
         ESCAPED_KEY=$(printf '%s' "$DIFY_API_KEY" | sed -e 's/[\\/&]/\\&/g')
         sed -i "s/DIFY_API_KEY_PLACEHOLDER/${ESCAPED_KEY}/g" build/js/chatbot.js
+
+        # Also generate a runtime config that the page loads before chatbot.js
+        # Use Node to JSON-escape the secret safely for JS string literal
+        JS_SAFE_KEY=$(node -e 'process.stdout.write(JSON.stringify(process.env.DIFY_API_KEY || ""))')
+        echo "window.DIFY_API_KEY = ${JS_SAFE_KEY};" > build/js/runtime-config.js
         
         # Verify replacement was successful
         if grep -q "DIFY_API_KEY_PLACEHOLDER" build/js/chatbot.js; then
@@ -90,8 +95,10 @@ jobs:
           echo "✅ API key placeholder successfully replaced"
         fi
         
-        echo "📄 Chatbot.js first 10 lines (API key should be replaced):"
-        head -10 build/js/chatbot.js
+        echo "📄 Chatbot.js first 10 lines (API key should be replaced if sed path used):"
+        head -10 build/js/chatbot.js || true
+        echo "📄 runtime-config.js (API key should be present here):"
+        head -5 build/js/runtime-config.js || true
         
     - name: Setup Pages
       uses: actions/configure-pages@v4

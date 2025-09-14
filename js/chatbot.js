@@ -254,11 +254,24 @@ class AIKWChatbot {
 
   // API key取得（GitHub Actionsビルド時に置換）
   async getApiKey() {
-    // GitHub Actionsでビルド時に置換されるAPI key
-    const buildTimeKey = 'DIFY_API_KEY_PLACEHOLDER';
+    // runtime-config.jsの読み込みを待つ（最大3秒）
+    for (let attempt = 0; attempt < 30; attempt++) {
+      // 1) ランタイム設定（CIで生成される runtime-config.js）
+      if (typeof window !== 'undefined' && window.DIFY_API_KEY && window.DIFY_API_KEY !== 'DIFY_API_KEY_PLACEHOLDER' && window.DIFY_API_KEY !== undefined) {
+        console.log('✅ runtime-config.js からAPI keyを使用します');
+        return window.DIFY_API_KEY;
+      }
+      
+      // 最初の試行でない場合は少し待つ
+      if (attempt > 0) {
+        await new Promise(resolve => setTimeout(resolve, 100));
+      }
+    }
 
+    // 2) ビルド時置換（chatbot.js 内のプレースホルダを直接置換）
+    const buildTimeKey = 'DIFY_API_KEY_PLACEHOLDER';
     if (buildTimeKey !== 'DIFY_API_KEY_PLACEHOLDER') {
-      console.log('✅ GitHub Actionsで埋め込まれたAPI keyを使用します');
+      console.log('✅ ビルド時に埋め込まれたAPI keyを使用します');
       return buildTimeKey;
     }
 
@@ -266,6 +279,7 @@ class AIKWChatbot {
     console.warn('⚠️ 開発環境: API keyはGitHub Actionsビルド時に設定されます');
     console.info('ℹ️ GitHub Pages本番環境では自動的にAPI keyが設定されます');
     console.info('ℹ️ ローカルではチャットボットUIのみ表示されます');
+    console.info('ℹ️ window.DIFY_API_KEY =', typeof window !== 'undefined' ? window.DIFY_API_KEY : 'undefined');
 
     return null;
   }
