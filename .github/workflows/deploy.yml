@@ -18,8 +18,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
+    environment: github-pages
     
     steps:
     - name: Checkout
@@ -63,15 +62,26 @@ jobs:
         
         # Verify API key is available
         echo "🔍 Checking API key availability..."
-        echo "Environment variables:"
-        env | grep -E "(DIFY|API)" || echo "No DIFY/API env vars found"
+        echo "📋 Environment debug info:"
+        echo "GITHUB_REPOSITORY: $GITHUB_REPOSITORY"
+        echo "GITHUB_REF: $GITHUB_REF" 
+        echo "GITHUB_EVENT_NAME: $GITHUB_EVENT_NAME"
+        echo "RUNNER_ENVIRONMENT: $RUNNER_ENVIRONMENT"
+        
+        echo "📋 Checking environment variables:"
+        env | grep -E "(GITHUB|DIFY|API)" | grep -v TOKEN || echo "No matching env vars found"
         
         if [ -z "$DIFY_API_KEY" ]; then
-          echo "❌ Warning: DIFY_API_KEY environment secret not found"
+          echo "❌ CRITICAL: DIFY_API_KEY not available in this environment"
+          echo "📝 This could mean:"
+          echo "  1. Repository secret DIFY_API_KEY not set"
+          echo "  2. Environment secret not accessible"
+          echo "  3. Environment 'github-pages' not properly configured"
           echo "⚠️ Proceeding without API key - site will run in development mode"
           # Don't exit, continue with development mode
         else
-          echo "✅ API key found (${#DIFY_API_KEY} characters), replacing placeholder..."
+          echo "✅ API key found and loaded (${#DIFY_API_KEY} characters)"
+          echo "🔑 First 4 characters: ${DIFY_API_KEY:0:4}****"
         fi
         
         # Check if chatbot.js exists before replacement
