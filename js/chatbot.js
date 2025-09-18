@@ -1,39 +1,12 @@
-// chatbot.js - AIナレッジワークス カスタムチャットボット
-/**
- * API Key セキュリティについて:
- * ================================
- * 
- * 【現在の保管方法】
- * - API keyはメモリ内のみに暗号化して保存（AES-GCM 256bit）
- * - ローカルストレージ、セッションストレージ、クッキーには保存しない
- * - ネットワーク経由での送信はDify APIへのリクエスト時のみ
- * - ページリロード時に暗号化キーを再生成（前回の履歴は復元不可）
- * 
- * 【セキュリティレベル】
- * - ✅ XSS攻撃耐性：HTMLエスケープ実装済み
- * - ✅ メモリダンプ対策：AES-GCM暗号化
- * - ✅ 永続化回避：ブラウザ閉鎖時に完全削除
- * - ✅ HTTPS通信：Dify APIはHTTPS必須
- * 
- * 【本番環境での推奨改善】
- * - サーバーサイドでのAPI key管理
- * - JWT トークンを使った認証システム
- * - 定期的なキーローテーション
- * - API使用量・レート制限の実装
- */
+// chatbot.js - AIナレッジワークス シンプルチャットボット
 class AIKWChatbot {
   constructor() {
-    this.apiUrl = 'https://api.dify.ai/v1';
-    this.encryptedApiKey = null;
+    this.apiUrl = 'https://aikwbot.skume-bioinfo.workers.dev';
     this.isOpen = false;
     this.conversationId = null;
     this.userId = this.generateUserId();
     this.currentTab = 0;
-    this.isDevelopmentMode = false;
-    
-    // 暗号化用のキー（セッション毎に生成）
-    this.cryptoKey = null;
-    
+
     // 事前定義された質問選択肢
     this.predefinedQuestions = [
       {
@@ -46,7 +19,7 @@ class AIKWChatbot {
         ]
       },
       {
-        category: "会社について", 
+        category: "会社について",
         questions: [
           "AIナレッジワークスの理念について教えてください",
           "創業のきっかけは何ですか？",
@@ -64,160 +37,17 @@ class AIKWChatbot {
         ]
       }
     ];
-    
+
     this.init();
   }
 
   // 初期化
-  async init() {
+  init() {
     try {
-      console.log('🔄 チャットボット初期化開始...');
-      
-      // まずUIを作成（エラーがあってもユーザーにはUIを表示）
-      console.log('🎨 UIを作成中...');
       this.createChatbotUI();
-      
-      console.log('🔗 イベントをバインド中...');
       this.bindEvents();
-      
-      // 次に暗号化とAPI関連の処理
-      await this.initCrypto();
-      
-      // API key取得方法を選択
-      const apiKey = await this.getApiKey();
-      
-      if (!apiKey) {
-        console.warn('⚠️ API keyが取得できません。開発モードで動作します。');
-        console.info('ℹ️ ローカル開発環境ではチャットボットUIのみ表示されます。');
-        console.info('ℹ️ GitHub Pages本番環境では自動的にAPI機能が有効になります。');
-        this.isDevelopmentMode = true;
-        await this.encryptApiKey('placeholder'); // ダミーキー
-        this.setupDevelopmentMode();
-        return;
-      }
-      
-      await this.encryptApiKey(apiKey);
-      
-      // デバッグ用：暗号化確認
-      console.log('✅ API key successfully encrypted and stored in memory');
-      console.log('✅ チャットボット初期化完了！');
-      
-      // ボタンの表示状態を確認
-      setTimeout(() => {
-        this.checkButtonVisibility();
-      }, 100);
-      
     } catch (error) {
-      console.error('❌ チャットボット初期化エラー:', error);
-      
-      // エラーがあってもUIだけは作成してみる
-      try {
-        console.log('🔄 エラー後のUI作成を試行...');
-        if (!document.getElementById('aikw-chatbot-button')) {
-          this.createChatbotUI();
-        }
-        this.bindEvents();
-        this.setupDevelopmentMode(); // 開発モードでフォールバック
-      } catch (uiError) {
-        console.error('❌ UI作成も失敗:', uiError);
-        this.disableChatbot();
-      }
-    }
-  }
-
-  // 暗号化の初期化
-  async initCrypto() {
-    try {
-      // Web Crypto APIの利用可能性を確認
-      if (!window.crypto || !window.crypto.subtle) {
-        console.warn('⚠️ Web Crypto APIが利用できません。HTTPS環境で実行してください。');
-        this.cryptoKey = null;
-        return;
-      }
-      
-      // Web Crypto APIを使用してキーを生成
-      this.cryptoKey = await window.crypto.subtle.generateKey(
-        {
-          name: "AES-GCM",
-          length: 256,
-        },
-        false, // extractable
-        ["encrypt", "decrypt"]
-      );
-      console.log('✅ 暗号化キーを生成しました');
-    } catch (error) {
-      console.error('❌ 暗号化キー生成エラー:', error);
-      this.cryptoKey = null;
-    }
-  }
-
-  // API keyの暗号化（AES-GCM 256bit）
-  async encryptApiKey(apiKey) {
-    try {
-      // 暗号化キーが利用できない場合のフォールバック
-      if (!this.cryptoKey) {
-        console.warn('⚠️ 暗号化キーが利用できません。メモリに直接保存します。');
-        this.encryptedApiKey = apiKey; // 暗号化なしで保存（開発環境のみ）
-        return;
-      }
-      
-      const encoder = new TextEncoder();
-      const data = encoder.encode(apiKey);
-      const iv = window.crypto.getRandomValues(new Uint8Array(12));
-      
-      const encrypted = await window.crypto.subtle.encrypt(
-        {
-          name: "AES-GCM",
-          iv: iv
-        },
-        this.cryptoKey,
-        data
-      );
-      
-      // IV と暗号化データを結合
-      const encryptedArray = new Uint8Array(iv.length + encrypted.byteLength);
-      encryptedArray.set(iv);
-      encryptedArray.set(new Uint8Array(encrypted), iv.length);
-      
-      this.encryptedApiKey = encryptedArray;
-      
-      // 元のAPI keyをメモリから完全削除
-      apiKey = null;
-      data.fill(0); // ゼロクリア
-      
-    } catch (error) {
-      console.error('❌ API key暗号化エラー:', error);
-      // エラー時は暗号化なしで保存
-      this.encryptedApiKey = apiKey;
-    }
-  }
-
-  // API keyの復号化
-  async decryptApiKey() {
-    try {
-      // 暗号化されていない場合はそのまま返す
-      if (!this.cryptoKey || typeof this.encryptedApiKey === 'string') {
-        return this.encryptedApiKey;
-      }
-      
-      const iv = this.encryptedApiKey.slice(0, 12);
-      const encrypted = this.encryptedApiKey.slice(12);
-      
-      const decrypted = await window.crypto.subtle.decrypt(
-        {
-          name: "AES-GCM",
-          iv: iv
-        },
-        this.cryptoKey,
-        encrypted
-      );
-      
-      const decoder = new TextDecoder();
-      return decoder.decode(decrypted);
-    } catch (error) {
-      console.error('❌ API key復号化エラー:', error);
-      // エラー時は暗号化されていないAPI keyを返す
-      return typeof this.encryptedApiKey === 'string' ? this.encryptedApiKey : null;
+      // 初期化エラーは無視（UIは作成済み）
     }
   }
 
@@ -226,90 +56,14 @@ class AIKWChatbot {
     return 'user_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
   }
 
-  // 開発モードのセットアップ
-  setupDevelopmentMode() {
-    console.log('🛠️ 開発モードをセットアップ中...');
-    this.isDevelopmentMode = true;
-    
-    // 入力フィールドを有効化し、開発モードのメッセージを表示
-    const chatInput = document.getElementById('aikw-chat-input');
-    const sendButton = document.getElementById('aikw-chat-send');
-    
-    if (chatInput) {
-      chatInput.disabled = false;
-      chatInput.placeholder = '開発モード: メッセージを入力してください';
-    }
-    
-    if (sendButton) {
-      sendButton.disabled = false;
-    }
-    
-    // 本番環境かローカル環境かを判定
-    const isProduction = window.location.hostname !== 'localhost' && !window.location.protocol.includes('file:');
-    const modeMessage = isProduction ? 
-      '🛠️ **本番環境・開発モード**: API keyの設定に問題があります。\n\n**考えられる原因:**\n1. Repository secretsで `DIFY_API_KEY` が未設定\n2. GitHub Actions処理でのAPI key取得失敗\n3. runtime-config.jsの生成エラー\n\n**管理者の確認事項:**\n• GitHub リポジトリの **Settings > Secrets and variables > Actions > Repository secrets** で `DIFY_API_KEY` を設定\n• GitHub Actions のログでAPI key処理状況を確認\n\nお問い合わせは **otoiawase20250416@aiknowledgeworks.net** までお願いいたします。' :
-      '🛠️ **ローカル開発モード**: チャットボUIのみ表示しています。\n\n実際API機能はGitHub Pages本番環境で自動有効になります。\n\nお問い合わせは **otoiawase20250416@aiknowledgeworks.net** までお願いします。';
-    
-    // 開発モードの通知メッセージを追加
-    setTimeout(() => {
-      this.addBotMessage(modeMessage);
-    }, 500);
-    
-    console.log(`✅ 開発モードセットアップ完了 (${isProduction ? 'Production' : 'Local'} environment)`);
-  }
-
-  // API key取得（GitHub Actionsビルド時に置換）
-  async getApiKey() {
-    console.log('🔑 API key取得を開始...');
-
-    // runtime-config.jsの読み込みを待つ（最大3秒）
-    for (let attempt = 0; attempt < 30; attempt++) {
-      // 1) ランタイム設定（CIで生成される runtime-config.js）
-      if (typeof window !== 'undefined' && window.DIFY_API_KEY && window.DIFY_API_KEY !== 'DIFY_API_KEY_PLACEHOLDER' && window.DIFY_API_KEY !== undefined) {
-        console.log('✅ runtime-config.js からAPI keyを使用します');
-        console.log('🔑 API key type:', typeof window.DIFY_API_KEY);
-        console.log('🔑 API key length:', window.DIFY_API_KEY.length);
-        return window.DIFY_API_KEY;
-      }
-
-      // 最初の試行でない場合は少し待つ
-      if (attempt > 0) {
-        await new Promise(resolve => setTimeout(resolve, 100));
-      }
-
-      // 定期的に現在の状態をログ出力
-      if (attempt > 0 && attempt % 10 === 0) {
-        console.log(`⏳ API key取得試行中... (${attempt}/30)`);
-        console.log('🔍 Current window.DIFY_API_KEY:', typeof window !== 'undefined' ? window.DIFY_API_KEY : 'window undefined');
-      }
-    }
-
-    // 2) ビルド時置換（chatbot.js 内のプレースホルダを直接置換）
-    const buildTimeKey = 'DIFY_API_KEY_PLACEHOLDER';
-    if (buildTimeKey !== 'DIFY_API_KEY_PLACEHOLDER') {
-      console.log('✅ ビルド時に埋め込まれたAPI keyを使用します');
-      return buildTimeKey;
-    }
-
-    // プレースホルダーのままの場合（開発環境）
-    console.warn('⚠️ 開発環境: API keyはGitHub Actionsビルド時に設定されます');
-    console.info('ℹ️ GitHub Pages本番環境では自動的にAPI keyが設定されます');
-    console.info('ℹ️ ローカルではチャットボットUIのみ表示されます');
-    console.info('ℹ️ window.DIFY_API_KEY =', typeof window !== 'undefined' ? window.DIFY_API_KEY : 'undefined');
-
-    return null;
-  }
-
   // チャットボットUIの作成
   createChatbotUI() {
-    console.log('🔨 createChatbotUI() 開始');
-    
     // 既存のチャットボット要素を削除
     const existingButton = document.getElementById('aikw-chatbot-button');
     const existingWindow = document.getElementById('aikw-chatbot-window');
     if (existingButton) existingButton.remove();
     if (existingWindow) existingWindow.remove();
-    
+
     const chatbotHTML = `
       <!-- チャットボタン -->
       <div id="aikw-chatbot-button" class="aikw-chatbot-button">
@@ -332,7 +86,7 @@ class AIKWChatbot {
             <button id="aikw-chatbot-close" class="aikw-chatbot-close" title="Close">×</button>
           </div>
         </div>
-        
+
         <div class="aikw-chatbot-body">
           <div id="aikw-chat-messages" class="aikw-chat-messages">
             <div class="aikw-message aikw-bot-message">
@@ -342,7 +96,7 @@ class AIKWChatbot {
               </div>
             </div>
           </div>
-          
+
           <div id="aikw-question-options" class="aikw-question-options">
             <div class="aikw-tab-container">
               <div class="aikw-tab-header">
@@ -361,11 +115,11 @@ class AIKWChatbot {
               </div>
             </div>
           </div>
-          
+
           <div class="aikw-chat-input-area">
             <div class="aikw-chat-input-container">
-              <input type="text" id="aikw-chat-input" placeholder="メッセージを入力..." disabled>
-              <button id="aikw-chat-send" disabled>送信</button>
+              <input type="text" id="aikw-chat-input" placeholder="メッセージを入力...">
+              <button id="aikw-chat-send">送信</button>
             </div>
             <div class="aikw-chat-actions">
               <button id="aikw-back-to-options" class="aikw-back-button" style="display: none;">質問選択に戻る</button>
@@ -374,77 +128,37 @@ class AIKWChatbot {
         </div>
       </div>
     `;
-    
-    try {
-      document.body.insertAdjacentHTML('beforeend', chatbotHTML);
-      console.log('✅ チャットボットHTMLをページに挿入完了');
-      
-      // 要素が正しく作成されたか確認
-      const button = document.getElementById('aikw-chatbot-button');
-      const window = document.getElementById('aikw-chatbot-window');
-      
-      if (button && window) {
-        console.log('✅ チャットボット要素の作成成功');
-        this.renderQuestionOptions();
-      } else {
-        console.error('❌ チャットボット要素が見つかりません', { button, window });
-      }
-    } catch (error) {
-      console.error('❌ チャットボットHTML挿入エラー:', error);
-    }
+
+    document.body.insertAdjacentHTML('beforeend', chatbotHTML);
+    this.renderQuestionOptions();
   }
 
-  // 質問選択肢の描画（タブ式、初期は全て折りたたみ）
+  // 質問選択肢の描画
   renderQuestionOptions() {
     const tabContent = document.getElementById('aikw-tab-content');
     this.currentTab = 0;
-    
-    // 初期状態は全て折りたたみ
     tabContent.classList.add('collapsed');
     tabContent.innerHTML = '';
-    
     this.bindTabEvents();
   }
 
   // イベントのバインド
   bindEvents() {
-    console.log('🔗 bindEvents() 開始');
-    
     const chatButton = document.getElementById('aikw-chatbot-button');
-    const chatWindow = document.getElementById('aikw-chatbot-window');
     const closeButton = document.getElementById('aikw-chatbot-close');
     const sendButton = document.getElementById('aikw-chat-send');
     const chatInput = document.getElementById('aikw-chat-input');
     const backButton = document.getElementById('aikw-back-to-options');
     const clearButton = document.getElementById('aikw-clear-chat');
-    
-    console.log('🔍 要素の取得結果:', {
-      chatButton: !!chatButton,
-      chatWindow: !!chatWindow,
-      closeButton: !!closeButton,
-      sendButton: !!sendButton,
-      chatInput: !!chatInput,
-      backButton: !!backButton,
-      clearButton: !!clearButton
-    });
 
     // チャットボタンクリック
     if (chatButton) {
-      chatButton.addEventListener('click', () => {
-        console.log('🐆 チャットボタンクリック');
-        this.toggleChatbot();
-      });
-      console.log('✅ チャットボタンイベントリスナー設定完了');
-    } else {
-      console.error('❌ チャットボタンが見つかりません');
+      chatButton.addEventListener('click', () => this.toggleChatbot());
     }
 
     // 閉じるボタン
     if (closeButton) {
-      closeButton.addEventListener('click', () => {
-        this.closeChatbot();
-      });
-      console.log('✅ 閉じるボタンイベントリスナー設定完了');
+      closeButton.addEventListener('click', () => this.closeChatbot());
     }
 
     // 質問選択肢クリック
@@ -456,33 +170,38 @@ class AIKWChatbot {
     });
 
     // 送信ボタン
-    sendButton.addEventListener('click', () => {
-      this.sendMessage();
-    });
+    if (sendButton) {
+      sendButton.addEventListener('click', () => this.sendMessage());
+    }
 
     // Enterキーで送信
-    chatInput.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter' && !e.shiftKey) {
-        e.preventDefault();
-        this.sendMessage();
-      }
-    });
+    if (chatInput) {
+      chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+          e.preventDefault();
+          this.sendMessage();
+        }
+      });
+    }
 
     // 戻るボタン
-    backButton.addEventListener('click', () => {
-      this.showQuestionOptions();
-    });
+    if (backButton) {
+      backButton.addEventListener('click', () => this.showQuestionOptions());
+    }
 
     // 履歴削除ボタン
-    clearButton.addEventListener('click', () => {
-      if (confirm('チャット履歴を削除してもよろしいですか？')) {
-        this.clearChatHistory();
-      }
-    });
+    if (clearButton) {
+      clearButton.addEventListener('click', () => {
+        if (confirm('チャット履歴を削除してもよろしいですか？')) {
+          this.clearChatHistory();
+        }
+      });
+    }
 
     // ウィンドウ外クリックで閉じる
+    const chatWindow = document.getElementById('aikw-chatbot-window');
     document.addEventListener('click', (e) => {
-      if (this.isOpen && !chatWindow.contains(e.target) && !chatButton.contains(e.target)) {
+      if (this.isOpen && chatWindow && !chatWindow.contains(e.target) && !chatButton.contains(e.target)) {
         this.closeChatbot();
       }
     });
@@ -501,204 +220,380 @@ class AIKWChatbot {
   openChatbot() {
     const chatWindow = document.getElementById('aikw-chatbot-window');
     const chatButton = document.getElementById('aikw-chatbot-button');
-    
-    chatWindow.style.display = 'flex';
-    setTimeout(() => {
-      chatWindow.classList.add('aikw-open');
-      chatButton.classList.add('aikw-hidden');
-    }, 10);
-    
-    this.isOpen = true;
+
+    if (chatWindow && chatButton) {
+      chatWindow.style.display = 'flex';
+      setTimeout(() => {
+        chatWindow.classList.add('aikw-open');
+        chatButton.classList.add('aikw-hidden');
+      }, 10);
+      this.isOpen = true;
+    }
   }
 
   // チャットボット閉じる
   closeChatbot() {
     const chatWindow = document.getElementById('aikw-chatbot-window');
     const chatButton = document.getElementById('aikw-chatbot-button');
-    
-    chatWindow.classList.remove('aikw-open');
-    chatButton.classList.remove('aikw-hidden');
-    
-    setTimeout(() => {
-      chatWindow.style.display = 'none';
-    }, 300);
-    
-    this.isOpen = false;
+
+    if (chatWindow && chatButton) {
+      chatWindow.classList.remove('aikw-open');
+      chatButton.classList.remove('aikw-hidden');
+
+      setTimeout(() => {
+        chatWindow.style.display = 'none';
+      }, 300);
+
+      this.isOpen = false;
+    }
   }
 
   // 質問選択
   async selectQuestion(question) {
     this.addUserMessage(question);
     this.hideQuestionOptionsTemporarily();
-    this.enableTextInput();
-    
-    // ボットの応答を取得
     await this.getBotResponse(question);
   }
 
   // ユーザーメッセージの追加
   addUserMessage(message) {
     const messagesContainer = document.getElementById('aikw-chat-messages');
+    if (!messagesContainer) return;
+
     const formattedMessage = this.formatMessage(message);
     const messageHTML = `
-      <div class="aikw-message aikw-user-message">
+      <div class="aikw-message aikw-user-message aikw-new-user-message">
         <div class="aikw-message-content">
           ${formattedMessage}
         </div>
       </div>
     `;
     messagesContainer.insertAdjacentHTML('beforeend', messageHTML);
-    this.scrollToBottom();
+    
+    // 新しいメッセージ要素を取得
+    const newMessage = messagesContainer.lastElementChild;
+    
+    // ユーザーメッセージを即座にウィンドウ最上部に表示して視認性を向上
+    this.scrollUserMessageToTop();
+    
+    // 確実にスクロールさせるために少し待ってからもう一度実行
+    setTimeout(() => {
+      this.scrollUserMessageToTop();
+    }, 50);
+    
+    // ハイライトアニメーション終了後にクラスを削除
+    if (newMessage) {
+      setTimeout(() => {
+        newMessage.classList.remove('aikw-new-user-message');
+      }, 2000);
+    }
   }
 
   // ボットメッセージの追加
   addBotMessage(message, isLoading = false) {
     const messagesContainer = document.getElementById('aikw-chat-messages');
+    if (!messagesContainer) return null;
+
     const messageId = 'bot-msg-' + Date.now();
-    
-    // 改行を<br>タグに変換し、HTMLエスケープを適用
-    const formattedMessage = isLoading ? 
+    const formattedMessage = isLoading ?
       '<div class="aikw-typing-indicator"><span></span><span></span><span></span></div>' :
       this.formatMessage(message);
-      
+
+    // ローディング中でない実際のメッセージにはハイライトアニメーションを追加
+    const highlightClass = (!isLoading) ? ' aikw-new-message' : '';
+    
     const messageHTML = `
-      <div id="${messageId}" class="aikw-message aikw-bot-message">
+      <div id="${messageId}" class="aikw-message aikw-bot-message${highlightClass}">
         <div class="aikw-message-content">
           ${formattedMessage}
         </div>
       </div>
     `;
     messagesContainer.insertAdjacentHTML('beforeend', messageHTML);
-    this.scrollToBottom();
+    
+    // 新しいメッセージ要素を取得
+    const newMessage = messagesContainer.lastElementChild;
+    
+    // ボットメッセージが表示された後のスクロール制御
+    if (isLoading) {
+      // ローディングアニメーションの場合は通常のスクロール
+      this.scrollToBottom();
+    } else {
+      // 実際のメッセージの場合は自動スクロールを無効にして固定位置を維持
+      // アウトプットが長い場合にチャットが流れないように自動スクロールしない
+      
+      // ハイライトアニメーション終了後にクラスを削除
+      if (newMessage) {
+        setTimeout(() => {
+          newMessage.classList.remove('aikw-new-message');
+        }, 2000);
+      }
+    }
+    
     return messageId;
   }
 
-  // 質問選択肢を一時的に隠す（選択後）
+  // 質問選択肢を一時的に隠す
   hideQuestionOptionsTemporarily() {
     const optionsContainer = document.getElementById('aikw-question-options');
     const backButton = document.getElementById('aikw-back-to-options');
-    optionsContainer.style.display = 'none';
-    backButton.style.display = 'inline-block';
+
+    if (optionsContainer) optionsContainer.style.display = 'none';
+    if (backButton) backButton.style.display = 'inline-block';
     
-    // 3秒後に選択肢を再表示（全て折りたたみ状態）
-    setTimeout(() => {
-      if (this.isOpen) {
-        optionsContainer.style.display = 'block';
-        this.collapseAllCategories(); // 全カテゴリを折りたたみ
-      }
-    }, 3000);
+    // 自動再表示タイマーを削除（手動で制御するため）
   }
 
   // 質問選択肢を表示
   showQuestionOptions() {
     const optionsContainer = document.getElementById('aikw-question-options');
     const backButton = document.getElementById('aikw-back-to-options');
-    const chatInput = document.getElementById('aikw-chat-input');
-    const sendButton = document.getElementById('aikw-chat-send');
-    
-    optionsContainer.style.display = 'block';
-    backButton.style.display = 'none';
-    chatInput.disabled = true;
-    sendButton.disabled = true;
-    chatInput.placeholder = 'メッセージを入力...';
-    
-    // 選択肢表示時に全カテゴリを折りたたみ
+
+    if (optionsContainer) optionsContainer.style.display = 'block';
+    if (backButton) backButton.style.display = 'none';
+
     this.collapseAllCategories();
   }
+  
+  // ボット応答後に質問選択肢を表示
+  showQuestionOptionsAfterResponse() {
+    const optionsContainer = document.getElementById('aikw-question-options');
+    const backButton = document.getElementById('aikw-back-to-options');
 
-  // テキスト入力を有効化
-  enableTextInput() {
-    const chatInput = document.getElementById('aikw-chat-input');
-    const sendButton = document.getElementById('aikw-chat-send');
-    
-    chatInput.disabled = false;
-    sendButton.disabled = false;
-    chatInput.placeholder = '続けて質問をどうぞ...';
+    if (optionsContainer) {
+      optionsContainer.style.display = 'block';
+      // タブを初期状態（折りたたまれた状態）で表示
+      this.collapseAllCategories();
+    }
+    if (backButton) backButton.style.display = 'none';
   }
 
   // メッセージ送信
   async sendMessage() {
     const chatInput = document.getElementById('aikw-chat-input');
+    if (!chatInput) return;
+
     const message = chatInput.value.trim();
-    
     if (!message) return;
-    
+
     this.addUserMessage(message);
     chatInput.value = '';
     
+    // メッセージ送信時に選択肢を隠す
+    this.hideQuestionOptionsTemporarily();
+
     await this.getBotResponse(message);
   }
 
   // ボットの応答取得
   async getBotResponse(message) {
     const loadingMessageId = this.addBotMessage('', true);
-    
+
     try {
-      // 開発モードではAPI呼び出しをスキップ
-      if (this.isDevelopmentMode) {
-        throw new Error('開発モード: API keyが設定されていません');
+      const requestData = {
+        inputs: {},
+        query: message,
+        response_mode: 'blocking',
+        conversation_id: this.conversationId,
+        user: this.userId,
+        auto_generate_name: false
+      };
+
+      // file://プロトコル検出とフォールバック処理
+      const isFileProtocol = window.location.protocol === 'file:';
+
+      if (isFileProtocol) {
+        // file://環境では代替手段を使用
+        return await this.getBotResponseAlternative(message, requestData, loadingMessageId);
       }
-      
-      const apiKey = await this.decryptApiKey();
-      if (!apiKey) {
-        throw new Error('API key復号化に失敗しました');
-      }
-      
-      const response = await fetch(`${this.apiUrl}/chat-messages`, {
+
+      const response = await fetch(`${this.apiUrl}/v1/chat-messages`, {
         method: 'POST',
+        mode: 'cors',
+        credentials: 'omit',
         headers: {
-          'Authorization': `Bearer ${apiKey}`,
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
         },
-        body: JSON.stringify({
-          inputs: {},
-          query: message,
-          response_mode: 'blocking',
-          conversation_id: this.conversationId,
-          user: this.userId,
-          auto_generate_name: false
-        })
+        body: JSON.stringify(requestData)
       });
-      
+
       if (!response.ok) {
-        throw new Error(`API エラー: ${response.status}`);
+        throw new Error(`API エラー: ${response.status} - ${response.statusText}`);
       }
-      
-      const data = await response.json();
-      
+
+      const responseText = await response.text();
+
+      let data;
+      try {
+        data = JSON.parse(responseText);
+      } catch (parseError) {
+        throw new Error(`JSON パースエラー: ${parseError.message}`);
+      }
+
       // 会話IDを保存
       if (data.conversation_id) {
         this.conversationId = data.conversation_id;
       }
-      
+
       // ローディングメッセージを削除
       const loadingMessage = document.getElementById(loadingMessageId);
       if (loadingMessage) {
         loadingMessage.remove();
       }
-      
+
       // ボットの応答を表示
-      this.addBotMessage(data.answer || 'すみません、応答を取得できませんでした。');
+      const botAnswer = data.answer || 'すみません、応答を取得できませんでした。';
+      this.addBotMessage(botAnswer);
       
+      // ボット応答後に選択肢を表示（少し遅延を入れる）
+      setTimeout(() => {
+        this.showQuestionOptionsAfterResponse();
+      }, 1000);
+
     } catch (error) {
-      console.error('ボット応答エラー:', error);
-      
       // ローディングメッセージを削除
       const loadingMessage = document.getElementById(loadingMessageId);
       if (loadingMessage) {
         loadingMessage.remove();
       }
-      
-      // 開発モード用またはエラーメッセージを表示
-      if (this.isDevelopmentMode) {
-        this.addBotMessage(`🛠️ **開発モードでの応答**\n\nあなたのメッセージ: "${message}"\n\nありがとうございます！現在は開発モードで動作しており、実際のAI応答は本番環境でのみ利用可能です。\n\n詳しいお問い合わせは **otoiawase20250416@aiknowledgeworks.net** までお願いいたします。`);
+
+      // エラーの種類を分析
+      let userFriendlyMessage = '';
+
+      if (error.message.includes('Failed to fetch') || error.name === 'TypeError') {
+        userFriendlyMessage = 'インターネット接続を確認してください。';
+      } else if (error.message.includes('API エラー:')) {
+        userFriendlyMessage = 'サーバーで問題が発生しています。';
+      } else if (error.message.includes('JSON パースエラー:')) {
+        userFriendlyMessage = 'サーバーからの応答に問題があります。';
+      } else if (error.message.includes('CORS')) {
+        userFriendlyMessage = 'ブラウザのセキュリティ制限により接続できません。';
       } else {
-        this.addBotMessage('申し訳ございません。現在システムに問題が発生しております。お手数ですが、後ほど再度お試しいただくか、直接お問い合わせください。');
+        userFriendlyMessage = '予期しないエラーが発生しました。';
       }
+
+      // ユーザーに表示するメッセージ
+      const displayMessage = `申し訳ございません。${userFriendlyMessage}
+
+お手数ですが、後ほど再度お試しいただくか、直接お問い合わせください。
+
+詳しいお問い合わせは **otoiawase20250416@aiknowledgeworks.net** までお願いいたします。`;
+
+      this.addBotMessage(displayMessage);
+      
+      // エラー後も選択肢を表示
+      setTimeout(() => {
+        this.showQuestionOptionsAfterResponse();
+      }, 1000);
     }
   }
 
-  // メッセージのフォーマット（改行、HTMLエスケープ、Markdownハイライト）
+  // file://プロトコル対応の代替API通信方法
+  async getBotResponseAlternative(message, requestData, loadingMessageId) {
+    try {
+      // 1. script要素を使ったJSONPライクな方法を試行
+      const result = await this.jsonpRequest(requestData);
+
+      if (result && result.answer) {
+        // 成功時の処理
+        if (result.conversation_id) {
+          this.conversationId = result.conversation_id;
+        }
+
+        const loadingMessage = document.getElementById(loadingMessageId);
+        if (loadingMessage) {
+          loadingMessage.remove();
+        }
+
+        this.addBotMessage(result.answer);
+        
+        // 代替API成功後も選択肢を表示
+        setTimeout(() => {
+          this.showQuestionOptionsAfterResponse();
+        }, 1000);
+        
+        return;
+      }
+
+      throw new Error('代替通信方法での応答取得失敗');
+    } catch (altError) {
+      // 代替方法も失敗した場合のフォールバック
+      return this.handleFileProtocolFallback(message, loadingMessageId);
+    }
+  }
+
+  // JSONP風リクエスト（file://プロトコル用）
+  async jsonpRequest(requestData) {
+    return new Promise((resolve, reject) => {
+      // グローバルコールバック関数を作成
+      const callbackName = 'aikw_callback_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5);
+
+      window[callbackName] = (data) => {
+        cleanup();
+        resolve(data);
+      };
+
+      // クリーンアップ関数
+      const cleanup = () => {
+        delete window[callbackName];
+        if (script.parentNode) {
+          script.parentNode.removeChild(script);
+        }
+      };
+
+      // タイムアウト設定
+      const timeout = setTimeout(() => {
+        cleanup();
+        reject(new Error('JSONP request timeout'));
+      }, 15000);
+
+      // script要素を作成してリクエスト送信を試行
+      const script = document.createElement('script');
+
+      // URLパラメータとしてデータを送信
+      const params = new URLSearchParams({
+        callback: callbackName,
+        query: requestData.query,
+        user: requestData.user,
+        conversation_id: requestData.conversation_id || '',
+        response_mode: requestData.response_mode
+      });
+
+      script.src = `${this.apiUrl}/v1/chat-messages?${params.toString()}`;
+      script.onerror = () => {
+        clearTimeout(timeout);
+        cleanup();
+        reject(new Error('JSONP script load error'));
+      };
+
+      document.head.appendChild(script);
+    });
+  }
+
+  // file://プロトコル環境でのフォールバック処理
+  handleFileProtocolFallback(message, loadingMessageId) {
+    const loadingMessage = document.getElementById(loadingMessageId);
+    if (loadingMessage) {
+      loadingMessage.remove();
+    }
+
+    // file://環境での標準エラーメッセージ
+    const fallbackMessage = `申し訳ございません。現在システムに問題が発生しております。
+
+お手数ですが、後ほど再度お試しいただくか、直接お問い合わせください。
+
+詳しいお問い合わせは **otoiawase20250416@aiknowledgeworks.net** までお願いいたします。`;
+
+    this.addBotMessage(fallbackMessage);
+    
+    // フォールバック後も選択肢を表示
+    setTimeout(() => {
+      this.showQuestionOptionsAfterResponse();
+    }, 1000);
+  }
+
+  // メッセージのフォーマット
   formatMessage(message) {
     // HTMLエスケープ
     let escaped = message
@@ -707,21 +602,11 @@ class AIKWChatbot {
       .replace(/>/g, '&gt;')
       .replace(/"/g, '&quot;')
       .replace(/'/g, '&#39;');
-    
-    // Markdownハイライトの処理
-    // #### 見出し4-> <h4>
-    escaped = escaped.replace(/^####\s+(.+)$/gm, '<h4>$1</h4>');
-    // ### 見出し3-> <h3>
-    escaped = escaped.replace(/^###\s+(.+)$/gm, '<h3>$1</h3>');
-    // ## 見出し2-> <h2>
-    escaped = escaped.replace(/^##\s+(.+)$/gm, '<h2>$1</h2>');
-    // **太字** -> <strong>
+
+    // Markdownの基本的なフォーマット
     escaped = escaped.replace(/\*\*([^*]+?)\*\*/g, '<strong>$1</strong>');
-    // *イタリック* -> <em> (太字と重複しないように先に太字を処理)
-    escaped = escaped.replace(/(^|\s)\*([^*\s][^*]*?)\*(\s|$)/g, '$1<em>$2</em>$3');
-    // `コード` -> <code>
     escaped = escaped.replace(/`([^`]+?)`/g, '<code>$1</code>');
-    
+
     // 改行を<br>タグに変換
     return escaped.replace(/\n/g, '<br>');
   }
@@ -729,8 +614,8 @@ class AIKWChatbot {
   // チャット履歴をクリア
   clearChatHistory() {
     const messagesContainer = document.getElementById('aikw-chat-messages');
-    const backButton = document.getElementById('aikw-back-to-options');
-    
+    if (!messagesContainer) return;
+
     // 初期メッセージ以外をクリア
     const messages = messagesContainer.querySelectorAll('.aikw-message');
     messages.forEach((message, index) => {
@@ -738,90 +623,54 @@ class AIKWChatbot {
         message.remove();
       }
     });
-    
+
     // 会話IDをリセット
     this.conversationId = null;
-    
-    // 選択肢を再表示（全て折りたたみ状態）
+
+    // 選択肢を再表示
     this.showQuestionOptions();
-  }
-
-  // エラー時のチャットボット無効化
-  disableChatbot() {
-    // チャットボタンを非表示に
-    const chatButton = document.getElementById('aikw-chatbot-button');
-    if (chatButton) {
-      chatButton.style.display = 'none';
-    }
-    console.warn('⚠️ チャットボットが無効化されました。ページをリロードして再試行してください。');
-  }
-
-  // デバッグ用：チャットボタンの表示状態を確認
-  checkButtonVisibility() {
-    const button = document.getElementById('aikw-chatbot-button');
-    if (button) {
-      const styles = window.getComputedStyle(button);
-      console.log('🔍 チャットボタンの状態:', {
-        element: button,
-        display: styles.display,
-        visibility: styles.visibility,
-        opacity: styles.opacity,
-        zIndex: styles.zIndex,
-        position: styles.position,
-        bottom: styles.bottom,
-        right: styles.right
-      });
-      return true;
-    } else {
-      console.error('❌ チャットボタンが存在しません');
-      return false;
-    }
   }
 
   // タブコンテンツの展開
   expandTabContent(tabIndex) {
     const tabContent = document.getElementById('aikw-tab-content');
     const category = this.predefinedQuestions[tabIndex];
-    
-    if (!category) return;
-    
+
+    if (!category || !tabContent) return;
+
     const contentHTML = `
       <div class="aikw-questions-container">
-        ${category.questions.map(question => 
+        ${category.questions.map(question =>
           `<button class="aikw-question-btn" data-question="${question}">${question}</button>`
         ).join('')}
       </div>
     `;
-    
+
     tabContent.innerHTML = contentHTML;
     tabContent.classList.remove('collapsed');
     tabContent.classList.add('expanded');
   }
-  
+
   // タブコンテンツの折りたたみ
   collapseTabContent() {
     const tabContent = document.getElementById('aikw-tab-content');
+    if (!tabContent) return;
+
     tabContent.classList.remove('expanded');
     tabContent.classList.add('collapsed');
     tabContent.innerHTML = '';
   }
-  
-  // 旧renderTabContentメソッド（互換性のため保持）
-  renderTabContent(tabIndex) {
-    // 新しい展開メソッドを使用
-    this.expandTabContent(tabIndex);
-  }
 
-  // タブイベントをバインド（直接切り替え仕様）
+  // タブイベントをバインド
   bindTabEvents() {
     const tabButtons = document.querySelectorAll('.aikw-tab-btn');
-    
+
     tabButtons.forEach(button => {
-      button.addEventListener('click', (e) => {
+      button.addEventListener('click', () => {
         const tabIndex = parseInt(button.getAttribute('data-tab'));
         const tabContent = document.getElementById('aikw-tab-content');
-        const isCurrentlyExpanded = tabContent.classList.contains('expanded') && this.currentTab === tabIndex;
-        
+        const isCurrentlyExpanded = tabContent && tabContent.classList.contains('expanded') && this.currentTab === tabIndex;
+
         if (isCurrentlyExpanded) {
           // 同じタブをクリック：折りたたみ
           tabButtons.forEach(btn => btn.classList.remove('active'));
@@ -830,7 +679,7 @@ class AIKWChatbot {
           // 違うタブまたは折りたたみ状態からクリック：直接切り替え
           tabButtons.forEach(btn => btn.classList.remove('active'));
           button.classList.add('active');
-          
+
           // コンテンツを直接切り替え
           this.currentTab = tabIndex;
           this.expandTabContent(tabIndex);
@@ -839,38 +688,75 @@ class AIKWChatbot {
     });
   }
 
-  // 初期状態へリセット（全て折りたたみ）
-  resetToFirstTab() {
+  // 全カテゴリを折りたたみ
+  collapseAllCategories() {
     this.currentTab = 0;
     const tabButtons = document.querySelectorAll('.aikw-tab-btn');
-    
+
     // アクティブタブをリセット
     tabButtons.forEach(btn => btn.classList.remove('active'));
-    
+
     // コンテンツを折りたたみ状態に
     this.collapseTabContent();
   }
 
-  // 旧折りたたみメソッド（互換性のため保持）
-  collapseAllCategories() {
-    // タブ式では初期タブにリセット
-    this.resetToFirstTab();
-  }
-
-  // チャット履歴の最下部にスクロール
+  // チャット履歴の最下部にスクロール（最新のメッセージを表示）
   scrollToBottom() {
     const messagesContainer = document.getElementById('aikw-chat-messages');
-    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    if (messagesContainer) {
+      // スムーズスクロールで最新メッセージを表示
+      messagesContainer.scrollTo({
+        top: messagesContainer.scrollHeight,
+        behavior: 'smooth'
+      });
+    }
+  }
+  
+  // ユーザーメッセージを強調表示するために最新メッセージにフォーカス
+  scrollToLatestMessage() {
+    const messagesContainer = document.getElementById('aikw-chat-messages');
+    if (messagesContainer) {
+      const messages = messagesContainer.querySelectorAll('.aikw-message');
+      const latestMessage = messages[messages.length - 1];
+      
+      if (latestMessage) {
+        // 最新メッセージが見える位置までスクロール
+        latestMessage.scrollIntoView({
+          behavior: 'smooth',
+          block: 'end',
+          inline: 'nearest'
+        });
+      }
+    }
+  }
+  
+  // ユーザーメッセージをウィンドウ最上部に固定表示
+  scrollUserMessageToTop() {
+    const messagesContainer = document.getElementById('aikw-chat-messages');
+    if (messagesContainer) {
+      const messages = messagesContainer.querySelectorAll('.aikw-message');
+      const latestMessage = messages[messages.length - 1];
+      
+      if (latestMessage) {
+        // ユーザーメッセージの位置を取得
+        const messageOffsetTop = latestMessage.offsetTop;
+        
+        // メッセージをコンテナの最上部に配置
+        messagesContainer.scrollTo({
+          top: messageOffsetTop,
+          behavior: 'smooth'
+        });
+      }
+    }
   }
 }
 
 // DOMが読み込まれたらチャットボットを初期化
 document.addEventListener('DOMContentLoaded', () => {
   try {
-    console.log('🚀 Initializing AIKW Chatbot...');
     const chatbot = new AIKWChatbot();
-    window.aikwChatbot = chatbot; // デバッグ用にグローバルに設定
+    window.aikwChatbot = chatbot;
   } catch (error) {
-    console.error('❌ Failed to initialize chatbot:', error);
+    // 初期化失敗時も基本UIは表示される
   }
 });

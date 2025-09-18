@@ -1,7 +1,0 @@
-GitHub Actions テスト - チャットボット統合
-
-このファイルはGitHub ActionsでDIFY_API_KEYが正しく設定されるかテストするためのものです。
-
-テスト日時: 2025-09-09
-機能: Dify API チャットボット統合
-セキュリティ: Environment Secrets使用
