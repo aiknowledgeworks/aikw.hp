@@ -493,12 +493,29 @@
         padding: 0 1rem;
       }
       
-      .service-tab {
-        min-width: auto !important;
-        padding: 1rem 1.5rem !important;
-        flex: 1;
-        max-width: 280px;
+    .service-tab {
+      min-width: auto !important;
+      padding: 1rem 1.5rem !important;
+      flex: 1;
+      max-width: 280px;
+    }
+
+    /* クリックエフェクト */
+    .service-tab.clicked {
+      animation: clickEffect 0.15s ease;
+    }
+
+    @keyframes clickEffect {
+      0% {
+        transform: scale(1);
       }
+      50% {
+        transform: scale(0.95);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
       
       .service-tab h3 {
         font-size: 1rem !important;
@@ -520,6 +537,11 @@
       .service-content th, .service-content td { padding: 8px !important; }
       .service-content .card { padding: 1.5rem !important; }
       .service-content .section-title { font-size: 1.8rem !important; }
+
+      /* Mobile video gallery styles */
+      .service-content .reveal > div > div {
+        grid-template-columns: 1fr !important;
+      }
     }
 
 
@@ -562,20 +584,20 @@
   <section style="background: white; padding: 2rem 0; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
     <div class="container">
       <div class="service-tabs" style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
-        <div class="service-tab active" data-service="startup-support" style="cursor: pointer; padding: 1.5rem 2rem; border-radius: 12px; background: var(--primary-gradient); color: white; text-align: center; min-width: 200px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-          <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🚀</div>
+        <div class="service-tab" data-service="startup-support" style="cursor: pointer; padding: 2rem 2rem; border-radius: 12px; background: white; color: var(--dark); text-align: center; min-width: 200px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 2px solid #e9ecef;">
           <h3 style="font-size: 1.2rem; font-weight: 700; margin: 0;">創業サポートパック</h3>
-          <p style="font-size: 0.9rem; margin: 0.5rem 0 0; opacity: 0.9;">起業の全準備を1日で</p>
+          <p style="font-size: 0.9rem; margin: 0.5rem 0 0; opacity: 0.7;">起業の全準備を1日で</p>
         </div>
-        <div class="service-tab" data-service="hp-creation" style="cursor: pointer; padding: 1.5rem 2rem; border-radius: 12px; background: white; color: var(--dark); text-align: center; min-width: 200px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 2px solid #e9ecef;">
-          <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">💻</div>
+        <div class="service-tab" data-service="hp-creation" style="cursor: pointer; padding: 2rem 2rem; border-radius: 12px; background: white; color: var(--dark); text-align: center; min-width: 200px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 2px solid #e9ecef;">
           <h3 style="font-size: 1.2rem; font-weight: 700; margin: 0;">AI-powered ホームページの制作</h3>
           <p style="font-size: 0.9rem; margin: 0.5rem 0 0; opacity: 0.7;">安心・成果が見えるWeb</p>
         </div>
-        <div class="service-tab" data-service="ai-video" style="cursor: pointer; padding: 1.5rem 2rem; border-radius: 12px; background: white; color: var(--dark); text-align: center; min-width: 200px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 2px solid #e9ecef;">
-          <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🎬</div>
-          <h3 style="font-size: 1.2rem; font-weight: 700; margin: 0;">ロゴ・チラシのAI映像制作</h3>
-          <p style="font-size: 0.9rem; margin: 0.5rem 0 0; opacity: 0.7;">静止画に命を吹き込む</p>
+        <div class="service-tab active" data-service="ai-video" style="cursor: pointer; padding: 2rem 2rem; border-radius: 12px; background: var(--primary-gradient); color: white; text-align: center; min-width: 200px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+          <h3 style="font-size: 1.2rem; font-weight: 700; margin: 0;">ロゴ・チラシ・名刺のAI映像制作</h3>
+          <div style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin-top: 0.5rem;">
+            <p style="font-size: 0.9rem; margin: 0; opacity: 0.9;">静止画に命を吹き込む</p>
+            <img src="movie/Uchibori_02ok.gif" alt="人物のアニメーション事例" style="width: 94px; height: 62px; object-fit: cover; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+          </div>
         </div>
       </div>
     </div>
@@ -794,8 +816,8 @@
     </div>
   </section>
 
-  <!-- === ロゴ・チラシのAI映像制作 === -->
-  <section id="ai-video" class="service-content" data-service="ai-video" style="background: linear-gradient(135deg, #f0f4ff 0%, #ffffff 100%); position: relative; overflow: hidden; display: none;">
+  <!-- === ロゴ・チラシ・名刺のAI映像制作 === -->
+  <section id="ai-video" class="service-content" data-service="ai-video" style="background: linear-gradient(135deg, #f0f4ff 0%, #ffffff 100%); position: relative; overflow: hidden;">
     <!-- 背景装飾 -->
     <div style="position: absolute; top: -50px; right: -50px; width: 200px; height: 200px; background: linear-gradient(135deg, #ff6b9d 0%, #ffd93d 100%); border-radius: 50%; opacity: 0.1; z-index: 0;"></div>
     <div style="position: absolute; bottom: -100px; left: -100px; width: 300px; height: 300px; background: linear-gradient(135deg, #6c5ce7 0%, #fd79a8 100%); border-radius: 50%; opacity: 0.05; z-index: 0;"></div>
@@ -804,7 +826,7 @@
       <!-- ヒーローヘッダー -->
       <div style="text-align: center; margin-bottom: 4rem;">
         <div class="reveal" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 3rem 2rem; border-radius: 20px; margin-bottom: 2rem; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
-          <h2 style="font-size: 2.8rem; font-weight: 800; margin-bottom: 1rem; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">ロゴ・チラシのAI映像制作</h2>
+          <h2 style="font-size: 2.8rem; font-weight: 800; margin-bottom: 1rem; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">ロゴ・チラシ・名刺のAI映像制作</h2>
           <div style="background: rgba(255,255,255,0.2); border-radius: 12px; padding: 1.5rem; margin: 2rem auto; max-width: 700px;">
             <p style="font-size: 1.8rem; font-weight: 700; margin-bottom: 0.75rem; line-height: 1.3;">止まったデザインが、語り出す。</p>
             <p style="font-size: 1.2rem; opacity: 0.95; font-weight: 500;">──あなたのブランドに"声"と"動き"を。</p>
@@ -842,6 +864,31 @@
 
         <!-- 導入事例 -->
         <h3 class="reveal" style="text-align: center; font-size: 2.2rem; margin-bottom: 3rem; color: var(--dark); font-weight: 700;">導入事例</h3>
+
+        <!-- 動画ギャラリー -->
+        <div class="reveal" style="margin-bottom: 3rem;">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+            <div style="background: white; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.08); padding: 1rem; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 200px;">
+              <video controls style="width: 100%; max-width: 240px; height: 135px; border-radius: 8px; margin-bottom: 0.5rem; object-fit: cover;" allowfullscreen>
+                <source src="movie/Uchibori_01ok.mp4" type="video/mp4">
+                お使いのブラウザは動画をサポートしていません。
+              </video>
+              <p style="font-size: 0.9rem; color: #666; margin: 0;">名刺アニメーション事例</p>
+            </div>
+            <div style="background: white; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.08); padding: 1rem; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 200px;">
+              <img src="movie/Uchibori_02ok.gif" alt="人物のアニメーション事例" style="width: 100%; max-width: 240px; height: 135px; border-radius: 8px; margin-bottom: 0.5rem; object-fit: cover;">
+              <p style="font-size: 0.9rem; color: #666; margin: 0;">人物のアニメーション事例</p>
+            </div>
+            <div style="background: white; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.08); padding: 1rem; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 200px;">
+              <video controls style="width: 100%; max-width: 240px; height: 135px; border-radius: 8px; margin-bottom: 0.5rem; object-fit: cover;" allowfullscreen>
+                <source src="movie/yamamoto_03ok.mp4" type="video/mp4">
+                お使いのブラウザは動画をサポートしていません。
+              </video>
+              <p style="font-size: 0.9rem; color: #666; margin: 0;">名刺アニメーション事例</p>
+            </div>
+          </div>
+        </div>
+
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; margin-bottom: 4rem;">
           
           <div class="card reveal" style="background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%); border: none; padding: 2.5rem; border-radius: 16px; box-shadow: 0 10px 30px rgba(102, 92, 231, 0.1); position: relative; overflow: hidden;">
@@ -979,7 +1026,7 @@
       function getServiceFromHash() {
         const hash = window.location.hash.substring(1);
         const validServices = ['startup-support', 'hp-creation', 'ai-video'];
-        return validServices.includes(hash) ? hash : 'startup-support';
+        return validServices.includes(hash) ? hash : 'ai-video';
       }
       
       function restoreScrollPosition() {
@@ -1008,6 +1055,12 @@
       // Handle tab clicks
       serviceTabs.forEach(tab => {
         tab.addEventListener('click', () => {
+          // Add click effect
+          tab.classList.add('clicked');
+          setTimeout(() => {
+            tab.classList.remove('clicked');
+          }, 150);
+
           const targetService = tab.dataset.service;
           switchService(targetService);
         });
