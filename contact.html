@@ -25,12 +25,26 @@
   <!-- Dify Chatbot -->
   <script>
     window.difyChatbotConfig = {
-      token: 'DIFY_API_KEY_PLACEHOLDER'
+      token: 'DIFY_API_KEY_PLACEHOLDER',
+      inputs: {
+        // You can define the inputs from the Start node here
+        // key is the variable name
+        // e.g.
+        // name: "NAME"
+      },
+      systemVariables: {
+        // user_id: 'YOU CAN DEFINE USER ID HERE',
+        // conversation_id: 'YOU CAN DEFINE CONVERSATION ID HERE, IT MUST BE A VALID UUID',
+      },
+      userVariables: {
+        // avatar_url: 'YOU CAN DEFINE USER AVATAR URL HERE',
+        // name: 'YOU CAN DEFINE USER NAME HERE',
+      },
     }
   </script>
   <script
     src="https://udify.app/embed.min.js"
-    id="dGOYWyZTRAXfLI6EoNHqMkY7"
+    id="DIFY_API_KEY_PLACEHOLDER"
     defer>
   </script>
 
