@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes, viewport-fit=cover"
+    />
+    <title>AIKW Particle Reveal — Optimized v2 (Mobile Safe)</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --vh: 100vh; /* updated by JS using visualViewport */
+      }
+
+      * { box-sizing: border-box; }
+
+      html, body {
+        margin: 0;
+        height: 100%;
+        overflow: hidden;
+        background: radial-gradient(circle at center, #101223 0%, #05060a 60%, #020207 100%);
+        font-family: "Space Grotesk", "Noto Sans JP", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        -webkit-text-size-adjust: 100%;
+        touch-action: pan-x pan-y pinch-zoom; /* allow zoom and panning */
+      }
+
+      canvas {
+        width: 100vw; /* vw is fine horizontally */
+        height: calc(var(--vh)); /* dynamic safe viewport height */
+        display: block;
+        position: fixed;
+        inset: 0;
+      }
+
+      .overlay {
+        position: fixed;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        pointer-events: none;
+        padding-left: env(safe-area-inset-left, 0px);
+        padding-right: env(safe-area-inset-right, 0px);
+      }
+
+      .overlay h1 {
+        margin: 0;
+        font-weight: 900;
+        font-size: clamp(2.4rem, 16vw, 7rem);
+        letter-spacing: clamp(0.04em, 1.2vw, 0.18em);
+        color: rgba(241,241,241,0.06);
+        text-transform: uppercase;
+        white-space: nowrap;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: clip;
+      }
+
+      .hint {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: calc(env(safe-area-inset-bottom, 0px) + 10px);
+        text-align: center;
+        color: rgba(138,141,255,0.6);
+        letter-spacing: .3em;
+        font-size: .82rem;
+        pointer-events: none;
+        padding-left: env(safe-area-inset-left, 0px);
+        padding-right: env(safe-area-inset-right, 0px);
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="c"></canvas>
+    <div class="overlay"><h1>AIKW</h1></div>
+    <div class="hint">Pinch to zoom • Rotate device supported</div>
+
+    <script>
+      // Dynamic viewport height for mobile (prevents 100vh overflow)
+      function applyViewportHeight() {
+        const vv = window.visualViewport;
+        const h = vv ? vv.height : window.innerHeight;
+        document.documentElement.style.setProperty('--vh', `${h}px`);
+      }
+      applyViewportHeight();
+      window.addEventListener('resize', applyViewportHeight);
+      if (window.visualViewport) {
+        window.visualViewport.addEventListener('resize', applyViewportHeight);
+        window.visualViewport.addEventListener('scroll', applyViewportHeight);
+      }
+
+      const canvas = document.getElementById('c');
+      const ctx = canvas.getContext('2d');
+
+      const state = {
+        particles: [],
+        targets: [],
+        density: 0.08,
+        jitter: 0.18,
+        attraction: 0.09,
+        drag: 0.9,
+        bgAlpha: 0.07,
+        chars: 'AIKW/\\-_·^:=+*',
+        mouse: { x: 0, y: 0, active: false },
+        start: performance.now(),
+        formationMs: 9000,
+        maxParticles: 2800, // slightly lower default for mobiles
+        dprCached: window.devicePixelRatio || 1,
+      };
+
+      const dpr = () => window.devicePixelRatio || 1;
+      const off = document.createElement('canvas');
+      const offCtx = off.getContext('2d');
+      let atlas = null; // glyph atlas
+
+      function resize(forceRebuild = false) {
+        const r = dpr();
+        const width = Math.floor(window.innerWidth * r);
+        const height = Math.floor((window.visualViewport ? window.visualViewport.height : window.innerHeight) * r);
+        canvas.width = width;
+        canvas.height = height;
+        canvas.style.width = `${Math.round(width / r)}px`;
+        canvas.style.height = `${Math.round(height / r)}px`;
+        ctx.setTransform(r, 0, 0, r, 0, 0);
+
+        // Recompute everything for orientation/zoom changes
+        sampleTargets(width / r, height / r);
+        buildAtlas();
+        syncParticles(true);
+        state.dprCached = r;
+      }
+
+      // Handle orientation changes (iOS can fire before resize stabilizes)
+      window.addEventListener('orientationchange', () => {
+        setTimeout(() => resize(true), 120);
+      });
+
+      function sampleTargets(w, h) {
+        const r = dpr();
+        const fontSize = Math.min(w * 0.5, h * 0.35);
+        off.width = Math.floor(w * r);
+        off.height = Math.floor(h * r);
+        offCtx.save();
+        offCtx.setTransform(r, 0, 0, r, 0, 0);
+        offCtx.clearRect(0, 0, w, h);
+        offCtx.fillStyle = '#fff';
+        offCtx.textAlign = 'center';
+        offCtx.textBaseline = 'middle';
+        offCtx.font = `900 ${fontSize}px \"Space Grotesk\", \"Arial Black\", system-ui`;
+        offCtx.lineWidth = Math.max(2, fontSize * 0.02);
+        offCtx.strokeStyle = '#fff';
+        offCtx.strokeText('AIKW', w/2, h/2);
+        offCtx.fillText('AIKW', w/2, h/2);
+        offCtx.restore();
+
+        const img = offCtx.getImageData(0, 0, off.width, off.height).data;
+        const step = Math.max(3, Math.round(1 / state.density));
+        const pts = [];
+        for (let y = 0; y < off.height; y += step) {
+          for (let x = 0; x < off.width; x += step) {
+            const a = img[(y * off.width + x) * 4 + 3];
+            if (a > 128) pts.push({ x: x / r, y: y / r });
+          }
+        }
+        // Downsample to cap
+        const cap = state.maxParticles;
+        let chosen = pts;
+        if (pts.length > cap) {
+          const stride = Math.ceil(pts.length / cap);
+          const offset = Math.floor(Math.random() * stride);
+          chosen = [];
+          for (let i = offset; i < pts.length; i += stride) chosen.push(pts[i]);
+        }
+        // Organic jitter
+        const buf = Math.max(fontSize * 0.08, 20);
+        state.targets = chosen.map(p => ({
+          x: p.x + (Math.random() - 0.5) * buf,
+          y: p.y + (Math.random() - 0.5) * (buf * 0.32),
+        }));
+      }
+
+      function buildAtlas() {
+        const r = dpr();
+        const TILE = Math.max(32, Math.min(64, Math.floor((Math.min(window.innerWidth, window.innerHeight)) * 0.08)));
+        const cols = 4, rows = 4, size = TILE * r;
+        const c = document.createElement('canvas');
+        c.width = cols * size; c.height = rows * size;
+        const g = c.getContext('2d');
+        g.setTransform(r, 0, 0, r, 0, 0);
+        g.clearRect(0, 0, c.width, c.height);
+
+        const primary = ['A','I','K','W'];
+        const filler = ['+','-','/','\\','*','_','=','.',':','^','>','<'];
+        const set = primary.concat(filler).slice(0, cols*rows);
+        const map = new Map();
+        for (let i = 0; i < set.length; i++) {
+          const ch = set[i];
+          const col = i % cols, row = Math.floor(i / cols);
+          const x = col * TILE + TILE/2, y = row * TILE + TILE/2;
+          const isPrimary = primary.includes(ch);
+          g.save();
+          g.textAlign = 'center'; g.textBaseline = 'middle';
+          g.font = `${isPrimary ? 900 : 700} ${Math.floor(TILE*0.8)}px \"Space Grotesk\", \"Arial Black\", system-ui`;
+          if (isPrimary) {
+            g.shadowColor = 'rgba(138,141,255,0.55)';
+            g.shadowBlur = TILE * 0.32;
+            g.fillStyle = 'rgba(190,196,255,0.95)';
+          } else {
+            g.shadowBlur = 0;
+            g.fillStyle = 'rgba(235,235,238,0.95)';
+          }
+          g.fillText(ch, x, y);
+          g.restore();
+          map.set(ch, { col, row });
+        }
+        atlas = { canvas: c, size: TILE, cols, rows, map };
+      }
+
+      function syncParticles(reinit = false) {
+        const w = canvas.width / dpr();
+        const h = canvas.height / dpr();
+        const n = state.targets.length;
+        if (reinit) state.particles.length = 0;
+        if (state.particles.length > n) state.particles.length = n;
+        while (state.particles.length < n) {
+          state.particles.push(makeParticle(Math.random()*w, Math.random()*h));
+        }
+        state.particles.forEach((p, i) => {
+          const t = state.targets[i % n];
+          p.tx = t.x; p.ty = t.y;
+          p.targetChar = 'AIKW'[i % 4];
+        });
+      }
+
+      function makeParticle(x, y) {
+        return {
+          x, y,
+          vx: (Math.random()-0.5)*2,
+          vy: (Math.random()-0.5)*2,
+          size: 9 + Math.random()*6,
+          char: pickChar(state.chars),
+          targetChar: null,
+          tx: x, ty: y,
+          rot: 0,
+          rotSpd: (Math.random()-0.5)*0.02,
+          op: 0.75 + Math.random()*0.25,
+        };
+      }
+
+      function pickChar(s) { return s[Math.floor(Math.random()*s.length)]; }
+      function rand(min, max) { return Math.random()*(max-min)+min; }
+
+      function update(p) {
+        const elapsed = performance.now() - state.start;
+        const prog = Math.min(elapsed / state.formationMs, 1);
+        if (prog > 0.25 && p.targetChar && Math.random() < prog * 0.02) p.char = p.targetChar;
+        const dx = p.tx - p.x, dy = p.ty - p.y;
+        const dist = Math.hypot(dx, dy) || 1;
+        const attract = state.attraction * (1 + prog * 2);
+        p.vx += (dx / dist) * attract;
+        p.vy += (dy / dist) * attract;
+
+        if (state.mouse.active) {
+          const mdx = p.x - state.mouse.x, mdy = p.y - state.mouse.y;
+          const md = Math.hypot(mdx, mdy) || 1;
+          if (md < 160) {
+            const push = (1 - md/160) * 0.9;
+            p.vx += (mdx / md) * push;
+            p.vy += (mdy / md) * push;
+          }
+        }
+
+        const jitter = state.jitter * (1 - prog * 0.7);
+        p.vx += rand(-jitter, jitter);
+        p.vy += rand(-jitter, jitter);
+        p.vx *= state.drag;
+        p.vy *= state.drag;
+        p.x += p.vx;
+        p.y += p.vy;
+        p.rot += p.rotSpd;
+      }
+
+      function draw(p) {
+        const isAIKW = 'AIKW'.includes(p.char);
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rot);
+        if (atlas) {
+          const t = atlas.map.get(p.char) || atlas.map.get('+');
+          const sx = t.col * atlas.size * dpr();
+          const sy = t.row * atlas.size * dpr();
+          const sw = atlas.size * dpr();
+          const sh = atlas.size * dpr();
+          const dw = p.size; const dh = p.size;
+          ctx.globalAlpha = isAIKW ? p.op : p.op * 0.85;
+          ctx.drawImage(atlas.canvas, sx, sy, sw, sh, -dw/2, -dh/2, dw, dh);
+          ctx.globalAlpha = 1;
+        } else {
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.font = `${isAIKW?900:700} ${p.size}px \"Space Grotesk\", monospace`;
+          ctx.fillStyle = isAIKW ? `rgba(190,196,255,${p.op})` : `rgba(241,241,241,${0.7*p.op})`;
+          ctx.fillText(p.char, 0, 0);
+        }
+        ctx.restore();
+      }
+
+      function tick() {
+        // If DPR changed due to pinch-zoom, rebuild
+        const cur = dpr();
+        if (Math.abs(cur - state.dprCached) > 0.01) {
+          resize(true);
+        }
+        const w = canvas.width / cur;
+        const h = canvas.height / cur;
+        ctx.fillStyle = `rgba(5,6,10,${state.bgAlpha})`;
+        ctx.fillRect(0, 0, w, h);
+        for (let i = 0; i < state.particles.length; i++) { const p = state.particles[i]; update(p); draw(p); }
+        requestAnimationFrame(tick);
+      }
+
+      function onPointer(e) {
+        const r = canvas.getBoundingClientRect();
+        state.mouse.x = e.clientX - r.left;
+        state.mouse.y = e.clientY - r.top;
+        state.mouse.active = true;
+      }
+      function onLeave() { state.mouse.active = false; }
+
+      window.addEventListener('resize', () => resize());
+      window.addEventListener('mousemove', onPointer);
+      window.addEventListener('mouseleave', onLeave);
+      window.addEventListener('touchmove', (ev) => {
+        if (ev.touches && ev.touches.length === 1) {
+          const t = ev.touches[0];
+          if (t) onPointer(t);
+        }
+        // If multi-touch (pinch), let browser handle zoom; do not update pointer.
+      }, { passive: true });
+      window.addEventListener('touchend', onLeave);
+
+      // Initial build
+      resize(true);
+      requestAnimationFrame(tick);
+    </script>
+  </body>
+</html>
