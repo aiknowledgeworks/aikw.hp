@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AIKW Particle Reveal (2D Fixed)</title>
+    <style>
+      :root {
+        color-scheme: dark;
+      }
+      * { box-sizing: border-box; }
+      html, body {
+        margin: 0; height: 100%; overflow: hidden;
+        background: radial-gradient(circle at center, #101223 0%, #05060a 60%, #020207 100%);
+        font-family: "Space Grotesk", "Noto Sans JP", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+      canvas { width: 100vw; height: 100vh; display: block; }
+      .overlay { position: fixed; inset: 0; display: grid; place-items: center; pointer-events: none; }
+      .overlay h1 { margin: 0; font-size: clamp(3rem, 8vw, 8rem); letter-spacing: 0.25em; color: rgba(241,241,241,0.06); text-transform: uppercase; }
+      .hint { position: fixed; left: 50%; bottom: 3vh; transform: translateX(-50%); color: rgba(138,141,255,0.5); letter-spacing: .35em; font-size: .9rem; pointer-events: none; }
+    </style>
+  </head>
+  <body>
+    <canvas id="c"></canvas>
+    <div class="overlay"><h1>AIKW</h1></div>
+    <div class="hint">Hover / Touch to stir</div>
+
+    <script>
+      const canvas = document.getElementById('c');
+      const ctx = canvas.getContext('2d');
+
+      const state = {
+        particles: [],
+        targets: [],
+        // tune
+        density: 0.08,       // lower = denser sampling
+        jitter: 0.2,         // Brownian noise strength
+        attraction: 0.09,    // pull toward targets
+        drag: 0.9,           // velocity damping
+        bgAlpha: 0.08,       // motion trail
+        chars: 'AIKW/\\-_·^:=+*',
+        mouse: { x: 0, y: 0, active: false },
+        start: performance.now(),
+        formationMs: 9000,
+        maxParticles: 3200,  // cap to keep 2D path smooth
+      };
+
+      const dpr = () => window.devicePixelRatio || 1;
+      const off = document.createElement('canvas');
+      const offCtx = off.getContext('2d');
+      // Glyph atlas for fast drawing
+      let atlas = null; // { canvas, size, cols, rows, map }
+
+      function resize() {
+        const { innerWidth:w, innerHeight:h } = window;
+        const r = dpr();
+        canvas.width = Math.floor(w * r);
+        canvas.height = Math.floor(h * r);
+        canvas.style.width = w + 'px';
+        canvas.style.height = h + 'px';
+        ctx.setTransform(r, 0, 0, r, 0, 0);
+        sampleTargets(w, h);
+        buildAtlas();
+        syncParticles();
+      }
+
+      function sampleTargets(w, h) {
+        const r = dpr();
+        const fontSize = Math.min(w * 0.5, h * 0.35);
+        off.width = Math.floor(w * r);
+        off.height = Math.floor(h * r);
+        offCtx.save();
+        offCtx.scale(r, r);
+        offCtx.clearRect(0, 0, w, h);
+        offCtx.fillStyle = '#fff';
+        offCtx.textAlign = 'center';
+        offCtx.textBaseline = 'middle';
+        offCtx.font = `900 ${fontSize}px \"Space Grotesk\", \"Arial Black\", system-ui`;
+        // Slight stroke + fill for thicker sampling
+        offCtx.lineWidth = Math.max(2, fontSize * 0.02);
+        offCtx.strokeStyle = '#fff';
+        offCtx.strokeText('AIKW', w/2, h/2);
+        offCtx.fillText('AIKW', w/2, h/2);
+        offCtx.restore();
+
+        // Read alpha once; optionally thin by step, then cap to maxParticles
+        const img = offCtx.getImageData(0, 0, off.width, off.height).data;
+        const step = Math.max(3, Math.round(1 / state.density));
+        const pts = [];
+        for (let y = 0; y < off.height; y += step) {
+          for (let x = 0; x < off.width; x += step) {
+            const a = img[(y * off.width + x) * 4 + 3];
+            if (a > 128) pts.push({ x: x / r, y: y / r });
+          }
+        }
+        // Downsample to cap
+        const cap = state.maxParticles;
+        let chosen = pts;
+        if (pts.length > cap) {
+          const stride = Math.ceil(pts.length / cap);
+          const offset = Math.floor(Math.random() * stride);
+          chosen = [];
+          for (let i = offset; i < pts.length; i += stride) chosen.push(pts[i]);
+        }
+        // Organically jitter around the outline
+        const buf = Math.max(fontSize * 0.08, 24);
+        state.targets = chosen.map(p => ({
+          x: p.x + (Math.random() - 0.5) * buf,
+          y: p.y + (Math.random() - 0.5) * buf * 0.35,
+        }));
+      }
+
+      function buildAtlas() {
+        const r = dpr();
+        const TILE = Math.max(36, Math.min(72, Math.floor((canvas.width/canvas.height>1?canvas.height:canvas.width) * 0.06)));
+        const cols = 4, rows = 4, size = TILE * r;
+        const c = document.createElement('canvas');
+        c.width = cols * size; c.height = rows * size;
+        const g = c.getContext('2d');
+        g.scale(r, r);
+        g.clearRect(0, 0, c.width, c.height);
+
+        const primary = ['A','I','K','W'];
+        const filler = ['+','-','/','\\','*','_','=','.',':','^','>','<'];
+        const set = primary.concat(filler).slice(0, cols*rows);
+        const map = new Map();
+
+        for (let i = 0; i < set.length; i++) {
+          const ch = set[i];
+          const col = i % cols, row = Math.floor(i / cols);
+          const x = col * TILE + TILE/2, y = row * TILE + TILE/2;
+          g.save();
+          g.textAlign = 'center'; g.textBaseline = 'middle';
+          const isPrimary = primary.includes(ch);
+          g.font = `${isPrimary ? 900 : 700} ${Math.floor(TILE*0.8)}px \"Space Grotesk\", \"Arial Black\", system-ui`;
+          // Soft preglow for primary glyphs only, done once
+          if (isPrimary) {
+            g.shadowColor = 'rgba(138,141,255,0.6)';
+            g.shadowBlur = TILE * 0.35;
+            g.fillStyle = 'rgba(190,196,255,0.95)';
+          } else {
+            g.shadowBlur = 0;
+            g.fillStyle = 'rgba(235,235,238,0.95)';
+          }
+          g.fillText(ch, x, y);
+          g.restore();
+          map.set(ch, { col, row });
+        }
+
+        atlas = { canvas: c, size: TILE, cols, rows, map };
+      }
+
+      function syncParticles() {
+        const w = canvas.width / dpr();
+        const h = canvas.height / dpr();
+        const n = state.targets.length;
+        if (state.particles.length > n) state.particles.length = n;
+        while (state.particles.length < n) {
+          state.particles.push(makeParticle(Math.random()*w, Math.random()*h));
+        }
+        state.particles.forEach((p, i) => {
+          const t = state.targets[i % n];
+          p.tx = t.x; p.ty = t.y;
+          // assign target glyphs more often from "AIKW"
+          p.targetChar = 'AIKW'[i % 4];
+        });
+      }
+
+      function makeParticle(x, y) {
+        return {
+          x, y,
+          vx: (Math.random()-0.5)*2,
+          vy: (Math.random()-0.5)*2,
+          size: 9 + Math.random()*6,
+          char: pickChar(state.chars),
+          targetChar: null,
+          tx: x, ty: y,
+          rot: 0,
+          rotSpd: (Math.random()-0.5)*0.02, // smaller rotation to reduce re-raster ops
+          glow: Math.random() < 0.18,       // only some particles use glow styling
+          op: 0.75 + Math.random()*0.25,
+        };
+      }
+
+      function pickChar(s) { return s[Math.floor(Math.random()*s.length)]; }
+      function rand(min, max) { return Math.random()*(max-min)+min; }
+
+      function update(p) {
+        const elapsed = performance.now() - state.start;
+        const prog = Math.min(elapsed / state.formationMs, 1);
+
+        // occasional morph toward target glyph during formation
+        if (prog > 0.25 && p.targetChar && Math.random() < prog * 0.02) p.char = p.targetChar;
+
+        const dx = p.tx - p.x, dy = p.ty - p.y;
+        const dist = Math.hypot(dx, dy) || 1;
+        const attract = state.attraction * (1 + prog * 2);
+        p.vx += (dx / dist) * attract;
+        p.vy += (dy / dist) * attract;
+
+        if (state.mouse.active) {
+          const mdx = p.x - state.mouse.x, mdy = p.y - state.mouse.y;
+          const md = Math.hypot(mdx, mdy) || 1;
+          if (md < 160) {
+            const push = (1 - md/160) * 0.9;
+            p.vx += (mdx / md) * push;
+            p.vy += (mdy / md) * push;
+          }
+        }
+
+        const jitter = state.jitter * (1 - prog * 0.7);
+        p.vx += rand(-jitter, jitter);
+        p.vy += rand(-jitter, jitter);
+
+        p.vx *= state.drag;
+        p.vy *= state.drag;
+        p.x += p.vx;
+        p.y += p.vy;
+        p.rot += p.rotSpd;
+      }
+
+      function draw(p) {
+        const elapsed = performance.now() - state.start;
+        const prog = Math.min(elapsed / state.formationMs, 1);
+        const isAIKW = 'AIKW'.includes(p.char);
+
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rot);
+        if (atlas) {
+          const t = atlas.map.get(p.char) || atlas.map.get('+');
+          const sx = t.col * atlas.size * dpr();
+          const sy = t.row * atlas.size * dpr();
+          const sw = atlas.size * dpr();
+          const sh = atlas.size * dpr();
+          const dw = p.size; const dh = p.size;
+          ctx.globalAlpha = isAIKW ? p.op : p.op * 0.8;
+          ctx.drawImage(atlas.canvas, sx, sy, sw, sh, -dw/2, -dh/2, dw, dh);
+          ctx.globalAlpha = 1;
+        } else {
+          // Fallback to text draw (should rarely happen)
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.font = `${isAIKW?900:700} ${p.size}px \"Space Grotesk\", monospace`;
+          ctx.fillStyle = isAIKW ? `rgba(180,186,255,${p.op})` : `rgba(241,241,241,${0.7*p.op})`;
+          ctx.fillText(p.char, 0, 0);
+        }
+
+        ctx.restore();
+      }
+
+      function tick() {
+        const w = canvas.width / dpr();
+        const h = canvas.height / dpr();
+        ctx.fillStyle = `rgba(5,6,10,${state.bgAlpha})`;
+        ctx.fillRect(0, 0, w, h);
+        state.particles.forEach(p => { update(p); draw(p); });
+        requestAnimationFrame(tick);
+      }
+
+      function onPointer(e) {
+        const r = canvas.getBoundingClientRect();
+        state.mouse.x = e.clientX - r.left;
+        state.mouse.y = e.clientY - r.top;
+        state.mouse.active = true;
+      }
+      function onLeave() { state.mouse.active = false; }
+
+      window.addEventListener('resize', resize);
+      window.addEventListener('mousemove', onPointer);
+      window.addEventListener('mouseleave', onLeave);
+      window.addEventListener('touchmove', (ev) => { const t = ev.touches[0]; if (t) onPointer(t); }, { passive: true });
+      window.addEventListener('touchend', onLeave);
+
+      resize();
+      requestAnimationFrame(tick);
+    </script>
+  </body>
+</html>
