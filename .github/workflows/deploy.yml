@@ -46,16 +46,12 @@ jobs:
           echo "window.DIFY_API_KEY = \"$ESCAPED_KEY\";" > build/js/runtime-config.js
           echo "✅ API key successfully configured in runtime-config.js"
 
-          # Replace placeholder in contact.html
-          sed -i "s/DIFY_API_KEY_PLACEHOLDER/$ESCAPED_KEY/g" build/contact.html
-          echo "✅ API key successfully configured in contact.html"
+          # No need to replace placeholder in contact.html - using direct API key
+          echo "✅ API key is already configured directly in contact.html"
         else
           echo "window.DIFY_API_KEY = undefined;" > build/js/runtime-config.js
           echo "⚠️ No API key - creating development mode runtime-config.js"
-
-          # Replace placeholder with empty string for development
-          sed -i 's/DIFY_API_KEY_PLACEHOLDER//g' build/contact.html
-          echo "⚠️ No API key - placeholder removed from contact.html"
+          echo "⚠️ Contact.html uses direct API key configuration"
         fi
         
         # Show final result (without exposing the actual key)
