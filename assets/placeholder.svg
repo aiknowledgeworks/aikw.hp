@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#0e141b"/>
+      <stop offset="100%" stop-color="#1a2230"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="900" fill="url(#g)"/>
+  <g fill="none" stroke="#7dd3fc" stroke-opacity=".35">
+    <rect x="40" y="40" width="1120" height="820" rx="24"/>
+  </g>
+  <g font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" fill="#9fb3c8" text-anchor="middle">
+    <text x="600" y="450" font-size="42">placeholder</text>
+    <text x="600" y="510" font-size="20">assets/placeholder.svg</text>
+  </g>
+</svg>
+
