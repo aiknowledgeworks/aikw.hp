@@ -454,21 +454,25 @@
         .timeline-container .timeline-item {
           flex-direction: column !important;
           text-align: center;
+          align-items: center !important;
+          margin-bottom: 2rem !important;
         }
-        
+
         .timeline-content {
           width: 90% !important;
           margin: 0 auto !important;
+          margin-top: 0 !important;
         }
-        
+
         .timeline-axis {
           left: 30px !important;
           transform: none !important;
         }
-        
+
         .timeline-dot {
           left: 30px !important;
-          transform: translateX(-50%) !important;
+          top: 50% !important;
+          transform: translateY(-50%) !important;
         }
         
         /* ポートフォリオセクションのモバイル対応 */
@@ -669,58 +673,58 @@
         <div class="timeline-axis" style="position: absolute; left: 50%; transform: translateX(-50%); width: 4px; height: 100%; background: var(--primary-gradient); border-radius: 2px; z-index: 1;"></div>
         
         <!-- タイムラインアイテム -->
-        <div class="timeline-item reveal" style="position: relative; display: flex; align-items: center; margin-bottom: 3rem; z-index: 2;">
-          <div class="timeline-content" style="background: var(--light); border-radius: 12px; padding: 1.5rem; box-shadow: 0 8px 24px rgba(0,0,0,.1); width: 45%; margin-right: 10%;">
-            <div class="timeline-date" style="color: var(--accent); font-weight: 700; font-size: 1.1rem; margin-bottom: 0.5rem;">2025年4月</div>
-            <h3 style="color: var(--dark); margin-bottom: 0.5rem; font-size: 1.2rem;">AIナレッジワークス合同会社 創業</h3>
-            <p style="color: #666; font-size: 0.95rem;">「"好き"を信じ合える運命共同体を育てる」をミッションに掲げ、AI技術を通じた自己実現支援事業をスタート</p>
+        <div class="timeline-item reveal" style="position: relative; display: flex; align-items: center; margin-bottom: -3rem; z-index: 2;">
+          <div class="timeline-content" style="background: var(--light); border-radius: 12px; padding: 0.75rem 1rem; box-shadow: 0 8px 24px rgba(0,0,0,.1); width: 45%; margin-right: 10%;">
+            <div class="timeline-date" style="color: var(--accent); font-weight: 700; font-size: 1rem; margin-bottom: 0.3rem;">2025年4月</div>
+            <h3 style="color: var(--dark); margin-bottom: 0.3rem; font-size: 1.1rem;">AIナレッジワークス合同会社 創業</h3>
+            <p style="color: #666; font-size: 0.9rem;">「"好き"を信じ合える運命共同体を育てる」をミッションに掲げ、AI技術を通じた自己実現支援事業をスタート</p>
           </div>
           <div class="timeline-dot" style="position: absolute; left: 50%; transform: translateX(-50%); width: 20px; height: 20px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 0 6px white, 0 0 0 8px var(--accent);"></div>
         </div>
-        
-        <div class="timeline-item reveal" style="position: relative; display: flex; flex-direction: row-reverse; align-items: center; margin-bottom: 3rem; z-index: 2;">
-          <div class="timeline-content" style="background: var(--light); border-radius: 12px; padding: 1.5rem; box-shadow: 0 8px 24px rgba(0,0,0,.1); width: 45%; margin-left: 10%;">
-            <div class="timeline-date" style="color: var(--accent); font-weight: 700; font-size: 1.1rem; margin-bottom: 0.5rem;">2025年5月</div>
-            <h3 style="color: var(--dark); margin-bottom: 0.5rem; font-size: 1.2rem;">SHAIKE* トップアーティスト受賞</h3>
-            <p style="color: #666; font-size: 0.95rem;">AI技術を活用した創造的な取り組みが評価され、業界で注目される実績を獲得<br>*最も感動的なAI映画を発見・共有するための究極のプラットフォーム。</p>
+
+        <div class="timeline-item reveal" style="position: relative; display: flex; flex-direction: row-reverse; align-items: center; margin-bottom: -3rem; z-index: 2;">
+          <div class="timeline-content" style="background: var(--light); border-radius: 12px; padding: 0.75rem 1rem; box-shadow: 0 8px 24px rgba(0,0,0,.1); width: 45%; margin-left: 10%; margin-top: 5rem;">
+            <div class="timeline-date" style="color: var(--accent); font-weight: 700; font-size: 1rem; margin-bottom: 0.3rem;">2025年5月</div>
+            <h3 style="color: var(--dark); margin-bottom: 0.3rem; font-size: 1.1rem;">SHAIKE* トップアーティスト受賞</h3>
+            <p style="color: #666; font-size: 0.9rem;">AI技術を活用した創造的な取り組みが評価され、業界で注目される実績を獲得<br>*最も感動的なAI映画を発見・共有するための究極のプラットフォーム。</p>
           </div>
           <div class="timeline-dot" style="position: absolute; left: 50%; transform: translateX(-50%); width: 20px; height: 20px; background: #6db5ff; border-radius: 50%; box-shadow: 0 0 0 6px white, 0 0 0 8px #6db5ff;"></div>
         </div>
-        
-        <div class="timeline-item reveal" style="position: relative; display: flex; align-items: center; margin-bottom: 3rem; z-index: 2;">
-          <div class="timeline-content" style="background: var(--light); border-radius: 12px; padding: 1.5rem; box-shadow: 0 8px 24px rgba(0,0,0,.1); width: 45%; margin-right: 10%;">
-            <div class="timeline-date" style="color: var(--accent); font-weight: 700; font-size: 1.1rem; margin-bottom: 0.5rem;">2025年6月</div>
-            <h3 style="color: var(--dark); margin-bottom: 0.5rem; font-size: 1.2rem;">AIまなびラボ 学童施設へ導入決定</h3>
-            <p style="color: #666; font-size: 0.95rem;">子ども向けAI研修プログラムが大阪市内の教育施設（学童）で正式導入。次世代AI人材育成への第一歩</p>
+
+        <div class="timeline-item reveal" style="position: relative; display: flex; align-items: center; margin-bottom: -3rem; z-index: 2;">
+          <div class="timeline-content" style="background: var(--light); border-radius: 12px; padding: 0.75rem 1rem; box-shadow: 0 8px 24px rgba(0,0,0,.1); width: 45%; margin-right: 10%; margin-top: 5rem;">
+            <div class="timeline-date" style="color: var(--accent); font-weight: 700; font-size: 1rem; margin-bottom: 0.3rem;">2025年6月</div>
+            <h3 style="color: var(--dark); margin-bottom: 0.3rem; font-size: 1.1rem;">AIまなびラボ 学童施設へ導入決定</h3>
+            <p style="color: #666; font-size: 0.9rem;">子ども向けAI研修プログラムが大阪市内の教育施設（学童）で正式導入。次世代AI人材育成への第一歩</p>
           </div>
           <div class="timeline-dot" style="position: absolute; left: 50%; transform: translateX(-50%); width: 20px; height: 20px; background: #2bc4a9; border-radius: 50%; box-shadow: 0 0 0 6px white, 0 0 0 8px #2bc4a9;"></div>
         </div>
 
-        <div class="timeline-item reveal" style="position: relative; display: flex; flex-direction: row-reverse; align-items: center; margin-bottom: 3rem; z-index: 2;">
-          <div class="timeline-content" style="background: var(--light); border-radius: 12px; padding: 1.5rem; box-shadow: 0 8px 24px rgba(0,0,0,.1); width: 45%; margin-left: 10%;">
-            <div class="timeline-date" style="color: var(--accent); font-weight: 700; font-size: 1.1rem; margin-bottom: 0.5rem;">2025年8月</div>
-            <h3 style="color: var(--dark); margin-bottom: 0.5rem; font-size: 1.2rem;">Web3 Hackathon 2025 共催</h3>
-            <p style="color: #666; font-size: 0.95rem;">分散型GPUクラウドを提供するWeb3プロジェクトであるIO.netとの共催で、Web3 Hackathon 2025 アイディアソン（大阪）を開催。最先端技術の融合と人材育成を推進</p>
+        <div class="timeline-item reveal" style="position: relative; display: flex; flex-direction: row-reverse; align-items: center; margin-bottom: -3rem; z-index: 2;">
+          <div class="timeline-content" style="background: var(--light); border-radius: 12px; padding: 0.75rem 1rem; box-shadow: 0 8px 24px rgba(0,0,0,.1); width: 45%; margin-left: 10%; margin-top: 5rem;">
+            <div class="timeline-date" style="color: var(--accent); font-weight: 700; font-size: 1rem; margin-bottom: 0.3rem;">2025年8月</div>
+            <h3 style="color: var(--dark); margin-bottom: 0.3rem; font-size: 1.1rem;">Web3 Hackathon 2025 共催</h3>
+            <p style="color: #666; font-size: 0.9rem;">分散型GPUクラウドを提供するWeb3プロジェクトであるIO.netとの共催で、Web3 Hackathon 2025 アイディアソン（大阪）を開催。最先端技術の融合と人材育成を推進</p>
           </div>
           <div class="timeline-dot" style="position: absolute; left: 50%; transform: translateX(-50%); width: 20px; height: 20px; background: #ff9a9a; border-radius: 50%; box-shadow: 0 0 0 6px white, 0 0 0 8px #ff9a9a;"></div>
         </div>
 
-        <div class="timeline-item reveal" style="position: relative; display: flex; align-items: center; margin-bottom: 3rem; z-index: 2;">
-          <div class="timeline-content" style="background: var(--light); border-radius: 12px; padding: 1.5rem; box-shadow: 0 8px 24px rgba(0,0,0,.1); width: 45%; margin-right: 10%;">
-            <div class="timeline-date" style="color: var(--accent); font-weight: 700; font-size: 1.1rem; margin-bottom: 0.5rem;">2025年9月</div>
-            <h3 style="color: var(--dark); margin-bottom: 0.5rem; font-size: 1.2rem;">日本植物バイオテクノロジー学会 (神戸) 大会で招待講演</h3>
-            <p style="color: #666; font-size: 0.95rem;">第42回 日本植物バイオテクノロジー学会（神戸）大会 S2「AIが拓く植物バイオの新時代」にて招待講演。学術界とAI産業の架け橋として貢献</p>
+        <div class="timeline-item reveal" style="position: relative; display: flex; align-items: center; margin-bottom: -3rem; z-index: 2;">
+          <div class="timeline-content" style="background: var(--light); border-radius: 12px; padding: 0.75rem 1rem; box-shadow: 0 8px 24px rgba(0,0,0,.1); width: 45%; margin-right: 10%; margin-top: 5rem;">
+            <div class="timeline-date" style="color: var(--accent); font-weight: 700; font-size: 1rem; margin-bottom: 0.3rem;">2025年9月</div>
+            <h3 style="color: var(--dark); margin-bottom: 0.3rem; font-size: 1.1rem;">日本植物バイオテクノロジー学会 (神戸) 大会で招待講演</h3>
+            <p style="color: #666; font-size: 0.9rem;">第42回 日本植物バイオテクノロジー学会（神戸）大会 S2「AIが拓く植物バイオの新時代」にて招待講演。学術界とAI産業の架け橋として貢献</p>
           </div>
           <div class="timeline-dot" style="position: absolute; left: 50%; transform: translateX(-50%); width: 20px; height: 20px; background: #a1e9d9; border-radius: 50%; box-shadow: 0 0 0 6px white, 0 0 0 8px #a1e9d9;"></div>
         </div>
 
-        <div class="timeline-item reveal" style="position: relative; display: flex; flex-direction: row-reverse; align-items: center; z-index: 2;">
-          <div class="timeline-content" style="background: var(--light); border-radius: 12px; padding: 1.5rem; box-shadow: 0 8px 24px rgba(0,0,0,.1); width: 45%; margin-left: 10%;">
-            <div class="timeline-date" style="color: var(--accent); font-weight: 700; font-size: 1.1rem; margin-bottom: 0.5rem;">2025年10月</div>
-            <h3 style="color: var(--dark); margin-bottom: 0.5rem; font-size: 1.2rem;">MCT Summit Japan 2025 参加</h3>
-            <p style="color: #666; font-size: 0.95rem;">内堀 代表社員がMicrosoft認定トレーナー(MCT)日本最大級のコミュニティイベントに参加。最新技術の共有とネットワーキングを通じて、技術教育の最前線で知見を深める</p>
-            <img src="images/MCP2025_02a.png" alt="MCT Summit Japan 2025" style="width: 80%; border-radius: 8px; margin: 1rem auto 0; box-shadow: 0 4px 12px rgba(0,0,0,.1);">
-            <p style="font-size: 0.75rem; color: #999; text-align: center; margin-top: 0.5rem;">日本マイクロソフト株式会社 品川本社にて撮影</p>
+        <div class="timeline-item reveal" style="position: relative; display: flex; flex-direction: row-reverse; align-items: center; padding-bottom: 2rem; z-index: 2;">
+          <div class="timeline-content" style="background: var(--light); border-radius: 12px; padding: 0.75rem 1rem; box-shadow: 0 8px 24px rgba(0,0,0,.1); width: 45%; margin-left: 10%; margin-top: 5rem;">
+            <div class="timeline-date" style="color: var(--accent); font-weight: 700; font-size: 1rem; margin-bottom: 0.3rem;">2025年10月</div>
+            <h3 style="color: var(--dark); margin-bottom: 0.3rem; font-size: 1.1rem;">MCT Summit Japan 2025 参加</h3>
+            <p style="color: #666; font-size: 0.9rem;">内堀 代表社員がMicrosoft認定トレーナー(MCT)日本最大級のコミュニティイベントに参加。最新技術の共有とネットワーキングを通じて、技術教育の最前線で知見を深める</p>
+            <img src="images/MCP2025_02a.png" alt="MCT Summit Japan 2025" style="width: 80%; border-radius: 8px; margin: 0.75rem auto 0; box-shadow: 0 4px 12px rgba(0,0,0,.1);">
+            <p style="font-size: 0.7rem; color: #999; text-align: center; margin-top: 0.3rem;">日本マイクロソフト株式会社 品川本社にて撮影</p>
           </div>
           <div class="timeline-dot" style="position: absolute; left: 50%; transform: translateX(-50%); width: 20px; height: 20px; background: #ffa500; border-radius: 50%; box-shadow: 0 0 0 6px white, 0 0 0 8px #ffa500;"></div>
         </div>
