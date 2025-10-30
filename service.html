@@ -221,7 +221,12 @@
       margin-left: 0.5rem; vertical-align: middle;
     }
 
-    .table-scroll { position: relative; overflow-x: auto; }
+    .table-scroll {
+      position: relative;
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+    }
     .pricing-table { width: 100%; border-collapse: separate; border-spacing: 0; min-width: 720px; }
     .pricing-table thead th {
       background: #f1f6ff; color: #2b3a4a; font-weight: 700;
@@ -491,14 +496,19 @@
       .service-tabs {
         gap: 1rem !important;
         padding: 0 1rem;
+        flex-direction: column;
+        flex-wrap: nowrap !important;
+        align-items: stretch;
+        justify-content: flex-start !important;
       }
-      
-    .service-tab {
-      min-width: auto !important;
-      padding: 1rem 1.5rem !important;
-      flex: 1;
-      max-width: 280px;
-    }
+
+      .service-tab {
+        min-width: auto !important;
+        padding: 1rem 1.5rem !important;
+        width: 100%;
+        max-width: 100%;
+        flex: none;
+      }
 
     /* クリックエフェクト */
     .service-tab.clicked {
@@ -528,7 +538,18 @@
       .service-tab div[style*="font-size: 2.5rem"] {
         font-size: 2rem !important;
       }
-      
+
+      .pricing-table {
+        min-width: 640px;
+      }
+
+      .pricing-table th:first-child,
+      .pricing-table td:first-child {
+        position: static;
+        background: inherit;
+        box-shadow: none;
+      }
+
       /* HP制作セクションのモバイル対応 */
       .service-card .icon-badge { width: 52px; height: 52px; font-size: 1.4rem; }
       .value-card .value-icon { width: 36px; height: 36px; font-size: 1rem; }
