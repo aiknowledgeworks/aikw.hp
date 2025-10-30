@@ -635,7 +635,7 @@
           <h3 style="font-size: 1.2rem; font-weight: 700; margin: 0;">ロゴ・チラシ・名刺のAI映像制作</h3>
           <div style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin-top: 0.5rem;">
             <p style="font-size: 0.9rem; margin: 0; opacity: 0.9;">静止画に命を吹き込む</p>
-            <img src="movie/Uchibori_02ok.gif" alt="人物のアニメーション事例" style="width: 94px; height: 62px; object-fit: cover; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+            <img src="movie/Uchibori_02ok.gif" data-fallback="https://raw.githubusercontent.com/aiknowledgeworks/aikw.hp/main/movie/Uchibori_02ok.gif" alt="人物のアニメーション事例" style="width: 94px; height: 62px; object-fit: cover; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
           </div>
         </div>
       </div>
@@ -871,7 +871,7 @@
             <p style="font-size: 1.2rem; opacity: 0.95; font-weight: 500;">──あなたのブランドに"声"と"動き"を。</p>
           </div>
           <div class="ai-video-hero-media">
-            <img src="movie/Uchibori_02ok.gif" alt="ロゴ・チラシ・名刺のAI映像制作アニメーション事例">
+            <img src="movie/Uchibori_02ok.gif" data-fallback="https://raw.githubusercontent.com/aiknowledgeworks/aikw.hp/main/movie/Uchibori_02ok.gif" alt="ロゴ・チラシ・名刺のAI映像制作アニメーション事例">
           </div>
         </div>
       </div>
@@ -932,7 +932,7 @@
               <p style="font-size: 0.9rem; color: #666; margin: 0;">名刺アニメーション事例</p>
             </div>
             <div style="background: white; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.08); padding: 1rem; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 200px;">
-              <img src="movie/Uchibori_02ok.gif" alt="字幕付き名刺アニメーション事例" style="width: 100%; max-width: 240px; height: 135px; border-radius: 8px; margin-bottom: 0.5rem; object-fit: cover;">
+              <img src="movie/Uchibori_02ok.gif" data-fallback="https://raw.githubusercontent.com/aiknowledgeworks/aikw.hp/main/movie/Uchibori_02ok.gif" alt="字幕付き名刺アニメーション事例" style="width: 100%; max-width: 240px; height: 135px; border-radius: 8px; margin-bottom: 0.5rem; object-fit: cover;">
               <p style="font-size: 0.9rem; color: #666; margin: 0;">字幕付き名刺アニメーション事例 (GIF)</p>
             </div>
           </div>
@@ -1019,6 +1019,16 @@
       document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
       document.querySelectorAll('.service-card').forEach(el => observer.observe(el));
       document.querySelectorAll('.process-step').forEach(el => observer.observe(el));
+
+      document.querySelectorAll('img[data-fallback]').forEach(img => {
+        const fallback = img.dataset.fallback;
+        if (!fallback) return;
+        img.addEventListener('error', () => {
+          if (img.src !== fallback) {
+            img.src = fallback;
+          }
+        }, { once: true });
+      });
       
       // Service tab switching functionality
       const serviceTabs = document.querySelectorAll('.service-tab');
