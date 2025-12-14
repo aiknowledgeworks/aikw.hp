@@ -37,7 +37,7 @@ jobs:
         
         # Create build directory and copy files
         mkdir -p build
-        cp -r aitools company images js logo *.html CNAME build/ 2>/dev/null || true
+        cp -r aitools company images js logo movie *.html CNAME build/ 2>/dev/null || true
         
         # Create runtime-config.js with proper API key handling
         if [ -n "$DIFY_API_KEY" ] && [ "$DIFY_API_KEY" != "" ]; then
