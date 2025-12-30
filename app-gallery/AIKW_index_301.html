@@ -46,7 +46,7 @@
       .overlay h1 {
         margin: 0;
         font-weight: 900;
-        font-size: clamp(2.4rem, 16vw, 7rem);
+        font-size: clamp(3.5rem, 22vw, 12rem);
         letter-spacing: clamp(0.04em, 1.2vw, 0.18em);
         color: rgba(241,241,241,0.06);
         text-transform: uppercase;
@@ -137,7 +137,7 @@
 
       function sampleTargets(w, h) {
         const r = dpr();
-        const fontSize = Math.min(w * 0.5, h * 0.35);
+        const fontSize = Math.min(w * 0.8, h * 0.5);
         off.width = Math.floor(w * r);
         off.height = Math.floor(h * r);
         offCtx.save();
