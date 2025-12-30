@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>AIKW Particle Animation</title>
+    <style>
+        body { margin: 0; overflow: hidden; background-color: #000; }
+        canvas { display: block; }
+    </style>
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+</head>
+<body>
+    <script type="module">
+        import * as THREE from 'three';
+        import { FontLoader } from 'three/addons/loaders/FontLoader.js';
+        import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+        import { MeshSurfaceSampler } from 'three/addons/math/MeshSurfaceSampler.js';
+
+        // 1. シーンのセットアップ
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x050510);
+        scene.fog = new THREE.FogExp2(0x050510, 0.002);
+
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.set(0, 0, -100); // 初期位置を180度回転し、少し引いて全体を表示
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        document.body.appendChild(renderer.domElement);
+
+        const controls = new OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.autoRotate = true;
+        controls.autoRotateSpeed = 1.0;
+
+        // マウスインタラクション用の変数
+        const raycaster = new THREE.Raycaster();
+        const mouse = new THREE.Vector2(9999, 9999); // 初期値は画面外
+        const plane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0); // Z=0平面
+
+        window.addEventListener('mousemove', (event) => {
+            mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+            mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+        });
+
+        // 文字テクスチャを生成する関数
+        function createTextTexture(char) {
+            const canvas = document.createElement('canvas');
+            canvas.width = 64;
+            canvas.height = 64;
+            const ctx = canvas.getContext('2d');
+            // 背景は透明
+            ctx.font = 'bold 48px Arial';
+            ctx.fillStyle = '#FFFFFF'; // 色はマテリアルで制御するため白にする
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(char, 32, 32);
+            const texture = new THREE.CanvasTexture(canvas);
+            return texture;
+        }
+
+        // 2. フォントのロードとジオメトリ生成
+        const loader = new FontLoader();
+        loader.load('https://unpkg.com/three@0.160.0/examples/fonts/helvetiker_bold.typeface.json', function (font) {
+            
+            const textGeometry = new TextGeometry('AIKW', {
+                font: font,
+                size: 40,
+                height: 10,
+                curveSegments: 12,
+                bevelEnabled: true,
+                bevelThickness: 2,
+                bevelSize: 0.5,
+                bevelOffset: 0,
+                bevelSegments: 5
+            });
+
+            textGeometry.center();
+
+            // 3. パーティクルシステムの作成
+            const material = new THREE.MeshBasicMaterial();
+            const mesh = new THREE.Mesh(textGeometry, material);
+            const sampler = new MeshSurfaceSampler(mesh).build();
+
+            const totalCount = 20000; // 全体のパーティクル数
+            const chars = ['A', 'I', 'K', 'W'];
+            const systems = []; // 4つのパーティクルシステムを格納
+
+            // 各文字ごとにパーティクルシステムを作成
+            chars.forEach((char, index) => {
+                const count = totalCount / chars.length;
+                const pointsGeometry = new THREE.BufferGeometry();
+                
+                const positions = new Float32Array(count * 3);
+                const targets = new Float32Array(count * 3);
+                const tempPosition = new THREE.Vector3();
+
+                for (let i = 0; i < count; i++) {
+                    // A. 目標位置
+                    sampler.sample(tempPosition);
+                    targets[i * 3] = tempPosition.x;
+                    targets[i * 3 + 1] = tempPosition.y;
+                    targets[i * 3 + 2] = tempPosition.z;
+
+                    // B. 初期位置
+                    positions[i * 3] = (Math.random() - 0.5) * 600;
+                    positions[i * 3 + 1] = (Math.random() - 0.5) * 600;
+                    positions[i * 3 + 2] = (Math.random() - 0.5) * 600;
+                }
+
+                pointsGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+                pointsGeometry.setAttribute('target', new THREE.BufferAttribute(targets, 3));
+
+                // 文字テクスチャを使ったマテリアル
+                const particlesMaterial = new THREE.PointsMaterial({
+                    color: 0xFFFFFF, // 初期色
+                    size: 2.5,
+                    map: createTextTexture(char),
+                    transparent: true,
+                    opacity: 0.8,
+                    depthWrite: false,
+                    blending: THREE.NormalBlending // 白飛び防止のため通常ブレンドに変更
+                });
+
+                const particleSystem = new THREE.Points(pointsGeometry, particlesMaterial);
+                scene.add(particleSystem);
+                
+                // アニメーション用に保存
+                systems.push({
+                    geometry: pointsGeometry,
+                    material: particlesMaterial,
+                    count: count,
+                    offsetIndex: index * count
+                });
+            });
+
+            // カラーパレット定義 (白 + 5色バリエーション)
+            const colorThemes = [
+                // 1. ホワイト & シルバー (純白)
+                [0xFFFFFF, 0xE0E0E0, 0xC0C0C0, 0xA0A0A0],
+                // 2. ネオンブルー (サイバー感)
+                [0x00FFFF, 0x0088FF, 0x4444FF, 0x88CCFF],
+                // 3. ネオンピンク (ビビッド)
+                [0xFF00FF, 0xFF0088, 0xFF44CC, 0xFF88FF],
+                // 4. ライムグリーン (マトリックス風)
+                [0x00FF00, 0x88FF00, 0x00CC00, 0xCCFF88],
+                // 5. ゴールド & オレンジ (暖色)
+                [0xFFD700, 0xFFAA00, 0xFF5500, 0xFFFF88],
+                // 6. パープル & バイオレット (神秘的)
+                [0x8A2BE2, 0x9400D3, 0x4B0082, 0xE0B0FF]
+            ];
+
+            // 色を更新する関数
+            function updateColors() {
+                // ランダムにテーマを選ぶ
+                const themeIndex = Math.floor(Math.random() * colorThemes.length);
+                const theme = colorThemes[themeIndex];
+
+                systems.forEach((system, i) => {
+                    // 文字ごとにテーマ内の色を割り当て
+                    const color = theme[i % theme.length];
+                    system.material.color.setHex(color);
+                });
+            }
+            
+            // 初回実行
+            updateColors();
+
+            // 4. アニメーションループ
+            const clock = new THREE.Clock();
+            let colorUpdateIndex = -1; // 色更新管理用
+
+            function animate() {
+                requestAnimationFrame(animate);
+
+                const time = clock.getElapsedTime();
+                
+                // サイクル設定
+                const convergeDuration = 2.0;
+                const stayDuration = 3.0;
+                const scatterDuration = 2.0;
+                const waitDuration = 1.0;
+                const totalCycle = convergeDuration + stayDuration + scatterDuration + waitDuration;
+
+                const cycleIndex = Math.floor(time / totalCycle);
+                const t = time % totalCycle;
+
+                // 散開完了後（待機期間に入ったタイミング）で色を変える
+                // これにより「バラバラの状態で色が変わり、その後に集合する」動きになる
+                const changeColorTime = convergeDuration + stayDuration + scatterDuration;
+                if (t >= changeColorTime && cycleIndex > colorUpdateIndex) {
+                    updateColors();
+                    colorUpdateIndex = cycleIndex;
+                }
+                let ease = 0;
+
+                if (t < convergeDuration) {
+                    const p = t / convergeDuration;
+                    ease = 1 - Math.pow(1 - p, 3);
+                } else if (t < convergeDuration + stayDuration) {
+                    ease = 1;
+                } else if (t < convergeDuration + stayDuration + scatterDuration) {
+                    const p = (t - (convergeDuration + stayDuration)) / scatterDuration;
+                    ease = 1 - Math.pow(p, 3);
+                } else {
+                    ease = 0;
+                }
+
+                // マウスの3D位置を取得
+                raycaster.setFromCamera(mouse, camera);
+                const mouseTarget = new THREE.Vector3();
+                raycaster.ray.intersectPlane(plane, mouseTarget);
+                const hasMouse = mouseTarget !== null;
+
+                // 全てのシステムを更新
+                systems.forEach(system => {
+                    const positionAttribute = system.geometry.attributes.position;
+                    const targetAttribute = system.geometry.attributes.target;
+                    const count = system.count;
+                    const baseIndex = system.offsetIndex;
+
+                    for (let i = 0; i < count; i++) {
+                        const tx = targetAttribute.array[i * 3];
+                        const ty = targetAttribute.array[i * 3 + 1];
+                        const tz = targetAttribute.array[i * 3 + 2];
+
+                        const globalIndex = baseIndex + i;
+                        const scrambleRange = 400;
+                        const offsetX = Math.sin(globalIndex * 0.1 + time * 0.5) * scrambleRange;
+                        const offsetY = Math.cos(globalIndex * 0.2 + time * 0.5) * scrambleRange;
+                        const offsetZ = Math.sin(globalIndex * 0.3 + time * 0.5) * scrambleRange;
+
+                        let currentX = tx + offsetX * (1 - ease);
+                        let currentY = ty + offsetY * (1 - ease);
+                        let currentZ = tz + offsetZ * (1 - ease);
+
+                        // 小刻みな振動を追加
+                        const vibrationStrength = 0.15; 
+                        const vibrationSpeed = 15.0;
+                        currentX += Math.sin(time * vibrationSpeed + globalIndex) * vibrationStrength;
+                        currentY += Math.cos(time * vibrationSpeed + globalIndex) * vibrationStrength;
+                        currentZ += Math.sin(time * vibrationSpeed + globalIndex * 0.5) * vibrationStrength;
+
+                        // マウス反発処理
+                        if (hasMouse) {
+                            const dx = currentX - mouseTarget.x;
+                            const dy = currentY - mouseTarget.y;
+                            const dz = currentZ - mouseTarget.z;
+                            const distSq = dx*dx + dy*dy + dz*dz;
+                            const radius = 15; // 反発半径
+                            
+                            if (distSq < radius * radius) {
+                                const dist = Math.sqrt(distSq);
+                                const force = (radius - dist) / radius;
+                                const strength = 80; // 反発の強さ
+                                
+                                if (dist > 0.01) {
+                                    currentX += (dx / dist) * force * strength;
+                                    currentY += (dy / dist) * force * strength;
+                                    currentZ += (dz / dist) * force * strength;
+                                }
+                            }
+                        }
+
+                        positionAttribute.array[i * 3] = currentX;
+                        positionAttribute.array[i * 3 + 1] = currentY;
+                        positionAttribute.array[i * 3 + 2] = currentZ;
+                    }
+                    positionAttribute.needsUpdate = true;
+                });
+
+                controls.update();
+                renderer.render(scene, camera);
+            }
+
+            animate();
+        });
+
+        window.addEventListener('resize', onWindowResize, false);
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+    </script>
+</body>
+</html>

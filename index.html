@@ -1819,23 +1819,15 @@
   </header>
 
   <!-- === Hero === -->
-  <section id="home" class="hero">
-    <h1>AIナレッジワークス合同会社</h1>
-    <p class="tagline"><span class="suki">"好き"</span>を信じ合える運命共同体を育てる</p>
-    <span id="typing" class="typing"></span>
+  <section id="home" class="hero" style="padding: 0; overflow: hidden;">
+    <iframe src="app-gallery/AIKW_index_3d.html" style="width: 100%; height: 100%; border: none;" title="AIKW 3D Animation"></iframe>
   </section>
 
   <!-- === Section A1: Background === -->
   <section id="background">
     <div class="container">
       <!-- 動画セクション -->
-      <div style="text-align: center; margin-bottom: 3rem;">
-        <iframe 
-          src="app-gallery/AIKW_index_301.html" 
-          style="width: 100%; max-width: 800px; height: 500px; border-radius: 12px; box-shadow: 0 12px 30px rgba(0,0,0,.15); border: none;"
-          title="AIKW Particle Reveal">
-        </iframe>
-      </div>
+
       
       <h2 class="section-title">社会背景</h2>
       <div class="background-grid reveal-group" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; max-width: 900px; margin: 0 auto;">
@@ -2171,41 +2163,6 @@
           }
         }, 500);
       }
-      
-      // Typing effect for hero
-      const typingElement = document.getElementById('typing');
-      const phrases = ['企業向けAI研修', '子ども向けAI研修', 'BtoB AI導入支援'];
-      let phraseIndex = 0;
-      let charIndex = 0;
-      let isDeleting = false;
-      let typingSpeed = 100;
-
-      function typeEffect() {
-        const currentPhrase = phrases[phraseIndex];
-        
-        if (isDeleting) {
-          typingElement.textContent = currentPhrase.substring(0, charIndex - 1);
-          charIndex--;
-          typingSpeed = 50;
-        } else {
-          typingElement.textContent = currentPhrase.substring(0, charIndex + 1);
-          charIndex++;
-          typingSpeed = 100;
-        }
-        
-        if (!isDeleting && charIndex === currentPhrase.length) {
-          isDeleting = true;
-          typingSpeed = 1500; // Pause at end
-        } else if (isDeleting && charIndex === 0) {
-          isDeleting = false;
-          phraseIndex = (phraseIndex + 1) % phrases.length;
-          typingSpeed = 500; // Pause before typing next
-        }
-        
-        setTimeout(typeEffect, typingSpeed);
-      }
-      
-      setTimeout(typeEffect, 1000);
       
       // Mobile menu functionality
       const hamburger = document.querySelector('.hamburger');
