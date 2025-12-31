@@ -26,6 +26,11 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet" />
 
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+
   <style>
     /* === カラーパレット & ベース === */
     :root {
@@ -91,11 +96,9 @@
       border-radius: 12px; 
       box-shadow: 0 4px 12px rgba(0,0,0,.05); 
       padding: 1.8rem; 
-      opacity: 0; 
-      transform: translateY(40px); 
-      transition: all .6s ease; 
+      /* opacity: 0; transform: translateY(40px); transition: all .6s ease; */
     }
-    .card.active { opacity: 1; transform: translateY(0); }
+    .card.active { /* opacity: 1; transform: translateY(0); */ }
     .card h3 { margin-bottom: .75rem; color: var(--accent); font-size: 1.25rem; }
 
     /* 好きのスタイル */
@@ -143,13 +146,10 @@
 
     /* === アニメーション === */
     .reveal {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all .6s ease;
+      /* opacity: 0; transform: translateY(40px); transition: all .6s ease; */
     }
     .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
+      /* opacity: 1; transform: translateY(0); */
     }
 
     /* === Pillars === */
@@ -165,16 +165,13 @@
       border-radius: 12px; 
       text-align: center; 
       box-shadow: 0 8px 24px rgba(0,0,0,.1); 
-      opacity: 0; 
-      transform: translateY(40px); 
-      transition: all .6s ease; 
+      /* opacity: 0; transform: translateY(40px); transition: all .6s ease; */
       position: relative;
       overflow: hidden;
       border-bottom: 5px solid var(--accent);
     }
     .pillar.active { 
-      opacity: 1; 
-      transform: translateY(0); 
+      /* opacity: 1; transform: translateY(0); */ 
     }
     .pillar:hover {
       transform: translateY(-10px);
@@ -277,10 +274,11 @@
     }
     .staff-info h3 {
       font-size: 2.2rem;
-      background: linear-gradient(135deg, #6db5ff, #00c9a7);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      /* background: linear-gradient(135deg, #6db5ff, #00c9a7); */
+      /* -webkit-background-clip: text; */
+      /* -webkit-text-fill-color: transparent; */
+      /* background-clip: text; */
+      color: #00c9a7; /* Fallback to accent color for visibility with animation */
       margin-bottom: 0.5rem;
       font-weight: 800;
     }
@@ -383,10 +381,11 @@
       text-align: center;
       margin: 3rem 0;
       font-size: 1.8rem;
-      background: linear-gradient(135deg, #6db5ff, #a1e9d9, #ff9a9a);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      /* background: linear-gradient(135deg, #6db5ff, #a1e9d9, #ff9a9a); */
+      /* -webkit-background-clip: text; */
+      /* -webkit-text-fill-color: transparent; */
+      /* background-clip: text; */
+      color: #6db5ff; /* Fallback to blue for visibility */
       font-weight: 800;
       position: relative;
       padding: 1rem 0;
@@ -1372,30 +1371,285 @@
   <!-- === Scripts === -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Animation with IntersectionObserver - Improved for mobile
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-          }
+      gsap.registerPlugin(ScrollTrigger, TextPlugin);
+
+      // Helper to wrap characters in spans with a class for interaction
+      // Enhanced to handle nested elements (like spans, strong, em) gracefully
+      function wrapChars(element) {
+        if (!element) return;
+        // Avoid double wrapping
+        if (element.querySelector('span.char-anim')) return;
+        
+        // Use TreeWalker to find all text nodes, even in nested tags
+        const walk = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, null, false);
+        const textNodes = [];
+        let n;
+        while(n = walk.nextNode()) textNodes.push(n);
+        
+        textNodes.forEach(node => {
+          const text = node.textContent;
+          // Skip empty text nodes or just whitespace
+          if (!text.trim()) return;
+          
+          const fragment = document.createDocumentFragment();
+          text.split("").forEach(char => {
+            const span = document.createElement('span');
+            span.className = 'char-anim';
+            span.style.display = 'inline-block';
+            span.style.transformOrigin = 'center bottom';
+            span.style.cursor = 'default';
+            // Preserve spaces
+            span.innerHTML = char === " " ? "&nbsp;" : char;
+            fragment.appendChild(span);
+          });
+          node.parentNode.replaceChild(fragment, node);
         });
-      }, { 
-        threshold: 0.05,
-        rootMargin: '50px 0px -10px 0px'
+      }
+
+      // --- 1. WRAP CHARACTERS (PREPARATION) ---
+      
+      // Hero
+      const heroTitle = document.querySelector(".hero h1");
+      wrapChars(heroTitle);
+      const heroTagline = document.querySelector(".hero p.tagline");
+      wrapChars(heroTagline);
+
+      // Section Headers
+      const sectionHeaders = gsap.utils.toArray(".section-title, .section-subtitle, .chapter-divider");
+      sectionHeaders.forEach(el => wrapChars(el));
+
+      // Card/Pillar Headers
+      const subHeaders = gsap.utils.toArray(".card h3, .pillar h4, .story-section h4, .story-section h5, .staff-info h3");
+      subHeaders.forEach(el => wrapChars(el));
+
+      // Body Text (The "Internal Structure")
+      // Including cards, pillars, story content, staff info, quotes
+      const bodyTextSelectors = [
+        ".card p", ".card li", 
+        ".pillar p", ".pillar li", 
+        ".story-content p", ".story-content li", 
+        ".staff-info p", ".staff-info .position",
+        ".highlight-quote"
+      ];
+      const bodyTextElements = gsap.utils.toArray(bodyTextSelectors.join(", "));
+      bodyTextElements.forEach(el => wrapChars(el));
+
+
+      // --- 2. INTERACTION (SUPER POP HOVER) ---
+      document.addEventListener('mouseover', (e) => {
+        // Check if target is our animated char or inside one (though we wrap text, so target should be span)
+        if (e.target.classList.contains('char-anim')) {
+          // Removed isTweening check to allow interruption of floating animations
+          
+          gsap.to(e.target, {
+            y: -30,
+            rotation: gsap.utils.random(-60, 60),
+            scale: 1.5,
+            color: "#ffeb3b",
+            textShadow: "0 0 10px #ffeb3b",
+            duration: 0.1,
+            ease: "power1.out",
+            overwrite: true, // Force overwrite of any existing animations (like the loop)
+            onComplete: () => {
+              gsap.to(e.target, {
+                y: 0,
+                rotation: 0,
+                scale: 1,
+                color: "inherit",
+                textShadow: "none",
+                duration: 0.8,
+                ease: "elastic.out(1.5, 0.2)",
+                onComplete: () => {
+                  // Resume floating effect for that specific character to keep it alive
+                  gsap.to(e.target, {
+                    y: -5,
+                    rotation: gsap.utils.random(-5, 5),
+                    duration: 1.5,
+                    yoyo: true,
+                    repeat: -1,
+                    ease: "sine.inOut"
+                  });
+                }
+              });
+            }
+          });
+        }
       });
 
-      // Fallback for cases where IntersectionObserver might not work
-      const fallbackTimer = setTimeout(() => {
-        document.querySelectorAll('.reveal, .staff-member, .pillar').forEach(el => {
-          if (!el.classList.contains('active')) {
-            el.classList.add('active');
-          }
-        });
-      }, 3000);
 
-      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-      document.querySelectorAll('.pillar').forEach(el => observer.observe(el));
+      // --- 3. ENTRANCE ANIMATIONS ---
+
+      // Hero: Chaotic Pop
+      const heroTl = gsap.timeline();
       
+      if (heroTitle) {
+        // Use fromTo to ensure start and end states are explicit
+        heroTl.fromTo(".hero h1 .char-anim", 
+          {
+            y: -150,
+            x: () => gsap.utils.random(-80, 80),
+            rotation: () => gsap.utils.random(-180, 180),
+            scale: 0,
+            opacity: 0
+          },
+          {
+            duration: 0.8, // Faster
+            y: 0,
+            x: 0,
+            rotation: 0,
+            scale: 1,
+            opacity: 1,
+            stagger: { each: 0.03, from: "random" }, // Faster stagger
+            ease: "back.out(1.7)"
+          }
+        );
+        
+        // Add the floating loop AFTER the entrance is fully done
+        heroTl.to(".hero h1 .char-anim", {
+          y: -5,
+          rotation: () => gsap.utils.random(-5, 5),
+          duration: 1.5,
+          yoyo: true,
+          repeat: -1,
+          stagger: { each: 0.05, from: "center", repeat: -1, yoyo: true },
+          ease: "sine.inOut"
+        });
+      }
+      
+      if (heroTagline) {
+        // Tagline animation - start slightly before title finishes
+        // Note: We use a separate tween or add to timeline with offset
+        // But since we want to ensure visibility, let's just chain it simply
+        gsap.fromTo(".hero p.tagline .char-anim", 
+          {
+            y: 30,
+            rotation: () => gsap.utils.random(-30, 30),
+            scale: 0,
+            opacity: 0
+          },
+          {
+            duration: 0.6,
+            y: 0,
+            rotation: 0,
+            scale: 1,
+            opacity: 1,
+            stagger: 0.01,
+            ease: "back.out(2)",
+            delay: 0.5 // Wait a bit for title to start
+          }
+        );
+      }
+
+      // Section Headers: Explosive
+      sectionHeaders.forEach(header => {
+        const chars = header.querySelectorAll(".char-anim");
+        if(chars.length === 0) return;
+        
+        gsap.fromTo(chars, 
+          {
+            y: 100,
+            x: () => gsap.utils.random(-50, 50),
+            rotation: () => gsap.utils.random(-90, 90),
+            opacity: 0,
+            scale: 0
+          },
+          {
+            scrollTrigger: {
+              trigger: header,
+              start: "top 85%",
+              toggleActions: "play none none reverse"
+            },
+            duration: 1.2,
+            y: 0,
+            x: 0,
+            rotation: 0,
+            opacity: 1,
+            scale: 1,
+            stagger: 0.03,
+            ease: "elastic.out(1.2, 0.4)"
+          }
+        );
+      });
+
+      // Sub Headers: Mini Pop
+      subHeaders.forEach(header => {
+        const chars = header.querySelectorAll(".char-anim");
+        if(chars.length === 0) return;
+        
+        gsap.fromTo(chars, 
+          {
+            y: 30,
+            rotation: () => gsap.utils.random(-30, 30),
+            scale: 0,
+            opacity: 0
+          },
+          {
+            scrollTrigger: {
+              trigger: header,
+              start: "top 95%", // Trigger earlier
+              toggleActions: "play none none reverse"
+            },
+            duration: 0.8,
+            y: 0,
+            rotation: 0,
+            scale: 1,
+            opacity: 1,
+            stagger: 0.02,
+            ease: "back.out(2)"
+          }
+        );
+      });
+
+      // Body Text: Dancing Appearance (Internal Structure)
+      bodyTextElements.forEach(el => {
+        const chars = el.querySelectorAll(".char-anim");
+        if (chars.length === 0) return;
+        
+        gsap.fromTo(chars, 
+          {
+            y: 10,
+            x: () => gsap.utils.random(-2, 2),
+            rotation: () => gsap.utils.random(-5, 5),
+            opacity: 0,
+            scale: 0.8
+          },
+          {
+            scrollTrigger: {
+              trigger: el,
+              start: "top 95%", // Trigger earlier
+              toggleActions: "play none none reverse"
+            },
+            duration: 0.4,
+            y: 0,
+            x: 0,
+            rotation: 0,
+            opacity: 1,
+            scale: 1,
+            stagger: 0.005,
+            ease: "back.out(1.5)"
+          }
+        );
+      });
+
+      // Containers (Cards, Pillars, Staff, Story): Static (No movement as requested)
+      // Removed the wobbly entrance and continuous floating to keep frames static.
+      // Only text inside will animate.
+
+      // "Suki" Text: Hyper Pulse
+      gsap.to(".suki", {
+        scrollTrigger: {
+          trigger: ".suki",
+          start: "top 85%",
+          toggleActions: "play none none reverse"
+        },
+        duration: 0.4,
+        rotation: 15,
+        scale: 1.3,
+        yoyo: true,
+        repeat: -1,
+        ease: "power1.inOut"
+      });
+
       // Mobile menu functionality
       const hamburger = document.querySelector('.hamburger');
       const nav = document.querySelector('nav');
@@ -1407,18 +1661,24 @@
         nav.classList.toggle('active');
         overlay.classList.toggle('active');
         document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
+        
+        if (nav.classList.contains('active')) {
+          gsap.fromTo("nav ul li", 
+            { x: 100, opacity: 0, rotation: 45 },
+            { x: 0, opacity: 1, rotation: 0, duration: 0.6, stagger: 0.1, ease: "elastic.out(1, 0.5)" }
+          );
+        }
       }
       
-      hamburger.addEventListener('click', toggleMenu);
-      overlay.addEventListener('click', toggleMenu);
-      
-      navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-          if (nav.classList.contains('active')) {
-            toggleMenu();
-          }
+      if(hamburger) {
+        hamburger.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+        navLinks.forEach(link => {
+          link.addEventListener('click', () => {
+            if (nav.classList.contains('active')) toggleMenu();
+          });
         });
-      });
+      }
     });
   </script>
   <script src="js/chatbot_v2.js"></script>

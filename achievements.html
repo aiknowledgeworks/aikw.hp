@@ -25,6 +25,11 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet" />
 
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+
   <style>
     /* === カラーパレット & ベース === */
     :root {
@@ -68,10 +73,11 @@
       font-weight: 700; 
       text-align: center; 
       margin-bottom: .75rem;
-      background: var(--primary-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      /* background: var(--primary-gradient); */
+      /* -webkit-background-clip: text; */
+      /* -webkit-text-fill-color: transparent; */
+      /* background-clip: text; */
+      color: #00c9a7; /* Fallback to accent color for visibility with animation */
       position: relative;
       display: inline-block;
       width: 100%;
@@ -124,8 +130,14 @@
 
     /* === グリッド・カード === */
     .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-    .card { background: var(--light); border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,.05); padding: 1.8rem; opacity: 0; transform: translateY(40px); transition: all .6s ease; }
-    .card.active { opacity: 1; transform: translateY(0); }
+    .card { 
+      background: var(--light); 
+      border-radius: 12px; 
+      box-shadow: 0 4px 12px rgba(0,0,0,.05); 
+      padding: 1.8rem; 
+      /* opacity: 0; transform: translateY(40px); transition: all .6s ease; */ 
+    }
+    .card.active { /* opacity: 1; transform: translateY(0); */ }
     .card h3 { margin-bottom: .75rem; color: var(--accent); font-size: 1.25rem; }
 
     /* === Achievements Grid === */
@@ -145,16 +157,13 @@
       border-radius: 12px; 
       text-align: left; 
       box-shadow: 0 8px 24px rgba(0,0,0,.1); 
-      opacity: 0; 
-      transform: translateY(40px); 
-      transition: all .6s ease; 
+      /* opacity: 0; transform: translateY(40px); transition: all .6s ease; */
       position: relative;
       overflow: hidden;
       border-left: 5px solid var(--accent);
     }
     .achievement-card.active { 
-      opacity: 1; 
-      transform: translateY(0); 
+      /* opacity: 1; transform: translateY(0); */ 
     }
     .achievement-card:hover {
       transform: translateY(-5px);
@@ -197,13 +206,10 @@
       border-radius: 12px;
       text-align: center;
       box-shadow: 0 4px 12px rgba(0,0,0,.05);
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all .6s ease;
+      /* opacity: 0; transform: translateY(40px); transition: all .6s ease; */
     }
     .stat-item.active {
-      opacity: 1;
-      transform: translateY(0);
+      /* opacity: 1; transform: translateY(0); */
     }
     .stat-number {
       font-size: 3rem;
@@ -751,7 +757,7 @@
       <div class="portfolio-content reveal-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; max-width: 1100px; margin: 0 auto;">
         <div class="video-container reveal" style="position: relative; width: 100%; height: auto; min-height: 350px; border-radius: 16px; overflow: hidden; box-shadow: 0 12px 30px rgba(0,0,0,.15);">
           <iframe 
-            src="https://www.youtube.com/embed/iHca8OIkf2I?si=controls=1&amp;rel=0&amp;playsinline=1&amp;modestbranding=1&amp;autoplay=0" 
+            src="https://www.youtube.com/embed/iHca8OIkf2I?rel=0&amp;playsinline=1&amp;modestbranding=1&amp;controls=1" 
             title="AIナレッジワークス 制作物紹介" 
             frameborder="0" 
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
@@ -823,20 +829,261 @@
   <!-- === Scripts === -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Animation with IntersectionObserver
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-          }
-        });
-      }, { threshold: 0.1 });
+      gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
-      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-      document.querySelectorAll('.achievement-card').forEach(el => observer.observe(el));
-      document.querySelectorAll('.stat-item').forEach(el => observer.observe(el));
-      document.querySelectorAll('.timeline-item').forEach(el => observer.observe(el));
+      // Helper to wrap characters in spans with a class for interaction
+      // Enhanced to handle nested elements (like spans) gracefully
+      function wrapChars(element) {
+        if (!element) return;
+        // Avoid double wrapping
+        if (element.querySelector('span.char-anim')) return;
+        
+        // Use TreeWalker to find all text nodes, even in nested tags
+        const walk = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, null, false);
+        const textNodes = [];
+        let n;
+        while(n = walk.nextNode()) textNodes.push(n);
+        
+        textNodes.forEach(node => {
+          const text = node.textContent;
+          // Skip empty text nodes
+          if (!text.trim()) return;
+          
+          const fragment = document.createDocumentFragment();
+          text.split("").forEach(char => {
+            const span = document.createElement('span');
+            span.className = 'char-anim';
+            span.style.display = 'inline-block';
+            span.style.transformOrigin = 'center bottom';
+            span.style.cursor = 'default';
+            span.innerHTML = char === " " ? "&nbsp;" : char;
+            fragment.appendChild(span);
+          });
+          node.parentNode.replaceChild(fragment, node);
+        });
+      }
+
+      // Apply wrapping to all relevant text elements
+      const heroTitle = document.querySelector(".hero h1");
+      wrapChars(heroTitle);
+      const heroTagline = document.querySelector(".hero p.tagline");
+      wrapChars(heroTagline);
       
+      gsap.utils.toArray(".section-title").forEach(title => wrapChars(title));
+      gsap.utils.toArray(".card h3").forEach(title => wrapChars(title));
+      gsap.utils.toArray(".achievement-card h3").forEach(title => wrapChars(title));
+      gsap.utils.toArray(".timeline-item h3").forEach(title => wrapChars(title));
+      gsap.utils.toArray(".portfolio-description h3").forEach(title => wrapChars(title));
+
+      // --- INTERACTION: Mouse over characters to make them jump (Mildly) ---
+      document.addEventListener('mouseover', (e) => {
+        if (e.target.classList.contains('char-anim')) {
+          if (gsap.isTweening(e.target)) return;
+          
+          gsap.to(e.target, {
+            y: -15,
+            rotation: gsap.utils.random(-20, 20),
+            scale: 1.2,
+            color: "#ffeb3b",
+            duration: 0.2,
+            ease: "power1.out",
+            onComplete: () => {
+              gsap.to(e.target, {
+                y: 0,
+                rotation: 0,
+                scale: 1,
+                color: "inherit",
+                duration: 0.5,
+                ease: "elastic.out(1.2, 0.5)"
+              });
+            }
+          });
+        }
+      });
+
+      // --- HERO ANIMATION: Pop Entrance ---
+      const heroTl = gsap.timeline();
+      if (heroTitle) {
+        heroTl.fromTo(".hero h1 .char-anim", 
+          {
+            y: -100,
+            rotation: () => gsap.utils.random(-45, 45),
+            scale: 0,
+            opacity: 0
+          },
+          {
+            duration: 1.2,
+            y: 0,
+            rotation: 0,
+            scale: 1,
+            opacity: 1,
+            stagger: {
+              each: 0.05,
+              from: "center"
+            },
+            ease: "elastic.out(1, 0.5)"
+          }
+        );
+      }
+      
+      if (heroTagline) {
+        heroTl.fromTo(".hero p.tagline .char-anim", 
+          {
+            scale: 0.5,
+            opacity: 0
+          },
+          {
+            duration: 0.8,
+            scale: 1,
+            opacity: 1,
+            ease: "back.out(1.7)"
+          }, "-=0.8");
+      }
+
+      // --- SECTION TITLES: Bouncy Pop ---
+      gsap.utils.toArray(".section-title").forEach(title => {
+        const chars = title.querySelectorAll(".char-anim");
+        if(chars.length === 0) return;
+        
+        gsap.fromTo(chars, 
+          {
+            y: 50,
+            x: () => gsap.utils.random(-10, 10),
+            rotation: () => gsap.utils.random(-20, 20),
+            opacity: 0,
+            scale: 0.5
+          },
+          {
+            scrollTrigger: {
+              trigger: title,
+              start: "top 85%",
+              toggleActions: "play none none reverse"
+            },
+            duration: 1,
+            y: 0,
+            x: 0,
+            rotation: 0,
+            opacity: 1,
+            scale: 1,
+            stagger: 0.05,
+            ease: "elastic.out(1.2, 0.5)"
+          }
+        );
+      });
+
+      // --- SUB TITLES: Mini Pop ---
+      const subTitles = [
+        ...gsap.utils.toArray(".card h3"), 
+        ...gsap.utils.toArray(".achievement-card h3"),
+        ...gsap.utils.toArray(".timeline-item h3"),
+        ...gsap.utils.toArray(".portfolio-description h3")
+      ];
+      subTitles.forEach(title => {
+        const chars = title.querySelectorAll(".char-anim");
+        if(chars.length === 0) return;
+        
+        gsap.fromTo(chars, 
+          {
+            y: 20,
+            rotation: () => gsap.utils.random(-15, 15),
+            scale: 1.2,
+            opacity: 0
+          },
+          {
+            scrollTrigger: {
+              trigger: title,
+              start: "top 95%",
+              toggleActions: "play none none reverse"
+            },
+            duration: 0.8,
+            y: 0,
+            rotation: 0,
+            scale: 1,
+            opacity: 1,
+            stagger: 0.03,
+            ease: "back.out(2)"
+          }
+        );
+      });
+
+      // --- CARDS & ITEMS: Pop Entrance ---
+      const popItems = [
+        ...gsap.utils.toArray(".card"), 
+        ...gsap.utils.toArray(".achievement-card"),
+        ...gsap.utils.toArray(".stat-item"),
+        ...gsap.utils.toArray(".timeline-item"),
+        ...gsap.utils.toArray(".video-container"),
+        ...gsap.utils.toArray(".portfolio-description")
+      ];
+      
+      popItems.forEach((el, i) => {
+        gsap.fromTo(el, 
+          {
+            y: 60,
+            opacity: 0,
+            scale: 0.9,
+            rotation: () => gsap.utils.random(-2, 2),
+            transformOrigin: "center center"
+          },
+          {
+            scrollTrigger: {
+              trigger: el,
+              start: "top 85%",
+              toggleActions: "play none none reverse"
+            },
+            duration: 1,
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            rotation: 0,
+            ease: "elastic.out(1, 0.6)"
+          }
+        );
+      });
+
+      // --- STAT NUMBERS: Counter Animation (Fixed for NaN issue) ---
+      gsap.utils.toArray(".stat-number").forEach(stat => {
+        const originalText = stat.innerText;
+        const endValue = parseFloat(originalText.replace(/[^0-9.]/g, ""));
+        const suffix = originalText.replace(/[0-9.]/g, "");
+        
+        if (!isNaN(endValue)) {
+          const proxy = { val: 0 };
+          
+          gsap.fromTo(proxy, 
+            { val: 0 },
+            {
+              val: endValue,
+              duration: 2,
+              ease: "power1.out",
+              scrollTrigger: {
+                trigger: stat,
+                start: "top 85%",
+                toggleActions: "play none none reverse"
+              },
+              onUpdate: () => {
+                stat.innerText = Math.floor(proxy.val) + suffix;
+              }
+            }
+          );
+        }
+      });
+
+      // --- "SUKI" TEXT: Gentle Pulse ---
+      gsap.to(".suki", {
+        scrollTrigger: {
+          trigger: ".suki",
+          start: "top 85%",
+          toggleActions: "play none none reverse"
+        },
+        duration: 0.8,
+        rotation: 5,
+        scale: 1.1,
+        yoyo: true,
+        repeat: -1,
+        ease: "sine.inOut"
+      });
+
       // Mobile menu functionality
       const hamburger = document.querySelector('.hamburger');
       const nav = document.querySelector('nav');
@@ -848,67 +1095,44 @@
         nav.classList.toggle('active');
         overlay.classList.toggle('active');
         document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
+        
+        if (nav.classList.contains('active')) {
+          gsap.fromTo("nav ul li", 
+            { x: 50, opacity: 0, rotation: 5 },
+            { x: 0, opacity: 1, rotation: 0, duration: 0.5, stagger: 0.1, ease: "back.out(1.5)" }
+          );
+        }
       }
       
-      hamburger.addEventListener('click', toggleMenu);
-      overlay.addEventListener('click', toggleMenu);
-      
-      navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-          if (nav.classList.contains('active')) {
-            toggleMenu();
-          }
+      if(hamburger) {
+        hamburger.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+        navLinks.forEach(link => {
+          link.addEventListener('click', () => {
+            if (nav.classList.contains('active')) toggleMenu();
+          });
         });
-      });
+      }
       
-      // タイムラインアイテムのホバーエフェクト
+      // Timeline hover effects
       const timelineItems = document.querySelectorAll('.timeline-item');
-      
       timelineItems.forEach((item, index) => {
         item.addEventListener('mouseenter', () => {
-          // 他のアイテムを少し薄くする
           timelineItems.forEach((otherItem, otherIndex) => {
             if (otherIndex !== index) {
-              otherItem.style.opacity = '0.6';
-              otherItem.style.transform = 'scale(0.95)';
+              gsap.to(otherItem, { opacity: 0.6, scale: 0.95, duration: 0.3 });
             }
           });
-          
-          // ホバーされたアイテムの日付を強調
           const date = item.querySelector('.timeline-date');
-          if (date) {
-            date.style.textShadow = '0 0 10px rgba(0, 201, 167, 0.5)';
-          }
+          if (date) date.style.textShadow = '0 0 10px rgba(0, 201, 167, 0.5)';
         });
         
         item.addEventListener('mouseleave', () => {
-          // すべてのアイテムを元に戻す
           timelineItems.forEach((otherItem) => {
-            otherItem.style.opacity = '1';
-            otherItem.style.transform = 'scale(1)';
+            gsap.to(otherItem, { opacity: 1, scale: 1, duration: 0.3 });
           });
-          
-          // 日付の強調を解除
           const date = item.querySelector('.timeline-date');
-          if (date) {
-            date.style.textShadow = 'none';
-          }
-        });
-        
-        // クリック時の追加エフェクト
-        item.addEventListener('click', () => {
-          const dot = item.querySelector('.timeline-dot');
-          if (dot) {
-            // 一時的にクリックエフェクトを追加
-            dot.style.animation = 'none';
-            setTimeout(() => {
-              dot.style.animation = 'pulse 0.5s ease-out';
-            }, 10);
-            
-            setTimeout(() => {
-              dot.style.animation = '';
-            }, 500);
-          }
+          if (date) date.style.textShadow = 'none';
         });
       });
     });

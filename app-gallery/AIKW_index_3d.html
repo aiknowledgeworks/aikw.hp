@@ -29,8 +29,10 @@
         scene.background = new THREE.Color(0x050510);
         scene.fog = new THREE.FogExp2(0x050510, 0.002);
 
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.set(0, 0, -100); // 初期位置を180度回転し、少し引いて全体を表示
+        // 歪みを抑えて真っ直ぐ見せるため、FOVを50に変更し距離を離す
+        const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 1000);
+        // デスクトップで画面の8割を埋める距離に調整
+        camera.position.set(0, 0, 110);
 
         const renderer = new THREE.WebGLRenderer({ antialias: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
@@ -46,10 +48,70 @@
         const raycaster = new THREE.Raycaster();
         const mouse = new THREE.Vector2(9999, 9999); // 初期値は画面外
         const plane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0); // Z=0平面
+        let isMouseActive = false; // マウスが有効かどうかのフラグ
+
+        function updateMouse(x, y) {
+            mouse.x = (x / window.innerWidth) * 2 - 1;
+            mouse.y = -(y / window.innerHeight) * 2 + 1;
+            isMouseActive = true;
+        }
+
+        let isTouch = false;
 
         window.addEventListener('mousemove', (event) => {
-            mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-            mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+            if (isTouch) return;
+            updateMouse(event.clientX, event.clientY);
+        });
+
+        // PC: マウスが画面外に出た場合やフォーカスが外れた場合にリセット
+        const resetMouse = () => {
+            mouse.x = 9999;
+            mouse.y = 9999;
+            isMouseActive = false;
+        };
+        
+        // iframeからマウスが出たことを確実に検知する（複数のイベントで監視）
+        document.addEventListener('mouseleave', resetMouse);
+        document.body.addEventListener('mouseleave', resetMouse);
+        
+        // ウィンドウ外への移動を検知
+        window.addEventListener('mouseout', (e) => {
+            if (e.relatedTarget === null) {
+                resetMouse();
+            }
+        });
+        
+        // フォーカス外れや非表示時
+        window.addEventListener('blur', resetMouse);
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) resetMouse();
+        });
+
+        // 親ウィンドウからのリセット信号を受け取る
+        window.addEventListener('message', (event) => {
+            if (event.data === 'resetMouse') {
+                resetMouse();
+            }
+        });
+
+        window.addEventListener('touchstart', (event) => {
+            isTouch = true;
+            if (event.touches.length > 0) {
+                updateMouse(event.touches[0].clientX, event.touches[0].clientY);
+            }
+        }, { passive: true });
+
+        window.addEventListener('touchmove', (event) => {
+            if (event.touches.length > 0) {
+                updateMouse(event.touches[0].clientX, event.touches[0].clientY);
+            }
+        }, { passive: true });
+
+        window.addEventListener('touchend', () => {
+            mouse.x = 9999;
+            mouse.y = 9999;
+            isMouseActive = false;
+            setTimeout(() => { isTouch = false; }, 500);
         });
 
         // 文字テクスチャを生成する関数
@@ -185,17 +247,19 @@
                 const time = clock.getElapsedTime();
                 
                 // サイクル設定
-                const convergeDuration = 2.0;
+                const convergeDuration = 5.0;
                 const stayDuration = 3.0;
                 const scatterDuration = 2.0;
                 const waitDuration = 1.0;
+
+                // 集合中は回転を止めて正面を維持する
+                controls.autoRotate = (time > convergeDuration);
                 const totalCycle = convergeDuration + stayDuration + scatterDuration + waitDuration;
 
                 const cycleIndex = Math.floor(time / totalCycle);
                 const t = time % totalCycle;
 
                 // 散開完了後（待機期間に入ったタイミング）で色を変える
-                // これにより「バラバラの状態で色が変わり、その後に集合する」動きになる
                 const changeColorTime = convergeDuration + stayDuration + scatterDuration;
                 if (t >= changeColorTime && cycleIndex > colorUpdateIndex) {
                     updateColors();
@@ -219,7 +283,7 @@
                 raycaster.setFromCamera(mouse, camera);
                 const mouseTarget = new THREE.Vector3();
                 raycaster.ray.intersectPlane(plane, mouseTarget);
-                const hasMouse = mouseTarget !== null;
+                const hasMouse = mouseTarget !== null && isMouseActive;
 
                 // 全てのシステムを更新
                 systems.forEach(system => {
@@ -234,10 +298,11 @@
                         const tz = targetAttribute.array[i * 3 + 2];
 
                         const globalIndex = baseIndex + i;
-                        const scrambleRange = 400;
-                        const offsetX = Math.sin(globalIndex * 0.1 + time * 0.5) * scrambleRange;
-                        const offsetY = Math.cos(globalIndex * 0.2 + time * 0.5) * scrambleRange;
-                        const offsetZ = Math.sin(globalIndex * 0.3 + time * 0.5) * scrambleRange;
+                        // 動きを激しくするために範囲と速度を増加
+                        const scrambleRange = 1500; 
+                        const offsetX = Math.sin(globalIndex * 0.15 + time * 2.0) * scrambleRange;
+                        const offsetY = Math.cos(globalIndex * 0.25 + time * 2.5) * scrambleRange;
+                        const offsetZ = Math.sin(globalIndex * 0.35 + time * 3.0) * scrambleRange;
 
                         let currentX = tx + offsetX * (1 - ease);
                         let currentY = ty + offsetY * (1 - ease);

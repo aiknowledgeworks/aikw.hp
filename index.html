@@ -2197,6 +2197,23 @@
           }
         });
       });
+
+      // Fix for 3D animation mouse stuck issue
+      const heroIframe = document.querySelector('.hero iframe');
+      if (heroIframe) {
+        // iframeからマウスが離れたらリセット信号を送る
+        heroIframe.addEventListener('mouseleave', () => {
+            heroIframe.contentWindow.postMessage('resetMouse', '*');
+        });
+        
+        // ヘッダーにマウスが乗ったら（iframeの上にあるので）リセット信号を送る
+        const header = document.querySelector('header');
+        if (header) {
+            header.addEventListener('mouseenter', () => {
+                heroIframe.contentWindow.postMessage('resetMouse', '*');
+            });
+        }
+      }
     });
   </script>
 
