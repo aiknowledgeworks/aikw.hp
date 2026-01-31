@@ -578,6 +578,42 @@
         100% {
           transform: translateY(100%);
         }
+      }
+
+    /* === タイムラインタブ === */
+    .timeline-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+    .tab-btn {
+      padding: 0.8rem 2rem;
+      border: 2px solid var(--accent);
+      background: transparent;
+      color: var(--accent);
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .tab-btn:hover,
+    .tab-btn.active {
+      background: var(--accent);
+      color: white;
+      box-shadow: 0 4px 12px rgba(0, 201, 167, 0.3);
+    }
+    .timeline-tab-content {
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+    .timeline-tab-content.active {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
@@ -675,7 +711,33 @@
       <h2 class="section-title">創業から現在までの歩み</h2>
       <p class="section-subtitle"></p>
       
-      <div class="timeline-container reveal-group" style="max-width: 800px; margin: 0 auto; position: relative;">
+      <!-- タブ切り替えボタン -->
+      <div class="timeline-tabs reveal">
+        <button class="tab-btn active" data-year="2026">2026年</button>
+        <button class="tab-btn" data-year="2025">2025年</button>
+      </div>
+
+      <!-- 2026年コンテンツ (新しいタブ) -->
+      <div id="year-2026" class="timeline-tab-content active">
+        <div class="timeline-container reveal-group" style="max-width: 800px; margin: 0 auto; position: relative;">
+          <!-- タイムライン軸 -->
+          <div class="timeline-axis" style="position: absolute; left: 50%; transform: translateX(-50%); width: 4px; height: 100%; background: var(--primary-gradient); border-radius: 2px; z-index: 1;"></div>
+          
+          <!-- 2026年1月 -->
+          <div class="timeline-item reveal" style="position: relative; display: flex; align-items: center; margin-bottom: -3rem; z-index: 2;">
+            <div class="timeline-content" style="background: var(--light); border-radius: 12px; padding: 0.75rem 1rem; box-shadow: 0 8px 24px rgba(0,0,0,.1); width: 45%; margin-right: 10%;">
+              <div class="timeline-date" style="color: var(--accent); font-weight: 700; font-size: 1rem; margin-bottom: 0.3rem;">2026年1月</div>
+              <h3 style="color: var(--dark); margin-bottom: 0.3rem; font-size: 1.1rem;">同社第一号となるMCTライセンス取得</h3>
+              <p style="color: #666; font-size: 0.9rem;">内堀 代表社員が、セキュリティのアソシエートレベルであるSC-300試験に合格し、Microsoft認定トレーナー(MCT)を取得。</p>
+            </div>
+            <div class="timeline-dot" style="position: absolute; left: 50%; transform: translateX(-50%); width: 20px; height: 20px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 0 6px white, 0 0 0 8px var(--accent);"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2025年コンテンツ (既存のもの) -->
+      <div id="year-2025" class="timeline-tab-content">
+        <div class="timeline-container reveal-group" style="max-width: 800px; margin: 0 auto; position: relative;">
         <!-- タイムライン軸 -->
         <div class="timeline-axis" style="position: absolute; left: 50%; transform: translateX(-50%); width: 4px; height: 100%; background: var(--primary-gradient); border-radius: 2px; z-index: 1;"></div>
         
@@ -744,6 +806,7 @@
           </div>
           <div class="timeline-dot" style="position: absolute; left: 50%; transform: translateX(-50%); width: 20px; height: 20px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 0 6px white, 0 0 0 8px var(--accent);"></div>
         </div>
+      </div>
       </div>
     </div>
   </section>
@@ -1133,6 +1196,33 @@
           });
           const date = item.querySelector('.timeline-date');
           if (date) date.style.textShadow = 'none';
+        });
+      });
+
+      // Timeline Tab Switching
+      const tabBtns = document.querySelectorAll('.tab-btn');
+      const tabContents = document.querySelectorAll('.timeline-tab-content');
+
+      tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          // Remove active class from all buttons and contents
+          tabBtns.forEach(b => b.classList.remove('active'));
+          tabContents.forEach(c => c.classList.remove('active'));
+
+          // Add active class to clicked button
+          btn.classList.add('active');
+
+          // Show corresponding content
+          const year = btn.getAttribute('data-year');
+          const content = document.getElementById(`year-${year}`);
+          if (content) {
+            content.classList.add('active');
+            
+            // Re-trigger ScrollTrigger refresh
+            setTimeout(() => {
+              ScrollTrigger.refresh();
+            }, 100);
+          }
         });
       });
     });

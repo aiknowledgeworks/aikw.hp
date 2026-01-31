@@ -638,6 +638,14 @@
             <img src="movie/Uchibori_02ok.gif" data-fallback="https://raw.githubusercontent.com/aiknowledgeworks/aikw.hp/main/movie/Uchibori_02ok.gif" alt="人物のアニメーション事例" style="width: 94px; height: 62px; object-fit: cover; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
           </div>
         </div>
+        <div class="service-tab" data-service="ai-photobook" style="cursor: pointer; padding: 2rem 2rem; border-radius: 12px; background: white; color: var(--dark); text-align: center; min-width: 200px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 2px solid #e9ecef;">
+          <h3 style="font-size: 1.2rem; font-weight: 700; margin: 0;">AI写真集制作</h3>
+          <p style="font-size: 0.9rem; margin: 0.5rem 0 0; opacity: 0.7;">記憶・物語・体験の再構築</p>
+        </div>
+        <div class="service-tab" data-service="local-llm" style="cursor: pointer; padding: 2rem 2rem; border-radius: 12px; background: white; color: var(--dark); text-align: center; min-width: 200px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 2px solid #e9ecef;">
+          <h3 style="font-size: 1.2rem; font-weight: 700; margin: 0;">ローカルLLM導入</h3>
+          <p style="font-size: 0.9rem; margin: 0.5rem 0 0; opacity: 0.7;">本番前提の生成AI基盤</p>
+        </div>
       </div>
     </div>
   </section>
@@ -988,6 +996,186 @@
     </div>
   </section>
 
+  <!-- === AI写真集制作 === -->
+  <section id="ai-photobook" class="service-content" data-service="ai-photobook" style="background: linear-gradient(135deg, #fff0f5 0%, #fff 100%); position: relative; overflow: hidden; display: none;">
+    <!-- 背景装飾 -->
+    <div style="position: absolute; top: -50px; right: -50px; width: 200px; height: 200px; background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); border-radius: 50%; opacity: 0.15; z-index: 0;"></div>
+    <div style="position: absolute; bottom: -100px; left: -100px; width: 300px; height: 300px; background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); border-radius: 50%; opacity: 0.1; z-index: 0;"></div>
+    
+    <div class="container" style="position: relative; z-index: 1;">
+      <!-- ヒーローヘッダー -->
+      <div style="text-align: center; margin-bottom: 4rem;">
+        <div class="reveal" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%); color: white; padding: 3rem 2rem; border-radius: 20px; margin-bottom: 2rem; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
+          <h2 style="font-size: 2.8rem; font-weight: 800; margin-bottom: 1rem; text-shadow: 0 2px 4px rgba(0,0,0,0.1); color: #fff;">AI写真集制作サービス</h2>
+          <div style="background: rgba(255,255,255,0.25); border-radius: 12px; padding: 1.5rem; margin: 2rem auto; max-width: 800px;">
+            <p style="font-size: 1.6rem; font-weight: 700; margin-bottom: 0.75rem; line-height: 1.3;">1枚の写真から、人生と空間を再想像しましょう。</p>
+            <p style="font-size: 1.1rem; opacity: 0.95; font-weight: 500;">目的は画像の生成ではなく、記憶・物語・体験の再構築。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- コアサービスの事例 -->
+      <div class="reveal" style="margin-bottom: 4rem;">
+        <h3 class="section-title" style="font-size: 2rem; margin-bottom: 2rem;">コアサービスの事例</h3>
+        <div class="services-grid">
+          <div class="service-card" style="position: relative; overflow: hidden; border: none; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: linear-gradient(90deg, #ff9a9e 0%, #fecfef 100%);"></div>
+            <h3 style="margin-top: 0.5rem; font-size: 1.4rem; background: linear-gradient(135deg, #ff9a9e 0%, #ff758c 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">ストーリー写真集生成</h3>
+            <p class="description" style="margin-top: 1rem;">1枚の写真を起点に、AIが名所・季節・時間帯・アングルを設計し、物語として成立する写真集を生成します。</p>
+          </div>
+          <div class="service-card" style="position: relative; overflow: hidden; border: none; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: linear-gradient(90deg, #a18cd1 0%, #fbc2eb 100%);"></div>
+            <h3 style="margin-top: 0.5rem; font-size: 1.4rem; background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">故人写真の復元と拡張</h3>
+            <p class="description" style="margin-top: 1rem;">写真修復＋別シーン・別季節・時系列に再現します。</p>
+          </div>
+          <div class="service-card" style="position: relative; overflow: hidden; border: none; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: linear-gradient(90deg, #84fab0 0%, #8fd3f4 100%);"></div>
+            <h3 style="margin-top: 0.5rem; font-size: 1.4rem; background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">没入型写真集（AR/VR）</h3>
+            <p class="description" style="margin-top: 1rem;">1枚から空間を推定生成し、「見る写真」から「入る写真」へ。</p>
+          </div>
+          <div class="service-card" style="position: relative; overflow: hidden; border: none; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: linear-gradient(90deg, #fccb90 0%, #d57eeb 100%);"></div>
+            <h3 style="margin-top: 0.5rem; font-size: 1.4rem; background: linear-gradient(135deg, #fccb90 0%, #d57eeb 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">パーソナル写真集</h3>
+            <p class="description" style="margin-top: 1rem;">プロフィール1枚から、統一世界観の大量ビジュアルを生成。SNS・ポートフォリオ・書籍に即利用。</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 提供価値の核心 -->
+      <div class="reveal" style="max-width: 900px; margin: 0 auto 4rem;">
+        <div style="background: white; border-radius: 16px; padding: 3rem; text-align: center; box-shadow: 0 15px 35px rgba(0,0,0,0.08); border: 1px solid #e9ecef;">
+          <h3 style="font-size: 2rem; color: var(--dark); margin-bottom: 2rem; font-weight: 700;">提供価値の核心</h3>
+          <ul style="text-align: left; display: inline-block; font-size: 1.2rem; line-height: 1.8; list-style: none; padding: 0;">
+             <li style="margin-bottom: 1rem; padding: 1rem; background: #f8f9fa; border-radius: 8px; font-weight: 600; box-shadow: 0 4px 6px rgba(0,0,0,0.02);"><span style="color: #ff9a9e; margin-right: 0.5rem; font-weight: 800;">✓</span>撮れなかった瞬間を、肯定的に可視化</li>
+             <li style="margin-bottom: 1rem; padding: 1rem; background: #f8f9fa; border-radius: 8px; font-weight: 600; box-shadow: 0 4px 6px rgba(0,0,0,0.02);"><span style="color: #ff9a9e; margin-right: 0.5rem; font-weight: 800;">✓</span>思い出を再体験可能な物語に変換</li>
+             <li style="padding: 1rem; background: #f8f9fa; border-radius: 8px; font-weight: 600; box-shadow: 0 4px 6px rgba(0,0,0,0.02);"><span style="color: #ff9a9e; margin-right: 0.5rem; font-weight: 800;">✓</span>写真集をメディアから体験へ進化</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- === ローカルLLM導入 === -->
+  <section id="local-llm" class="service-content" data-service="local-llm" style="background: linear-gradient(135deg, #fcfcfc 0%, #f1f2f6 100%); position: relative; overflow: hidden; display: none;">
+    <!-- 背景装飾 -->
+    <div style="position: absolute; top: -50px; right: -50px; width: 220px; height: 220px; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); border-radius: 50%; opacity: 0.1; z-index: 0;"></div>
+    <div style="position: absolute; bottom: -100px; left: -100px; width: 340px; height: 340px; background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); border-radius: 50%; opacity: 0.08; z-index: 0;"></div>
+
+    <div class="container" style="position: relative; z-index: 1;">
+      <!-- ヒーローヘッダー -->
+      <div style="text-align: center; margin-bottom: 4rem;">
+        <div class="reveal" style="background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%); color: white; padding: 3rem 2rem; border-radius: 20px; margin-bottom: 2rem; box-shadow: 0 20px 40px rgba(0,0,0,0.15);">
+          <h2 style="font-size: 2.4rem; font-weight: 800; margin-bottom: 1rem; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">ローカルLLM導入コンサルティング<br>& 構築支援</h2>
+          <div style="background: rgba(255,255,255,0.15); border-radius: 12px; padding: 1.5rem; margin: 2rem auto; max-width: 700px;">
+            <p style="font-size: 1.6rem; font-weight: 700; margin-bottom: 0.75rem; line-height: 1.4;">検証で終わらせない。<br>最初から“本番前提”の生成AI導入。</p>
+            <p style="font-size: 1.1rem; opacity: 0.95; font-weight: 500;">試すためのAIではなく、業務に組み込まれるAI基盤を。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 課題提起 -->
+      <div class="reveal" style="max-width: 900px; margin: 0 auto 4rem;">
+        <div style="background: white; border-radius: 16px; padding: 3rem; text-align: center; box-shadow: 0 15px 35px rgba(0,0,0,0.08); border: 1px solid #e9ecef;">
+          <h3 style="font-size: 1.8rem; color: var(--dark); margin-bottom: 1.5rem; font-weight: 700; line-height: 1.6;">
+            「PoC止まり」「現場で使われない」「セキュリティが不安」<br>
+            <span class="suki">そんな失敗が増えています。</span>
+          </h3>
+          <div style="background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 1.4rem; font-weight: 700; line-height: 1.8;">
+            AIナレッジワークスは、<br>ローカルLLMを“実運用前提”で設計・構築し、<br>御社だけの安全なAI環境を実現します。
+          </div>
+        </div>
+      </div>
+
+      <!-- なぜローカルLLMなのか -->
+      <div class="reveal" style="margin-bottom: 4rem;">
+        <h3 class="section-title" style="font-size: 2rem; margin-bottom: 2rem;">なぜローカルLLMなのか</h3>
+        <div class="services-grid">
+          <div class="service-card">
+            <h3>データ流出ゼロ</h3>
+            <p class="description">貴社内データを外部クラウドに一切送信しません。セキュリティポリシーが厳しい環境でも安心して導入可能です。</p>
+          </div>
+          <div class="service-card">
+            <h3>自社業務に最適化</h3>
+            <p class="description">汎用的なAIではなく、自社の文書や業務知識（ナレッジ）に特化した、御社専用のAI脳を構築できます。</p>
+          </div>
+          <div class="service-card">
+            <h3>コストの安定化</h3>
+            <p class="description">トークン毎の従量課金に依存しないため、使えば使うほど割安に。長期的に安定したコスト構造を実現します。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- AIナレッジワークスの強み -->
+      <div class="reveal" style="margin-bottom: 4rem;">
+        <h3 class="section-title" style="font-size: 2rem; margin-bottom: 2rem;">AIナレッジワークスの強み</h3>
+        <div class="card reveal" style="background: #fff; padding: 3rem; border-left: 8px solid #3498db;">
+          <h4 style="font-size: 1.6rem; color: #2c3e50; margin-bottom: 1.5rem; font-weight: 800;">迷わず・止まらず・やり直さない導入支援</h4>
+          <p style="font-size: 1.1rem; line-height: 1.8; color: #555; margin-bottom: 2rem;">
+            ローカルLLMの導入は、モデル選定、インフラ構成、RAG設計、セキュリティなど判断ポイントが膨大です。<br>
+            私たちは、ローカルLLM特化の知見で「何を選ぶべきか分からない」「後から作り直しになる」といった失敗を防ぎ、検討段階から実運用まで一直線に導きます。
+          </p>
+          <ul style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+            <li style="padding: 1rem; background: #f8f9fa; border-radius: 8px; font-weight: 600;">✅ 手戻りのない設計手法</li>
+            <li style="padding: 1rem; background: #f8f9fa; border-radius: 8px; font-weight: 600;">✅ セキュリティ重視の構成案</li>
+            <li style="padding: 1rem; background: #f8f9fa; border-radius: 8px; font-weight: 600;">✅ 業務定着までの並走支援</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- サービス内容 -->
+      <div class="reveal" style="margin-bottom: 4rem;">
+        <h3 class="section-title" style="font-size: 2rem; margin-bottom: 2rem;">サービス内容（導入まで）</h3>
+        <div class="process-grid">
+          <div class="process-step">
+            <div class="step-number" style="background: #3498db;">1</div>
+            <h4>要件整理・導入設計</h4>
+            <p>業務利用目的の整理、セキュリティ・運用制約の確認を行い、最適なローカルLLM構成を設計します。</p>
+          </div>
+          <div class="process-step">
+            <div class="step-number" style="background: #3498db;">2</div>
+            <h4>環境構築</h4>
+            <p>オンプレミス/閉域環境への構築、LLMセットアップ、社内ドキュメント連携（RAG）の実装を行います。</p>
+          </div>
+          <div class="process-step">
+            <div class="step-number" style="background: #3498db;">3</div>
+            <h4>初期運用調整</h4>
+            <p>応答精度・検索精度の調整、社内利用UIの整備など、「実運用可能な状態」まで仕上げます。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 対象・費用 -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
+        <!-- こんな企業に -->
+        <div class="card reveal" style="border: 1px solid #e9ecef;">
+          <h4 style="font-size: 1.4rem; color: var(--accent); margin-bottom: 1.5rem; font-weight: 700;">こんな企業様に向いています</h4>
+          <ul class="service-features">
+            <li>PoCではなく導入を前提にAIを検討している</li>
+            <li>機密情報を扱い、クラウドAIを使えない</li>
+            <li>社内ナレッジ検索・問い合わせ対応を本格導入したい</li>
+            <li>AIを一時的な施策で終わらせたくない</li>
+          </ul>
+        </div>
+        
+        <!-- 費用感 -->
+        <div class="card reveal" style="border: 1px solid #e9ecef; background: linear-gradient(135deg, #2c3e50 0%, #203a43 100%); color: white;">
+          <h4 style="font-size: 1.4rem; color: #fff; margin-bottom: 1.5rem; font-weight: 700;">導入費用について</h4>
+          <div style="text-align: center; padding: 1.5rem 0;">
+            <p style="font-size: 1rem; opacity: 0.9;">ライト導入（小〜中規模・基本構築）</p>
+            <p style="font-size: 2.5rem; font-weight: 800; margin: 1rem 0;">20万円<span style="font-size: 1rem; font-weight: 400;"> から</span></p>
+            <p style="font-size: 0.9rem; opacity: 0.8; line-height: 1.5;">※要件に応じたお見積もりとなります。<br>ご予算に合わせた構成を提案いたします。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal" style="text-align: center;">
+         <p style="font-size: 1.2rem; font-weight: 700; color: #555;">AIナレッジワークスは、「PoCを回す会社」ではなく、<br>「AIを業務に根付かせる会社」です。</p>
+      </div>
+
+    </div>
+  </section>
+
   <!-- === お問い合わせ === -->
   <section class="cta-section">
     <div class="container">
@@ -1084,7 +1272,7 @@
       
       function getServiceFromHash() {
         const hash = window.location.hash.substring(1);
-        const validServices = ['startup-support', 'hp-creation', 'ai-video'];
+        const validServices = ['startup-support', 'hp-creation', 'ai-video', 'ai-photobook', 'local-llm'];
         return validServices.includes(hash) ? hash : 'ai-video';
       }
       
