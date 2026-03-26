@@ -1819,8 +1819,9 @@
   </header>
 
   <!-- === Hero === -->
-  <section id="home" class="hero" style="padding: 0; overflow: hidden;">
-    <iframe src="app-gallery/AIKW_index_3d.html" style="width: 100%; height: 100%; border: none;" title="AIKW 3D Animation"></iframe>
+  <section id="home" class="hero" style="padding: 0; overflow: hidden; position: relative;">
+    <iframe id="hero-3d" src="app-gallery/AIKW_index_3d.html" style="width: 100%; height: 100%; border: none; pointer-events: none;" title="AIKW 3D Animation"></iframe>
+    <div id="hero-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; cursor: grab; z-index: 1;"></div>
   </section>
 
   <!-- === Section A1: Background === -->
@@ -2198,20 +2199,45 @@
         });
       });
 
-      // Fix for 3D animation mouse stuck issue
-      const heroIframe = document.querySelector('.hero iframe');
-      if (heroIframe) {
-        // iframeからマウスが離れたらリセット信号を送る
-        heroIframe.addEventListener('mouseleave', () => {
-            heroIframe.contentWindow.postMessage('resetMouse', '*');
+      // Hero 3D: オーバーレイがホイールをネイティブ処理（なめらかスクロール）
+      // mousedown時だけオーバーレイを消してiframeにドラッグを渡す
+      const heroOverlay = document.getElementById('hero-overlay');
+      const hero3d = document.getElementById('hero-3d');
+      if (heroOverlay && hero3d) {
+        // マウス位置をiframeに転送（ホバー反発効果のため）
+        heroOverlay.addEventListener('mousemove', (e) => {
+          const rect = hero3d.getBoundingClientRect();
+          hero3d.contentWindow.postMessage({
+            type: 'mousemove',
+            x: e.clientX - rect.left,
+            y: e.clientY - rect.top
+          }, '*');
         });
-        
-        // ヘッダーにマウスが乗ったら（iframeの上にあるので）リセット信号を送る
+
+        heroOverlay.addEventListener('mouseleave', () => {
+          hero3d.contentWindow.postMessage('resetMouse', '*');
+        });
+
+        // mousedown: オーバーレイを消してiframeにドラッグを渡す
+        heroOverlay.addEventListener('mousedown', (e) => {
+          heroOverlay.style.pointerEvents = 'none';
+          hero3d.style.pointerEvents = 'auto';
+          heroOverlay.style.cursor = 'grabbing';
+        });
+
+        // mouseup: オーバーレイを復元（ドキュメント全体で監視）
+        document.addEventListener('mouseup', () => {
+          heroOverlay.style.pointerEvents = 'auto';
+          hero3d.style.pointerEvents = 'none';
+          heroOverlay.style.cursor = 'grab';
+        });
+
+        // ヘッダーhoveredでリセット
         const header = document.querySelector('header');
         if (header) {
-            header.addEventListener('mouseenter', () => {
-                heroIframe.contentWindow.postMessage('resetMouse', '*');
-            });
+          header.addEventListener('mouseenter', () => {
+            hero3d.contentWindow.postMessage('resetMouse', '*');
+          });
         }
       }
     });

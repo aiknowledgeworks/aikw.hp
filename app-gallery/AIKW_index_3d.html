@@ -43,6 +43,7 @@
         controls.enableDamping = true;
         controls.autoRotate = true;
         controls.autoRotateSpeed = 1.0;
+        controls.enableZoom = false; // ホイールでのズームを無効化（ページスクロールを優先）
 
         // マウスインタラクション用の変数
         const raycaster = new THREE.Raycaster();
@@ -87,10 +88,12 @@
             if (document.hidden) resetMouse();
         });
 
-        // 親ウィンドウからのリセット信号を受け取る
+        // 親ウィンドウからのメッセージを受け取る（リセット・マウス位置転送）
         window.addEventListener('message', (event) => {
             if (event.data === 'resetMouse') {
                 resetMouse();
+            } else if (event.data && event.data.type === 'mousemove') {
+                updateMouse(event.data.x, event.data.y);
             }
         });
 
