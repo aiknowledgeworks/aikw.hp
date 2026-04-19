@@ -101,7 +101,7 @@
       opacity: 0; transform: translateY(30px); transition: all .7s cubic-bezier(.23,1,.32,1);
     }
     .card.active { opacity: 1; transform: translateY(0); }
-    .card h3 { font-family: var(--font-display); margin-bottom: .6rem; color: var(--dark); font-size: 1.15rem; font-weight: 600; }
+    .card h3, .card h4 { font-family: var(--font-display); margin-bottom: .6rem; color: var(--dark); font-size: 1.15rem; font-weight: 600; }
 
     /* 好きのスタイル */
     .suki {
@@ -872,15 +872,15 @@
         <h3 class="section-title" style="font-size: 1.6rem;">3つの選ばれる理由</h3>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
           <div class="card reveal">
-            <h3>価格が明快で安心</h3>
+            <h4>価格が明快で安心</h4>
             <p>月額4,980円〜。ドメイン・サーバー・SSL証明書すべて込み。追加料金は一切ありません。年間契約なら10%オフでさらにお得です。</p>
           </div>
           <div class="card reveal">
-            <h3>最短5日のスピード対応</h3>
+            <h4>最短5日のスピード対応</h4>
             <p>面倒な設定は全てお任せ。スマホで素材を送るだけで、プロが48時間以内に初回デザインをお見せします。修正も月3回まで無料対応。</p>
           </div>
           <div class="card reveal">
-            <h3>AIで24時間売上アップ</h3>
+            <h4>AIで24時間売上アップ</h4>
             <p>AIチャットボットが深夜でも休日でも自動対応。よくある質問への回答から予約受付まで、取りこぼしゼロの営業体制を構築できます。</p>
           </div>
         </div>
@@ -958,7 +958,7 @@
         </div>
       </div>
 
-      <h3 class=”reveal section-title” style=”font-size: 1.6rem; margin-bottom: 2rem;”>導入事例</h3>
+      <h3 class=”reveal section-title” style=”font-size: 1.6rem; margin-bottom: 2rem;”>導入事例（動画）</h3>
 
       <div class=”reveal” style=”margin-bottom: 3rem;”>
         <div style=”display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem;”>
@@ -980,28 +980,24 @@
             </video>
             <p style=”font-size: 0.85rem; color: var(--text-sub); margin: 0;”>名刺アニメーション事例</p>
           </div>
-          <div style=”background: var(--light); border: 1px solid var(--border); padding: 1rem; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 200px;”>
-            <img src=”movie/Uchibori_02ok.gif” data-fallback=”https://raw.githubusercontent.com/aiknowledgeworks/aikw.hp/main/movie/Uchibori_02ok.gif” alt=”字幕付き名刺アニメーション事例” style=”width: 100%; max-width: 240px; height: 135px; margin-bottom: 0.5rem; object-fit: cover;”>
-            <p style=”font-size: 0.85rem; color: var(--text-sub); margin: 0;”>字幕付き名刺アニメーション事例 (GIF)</p>
-          </div>
         </div>
       </div>
 
       <div style=”display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;”>
         <div class=”card reveal”>
-          <h3>「話すチラシ」</h3>
+          <h4>「話すチラシ」</h4>
           <p>キャラが口パク＆目パチで商品の魅力を30秒で紹介</p>
         </div>
         <div class=”card reveal”>
-          <h3>「ロゴが踊る」</h3>
+          <h4>「ロゴが踊る」</h4>
           <p>Tシャツやアイコンを使ったブランド動画</p>
         </div>
         <div class=”card reveal”>
-          <h3>「キャスト紹介」</h3>
+          <h4>「キャスト紹介」</h4>
           <p>ナレーション付きの自己紹介ムービー（店内表示やSNS用に）</p>
         </div>
         <div class=”card reveal”>
-          <h3>「アイコン動画化」</h3>
+          <h4>「アイコン動画化」</h4>
           <p>シンボルやマスコットが”要点”を解説する短尺映像</p>
         </div>
       </div>
@@ -1018,19 +1014,19 @@
         <h3 class=”section-title” style=”font-size: 1.6rem; margin-bottom: 2rem;”>コアサービスの事例</h3>
         <div style=”display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;”>
           <div class=”card reveal”>
-            <h3>ストーリー写真集生成</h3>
+            <h4>ストーリー写真集生成</h4>
             <p>1枚の写真を起点に、AIが名所・季節・時間帯・アングルを設計し、物語として成立する写真集を生成します。</p>
           </div>
           <div class=”card reveal”>
-            <h3>故人写真の復元と拡張</h3>
+            <h4>故人写真の復元と拡張</h4>
             <p>写真修復＋別シーン・別季節・時系列に再現します。</p>
           </div>
           <div class=”card reveal”>
-            <h3>没入型写真集（AR/VR）</h3>
+            <h4>没入型写真集（AR/VR）</h4>
             <p>1枚から空間を推定生成し、「見る写真」から「入る写真」へ。</p>
           </div>
           <div class=”card reveal”>
-            <h3>パーソナル写真集</h3>
+            <h4>パーソナル写真集</h4>
             <p>プロフィール1枚から、統一世界観の大量ビジュアルを生成。SNS・ポートフォリオ・書籍に即利用。</p>
           </div>
         </div>
