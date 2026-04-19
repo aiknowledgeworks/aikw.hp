@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>サービス | AIナレッジワークス合同会社</title>
+  <title>事業内容・サービス | AIナレ��ジワークス合同会社</title>
 
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="logo/AIナレッジワークス_logo_transparen.png">
@@ -145,8 +145,6 @@
     .ai-video-hero-media img {
       width: 260px;
       max-width: 100%;
-      border-radius: 16px;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
     }
 
     /* === サービスカード === */
@@ -570,7 +568,6 @@
 
       .ai-video-hero-media img {
         width: 200px;
-        border-radius: 12px;
       }
 
       .pricing-table {
@@ -618,8 +615,7 @@
       <nav>
         <ul>
           <li><a href="index.html#background">創業のきっかけ</a></li>
-          <li><a href="businesspillars.html">事業内容</a></li>
-          <li><a href="service.html">サービス</a></li>
+          <li><a href="service.html">事業・サービス</a></li>
           <li><a href="achievements.html">実績・展望</a></li>
           <li><a href="company.html">会社概要</a></li>
           <li><a href="contact.html">お問い合わせ</a></li>
@@ -631,168 +627,236 @@
 
   <!-- === Hero === -->
   <section class="hero">
-    <h1>サービス</h1>
-    <p class="tagline">AIで<span class="suki">"好き"</span>を実現するソリューション</p>
+    <h1>事業内容・サービス</h1>
+    <p class="tagline">3本柱でAI技術の普及と活用を支援</p>
   </section>
 
-  <!-- === サービス選択タブ === -->
-  <section style="background: white; padding: 2rem 0; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+  <!-- === 3本柱の概要 === -->
+  <section id="pillars" style="background: var(--surface);">
     <div class="container">
-      <div class="service-tabs" style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
-        <div class="service-tab" data-service="startup-support" style="cursor: pointer; padding: 2rem 2rem; border-radius: 12px; background: white; color: var(--dark); text-align: center; min-width: 200px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 2px solid #e9ecef;">
-          <h3 style="font-size: 1.2rem; font-weight: 700; margin: 0;">創業サポートパック</h3>
-          <p style="font-size: 0.9rem; margin: 0.5rem 0 0; opacity: 0.7;">起業の全準備を1日で</p>
+      <h2 class="section-title">3本柱の事業</h2>
+      <p class="section-subtitle">AIナレッジワークスが提供する3つの事業領域</p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 1.5rem; margin-top: 2rem;">
+        <div class="card reveal" style="border-top: 2px solid var(--accent);">
+          <h3>企業向けAI研修</h3>
+          <p>現場に効くAI人材育成のための実践的プログラムを提供。Starter / Expert / 営業特化の3コースで、組織全体のAIリテラシーを向上させます。</p>
         </div>
-        <div class="service-tab" data-service="hp-creation" style="cursor: pointer; padding: 2rem 2rem; border-radius: 12px; background: white; color: var(--dark); text-align: center; min-width: 200px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 2px solid #e9ecef;">
-          <h3 style="font-size: 1.2rem; font-weight: 700; margin: 0;">AI-powered ホームページの制作</h3>
-          <p style="font-size: 0.9rem; margin: 0.5rem 0 0; opacity: 0.7;">安心・成果が見えるWeb</p>
+        <div class="card reveal" style="border-top: 2px solid var(--brand-blue);">
+          <h3>子ども向けAI研修（AIまなびラボ）</h3>
+          <p>楽しく学ぶAI体験を通じて、次世代を担う子どもたちの創造力とデジタルスキルやAIリテラシーを育みます。</p>
         </div>
-        <div class="service-tab active" data-service="ai-video" style="cursor: pointer; padding: 2rem 2rem; border-radius: 12px; background: var(--primary-gradient); color: white; text-align: center; min-width: 200px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-          <h3 style="font-size: 1.2rem; font-weight: 700; margin: 0;">ロゴ・チラシ・名刺のAI映像制作</h3>
-          <div style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin-top: 0.5rem;">
-            <p style="font-size: 0.9rem; margin: 0; opacity: 0.9;">静止画に命を吹き込む</p>
-            <img src="movie/Uchibori_02ok.gif" data-fallback="https://raw.githubusercontent.com/aiknowledgeworks/aikw.hp/main/movie/Uchibori_02ok.gif" alt="人物のアニメーション事例" style="width: 94px; height: 62px; object-fit: cover; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        <div class="card reveal" style="border-top: 2px solid var(--accent-warm);">
+          <h3>BtoB AI導入支援</h3>
+          <p>自社業務にAIを実装するためのコンサルティングから開発支援まで。業務効率化と問題解決につながるAIソリューションを提案します。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === 企業向けAI研修 詳細 === -->
+  <section id="corp-training">
+    <div class="container">
+      <h2 class="section-title">企業向けAI研修</h2>
+      <p class="section-subtitle">Starter / Expert / 営業向けプログラム</p>
+
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, auto); gap: 1.5rem; max-width: 900px; margin: 0 auto;">
+        <div class="card reveal" style="height: 100%;">
+          <h3>Starter</h3>
+          <p>生成AIに初めて触れる方向けの90分集中基礎研修プラン。</p>
+        </div>
+        <div class="card reveal" style="height: 100%;">
+          <h3>Expert</h3>
+          <p>業務効率化・自動化を極める上級者向け。既に生成AIを活用している方のスキルアップを目指すプラン。</p>
+        </div>
+        <div class="card reveal" style="height: 100%;">
+          <h3>営業特化プログラム</h3>
+          <p>競合分析やレポート作成の自動化、SNSでの発信最適化をサポートするプラン。</p>
+        </div>
+        <div class="card reveal" style="height: 100%;">
+          <h3>研修費用はダイナミックプライシング</h3>
+          <p>顧客満足度に応じた投げ銭料金モデル（ビジネス特許申請中）</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === 子ども向けAI研修 === -->
+  <section id="kids" style="background: var(--surface);">
+    <div class="container">
+      <h2 class="section-title">子ども向けAI研修（AIまなびラボ）</h2>
+      <div style="background: var(--light); border: 1px solid var(--border); border-top: 2px solid var(--brand-blue); padding: 2rem; margin-bottom: 2rem;">
+        <h3 style="font-family: var(--font-display); font-size: 1.3rem; margin-bottom: 1rem; color: var(--accent); text-align: center; font-weight: 600;">教育コンセプト: Play × Create 探究学習</h3>
+        <p style="text-align: center; margin-bottom: 1.5rem;">遊びながら創造し、AIと共に未来を描く。<br>「できない」を「できる」に変える体験を通じて、好奇心と創造力を育みます。</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, auto); gap: 1.5rem; max-width: 900px; margin: 0 auto;">
+        <div class="card reveal" style="height: 100%;">
+          <h3>体験型AI活用授業</h3>
+          <p>画像生成、音楽作曲、動画制作など、AIツールを使って自分だけの作品を創り、発表する体験を通じてデジタルリテラシーを育成します。</p>
+        </div>
+        <div class="card reveal" style="height: 100%;">
+          <h3>教科学習へのAI活用</h3>
+          <p>国語・算数・英語・理科・社会のそれぞれの教科学習にAIを活用し、子どもたちの理解度と学習効率を大幅に向上させます。</p>
+        </div>
+        <div class="card reveal" style="height: 100%;">
+          <h3>家庭導入サポート</h3>
+          <p>オリジナル教材と専用アプリで家庭でも継続的に学べる環境を提供。保護者向けガイダンスでAIリテラシーを家族全体で高められます。</p>
+        </div>
+        <div class="card reveal" style="height: 100%;">
+          <h3>月額制価格モデル</h3>
+          <p>月額制で授業時間・教材費・サポート費をすべて含む安心の料金体系。追加費用なしで質の高い学習体験を提供します。</p>
+        </div>
+      </div>
+
+      <div style="margin-top: 3rem;">
+        <h3 style="font-family: var(--font-display); text-align: center; font-size: 1.3rem; margin-bottom: 1.5rem; color: var(--accent); font-weight: 600;">保護者の声</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+          <div class="card reveal" style="border-left: 3px solid var(--accent);">
+            <p style="font-style: italic; color: #555;">"子どもが自分からアイデアを出すようになりました。AIを使いこなす姿を見て、親の方が驚いています。"</p>
+            <p style="text-align: right; margin-top: 0.5rem; font-weight: 600;">小学4年生の保護者様</p>
+          </div>
+          <div class="card reveal" style="border-left: 3px solid var(--accent);">
+            <p style="font-style: italic; color: #555;">"苦手だった国語の読解問題にAIを活用し始めてから、考え方が整理できるようになったと子ども自身が実感しています。"</p>
+            <p style="text-align: right; margin-top: 0.5rem; font-weight: 600;">中学1年生の保護者様</p>
           </div>
         </div>
-        <div class="service-tab" data-service="ai-photobook" style="cursor: pointer; padding: 2rem 2rem; border-radius: 12px; background: white; color: var(--dark); text-align: center; min-width: 200px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 2px solid #e9ecef;">
-          <h3 style="font-size: 1.2rem; font-weight: 700; margin: 0;">AI写真集制作</h3>
-          <p style="font-size: 0.9rem; margin: 0.5rem 0 0; opacity: 0.7;">記憶・物語・体験の再構築</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- === BtoB AI導入支援 === -->
+  <section id="ai-support">
+    <div class="container">
+      <h2 class="section-title">BtoB AI導入支援サービス</h2>
+      <p class="section-subtitle">企業の課題をAIで解決する包括的支援</p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+        <div class="card reveal">
+          <h3>業務棚卸し・課題発見</h3>
+          <p>現状業務の詳細分析から、AI導入による効果が高い領域を特定。ROIを重視した導入計画から実証実験（PoC）の設計まで一気通貫でサポートします。</p>
         </div>
-        <div class="service-tab" data-service="local-llm" style="cursor: pointer; padding: 2rem 2rem; border-radius: 12px; background: white; color: var(--dark); text-align: center; min-width: 200px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 2px solid #e9ecef;">
-          <h3 style="font-size: 1.2rem; font-weight: 700; margin: 0;">ローカルLLM導入</h3>
-          <p style="font-size: 0.9rem; margin: 0.5rem 0 0; opacity: 0.7;">本番前提の生成AI基盤</p>
+        <div class="card reveal">
+          <h3>社内ナレッジ活用</h3>
+          <p>社内ドキュメント検索や業務マニュアル活用のためのチャットボット構築。散在する情報資産を有効活用し、業務効率と品質を向上させます。</p>
+        </div>
+        <div class="card reveal">
+          <h3>プロンプト設計・自動化</h3>
+          <p>開発者不要でAPI連携を実現するプロンプト最適化。業務プロセスに合わせた最適なプロンプト設計と自動化により、AIの活用範囲を拡大します。</p>
+        </div>
+        <div class="card reveal">
+          <h3>ドキュメント生成支援</h3>
+          <p>AIによる提案書・プレゼン資料・議事録・マニュアルなどの自動作成システムを構築。作成時間を大幅に削減しながらクオリティを向上させます。</p>
+        </div>
+        <div class="card reveal">
+          <h3>セキュアAI環境構築</h3>
+          <p>オンプレミスで稼働するローカルLLMの導入支援。機密情報を外部に送信せず、セキュアな環境でのAI活用を実現します。</p>
+        </div>
+        <div class="card reveal">
+          <h3>継続的改善・運用支援</h3>
+          <p>導入後のモニタリングと継続的な改善支援。利用状況の分析と最適化提案により、長期的なAI活用の効果を最大化します。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === 個別サービス タブ === -->
+  <section style="background: var(--surface); padding: 80px 0 2rem;">
+    <div class="container">
+      <h2 class="section-title">サービス一覧</h2>
+      <p class="section-subtitle">各サービスの詳細をご覧ください</p>
+    </div>
+  </section>
+  <section style="background: var(--light); padding: 2rem 0; border-bottom: 1px solid var(--border);">
+    <div class="container">
+      <div class="service-tabs" style="display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
+        <div class="service-tab" data-service="startup-support" style="cursor: pointer; padding: 1.5rem 2rem; background: var(--light); color: var(--dark); text-align: center; min-width: 180px; transition: all 0.3s ease; border: 1px solid var(--border);">
+          <h3 style="font-size: 1.1rem; font-weight: 600; margin: 0; font-family: var(--font-display);">創業サポートパック</h3>
+          <p style="font-size: 0.85rem; margin: 0.4rem 0 0; color: var(--text-sub);">起業の全準備を1日で</p>
+        </div>
+        <div class="service-tab" data-service="hp-creation" style="cursor: pointer; padding: 1.5rem 2rem; background: var(--light); color: var(--dark); text-align: center; min-width: 180px; transition: all 0.3s ease; border: 1px solid var(--border);">
+          <h3 style="font-size: 1.1rem; font-weight: 600; margin: 0; font-family: var(--font-display);">AI-powered HP制作</h3>
+          <p style="font-size: 0.85rem; margin: 0.4rem 0 0; color: var(--text-sub);">安心・成果が見えるWeb</p>
+        </div>
+        <div class="service-tab active" data-service="ai-video" style="cursor: pointer; padding: 1.5rem 2rem; background: var(--dark); color: var(--light); text-align: center; min-width: 180px; transition: all 0.3s ease; border: 1px solid var(--dark);">
+          <h3 style="font-size: 1.1rem; font-weight: 600; margin: 0; font-family: var(--font-display);">AI映像制作</h3>
+          <p style="font-size: 0.85rem; margin: 0.4rem 0 0; opacity: 0.7;">静止画に命を吹き込む</p>
+        </div>
+        <div class="service-tab" data-service="ai-photobook" style="cursor: pointer; padding: 1.5rem 2rem; background: var(--light); color: var(--dark); text-align: center; min-width: 180px; transition: all 0.3s ease; border: 1px solid var(--border);">
+          <h3 style="font-size: 1.1rem; font-weight: 600; margin: 0; font-family: var(--font-display);">AI写真集制作</h3>
+          <p style="font-size: 0.85rem; margin: 0.4rem 0 0; color: var(--text-sub);">記憶・物語・体験の再構築</p>
+        </div>
+        <div class="service-tab" data-service="local-llm" style="cursor: pointer; padding: 1.5rem 2rem; background: var(--light); color: var(--dark); text-align: center; min-width: 180px; transition: all 0.3s ease; border: 1px solid var(--border);">
+          <h3 style="font-size: 1.1rem; font-weight: 600; margin: 0; font-family: var(--font-display);">ローカルLLM導入</h3>
+          <p style="font-size: 0.85rem; margin: 0.4rem 0 0; color: var(--text-sub);">本番前提の生成AI基盤</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- === 創業サポートパック === -->
-  <section id="startup-support" class="service-content" data-service="startup-support" style="background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%); position: relative; overflow: hidden;">
-    <!-- 背景装飾 -->
-    <div style="position: absolute; top: -50px; right: -50px; width: 200px; height: 200px; background: var(--primary-gradient); border-radius: 50%; opacity: 0.1; z-index: 0;"></div>
-    <div style="position: absolute; bottom: -100px; left: -100px; width: 300px; height: 300px; background: var(--primary-gradient); border-radius: 50%; opacity: 0.05; z-index: 0;"></div>
-    
-    <div class="container" style="position: relative; z-index: 1;">
-      <!-- ヒーローヘッダー -->
-      <div style="text-align: center; margin-bottom: 4rem;">
-        <div class="reveal" style="background: var(--primary-gradient); color: white; padding: 3rem 2rem; border-radius: 20px; margin-bottom: 2rem; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
-          <h2 style="font-size: 2.8rem; font-weight: 800; margin-bottom: 1rem; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">創業サポートパック</h2>
-          <div style="background: rgba(255,255,255,0.2); border-radius: 12px; padding: 1.5rem; margin: 2rem auto; max-width: 600px;">
-            <p style="font-size: 1.8rem; font-weight: 700; margin-bottom: 0.75rem; line-height: 1.3;">『起業に必要なすべてを、たった1日で。』</p>
-            <p style="font-size: 1.2rem; opacity: 0.95; font-weight: 500;">外注なしで格安に、完成度の高いスタートを実現します</p>
-          </div>
+  <section id="startup-support" class="service-content" data-service="startup-support" style="background: var(--surface);">
+    <div class="container">
+      <h2 class="section-title">創業サポートパック</h2>
+      <p class="section-subtitle">起業に必要なすべてを、たった1日で。外注なしで格安に、完成度の高いスタートを実現します</p>
+
+      <div class="reveal" style="max-width: 900px; margin: 0 auto 3rem;">
+        <div style="background: var(--light); border: 1px solid var(--border); border-top: 2px solid var(--accent); padding: 2.5rem; text-align: center;">
+          <h3 style="font-family: var(--font-display); font-size: 1.6rem; color: var(--dark); margin-bottom: 1rem; font-weight: 600; line-height: 1.6;">起業はスピードが命。<br>しかし、最初の一歩は準備が多くて大変。</h3>
+          <p style="font-size: 1.1rem; color: var(--text-sub); line-height: 1.8;">『創業サポートパック』なら、会社立ち上げ時に必要な全てを、たった1日で完結します。</p>
         </div>
       </div>
 
-      <!-- メインメッセージ -->
-      <div class="reveal" style="max-width: 900px; margin: 0 auto 4rem;">
-        <div style="background: white; border-radius: 16px; padding: 3rem; text-align: center; box-shadow: 0 15px 35px rgba(0,0,0,0.08); border: 1px solid #e9ecef;">
-          <h3 style="font-size: 2rem; color: var(--dark); margin-bottom: 1.5rem; font-weight: 700; line-height: 1.5;">起業はスピードが命。<br><span class="suki">しかし</span><br>最初の一歩は準備が多くて大変！</h3>
-          <div style="background: var(--primary-gradient); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 1.6rem; font-weight: 700; line-height: 1.6;">
-            『創業サポートパック』なら、<br>会社立ち上げ時に必要な全てを、<br>たった1日で完結します。
-          </div>
+      <h3 class="reveal section-title" style="font-size: 1.6rem; margin-bottom: 2rem;">創業サポートパックのコンテンツ</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
+        <div class="card reveal">
+          <h3>完成度の高いロゴ制作</h3>
+          <p>即日作成。追加費用なしで納得いくまで調整可能。</p>
+        </div>
+        <div class="card reveal">
+          <h3>集客力あるホームページ</h3>
+          <p>ターゲットを明確化し、1日で仕上げます。</p>
+        </div>
+        <div class="card reveal">
+          <h3>戦略的ビジネスプラン</h3>
+          <p>事業成功に欠かせないプランを短期間で策定。</p>
+        </div>
+        <div class="card reveal">
+          <h3>「売れる」営業チラシ</h3>
+          <p>顧客の心を効果的に掴むデザインと内容。</p>
+        </div>
+        <div class="card reveal">
+          <h3>専門家によるAI指導</h3>
+          <p>正しいAIツール活用法を学び、スタートダッシュをバックアップ。</p>
+        </div>
+        <div class="card reveal">
+          <h3>市場調査・競合分析</h3>
+          <p>ターゲット市場のニーズやトレンドを把握し、競合他社の強み・弱みを分析する。</p>
         </div>
       </div>
 
-      <!-- サービス詳細グリッド -->
-      <div style="margin-bottom: 4rem;">
-        <h3 class="reveal" style="text-align: center; font-size: 2.2rem; margin-bottom: 3rem; color: var(--dark); font-weight: 700;">創業サポートパックのコンテンツ</h3>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
-          
-          <div class="card reveal" style="background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%); border: none; padding: 2.5rem; border-radius: 16px; box-shadow: 0 10px 30px rgba(40, 167, 69, 0.1); position: relative; overflow: hidden;">
-            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: linear-gradient(90deg, #28a745, #20c997);"></div>
-            <div style="position: absolute; top: 20px; right: 20px; width: 60px; height: 60px; background: linear-gradient(135deg, #28a745, #20c997); border-radius: 50%; opacity: 0.1;"></div>
-            <h4 style="color: #28a745; font-size: 1.5rem; margin-bottom: 1rem; font-weight: 700;">完成度の高いロゴ制作</h4>
-            <p style="font-size: 1.1rem; line-height: 1.6; color: #555;">即日作成。追加費用なしで納得いくまで調整可能。</p>
-          </div>
-
-          <div class="card reveal" style="background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%); border: none; padding: 2.5rem; border-radius: 16px; box-shadow: 0 10px 30px rgba(0, 123, 255, 0.1); position: relative; overflow: hidden;">
-            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: linear-gradient(90deg, #007bff, #17a2b8);"></div>
-            <div style="position: absolute; top: 20px; right: 20px; width: 60px; height: 60px; background: linear-gradient(135deg, #007bff, #17a2b8); border-radius: 50%; opacity: 0.1;"></div>
-            <h4 style="color: #007bff; font-size: 1.5rem; margin-bottom: 1rem; font-weight: 700;">集客力あるホームページ</h4>
-            <p style="font-size: 1.1rem; line-height: 1.6; color: #555;">ターゲットを明確化し、1日で仕上げます。</p>
-          </div>
-
-          <div class="card reveal" style="background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%); border: none; padding: 2.5rem; border-radius: 16px; box-shadow: 0 10px 30px rgba(111, 66, 193, 0.1); position: relative; overflow: hidden;">
-            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: linear-gradient(90deg, #6f42c1, #e83e8c);"></div>
-            <div style="position: absolute; top: 20px; right: 20px; width: 60px; height: 60px; background: linear-gradient(135deg, #6f42c1, #e83e8c); border-radius: 50%; opacity: 0.1;"></div>
-            <h4 style="color: #6f42c1; font-size: 1.5rem; margin-bottom: 1rem; font-weight: 700;">戦略的ビジネスプラン</h4>
-            <p style="font-size: 1.1rem; line-height: 1.6; color: #555;">事業成功に欠かせないプランを短期間で策定。</p>
-          </div>
-
-          <div class="card reveal" style="background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%); border: none; padding: 2.5rem; border-radius: 16px; box-shadow: 0 10px 30px rgba(253, 126, 20, 0.1); position: relative; overflow: hidden;">
-            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: linear-gradient(90deg, #fd7e14, #ffc107);"></div>
-            <div style="position: absolute; top: 20px; right: 20px; width: 60px; height: 60px; background: linear-gradient(135deg, #fd7e14, #ffc107); border-radius: 50%; opacity: 0.1;"></div>
-            <h4 style="color: #fd7e14; font-size: 1.5rem; margin-bottom: 1rem; font-weight: 700;">「売れる」営業チラシ</h4>
-            <p style="font-size: 1.1rem; line-height: 1.6; color: #555;">顧客の心を効果的に掴むデザインと内容。</p>
-          </div>
-
-          <div class="card reveal" style="background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%); border: none; padding: 2.5rem; border-radius: 16px; box-shadow: 0 10px 30px rgba(220, 53, 69, 0.1); position: relative; overflow: hidden;">
-            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: linear-gradient(90deg, #dc3545, #fd7e14);"></div>
-            <div style="position: absolute; top: 20px; right: 20px; width: 60px; height: 60px; background: linear-gradient(135deg, #dc3545, #fd7e14); border-radius: 50%; opacity: 0.1;"></div>
-            <h4 style="color: #dc3545; font-size: 1.5rem; margin-bottom: 1rem; font-weight: 700;">専門家によるAI指導</h4>
-            <p style="font-size: 1.1rem; line-height: 1.6; color: #555;">正しいAIツール活用法を学び、スタートダッシュをバックアップ。</p>
-          </div>
-
-          <div class="card reveal" style="background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%); border: none; padding: 2.5rem; border-radius: 16px; box-shadow: 0 10px 30px rgba(138, 43, 226, 0.1); position: relative; overflow: hidden;">
-            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: linear-gradient(90deg, #8a2be2, #9966cc);"></div>
-            <div style="position: absolute; top: 20px; right: 20px; width: 60px; height: 60px; background: linear-gradient(135deg, #8a2be2, #9966cc); border-radius: 50%; opacity: 0.1;"></div>
-            <h4 style="color: #8a2be2; font-size: 1.5rem; margin-bottom: 1rem; font-weight: 700;">市場調査・競合分析</h4>
-            <p style="font-size: 1.1rem; line-height: 1.6; color: #555;">ターゲット市場のニーズやトレンドを把握し、競合他社の強み・弱みを分析する。</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- 最終メッセージ -->
-      <div class="reveal" style="margin-bottom: 3rem;">
-        <div style="background: var(--primary-gradient); color: white; text-align: center; padding: 3.5rem 2rem; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.15); position: relative; overflow: hidden;">
-          <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: rgba(255,255,255,0.1); border-radius: 50%;"></div>
-          <div style="position: absolute; bottom: -75px; left: -75px; width: 200px; height: 200px; background: rgba(255,255,255,0.05); border-radius: 50%;"></div>
-          
-          <div style="position: relative; z-index: 1;">
-            <h3 style="font-size: 2rem; margin-bottom: 2rem; color: white; font-weight: 700; line-height: 1.3;">外注不要、余計なコストをかけず、スピーディかつシンプルに。</h3>
-            <p style="font-size: 1.4rem; margin-bottom: 2rem; opacity: 0.95; font-weight: 500;">初日から安心して会社運営をスタートできる体制が整います。</p>
-            
-            <div style="background: rgba(255,255,255,0.2); border-radius: 12px; padding: 2rem; margin: 2rem auto; max-width: 600px;">
-              <p style="font-size: 1.6rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.3;">準備期間を最短に、成果を最大に。</p>
-              <p style="font-size: 1.3rem; opacity: 0.95; font-weight: 500;"><span class="suki">情熱ひとつあれば十分。</span><br><span class="suki">あとの準備はすべて1日で整います。</span></p>
-            </div>
-          </div>
-        </div>
+      <div class="cta-section" style="padding: 60px 0;">
+        <h3 style="font-family: var(--font-display); font-size: 1.6rem; margin-bottom: 1rem; font-weight: 600;">外注不要、余計なコストをかけず、スピーディかつシンプルに。</h3>
+        <p style="font-size: 1rem; margin-bottom: 1.5rem; opacity: 0.7; font-weight: 300;">準備期間を最短に、成果を最大に。情熱ひとつあれば十分。あとの準備はすべて1日で整います。</p>
       </div>
     </div>
   </section>
 
   <!-- === HP制作 === -->
-  <section id="hp-creation" class="service-content" data-service="hp-creation" style="background: linear-gradient(135deg, #f8fffc 0%, #ffffff 100%); position: relative; overflow: hidden; display: none;">
-    <div style="position: absolute; top: -60px; right: -60px; width: 220px; height: 220px; background: linear-gradient(135deg, #00c9a7 0%, #6db5ff 100%); border-radius: 50%; opacity: 0.1; z-index: 0;"></div>
-    <div style="position: absolute; bottom: -120px; left: -120px; width: 340px; height: 340px; background: linear-gradient(135deg, #6db5ff 0%, #a1e9d9 100%); border-radius: 50%; opacity: 0.06; z-index: 0;"></div>
+  <section id="hp-creation" class="service-content" data-service="hp-creation" style="display: none;">
+    <div class="container">
+      <h2 class="section-title">AI-powered ホームページの制作</h2>
+      <p class="section-subtitle">面倒ゼロで、売れるHP。月4,980円、全部込み。</p>
 
-    <div class="container" style="position: relative; z-index: 1;">
-      <!-- ヒーローヘッダー -->
-      <div style="text-align: center; margin-bottom: 4rem;">
-        <div class="reveal" style="background: var(--primary-gradient); color: white; padding: 3rem 2rem; border-radius: 20px; margin-bottom: 2rem; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
-          <h2 style="font-size: 2.8rem; font-weight: 800; margin-bottom: 1rem; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">AI-powered ホームページの制作</h2>
-          <div style="background: rgba(255,255,255,0.2); border-radius: 12px; padding: 1.5rem; margin: 2rem auto; max-width: 600px;">
-            <p style="font-size: 1.8rem; font-weight: 700; margin-bottom: 0.75rem; line-height: 1.3;">『面倒ゼロで、売れるHP。<br>月4,980円、全部込み。』</p>
-            <p style="font-size: 1.2rem; opacity: 0.95; font-weight: 500;">安心して任せられる、成果が見えるWebパートナー</p>
-          </div>
+      <div class="reveal" style="max-width: 900px; margin: 0 auto 3rem;">
+        <div style="background: var(--light); border: 1px solid var(--border); border-top: 2px solid var(--accent); padding: 2.5rem; text-align: center;">
+          <h3 style="font-family: var(--font-display); font-size: 1.6rem; color: var(--dark); margin-bottom: 1rem; font-weight: 600; line-height: 1.6;">初期費用0円。ドメインもサーバーもお任せ。<br>AI導入で24時間お客様対応。最短5日で集客開始。</h3>
+          <p style="font-size: 1.1rem; color: var(--text-sub); line-height: 1.8;">AI技術による未来志向の成長支援で、あなたのビジネスを次のレベルへ押し上げます。</p>
         </div>
       </div>
 
-      <!-- メインメッセージ -->
-      <div class="reveal" style="max-width: 900px; margin: 0 auto 4rem;">
-        <div style="background: white; border-radius: 16px; padding: 3rem; text-align: center; box-shadow: 0 15px 35px rgba(0,0,0,0.08); border: 1px solid #e9ecef;">
-          <h3 style="font-size: 2rem; color: var(--dark); margin-bottom: 1.5rem; font-weight: 700; line-height: 1.5;">初期費用0円。ドメインもサーバーもお任せ。<br><span class="suki">AI導入で</span><br>24時間お客様対応。最短5日で集客開始。</h3>
-          <div style="background: var(--primary-gradient); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 1.6rem; font-weight: 700; line-height: 1.6;">
-            『AI技術による未来志向の成長支援』で、<br>あなたのビジネスを、<br>次のレベルへ押し上げます。
-          </div>
-        </div>
-      </div>
-
-      <!-- 課題提示 -->
-      <div class="reveal" style="margin: 3rem 0;">
-        <h3 class="section-title" style="font-size: 2rem; background: var(--primary-gradient); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">こんなお悩み、すべて解決します</h3>
+      <div class="reveal" style="margin-bottom: 3rem;">
+        <h3 class="section-title" style="font-size: 1.6rem;">こんなお悩み、すべて解決します</h3>
         <div class="card reveal" style="margin-top: 1.25rem;">
           <ul class="problem-list">
             <li>制作会社の見積もりが<span class="highlight-text">50万円以上</span>で手が出ない</li>
@@ -804,28 +868,26 @@
         </div>
       </div>
 
-      <!-- 選ばれる3つの理由 -->
-      <div class="reveal" style="margin: 3rem 0;">
-        <h3 class="section-title" style="font-size: 2rem;">3つの選ばれる理由</h3>
-        <div class="services-grid" style="margin-top: 1.5rem;">
-          <div class="service-card">
+      <div class="reveal" style="margin-bottom: 3rem;">
+        <h3 class="section-title" style="font-size: 1.6rem;">3つの選ばれる理由</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
+          <div class="card reveal">
             <h3>価格が明快で安心</h3>
-            <p class="description">月額4,980円〜。ドメイン・サーバー・SSL証明書すべて込み。追加料金は一切ありません。年間契約なら10%オフでさらにお得です。</p>
+            <p>月額4,980円〜。ドメイン・サーバー・SSL証明書すべて込み。追加料金は一切ありません。年間契約なら10%オフでさらにお得です。</p>
           </div>
-          <div class="service-card">
+          <div class="card reveal">
             <h3>最短5日のスピード対応</h3>
-            <p class="description">面倒な設定は全てお任せ。スマホで素材を送るだけで、プロが48時間以内に初回デザインをお見せします。修正も月3回まで無料対応。</p>
+            <p>面倒な設定は全てお任せ。スマホで素材を送るだけで、プロが48時間以内に初回デザインをお見せします。修正も月3回まで無料対応。</p>
           </div>
-          <div class="service-card">
+          <div class="card reveal">
             <h3>AIで24時間売上アップ</h3>
-            <p class="description">AIチャットボットが深夜でも休日でも自動対応。よくある質問への回答から予約受付まで、取りこぼしゼロの営業体制を構築できます。</p>
+            <p>AIチャットボットが深夜でも休日でも自動対応。よくある質問への回答から予約受付まで、取りこぼしゼロの営業体制を構築できます。</p>
           </div>
         </div>
       </div>
 
-      <!-- 料金表 -->
-      <div class="reveal" style="margin: 3rem 0;">
-        <h3 class="section-title" style="font-size: 2rem;">料金プラン</h3>
+      <div class="reveal" style="margin-bottom: 3rem;">
+        <h3 class="section-title" style="font-size: 1.6rem;">料金プラン</h3>
         <div class="card reveal table-scroll">
           <table class="pricing-table">
             <thead>
@@ -853,9 +915,8 @@
         </div>
       </div>
 
-      <!-- 価値向上ポイント -->
-      <div class="reveal" style="margin: 3rem 0;">
-        <h3 class="section-title" style="font-size: 2rem;">弊社が提供するホームページ制作の特典</h3>
+      <div class="reveal" style="margin-bottom: 3rem;">
+        <h3 class="section-title" style="font-size: 1.6rem;">ホームページ制作の特典</h3>
         <div class="value-grid">
           <div class="value-card">
             <div class="value-header">
@@ -880,323 +941,210 @@
   </section>
 
   <!-- === ロゴ・チラシ・名刺のAI映像制作 === -->
-  <section id="ai-video" class="service-content" data-service="ai-video" style="background: linear-gradient(135deg, #f0f4ff 0%, #ffffff 100%); position: relative; overflow: hidden;">
-    <!-- 背景装飾 -->
-    <div style="position: absolute; top: -50px; right: -50px; width: 200px; height: 200px; background: linear-gradient(135deg, #ff6b9d 0%, #ffd93d 100%); border-radius: 50%; opacity: 0.1; z-index: 0;"></div>
-    <div style="position: absolute; bottom: -100px; left: -100px; width: 300px; height: 300px; background: linear-gradient(135deg, #6c5ce7 0%, #fd79a8 100%); border-radius: 50%; opacity: 0.05; z-index: 0;"></div>
-    
-    <div class="container" style="position: relative; z-index: 1;">
-      <!-- ヒーローヘッダー -->
-      <div style="text-align: center; margin-bottom: 4rem;">
-        <div class="reveal" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 3rem 2rem; border-radius: 20px; margin-bottom: 2rem; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
-          <h2 style="font-size: 2.8rem; font-weight: 800; margin-bottom: 1rem; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">ロゴ・チラシ・名刺のAI映像制作</h2>
-          <div style="background: rgba(255,255,255,0.2); border-radius: 12px; padding: 1.5rem; margin: 2rem auto; max-width: 700px;">
-            <p style="font-size: 1.8rem; font-weight: 700; margin-bottom: 0.75rem; line-height: 1.3;">止まったデザインが、語り出す。</p>
-            <p style="font-size: 1.2rem; opacity: 0.95; font-weight: 500;">──あなたのブランドに"声"と"動き"を。</p>
+  <section id=”ai-video” class=”service-content” data-service=”ai-video” style=”background: var(--surface);”>
+    <div class=”container”>
+      <h2 class=”section-title”>ロゴ・チラシ・名刺のAI映像制作</h2>
+      <p class=”section-subtitle”>止まったデザインが、語り出す。あなたのブランドに”声”と”動き”を。</p>
+
+      <div class=”reveal” style=”max-width: 900px; margin: 0 auto 3rem;”>
+        <div style=”background: var(--light); border: 1px solid var(--border); border-top: 2px solid var(--accent); padding: 2.5rem; text-align: center;”>
+          <div class=”ai-video-hero-media” style=”margin-bottom: 1.5rem;”>
+            <img src=”movie/Uchibori_02ok.gif” data-fallback=”https://raw.githubusercontent.com/aiknowledgeworks/aikw.hp/main/movie/Uchibori_02ok.gif” alt=”ロゴ・チラシ・名刺のAI映像制作アニメーション事例”>
           </div>
-          <div class="ai-video-hero-media">
-            <img src="movie/Uchibori_02ok.gif" data-fallback="https://raw.githubusercontent.com/aiknowledgeworks/aikw.hp/main/movie/Uchibori_02ok.gif" alt="ロゴ・チラシ・名刺のAI映像制作アニメーション事例">
+          <h3 style=”font-family: var(--font-display); font-size: 1.4rem; color: var(--dark); margin-bottom: 1rem; font-weight: 600; line-height: 1.6;”>チラシのキャラクターが語り出す。Tシャツのロゴが自己紹介を始める。<br>「静止画」だった素材に命を吹き込み、伝わる短尺ムービーに。</h3>
+          <p style=”font-size: 1rem; color: var(--text-sub); line-height: 1.8;”>紙・ロゴ・写真——どんな素材でもOK。SNS、店内サイネージ、ECサイトなどにそのまま使える形で納品。字幕付き・サイズ最適化までワンストップで対応します。</p>
+          <p style=”font-family: var(--font-display); font-size: 1.6rem; font-weight: 600; color: var(--dark); margin-top: 1.5rem;”>2万円 / 件〜</p>
+          <p style=”font-size: 0.9rem; color: var(--text-sub);”>字幕・BGM・SNS用リサイズ含む。まとめて発注でお得なパックもご用意</p>
+        </div>
+      </div>
+
+      <h3 class=”reveal section-title” style=”font-size: 1.6rem; margin-bottom: 2rem;”>導入事例</h3>
+
+      <div class=”reveal” style=”margin-bottom: 3rem;”>
+        <div style=”display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem;”>
+          <div style=”background: var(--light); border: 1px solid var(--border); padding: 1rem; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 200px;”>
+            <video controls style=”width: 100%; max-width: 240px; height: 135px; margin-bottom: 0.5rem; object-fit: cover;” allowfullscreen>
+              <source src=”movie/Uchibori_01ok.mp4” type=”video/mp4”>
+            </video>
+            <p style=”font-size: 0.85rem; color: var(--text-sub); margin: 0;”>名刺アニメーション事例</p>
+          </div>
+          <div style=”background: var(--light); border: 1px solid var(--border); padding: 1rem; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 200px;”>
+            <video controls style=”width: 100%; max-width: 240px; height: 135px; margin-bottom: 0.5rem; object-fit: cover;” allowfullscreen>
+              <source src=”movie/Uchibori_02ok.mp4” type=”video/mp4”>
+            </video>
+            <p style=”font-size: 0.85rem; color: var(--text-sub); margin: 0;”>字幕付き名刺アニメーション事例</p>
+          </div>
+          <div style=”background: var(--light); border: 1px solid var(--border); padding: 1rem; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 200px;”>
+            <video controls style=”width: 100%; max-width: 240px; height: 135px; margin-bottom: 0.5rem; object-fit: cover;” allowfullscreen>
+              <source src=”movie/yamamoto_03ok.mp4” type=”video/mp4”>
+            </video>
+            <p style=”font-size: 0.85rem; color: var(--text-sub); margin: 0;”>名刺アニメーション事例</p>
+          </div>
+          <div style=”background: var(--light); border: 1px solid var(--border); padding: 1rem; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 200px;”>
+            <img src=”movie/Uchibori_02ok.gif” data-fallback=”https://raw.githubusercontent.com/aiknowledgeworks/aikw.hp/main/movie/Uchibori_02ok.gif” alt=”字幕付き名刺アニメーション事例” style=”width: 100%; max-width: 240px; height: 135px; margin-bottom: 0.5rem; object-fit: cover;”>
+            <p style=”font-size: 0.85rem; color: var(--text-sub); margin: 0;”>字幕付き名刺アニメーション事例 (GIF)</p>
           </div>
         </div>
       </div>
 
-      <!-- メインメッセージ -->
-      <div class="reveal" style="max-width: 900px; margin: 0 auto 4rem;">
-        <div style="background: white; border-radius: 16px; padding: 3rem; text-align: center; box-shadow: 0 15px 35px rgba(0,0,0,0.08); border: 1px solid #e9ecef;">
-          <h3 style="font-size: 2rem; margin-bottom: 1.5rem; font-weight: 600; line-height: 1.6; font-family: 'Nunito', 'Noto Sans JP', sans-serif;">
-            <span style="background: linear-gradient(135deg, #ff6b9d 0%, #ff8a80 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700;">チラシのキャラクター</span>が、あなたの想いを言葉にして<span style="color: #667eea; font-weight: 700;">語り出す。</span><br>
-            <span style="background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700;">Tシャツのロゴ</span>が、ぴょんと跳ねて<span style="color: #ff6b9d; font-weight: 700;">自己紹介を始める。</span>
-          </h3>
-          <div style="font-size: 1.6rem; font-weight: 700; line-height: 1.6;">
-            <span style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">私たちは、「静止画」だった素材に命を吹き込み、</span><br>
-            <span style="background: linear-gradient(135deg, #ff6b9d 0%, #ffd93d 100%); color: white; padding: 0.3rem 1rem; border-radius: 25px; font-weight: 800; text-shadow: 0 2px 4px rgba(0,0,0,0.2); display: inline-block; margin: 0.5rem 0; transform: rotate(-1deg);">✨ 伝わる短尺ムービー ✨</span>
-            <span style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">に生まれ変わらせます。</span>
-          </div>
+      <div style=”display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;”>
+        <div class=”card reveal”>
+          <h3>「話すチラシ」</h3>
+          <p>キャラが口パク＆目パチで商品の魅力を30秒で紹介</p>
         </div>
-      </div>
-
-      <!-- サービス詳細 -->
-      <div style="margin-bottom: 4rem;">
-        <div class="reveal" style="background: white; border-radius: 16px; padding: 3rem; box-shadow: 0 15px 35px rgba(0,0,0,0.08); border: 1px solid #e9ecef; text-align: center; margin-bottom: 3rem;">
-          <p style="font-size: 1.3rem; color: #555; line-height: 1.7; margin-bottom: 2rem;">
-            紙・ロゴ・写真——どんな素材でもOK。SNS、店内サイネージ、ECサイトなどにそのまま使える形で納品。<br>
-            <span style="color: var(--accent); font-weight: 700;">字幕付き・サイズ最適化までワンストップ</span>で対応します。
-          </p>
-          <div style="background: linear-gradient(135deg, #ff6b9d 0%, #ffd93d 100%); color: white; padding: 2rem; border-radius: 12px; display: inline-block;">
-            <p style="font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem;">たった<span style="text-shadow: 0 2px 4px rgba(0,0,0,0.2);">1本2万円〜</span></p>
-            <p style="font-size: 1.2rem; opacity: 0.95;">今日の告知を、"動き出す第一声"に変えてみませんか？</p>
-          </div>
+        <div class=”card reveal”>
+          <h3>「ロゴが踊る」</h3>
+          <p>Tシャツやアイコンを使ったブランド動画</p>
         </div>
-
-        <!-- 導入事例 -->
-        <h3 class="reveal" style="text-align: center; font-size: 2.2rem; margin-bottom: 3rem; color: var(--dark); font-weight: 700;">導入事例</h3>
-
-        <!-- 動画ギャラリー -->
-        <div class="reveal" style="margin-bottom: 3rem;">
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
-            <div style="background: white; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.08); padding: 1rem; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 200px;">
-              <video controls style="width: 100%; max-width: 240px; height: 135px; border-radius: 8px; margin-bottom: 0.5rem; object-fit: cover;" allowfullscreen>
-                <source src="movie/Uchibori_01ok.mp4" type="video/mp4">
-                お使いのブラウザは動画をサポートしていません。
-              </video>
-              <p style="font-size: 0.9rem; color: #666; margin: 0;">名刺アニメーション事例</p>
-            </div>
-            <div style="background: white; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.08); padding: 1rem; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 200px;">
-              <video controls style="width: 100%; max-width: 240px; height: 135px; border-radius: 8px; margin-bottom: 0.5rem; object-fit: cover;" allowfullscreen>
-                <source src="movie/Uchibori_02ok.mp4" type="video/mp4">
-                お使いのブラウザは動画をサポートしていません。
-              </video>
-              <p style="font-size: 0.9rem; color: #666; margin: 0;">字幕付き名刺アニメーション事例</p>
-            </div>
-            <div style="background: white; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.08); padding: 1rem; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 200px;">
-              <video controls style="width: 100%; max-width: 240px; height: 135px; border-radius: 8px; margin-bottom: 0.5rem; object-fit: cover;" allowfullscreen>
-                <source src="movie/yamamoto_03ok.mp4" type="video/mp4">
-                お使いのブラウザは動画をサポートしていません。
-              </video>
-              <p style="font-size: 0.9rem; color: #666; margin: 0;">名刺アニメーション事例</p>
-            </div>
-            <div style="background: white; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.08); padding: 1rem; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 200px;">
-              <img src="movie/Uchibori_02ok.gif" data-fallback="https://raw.githubusercontent.com/aiknowledgeworks/aikw.hp/main/movie/Uchibori_02ok.gif" alt="字幕付き名刺アニメーション事例" style="width: 100%; max-width: 240px; height: 135px; border-radius: 8px; margin-bottom: 0.5rem; object-fit: cover;">
-              <p style="font-size: 0.9rem; color: #666; margin: 0;">字幕付き名刺アニメーション事例 (GIF)</p>
-            </div>
-          </div>
+        <div class=”card reveal”>
+          <h3>「キャスト紹介」</h3>
+          <p>ナレーション付きの自己紹介ムービー（店内表示やSNS用に）</p>
         </div>
-
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; margin-bottom: 4rem;">
-          
-          <div class="card reveal" style="background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%); border: none; padding: 2.5rem; border-radius: 16px; box-shadow: 0 10px 30px rgba(102, 92, 231, 0.1); position: relative; overflow: hidden;">
-            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: linear-gradient(90deg, #667eea, #764ba2);"></div>
-            <div style="position: absolute; top: 20px; right: 20px; width: 60px; height: 60px; background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 50%; opacity: 0.1;"></div>
-            <h4 style="color: #667eea; font-size: 1.5rem; margin-bottom: 1rem; font-weight: 700;">「話すチラシ」</h4>
-            <p style="font-size: 1.1rem; line-height: 1.6; color: #555;">キャラが口パク＆目パチで商品の魅力を30秒で紹介</p>
-          </div>
-
-          <div class="card reveal" style="background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%); border: none; padding: 2.5rem; border-radius: 16px; box-shadow: 0 10px 30px rgba(255, 107, 157, 0.1); position: relative; overflow: hidden;">
-            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: linear-gradient(90deg, #ff6b9d, #ffd93d);"></div>
-            <div style="position: absolute; top: 20px; right: 20px; width: 60px; height: 60px; background: linear-gradient(135deg, #ff6b9d, #ffd93d); border-radius: 50%; opacity: 0.1;"></div>
-            <h4 style="color: #ff6b9d; font-size: 1.5rem; margin-bottom: 1rem; font-weight: 700;">「ロゴが踊る」</h4>
-            <p style="font-size: 1.1rem; line-height: 1.6; color: #555;">Tシャツやアイコンを使ったブランド動画</p>
-          </div>
-
-          <div class="card reveal" style="background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%); border: none; padding: 2.5rem; border-radius: 16px; box-shadow: 0 10px 30px rgba(108, 92, 231, 0.1); position: relative; overflow: hidden;">
-            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: linear-gradient(90deg, #6c5ce7, #fd79a8);"></div>
-            <div style="position: absolute; top: 20px; right: 20px; width: 60px; height: 60px; background: linear-gradient(135deg, #6c5ce7, #fd79a8); border-radius: 50%; opacity: 0.1;"></div>
-            <h4 style="color: #6c5ce7; font-size: 1.5rem; margin-bottom: 1rem; font-weight: 700;">「キャスト紹介」</h4>
-            <p style="font-size: 1.1rem; line-height: 1.6; color: #555;">ナレーション付きの自己紹介ムービー（店内表示やSNS用に）</p>
-          </div>
-
-          <div class="card reveal" style="background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%); border: none; padding: 2.5rem; border-radius: 16px; box-shadow: 0 10px 30px rgba(255, 193, 7, 0.1); position: relative; overflow: hidden;">
-            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: linear-gradient(90deg, #ffc107, #ff8c42);"></div>
-            <div style="position: absolute; top: 20px; right: 20px; width: 60px; height: 60px; background: linear-gradient(135deg, #ffc107, #ff8c42); border-radius: 50%; opacity: 0.1;"></div>
-            <h4 style="color: #ffc107; font-size: 1.5rem; margin-bottom: 1rem; font-weight: 700;">「アイコン動画化」</h4>
-            <p style="font-size: 1.1rem; line-height: 1.6; color: #555;">シンボルやマスコットが"要点"を解説する短尺映像</p>
-          </div>
-        </div>
-
-        <!-- 費用 -->
-        <div class="reveal" style="margin-bottom: 3rem;">
-          <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-align: center; padding: 3.5rem 2rem; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.15); position: relative; overflow: hidden;">
-            <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: rgba(255,255,255,0.1); border-radius: 50%;"></div>
-            <div style="position: absolute; bottom: -75px; left: -75px; width: 200px; height: 200px; background: rgba(255,255,255,0.05); border-radius: 50%;"></div>
-            
-            <div style="position: relative; z-index: 1;">
-              <h3 style="font-size: 2.5rem; margin-bottom: 1rem; color: white; font-weight: 800; text-shadow: 0 2px 4px rgba(0,0,0,0.2);">費用</h3>
-              <div style="background: rgba(255,255,255,0.2); border-radius: 12px; padding: 2rem; margin: 2rem auto; max-width: 600px;">
-                <p style="font-size: 2.2rem; font-weight: 800; margin-bottom: 1rem; line-height: 1.3;">2万円 / 件〜</p>
-                <p style="font-size: 1.2rem; opacity: 0.95; font-weight: 500;">字幕・BGM・SNS用リサイズ含む。<br>まとめて発注でお得なパックもご用意</p>
-              </div>
-            </div>
-          </div>
+        <div class=”card reveal”>
+          <h3>「アイコン動画化」</h3>
+          <p>シンボルやマスコットが”要点”を解説する短尺映像</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- === AI写真集制作 === -->
-  <section id="ai-photobook" class="service-content" data-service="ai-photobook" style="background: linear-gradient(135deg, #fff0f5 0%, #fff 100%); position: relative; overflow: hidden; display: none;">
-    <!-- 背景装飾 -->
-    <div style="position: absolute; top: -50px; right: -50px; width: 200px; height: 200px; background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); border-radius: 50%; opacity: 0.15; z-index: 0;"></div>
-    <div style="position: absolute; bottom: -100px; left: -100px; width: 300px; height: 300px; background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); border-radius: 50%; opacity: 0.1; z-index: 0;"></div>
-    
-    <div class="container" style="position: relative; z-index: 1;">
-      <!-- ヒーローヘッダー -->
-      <div style="text-align: center; margin-bottom: 4rem;">
-        <div class="reveal" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%); color: white; padding: 3rem 2rem; border-radius: 20px; margin-bottom: 2rem; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
-          <h2 style="font-size: 2.8rem; font-weight: 800; margin-bottom: 1rem; text-shadow: 0 2px 4px rgba(0,0,0,0.1); color: #fff;">AI写真集制作サービス</h2>
-          <div style="background: rgba(255,255,255,0.25); border-radius: 12px; padding: 1.5rem; margin: 2rem auto; max-width: 800px;">
-            <p style="font-size: 1.6rem; font-weight: 700; margin-bottom: 0.75rem; line-height: 1.3;">1枚の写真から、人生と空間を再想像しましょう。</p>
-            <p style="font-size: 1.1rem; opacity: 0.95; font-weight: 500;">目的は画像の生成ではなく、記憶・物語・体験の再構築。</p>
+  <section id=”ai-photobook” class=”service-content” data-service=”ai-photobook” style=”display: none;”>
+    <div class=”container”>
+      <h2 class=”section-title”>AI写真集制作サービス</h2>
+      <p class=”section-subtitle”>1枚の写真から、人生と空間を再想像しましょう。記憶・物語・体験の再構築。</p>
+
+      <div class=”reveal” style=”margin-bottom: 3rem;”>
+        <h3 class=”section-title” style=”font-size: 1.6rem; margin-bottom: 2rem;”>コアサービスの事例</h3>
+        <div style=”display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;”>
+          <div class=”card reveal”>
+            <h3>ストーリー写真集生成</h3>
+            <p>1枚の写真を起点に、AIが名所・季節・時間帯・アングルを設計し、物語として成立する写真集を生成します。</p>
+          </div>
+          <div class=”card reveal”>
+            <h3>故人写真の復元と拡張</h3>
+            <p>写真修復＋別シーン・別季節・時系列に再現します。</p>
+          </div>
+          <div class=”card reveal”>
+            <h3>没入型写真集（AR/VR）</h3>
+            <p>1枚から空間を推定生成し、「見る写真」から「入る写真」へ。</p>
+          </div>
+          <div class=”card reveal”>
+            <h3>パーソナル写真集</h3>
+            <p>プロフィール1枚から、統一世界観の大量ビジュアルを生成。SNS・ポートフォリオ・書籍に即利用。</p>
           </div>
         </div>
       </div>
 
-      <!-- コアサービスの事例 -->
-      <div class="reveal" style="margin-bottom: 4rem;">
-        <h3 class="section-title" style="font-size: 2rem; margin-bottom: 2rem;">コアサービスの事例</h3>
-        <div class="services-grid">
-          <div class="service-card" style="position: relative; overflow: hidden; border: none; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
-            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: linear-gradient(90deg, #ff9a9e 0%, #fecfef 100%);"></div>
-            <h3 style="margin-top: 0.5rem; font-size: 1.4rem; background: linear-gradient(135deg, #ff9a9e 0%, #ff758c 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">ストーリー写真集生成</h3>
-            <p class="description" style="margin-top: 1rem;">1枚の写真を起点に、AIが名所・季節・時間帯・アングルを設計し、物語として成立する写真集を生成します。</p>
-          </div>
-          <div class="service-card" style="position: relative; overflow: hidden; border: none; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
-            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: linear-gradient(90deg, #a18cd1 0%, #fbc2eb 100%);"></div>
-            <h3 style="margin-top: 0.5rem; font-size: 1.4rem; background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">故人写真の復元と拡張</h3>
-            <p class="description" style="margin-top: 1rem;">写真修復＋別シーン・別季節・時系列に再現します。</p>
-          </div>
-          <div class="service-card" style="position: relative; overflow: hidden; border: none; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
-            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: linear-gradient(90deg, #84fab0 0%, #8fd3f4 100%);"></div>
-            <h3 style="margin-top: 0.5rem; font-size: 1.4rem; background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">没入型写真集（AR/VR）</h3>
-            <p class="description" style="margin-top: 1rem;">1枚から空間を推定生成し、「見る写真」から「入る写真」へ。</p>
-          </div>
-          <div class="service-card" style="position: relative; overflow: hidden; border: none; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
-            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: linear-gradient(90deg, #fccb90 0%, #d57eeb 100%);"></div>
-            <h3 style="margin-top: 0.5rem; font-size: 1.4rem; background: linear-gradient(135deg, #fccb90 0%, #d57eeb 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">パーソナル写真集</h3>
-            <p class="description" style="margin-top: 1rem;">プロフィール1枚から、統一世界観の大量ビジュアルを生成。SNS・ポートフォリオ・書籍に即利用。</p>
-          </div>
-        </div>
-      </div>
-      
-      <!-- 提供価値の核心 -->
-      <div class="reveal" style="max-width: 900px; margin: 0 auto 4rem;">
-        <div style="background: white; border-radius: 16px; padding: 3rem; text-align: center; box-shadow: 0 15px 35px rgba(0,0,0,0.08); border: 1px solid #e9ecef;">
-          <h3 style="font-size: 2rem; color: var(--dark); margin-bottom: 2rem; font-weight: 700;">提供価値の核心</h3>
-          <ul style="text-align: left; display: inline-block; font-size: 1.2rem; line-height: 1.8; list-style: none; padding: 0;">
-             <li style="margin-bottom: 1rem; padding: 1rem; background: #f8f9fa; border-radius: 8px; font-weight: 600; box-shadow: 0 4px 6px rgba(0,0,0,0.02);"><span style="color: #ff9a9e; margin-right: 0.5rem; font-weight: 800;">✓</span>撮れなかった瞬間を、肯定的に可視化</li>
-             <li style="margin-bottom: 1rem; padding: 1rem; background: #f8f9fa; border-radius: 8px; font-weight: 600; box-shadow: 0 4px 6px rgba(0,0,0,0.02);"><span style="color: #ff9a9e; margin-right: 0.5rem; font-weight: 800;">✓</span>思い出を再体験可能な物語に変換</li>
-             <li style="padding: 1rem; background: #f8f9fa; border-radius: 8px; font-weight: 600; box-shadow: 0 4px 6px rgba(0,0,0,0.02);"><span style="color: #ff9a9e; margin-right: 0.5rem; font-weight: 800;">✓</span>写真集をメディアから体験へ進化</li>
+      <div class=”reveal” style=”max-width: 900px; margin: 0 auto 3rem;”>
+        <div style=”background: var(--light); border: 1px solid var(--border); border-left: 3px solid var(--accent); padding: 2.5rem;”>
+          <h3 style=”font-family: var(--font-display); font-size: 1.4rem; color: var(--dark); margin-bottom: 1.5rem; font-weight: 600;”>提供価値の核心</h3>
+          <ul style=”list-style: none; padding: 0;”>
+            <li style=”padding: 0.6rem 0; padding-left: 1.5rem; position: relative; color: var(--text-sub); font-size: 1rem;”><span style=”position: absolute; left: 0; color: var(--accent);”>—</span>撮れなかった瞬間を、肯定的に可視化</li>
+            <li style=”padding: 0.6rem 0; padding-left: 1.5rem; position: relative; color: var(--text-sub); font-size: 1rem;”><span style=”position: absolute; left: 0; color: var(--accent);”>—</span>思い出を再体験可能な物語に変換</li>
+            <li style=”padding: 0.6rem 0; padding-left: 1.5rem; position: relative; color: var(--text-sub); font-size: 1rem;”><span style=”position: absolute; left: 0; color: var(--accent);”>—</span>写真集をメディアから体験へ進化</li>
           </ul>
         </div>
       </div>
-
     </div>
   </section>
 
   <!-- === ローカルLLM導入 === -->
-  <section id="local-llm" class="service-content" data-service="local-llm" style="background: linear-gradient(135deg, #fcfcfc 0%, #f1f2f6 100%); position: relative; overflow: hidden; display: none;">
-    <!-- 背景装飾 -->
-    <div style="position: absolute; top: -50px; right: -50px; width: 220px; height: 220px; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); border-radius: 50%; opacity: 0.1; z-index: 0;"></div>
-    <div style="position: absolute; bottom: -100px; left: -100px; width: 340px; height: 340px; background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); border-radius: 50%; opacity: 0.08; z-index: 0;"></div>
+  <section id=”local-llm” class=”service-content” data-service=”local-llm” style=”background: var(--surface); display: none;”>
+    <div class=”container”>
+      <h2 class=”section-title”>ローカルLLM導入コンサルティング & 構築支援</h2>
+      <p class=”section-subtitle”>検証で終わらせない。最初から”本番前提”の生成AI導入。</p>
 
-    <div class="container" style="position: relative; z-index: 1;">
-      <!-- ヒーローヘッダー -->
-      <div style="text-align: center; margin-bottom: 4rem;">
-        <div class="reveal" style="background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%); color: white; padding: 3rem 2rem; border-radius: 20px; margin-bottom: 2rem; box-shadow: 0 20px 40px rgba(0,0,0,0.15);">
-          <h2 style="font-size: 2.4rem; font-weight: 800; margin-bottom: 1rem; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">ローカルLLM導入コンサルティング<br>& 構築支援</h2>
-          <div style="background: rgba(255,255,255,0.15); border-radius: 12px; padding: 1.5rem; margin: 2rem auto; max-width: 700px;">
-            <p style="font-size: 1.6rem; font-weight: 700; margin-bottom: 0.75rem; line-height: 1.4;">検証で終わらせない。<br>最初から“本番前提”の生成AI導入。</p>
-            <p style="font-size: 1.1rem; opacity: 0.95; font-weight: 500;">試すためのAIではなく、業務に組み込まれるAI基盤を。</p>
-          </div>
+      <div class=”reveal” style=”max-width: 900px; margin: 0 auto 3rem;”>
+        <div style=”background: var(--light); border: 1px solid var(--border); border-top: 2px solid var(--accent); padding: 2.5rem; text-align: center;”>
+          <h3 style=”font-family: var(--font-display); font-size: 1.4rem; color: var(--dark); margin-bottom: 1rem; font-weight: 600; line-height: 1.6;”>「PoC止まり」「現場で使われない」「セキュリティが不安」<br>そんな失敗が増えています。</h3>
+          <p style=”font-size: 1.1rem; color: var(--text-sub); line-height: 1.8;”>ローカルLLMを”実運用前提”で設計・構築し、御社だけの安全なAI環境を実現します。</p>
         </div>
       </div>
 
-      <!-- 課題提起 -->
-      <div class="reveal" style="max-width: 900px; margin: 0 auto 4rem;">
-        <div style="background: white; border-radius: 16px; padding: 3rem; text-align: center; box-shadow: 0 15px 35px rgba(0,0,0,0.08); border: 1px solid #e9ecef;">
-          <h3 style="font-size: 1.8rem; color: var(--dark); margin-bottom: 1.5rem; font-weight: 700; line-height: 1.6;">
-            「PoC止まり」「現場で使われない」「セキュリティが不安」<br>
-            <span class="suki">そんな失敗が増えています。</span>
-          </h3>
-          <div style="background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 1.4rem; font-weight: 700; line-height: 1.8;">
-            AIナレッジワークスは、<br>ローカルLLMを“実運用前提”で設計・構築し、<br>御社だけの安全なAI環境を実現します。
-          </div>
-        </div>
-      </div>
-
-      <!-- なぜローカルLLMなのか -->
-      <div class="reveal" style="margin-bottom: 4rem;">
-        <h3 class="section-title" style="font-size: 2rem; margin-bottom: 2rem;">なぜローカルLLMなのか</h3>
-        <div class="services-grid">
-          <div class="service-card">
+      <div class=”reveal” style=”margin-bottom: 3rem;”>
+        <h3 class=”section-title” style=”font-size: 1.6rem; margin-bottom: 2rem;”>なぜローカルLLMなのか</h3>
+        <div style=”display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;”>
+          <div class=”card reveal”>
             <h3>データ流出ゼロ</h3>
-            <p class="description">貴社内データを外部クラウドに一切送信しません。セキュリティポリシーが厳しい環境でも安心して導入可能です。</p>
+            <p>貴社内データを外部クラウドに一切送信しません。セキュリティポリシーが厳しい環境でも安心して導入可能です。</p>
           </div>
-          <div class="service-card">
+          <div class=”card reveal”>
             <h3>自社業務に最適化</h3>
-            <p class="description">汎用的なAIではなく、自社の文書や業務知識（ナレッジ）に特化した、御社専用のAI脳を構築できます。</p>
+            <p>汎用的なAIではなく、自社の文書や業務知識（ナレッジ）に特化した、御社専用のAI脳を構築できます。</p>
           </div>
-          <div class="service-card">
+          <div class=”card reveal”>
             <h3>コストの安定化</h3>
-            <p class="description">トークン毎の従量課金に依存しないため、使えば使うほど割安に。長期的に安定したコスト構造を実現します。</p>
+            <p>トークン毎の従量課金に依存しないため、使えば使うほど割安に。長期的に安定したコスト構造を実現します。</p>
           </div>
         </div>
       </div>
 
-      <!-- AIナレッジワークスの強み -->
-      <div class="reveal" style="margin-bottom: 4rem;">
-        <h3 class="section-title" style="font-size: 2rem; margin-bottom: 2rem;">AIナレッジワークスの強み</h3>
-        <div class="card reveal" style="background: #fff; padding: 3rem; border-left: 8px solid #3498db;">
-          <h4 style="font-size: 1.6rem; color: #2c3e50; margin-bottom: 1.5rem; font-weight: 800;">迷わず・止まらず・やり直さない導入支援</h4>
-          <p style="font-size: 1.1rem; line-height: 1.8; color: #555; margin-bottom: 2rem;">
-            ローカルLLMの導入は、モデル選定、インフラ構成、RAG設計、セキュリティなど判断ポイントが膨大です。<br>
-            私たちは、ローカルLLM特化の知見で「何を選ぶべきか分からない」「後から作り直しになる」といった失敗を防ぎ、検討段階から実運用まで一直線に導きます。
-          </p>
-          <ul style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
-            <li style="padding: 1rem; background: #f8f9fa; border-radius: 8px; font-weight: 600;">✅ 手戻りのない設計手法</li>
-            <li style="padding: 1rem; background: #f8f9fa; border-radius: 8px; font-weight: 600;">✅ セキュリティ重視の構成案</li>
-            <li style="padding: 1rem; background: #f8f9fa; border-radius: 8px; font-weight: 600;">✅ 業務定着までの並走支援</li>
-          </ul>
+      <div class=”reveal” style=”margin-bottom: 3rem;”>
+        <h3 class=”section-title” style=”font-size: 1.6rem; margin-bottom: 2rem;”>AIナレッジワークスの強み</h3>
+        <div class=”card reveal” style=”border-left: 3px solid var(--accent);”>
+          <h3>迷わず・止まらず・やり直さない導入支援</h3>
+          <p style=”margin-bottom: 1.5rem;”>ローカルLLMの導入は、モデル選定、インフラ構成、RAG設計、セキュリティなど判断ポイントが膨大です。私たちは、ローカルLLM特化の知見で検討段階から実運用まで一直線に導きます。</p>
+          <div style=”display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.75rem;”>
+            <div style=”padding: 0.75rem; background: var(--surface); border: 1px solid var(--border); font-size: 0.9rem; font-weight: 600; color: var(--dark);”>手戻りのない設計手法</div>
+            <div style=”padding: 0.75rem; background: var(--surface); border: 1px solid var(--border); font-size: 0.9rem; font-weight: 600; color: var(--dark);”>セキュリティ重視の構成案</div>
+            <div style=”padding: 0.75rem; background: var(--surface); border: 1px solid var(--border); font-size: 0.9rem; font-weight: 600; color: var(--dark);”>業務定着までの並走支援</div>
+          </div>
         </div>
       </div>
 
-      <!-- サービス内容 -->
-      <div class="reveal" style="margin-bottom: 4rem;">
-        <h3 class="section-title" style="font-size: 2rem; margin-bottom: 2rem;">サービス内容（導入まで）</h3>
-        <div class="process-grid">
-          <div class="process-step">
-            <div class="step-number" style="background: #3498db;">1</div>
+      <div class=”reveal” style=”margin-bottom: 3rem;”>
+        <h3 class=”section-title” style=”font-size: 1.6rem; margin-bottom: 2rem;”>サービス内容（導入まで）</h3>
+        <div class=”process-grid”>
+          <div class=”process-step”>
+            <div class=”step-number”>1</div>
             <h4>要件整理・導入設計</h4>
             <p>業務利用目的の整理、セキュリティ・運用制約の確認を行い、最適なローカルLLM構成を設計します。</p>
           </div>
-          <div class="process-step">
-            <div class="step-number" style="background: #3498db;">2</div>
+          <div class=”process-step”>
+            <div class=”step-number”>2</div>
             <h4>環境構築</h4>
             <p>オンプレミス/閉域環境への構築、LLMセットアップ、社内ドキュメント連携（RAG）の実装を行います。</p>
           </div>
-          <div class="process-step">
-            <div class="step-number" style="background: #3498db;">3</div>
+          <div class=”process-step”>
+            <div class=”step-number”>3</div>
             <h4>初期運用調整</h4>
             <p>応答精度・検索精度の調整、社内利用UIの整備など、「実運用可能な状態」まで仕上げます。</p>
           </div>
         </div>
       </div>
 
-      <!-- 対象・費用 -->
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
-        <!-- こんな企業に -->
-        <div class="card reveal" style="border: 1px solid #e9ecef;">
-          <h4 style="font-size: 1.4rem; color: var(--accent); margin-bottom: 1.5rem; font-weight: 700;">こんな企業様に向いています</h4>
-          <ul class="service-features">
+      <div style=”display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;”>
+        <div class=”card reveal”>
+          <h3 style=”color: var(--accent);”>こんな企業様に向いています</h3>
+          <ul class=”service-features”>
             <li>PoCではなく導入を前提にAIを検討している</li>
             <li>機密情報を扱い、クラウドAIを使えない</li>
             <li>社内ナレッジ検索・問い合わせ対応を本格導入したい</li>
             <li>AIを一時的な施策で終わらせたくない</li>
           </ul>
         </div>
-        
-        <!-- 費用感 -->
-        <div class="card reveal" style="border: 1px solid #e9ecef; background: linear-gradient(135deg, #2c3e50 0%, #203a43 100%); color: white;">
-          <h4 style="font-size: 1.4rem; color: #fff; margin-bottom: 1.5rem; font-weight: 700;">導入費用について</h4>
-          <div style="text-align: center; padding: 1.5rem 0;">
-            <p style="font-size: 1rem; opacity: 0.9;">ライト導入（小〜中規模・基本構築）</p>
-            <p style="font-size: 2.5rem; font-weight: 800; margin: 1rem 0;">20万円<span style="font-size: 1rem; font-weight: 400;"> から</span></p>
-            <p style="font-size: 0.9rem; opacity: 0.8; line-height: 1.5;">※要件に応じたお見積もりとなります。<br>ご予算に合わせた構成を提案いたします。</p>
+        <div class=”card reveal” style=”background: var(--dark); color: var(--light); border-color: var(--dark);”>
+          <h3 style=”color: var(--light);”>導入費用について</h3>
+          <div style=”text-align: center; padding: 1rem 0;”>
+            <p style=”font-size: 0.9rem; opacity: 0.7;”>ライト導入（小〜中規模・基本構築）</p>
+            <p style=”font-size: 2.2rem; font-weight: 600; font-family: var(--font-display); margin: 0.75rem 0;”>20万円<span style=”font-size: 0.9rem; font-weight: 400;”> から</span></p>
+            <p style=”font-size: 0.85rem; opacity: 0.6; line-height: 1.5;”>※要件に応じたお見積もりとなります。<br>ご予算に合わせた構成を提案いたします。</p>
           </div>
         </div>
       </div>
 
-      <div class="reveal" style="text-align: center;">
-         <p style="font-size: 1.2rem; font-weight: 700; color: #555;">AIナレッジワークスは、「PoCを回す会社」ではなく、<br>「AIを業務に根付かせる会社」です。</p>
+      <div class=”reveal” style=”text-align: center;”>
+        <p style=”font-size: 1.05rem; font-weight: 600; color: var(--text-sub);”>AIナレッジワークスは、「PoCを回す会社」ではなく、「AIを業務に根付かせる会社」です。</p>
       </div>
-
     </div>
   </section>
 
   <!-- === お問い合わせ === -->
   <section class="cta-section">
     <div class="container">
-      <h2>AIソリューションで未来を創造しませんか？</h2>
-      <p>あなたの<span class="suki">"好き"</span>を実現するお手伝いをいたします</p>
+      <h2>まずは無料相談から</h2>
+      <p>AI導入・研修について、お気軽にご相談ください。</p>
       <a href="contact.html" class="cta-button">お問い合わせはこちら</a>
     </div>
   </section>
@@ -1239,28 +1187,26 @@
       const serviceContents = document.querySelectorAll('.service-content');
       
       function switchService(targetService, updateUrl = true) {
-        console.log('Switching to service:', targetService); // Debug log
         
         // Update tab styles
         serviceTabs.forEach(tab => {
           const isActive = tab.dataset.service === targetService;
           if (isActive) {
             tab.classList.add('active');
-            tab.style.background = 'var(--primary-gradient)';
-            tab.style.color = 'white';
-            tab.style.border = 'none';
+            tab.style.background = 'var(--dark)';
+            tab.style.color = 'var(--light)';
+            tab.style.borderColor = 'var(--dark)';
           } else {
             tab.classList.remove('active');
-            tab.style.background = 'white';
+            tab.style.background = 'var(--light)';
             tab.style.color = 'var(--dark)';
-            tab.style.border = '2px solid #e9ecef';
+            tab.style.borderColor = 'var(--border)';
           }
         });
         
         // Update content visibility
         serviceContents.forEach(content => {
           if (content.dataset.service === targetService) {
-            console.log('Showing content for:', targetService); // Debug log
             content.style.display = 'block';
             // Re-trigger animations for newly visible content
             setTimeout(() => {
@@ -1304,7 +1250,6 @@
       // Initialize after a short delay to ensure all elements are ready
       setTimeout(() => {
         const initialService = getServiceFromHash();
-        console.log('Initial service:', initialService); // Debug log
         switchService(initialService, false);
       }, 100);
       
