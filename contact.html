@@ -58,7 +58,9 @@
   </style>
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;600;800&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&display=swap" rel="stylesheet" />
 
   <!-- GSAP -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -66,20 +68,34 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
 
   <style>
-    /* === カラーパレット & ベース === */
+    /* === Design System === */
     :root {
+      --brand-blue: #6db5ff;
+      --brand-mint: #a1e9d9;
+      --brand-gradient: linear-gradient(135deg, #6db5ff 0%, #a1e9d9 100%);
       --primary-gradient: linear-gradient(135deg, #6db5ff 0%, #a1e9d9 100%);
-      --dark: #121212;
+      --dark: #0f1923;
+      --dark-sub: #2a3a4a;
       --light: #ffffff;
-      --accent: #00c9a7;
+      --surface: #f4f7fa;
+      --accent: #3da8c7;
+      --accent-warm: #d4a26a;
+      --text: #1c2833;
+      --text-sub: #5a6e7f;
+      --border: #dfe6ed;
+      --font-display: "Shippori Mincho B1", "Georgia", serif;
+      --font-body: "Zen Kaku Gothic New", "Helvetica Neue", sans-serif;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
-      font-family: "Noto Sans JP", "Nunito", sans-serif;
-      background: #f9f9f9;
-      color: var(--dark);
-      line-height: 1.7;
+      font-family: var(--font-body);
+      background: var(--light);
+      color: var(--text);
+      line-height: 1.85;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      -webkit-font-smoothing: antialiased;
     }
     img { max-width: 100%; display: block; }
     a { color: inherit; text-decoration: none; }
@@ -88,83 +104,72 @@
     /* === ヘッダー === */
     header {
       position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
-      background: rgba(255, 255, 255, .95); backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      box-shadow: 0 2px 8px rgba(0, 0, 0, .1);
+      background: rgba(255, 255, 255, .92); backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,.06);
     }
-    .container { width: 90%; max-width: 1200px; margin: 0 auto; }
-    .header-inner { display: flex; align-items: center; justify-content: space-between; padding: .75rem 0; }
+    .container { width: 88%; max-width: 1140px; margin: 0 auto; }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; padding: .85rem 0; }
     .logo { display: flex; align-items: center; }
-    .logo img { height: 44px; }
-    .logo span { font-weight: 700; margin-left: 10px; font-size: 1.1rem; }
-    nav ul { display: flex; flex-wrap: wrap; gap: 1rem; }
-    nav a { font-weight: 600; transition: color .2s; }
+    .logo img { height: 40px; }
+    .logo span { font-family: var(--font-display); font-weight: 600; margin-left: 12px; font-size: 1rem; letter-spacing: 0.04em; color: var(--dark); }
+    nav ul { display: flex; flex-wrap: wrap; gap: 1.6rem; }
+    nav a { font-weight: 500; font-size: 0.88rem; letter-spacing: 0.06em; transition: color .25s; color: var(--text-sub); }
     nav a:hover { color: var(--accent); }
 
     /* === セクション共通 === */
-    section { padding: 110px 0; }
-    .section-title { font-size: 2.4rem; font-weight: 700; text-align: center; margin-bottom: .75rem; }
-    .section-subtitle { text-align: center; color: #666; margin-bottom: 2.5rem; font-size: 1rem; }
+    section { padding: 120px 0; }
+    .section-title { font-family: var(--font-display); font-size: 2rem; font-weight: 600; text-align: center; margin-bottom: 1rem; color: var(--dark); letter-spacing: 0.04em; }
+    .section-subtitle { text-align: center; color: var(--text-sub); margin-bottom: 3rem; font-size: 0.95rem; font-weight: 300; letter-spacing: 0.03em; }
 
     /* === Hero === */
     .hero {
-      height: 50vh; background: var(--primary-gradient);
+      height: 50vh; background: var(--dark);
       display: flex; flex-direction: column; align-items: center; justify-content: center;
       text-align: center; color: var(--light);
     }
-    .hero h1 { font-size: 3rem; margin-bottom: .5rem; letter-spacing: 1px; }
-    .hero p.tagline { font-size: 1.4rem; }
+    .hero h1 { font-family: var(--font-display); font-size: 2.4rem; margin-bottom: .5rem; letter-spacing: 0.06em; font-weight: 600; }
+    .hero p.tagline { font-size: 1.1rem; font-weight: 300; opacity: 0.7; }
 
     /* === カード === */
-    .card { 
-      background: var(--light); 
-      border-radius: 12px; 
-      box-shadow: 0 4px 12px rgba(0,0,0,.05); 
-      padding: 1.8rem; 
-      /* opacity: 0; transform: translateY(40px); transition: all .6s ease;  <- GSAP will handle this */
+    .card {
+      background: var(--light);
+      border: 1px solid var(--border);
+      padding: 2rem;
     }
-    .card.active { /* opacity: 1; transform: translateY(0); */ }
-    .card h3 { margin-bottom: .75rem; color: var(--accent); font-size: 1.25rem; }
+    .card.active { }
+    .card h3 { font-family: var(--font-display); margin-bottom: .6rem; color: var(--dark); font-size: 1.15rem; font-weight: 600; }
 
     /* 好きのスタイル */
     .suki {
-      font-size: 1.2em;
-      font-weight: 700;
-      color: #2bc4a9;
-      display: inline-block;
+      font-family: var(--font-display);
+      font-size: 1.1em;
+      font-weight: 600;
+      color: var(--accent);
+      display: inline;
       position: relative;
-      padding: 0 5px;
-      transform: rotate(-3deg);
+      padding: 0 2px;
+      transform: none;
     }
     .suki::after {
       content: '';
       position: absolute;
-      bottom: 0;
+      bottom: 2px;
       left: 0;
       width: 100%;
-      height: 6px;
-      background: var(--primary-gradient);
-      border-radius: 3px;
-      opacity: 0.7;
+      height: 2px;
+      background: var(--accent);
+      opacity: 0.5;
     }
 
     /* === アニメーション === */
-    .reveal {
-      /* opacity: 0; transform: translateY(40px); transition: all .6s ease; <- GSAP will handle this */
-    }
-    .reveal.active {
-      /* opacity: 1; transform: translateY(0); */
-    }
+    .reveal { }
+    .reveal.active { }
 
     /* === Footer === */
-    footer { 
-      background: #1a1a1a; 
-      color: #e6e6e6; 
-      padding: 3rem 0; 
-      text-align: center; 
-    }
-    footer p { font-size: .85rem; }
-    footer a { color: #e6e6e6; text-decoration: underline; }
+    footer { background: var(--dark); color: rgba(255,255,255,.5); padding: 2.5rem 0; text-align: center; border-top: 1px solid rgba(255,255,255,.08); }
+    footer p { font-size: .8rem; letter-spacing: 0.04em; }
+    footer a { color: rgba(255,255,255,.6); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.2); }
 
     /* === Dify Chatbot Styles === */
     #dify-chatbot-bubble-button {

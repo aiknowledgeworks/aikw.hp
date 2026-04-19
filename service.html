@@ -25,23 +25,39 @@
 
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;600;800&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&display=swap" rel="stylesheet" />
 
   <style>
-    /* === カラーパレット & ベース === */
+    /* === Design System === */
     :root {
+      --brand-blue: #6db5ff;
+      --brand-mint: #a1e9d9;
+      --brand-gradient: linear-gradient(135deg, #6db5ff 0%, #a1e9d9 100%);
       --primary-gradient: linear-gradient(135deg, #6db5ff 0%, #a1e9d9 100%);
-      --dark: #121212;
+      --dark: #0f1923;
+      --dark-sub: #2a3a4a;
       --light: #ffffff;
-      --accent: #00c9a7;
+      --surface: #f4f7fa;
+      --accent: #3da8c7;
+      --accent-warm: #d4a26a;
+      --text: #1c2833;
+      --text-sub: #5a6e7f;
+      --border: #dfe6ed;
+      --font-display: "Shippori Mincho B1", "Georgia", serif;
+      --font-body: "Zen Kaku Gothic New", "Helvetica Neue", sans-serif;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
-      font-family: "Noto Sans JP", "Nunito", sans-serif;
-      background: #f9f9f9;
-      color: var(--dark);
-      line-height: 1.7;
+      font-family: var(--font-body);
+      background: var(--light);
+      color: var(--text);
+      line-height: 1.85;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      -webkit-font-smoothing: antialiased;
     }
     img { max-width: 100%; display: block; }
     a { color: inherit; text-decoration: none; }
@@ -50,66 +66,63 @@
     /* === ヘッダー === */
     header {
       position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
-      background: rgba(255, 255, 255, .95); backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      box-shadow: 0 2px 8px rgba(0, 0, 0, .1);
+      background: rgba(255, 255, 255, .92); backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,.06);
     }
-    .container { width: 90%; max-width: 1200px; margin: 0 auto; }
-    .header-inner { display: flex; align-items: center; justify-content: space-between; padding: .75rem 0; }
+    .container { width: 88%; max-width: 1140px; margin: 0 auto; }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; padding: .85rem 0; }
     .logo { display: flex; align-items: center; }
-    .logo img { height: 44px; }
-    .logo span { font-weight: 700; margin-left: 10px; font-size: 1.1rem; }
-    nav ul { display: flex; flex-wrap: wrap; gap: 1rem; }
-    nav a { font-weight: 600; transition: color .2s; }
+    .logo img { height: 40px; }
+    .logo span { font-family: var(--font-display); font-weight: 600; margin-left: 12px; font-size: 1rem; letter-spacing: 0.04em; color: var(--dark); }
+    nav ul { display: flex; flex-wrap: wrap; gap: 1.6rem; }
+    nav a { font-weight: 500; font-size: 0.88rem; letter-spacing: 0.06em; transition: color .25s; color: var(--text-sub); }
     nav a:hover { color: var(--accent); }
 
     /* === セクション共通 === */
-    section { padding: 110px 0; }
-    .section-title { font-size: 2.4rem; font-weight: 700; text-align: center; margin-bottom: .75rem; }
-    .section-subtitle { text-align: center; color: #666; margin-bottom: 2.5rem; font-size: 1rem; }
+    section { padding: 120px 0; }
+    .section-title { font-family: var(--font-display); font-size: 2rem; font-weight: 600; text-align: center; margin-bottom: 1rem; color: var(--dark); letter-spacing: 0.04em; }
+    .section-subtitle { text-align: center; color: var(--text-sub); margin-bottom: 3rem; font-size: 0.95rem; font-weight: 300; letter-spacing: 0.03em; }
 
     /* === Hero === */
     .hero {
-      height: 50vh; background: var(--primary-gradient);
+      height: 50vh; background: var(--dark);
       display: flex; flex-direction: column; align-items: center; justify-content: center;
       text-align: center; color: var(--light);
     }
-    .hero h1 { font-size: 3rem; margin-bottom: .5rem; letter-spacing: 1px; }
-    .hero p.tagline { font-size: 1.4rem; }
+    .hero h1 { font-family: var(--font-display); font-size: 2.4rem; margin-bottom: .5rem; letter-spacing: 0.06em; font-weight: 600; }
+    .hero p.tagline { font-size: 1.1rem; font-weight: 300; opacity: 0.7; }
 
     /* === カード === */
-    .card { 
-      background: var(--light); 
-      border-radius: 12px; 
-      box-shadow: 0 4px 12px rgba(0,0,0,.05); 
-      padding: 1.8rem; 
-      opacity: 0; 
-      transform: translateY(40px); 
-      transition: all .6s ease; 
+    .card {
+      background: var(--light);
+      border: 1px solid var(--border);
+      padding: 2rem;
+      opacity: 0; transform: translateY(30px); transition: all .7s cubic-bezier(.23,1,.32,1);
     }
     .card.active { opacity: 1; transform: translateY(0); }
-    .card h3 { margin-bottom: .75rem; color: var(--accent); font-size: 1.25rem; }
+    .card h3 { font-family: var(--font-display); margin-bottom: .6rem; color: var(--dark); font-size: 1.15rem; font-weight: 600; }
 
     /* 好きのスタイル */
     .suki {
-      font-size: 1.2em;
-      font-weight: 700;
-      color: #2bc4a9;
-      display: inline-block;
+      font-family: var(--font-display);
+      font-size: 1.1em;
+      font-weight: 600;
+      color: var(--accent);
+      display: inline;
       position: relative;
-      padding: 0 5px;
-      transform: rotate(-3deg);
+      padding: 0 2px;
+      transform: none;
     }
     .suki::after {
       content: '';
       position: absolute;
-      bottom: 0;
+      bottom: 2px;
       left: 0;
       width: 100%;
-      height: 6px;
-      background: var(--primary-gradient);
-      border-radius: 3px;
-      opacity: 0.7;
+      height: 2px;
+      background: var(--accent);
+      opacity: 0.5;
     }
 
     /* === アニメーション === */
@@ -143,25 +156,23 @@
       gap: 2rem; 
       margin-top: 2rem; 
     }
-    .service-card { 
-      background: var(--light); 
-      padding: 2.5rem; 
-      border-radius: 16px; 
-      box-shadow: 0 8px 24px rgba(0,0,0,.1); 
-      opacity: 0; 
-      transform: translateY(40px); 
-      transition: all .6s ease; 
+    .service-card {
+      background: var(--light);
+      padding: 2.5rem;
+      border: 1px solid var(--border);
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all .7s cubic-bezier(.23,1,.32,1);
       position: relative;
       overflow: hidden;
-      border-top: 6px solid var(--accent);
     }
-    .service-card.active { 
-      opacity: 1; 
-      transform: translateY(0); 
+    .service-card.active {
+      opacity: 1;
+      transform: translateY(0);
     }
     .service-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 12px 30px rgba(0,0,0,.15);
+      transform: translateY(-4px);
+      border-color: var(--accent);
     }
     .service-card:before {
       content: '';
@@ -169,33 +180,35 @@
       top: 0;
       left: 0;
       width: 100%;
-      height: 6px;
-      background: var(--primary-gradient);
+      height: 2px;
+      background: var(--brand-gradient);
     }
     .service-icon {
-      font-size: 3rem;
+      font-size: 2rem;
       color: var(--accent);
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.2rem;
       display: inline-block;
     }
-    .service-card h3 { 
-      font-size: 1.6rem; 
-      margin-bottom: 1rem; 
+    .service-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      margin-bottom: .8rem;
       color: var(--dark);
-      font-weight: 700;
+      font-weight: 600;
     }
     .service-card .description {
-      color: #666;
-      font-size: 1.1rem;
+      color: var(--text-sub);
+      font-size: 0.95rem;
       margin-bottom: 1.5rem;
-      line-height: 1.6;
+      line-height: 1.8;
     }
     .service-features {
       margin-top: 1.5rem;
     }
     .service-features h4 {
-      color: var(--accent);
-      font-size: 1.2rem;
+      font-family: var(--font-display);
+      color: var(--dark);
+      font-size: 1rem;
       margin-bottom: 0.75rem;
       font-weight: 600;
     }
@@ -207,25 +220,26 @@
       padding: 0.4rem 0;
       padding-left: 1.5rem;
       position: relative;
-      color: #555;
+      color: var(--text-sub);
+      font-size: 0.9rem;
     }
     .service-features li:before {
-      content: '✓';
+      content: '—';
       position: absolute;
       left: 0;
       color: var(--accent);
-      font-weight: bold;
+      font-weight: 400;
     }
 
     /* === HP制作: レイアウト改善 === */
     .services-grid { align-items: stretch; }
     .service-card { display: flex; flex-direction: column; height: 100%; }
     .icon-badge {
-      width: 64px; height: 64px; border-radius: 50%;
-      background: var(--primary-gradient);
-      color: #fff; display: inline-flex; align-items: center; justify-content: center;
-      box-shadow: 0 6px 18px rgba(0,0,0,.12);
-      font-size: 1.8rem; margin-bottom: 1rem;
+      width: 56px; height: 56px; border-radius: 4px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--accent); display: inline-flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; margin-bottom: 1rem;
     }
 
     .badge {
@@ -251,23 +265,23 @@
     .pricing-table .highlight { background: rgba(0, 201, 167, 0.06); font-weight: 700; }
 
     .value-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
-    .value-card { background: #fff; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,.06); padding: 1.5rem; border: 1px solid #e9ecef; position: relative; overflow: hidden; }
-    .value-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: var(--primary-gradient); }
+    .value-card { background: #fff; padding: 1.5rem; border: 1px solid var(--border); position: relative; overflow: hidden; }
+    .value-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--brand-gradient); }
     .value-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem; }
-    .value-icon { width: 40px; height: 40px; border-radius: 50%; background: var(--primary-gradient); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 1.1rem; box-shadow: 0 3px 10px rgba(0,0,0,.08); }
+    .value-icon { width: 36px; height: 36px; border-radius: 4px; background: var(--surface); border: 1px solid var(--border); color: var(--accent); display: inline-flex; align-items: center; justify-content: center; font-size: 1rem; }
     .value-title { font-size: 1.15rem; margin: 0; color: var(--dark); font-weight: 800; }
     .value-card p { margin-top: 0.25rem; color: #555; }
 
-    .quote-card { background: #f7f9fb; border-left: 6px solid var(--accent); padding: 1.5rem 1.25rem; border-radius: 12px; font-weight: 700; color: #334; }
-    .callout { background: #fff; border: 1px solid #e9ecef; border-left: 6px solid var(--accent); padding: 1rem; border-radius: 10px; }
+    .quote-card { background: var(--surface); border-left: 3px solid var(--accent); padding: 1.5rem 1.25rem; font-weight: 600; color: var(--dark); font-family: var(--font-display); }
+    .callout { background: var(--light); border: 1px solid var(--border); border-left: 3px solid var(--accent); padding: 1rem; }
 
     .problem-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0.75rem; padding: 0; margin: 0; text-align: center; }
-    .problem-list li { position: relative; list-style: none; background: #fff; border: 1px solid #e9ecef; border-radius: 12px; padding: 0.9rem 1rem; font-size: 1.05rem; color: #333; box-shadow: 0 3px 10px rgba(0,0,0,.04); transition: transform .2s ease, box-shadow .2s ease; }
-    .problem-list li::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: var(--primary-gradient); border-radius: 12px 0 0 12px; }
+    .problem-list li { position: relative; list-style: none; background: var(--light); border: 1px solid var(--border); padding: 0.9rem 1rem; font-size: 0.95rem; color: var(--text); transition: transform .2s ease; }
+    .problem-list li::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--brand-gradient); }
     .problem-list li:nth-child(even) { background: #fcfefe; }
     .problem-list li:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,.08); }
 
-    .highlight-text { background: linear-gradient(135deg, #ff6b9d 0%, #ffd93d 100%); color: white; padding: 0.1rem 0.4rem; border-radius: 4px; font-weight: 700; box-shadow: 0 2px 4px rgba(0,0,0,.1); }
+    .highlight-text { background: none; color: var(--dark); padding: 0; font-weight: 700; border-bottom: 3px solid var(--accent-warm); }
 
     /* === プロセスカード === */
     .process-grid {
@@ -279,13 +293,12 @@
     .process-step {
       background: var(--light);
       padding: 2rem 1.5rem;
-      border-radius: 12px;
       text-align: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,.05);
+      border: 1px solid var(--border);
       position: relative;
       opacity: 0;
-      transform: translateY(40px);
-      transition: all .6s ease;
+      transform: translateY(30px);
+      transition: all .7s cubic-bezier(.23,1,.32,1);
     }
     .process-step.active {
       opacity: 1;
@@ -295,14 +308,16 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 40px;
-      height: 40px;
-      background: var(--accent);
-      color: white;
-      border-radius: 50%;
-      font-weight: bold;
-      font-size: 1.2rem;
+      width: 36px;
+      height: 36px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--accent);
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 1rem;
       margin-bottom: 1rem;
+      font-family: var(--font-display);
     }
     .process-step h4 {
       color: var(--dark);
@@ -316,45 +331,46 @@
 
     /* === CTA セクション === */
     .cta-section {
-      background: var(--primary-gradient);
+      background: var(--dark);
       color: var(--light);
       text-align: center;
-      padding: 60px 0;
+      padding: 80px 0;
     }
     .cta-section h2 {
-      font-size: 2.2rem;
+      font-family: var(--font-display);
+      font-size: 1.8rem;
       margin-bottom: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
     }
     .cta-section p {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
-      opacity: 0.9;
+      font-size: 1rem;
+      margin-bottom: 2.5rem;
+      opacity: 0.7;
+      font-weight: 300;
     }
     .cta-button {
       display: inline-block;
-      background: var(--light);
-      color: var(--accent);
-      padding: 1rem 2rem;
-      border-radius: 8px;
-      font-weight: 600;
+      background: transparent;
+      color: var(--light);
+      padding: .9rem 2.5rem;
+      border: 1px solid rgba(255,255,255,.4);
+      font-weight: 500;
       text-decoration: none;
-      transition: all 0.3s ease;
-      font-size: 1.1rem;
+      transition: all 0.35s ease;
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
     }
     .cta-button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      background: var(--light);
+      color: var(--dark);
+      border-color: var(--light);
     }
 
     /* === Footer === */
-    footer { 
-      background: #1a1a1a; 
-      color: #e6e6e6; 
-      padding: 3rem 0; 
-      text-align: center; 
-    }
-    footer p { font-size: .85rem; }
-    footer a { color: #e6e6e6; text-decoration: underline; }
+    footer { background: var(--dark); color: rgba(255,255,255,.5); padding: 2.5rem 0; text-align: center; border-top: 1px solid rgba(255,255,255,.08); }
+    footer p { font-size: .8rem; letter-spacing: 0.04em; }
+    footer a { color: rgba(255,255,255,.6); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.2); }
 
     @media (max-width: 768px) {
       .hero h1 { font-size: 2.3rem; }

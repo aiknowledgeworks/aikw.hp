@@ -31,23 +31,38 @@
 
   
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;600;800&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&display=swap" rel="stylesheet" />
 
   <style>
-    /* === カラーパレット & ベース === */
+    /* === Design System === */
     :root {
-      --primary-gradient: linear-gradient(135deg, #6db5ff 0%, #a1e9d9 100%);
-      --dark: #121212;
+      --brand-blue: #6db5ff;
+      --brand-mint: #a1e9d9;
+      --brand-gradient: linear-gradient(135deg, #6db5ff 0%, #a1e9d9 100%);
+      --dark: #0f1923;
+      --dark-sub: #2a3a4a;
       --light: #ffffff;
-      --accent: #00c9a7;
+      --surface: #f4f7fa;
+      --accent: #3da8c7;
+      --accent-warm: #d4a26a;
+      --text: #1c2833;
+      --text-sub: #5a6e7f;
+      --border: #dfe6ed;
+      --font-display: "Shippori Mincho B1", "Georgia", serif;
+      --font-body: "Zen Kaku Gothic New", "Helvetica Neue", sans-serif;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
-      font-family: "Noto Sans JP", "Nunito", sans-serif;
-      background: #f9f9f9;
-      color: var(--dark);
-      line-height: 1.7;
+      font-family: var(--font-body);
+      background: var(--light);
+      color: var(--text);
+      line-height: 1.85;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      -webkit-font-smoothing: antialiased;
     }
     img { max-width: 100%; display: block; }
     a { color: inherit; text-decoration: none; }
@@ -56,83 +71,112 @@
     /* === ヘッダー === */
     header {
       position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
-      background: rgba(255, 255, 255, .95); backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      box-shadow: 0 2px 8px rgba(0, 0, 0, .1);
+      background: rgba(255, 255, 255, .92); backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,.06);
     }
-    .container { width: 90%; max-width: 1200px; margin: 0 auto; }
-    .header-inner { display: flex; align-items: center; justify-content: space-between; padding: .75rem 0; }
+    .container { width: 88%; max-width: 1140px; margin: 0 auto; }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; padding: .85rem 0; }
     .logo { display: flex; align-items: center; }
-    .logo img { height: 44px; }
-    .logo span { font-weight: 700; margin-left: 10px; font-size: 1.1rem; }
-    nav ul { display: flex; flex-wrap: wrap; gap: 1rem; }
-    nav a { font-weight: 600; transition: color .2s; }
+    .logo img { height: 40px; }
+    .logo span { font-family: var(--font-display); font-weight: 600; margin-left: 12px; font-size: 1rem; letter-spacing: 0.04em; color: var(--dark); }
+    nav ul { display: flex; flex-wrap: wrap; gap: 1.6rem; }
+    nav a { font-weight: 500; font-size: 0.88rem; letter-spacing: 0.06em; transition: color .25s; color: var(--text-sub); }
     nav a:hover { color: var(--accent); }
 
     /* === セクション共通 === */
-    section { padding: 110px 0; }
-    .section-title { font-size: 2.4rem; font-weight: 700; text-align: center; margin-bottom: .75rem; }
-    .section-subtitle { text-align: center; color: #666; margin-bottom: 2.5rem; font-size: 1rem; }
+    section { padding: 120px 0; }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 1rem;
+      color: var(--dark);
+      letter-spacing: 0.04em;
+    }
+    .section-subtitle { text-align: center; color: var(--text-sub); margin-bottom: 3rem; font-size: 0.95rem; font-weight: 300; letter-spacing: 0.03em; }
 
     /* === Hero === */
     .hero {
-      height: 100vh; background: var(--primary-gradient);
+      height: 100vh;
+      background: var(--dark);
       display: flex; flex-direction: column; align-items: center; justify-content: center;
       text-align: center; color: var(--light);
+      position: relative;
     }
-    .hero h1 { font-size: 3rem; margin-bottom: .5rem; letter-spacing: 1px; }
-    .hero p.tagline { font-size: 1.4rem; }
-    .typing { font-size: 1.25rem; margin-top: .5rem; min-height: 1.4rem; display: inline-block; }
+    .hero h1 { font-family: var(--font-display); font-size: 3rem; margin-bottom: .5rem; letter-spacing: 0.06em; font-weight: 600; }
+    .hero p.tagline { font-size: 1.2rem; font-weight: 300; opacity: 0.8; }
 
     /* === グリッド・カード === */
     .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-    .card { background: var(--light); border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,.05); padding: 1.8rem; opacity: 0; transform: translateY(40px); transition: all .6s ease; }
+    .card {
+      background: var(--light);
+      border: 1px solid var(--border);
+      padding: 2rem;
+      opacity: 0; transform: translateY(30px); transition: all .7s cubic-bezier(.23,1,.32,1);
+      position: relative;
+    }
+    .card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--brand-gradient);
+      transition: width .5s cubic-bezier(.23,1,.32,1);
+    }
+    .card:hover::after { width: 100%; }
     .card.active { opacity: 1; transform: translateY(0); }
-    .card h3 { margin-bottom: .75rem; color: var(--accent); font-size: 1.25rem; }
+    .card h3 { font-family: var(--font-display); margin-bottom: .6rem; color: var(--dark); font-size: 1.15rem; font-weight: 600; }
+    .card p { color: var(--text-sub); font-size: 0.95rem; line-height: 1.8; }
 
     /* === Values === */
     .values-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 1.5rem; }
-    .value-item { 
-      background: var(--light); 
-      padding: 1.5rem; 
-      border-radius: 12px; 
-      box-shadow: 0 4px 12px rgba(0,0,0,.05); 
-      opacity: 0; 
-      transform: translateY(40px); 
-      transition: all .6s ease; 
+    .value-item {
+      background: var(--light);
+      padding: 1.8rem;
+      border: 1px solid var(--border);
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all .7s cubic-bezier(.23,1,.32,1);
       position: relative;
-      overflow: hidden;
     }
     .value-item::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 5px;
-      background: var(--primary-gradient);
+      width: 3px;
+      height: 100%;
+      background: var(--brand-gradient);
     }
     .value-item.active { opacity: 1; transform: translateY(0); }
-    .value-item h4 { 
-      color: var(--accent); 
-      margin-bottom: .5rem; 
-      font-size: 1.1rem; 
+    .value-item h4 {
+      color: var(--dark);
+      margin-bottom: .5rem;
+      font-size: 1rem;
+      font-weight: 700;
       display: flex;
       align-items: center;
+      letter-spacing: 0.02em;
     }
     .value-item h4::before {
       content: attr(data-icon);
       display: inline-flex;
       justify-content: center;
       align-items: center;
-      width: 28px;
-      height: 28px;
+      width: 26px;
+      height: 26px;
       margin-right: 10px;
-      border-radius: 50%;
-      font-size: 14px;
-      color: white;
-      background: #2bc4a9;
+      font-size: 13px;
+      color: var(--accent);
+      background: none;
+      border: 1.5px solid var(--accent);
+      border-radius: 4px;
     }
+    .value-item p { color: var(--text-sub); font-size: 0.9rem; }
 
     /* === Pillars === */
     .pillars-section-title {
@@ -143,38 +187,35 @@
     .pillars-section-title:after {
       content: '';
       display: block;
-      width: 80px;
-      height: 4px;
-      background: var(--primary-gradient);
-      margin: 1rem auto;
-      border-radius: 2px;
+      width: 40px;
+      height: 2px;
+      background: var(--accent);
+      margin: 1.2rem auto;
     }
-    .pillars-grid { 
-      display: grid; 
-      grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); 
-      gap: 2rem; 
-      margin-top: 2rem; 
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
     }
-    .pillar { 
-      background: var(--light); 
-      padding: 2.5rem 1.5rem; 
-      border-radius: 12px; 
-      text-align: center; 
-      box-shadow: 0 8px 24px rgba(0,0,0,.1); 
-      opacity: 0; 
-      transform: translateY(40px); 
-      transition: all .6s ease; 
+    .pillar {
+      background: var(--light);
+      padding: 2.5rem 2rem;
+      text-align: left;
+      border: 1px solid var(--border);
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all .7s cubic-bezier(.23,1,.32,1);
       position: relative;
       overflow: hidden;
-      border-bottom: 5px solid var(--accent);
     }
-    .pillar.active { 
-      opacity: 1; 
-      transform: translateY(0); 
+    .pillar.active {
+      opacity: 1;
+      transform: translateY(0);
     }
     .pillar:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 12px 30px rgba(0,0,0,.15);
+      border-color: var(--accent);
+      transform: translateY(-4px);
     }
     .pillar:before {
       content: '';
@@ -182,42 +223,44 @@
       top: 0;
       left: 0;
       width: 100%;
-      height: 5px;
-      background: var(--primary-gradient);
+      height: 2px;
+      background: var(--brand-gradient);
     }
     .pillar-icon {
-      font-size: 2.5rem;
+      font-size: 2rem;
       color: var(--accent);
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.2rem;
       display: inline-block;
     }
-    .pillar h4 { 
-      font-size: 1.4rem; 
-      margin-bottom: 1rem; 
+    .pillar h4 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      margin-bottom: .8rem;
       color: var(--dark);
+      font-weight: 600;
     }
     .pillar p {
-      color: #666;
+      color: var(--text-sub);
       font-size: 1.05rem;
     }
 
     /* === Matrix === */
-    .matrix-table { width: 100%; border-collapse: collapse; font-size: .95rem; margin-top: 1.25rem; opacity: 0; transform: translateY(40px); transition: all .6s ease; }
+    .matrix-table { width: 100%; border-collapse: collapse; font-size: .9rem; margin-top: 1.25rem; opacity: 0; transform: translateY(30px); transition: all .7s cubic-bezier(.23,1,.32,1); }
     .matrix-table.active { opacity: 1; transform: translateY(0); }
-    .matrix-table th, .matrix-table td { border: 1px solid #ddd; padding: .75rem; }
-    .matrix-table th { background: #e6f4ff; }
+    .matrix-table th, .matrix-table td { border: 1px solid var(--border); padding: .75rem 1rem; }
+    .matrix-table th { background: var(--surface); font-family: var(--font-display); font-weight: 600; color: var(--dark); }
 
     /* === Q&A === */
-    .qa-item { background: var(--light); padding: 1rem 1.25rem; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,.05); margin-bottom: 1rem; opacity: 0; transform: translateY(40px); transition: all .6s ease; }
+    .qa-item { background: var(--light); padding: 1rem 1.25rem; border: 1px solid var(--border); margin-bottom: .75rem; opacity: 0; transform: translateY(30px); transition: all .7s cubic-bezier(.23,1,.32,1); }
     .qa-item.active { opacity: 1; transform: translateY(0); }
-    .qa-item summary { font-weight: 700; cursor: pointer; position: relative; padding: .5rem 0; }
+    .qa-item summary { font-family: var(--font-display); font-weight: 600; cursor: pointer; position: relative; padding: .5rem 0; color: var(--dark); }
     .qa-item summary::-webkit-details-marker { display:none; }
-    .qa-item summary::after { content:'+'; position: absolute; right: 0; transition: transform .3s; }
+    .qa-item summary::after { content:'+'; position: absolute; right: 0; transition: transform .3s; color: var(--accent); font-weight: 300; font-size: 1.2rem; }
     .qa-item[open] summary::after { transform: rotate(45deg); }
 
     /* === 社員紹介 === */
     .staff-intro {
-      background: linear-gradient(135deg, #f8fffe 0%, #f0f9ff 50%, #fff8f8 100%);
+      background: var(--surface);
       position: relative;
       overflow: hidden;
     }
@@ -249,7 +292,8 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%23a1e9d9" fill-opacity="0.02"><circle cx="30" cy="30" r="4"/></g></g></svg>');
+      background: radial-gradient(circle at 20% 50%, rgba(109,181,255,0.03) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 80%, rgba(161,233,217,0.03) 0%, transparent 50%);
       pointer-events: none;
     }
     .staff-member {
@@ -261,27 +305,22 @@
       align-items: center;
       margin-bottom: 2.5rem;
       gap: 2.5rem;
-      background: rgba(255, 255, 255, 0.8);
-      padding: 2rem;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,.08);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.3);
+      background: var(--light);
+      padding: 2.5rem;
+      border: 1px solid var(--border);
     }
     .staff-photo {
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
+      width: 160px;
+      height: 160px;
+      border-radius: 4px;
       object-fit: cover;
-      border: 5px solid transparent;
-      background: linear-gradient(white, white) padding-box,
-                  linear-gradient(135deg, #6db5ff, #a1e9d9, #ff9a9a) border-box;
-      box-shadow: 0 15px 35px rgba(0,0,0,.15);
-      transition: all 0.3s ease;
+      border: none;
+      filter: grayscale(20%);
+      transition: all 0.4s ease;
     }
     .staff-photo:hover {
+      filter: grayscale(0%);
       transform: scale(1.02);
-      box-shadow: 0 15px 30px rgba(0,0,0,.15);
     }
     
     /* モバイルではhover効果を無効化 */
@@ -292,285 +331,275 @@
       }
     }
     .staff-info h3 {
-      font-size: 2.2rem;
-      background: linear-gradient(135deg, #6db5ff, #00c9a7);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      color: var(--dark);
       margin-bottom: 0.5rem;
-      font-weight: 800;
+      font-weight: 600;
+      letter-spacing: 0.06em;
     }
     .staff-info .position {
-      font-size: 1.2rem;
-      color: #666;
-      margin-bottom: 1rem;
-      padding: 0.5rem 1rem;
-      background: linear-gradient(135deg, #e8f4fd, #f0f9ff);
-      border-radius: 25px;
+      font-size: 0.9rem;
+      color: var(--text-sub);
+      margin-bottom: 0.5rem;
+      padding: 0.35rem 0.9rem;
+      background: var(--surface);
       display: inline-block;
-      border: 1px solid #a1e9d9;
+      border: 1px solid var(--border);
+      font-weight: 500;
+      letter-spacing: 0.04em;
     }
     .staff-info p:last-child {
-      font-style: italic;
-      color: #555;
-      font-size: 1.1rem;
+      color: var(--text-sub);
+      font-size: 1rem;
       margin-top: 0.5rem;
+      font-weight: 400;
     }
     .story-section {
       margin-bottom: 3rem;
-      background: rgba(255, 255, 255, 0.6);
-      padding: 2rem;
-      border-radius: 15px;
-      backdrop-filter: blur(5px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: var(--light);
+      padding: 2.5rem;
+      border: 1px solid var(--border);
     }
     .story-section h4 {
-      font-size: 1.6rem;
-      color: #2c3e50;
-      background: rgba(255, 255, 255, 0.9);
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      color: var(--dark);
       margin-bottom: 1.5rem;
-      padding: 1rem 1.5rem;
-      border-left: 5px solid #00c9a7;
-      border-radius: 8px;
-      font-weight: 700;
+      padding: 0;
+      padding-bottom: 1rem;
+      border-left: none;
+      border-bottom: 1px solid var(--border);
+      font-weight: 600;
       position: relative;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      background: none;
+      box-shadow: none;
     }
     .story-section h5 {
-      font-size: 1.3rem;
-      color: var(--accent);
-      margin: 2rem 0 1rem 0;
-      font-weight: 700;
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      color: var(--dark);
+      margin: 2.5rem 0 1rem 0;
+      font-weight: 600;
+      letter-spacing: 0.02em;
     }
     .story-content {
-      line-height: 1.9;
-      font-size: 1.1rem;
+      line-height: 2;
+      font-size: 1rem;
     }
     .story-content p {
       margin-bottom: 1.5rem;
       text-align: justify;
+      color: var(--text);
     }
     .story-content strong {
-      background: linear-gradient(135deg, #6db5ff 0%, #a1e9d9 100%);
-      color: #000000;
-      padding: 0.2rem 0.4rem;
-      border-radius: 4px;
+      background: none;
+      color: var(--dark);
+      padding: 0;
       font-weight: 700;
+      border-bottom: 2px solid var(--brand-blue);
     }
     .story-content ul {
-      background: rgba(240, 249, 255, 0.5);
-      padding: 1rem;
-      border-radius: 10px;
-      border-left: 4px solid #6db5ff;
+      background: var(--surface);
+      padding: 1.2rem 1.5rem;
+      border-left: 3px solid var(--accent);
     }
     .story-content ul li {
       margin-bottom: 0.5rem;
-      font-weight: 500;
+      font-weight: 400;
+      color: var(--text);
     }
     .highlight-quote {
-      background: linear-gradient(135deg, #e8f4fd 0%, #f0f9ff 50%, #fff8f8 100%);
+      background: var(--surface);
       border: none;
-      border-left: 6px solid transparent;
-      background-image: linear-gradient(135deg, #e8f4fd 0%, #f0f9ff 50%, #fff8f8 100%), 
-                        linear-gradient(135deg, #6db5ff, #a1e9d9, #ff9a9a);
-      background-origin: border-box;
-      background-clip: padding-box, border-box;
-      padding: 2rem;
-      margin: 2rem 0;
-      border-radius: 15px;
-      font-style: italic;
+      border-left: 3px solid var(--accent);
+      padding: 2rem 2.5rem;
+      margin: 2.5rem 0;
+      font-family: var(--font-display);
+      font-style: normal;
       font-weight: 600;
-      font-size: 1.5rem;
-      box-shadow: 0 8px 25px rgba(0,0,0,.1);
+      font-size: 1.25rem;
+      color: var(--dark);
       position: relative;
-      text-align: center;
+      text-align: left;
+      letter-spacing: 0.02em;
+      line-height: 1.8;
     }
     .highlight-quote::before {
-      content: '"';
-      position: absolute;
-      top: -0.5rem;
-      left: 1rem;
-      font-size: 3rem;
-      color: var(--accent);
-      font-family: Georgia, serif;
-      opacity: 0.3;
+      content: none;
     }
     .chapter-divider {
       text-align: center;
       margin: 3rem 0;
-      font-size: 1.8rem;
-      background: linear-gradient(135deg, #6db5ff, #a1e9d9, #ff9a9a);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      font-weight: 800;
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      color: var(--accent);
+      font-weight: 600;
       position: relative;
       padding: 1rem 0;
+      letter-spacing: 0.08em;
     }
     .chapter-divider::before,
     .chapter-divider::after {
       content: '';
       position: absolute;
       top: 50%;
-      width: 100px;
-      height: 3px;
-      background: linear-gradient(135deg, #6db5ff, #a1e9d9);
-      border-radius: 2px;
+      width: 60px;
+      height: 1px;
+      background: var(--border);
     }
     .chapter-divider::before {
-      left: calc(50% - 200px);
+      left: calc(50% - 160px);
     }
     .chapter-divider::after {
-      right: calc(50% - 200px);
+      right: calc(50% - 160px);
     }
     /* === 特別テキストスタイル === */
     .special-text {
-      font-size: 1.2em;
-      font-weight: bold;
-      color: #333333;
+      font-size: 1.05em;
+      font-weight: 500;
+      color: var(--dark);
+      letter-spacing: 0.02em;
     }
     /* === ハイライト用のクラス === */
     .highlight-text {
-      background: linear-gradient(135deg, #ffe066, #ff9a9a);
-      padding: 0.3rem 0.6rem;
-      border-radius: 6px;
-      font-weight: 800;
-      color: #000000;
+      background: none;
+      padding: 0;
+      font-weight: 700;
+      color: var(--dark);
+      border-bottom: 3px solid var(--accent-warm);
     }
     .tech-highlight {
-      background: linear-gradient(135deg, #e8f4fd, #f0f9ff);
-      padding: 0.2rem 0.4rem;
-      border-radius: 4px;
+      background: none;
+      padding: 0;
       font-weight: 600;
-      color: #000000;
+      color: var(--dark);
+      border-bottom: 1px solid var(--accent);
     }
 
     /* === CTA セクション === */
     .cta-section {
-      background: var(--primary-gradient);
+      background: var(--dark);
       color: var(--light);
       text-align: center;
-      padding: 60px 0;
+      padding: 80px 0;
     }
     .cta-section h2 {
-      font-size: 2.2rem;
+      font-family: var(--font-display);
+      font-size: 1.8rem;
       margin-bottom: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
     }
     .cta-section p {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
-      opacity: 0.9;
+      font-size: 1rem;
+      margin-bottom: 2.5rem;
+      opacity: 0.7;
+      font-weight: 300;
     }
     .cta-button {
       display: inline-block;
-      background: var(--light);
-      color: var(--accent);
-      padding: 1rem 2rem;
-      border-radius: 8px;
-      font-weight: 600;
+      background: transparent;
+      color: var(--light);
+      padding: .9rem 2.5rem;
+      border: 1px solid rgba(255,255,255,.4);
+      font-weight: 500;
       text-decoration: none;
-      transition: all 0.3s ease;
-      font-size: 1.1rem;
+      transition: all 0.35s ease;
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
     }
     .cta-button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      background: var(--light);
+      color: var(--dark);
+      border-color: var(--light);
     }
 
     /* === Footer === */
-    footer { background: #1a1a1a; color: #e6e6e6; padding: 3rem 0; text-align: center; }
-    footer p { font-size: .85rem; }
-    footer a { color: #e6e6e6; text-decoration: underline; }
+    footer { background: var(--dark); color: rgba(255,255,255,.5); padding: 2.5rem 0; text-align: center; border-top: 1px solid rgba(255,255,255,.08); }
+    footer p { font-size: .8rem; letter-spacing: 0.04em; }
+    footer a { color: rgba(255,255,255,.6); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.2); transition: color .25s; }
+    footer a:hover { color: var(--light); }
 
     /* 引用ボックスのスタイル */
     blockquote {
-      background: #e6f4ff;
-      border-left: 5px solid #2196F3;
+      background: var(--surface);
+      border-left: 3px solid var(--accent);
       margin: 1.5em 0;
       padding: 1.2em 1.5em;
-      border-radius: 0 8px 8px 0;
-      font-style: italic;
       position: relative;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
-    
+
     blockquote::before {
-      content: '"';
-      font-size: 3em;
-      color: #2196F3;
-      position: absolute;
-      left: 0.2em;
-      top: 0.1em;
-      font-family: Georgia, serif;
-      opacity: 0.3;
+      content: none;
     }
-    
+
     blockquote p {
       margin: 0;
-      line-height: 1.6;
-      color: #333;
+      line-height: 1.8;
+      color: var(--text);
     }
 
     /* 好きのスタイル */
     .suki {
-      font-size: 1.2em;
-      font-weight: 700;
-      color: #2bc4a9;
-      display: inline-block;
+      font-family: var(--font-display);
+      font-size: 1.1em;
+      font-weight: 600;
+      color: var(--accent);
+      display: inline;
       position: relative;
-      padding: 0 5px;
-      transform: rotate(-3deg);
+      padding: 0 2px;
+      transform: none;
     }
     .suki::after {
       content: '';
       position: absolute;
-      bottom: 0;
+      bottom: 2px;
       left: 0;
       width: 100%;
-      height: 6px;
-      background: var(--primary-gradient);
-      border-radius: 3px;
-      opacity: 0.7;
+      height: 2px;
+      background: var(--accent);
+      opacity: 0.5;
     }
     
     /* できない→できる変換のスタイル */
     .transform-text span {
       display: inline-block;
       position: relative;
-      transition: all 0.3s ease;
+      transition: all 0.4s cubic-bezier(.23,1,.32,1);
     }
     .transform-text span:hover {
-      transform: translateY(-5px);
+      transform: translateY(-3px);
     }
     .transform-text .negative {
-      color: #ff5757;
+      color: var(--text-sub);
+      opacity: 0.6;
     }
     .transform-text .positive {
-      color: #00c9a7;
+      color: var(--accent);
     }
     .transform-text .divider {
       font-weight: normal;
-      color: #333;
+      color: var(--text-sub);
     }
     .transform-text .action {
-      color: #333;
+      color: var(--dark);
     }
-    
+
     .transform-underline {
       width: 0;
-      height: 4px;
-      background: var(--primary-gradient);
+      height: 2px;
+      background: var(--accent);
       margin: 15px auto;
-      border-radius: 2px;
-      transition: width 1.2s ease;
+      transition: width 1.2s cubic-bezier(.23,1,.32,1);
     }
     .transform-text.active + .transform-underline {
-      width: 70%;
+      width: 60%;
     }
 
     @media (max-width: 768px) {
-      .hero h1 { font-size: 2.3rem; }
-      .hero p.tagline { font-size: 1.1rem; }
+      .hero h1 { font-size: 1.8rem; }
+      .hero p.tagline { font-size: 0.95rem; }
       
       /* グリッドレイアウト調整 */
       .background-grid,
@@ -681,10 +710,10 @@
       .hamburger span {
         display: block;
         position: absolute;
-        height: 3px;
+        height: 1.5px;
         width: 100%;
         background: var(--dark);
-        border-radius: 3px;
+        border-radius: 0;
         opacity: 1;
         left: 0;
         transform: rotate(0deg);
@@ -808,13 +837,13 @@
       }
       
       .staff-info h3 {
-        font-size: 1.8rem !important;
+        font-size: 1.5rem !important;
         margin-bottom: 0.5rem !important;
       }
-      
+
       .staff-info .position {
-        font-size: 1rem !important;
-        margin: 0.5rem auto !important;
+        font-size: 0.85rem !important;
+        margin: 0.3rem auto !important;
         display: block !important;
         width: fit-content !important;
       }
@@ -900,8 +929,8 @@
       width: 56px;
       height: 56px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #6db5ff 0%, #00c9a7 100%);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+      background: var(--dark);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -935,7 +964,7 @@
 
     .aikw-chatbot-header {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 12px 14px; background: linear-gradient(135deg, #6db5ff 0%, #a1e9d9 100%);
+      padding: 12px 14px; background: var(--dark);
       color: #fff;
     }
     .aikw-chatbot-title { display: flex; align-items: center; gap: 10px; font-weight: 700; }
@@ -985,7 +1014,7 @@
     .aikw-user-message { justify-content: flex-end; }
     .aikw-message-content { max-width: 80%; padding: 10px 12px; border-radius: 12px; font-size: 14px; line-height: 1.5; box-shadow: 0 2px 6px rgba(0,0,0,0.06); }
     .aikw-bot-message .aikw-message-content { background: #fff; border: 1px solid #e6f0f7; }
-    .aikw-user-message .aikw-message-content { background: #00c9a7; color: #fff; }
+    .aikw-user-message .aikw-message-content { background: var(--dark); color: #fff; }
     
     /* New message highlight animations */
     .aikw-message.aikw-new-message {
@@ -1151,8 +1180,8 @@
     .aikw-chat-input-area { padding: 10px 12px; background: #fff; border-top: 1px solid #eef3f7; }
     .aikw-chat-input-container { display: flex; gap: 8px; }
     #aikw-chat-input { flex: 1; padding: 10px 12px; border: 1px solid #e1e8ee; border-radius: 10px; font-size: 14px; }
-    #aikw-chat-send { padding: 10px 14px; background: #00c9a7; color: #fff; border: none; border-radius: 10px; cursor: pointer; font-weight: 600; }
-    #aikw-chat-send:disabled { background: #b7e8df; cursor: not-allowed; }
+    #aikw-chat-send { padding: 10px 14px; background: var(--dark); color: #fff; border: none; border-radius: 10px; cursor: pointer; font-weight: 600; }
+    #aikw-chat-send:disabled { background: #c0c8d0; cursor: not-allowed; }
 
     .aikw-back-button { margin-top: 8px; padding: 6px 10px; border: 1px solid #e1e8ee; background: #fff; border-radius: 8px; font-size: 12px; cursor: pointer; }
     .aikw-chat-actions { display: flex; flex-wrap: wrap; }
@@ -1332,23 +1361,23 @@
       position: fixed;
       bottom: 30px;
       right: 30px;
-      width: 60px;
-      height: 60px;
-      background: linear-gradient(135deg, #6db5ff 0%, #a1e9d9 100%);
+      width: 56px;
+      height: 56px;
+      background: var(--dark);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      box-shadow: 0 4px 20px rgba(109, 181, 255, 0.3);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
       transition: all 0.3s ease;
       z-index: 1000;
       border: none;
     }
-    
+
     .aikw-chatbot-button:hover {
-      transform: scale(1.1);
-      box-shadow: 0 6px 30px rgba(109, 181, 255, 0.4);
+      transform: scale(1.06);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
     }
     
     .aikw-chat-icon svg {
@@ -1379,7 +1408,7 @@
     }
     
     .aikw-chatbot-header {
-      background: linear-gradient(135deg, #6db5ff 0%, #a1e9d9 100%);
+      background: var(--dark);
       color: white;
       padding: 15px 20px;
       display: flex;
@@ -1825,28 +1854,27 @@
   </section>
 
   <!-- === Section A1: Background === -->
-  <section id="background">
+  <section id="background" style="background: var(--surface);">
     <div class="container">
-      <!-- 動画セクション -->
-
-      
+      <p class="section-subtitle" style="margin-bottom: 0.5rem; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent);">Why Now</p>
       <h2 class="section-title">社会背景</h2>
-      <div class="background-grid reveal-group" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; max-width: 900px; margin: 0 auto;">
+      <p class="section-subtitle">AI技術は急速に進化している。しかし、その恩恵はまだ一部にしか届いていない。</p>
+      <div class="background-grid reveal-group" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; max-width: 900px; margin: 0 auto;">
         <div class="card reveal" style="height: 100%;">
           <h3>AI技術の急速な進化</h3>
-          <p>AI技術の急速な進化により、企業や教育現場の多くの課題を解決する可能性が広がっています</p>
+          <p>企業や教育現場の多くの課題を解決する可能性が、いま急速に広がっています。</p>
         </div>
         <div class="card reveal" style="height: 100%;">
           <h3>国内生成AI利用率 9.1%</h3>
-          <p>日本国内で、生成AI経験がある人の割合は約9.1%。他国より低水準です。</p>
+          <p>日本国内で生成AI経験がある人の割合は約9.1%。先進国の中でも低水準にとどまっています。</p>
         </div>
         <div class="card reveal" style="height: 100%;">
           <h3>認知ギャップの存在</h3>
-          <p>生成AIの存在や活用方法が十分に浸透しておらず、生成AIの理解不足が導入の壁になっています。</p>
+          <p>活用方法が十分に浸透しておらず、理解不足そのものが導入の壁になっています。</p>
         </div>
         <div class="card reveal" style="height: 100%;">
-          <h3>クリエイティブ分野での基盤拡大</h3>
-          <p>生成AIで独創的な表現や新たなクリエイティブプロセスが生まれ始めている。"好き" を探究できる基盤が拡大中。</p>
+          <h3>クリエイティブ領域の拡大</h3>
+          <p>生成AIで独創的な表現や新たなプロセスが生まれ始めている。"好き" を探究できる基盤が拡大中。</p>
         </div>
       </div>
     </div>
@@ -1855,67 +1883,62 @@
   <!-- === Founding === -->
   <section id="founding">
     <div class="container">
+      <p class="section-subtitle" style="margin-bottom: 0.5rem; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent);">Origin</p>
       <h2 class="section-title">創業のきっかけ</h2>
       <p class="section-subtitle"><span class="suki">"好き"</span>を実現できる社会をAIで実現する</p>
-      
-      <div style="max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center;">
-        <div class="reveal" style="background: var(--light); border-radius: 12px; padding: 2.5rem; box-shadow: 0 8px 24px rgba(0,0,0,.1);">
-          <div style="position: relative;">
-            <h3 style="color: var(--accent); font-size: 1.6rem; margin-bottom: 2rem; font-weight: 700;">私たちのミッション</h3>
-            <p style="font-size: 1.1rem; line-height: 1.8; position: relative;">
-              <span style="font-size: 1.3rem; font-weight: 600; display: block; margin-bottom: 30px;">生成AIの可能性を活かし、<br>誰もが自己実現できる世界を目指して創業しました。</span>
-              
+
+      <div style="max-width: 960px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;">
+        <div class="reveal" style="background: var(--light); padding: 2.5rem; border: 1px solid var(--border);">
+          <div>
+            <h3 style="font-family: var(--font-display); color: var(--dark); font-size: 1.3rem; margin-bottom: 1.5rem; font-weight: 600; letter-spacing: 0.04em;">私たちのミッション</h3>
+            <p style="font-size: 1rem; line-height: 1.9;">
+              <span style="font-size: 1.05rem; font-weight: 500; display: block; margin-bottom: 2rem; color: var(--text);">生成AIの可能性を活かし、<br>誰もが自己実現できる世界を目指して創業しました。</span>
+
               <div style="margin: 20px 0; padding: 0;">
-                <div class="transform-text reveal" style="font-size: 1.8rem; font-weight: 800; line-height: 1.5;">
-                  <span class="negative" style="text-align: left; display: block; color: #ff5757; margin-bottom: 0.5rem;">できないを</span>
-                  <span class="positive" style="font-size: 2.4rem; text-align: center; display: block; color: #00c9a7; margin: 0.7rem 0;">できるに</span>
-                  <span class="action" style="font-size: 1.6rem; text-align: right; display: block; margin-top: 0.5rem;">変えます</span>
+                <div class="transform-text reveal" style="font-family: var(--font-display); font-size: 1.6rem; font-weight: 600; line-height: 1.6;">
+                  <span class="negative" style="text-align: left; display: block; margin-bottom: 0.5rem;">できないを</span>
+                  <span class="positive" style="font-size: 2.2rem; text-align: center; display: block; margin: 0.7rem 0;">できるに</span>
+                  <span class="action" style="font-size: 1.4rem; text-align: right; display: block; margin-top: 0.5rem;">変えます</span>
                 </div>
-                <div class="transform-underline" style="max-width: 250px; margin-left: auto;"></div>
+                <div class="transform-underline" style="max-width: 200px; margin-left: auto;"></div>
               </div>
             </p>
           </div>
         </div>
-        
+
         <div class="reveal">
-          <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=800&q=60" alt="創業イメージ" style="border-radius: 12px; box-shadow: 0 12px 30px rgba(0,0,0,.15); width: 100%;">
+          <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=800&q=60" alt="創業イメージ" style="width: 100%; filter: grayscale(30%) contrast(1.05);">
         </div>
       </div>
     </div>
   </section>
 
   <!-- === Vision & Values === -->
-  <section id="vision" style="background:#f0f8ff;">
+  <section id="vision" style="background: var(--surface);">
     <div class="container">
+      <p class="section-subtitle" style="margin-bottom: 0.5rem; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent);">Mission & Vision</p>
       <h2 class="section-title">ミッション・ビジョン</h2>
       <p class="section-subtitle"><span class="suki">"好き"</span>が未来を創る</p>
-      
-      <div class="mission-vision-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 3rem;">
-        <div class="mission-box" style="background: var(--light); border-radius: 12px; padding: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,.05); border-left: 5px solid var(--accent); height: 100%;">
-          <h3 style="font-size: 1.4rem; margin-bottom: 1rem; color: var(--accent); display: inline-flex; align-items: center;">
-            <span style="background: var(--accent); color: white; width: 32px; height: 32px; display: inline-flex; justify-content: center; align-items: center; border-radius: 50%; margin-right: 10px;">M</span>
-            ミッション
+
+      <div class="mission-vision-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-bottom: 3.5rem;">
+        <div class="mission-box" style="background: var(--light); padding: 2.5rem; border: 1px solid var(--border); border-top: 2px solid var(--accent); height: 100%;">
+          <h3 style="font-family: var(--font-display); font-size: 0.8rem; margin-bottom: 1.2rem; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase;">
+            Mission
           </h3>
-          <p style="font-size: 1.1rem; font-weight: 500;">自己実現の大量生産 ─ 自分の<span class="suki">"好き"</span>が実現しまくる社会をつくる</p>
+          <p style="font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; color: var(--dark); line-height: 1.8;">自己実現の大量生産 ─ 自分の<span class="suki">"好き"</span>が実現しまくる社会をつくる</p>
         </div>
-        
-        <div class="vision-box" style="background: var(--light); border-radius: 12px; padding: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,.05); border-left: 5px solid #6db5ff; height: 100%;">
-          <h3 style="font-size: 1.4rem; margin-bottom: 1rem; color: #6db5ff; display: inline-flex; align-items: center;">
-            <span style="background: #6db5ff; color: white; width: 32px; height: 32px; display: inline-flex; justify-content: center; align-items: center; border-radius: 50%; margin-right: 10px;">V</span>
-            ビジョン
+
+        <div class="vision-box" style="background: var(--light); padding: 2.5rem; border: 1px solid var(--border); border-top: 2px solid var(--brand-blue); height: 100%;">
+          <h3 style="font-family: var(--font-display); font-size: 0.8rem; margin-bottom: 1.2rem; color: var(--brand-blue); letter-spacing: 0.15em; text-transform: uppercase;">
+            Vision
           </h3>
-          <p style="font-size: 1.1rem; font-weight: 500;">"余裕"が連鎖する未来 ─ 誰もが<span class="suki">"好き"</span>を起点に生きられる世界</p>
+          <p style="font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; color: var(--dark); line-height: 1.8;">"余裕"が連鎖する未来 ─ 誰もが<span class="suki">"好き"</span>を起点に生きられる世界</p>
         </div>
       </div>
-      
-      <div class="value-heading-box" style="background: var(--light); border-radius: 12px; padding: 1.5rem 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 12px rgba(0,0,0,.05); border-left: 5px solid #2bc4a9; text-align: center;">
-        <h3 style="font-size: 1.4rem; color: #2bc4a9; display: inline-flex; align-items: center; justify-content: center;">
-          <span style="background: #2bc4a9; color: white; width: 32px; height: 32px; display: inline-flex; justify-content: center; align-items: center; border-radius: 50%; margin-right: 10px;">V</span>
-          バリュー
-        </h3>
-      </div>
-      
-      <div class="values-grid reveal-group" style="display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, auto); gap: 1.2rem; max-width: 1000px; margin: 0 auto;">
+
+      <h3 style="font-family: var(--font-display); font-size: 0.8rem; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; text-align: center; margin-bottom: 1.5rem;">Values</h3>
+
+      <div class="values-grid reveal-group" style="display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, auto); gap: 1.2rem; max-width: 960px; margin: 0 auto;">
         <div class="value-item reveal" style="height: 100%;">
           <h4 data-icon="♥">Self First</h4>
           <p>まず自分を幸せに。その幸せを社会へ。</p>
@@ -1947,31 +1970,32 @@
   <!-- === Brand Video === -->
   <section id="brand-video">
     <div class="container">
+      <p class="section-subtitle" style="margin-bottom: 0.5rem; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent);">Brand Movie</p>
       <h2 class="section-title">光が織りなす<span class="suki">"好き"</span>の物語</h2>
-      
-      <div class="video-content-grid reveal-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; max-width: 1000px; margin: 0 auto;">
-        <div class="video-container reveal" style="position: relative; width: 100%; height: auto; min-height: 550px; border-radius: 16px; overflow: hidden; box-shadow: 0 12px 30px rgba(0,0,0,.15);">
-          <iframe 
-            src="https://www.youtube.com/embed/8cyoIow_exs?si=WNus0JQf759BVPb0&amp;controls=1&amp;rel=0&amp;playsinline=1&amp;modestbranding=1&amp;autoplay=0" 
-            title="AIナレッジワークス ブランドムービー" 
-            frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-            referrerpolicy="strict-origin-when-cross-origin" 
+      <p class="section-subtitle">Light to Breath, Breath to Code</p>
+
+      <div class="video-content-grid reveal-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; max-width: 960px; margin: 0 auto;">
+        <div class="video-container reveal" style="position: relative; width: 100%; height: auto; min-height: 550px; overflow: hidden;">
+          <iframe
+            src="https://www.youtube.com/embed/8cyoIow_exs?si=WNus0JQf759BVPb0&amp;controls=1&amp;rel=0&amp;playsinline=1&amp;modestbranding=1&amp;autoplay=0"
+            title="AIナレッジワークス ブランドムービー"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
             allowfullscreen
-            style="width: 100%; height: 550px; border-radius: 16px;">
+            style="width: 100%; height: 550px;">
           </iframe>
         </div>
-        
-        <div class="video-description reveal" style="background: var(--light); border-radius: 12px; padding: 2.5rem; box-shadow: 0 8px 24px rgba(0,0,0,.1); border-left: 5px solid var(--accent);">
-          <h3 style="color: var(--accent); font-size: 1.4rem; margin-bottom: 1.5rem; font-weight: 700;">Light to Breath, Breath to Code</h3>
-          <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem;">
+
+        <div class="video-description reveal" style="padding: 0;">
+          <p style="font-size: 0.95rem; line-height: 2; margin-bottom: 1.5rem; color: var(--text);">
             暗闇の中の小さな光点から始まり、一人ひとりの心に眠る<span class="suki">"好き"</span>の種が芽吹き、やがて世界を結ぶ大きなネットワークへと成長していく物語。
           </p>
-          <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem;">
+          <p style="font-size: 0.95rem; line-height: 2; margin-bottom: 1.5rem; color: var(--text);">
             個人の情熱が他者との出会いによって共鳴し、コミュニティを形成し、最終的には宇宙規模のビジョンへと昇華する様子を光の軌跡で表現しています。
           </p>
-          <p style="font-size: 1.1rem; line-height: 1.8; color: #666;">
-            私たちAIナレッジワークスが目指す「自己実現の大量生産」の世界観を、美しい映像詩として描きました。
+          <p style="font-size: 0.9rem; line-height: 2; color: var(--text-sub);">
+            私たちAIナレッジワークスが目指す「自己実現の大量生産」の世界観を、映像詩として描きました。
           </p>
         </div>
       </div>
@@ -1981,6 +2005,7 @@
   <!-- === 社員紹介 === -->
   <section id="staff-intro" class="staff-intro">
     <div class="container">
+      <p class="section-subtitle" style="margin-bottom: 0.5rem; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent);">Team</p>
       <h2 class="section-title">社員紹介</h2>
       <p class="section-subtitle">人生をかけてAI革命に挑む仲間たち</p>
       
@@ -2050,12 +2075,12 @@
             
             <h5>5. 狂気のイケメン──康平くん参戦（2025.02.03）</h5>
             
-            <div class="staff-header" style="margin-top: 1.5rem; margin-bottom: 2rem;">
+            <div class="staff-header" style="margin-top: 2rem; margin-bottom: 2rem;">
               <img src="images/yamamoto.png" alt="康平くん" class="staff-photo">
               <div class="staff-info">
-                <h3>康平くん</h3>
-                <p class="position">特別顧問</p> <p class="position">天才エンジニア</p> <p class="position">関西最大級のAIコミュニティ Finding AI 代表</p>
-                <p><span class="special-text">狂気のイケメン AI中毒者</span></p>
+                <h3>山本 康平</h3>
+                <p class="position">特別顧問</p> <p class="position">エンジニア</p> <p class="position">Finding AI 代表</p>
+                <p><span class="special-text">関西最大級のAIコミュニティを率いるエンジニア</span></p>
               </div>
             </div>
             <p>AIの急速な進化に食らいつくなら、<span class="tech-highlight">若き天才</span>の力は不可欠。そこで注目したのが、起業家が集うイベントで出逢った<strong>康平くん</strong>。モデル級のルックスとは裏腹に、AIの話になると<span class="tech-highlight">"満月を見たオオカミ男"のごとく目が光るAI中毒者</span>です笑</p>
@@ -2102,9 +2127,9 @@
   <!-- === Contact === -->
   <section id="contact" class="cta-section">
     <div class="container">
-      <h2>AIソリューションで未来を創造しませんか？</h2>
-      <p>あなたの<span class="suki">"好き"</span>を実現するお手伝いをいたします</p>
-      <a href="contact.html" class="cta-button">お問い合わせはこちら</a>
+      <h2>あなたの<span class="suki" style="color: var(--brand-mint);">"好き"</span>を、次のステージへ。</h2>
+      <p>AIソリューションの導入・研修のご相談はお気軽にどうぞ。</p>
+      <a href="contact.html" class="cta-button">Contact Us</a>
     </div>
   </section>
 
