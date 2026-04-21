@@ -41,9 +41,9 @@
             }
             if (isPortrait) {
                 const ratio = w / h;
-                const scale = Math.max(ratio / 0.75, 0.45);
+                const scale = Math.max(ratio / 0.85, 0.35);
                 cfg.textSize = Math.round(cfg.textSize * scale);
-                cfg.cameraZ = cfg.cameraZ / scale;
+                cfg.cameraZ = cfg.cameraZ / scale * 1.15;
             }
             return cfg;
         }
