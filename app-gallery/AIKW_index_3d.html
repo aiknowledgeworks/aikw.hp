@@ -24,17 +24,28 @@
         import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
         import { MeshSurfaceSampler } from 'three/addons/math/MeshSurfaceSampler.js';
 
-        // レスポンシブ設定
+        // レスポンシブ設定（縦画面対応）
         function getResponsiveConfig() {
             const w = window.innerWidth;
+            const h = window.innerHeight;
+            const isPortrait = h > w;
+            let cfg;
             if (w <= 480) {
-                return { textSize: 18, cameraZ: 70, particleCount: 6000, particleSize: 1.8, scrambleRange: 800 };
+                cfg = { textSize: 18, cameraZ: 70, particleCount: 6000, particleSize: 1.8, scrambleRange: 800 };
             } else if (w <= 768) {
-                return { textSize: 24, cameraZ: 85, particleCount: 10000, particleSize: 2.0, scrambleRange: 1000 };
+                cfg = { textSize: 24, cameraZ: 85, particleCount: 10000, particleSize: 2.0, scrambleRange: 1000 };
             } else if (w <= 1024) {
-                return { textSize: 32, cameraZ: 100, particleCount: 15000, particleSize: 2.2, scrambleRange: 1200 };
+                cfg = { textSize: 32, cameraZ: 100, particleCount: 15000, particleSize: 2.2, scrambleRange: 1200 };
+            } else {
+                cfg = { textSize: 40, cameraZ: 110, particleCount: 20000, particleSize: 2.5, scrambleRange: 1500 };
             }
-            return { textSize: 40, cameraZ: 110, particleCount: 20000, particleSize: 2.5, scrambleRange: 1500 };
+            if (isPortrait) {
+                const ratio = w / h;
+                const scale = Math.max(ratio / 0.75, 0.45);
+                cfg.textSize = Math.round(cfg.textSize * scale);
+                cfg.cameraZ = cfg.cameraZ / scale;
+            }
+            return cfg;
         }
 
         let config = getResponsiveConfig();
