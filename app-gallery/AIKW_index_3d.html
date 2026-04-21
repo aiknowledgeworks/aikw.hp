@@ -24,15 +24,28 @@
         import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
         import { MeshSurfaceSampler } from 'three/addons/math/MeshSurfaceSampler.js';
 
+        // レスポンシブ設定
+        function getResponsiveConfig() {
+            const w = window.innerWidth;
+            if (w <= 480) {
+                return { textSize: 18, cameraZ: 70, particleCount: 6000, particleSize: 1.8, scrambleRange: 800 };
+            } else if (w <= 768) {
+                return { textSize: 24, cameraZ: 85, particleCount: 10000, particleSize: 2.0, scrambleRange: 1000 };
+            } else if (w <= 1024) {
+                return { textSize: 32, cameraZ: 100, particleCount: 15000, particleSize: 2.2, scrambleRange: 1200 };
+            }
+            return { textSize: 40, cameraZ: 110, particleCount: 20000, particleSize: 2.5, scrambleRange: 1500 };
+        }
+
+        let config = getResponsiveConfig();
+
         // 1. シーンのセットアップ
         const scene = new THREE.Scene();
         scene.background = new THREE.Color(0x050510);
         scene.fog = new THREE.FogExp2(0x050510, 0.002);
 
-        // 歪みを抑えて真っ直ぐ見せるため、FOVを50に変更し距離を離す
         const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 1000);
-        // デスクトップで画面の8割を埋める距離に調整
-        camera.position.set(0, 0, 110);
+        camera.position.set(0, 0, config.cameraZ);
 
         const renderer = new THREE.WebGLRenderer({ antialias: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
@@ -139,12 +152,12 @@
             
             const textGeometry = new TextGeometry('AIKW', {
                 font: font,
-                size: 40,
-                height: 10,
+                size: config.textSize,
+                height: config.textSize * 0.25,
                 curveSegments: 12,
                 bevelEnabled: true,
-                bevelThickness: 2,
-                bevelSize: 0.5,
+                bevelThickness: config.textSize * 0.05,
+                bevelSize: config.textSize * 0.0125,
                 bevelOffset: 0,
                 bevelSegments: 5
             });
@@ -156,7 +169,7 @@
             const mesh = new THREE.Mesh(textGeometry, material);
             const sampler = new MeshSurfaceSampler(mesh).build();
 
-            const totalCount = 20000; // 全体のパーティクル数
+            const totalCount = config.particleCount;
             const chars = ['A', 'I', 'K', 'W'];
             const systems = []; // 4つのパーティクルシステムを格納
 
@@ -177,9 +190,10 @@
                     targets[i * 3 + 2] = tempPosition.z;
 
                     // B. 初期位置
-                    positions[i * 3] = (Math.random() - 0.5) * 600;
-                    positions[i * 3 + 1] = (Math.random() - 0.5) * 600;
-                    positions[i * 3 + 2] = (Math.random() - 0.5) * 600;
+                    const spawnRange = config.scrambleRange * 0.4;
+                    positions[i * 3] = (Math.random() - 0.5) * spawnRange;
+                    positions[i * 3 + 1] = (Math.random() - 0.5) * spawnRange;
+                    positions[i * 3 + 2] = (Math.random() - 0.5) * spawnRange;
                 }
 
                 pointsGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
@@ -188,7 +202,7 @@
                 // 文字テクスチャを使ったマテリアル
                 const particlesMaterial = new THREE.PointsMaterial({
                     color: 0xFFFFFF, // 初期色
-                    size: 2.5,
+                    size: config.particleSize,
                     map: createTextTexture(char),
                     transparent: true,
                     opacity: 0.8,
@@ -302,7 +316,7 @@
 
                         const globalIndex = baseIndex + i;
                         // 動きを激しくするために範囲と速度を増加
-                        const scrambleRange = 1500; 
+                        const scrambleRange = config.scrambleRange;
                         const offsetX = Math.sin(globalIndex * 0.15 + time * 2.0) * scrambleRange;
                         const offsetY = Math.cos(globalIndex * 0.25 + time * 2.5) * scrambleRange;
                         const offsetZ = Math.sin(globalIndex * 0.35 + time * 3.0) * scrambleRange;
@@ -355,7 +369,9 @@
 
         window.addEventListener('resize', onWindowResize, false);
         function onWindowResize() {
+            config = getResponsiveConfig();
             camera.aspect = window.innerWidth / window.innerHeight;
+            camera.position.z = config.cameraZ;
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
         }
