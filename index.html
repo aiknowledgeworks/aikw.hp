@@ -393,14 +393,12 @@
 
     /* === Video embed === */
     .video-wrapper {
-      position: relative;
-      width: 100%;
-      padding-bottom: 177.78%; /* 9:16 */
+      width: 380px;
+      aspect-ratio: 9/16;
       overflow: hidden;
       border: 1px solid var(--rule);
     }
     .video-wrapper iframe {
-      position: absolute; top: 0; left: 0;
       width: 100%; height: 100%;
       border: none;
     }
@@ -670,7 +668,7 @@
 
       /* Two-col grids become single col */
       .grid-2-col { grid-template-columns: 1fr !important; }
-      .video-wrapper { padding-bottom: 56.25%; }
+      .video-wrapper { width: 100%; max-width: 300px; height: auto; aspect-ratio: 9/16; margin: 0 auto; }
     }
 
     @media (max-width: 480px) {
@@ -966,7 +964,7 @@
       </div>
     </div>
 
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;" class="grid-2-col">
+    <div style="display: grid; grid-template-columns: auto 1fr; gap: 64px; align-items: center;" class="grid-2-col">
       <div class="reveal">
         <div class="video-wrapper">
           <iframe
@@ -979,15 +977,18 @@
         </div>
       </div>
       <div class="reveal">
-        <p class="paragraph" style="font-size: 17px; margin-bottom: 24px;">
+        <div style="font-family: var(--display); font-style: italic; font-size: clamp(24px, 3vw, 32px); line-height: 1.4; color: var(--ink); margin-bottom: 32px;">
+          Light to Breath,<br>Breath to Code.
+        </div>
+        <p class="paragraph" style="font-size: 16px; margin-bottom: 24px;">
           暗闇の中の小さな光点から始まり、一人ひとりの心に眠る<span class="suki">"好き"</span>の種が芽吹き、やがて世界を結ぶ大きなネットワークへと成長していく物語。
         </p>
-        <p class="paragraph" style="margin-bottom: 24px;">
+        <p class="paragraph" style="font-size: 14px; color: var(--ink-40); margin-bottom: 32px;">
           個人の情熱が他者との出会いによって共鳴し、コミュニティを形成し、最終的には宇宙規模のビジョンへと昇華する様子を光の軌跡で表現しています。
         </p>
-        <p class="paragraph" style="font-size: 14px;">
-          Light to Breath, Breath to Code &mdash; 私たちAIナレッジワークスが目指す「自己実現の大量生産」の世界観を、映像詩として描きました。
-        </p>
+        <div style="border-top: 1px solid var(--rule); padding-top: 24px; font-size: 13px; letter-spacing: 0.04em; color: var(--ink-60); line-height: 1.8;">
+          私たちAIナレッジワークスが目指す<br>「自己実現の大量生産」の世界観を、<br>映像詩として描きました。
+        </div>
       </div>
     </div>
   </section>
