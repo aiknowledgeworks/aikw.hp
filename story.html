@@ -175,22 +175,28 @@
     /* === Story chapter blocks === */
     .story-chapter {
       display: grid;
-      grid-template-columns: 36px 1fr;
-      gap: 20px;
-      padding: 32px 0;
-      border-top: 1px solid var(--rule);
+      grid-template-columns: 44px 1fr;
+      gap: 24px;
+      padding: clamp(24px, 3vw, 40px);
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      margin-bottom: 16px;
+      transition: box-shadow 0.3s ease;
     }
-    .story-chapter:last-child { padding-bottom: 0; }
+    .story-chapter:hover {
+      box-shadow: 0 4px 24px rgba(44,42,38,0.06);
+    }
+    .story-chapter:last-child { margin-bottom: 0; }
     .story-chapter-num {
-      width: 36px; height: 36px;
+      width: 44px; height: 44px;
       display: inline-flex;
       align-items: center; justify-content: center;
-      background: var(--paper-2);
-      border: 1px solid var(--rule);
-      color: var(--accent);
-      font-family: var(--serif);
+      background: var(--ink);
+      color: var(--bg);
+      font-family: var(--display);
       font-weight: 500;
-      font-size: 14px;
+      font-size: 16px;
+      border-radius: 50%;
       flex-shrink: 0;
     }
     .story-chapter-title {
@@ -218,6 +224,23 @@
       color: var(--ink);
       margin: 16px 0;
       line-height: 1.8;
+    }
+
+    /* === Story intro card === */
+    .story-intro {
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      padding: clamp(24px, 3vw, 40px);
+      margin-bottom: 24px;
+    }
+    .story-intro-subtitle {
+      font-family: var(--serif);
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--ink);
+      margin: 0;
+      padding-top: 8px;
+      border-top: 1px solid var(--rule);
     }
 
     /* === Member card === */
@@ -280,7 +303,7 @@
     }
     .timeline-axis {
       position: absolute;
-      left: 0;
+      left: 16px;
       top: 0;
       width: 1px;
       height: 100%;
@@ -288,18 +311,25 @@
     }
     .timeline-item {
       position: relative;
-      padding-left: 48px;
-      padding-bottom: 48px;
+      padding: 24px 24px 24px 48px;
+      margin-bottom: 16px;
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      margin-left: 16px;
+      transition: box-shadow 0.3s ease;
+    }
+    .timeline-item:hover {
+      box-shadow: 0 4px 24px rgba(44,42,38,0.06);
     }
     .timeline-dot {
       position: absolute;
-      left: -5px;
-      top: 4px;
+      left: -22px;
+      top: 28px;
       width: 11px;
       height: 11px;
       background: var(--ink);
       border-radius: 50%;
-      border: 2px solid var(--bg);
+      border: 2px solid var(--paper-2);
     }
     .timeline-date {
       font-size: 11px;
@@ -332,6 +362,20 @@
     }
 
     /* === CTA === */
+    .cta-section {
+      background: var(--ink);
+      padding: clamp(80px, 12vh, 140px) var(--page-pad);
+      text-align: center;
+      max-width: none;
+    }
+    .cta-section .kicker { color: rgba(250,248,245,0.4); }
+    .cta-section .section-heading,
+    .cta-section .section-heading em { color: var(--bg); }
+    .cta-section .paragraph { color: rgba(250,248,245,0.6); }
+    .cta-section .btn-fill {
+      background: var(--bg);
+      color: var(--ink);
+    }
     .cta-center {
       text-align: center;
       max-width: 1100px;
@@ -432,8 +476,8 @@
       .nav-cta { border: none; padding: 18px 24px; margin-left: 0; text-align: left; }
       .nav-cta:hover { background: transparent; color: var(--ink); }
 
-      .story-chapter { grid-template-columns: 28px 1fr; gap: 14px; }
-      .story-chapter-num { width: 28px; height: 28px; font-size: 12px; }
+      .story-chapter { grid-template-columns: 32px 1fr; gap: 14px; padding: clamp(20px, 3vw, 32px); }
+      .story-chapter-num { width: 32px; height: 32px; font-size: 13px; }
       .story-chapter-title { font-size: 16px; }
       .timeline-item { padding-left: 36px; }
 
@@ -499,7 +543,7 @@
       </div>
       <div>
         <!-- 内堀代表 -->
-        <div class="reveal" style="background: var(--paper); border: 1px solid var(--rule); padding: clamp(24px, 3vw, 40px); margin-bottom: 32px;">
+        <div class="story-intro reveal">
           <div class="member-card">
             <img src="images/uchibori.jpg" alt="内堀代表社員">
             <div>
@@ -507,8 +551,8 @@
               <div class="member-card-role">代表社員（社長）</div>
             </div>
           </div>
-
-          <div style="font-family: var(--serif); font-size: 18px; font-weight: 400; margin-bottom: 28px; color: var(--ink);">この仕事に人生をかける理由</div>
+          <p class="story-intro-subtitle">この仕事に人生をかける理由</p>
+        </div>
 
           <div class="story-chapter reveal">
             <div class="story-chapter-num">1</div>
@@ -592,7 +636,6 @@
               <div class="story-quote">AIを"見て見ぬふり"するのは、今日で終わりにしませんか？<br>私たちと一緒に、次の歴史をつくりましょう。</div>
             </div>
           </div>
-        </div>
       </div>
     </div>
   </section>
@@ -600,7 +643,7 @@
   <hr>
 
   <!-- === 02 — 創業から現在までの歩み === -->
-  <section id="timeline" class="section">
+  <section id="timeline" class="section" style="background: var(--paper-2);">
     <div class="grid-sidebar">
       <div class="sidebar-sticky reveal">
         <div class="kicker">02 &mdash; Timeline</div>
@@ -690,17 +733,15 @@
     </div>
   </section>
 
-  <hr>
-
   <!-- === Contact CTA === -->
-  <section class="section" style="padding-bottom: 120px;">
+  <section class="cta-section">
     <div class="cta-center reveal">
       <div class="kicker" style="display: inline-block;">Contact</div>
       <h2 class="section-heading" style="font-size: clamp(48px, 8vw, 120px); line-height: 1.05; letter-spacing: -0.02em; margin: 20px 0;">
         まずは<br><em>ご相談</em>から。
       </h2>
       <p class="paragraph" style="max-width: 520px; margin: 24px auto 48px; font-size: 17px;">
-        AI導入・研修について、お気軽にお問い合わせください。
+        お気軽にお問い合わせください。
       </p>
       <a href="contact.html" class="btn-fill">
         お問い合わせはこちら &nbsp;&rarr;
