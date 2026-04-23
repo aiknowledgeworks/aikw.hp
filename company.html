@@ -313,20 +313,39 @@
 
     /* === Value card === */
     .value-item {
-      padding: 24px;
-      border-left: 2px solid var(--rule);
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 0 20px;
+      align-items: baseline;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .value-item:last-child {
+      border-bottom: none;
+    }
+    .value-num {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.22em;
+      font-variant-numeric: tabular-nums;
+      color: var(--ink-60);
+      line-height: 1;
+      padding-top: 4px;
     }
     .value-item h4 {
       font-family: var(--serif);
-      font-size: 16px;
+      font-size: 17px;
       font-weight: 400;
       color: var(--ink);
-      margin: 0 0 8px;
+      margin: 0 0 6px;
     }
     .value-item p {
       font-size: 14px;
+      line-height: 1.8;
       color: var(--ink-60);
       margin: 0;
+      grid-column: 2;
     }
 
     /* === CTA === */
@@ -667,68 +686,17 @@
     <div class="reveal">
       <h1>会社概要</h1>
       <p class="tagline"><span class="suki">"好き"</span>を信じ合える運命共同体</p>
+      <a href="story.html" style="display: inline-block; margin-top: 24px; font-size: 13px; letter-spacing: 0.12em; color: var(--ink-60); text-decoration: none; transition: color .3s;">創業ストーリーを読む &rarr;</a>
     </div>
   </section>
 
   <hr>
 
-  <!-- === 01 Origin Story === -->
-  <section id="origin" class="section">
-    <div class="grid-sidebar">
-      <div class="sidebar-sticky reveal">
-        <div class="kicker">01 &mdash; Origin</div>
-        <h2 class="section-heading section-heading-sm" style="margin-top: 8px;">
-          <span class="suki">"好き"</span>を、<br><em>実現する。</em>
-        </h2>
-      </div>
-      <div>
-        <p class="paragraph reveal" style="font-size: 17px; margin-bottom: 48px; max-width: 56ch;">
-          生成AIの可能性を活かし、誰もが自己実現できる世界を目指して創業しました。視力0.02の代表が「アイデアさえあれば何でもできる」と確信した原体験から、仲間との出会いを経て2025年4月に設立。
-        </p>
-
-        <a href="story.html" class="reveal story-link-card" style="display: block; background: var(--paper); border: 1px solid var(--rule); padding: clamp(28px, 3vw, 48px); text-decoration: none; transition: all .3s; position: relative;">
-          <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
-            <img src="images/uchibori.jpg" alt="内堀代表社員" style="width: 64px; height: 64px; object-fit: cover; border: 1px solid var(--rule);">
-            <div>
-              <div style="font-family: var(--serif); font-size: 20px; font-weight: 400; color: var(--ink);">内堀 善史</div>
-              <div style="font-size: 12px; color: var(--ink-60); letter-spacing: 0.08em; margin-top: 4px;">代表社員（社長）</div>
-            </div>
-          </div>
-          <div style="font-family: var(--serif); font-size: 17px; color: var(--ink); margin-bottom: 8px;">この仕事に人生をかける理由</div>
-          <p style="font-size: 15px; color: var(--ink-60); line-height: 1.9; margin: 0 0 24px;">
-            2018年のAI学習で視力を失いかけ、一度は夢を諦めた代表・内堀が、ChatGPTの登場をきっかけに再び立ち上がり、仲間と出会い、会社を設立するまでの物語。
-          </p>
-          <span style="font-size: 14px; letter-spacing: 0.12em; color: var(--accent); font-weight: 500;">創業ストーリーを読む &nbsp;&rarr;</span>
-        </a>
-
-        <!-- Mission card -->
-        <div class="reveal" style="border: 1px solid var(--rule); padding: clamp(24px, 3vw, 48px); position: relative; margin-top: 32px;">
-          <div style="position: absolute; top: 16px; left: 16px; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-40);">Mission</div>
-          <div style="text-align: center; padding: 48px 0;">
-            <img src="logo/AIナレッジワークス_logo_transparen.png" alt="AIKW Logo" style="width: 140px; height: 140px; margin: 0 auto 24px; object-fit: contain;" class="logo-breathe">
-            <div style="font-family: var(--serif); font-size: clamp(20px, 3vw, 32px); font-weight: 400; line-height: 1.5;">
-              自己実現の大量生産
-            </div>
-            <div style="font-size: 13px; color: var(--ink-60); margin-top: 12px; letter-spacing: 0.08em;">
-              Mass production of self-realization
-            </div>
-          </div>
-          <div style="position: absolute; bottom: 16px; left: 16px; right: 16px; display: flex; justify-content: space-between; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-40);">
-            <span>Est. 2025.04.16</span>
-            <span>Osaka, Japan</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr>
-
-  <!-- === 02 Company Info === -->
+  <!-- === 01 Company Info === -->
   <section id="basic-info" class="section">
     <div class="grid-sidebar">
       <div class="sidebar-sticky reveal">
-        <div class="kicker">02 &mdash; Info</div>
+        <div class="kicker">01 &mdash; Info</div>
       </div>
       <div>
         <h2 class="section-heading section-heading-md reveal" style="max-width: 18ch; margin-bottom: 64px;">
@@ -780,7 +748,7 @@
   <section id="philosophy" class="section" style="background: var(--paper-2);">
     <div class="grid-sidebar">
       <div class="sidebar-sticky reveal">
-        <div class="kicker">03 &mdash; Philosophy</div>
+        <div class="kicker">02 &mdash; Philosophy</div>
       </div>
       <div>
         <h2 class="section-heading section-heading-md reveal" style="max-width: 18ch; margin-bottom: 80px;">
@@ -808,65 +776,48 @@
 
         <h3 style="font-family: var(--serif); font-size: 22px; font-weight: 400; margin: 64px 0 32px; color: var(--ink);" class="reveal">Core Values</h3>
 
-        <div class="reveal" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule);">
-          <div class="value-item" style="background: var(--paper); border-left: 2px solid var(--accent);">
-            <h4>Self First</h4>
-            <p>まず自分を幸せに。その幸せを社会へ。</p>
+        <div class="reveal">
+          <div class="value-item">
+            <span class="value-num">01</span>
+            <div>
+              <h4>Self First</h4>
+              <p>まず自分を幸せに。その幸せを社会へ。</p>
+            </div>
           </div>
-          <div class="value-item" style="background: var(--paper); border-left: 2px solid var(--accent);">
-            <h4>Live from <span class="suki">"好き"</span></h4>
-            <p>"やりたい"を人生の起点に。</p>
+          <div class="value-item">
+            <span class="value-num">02</span>
+            <div>
+              <h4>Live from <span class="suki">"好き"</span></h4>
+              <p>"やりたい"を人生の起点に。</p>
+            </div>
           </div>
-          <div class="value-item" style="background: var(--paper); border-left: 2px solid var(--accent);">
-            <h4>Curiosity is Power</h4>
-            <p>好奇心が可能性をひらく。</p>
+          <div class="value-item">
+            <span class="value-num">03</span>
+            <div>
+              <h4>Curiosity is Power</h4>
+              <p>好奇心が可能性をひらく。</p>
+            </div>
           </div>
-          <div class="value-item" style="background: var(--paper); border-left: 2px solid var(--accent);">
-            <h4>Be Fluid, Not Fixed</h4>
-            <p>変わり続けることを恐れない。</p>
+          <div class="value-item">
+            <span class="value-num">04</span>
+            <div>
+              <h4>Be Fluid, Not Fixed</h4>
+              <p>変わり続けることを恐れない。</p>
+            </div>
           </div>
-          <div class="value-item" style="background: var(--paper); border-left: 2px solid var(--accent);">
-            <h4>Go at Your Own Pace</h4>
-            <p>速さより納得感。</p>
+          <div class="value-item">
+            <span class="value-num">05</span>
+            <div>
+              <h4>Go at Your Own Pace</h4>
+              <p>速さより納得感。</p>
+            </div>
           </div>
-          <div class="value-item" style="background: var(--paper); border-left: 2px solid var(--accent);">
-            <h4>Trust the Process</h4>
-            <p>結果だけでなく、過程を信じる。</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr>
-
-  <!-- === 03 Why Choose Us === -->
-  <section id="why-choose" class="section">
-    <div class="grid-sidebar">
-      <div class="sidebar-sticky reveal">
-        <div class="kicker">04 &mdash; Strengths</div>
-      </div>
-      <div>
-        <h2 class="section-heading section-heading-md reveal" style="max-width: 20ch; margin-bottom: 64px;">
-          なぜ<em>AIナレッジワークス</em>なのか
-        </h2>
-
-        <div class="card-grid reveal">
-          <div class="card-item">
-            <h4>実践重視のアプローチ</h4>
-            <p>単なる技術説明ではなく、実際の業務に即座に活用できる実践的な内容をお届けします。受講後すぐに効果を実感していただけます。</p>
-          </div>
-          <div class="card-item">
-            <h4>継続的なサポート</h4>
-            <p>導入後も継続的にサポート。AI活用の定着から発展的な活用まで、長期的なパートナーとして伴走します。</p>
-          </div>
-          <div class="card-item">
-            <h4>カスタマイズ対応</h4>
-            <p>業界や企業規模、課題に応じて研修内容や導入支援をカスタマイズ。お客様にとって最適なソリューションを提供します。</p>
-          </div>
-          <div class="card-item">
-            <h4>セキュアな環境構築</h4>
-            <p>機密情報を扱う企業様にも安心。オンプレミス環境でのAI活用やセキュアな運用方法もご提案可能です。</p>
+          <div class="value-item">
+            <span class="value-num">06</span>
+            <div>
+              <h4>Trust the Process</h4>
+              <p>結果だけでなく、過程を信じる。</p>
+            </div>
           </div>
         </div>
       </div>
