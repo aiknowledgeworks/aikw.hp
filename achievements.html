@@ -211,93 +211,6 @@
       margin: 0;
     }
 
-    /* === Timeline === */
-    .timeline-tabs {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 48px;
-    }
-    .tab-btn {
-      padding: 12px 28px;
-      border: 1px solid var(--ink);
-      background: transparent;
-      color: var(--ink);
-      font-family: var(--sans);
-      font-weight: 500;
-      font-size: 14px;
-      letter-spacing: 0.08em;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    .tab-btn:hover,
-    .tab-btn.active {
-      background: var(--ink);
-      color: var(--bg);
-    }
-    .timeline-tab-content {
-      display: none;
-    }
-    .timeline-tab-content.active {
-      display: block;
-    }
-
-    .timeline-container {
-      position: relative;
-      max-width: 800px;
-    }
-    .timeline-axis {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 1px;
-      height: 100%;
-      background: var(--rule);
-    }
-    .timeline-item {
-      position: relative;
-      padding-left: 48px;
-      padding-bottom: 48px;
-    }
-    .timeline-dot {
-      position: absolute;
-      left: -5px;
-      top: 4px;
-      width: 11px;
-      height: 11px;
-      background: var(--ink);
-      border-radius: 50%;
-      border: 2px solid var(--bg);
-    }
-    .timeline-date {
-      font-size: 11px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--ink-60);
-      margin-bottom: 8px;
-    }
-    .timeline-item h3 {
-      font-family: var(--serif);
-      font-size: 20px;
-      font-weight: 400;
-      color: var(--ink);
-      margin: 0 0 8px;
-    }
-    .timeline-item p {
-      font-size: 15px;
-      line-height: 1.9;
-      color: var(--ink-60);
-      margin: 0;
-    }
-    .timeline-item img {
-      margin-top: 16px;
-      border: 1px solid var(--rule);
-    }
-    .timeline-item .img-caption {
-      font-size: 11px;
-      color: var(--ink-40);
-      margin-top: 6px;
-    }
-
     /* === Video === */
     .video-wrapper {
       position: relative;
@@ -421,8 +334,6 @@
       nav ul li a::after { content: "\203A"; float: right; opacity: 0.4; font-size: 1.2em; }
       .nav-cta { border: none; padding: 18px 24px; margin-left: 0; text-align: left; }
       .nav-cta:hover { background: transparent; color: var(--ink); }
-
-      .timeline-item { padding-left: 36px; }
     }
 
     @media (max-width: 480px) {
@@ -537,104 +448,11 @@
 
   <hr>
 
-  <!-- === 03 Timeline === -->
-  <section id="timeline" class="section">
-    <div class="grid-sidebar">
-      <div class="sidebar-sticky reveal">
-        <div class="kicker">03 &mdash; Timeline</div>
-      </div>
-      <div>
-        <h2 class="section-heading section-heading-md reveal" style="max-width: 20ch; margin-bottom: 48px;">
-          創業から<em>現在</em>までの歩み
-        </h2>
-
-        <div class="timeline-tabs reveal">
-          <button class="tab-btn active" data-year="2026">2026年</button>
-          <button class="tab-btn" data-year="2025">2025年</button>
-        </div>
-
-        <!-- 2026 -->
-        <div id="year-2026" class="timeline-tab-content active">
-          <div class="timeline-container">
-            <div class="timeline-axis"></div>
-
-            <div class="timeline-item reveal">
-              <div class="timeline-dot"></div>
-              <div class="timeline-date">2026年1月</div>
-              <h3>同社第一号となるMCTライセンス取得</h3>
-              <p>内堀 代表社員が、セキュリティのアソシエートレベルであるSC-300試験に合格し、Microsoft認定トレーナー(MCT)を取得。</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- 2025 -->
-        <div id="year-2025" class="timeline-tab-content">
-          <div class="timeline-container">
-            <div class="timeline-axis"></div>
-
-            <div class="timeline-item reveal">
-              <div class="timeline-dot"></div>
-              <div class="timeline-date">2025年4月</div>
-              <h3>AIナレッジワークス合同会社 創業</h3>
-              <p>「"好き"を信じ合える運命共同体を育てる」をミッションに掲げ、AI技術を通じた自己実現支援事業をスタート</p>
-            </div>
-
-            <div class="timeline-item reveal">
-              <div class="timeline-dot" style="background: var(--accent);"></div>
-              <div class="timeline-date">2025年5月</div>
-              <h3>SHAIKE* トップアーティスト受賞</h3>
-              <p>AI技術を活用した創造的な取り組みが評価され、業界で注目される実績を獲得<br>*最も感動的なAI映画を発見・共有するための究極のプラットフォーム。</p>
-            </div>
-
-            <div class="timeline-item reveal">
-              <div class="timeline-dot" style="background: var(--accent);"></div>
-              <div class="timeline-date">2025年6月</div>
-              <h3>AIまなびラボ 学童施設へ導入決定</h3>
-              <p>子ども向けAI研修プログラムが大阪市内の教育施設（学童）で正式導入。次世代AI人材育成への第一歩</p>
-            </div>
-
-            <div class="timeline-item reveal">
-              <div class="timeline-dot"></div>
-              <div class="timeline-date">2025年8月</div>
-              <h3>Web3 Hackathon 2025 共催</h3>
-              <p>分散型GPUクラウドを提供するWeb3プロジェクトであるIO.netとの共催で、Web3 Hackathon 2025 アイディアソン（大阪）を開催。最先端技術の融合と人材育成を推進</p>
-            </div>
-
-            <div class="timeline-item reveal">
-              <div class="timeline-dot" style="background: var(--accent);"></div>
-              <div class="timeline-date">2025年9月</div>
-              <h3>日本植物バイオテクノロジー学会 (神戸) 大会で招待講演</h3>
-              <p>第42回 日本植物バイオテクノロジー学会（神戸）大会 S2「AIが拓く植物バイオの新時代」にて招待講演。学術界とAI産業の架け橋として貢献</p>
-            </div>
-
-            <div class="timeline-item reveal">
-              <div class="timeline-dot"></div>
-              <div class="timeline-date">2025年10月</div>
-              <h3>MCT Summit Japan 2025 参加</h3>
-              <p>内堀 代表社員がMicrosoft認定トレーナー(MCT)日本最大級のコミュニティイベントに参加。最新技術の共有とネットワーキングを通じて、技術教育の最前線で知見を深める</p>
-              <img src="images/MCP2025_02a.png" alt="MCT Summit Japan 2025" style="width: 70%; margin-top: 16px;">
-              <div class="img-caption">日本マイクロソフト株式会社 品川本社にて撮影</div>
-            </div>
-
-            <div class="timeline-item reveal">
-              <div class="timeline-dot"></div>
-              <div class="timeline-date">2025年11-12月</div>
-              <h3>Microsoft 365基礎力の底上げ／MCTを視野に専門性強化</h3>
-              <p>全社員のMicrosoft 365基礎力の底上げのため、MS-900（Microsoft 365 Fundamentals）の全社取得を推進。さらに、Microsoft認定トレーナー（MCT）資格取得を視野に入れ、MS-300・MS-102・PL-300を軸とした専門性強化に組織的に取り組んでいます。</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr>
-
-  <!-- === 04 Portfolio === -->
+  <!-- === 03 Portfolio === -->
   <section id="portfolio" class="section">
     <div class="grid-sidebar">
       <div class="sidebar-sticky reveal">
-        <div class="kicker">04 &mdash; Portfolio</div>
+        <div class="kicker">03 &mdash; Portfolio</div>
       </div>
       <div>
         <h2 class="section-heading section-heading-md reveal" style="max-width: 20ch; margin-bottom: 64px;">
@@ -674,7 +492,7 @@
   <section id="future" class="section" style="background: var(--paper-2);">
     <div class="grid-sidebar">
       <div class="sidebar-sticky reveal">
-        <div class="kicker">05 &mdash; Future</div>
+        <div class="kicker">04 &mdash; Future</div>
       </div>
       <div>
         <h2 class="section-heading section-heading-md reveal" style="max-width: 18ch; margin-bottom: 64px;">
@@ -797,25 +615,6 @@
         });
       });
 
-      // Timeline Tab Switching
-      const tabBtns = document.querySelectorAll('.tab-btn');
-      const tabContents = document.querySelectorAll('.timeline-tab-content');
-
-      tabBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          tabBtns.forEach(b => b.classList.remove('active'));
-          tabContents.forEach(c => c.classList.remove('active'));
-          btn.classList.add('active');
-          const year = btn.getAttribute('data-year');
-          const content = document.getElementById(`year-${year}`);
-          if (content) {
-            content.classList.add('active');
-            content.querySelectorAll('.reveal').forEach(el => {
-              revealObserver.observe(el);
-            });
-          }
-        });
-      });
     });
   </script>
 </body>
