@@ -172,50 +172,43 @@
     .grid-sidebar { display: grid; grid-template-columns: 200px 1fr; gap: 48px; align-items: start; }
     .sidebar-sticky { position: sticky; top: 140px; }
 
-    /* === Story chapter blocks === */
+    /* === Story chapter blocks (hairline-rule rows per handoff) === */
+    .story-chapters {
+      border-top: 1px solid var(--rule);
+    }
     .story-chapter {
       display: grid;
-      grid-template-columns: 44px 1fr;
-      gap: 24px;
-      padding: clamp(24px, 3vw, 40px);
-      background: var(--paper);
-      border: 1px solid var(--rule);
-      margin-bottom: 16px;
-      transition: box-shadow 0.3s ease;
+      grid-template-columns: 60px 1fr;
+      gap: 32px;
+      padding: 40px 0;
+      border-bottom: 1px solid var(--rule);
+      align-items: baseline;
     }
-    .story-chapter:hover {
-      box-shadow: 0 4px 24px rgba(44,42,38,0.06);
-    }
-    .story-chapter:last-child { margin-bottom: 0; }
     .story-chapter-num {
-      width: 44px; height: 44px;
-      display: inline-flex;
-      align-items: center; justify-content: center;
-      background: var(--ink);
-      color: var(--bg);
-      font-family: var(--display);
-      font-weight: 500;
-      font-size: 16px;
-      border-radius: 50%;
-      flex-shrink: 0;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      color: var(--ink-60);
+      font-variant-numeric: tabular-nums;
+      padding-top: 4px;
     }
     .story-chapter-title {
       font-family: var(--serif);
-      font-size: 18px;
-      font-weight: 500;
+      font-size: clamp(20px, 2.5vw, 26px);
+      font-weight: 400;
+      letter-spacing: -0.01em;
       color: var(--ink);
       margin: 0 0 16px;
     }
     .story-chapter p {
-      font-size: 15px;
-      line-height: 2;
+      font-size: 16px;
+      line-height: 1.9;
       color: var(--ink-60);
       margin: 0 0 14px;
+      max-width: 64ch;
     }
     .story-chapter p:last-child { margin-bottom: 0; }
-    .story-chapter strong { color: var(--ink); font-weight: 600; }
+    .story-chapter strong { color: var(--ink); font-weight: 500; }
     .story-quote {
-      background: var(--paper-2);
       border-left: 3px solid var(--accent);
       padding: 16px 20px;
       font-family: var(--serif);
@@ -226,21 +219,17 @@
       line-height: 1.8;
     }
 
-    /* === Story intro card === */
+    /* === Story intro === */
     .story-intro {
-      background: var(--paper);
-      border: 1px solid var(--rule);
-      padding: clamp(24px, 3vw, 40px);
-      margin-bottom: 24px;
+      margin-bottom: 48px;
     }
     .story-intro-subtitle {
       font-family: var(--serif);
-      font-size: 20px;
+      font-size: clamp(20px, 2.5vw, 26px);
       font-weight: 400;
+      letter-spacing: -0.01em;
       color: var(--ink);
-      margin: 0;
-      padding-top: 8px;
-      border-top: 1px solid var(--rule);
+      margin: 8px 0 0;
     }
 
     /* === Member card === */
@@ -303,7 +292,7 @@
     }
     .timeline-axis {
       position: absolute;
-      left: 16px;
+      left: 0;
       top: 0;
       width: 1px;
       height: 100%;
@@ -311,20 +300,13 @@
     }
     .timeline-item {
       position: relative;
-      padding: 24px 24px 24px 48px;
-      margin-bottom: 16px;
-      background: var(--paper);
-      border: 1px solid var(--rule);
-      margin-left: 16px;
-      transition: box-shadow 0.3s ease;
-    }
-    .timeline-item:hover {
-      box-shadow: 0 4px 24px rgba(44,42,38,0.06);
+      padding: 32px 0 32px 48px;
+      border-bottom: 1px solid var(--rule);
     }
     .timeline-dot {
       position: absolute;
-      left: -22px;
-      top: 28px;
+      left: -5px;
+      top: 38px;
       width: 11px;
       height: 11px;
       background: var(--ink);
@@ -476,8 +458,8 @@
       .nav-cta { border: none; padding: 18px 24px; margin-left: 0; text-align: left; }
       .nav-cta:hover { background: transparent; color: var(--ink); }
 
-      .story-chapter { grid-template-columns: 32px 1fr; gap: 14px; padding: clamp(20px, 3vw, 32px); }
-      .story-chapter-num { width: 32px; height: 32px; font-size: 13px; }
+      .story-chapter { grid-template-columns: 40px 1fr; gap: 16px; }
+      .story-chapter-num { font-size: 10px; }
       .story-chapter-title { font-size: 16px; }
       .timeline-item { padding-left: 36px; }
 
@@ -554,8 +536,9 @@
           <p class="story-intro-subtitle">この仕事に人生をかける理由</p>
         </div>
 
+        <div class="story-chapters">
           <div class="story-chapter reveal">
-            <div class="story-chapter-num">1</div>
+            <div class="story-chapter-num">01</div>
             <div>
               <h5 class="story-chapter-title">Aidemyで始まった挑戦（2018年）</h5>
               <p>2018年、私はオンライン学習サービスAidemyですべてのAI（機械学習）講座を修了し、ディープラーニングの世界にのめり込みました。ところが「深層強化学習」だけは、講師の説明を聞いても腑に落ちません。フィボナッチ数列や漸化式が絡む難解な数式に悩み、ついにはケンブリッジ大学院生を個別に雇って徹底的に教わるという"裏技"に走ります。</p>
@@ -564,7 +547,7 @@
           </div>
 
           <div class="story-chapter reveal">
-            <div class="story-chapter-num">2</div>
+            <div class="story-chapter-num">02</div>
             <div>
               <h5 class="story-chapter-title">ChatGPTの衝撃（2022–2024年）</h5>
               <p>2022年11月、ChatGPTが登場し、連日ニュースを賑わせます。友人・園田氏（アステリアART合同会社 代表）がメディア取材に引っ張りだこになっているのを横目に、「世の中、すごい時代になってきたな」と静観していました。</p>
@@ -577,7 +560,7 @@
           </div>
 
           <div class="story-chapter reveal">
-            <div class="story-chapter-num">3</div>
+            <div class="story-chapter-num">03</div>
             <div>
               <h5 class="story-chapter-title">"ツール芸"探究の日々（2024年末〜）</h5>
               <p>それからというもの、ChatGPT、Midjourney、NovelAI、Stable Diffusion、Make.com、Claude、Dify… ――あらゆる生成系ツールを浴びるように使い倒し、イラスト生成、文章執筆、日常の疑問解決、機械操作の手順書作成、アイデアブレスト、プレゼン資料のたたき台、LINEスタンプ＆チャットボット制作――を次々と"視力0.02"でも達成。</p>
@@ -586,7 +569,7 @@
           </div>
 
           <div class="story-chapter reveal">
-            <div class="story-chapter-num">4</div>
+            <div class="story-chapter-num">04</div>
             <div>
               <h5 class="story-chapter-title">"運命のもくもく会"（2025.01.19）</h5>
               <p>さらに学びを深めようと、2025年1月19日、大阪・天満の<strong>「生成AIもくもく会」</strong>に参加。ここで運命的な出会いがありました――博士号を持ち、10年以上AI研究に携わる元・理化学研究所の研究員。</p>
@@ -597,7 +580,7 @@
           </div>
 
           <div class="story-chapter reveal">
-            <div class="story-chapter-num">5</div>
+            <div class="story-chapter-num">05</div>
             <div>
               <h5 class="story-chapter-title">狂気のイケメン──康平くん参戦（2025.02.03）</h5>
               <div class="member-card">
@@ -615,7 +598,7 @@
           </div>
 
           <div class="story-chapter reveal">
-            <div class="story-chapter-num">6</div>
+            <div class="story-chapter-num">06</div>
             <div>
               <h5 class="story-chapter-title">AIナレッジワークス合同会社誕生（2025.04.16）</h5>
               <p>こうして2025年4月16日、<strong style="border-bottom: 2px solid var(--accent);">AIナレッジワークス合同会社</strong>を設立。</p>
@@ -628,7 +611,7 @@
           </div>
 
           <div class="story-chapter reveal">
-            <div class="story-chapter-num">7</div>
+            <div class="story-chapter-num">07</div>
             <div>
               <h5 class="story-chapter-title">そして今――あなたへ</h5>
               <p>AIツールの急激な進化は、<strong>多数派が少数派のエリートに勝てる時代</strong>を切り拓きつつあります。プログラミングができなくても、発想を形にできる。資本や学歴に頼らなくても、世界に挑戦できる。</p>
@@ -636,6 +619,7 @@
               <div class="story-quote">AIを"見て見ぬふり"するのは、今日で終わりにしませんか？<br>私たちと一緒に、次の歴史をつくりましょう。</div>
             </div>
           </div>
+        </div>
       </div>
     </div>
   </section>
