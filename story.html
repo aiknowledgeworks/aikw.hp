@@ -136,27 +136,24 @@
 
     /* === Hero === */
     .hero {
-      min-height: 60vh;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
+      padding: 180px var(--page-pad) 100px;
+      max-width: 1680px;
+      margin: 0 auto;
       text-align: center;
-      background: var(--ink);
-      color: var(--bg);
-      padding: clamp(140px, 22vh, 220px) var(--page-pad) clamp(80px, 12vh, 120px);
     }
     .hero h1 {
       font-family: var(--serif);
-      font-size: clamp(36px, 5vw, 72px);
+      font-size: clamp(40px, 6vw, 80px);
       font-weight: 400;
-      letter-spacing: -0.01em;
-      margin: 0 0 16px;
+      letter-spacing: -0.02em;
       line-height: 1.15;
+      margin: 0 0 20px;
     }
     .hero h1 em { font-family: var(--display); font-style: italic; }
-    .hero p {
-      font-size: 15px;
-      letter-spacing: 0.18em;
-      color: rgba(250,248,245,0.5);
+    .hero .tagline {
+      font-size: 17px;
+      color: var(--ink-60);
+      font-weight: 300;
       margin: 0;
     }
 
@@ -170,7 +167,6 @@
     .paragraph { margin: 0; font-size: 16px; line-height: 2; color: var(--ink-60); }
 
     .suki { font-family: var(--display); font-style: italic; color: var(--ink); font-weight: 400; }
-    .hero .suki { color: var(--bg); }
 
     /* === Grid sidebar === */
     .grid-sidebar { display: grid; grid-template-columns: 200px 1fr; gap: 48px; align-items: start; }
@@ -336,27 +332,15 @@
     }
 
     /* === CTA === */
-    .cta-section {
-      background: var(--ink);
-      padding: clamp(80px, 12vh, 140px) var(--page-pad);
+    .cta-center {
       text-align: center;
+      max-width: 1100px;
+      margin: 0 auto;
     }
-    .cta-section .kicker { color: rgba(250,248,245,0.4); display: inline-block; }
-    .cta-section h2 {
-      font-family: var(--serif);
-      font-size: clamp(36px, 5vw, 72px);
-      font-weight: 400;
-      color: var(--bg);
-      margin: 16px 0;
-      letter-spacing: -0.01em;
-      line-height: 1.1;
-    }
-    .cta-section h2 em { font-family: var(--display); font-style: italic; }
-    .cta-section p { color: rgba(250,248,245,0.5); font-size: 16px; margin: 0 0 40px; }
     .btn-fill {
       display: inline-flex; align-items: center;
       padding: 20px 36px;
-      background: var(--bg); color: var(--ink);
+      background: var(--ink); color: var(--bg);
       font-size: 14px; letter-spacing: 0.16em; text-transform: uppercase;
       transition: all .3s;
     }
@@ -423,6 +407,8 @@
 
     @media (max-width: 768px) {
       .section { padding: clamp(64px, 10vh, 96px) var(--page-pad); }
+      .hero { padding: 140px var(--page-pad) 80px; }
+      .hero h1 { font-size: clamp(32px, 8vw, 48px); }
 
       .hamburger { display: block; }
       nav {
@@ -494,8 +480,10 @@
 
   <!-- === Hero === -->
   <section class="hero">
-    <h1><span class="suki">"好き"</span>を、<em>実現する。</em></h1>
-    <p>創業から現在までの歩み</p>
+    <div class="reveal">
+      <h1><span class="suki">"好き"</span>を、<em>実現する。</em></h1>
+      <p class="tagline">創業から現在までの歩み</p>
+    </div>
   </section>
 
   <hr>
@@ -702,12 +690,22 @@
     </div>
   </section>
 
-  <!-- === CTA === -->
-  <section class="cta-section">
-    <div class="kicker">Contact</div>
-    <h2>まずは<br><em>ご相談</em>から。</h2>
-    <p>AI導入・研修について、お気軽にご相談ください。</p>
-    <a href="contact.html" class="btn-fill">お問い合わせはこちら &nbsp;&rarr;</a>
+  <hr>
+
+  <!-- === Contact CTA === -->
+  <section class="section" style="padding-bottom: 120px;">
+    <div class="cta-center reveal">
+      <div class="kicker" style="display: inline-block;">Contact</div>
+      <h2 class="section-heading" style="font-size: clamp(48px, 8vw, 120px); line-height: 1.05; letter-spacing: -0.02em; margin: 20px 0;">
+        まずは<br><em>ご相談</em>から。
+      </h2>
+      <p class="paragraph" style="max-width: 520px; margin: 24px auto 48px; font-size: 17px;">
+        AI導入・研修について、お気軽にお問い合わせください。
+      </p>
+      <a href="contact.html" class="btn-fill">
+        お問い合わせはこちら &nbsp;&rarr;
+      </a>
+    </div>
   </section>
 
   <!-- === Footer === -->
