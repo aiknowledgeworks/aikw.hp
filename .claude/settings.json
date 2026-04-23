@@ -4,7 +4,9 @@
       "Edit(*)",
       "Write(*)",
       "Bash(*)",
-      "WebSearch(*)"
+      "WebSearch(*)",
+      "WebFetch(*)",
+      "mcp__plugin_playwright_playwright__*"
     ]
   }
 }
