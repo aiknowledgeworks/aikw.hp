@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>創業ストーリー | AIナレッジワークス合同会社</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="logo/AIナレッジワークス_logo_transparen.png">
+  <link rel="shortcut icon" type="image/x-icon" href="logo/AIナレッジワークス_logo_transparen.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="logo/AIナレッジワークス_logo_transparen.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="logo/AIナレッジワークス_logo_transparen.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="logo/AIナレッジワークス_logo_transparen.png">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWFLPN1EZH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-DWFLPN1EZH');
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* === Design System Tokens === */
+    :root {
+      --bg: #FAF8F5;
+      --ink: #2C2A26;
+      --ink-80: #2C2A26CC;
+      --ink-60: #2C2A2699;
+      --ink-40: #2C2A2666;
+      --ink-15: #2C2A2626;
+      --ink-08: #2C2A2614;
+      --paper: #FFFFFF;
+      --paper-2: #F3EFE9;
+      --paper-3: #EBE6DD;
+      --rule: #D9D3C7;
+      --link: #1B5FA0;
+      --accent: #3da8c7;
+      --brand-gradient: linear-gradient(135deg, #6db5ff 0%, #a1e9d9 100%);
+      --serif: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+      --sans: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
+      --display: "Fraunces", "Noto Serif JP", serif;
+      --page-pad: clamp(24px, 5vw, 72px);
+      --measure: 64ch;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.8;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    ul { list-style: none; padding: 0; margin: 0; }
+    hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
+
+    body::after {
+      content: "";
+      position: fixed; inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.9'/></svg>");
+    }
+
+    ::selection { background: var(--ink); color: var(--bg); }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 1.2s cubic-bezier(.2,.7,.2,1), transform 1.2s cubic-bezier(.2,.7,.2,1);
+    }
+    .reveal.in { opacity: 1; transform: none; }
+
+    .kicker {
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink-60);
+    }
+
+    .section {
+      padding: clamp(96px, 14vh, 160px) var(--page-pad);
+      max-width: 1680px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* === Header / Nav === */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 28px var(--page-pad);
+      display: flex; align-items: center; justify-content: space-between;
+      background: transparent;
+      border-bottom: 1px solid transparent;
+      transition: all .5s cubic-bezier(.2,.7,.2,1);
+    }
+    header.scrolled {
+      padding-top: 14px; padding-bottom: 14px;
+      background: color-mix(in srgb, var(--bg) 85%, transparent);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom-color: var(--rule);
+    }
+    .logo-link { display: flex; align-items: center; gap: 12px; }
+    .logo-link img { height: 40px; transition: height .5s cubic-bezier(.2,.7,.2,1); }
+    header.scrolled .logo-link img { height: 32px; }
+    .logo-link span { font-family: var(--serif); font-size: 17px; letter-spacing: 0.04em; font-weight: 500; }
+    nav ul { display: flex; gap: 28px; align-items: center; }
+    nav a { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-60); transition: color .3s; }
+    nav a:hover { color: var(--ink); }
+    .nav-cta { padding: 10px 18px; border: 1px solid var(--ink); margin-left: 8px; transition: all .3s; }
+    .nav-cta:hover { background: var(--ink); color: var(--bg); }
+
+    @keyframes breathe {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      50% { transform: scale(1.04) rotate(2deg); }
+    }
+    .logo-breathe { animation: breathe 6s ease-in-out infinite; transform-origin: center; }
+
+    /* === Hero === */
+    .hero {
+      min-height: 60vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      background: var(--ink);
+      color: var(--bg);
+      padding: clamp(140px, 22vh, 220px) var(--page-pad) clamp(80px, 12vh, 120px);
+    }
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(36px, 5vw, 72px);
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      margin: 0 0 16px;
+      line-height: 1.15;
+    }
+    .hero h1 em { font-family: var(--display); font-style: italic; }
+    .hero p {
+      font-size: 15px;
+      letter-spacing: 0.18em;
+      color: rgba(250,248,245,0.5);
+      margin: 0;
+    }
+
+    /* === Section headings === */
+    .section-heading { font-family: var(--serif); font-weight: 400; line-height: 1.2; letter-spacing: -0.01em; margin: 0; }
+    .section-heading em { font-family: var(--display); font-style: italic; }
+    .section-heading-lg { font-size: clamp(40px, 6vw, 88px); line-height: 1.1; letter-spacing: -0.02em; }
+    .section-heading-md { font-size: clamp(34px, 4.5vw, 64px); }
+    .section-heading-sm { font-size: clamp(28px, 3.5vw, 48px); }
+
+    .paragraph { margin: 0; font-size: 16px; line-height: 2; color: var(--ink-60); }
+
+    .suki { font-family: var(--display); font-style: italic; color: var(--ink); font-weight: 400; }
+
+    /* === Grid sidebar === */
+    .grid-sidebar { display: grid; grid-template-columns: 200px 1fr; gap: 48px; align-items: start; }
+    .sidebar-sticky { position: sticky; top: 140px; }
+
+    /* === Story chapter blocks === */
+    .story-chapter {
+      display: grid;
+      grid-template-columns: 36px 1fr;
+      gap: 20px;
+      padding: 32px 0;
+      border-top: 1px solid var(--rule);
+    }
+    .story-chapter:last-child { padding-bottom: 0; }
+    .story-chapter-num {
+      width: 36px; height: 36px;
+      display: inline-flex;
+      align-items: center; justify-content: center;
+      background: var(--paper-2);
+      border: 1px solid var(--rule);
+      color: var(--accent);
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+    .story-chapter-title {
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--ink);
+      margin: 0 0 16px;
+    }
+    .story-chapter p {
+      font-size: 15px;
+      line-height: 2;
+      color: var(--ink-60);
+      margin: 0 0 14px;
+    }
+    .story-chapter p:last-child { margin-bottom: 0; }
+    .story-chapter strong { color: var(--ink); font-weight: 600; }
+    .story-quote {
+      background: var(--paper-2);
+      border-left: 3px solid var(--accent);
+      padding: 16px 20px;
+      font-family: var(--serif);
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--ink);
+      margin: 16px 0;
+      line-height: 1.8;
+    }
+
+    /* === Member card === */
+    .member-card {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .member-card img {
+      width: 80px; height: 80px;
+      object-fit: cover;
+      border: 1px solid var(--rule);
+    }
+    .member-card-name {
+      font-family: var(--serif);
+      font-size: 20px;
+      font-weight: 400;
+    }
+    .member-card-role {
+      font-size: 12px;
+      color: var(--ink-60);
+      letter-spacing: 0.08em;
+      margin-top: 4px;
+    }
+
+    /* === Timeline (Journey section) === */
+    .journey-timeline {
+      position: relative;
+      padding-left: 48px;
+    }
+    .journey-timeline::before {
+      content: '';
+      position: absolute;
+      left: 15px;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: var(--rule);
+    }
+    .journey-item {
+      position: relative;
+      padding-bottom: 40px;
+    }
+    .journey-item:last-child { padding-bottom: 0; }
+    .journey-dot {
+      position: absolute;
+      left: -40px;
+      top: 4px;
+      width: 11px; height: 11px;
+      border-radius: 50%;
+      background: var(--ink);
+      border: 2px solid var(--bg);
+      z-index: 1;
+    }
+    .journey-dot.highlight {
+      background: var(--accent);
+    }
+    .journey-date {
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-40);
+      margin-bottom: 6px;
+    }
+    .journey-item h3 {
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--ink);
+      margin: 0 0 8px;
+    }
+    .journey-item p {
+      font-size: 14px;
+      line-height: 1.9;
+      color: var(--ink-60);
+      margin: 0;
+      max-width: 56ch;
+    }
+    .journey-item img {
+      margin-top: 16px;
+      border: 1px solid var(--rule);
+    }
+    .journey-item .img-caption {
+      font-size: 11px;
+      color: var(--ink-40);
+      letter-spacing: 0.08em;
+      margin-top: 8px;
+    }
+
+    /* === CTA === */
+    .cta-section {
+      background: var(--ink);
+      padding: clamp(80px, 12vh, 140px) var(--page-pad);
+      text-align: center;
+    }
+    .cta-section .kicker { color: rgba(250,248,245,0.4); display: inline-block; }
+    .cta-section h2 {
+      font-family: var(--serif);
+      font-size: clamp(36px, 5vw, 72px);
+      font-weight: 400;
+      color: var(--bg);
+      margin: 16px 0;
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+    }
+    .cta-section h2 em { font-family: var(--display); font-style: italic; }
+    .cta-section p { color: rgba(250,248,245,0.5); font-size: 16px; margin: 0 0 40px; }
+    .btn-fill {
+      display: inline-flex; align-items: center;
+      padding: 20px 36px;
+      background: var(--bg); color: var(--ink);
+      font-size: 14px; letter-spacing: 0.16em; text-transform: uppercase;
+      transition: all .3s;
+    }
+    .btn-fill:hover { opacity: 0.85; }
+
+    /* === Footer === */
+    footer {
+      border-top: 1px solid var(--rule);
+      padding: 56px var(--page-pad) 40px;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      max-width: 1680px;
+      margin: 0 auto;
+    }
+    .footer-brand p { font-size: 13px; color: var(--ink-60); line-height: 2; margin-top: 16px; max-width: 340px; }
+    .footer-col-title { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-60); margin-bottom: 18px; }
+    .footer-col a { font-size: 14px; color: var(--ink); display: block; margin-bottom: 10px; transition: color .3s; }
+    .footer-col a:hover { color: var(--ink-60); }
+    .footer-bottom {
+      grid-column: 1 / -1;
+      padding-top: 32px; margin-top: 16px;
+      border-top: 1px solid var(--rule);
+      display: flex; justify-content: space-between;
+      font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--ink-60);
+    }
+
+    /* === Hamburger === */
+    .hamburger {
+      display: none;
+      width: 30px; height: 30px;
+      position: relative; cursor: pointer; z-index: 1010;
+      padding: 10px; box-sizing: content-box; margin: -10px;
+    }
+    .hamburger span {
+      display: block; position: absolute;
+      height: 1.5px; width: 100%;
+      background: var(--ink); opacity: 1; left: 0;
+      transform: rotate(0deg); transition: .25s ease-in-out;
+    }
+    .hamburger span:nth-child(1) { top: 0; }
+    .hamburger span:nth-child(2) { top: 9px; }
+    .hamburger span:nth-child(3) { top: 18px; }
+    .hamburger.active span:nth-child(1) { top: 9px; transform: rotate(135deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; left: -60px; }
+    .hamburger.active span:nth-child(3) { top: 9px; transform: rotate(-135deg); }
+
+    .overlay {
+      display: none; position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.4); z-index: 90;
+      backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px);
+      opacity: 0; transition: opacity 0.3s ease;
+    }
+    .overlay.active { display: block; opacity: 1; }
+
+    /* === Responsive === */
+    @media (max-width: 1024px) {
+      .grid-sidebar { grid-template-columns: 1fr; gap: 32px; }
+      .sidebar-sticky { position: static; }
+      footer { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .section { padding: clamp(64px, 10vh, 96px) var(--page-pad); }
+
+      .hamburger { display: block; }
+      nav {
+        position: fixed; top: 0; right: -100%;
+        width: 80%; max-width: 300px; height: 100vh;
+        background: var(--bg);
+        box-shadow: -2px 0 20px rgba(0,0,0,0.08);
+        transition: 0.3s ease;
+        padding-top: 80px; z-index: 95;
+        overflow-y: auto;
+      }
+      nav.active { right: 0; }
+      nav ul { flex-direction: column; gap: 0; }
+      nav ul li a {
+        padding: 18px 24px; display: block;
+        border-bottom: 1px solid var(--rule);
+        font-size: 14px; letter-spacing: 0.08em;
+        text-transform: none; color: var(--ink);
+      }
+      nav ul li a::after { content: "\203A"; float: right; opacity: 0.4; font-size: 1.2em; }
+      .nav-cta { border: none; padding: 18px 24px; margin-left: 0; text-align: left; }
+      .nav-cta:hover { background: transparent; color: var(--ink); }
+
+      .story-chapter { grid-template-columns: 28px 1fr; gap: 14px; }
+      .story-chapter-num { width: 28px; height: 28px; font-size: 12px; }
+      .story-chapter-title { font-size: 16px; }
+      .journey-timeline { padding-left: 36px; }
+      .journey-timeline::before { left: 11px; }
+      .journey-dot { left: -30px; }
+
+      footer { grid-template-columns: 1fr; gap: 32px; padding: 40px var(--page-pad); }
+      .footer-bottom { flex-direction: column; gap: 8px; }
+    }
+
+    @media (max-width: 480px) {
+      .section-heading-lg { font-size: clamp(32px, 8vw, 48px); }
+      .section-heading-md { font-size: clamp(26px, 7vw, 36px); }
+      .section-heading-sm { font-size: clamp(22px, 6vw, 30px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+      .logo-breathe { animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <!-- === Header === -->
+  <header id="site-header">
+    <a href="index.html" class="logo-link">
+      <img src="logo/AIナレッジワークス_logo_transparen.png" alt="AIナレッジワークス ロゴ" class="logo-breathe">
+      <span>AI Knowledge Works</span>
+    </a>
+    <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html#background">Background</a></li>
+        <li><a href="service.html">Services</a></li>
+        <li><a href="achievements.html">Achievements</a></li>
+        <li><a href="company.html">Company</a></li>
+        <li><a href="contact.html" class="nav-cta">Contact &rarr;</a></li>
+      </ul>
+    </nav>
+    <div class="overlay"></div>
+  </header>
+
+  <!-- === Hero === -->
+  <section class="hero">
+    <h1><span class="suki">"好き"</span>を、<em>実現する。</em></h1>
+    <p>創業から現在までの歩み</p>
+  </section>
+
+  <hr>
+
+  <!-- === 01 — 創業ストーリー === -->
+  <section id="founding-story" class="section">
+    <div class="grid-sidebar">
+      <div class="sidebar-sticky reveal">
+        <div class="kicker">01 &mdash; Founding</div>
+        <h2 class="section-heading section-heading-sm" style="margin-top: 8px;">
+          創業<br><em>ストーリー</em>
+        </h2>
+      </div>
+      <div>
+        <!-- 内堀代表 -->
+        <div class="reveal" style="background: var(--paper); border: 1px solid var(--rule); padding: clamp(24px, 3vw, 40px); margin-bottom: 32px;">
+          <div class="member-card">
+            <img src="images/uchibori.jpg" alt="内堀代表社員">
+            <div>
+              <div class="member-card-name">内堀 善史</div>
+              <div class="member-card-role">代表社員（社長）</div>
+            </div>
+          </div>
+
+          <div style="font-family: var(--serif); font-size: 18px; font-weight: 400; margin-bottom: 28px; color: var(--ink);">この仕事に人生をかける理由</div>
+
+          <div class="story-chapter reveal">
+            <div class="story-chapter-num">1</div>
+            <div>
+              <h5 class="story-chapter-title">Aidemyで始まった挑戦（2018年）</h5>
+              <p>2018年、私はオンライン学習サービスAidemyですべてのAI（機械学習）講座を修了し、ディープラーニングの世界にのめり込みました。ところが「深層強化学習」だけは、講師の説明を聞いても腑に落ちません。フィボナッチ数列や漸化式が絡む難解な数式に悩み、ついにはケンブリッジ大学院生を個別に雇って徹底的に教わるという"裏技"に走ります。</p>
+              <p>ところが――。1日10時間に及ぶコードと数式のにらめっこが続いた結果、もともと悪かった視力がさらに低下し、<strong>右0.02／左0.03という失明寸前のレベル</strong>に。泣く泣くキーボードを置き、AIエンジニアの道をいったん諦めました。</p>
+            </div>
+          </div>
+
+          <div class="story-chapter reveal">
+            <div class="story-chapter-num">2</div>
+            <div>
+              <h5 class="story-chapter-title">ChatGPTの衝撃（2022–2024年）</h5>
+              <p>2022年11月、ChatGPTが登場し、連日ニュースを賑わせます。友人・園田氏（アステリアART合同会社 代表）がメディア取材に引っ張りだこになっているのを横目に、「世の中、すごい時代になってきたな」と静観していました。</p>
+              <p>転機は2024年11月。久しぶりに再会したデザイナーが、</p>
+              <div class="story-quote">AIツールのおかげで、仕事の手間が9割減った</div>
+              <p>と鼻息荒く語るので、実際のワークフローを見せてもらいました。結果、私は<strong>二重の衝撃</strong>を受けます。</p>
+              <p>1. <strong>本当に90%業務が削減</strong>できている。<br>2. <strong>アウトプット品質が10倍</strong>に跳ね上がっている。</p>
+              <p>この瞬間、<strong>「視力を理由にAIを諦めるのは、ただの言い訳だ」</strong>と確信しました。</p>
+            </div>
+          </div>
+
+          <div class="story-chapter reveal">
+            <div class="story-chapter-num">3</div>
+            <div>
+              <h5 class="story-chapter-title">"ツール芸"探究の日々（2024年末〜）</h5>
+              <p>それからというもの、ChatGPT、Midjourney、NovelAI、Stable Diffusion、Make.com、Claude、Dify… ――あらゆる生成系ツールを浴びるように使い倒し、イラスト生成、文章執筆、日常の疑問解決、機械操作の手順書作成、アイデアブレスト、プレゼン資料のたたき台、LINEスタンプ＆チャットボット制作――を次々と"視力0.02"でも達成。</p>
+              <p>もはや<strong>「アイデアさえあれば、視力なんて関係ない」</strong>という確信が芽生えました。</p>
+            </div>
+          </div>
+
+          <div class="story-chapter reveal">
+            <div class="story-chapter-num">4</div>
+            <div>
+              <h5 class="story-chapter-title">"運命のもくもく会"（2025.01.19）</h5>
+              <p>さらに学びを深めようと、2025年1月19日、大阪・天満の<strong>「生成AIもくもく会」</strong>に参加。ここで運命的な出会いがありました――博士号を持ち、10年以上AI研究に携わる元・理化学研究所の研究員。</p>
+              <p>彼は開口一番、</p>
+              <div class="story-quote">そのうちプログラマーは不要になりますよ</div>
+              <p>とさらり。研究者とは思えない大胆な"未来予測"と、<strong>「AIで知の格差・資本格差をなくしたい」</strong>という志に胸を打たれ、その日の打ち上げで意気投合。この出会いが、AIナレッジワークス創業への大きなきっかけとなりました。</p>
+            </div>
+          </div>
+
+          <div class="story-chapter reveal">
+            <div class="story-chapter-num">5</div>
+            <div>
+              <h5 class="story-chapter-title">狂気のイケメン──康平くん参戦（2025.02.03）</h5>
+              <div class="member-card">
+                <img src="images/yamamoto.png" alt="康平くん">
+                <div>
+                  <div class="member-card-name">康平くん</div>
+                  <div class="member-card-role">天才エンジニア / 関西最大級AIコミュニティ Finding AI 代表</div>
+                </div>
+              </div>
+              <p>AIの急速な進化に食らいつくなら、<strong>若き天才</strong>の力は不可欠。そこで注目したのが、起業家が集うイベントで出逢った康平くん。モデル級のルックスとは裏腹に、AIの話になると<strong>"満月を見たオオカミ男"のごとく目が光るAI中毒者</strong>です笑</p>
+              <p>ビジョンを語ったところ、彼は二つ返事で参画。</p>
+              <div class="story-quote">技術も情熱も全部ぶっ込みます！</div>
+              <p>と即答し、コアメンバーが揃いました。</p>
+            </div>
+          </div>
+
+          <div class="story-chapter reveal">
+            <div class="story-chapter-num">6</div>
+            <div>
+              <h5 class="story-chapter-title">AIナレッジワークス合同会社誕生（2025.04.16）</h5>
+              <p>こうして2025年4月16日、<strong style="border-bottom: 2px solid var(--accent);">AIナレッジワークス合同会社</strong>を設立。</p>
+              <ul style="margin: 16px 0; padding-left: 1.5rem;">
+                <li style="padding: 4px 0; color: var(--ink-60);">・<strong style="color: var(--ink);">康平くん</strong>：動画生成界隈で密かに有名、関西最大級のAIコミュニティ Finding AI 代表。Notion公式セミナーでは満員御礼＆アンケート1位を獲得。</li>
+                <li style="padding: 4px 0; color: var(--ink-60);">・<strong style="color: var(--ink);">私</strong>：20年間の零細企業経営で培った"現場感覚"と"泥臭い営業力"。</li>
+              </ul>
+              <p>まったく毛色の違うメンバーが、<strong style="border-bottom: 2px solid var(--accent);">AIでエリート専用の武器を大衆の手に届ける</strong>という一点でタッグを組みました。</p>
+            </div>
+          </div>
+
+          <div class="story-chapter reveal">
+            <div class="story-chapter-num">7</div>
+            <div>
+              <h5 class="story-chapter-title">そして今――あなたへ</h5>
+              <p>AIツールの急激な進化は、<strong>多数派が少数派のエリートに勝てる時代</strong>を切り拓きつつあります。プログラミングができなくても、発想を形にできる。資本や学歴に頼らなくても、世界に挑戦できる。</p>
+              <p>私たちは、この流れを本気で加速させるために人生を賭けています。</p>
+              <div class="story-quote">AIを"見て見ぬふり"するのは、今日で終わりにしませんか？<br>私たちと一緒に、次の歴史をつくりましょう。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- === 02 — 創業から現在までの歩み === -->
+  <section id="journey" class="section" style="background: var(--paper-2);">
+    <div class="grid-sidebar">
+      <div class="sidebar-sticky reveal">
+        <div class="kicker">02 &mdash; Journey</div>
+        <h2 class="section-heading section-heading-sm" style="margin-top: 8px;">
+          創業からの<br><em>歩み</em>
+        </h2>
+      </div>
+      <div>
+        <p class="paragraph reveal" style="margin-bottom: 48px; max-width: 52ch;">
+          2025年4月の創業から、私たちが歩んできた道のり。小さな一歩の積み重ねが、今の私たちを形づくっています。
+        </p>
+
+        <div class="journey-timeline">
+          <!-- 2026 -->
+          <div style="font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-40); margin-bottom: 24px; margin-left: -48px; padding-left: 48px; border-bottom: 1px solid var(--rule); padding-bottom: 12px;" class="reveal">2026</div>
+
+          <div class="journey-item reveal">
+            <div class="journey-dot highlight"></div>
+            <div class="journey-date">2026年1月</div>
+            <h3>MCTライセンス取得</h3>
+            <p>内堀 代表社員が、セキュリティのアソシエートレベルであるSC-300試験に合格し、同社第一号のMicrosoft認定トレーナー（MCT）を取得。</p>
+          </div>
+
+          <!-- 2025 -->
+          <div style="font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-40); margin-bottom: 24px; margin-top: 24px; margin-left: -48px; padding-left: 48px; border-bottom: 1px solid var(--rule); padding-bottom: 12px;" class="reveal">2025</div>
+
+          <div class="journey-item reveal">
+            <div class="journey-dot highlight"></div>
+            <div class="journey-date">2025年11–12月</div>
+            <h3>Microsoft 365基礎力の底上げ／MCT取得に向けた専門性強化</h3>
+            <p>全社員のMicrosoft 365基礎力底上げのため、MS-900（Microsoft 365 Fundamentals）の全社取得を推進。さらにMCT資格取得を視野に入れ、MS-300・MS-102・PL-300を軸とした専門性強化に組織的に取り組む。</p>
+          </div>
+
+          <div class="journey-item reveal">
+            <div class="journey-dot"></div>
+            <div class="journey-date">2025年10月</div>
+            <h3>MCT Summit Japan 2025 参加</h3>
+            <p>内堀 代表社員がMicrosoft認定トレーナー（MCT）日本最大級のコミュニティイベントに参加。最新技術の共有とネットワーキングを通じて、技術教育の最前線で知見を深める。</p>
+            <img src="images/MCP2025_02a.png" alt="MCT Summit Japan 2025" style="width: 70%; max-width: 400px;">
+            <div class="img-caption">日本マイクロソフト株式会社 品川本社にて撮影</div>
+          </div>
+
+          <div class="journey-item reveal">
+            <div class="journey-dot highlight"></div>
+            <div class="journey-date">2025年9月</div>
+            <h3>日本植物バイオテクノロジー学会で招待講演</h3>
+            <p>第42回 日本植物バイオテクノロジー学会（神戸）大会 S2「AIが拓く植物バイオの新時代」にて招待講演。学術界とAI産業の架け橋として貢献。</p>
+          </div>
+
+          <div class="journey-item reveal">
+            <div class="journey-dot"></div>
+            <div class="journey-date">2025年8月</div>
+            <h3>Web3 Hackathon 2025 共催</h3>
+            <p>分散型GPUクラウドを提供するWeb3プロジェクト IO.net との共催で、Web3 Hackathon 2025 アイディアソン（大阪）を開催。最先端技術の融合と人材育成を推進。</p>
+          </div>
+
+          <div class="journey-item reveal">
+            <div class="journey-dot highlight"></div>
+            <div class="journey-date">2025年6月</div>
+            <h3>AIまなびラボ 学童施設へ導入決定</h3>
+            <p>子ども向けAI研修プログラムが大阪市内の教育施設（学童）で正式導入。次世代AI人材育成への第一歩。</p>
+          </div>
+
+          <div class="journey-item reveal">
+            <div class="journey-dot highlight"></div>
+            <div class="journey-date">2025年5月</div>
+            <h3>SHAIKE* トップアーティスト受賞</h3>
+            <p>AI技術を活用した創造的な取り組みが評価され、業界で注目される実績を獲得。<br><span style="font-size: 12px; color: var(--ink-40);">*最も感動的なAI映画を発見・共有するための究極のプラットフォーム</span></p>
+          </div>
+
+          <div class="journey-item reveal">
+            <div class="journey-dot highlight"></div>
+            <div class="journey-date">2025年4月16日</div>
+            <h3>AIナレッジワークス合同会社 創業</h3>
+            <p>「"好き"を信じ合える運命共同体を育てる」をミッションに掲げ、AI技術を通じた自己実現支援事業をスタート。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === CTA === -->
+  <section class="cta-section">
+    <div class="kicker">Contact</div>
+    <h2>まずは<br><em>ご相談</em>から。</h2>
+    <p>AI導入・研修について、お気軽にご相談ください。</p>
+    <a href="contact.html" class="btn-fill">お問い合わせはこちら &nbsp;&rarr;</a>
+  </section>
+
+  <!-- === Footer === -->
+  <footer>
+    <div class="footer-brand">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <img src="logo/AIナレッジワークス_logo_transparen.png" width="36" height="36" alt="" style="object-fit: contain;">
+        <span style="font-family: var(--serif); font-size: 17px; letter-spacing: 0.04em;">AI Knowledge Works</span>
+      </div>
+      <p>AIツールを使って自分だけの作品を創り、発表する体験を通じてデジタルリテラシーを育成する小さなスタジオ。</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Pages</div>
+      <a href="service.html">Services</a>
+      <a href="achievements.html">Achievements</a>
+      <a href="company.html">Company</a>
+      <a href="story.html">Story</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Connect</div>
+      <a href="https://www.youtube.com/@AIKnowledgeWorks" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://note.com/aiknowledgeworks" target="_blank" rel="noopener">Note</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Office</div>
+      <span style="font-size: 14px; color: var(--ink);">Tokyo, Japan</span>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2025 AI Knowledge Works, LLC.</span>
+      <span>Made with AI in Tokyo</span>
+    </div>
+  </footer>
+
+  <!-- === Scripts === -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('in');
+            revealObserver.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+      document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+      setTimeout(() => {
+        document.querySelectorAll('.reveal').forEach(el => {
+          if (!el.classList.contains('in')) el.classList.add('in');
+        });
+      }, 3000);
+
+      const header = document.getElementById('site-header');
+      window.addEventListener('scroll', () => {
+        header.classList.toggle('scrolled', window.scrollY > 40);
+      }, { passive: true });
+
+      const hamburger = document.querySelector('.hamburger');
+      const nav = document.querySelector('nav');
+      const overlay = document.querySelector('.overlay');
+      const navLinks = document.querySelectorAll('nav a');
+
+      function toggleMenu() {
+        hamburger.classList.toggle('active');
+        nav.classList.toggle('active');
+        overlay.classList.toggle('active');
+        document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
+      }
+
+      hamburger.addEventListener('click', toggleMenu);
+      overlay.addEventListener('click', toggleMenu);
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          if (nav.classList.contains('active')) toggleMenu();
+        });
+      });
+    });
+  </script>
+</body>
+</html>

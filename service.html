@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>事業内容・サービス | AIナレ��ジワークス合同会社</title>
+  <title>事業内容・サービス | AIナレッジワークス合同会社</title>
 
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="logo/AIナレッジワークス_logo_transparen.png">
@@ -18,1202 +18,1538 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-DWFLPN1EZH');
   </script>
-
-
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;600;800&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&display=swap" rel="stylesheet" />
 
   <style>
-    /* === Design System === */
+    /* === Design System Tokens === */
     :root {
-      --brand-blue: #6db5ff;
-      --brand-mint: #a1e9d9;
-      --brand-gradient: linear-gradient(135deg, #6db5ff 0%, #a1e9d9 100%);
-      --primary-gradient: linear-gradient(135deg, #6db5ff 0%, #a1e9d9 100%);
-      --dark: #0f1923;
-      --dark-sub: #2a3a4a;
-      --light: #ffffff;
-      --surface: #f4f7fa;
+      --bg: #FAF8F5;
+      --ink: #2C2A26;
+      --ink-80: #2C2A26CC;
+      --ink-60: #2C2A2699;
+      --ink-40: #2C2A2666;
+      --ink-15: #2C2A2626;
+      --ink-08: #2C2A2614;
+      --paper: #FFFFFF;
+      --paper-2: #F3EFE9;
+      --paper-3: #EBE6DD;
+      --rule: #D9D3C7;
+      --link: #1B5FA0;
       --accent: #3da8c7;
       --accent-warm: #d4a26a;
-      --text: #1c2833;
-      --text-sub: #5a6e7f;
-      --border: #dfe6ed;
-      --font-display: "Shippori Mincho B1", "Georgia", serif;
-      --font-body: "Zen Kaku Gothic New", "Helvetica Neue", sans-serif;
+      --brand-gradient: linear-gradient(135deg, #6db5ff 0%, #a1e9d9 100%);
+
+      --serif: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+      --sans: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
+      --display: "Fraunces", "Noto Serif JP", serif;
+
+      --page-pad: clamp(24px, 5vw, 72px);
+      --measure: 64ch;
     }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    /* === Reset === */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
-      font-family: var(--font-body);
-      background: var(--light);
-      color: var(--text);
-      line-height: 1.85;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.8;
       font-weight: 400;
       letter-spacing: 0.02em;
       -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
     }
-    img { max-width: 100%; display: block; }
     a { color: inherit; text-decoration: none; }
-    ul { list-style: none; }
+    img { display: block; max-width: 100%; }
+    ul { list-style: none; padding: 0; margin: 0; }
+    hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 
-    /* === ヘッダー === */
-    header {
-      position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
-      background: rgba(255, 255, 255, .92); backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(0,0,0,.06);
+    /* === Grain overlay === */
+    body::after {
+      content: "";
+      position: fixed; inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.9'/></svg>");
     }
-    .container { width: 88%; max-width: 1140px; margin: 0 auto; }
-    .header-inner { display: flex; align-items: center; justify-content: space-between; padding: .85rem 0; }
-    .logo { display: flex; align-items: center; }
-    .logo img { height: 40px; }
-    .logo span { font-family: var(--font-display); font-weight: 600; margin-left: 12px; font-size: 1rem; letter-spacing: 0.04em; color: var(--dark); }
-    nav ul { display: flex; flex-wrap: wrap; gap: 1.6rem; }
-    nav a { font-weight: 500; font-size: 0.88rem; letter-spacing: 0.06em; transition: color .25s; color: var(--text-sub); }
-    nav a:hover { color: var(--accent); }
 
-    /* === セクション共通 === */
-    section { padding: 120px 0; }
-    .section-title { font-family: var(--font-display); font-size: 2rem; font-weight: 600; text-align: center; margin-bottom: 1rem; color: var(--dark); letter-spacing: 0.04em; }
-    .section-subtitle { text-align: center; color: var(--text-sub); margin-bottom: 3rem; font-size: 0.95rem; font-weight: 300; letter-spacing: 0.03em; }
+    /* === Selection === */
+    ::selection { background: var(--ink); color: var(--bg); }
+
+    /* === Scroll reveal === */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 1.2s cubic-bezier(.2,.7,.2,1), transform 1.2s cubic-bezier(.2,.7,.2,1);
+    }
+    .reveal.in {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* === Kicker label === */
+    .kicker {
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink-60);
+    }
+
+    /* === Section base === */
+    .section {
+      padding: clamp(96px, 14vh, 160px) var(--page-pad);
+      max-width: 1680px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* === Header / Nav === */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 28px var(--page-pad);
+      display: flex; align-items: center; justify-content: space-between;
+      background: transparent;
+      border-bottom: 1px solid transparent;
+      transition: all .5s cubic-bezier(.2,.7,.2,1);
+    }
+    header.scrolled {
+      padding-top: 14px; padding-bottom: 14px;
+      background: color-mix(in srgb, var(--bg) 85%, transparent);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom-color: var(--rule);
+    }
+    .logo-link {
+      display: flex; align-items: center; gap: 12px;
+    }
+    .logo-link img {
+      height: 40px;
+      transition: height .5s cubic-bezier(.2,.7,.2,1);
+    }
+    header.scrolled .logo-link img { height: 32px; }
+    .logo-link span {
+      font-family: var(--serif);
+      font-size: 17px;
+      letter-spacing: 0.04em;
+      font-weight: 500;
+    }
+    nav ul {
+      display: flex; gap: 28px; align-items: center;
+    }
+    nav a {
+      font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--ink-60);
+      transition: color .3s;
+    }
+    nav a:hover { color: var(--ink); }
+    .nav-cta {
+      padding: 10px 18px;
+      border: 1px solid var(--ink);
+      margin-left: 8px;
+      transition: all .3s;
+    }
+    .nav-cta:hover {
+      background: var(--ink);
+      color: var(--bg);
+    }
+
+    /* === Logo breathing === */
+    @keyframes breathe {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      50% { transform: scale(1.04) rotate(2deg); }
+    }
+    .logo-breathe {
+      animation: breathe 6s ease-in-out infinite;
+      transform-origin: center;
+    }
 
     /* === Hero === */
     .hero {
-      height: 50vh; background: var(--dark);
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      text-align: center; color: var(--light);
+      min-height: 50vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      background: var(--ink);
+      color: var(--bg);
+      padding: clamp(120px, 20vh, 200px) var(--page-pad) clamp(80px, 12vh, 120px);
     }
-    .hero h1 { font-family: var(--font-display); font-size: 2.4rem; margin-bottom: .5rem; letter-spacing: 0.06em; font-weight: 600; }
-    .hero p.tagline { font-size: 1.1rem; font-weight: 300; opacity: 0.7; }
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      margin: 0 0 16px;
+    }
+    .hero p {
+      font-size: 15px;
+      letter-spacing: 0.18em;
+      color: rgba(250,248,245,0.5);
+      margin: 0;
+    }
 
-    /* === カード === */
+    /* === Section headings === */
+    .section-heading {
+      font-family: var(--serif);
+      font-weight: 400;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      margin: 0;
+    }
+    .section-heading em {
+      font-family: var(--display);
+      font-style: italic;
+    }
+    .section-heading-lg {
+      font-size: clamp(40px, 6vw, 88px);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+    .section-heading-md {
+      font-size: clamp(34px, 4.5vw, 64px);
+    }
+    .section-heading-sm {
+      font-size: clamp(28px, 3.5vw, 48px);
+    }
+
+    /* === Two-column layout === */
+    .grid-sidebar {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+    .sidebar-sticky {
+      position: sticky; top: 140px;
+    }
+
+    /* === Paragraph style === */
+    .paragraph {
+      margin: 0;
+      font-size: 16px;
+      line-height: 2;
+      color: var(--ink-60);
+    }
+
+    /* === Card styles === */
     .card {
-      background: var(--light);
-      border: 1px solid var(--border);
+      background: var(--paper);
+      border: 1px solid var(--rule);
       padding: 2rem;
-      opacity: 0; transform: translateY(30px); transition: all .7s cubic-bezier(.23,1,.32,1);
     }
-    .card.active { opacity: 1; transform: translateY(0); }
-    .card h3, .card h4 { font-family: var(--font-display); margin-bottom: .6rem; color: var(--dark); font-size: 1.15rem; font-weight: 600; }
+    .card h3, .card h4 {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin: 0 0 .6rem;
+      color: var(--ink);
+    }
+    .card p {
+      font-size: 15px;
+      line-height: 1.9;
+      color: var(--ink-60);
+      margin: 0;
+    }
 
-    /* 好きのスタイル */
-    .suki {
-      font-family: var(--font-display);
-      font-size: 1.1em;
-      font-weight: 600;
-      color: var(--accent);
-      display: inline;
-      position: relative;
-      padding: 0 2px;
-      transform: none;
+    /* === Card grid === */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
     }
-    .suki::after {
+    .card-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* === Service row (from index) === */
+    .service-row {
+      display: grid;
+      grid-template-columns: 60px 1fr 2fr;
+      gap: 32px;
+      padding: 40px 0;
+      border-bottom: 1px solid var(--rule);
+      align-items: baseline;
+    }
+    .service-name {
+      font-family: var(--serif);
+      font-size: 26px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+    }
+    .service-jp {
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      color: var(--ink-60);
+      margin-top: 6px;
+    }
+    .service-desc {
+      margin: 0; font-size: 16px; line-height: 1.9;
+      color: var(--ink-60);
+      max-width: 42ch;
+    }
+
+    /* === Pricing table === */
+    .table-scroll {
+      position: relative;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .pricing-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      min-width: 640px;
+    }
+    .pricing-table thead th {
+      background: var(--paper-2);
+      color: var(--ink);
+      font-weight: 600;
+      padding: 14px 16px;
+      border-bottom: 2px solid var(--rule);
+      text-align: center;
+      font-size: 14px;
+      letter-spacing: 0.02em;
+    }
+    .pricing-table tbody td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--rule);
+      text-align: center;
+      font-size: 14px;
+      color: var(--ink-80);
+    }
+    .pricing-table tbody tr:nth-child(even) td {
+      background: var(--paper-2);
+    }
+    .pricing-table th:first-child,
+    .pricing-table td:first-child {
+      text-align: left;
+      font-weight: 500;
+      color: var(--ink);
+    }
+    .pricing-table .highlight {
+      background: rgba(61,168,199,0.06);
+      font-weight: 600;
+    }
+
+    /* === Badge === */
+    .badge {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 999px;
+      padding: 0.2rem 0.55rem;
+      font-size: 0.7rem;
+      margin-left: 0.4rem;
+      vertical-align: middle;
+      letter-spacing: 0.04em;
+    }
+
+    /* === Value grid === */
+    .value-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+    .value-card {
+      background: var(--paper);
+      padding: 1.5rem;
+      border: 1px solid var(--rule);
+      position: relative;
+      overflow: hidden;
+    }
+    .value-card::before {
       content: '';
       position: absolute;
-      bottom: 2px;
+      top: 0; left: 0;
+      width: 3px; height: 100%;
+      background: var(--brand-gradient);
+    }
+    .value-title {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      margin: 0 0 .5rem;
+      color: var(--ink);
+      font-weight: 500;
+    }
+    .value-card p {
+      margin: 0;
+      color: var(--ink-60);
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    /* === Problem list === */
+    .problem-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 0.75rem;
+      padding: 0; margin: 0;
+      text-align: center;
+    }
+    .problem-list li {
+      position: relative;
+      list-style: none;
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      padding: 0.9rem 1rem;
+      font-size: 0.95rem;
+      color: var(--ink);
+      transition: transform .2s ease;
+    }
+    .problem-list li::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: var(--brand-gradient);
+    }
+    .problem-list li:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,.06);
+    }
+    .highlight-text {
+      background: none;
+      color: var(--ink);
+      padding: 0;
+      font-weight: 700;
+      border-bottom: 3px solid var(--accent-warm);
+    }
+
+    /* === Process steps === */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    .process-step {
+      background: var(--paper);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      border: 1px solid var(--rule);
+    }
+    .step-number {
+      display: inline-flex;
+      align-items: center; justify-content: center;
+      width: 36px; height: 36px;
+      background: var(--paper-2);
+      border: 1px solid var(--rule);
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      font-family: var(--serif);
+    }
+    .process-step h4 {
+      font-family: var(--serif);
+      color: var(--ink);
+      margin: 0 0 0.75rem;
+      font-weight: 500;
+      font-size: 1rem;
+    }
+    .process-step p {
+      color: var(--ink-60);
+      font-size: 14px;
+      margin: 0;
+      line-height: 1.8;
+    }
+
+    /* === Service features list === */
+    .service-features { margin-top: 0.5rem; }
+    .service-features li {
+      padding: 0.4rem 0 0.4rem 1.5rem;
+      position: relative;
+      color: var(--ink-60);
+      font-size: 0.9rem;
+    }
+    .service-features li::before {
+      content: '—';
+      position: absolute;
       left: 0;
+      color: var(--accent);
+    }
+
+    /* === Service tabs === */
+    .service-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .service-tab {
+      cursor: pointer;
+      padding: 1.25rem 1.75rem;
+      background: var(--paper);
+      color: var(--ink);
+      text-align: center;
+      min-width: 170px;
+      transition: all 0.3s ease;
+      border: 1px solid var(--rule);
+    }
+    .service-tab.active {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+    }
+    .service-tab h3 {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 500;
+      margin: 0;
+    }
+    .service-tab p {
+      font-size: 0.8rem;
+      margin: 0.35rem 0 0;
+      color: var(--ink-60);
+    }
+    .service-tab.active p {
+      color: rgba(250,248,245,0.6);
+    }
+
+    .service-tab.clicked {
+      animation: clickEffect 0.15s ease;
+    }
+    @keyframes clickEffect {
+      0% { transform: scale(1); }
+      50% { transform: scale(0.95); }
+      100% { transform: scale(1); }
+    }
+
+    /* === Service content sections === */
+    .service-content {
+      padding: clamp(80px, 10vh, 120px) var(--page-pad);
+      max-width: 1680px;
+      margin: 0 auto;
       width: 100%;
-      height: 2px;
-      background: var(--accent);
-      opacity: 0.5;
     }
 
-    /* === アニメーション === */
-    .reveal {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all .6s ease;
+    /* === Content headings === */
+    .content-title {
+      font-family: var(--serif);
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 400;
+      text-align: center;
+      margin: 0 0 12px;
+      letter-spacing: -0.01em;
     }
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
+    .content-subtitle {
+      text-align: center;
+      color: var(--ink-60);
+      margin: 0 0 clamp(40px, 5vh, 64px);
+      font-size: 15px;
+      letter-spacing: 0.02em;
+    }
+    .content-section-title {
+      font-family: var(--serif);
+      font-size: clamp(22px, 3vw, 32px);
+      font-weight: 400;
+      margin: 0 0 1.5rem;
+      text-align: center;
+      letter-spacing: -0.01em;
     }
 
+    /* === Feature box (hero-style) === */
+    .feature-box {
+      max-width: 900px;
+      margin: 0 auto 3rem;
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-top: 2px solid var(--accent);
+      padding: 2.5rem;
+      text-align: center;
+    }
+    .feature-box h3 {
+      font-family: var(--serif);
+      font-size: clamp(20px, 2.5vw, 28px);
+      color: var(--ink);
+      margin: 0 0 1rem;
+      font-weight: 400;
+      line-height: 1.6;
+    }
+    .feature-box p {
+      font-size: 15px;
+      color: var(--ink-60);
+      line-height: 1.8;
+      margin: 0;
+    }
+    .feature-box .price {
+      font-family: var(--serif);
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 500;
+      color: var(--ink);
+      margin-top: 1.5rem;
+    }
+    .feature-box .price small {
+      font-size: 0.5em;
+      font-weight: 400;
+    }
+    .feature-box .price-note {
+      font-size: 13px;
+      color: var(--ink-60);
+      margin-top: 4px;
+    }
+
+    /* === Video gallery === */
+    .video-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .video-item {
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      padding: 1.25rem;
+      text-align: center;
+    }
+    .video-item video {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: contain;
+      background: #0f1923;
+      margin-bottom: 0.75rem;
+    }
+    .video-item p {
+      font-size: 13px;
+      color: var(--ink-60);
+      margin: 0;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+
+    /* === AI video hero media === */
     .ai-video-hero-media {
-      margin-top: 2rem;
+      margin: 0 auto 1.5rem;
       display: flex;
       justify-content: center;
     }
-
     .ai-video-hero-media img {
       width: 260px;
       max-width: 100%;
     }
 
-    /* === サービスカード === */
-    .services-grid { 
-      display: grid; 
-      grid-template-columns: repeat(auto-fit, minmax(350px,1fr)); 
-      gap: 2rem; 
-      margin-top: 2rem; 
-    }
-    .service-card {
-      background: var(--light);
+    /* === Quote / callout === */
+    .quote-box {
+      max-width: 900px;
+      margin: 0 auto 3rem;
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
       padding: 2.5rem;
-      border: 1px solid var(--border);
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all .7s cubic-bezier(.23,1,.32,1);
+    }
+    .quote-box h3 {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      color: var(--ink);
+      margin: 0 0 1.25rem;
+      font-weight: 500;
+    }
+    .quote-box li {
+      padding: 0.5rem 0 0.5rem 1.5rem;
       position: relative;
-      overflow: hidden;
+      color: var(--ink-60);
+      font-size: 15px;
     }
-    .service-card.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .service-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--accent);
-    }
-    .service-card:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: var(--brand-gradient);
-    }
-    .service-icon {
-      font-size: 2rem;
-      color: var(--accent);
-      margin-bottom: 1.2rem;
-      display: inline-block;
-    }
-    .service-card h3 {
-      font-family: var(--font-display);
-      font-size: 1.3rem;
-      margin-bottom: .8rem;
-      color: var(--dark);
-      font-weight: 600;
-    }
-    .service-card .description {
-      color: var(--text-sub);
-      font-size: 0.95rem;
-      margin-bottom: 1.5rem;
-      line-height: 1.8;
-    }
-    .service-features {
-      margin-top: 1.5rem;
-    }
-    .service-features h4 {
-      font-family: var(--font-display);
-      color: var(--dark);
-      font-size: 1rem;
-      margin-bottom: 0.75rem;
-      font-weight: 600;
-    }
-    .service-features ul {
-      list-style: none;
-      padding: 0;
-    }
-    .service-features li {
-      padding: 0.4rem 0;
-      padding-left: 1.5rem;
-      position: relative;
-      color: var(--text-sub);
-      font-size: 0.9rem;
-    }
-    .service-features li:before {
-      content: '—';
+    .quote-box li span {
       position: absolute;
       left: 0;
       color: var(--accent);
-      font-weight: 400;
     }
 
-    /* === HP制作: レイアウト改善 === */
-    .services-grid { align-items: stretch; }
-    .service-card { display: flex; flex-direction: column; height: 100%; }
-    .icon-badge {
-      width: 56px; height: 56px; border-radius: 4px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      color: var(--accent); display: inline-flex; align-items: center; justify-content: center;
-      font-size: 1.5rem; margin-bottom: 1rem;
-    }
-
-    .badge {
-      display: inline-block; background: var(--accent); color: #fff;
-      border-radius: 999px; padding: 0.25rem 0.6rem; font-size: 0.75rem;
-      margin-left: 0.5rem; vertical-align: middle;
-    }
-
-    .table-scroll {
-      position: relative;
-      overflow-x: auto;
-      overflow-y: hidden;
-      -webkit-overflow-scrolling: touch;
-    }
-    .pricing-table { width: 100%; border-collapse: separate; border-spacing: 0; min-width: 720px; }
-    .pricing-table thead th {
-      background: #f1f6ff; color: #2b3a4a; font-weight: 700;
-      padding: 12px 14px; border-bottom: 2px solid #e3ecf8; text-align: center;
-    }
-    .pricing-table tbody td { padding: 12px 14px; border-bottom: 1px solid #eef2f6; text-align: center; }
-    .pricing-table tbody tr:nth-child(even) td { background: #fafbfe; }
-    .pricing-table th:first-child, .pricing-table td:first-child { position: sticky; left: 0; background: inherit; z-index: 1; }
-    .pricing-table .highlight { background: rgba(0, 201, 167, 0.06); font-weight: 700; }
-
-    .value-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
-    .value-card { background: #fff; padding: 1.5rem; border: 1px solid var(--border); position: relative; overflow: hidden; }
-    .value-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--brand-gradient); }
-    .value-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem; }
-    .value-icon { width: 36px; height: 36px; border-radius: 4px; background: var(--surface); border: 1px solid var(--border); color: var(--accent); display: inline-flex; align-items: center; justify-content: center; font-size: 1rem; }
-    .value-title { font-size: 1.15rem; margin: 0; color: var(--dark); font-weight: 800; }
-    .value-card p { margin-top: 0.25rem; color: #555; }
-
-    .quote-card { background: var(--surface); border-left: 3px solid var(--accent); padding: 1.5rem 1.25rem; font-weight: 600; color: var(--dark); font-family: var(--font-display); }
-    .callout { background: var(--light); border: 1px solid var(--border); border-left: 3px solid var(--accent); padding: 1rem; }
-
-    .problem-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0.75rem; padding: 0; margin: 0; text-align: center; }
-    .problem-list li { position: relative; list-style: none; background: var(--light); border: 1px solid var(--border); padding: 0.9rem 1rem; font-size: 0.95rem; color: var(--text); transition: transform .2s ease; }
-    .problem-list li::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--brand-gradient); }
-    .problem-list li:nth-child(even) { background: #fcfefe; }
-    .problem-list li:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,.08); }
-
-    .highlight-text { background: none; color: var(--dark); padding: 0; font-weight: 700; border-bottom: 3px solid var(--accent-warm); }
-
-    /* === プロセスカード === */
-    .process-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-    .process-step {
-      background: var(--light);
-      padding: 2rem 1.5rem;
-      text-align: center;
-      border: 1px solid var(--border);
-      position: relative;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all .7s cubic-bezier(.23,1,.32,1);
-    }
-    .process-step.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .step-number {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 36px;
-      height: 36px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      color: var(--accent);
-      border-radius: 4px;
-      font-weight: 600;
-      font-size: 1rem;
-      margin-bottom: 1rem;
-      font-family: var(--font-display);
-    }
-    .process-step h4 {
-      color: var(--dark);
-      margin-bottom: 0.75rem;
-      font-weight: 600;
-    }
-    .process-step p {
-      color: #666;
-      font-size: 0.95rem;
-    }
-
-    /* === CTA セクション === */
+    /* === CTA section === */
     .cta-section {
-      background: var(--dark);
-      color: var(--light);
+      background: var(--ink);
+      padding: clamp(80px, 12vh, 140px) var(--page-pad);
       text-align: center;
-      padding: 80px 0;
+    }
+    .cta-section .kicker {
+      color: rgba(250,248,245,0.4);
+      display: inline-block;
     }
     .cta-section h2 {
-      font-family: var(--font-display);
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
+      font-family: var(--serif);
+      font-size: clamp(36px, 5vw, 72px);
+      font-weight: 400;
+      color: var(--bg);
+      margin: 16px 0;
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+    }
+    .cta-section h2 em {
+      font-family: var(--display);
+      font-style: italic;
     }
     .cta-section p {
-      font-size: 1rem;
-      margin-bottom: 2.5rem;
-      opacity: 0.7;
-      font-weight: 300;
+      color: rgba(250,248,245,0.5);
+      font-size: 16px;
+      margin: 0 0 40px;
     }
-    .cta-button {
-      display: inline-block;
-      background: transparent;
-      color: var(--light);
-      padding: .9rem 2.5rem;
-      border: 1px solid rgba(255,255,255,.4);
+    .btn-fill {
+      display: inline-flex; align-items: center;
+      padding: 20px 36px;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 14px; letter-spacing: 0.16em; text-transform: uppercase;
+      transition: all .3s;
+    }
+    .btn-fill:hover { opacity: 0.85; }
+
+    /* === Testimonial cards === */
+    .testimonial {
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      padding: 1.5rem 1.25rem;
+    }
+    .testimonial .quote-text {
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--ink-60);
+      font-size: 15px;
+      line-height: 1.9;
+      margin: 0 0 .5rem;
+    }
+    .testimonial .quote-attr {
+      text-align: right;
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--ink);
+      margin: 0;
+    }
+
+    /* === Dark card === */
+    .card-dark {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+      padding: 2rem;
+    }
+    .card-dark h3 {
+      color: var(--bg);
+      font-family: var(--serif);
+      font-size: 1.1rem;
       font-weight: 500;
-      text-decoration: none;
-      transition: all 0.35s ease;
-      font-size: 0.95rem;
-      letter-spacing: 0.08em;
-    }
-    .cta-button:hover {
-      background: var(--light);
-      color: var(--dark);
-      border-color: var(--light);
+      margin: 0 0 1rem;
     }
 
     /* === Footer === */
-    footer { background: var(--dark); color: rgba(255,255,255,.5); padding: 2.5rem 0; text-align: center; border-top: 1px solid rgba(255,255,255,.08); }
-    footer p { font-size: .8rem; letter-spacing: 0.04em; }
-    footer a { color: rgba(255,255,255,.6); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.2); }
+    footer {
+      border-top: 1px solid var(--rule);
+      padding: 56px var(--page-pad) 40px;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      max-width: 1680px;
+      margin: 0 auto;
+    }
+    .footer-brand p {
+      font-size: 13px;
+      color: var(--ink-60);
+      line-height: 2;
+      margin-top: 16px;
+      max-width: 340px;
+    }
+    .footer-col-title {
+      font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--ink-60);
+      margin-bottom: 18px;
+    }
+    .footer-col a {
+      font-size: 14px;
+      color: var(--ink);
+      display: block;
+      margin-bottom: 10px;
+      transition: color .3s;
+    }
+    .footer-col a:hover { color: var(--ink-60); }
+    .footer-bottom {
+      grid-column: 1 / -1;
+      padding-top: 32px; margin-top: 16px;
+      border-top: 1px solid var(--rule);
+      display: flex; justify-content: space-between;
+      font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--ink-60);
+    }
+
+    /* === Hamburger === */
+    .hamburger {
+      display: none;
+      width: 30px; height: 30px;
+      position: relative; cursor: pointer; z-index: 1010;
+      padding: 10px; box-sizing: content-box; margin: -10px;
+    }
+    .hamburger span {
+      display: block; position: absolute;
+      height: 1.5px; width: 100%;
+      background: var(--ink);
+      opacity: 1; left: 0;
+      transform: rotate(0deg);
+      transition: .25s ease-in-out;
+    }
+    .hamburger span:nth-child(1) { top: 0; }
+    .hamburger span:nth-child(2) { top: 9px; }
+    .hamburger span:nth-child(3) { top: 18px; }
+    .hamburger.active span:nth-child(1) { top: 9px; transform: rotate(135deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; left: -60px; }
+    .hamburger.active span:nth-child(3) { top: 9px; transform: rotate(-135deg); }
+
+    .overlay {
+      display: none; position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.4);
+      z-index: 90;
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .overlay.active { display: block; opacity: 1; }
+
+    /* === Responsive === */
+    @media (max-width: 1024px) {
+      .grid-sidebar {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .sidebar-sticky { position: static; }
+      footer { grid-template-columns: 1fr 1fr; }
+      .service-row { grid-template-columns: 60px 1fr; }
+      .service-desc { grid-column: 1 / -1; padding-left: 92px; }
+    }
 
     @media (max-width: 768px) {
-      .hero h1 { font-size: 2.3rem; }
-      .hero p.tagline { font-size: 1.1rem; }
-      
-      section {
-        padding: 80px 0;
-      }
-      
-      .section-title {
-        font-size: 2rem;
-      }
-      
-      .services-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-      }
-      
-      .service-card {
-        padding: 2rem;
-      }
-      
-      /* Mobile navigation */
-      .header-inner {
-        padding: 0.75rem 0;
-        position: relative;
-      }
-      
-      .hamburger {
-        display: block;
-        width: 30px;
-        height: 30px;
-        position: relative;
-        cursor: pointer;
-        z-index: 1010;
-        margin-right: 0;
-        padding: 10px;
-        box-sizing: content-box;
-        margin: -10px;
-      }
-      
-      .hamburger span {
-        display: block;
-        position: absolute;
-        height: 3px;
-        width: 100%;
-        background: var(--dark);
-        border-radius: 3px;
-        opacity: 1;
-        left: 0;
-        transform: rotate(0deg);
-        transition: .25s ease-in-out;
-      }
-      
-      .hamburger span:nth-child(1) {
-        top: 0px;
-      }
-      
-      .hamburger span:nth-child(2) {
-        top: 9px;
-      }
-      
-      .hamburger span:nth-child(3) {
-        top: 18px;
-      }
-      
-      .hamburger.active span:nth-child(1) {
-        top: 9px;
-        transform: rotate(135deg);
-      }
-      
-      .hamburger.active span:nth-child(2) {
-        opacity: 0;
-        left: -60px;
-      }
-      
-      .hamburger.active span:nth-child(3) {
-        top: 9px;
-        transform: rotate(-135deg);
-      }
-      
+      .section { padding: clamp(64px, 10vh, 96px) var(--page-pad); }
+
+      /* Mobile nav */
+      .hamburger { display: block; }
       nav {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 80%;
-        max-width: 300px;
-        height: 100vh;
-        background: white;
-        box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+        position: fixed; top: 0; right: -100%;
+        width: 80%; max-width: 300px; height: 100vh;
+        background: var(--bg);
+        box-shadow: -2px 0 20px rgba(0,0,0,0.08);
         transition: 0.3s ease;
-        padding-top: 70px;
-        z-index: 1000;
+        padding-top: 80px; z-index: 95;
         overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
       }
-      
-      nav.active {
-        right: 0;
-      }
-      
+      nav.active { right: 0; }
       nav ul {
-        flex-direction: column;
-        gap: 0;
-        padding: 0;
-        margin: 0;
+        flex-direction: column; gap: 0;
       }
-      
-      nav ul li {
-        width: 100%;
-      }
-      
       nav ul li a {
-        padding: 15px 20px;
+        padding: 18px 24px;
         display: block;
-        border-bottom: 1px solid #eee;
-        font-size: 1.1rem;
-        position: relative;
+        border-bottom: 1px solid var(--rule);
+        font-size: 14px;
+        letter-spacing: 0.08em;
+        text-transform: none;
+        color: var(--ink);
       }
-      
       nav ul li a::after {
-        content: "›";
-        position: absolute;
-        right: 20px;
-        top: 50%;
-        transform: translateY(-50%);
-        font-size: 1.4rem;
-        opacity: 0.5;
+        content: "\203A";
+        float: right;
+        opacity: 0.4;
+        font-size: 1.2em;
       }
-      
-      .overlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0,0,0,0.5);
-        z-index: 990;
-        -webkit-backdrop-filter: blur(2px);
-        backdrop-filter: blur(2px);
-        opacity: 0;
-        transition: opacity 0.3s ease;
+      .nav-cta {
+        border: none;
+        padding: 18px 24px;
+        margin-left: 0;
+        text-align: left;
       }
-      
-      .overlay.active {
-        display: block;
-        opacity: 1;
+      .nav-cta:hover {
+        background: transparent;
+        color: var(--ink);
       }
-      
-      /* Service tabs mobile styles */
+
+      /* Tab layout */
       .service-tabs {
-        gap: 1rem !important;
-        padding: 0 1rem;
         flex-direction: column;
-        flex-wrap: nowrap !important;
         align-items: stretch;
-        justify-content: flex-start !important;
+        padding: 0;
       }
-
       .service-tab {
-        min-width: auto !important;
-        padding: 1rem 1.5rem !important;
+        min-width: auto;
         width: 100%;
-        max-width: 100%;
-        flex: none;
       }
 
-    /* クリックエフェクト */
-    .service-tab.clicked {
-      animation: clickEffect 0.15s ease;
-    }
-
-    @keyframes clickEffect {
-      0% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(0.95);
-      }
-      100% {
-        transform: scale(1);
-      }
-    }
-      
-      .service-tab h3 {
-        font-size: 1rem !important;
-      }
-      
-      .service-tab p {
-        font-size: 0.8rem !important;
-      }
-      
-      .service-tab div[style*="font-size: 2.5rem"] {
-        font-size: 2rem !important;
-      }
-
-      .ai-video-hero-media img {
-        width: 200px;
-      }
-
-      .pricing-table {
-        min-width: 640px;
-      }
-
-      .pricing-table th:first-child,
-      .pricing-table td:first-child {
-        position: static;
-        background: inherit;
-        box-shadow: none;
-      }
-
-      /* HP制作セクションのモバイル対応 */
-      .service-card .icon-badge { width: 52px; height: 52px; font-size: 1.4rem; }
-      .value-card .value-icon { width: 36px; height: 36px; font-size: 1rem; }
+      /* Grids */
+      .card-grid { grid-template-columns: 1fr; }
+      .card-grid-2 { grid-template-columns: 1fr; }
       .value-grid { grid-template-columns: 1fr; }
-      .pricing-table { font-size: 0.9rem; }
-      .service-content th, .service-content td { padding: 8px !important; }
-      .service-content .card { padding: 1.5rem !important; }
-      .service-content .section-title { font-size: 1.8rem !important; }
+      .video-gallery { grid-template-columns: 1fr; }
 
-      /* Mobile video gallery styles */
-      .service-content .reveal > div > div {
-        grid-template-columns: 1fr !important;
+      .service-row { grid-template-columns: 1fr; gap: 8px; }
+      .service-desc { padding-left: 0; grid-column: auto; }
+
+      footer {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 40px var(--page-pad);
       }
+      .footer-bottom { flex-direction: column; gap: 8px; }
+
+      .pricing-table { min-width: 560px; }
+      .ai-video-hero-media img { width: 200px; }
     }
 
+    @media (max-width: 480px) {
+      .section-heading-lg { font-size: clamp(32px, 8vw, 48px); }
+      .section-heading-md { font-size: clamp(26px, 7vw, 36px); }
+      .section-heading-sm { font-size: clamp(22px, 6vw, 30px); }
+    }
 
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+      .logo-breathe { animation: none !important; }
+    }
   </style>
 </head>
 <body>
   <!-- === Header === -->
-  <header>
-    <div class="container header-inner">
-      <a href="index.html" class="logo">
-        <img src="https://raw.githubusercontent.com/aiknowledgeworks/aikw.hp/main/logo/AI%E3%83%8A%E3%83%AC%E3%83%83%E3%82%B8%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9_logo_transparen.png" alt="AIナレッジワークス ロゴ">
-        <span>AIナレッジワークス / AIKW</span>
-      </a>
-      <div class="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <nav>
-        <ul>
-          <li><a href="index.html#background">創業のきっかけ</a></li>
-          <li><a href="service.html">事業・サービス</a></li>
-          <li><a href="achievements.html">実績・展望</a></li>
-          <li><a href="company.html">会社概要</a></li>
-          <li><a href="contact.html">お問い合わせ</a></li>
-        </ul>
-      </nav>
-      <div class="overlay"></div>
+  <header id="site-header">
+    <a href="index.html" class="logo-link">
+      <img src="logo/AIナレッジワークス_logo_transparen.png" alt="AIナレッジワークス ロゴ" class="logo-breathe">
+      <span>AI Knowledge Works</span>
+    </a>
+    <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
+    <nav>
+      <ul>
+        <li><a href="index.html#background">Background</a></li>
+        <li><a href="service.html">Services</a></li>
+        <li><a href="achievements.html">Achievements</a></li>
+        <li><a href="company.html">Company</a></li>
+        <li><a href="contact.html" class="nav-cta">Contact &rarr;</a></li>
+      </ul>
+    </nav>
+    <div class="overlay"></div>
   </header>
 
   <!-- === Hero === -->
   <section class="hero">
     <h1>事業内容・サービス</h1>
-    <p class="tagline">3本柱でAI技術の普及と活用を支援</p>
+    <p>3本柱でAI技術の普及と活用を支援</p>
   </section>
 
-  <!-- === 3本柱の概要 === -->
-  <section id="pillars" style="background: var(--surface);">
-    <div class="container">
-      <h2 class="section-title">3本柱の事業</h2>
-      <p class="section-subtitle">AIナレッジワークスが提供する3つの事業領域</p>
-
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 1.5rem; margin-top: 2rem;">
-        <div class="card reveal" style="border-top: 2px solid var(--accent);">
-          <h3>企業向けAI研修</h3>
-          <p>現場に効くAI人材育成のための実践的プログラムを提供。Starter / Expert / 営業特化の3コースで、組織全体のAIリテラシーを向上させます。</p>
-        </div>
-        <div class="card reveal" style="border-top: 2px solid var(--brand-blue);">
-          <h3>子ども向けAI研修（AIまなびラボ）</h3>
-          <p>楽しく学ぶAI体験を通じて、次世代を担う子どもたちの創造力とデジタルスキルやAIリテラシーを育みます。</p>
-        </div>
-        <div class="card reveal" style="border-top: 2px solid var(--accent-warm);">
-          <h3>BtoB AI導入支援</h3>
-          <p>自社業務にAIを実装するためのコンサルティングから開発支援まで。業務効率化と問題解決につながるAIソリューションを提案します。</p>
-        </div>
+  <!-- === 01 — 3本柱の概要 === -->
+  <section class="section" id="pillars">
+    <div class="grid-sidebar reveal">
+      <div class="sidebar-sticky">
+        <div class="kicker">01</div>
+        <h2 class="section-heading section-heading-sm" style="margin-top: 8px;">3本柱の<br><em>事業</em></h2>
       </div>
-    </div>
-  </section>
-
-  <!-- === 企業向けAI研修 詳細 === -->
-  <section id="corp-training">
-    <div class="container">
-      <h2 class="section-title">企業向けAI研修</h2>
-      <p class="section-subtitle">Starter / Expert / 営業向けプログラム</p>
-
-      <div style="display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, auto); gap: 1.5rem; max-width: 900px; margin: 0 auto;">
-        <div class="card reveal" style="height: 100%;">
-          <h3>Starter</h3>
-          <p>生成AIに初めて触れる方向けの90分集中基礎研修プラン。</p>
-        </div>
-        <div class="card reveal" style="height: 100%;">
-          <h3>Expert</h3>
-          <p>業務効率化・自動化を極める上級者向け。既に生成AIを活用している方のスキルアップを目指すプラン。</p>
-        </div>
-        <div class="card reveal" style="height: 100%;">
-          <h3>営業特化プログラム</h3>
-          <p>競合分析やレポート作成の自動化、SNSでの発信最適化をサポートするプラン。</p>
-        </div>
-        <div class="card reveal" style="height: 100%;">
-          <h3>研修費用はダイナミックプライシング</h3>
-          <p>顧客満足度に応じた投げ銭料金モデル（ビジネス特許申請中）</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- === 子ども向けAI研修 === -->
-  <section id="kids" style="background: var(--surface);">
-    <div class="container">
-      <h2 class="section-title">子ども向けAI研修（AIまなびラボ）</h2>
-      <div style="background: var(--light); border: 1px solid var(--border); border-top: 2px solid var(--brand-blue); padding: 2rem; margin-bottom: 2rem;">
-        <h3 style="font-family: var(--font-display); font-size: 1.3rem; margin-bottom: 1rem; color: var(--accent); text-align: center; font-weight: 600;">教育コンセプト: Play × Create 探究学習</h3>
-        <p style="text-align: center; margin-bottom: 1.5rem;">遊びながら創造し、AIと共に未来を描く。<br>「できない」を「できる」に変える体験を通じて、好奇心と創造力を育みます。</p>
-      </div>
-
-      <div style="display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, auto); gap: 1.5rem; max-width: 900px; margin: 0 auto;">
-        <div class="card reveal" style="height: 100%;">
-          <h3>体験型AI活用授業</h3>
-          <p>画像生成、音楽作曲、動画制作など、AIツールを使って自分だけの作品を創り、発表する体験を通じてデジタルリテラシーを育成します。</p>
-        </div>
-        <div class="card reveal" style="height: 100%;">
-          <h3>教科学習へのAI活用</h3>
-          <p>国語・算数・英語・理科・社会のそれぞれの教科学習にAIを活用し、子どもたちの理解度と学習効率を大幅に向上させます。</p>
-        </div>
-        <div class="card reveal" style="height: 100%;">
-          <h3>家庭導入サポート</h3>
-          <p>オリジナル教材と専用アプリで家庭でも継続的に学べる環境を提供。保護者向けガイダンスでAIリテラシーを家族全体で高められます。</p>
-        </div>
-        <div class="card reveal" style="height: 100%;">
-          <h3>月額制価格モデル</h3>
-          <p>月額制で授業時間・教材費・サポート費をすべて含む安心の料金体系。追加費用なしで質の高い学習体験を提供します。</p>
-        </div>
-      </div>
-
-      <div style="margin-top: 3rem;">
-        <h3 style="font-family: var(--font-display); text-align: center; font-size: 1.3rem; margin-bottom: 1.5rem; color: var(--accent); font-weight: 600;">保護者の声</h3>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-          <div class="card reveal" style="border-left: 3px solid var(--accent);">
-            <p style="font-style: italic; color: #555;">"子どもが自分からアイデアを出すようになりました。AIを使いこなす姿を見て、親の方が驚いています。"</p>
-            <p style="text-align: right; margin-top: 0.5rem; font-weight: 600;">小学4年生の保護者様</p>
+      <div>
+        <p class="paragraph" style="margin-bottom: 40px;">AIナレッジワークスが提供する3つの事業領域</p>
+        <div class="service-row" style="border-top: 1px solid var(--rule);">
+          <div class="kicker" style="padding-top: 4px;">A</div>
+          <div>
+            <div class="service-name">企業向けAI研修</div>
           </div>
-          <div class="card reveal" style="border-left: 3px solid var(--accent);">
-            <p style="font-style: italic; color: #555;">"苦手だった国語の読解問題にAIを活用し始めてから、考え方が整理できるようになったと子ども自身が実感しています。"</p>
-            <p style="text-align: right; margin-top: 0.5rem; font-weight: 600;">中学1年生の保護者様</p>
+          <p class="service-desc">現場に効くAI人材育成のための実践的プログラムを提供。Starter / Expert / 営業特化の3コースで、組織全体のAIリテラシーを向上させます。</p>
+        </div>
+        <div class="service-row">
+          <div class="kicker" style="padding-top: 4px;">B</div>
+          <div>
+            <div class="service-name">AIまなびラボ</div>
+            <div class="service-jp">子ども向けAI研修</div>
+          </div>
+          <p class="service-desc">楽しく学ぶAI体験を通じて、次世代を担う子どもたちの創造力とデジタルスキルやAIリテラシーを育みます。</p>
+        </div>
+        <div class="service-row">
+          <div class="kicker" style="padding-top: 4px;">C</div>
+          <div>
+            <div class="service-name">BtoB AI導入支援</div>
+          </div>
+          <p class="service-desc">自社業務にAIを実装するためのコンサルティングから開発支援まで。業務効率化と問題解決につながるAIソリューションを提案します。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- === 02 — 企業向けAI研修 === -->
+  <section class="section" id="corp-training">
+    <div class="grid-sidebar reveal">
+      <div class="sidebar-sticky">
+        <div class="kicker">02</div>
+        <h2 class="section-heading section-heading-sm" style="margin-top: 8px;">企業向け<br><em>AI研修</em></h2>
+      </div>
+      <div>
+        <p class="paragraph" style="margin-bottom: 40px;">Starter / Expert / 営業向けプログラム</p>
+        <div class="card-grid-2">
+          <div class="card reveal">
+            <h3>Starter</h3>
+            <p>生成AIに初めて触れる方向けの90分集中基礎研修プラン。</p>
+          </div>
+          <div class="card reveal">
+            <h3>Expert</h3>
+            <p>業務効率化・自動化を極める上級者向け。既に生成AIを活用している方のスキルアップを目指すプラン。</p>
+          </div>
+          <div class="card reveal">
+            <h3>営業特化プログラム</h3>
+            <p>競合分析やレポート作成の自動化、SNSでの発信最適化をサポートするプラン。</p>
+          </div>
+          <div class="card reveal">
+            <h3>ダイナミックプライシング</h3>
+            <p>顧客満足度に応じた投げ銭料金モデル（ビジネス特許申請中）</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- === BtoB AI導入支援 === -->
-  <section id="ai-support">
-    <div class="container">
-      <h2 class="section-title">BtoB AI導入支援サービス</h2>
-      <p class="section-subtitle">企業の課題をAIで解決する包括的支援</p>
+  <hr>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-        <div class="card reveal">
-          <h3>業務棚卸し・課題発見</h3>
-          <p>現状業務の詳細分析から、AI導入による効果が高い領域を特定。ROIを重視した導入計画から実証実験（PoC）の設計まで一気通貫でサポートします。</p>
+  <!-- === 03 — 子ども向けAI研修 === -->
+  <section class="section" id="kids" style="background: var(--paper-2);">
+    <div class="grid-sidebar reveal">
+      <div class="sidebar-sticky">
+        <div class="kicker">03</div>
+        <h2 class="section-heading section-heading-sm" style="margin-top: 8px;">AIまなび<br><em>ラボ</em></h2>
+      </div>
+      <div>
+        <div class="feature-box" style="margin-bottom: 2.5rem;">
+          <h3 style="color: var(--accent);">教育コンセプト: Play × Create 探究学習</h3>
+          <p>遊びながら創造し、AIと共に未来を描く。<br>「できない」を「できる」に変える体験を通じて、好奇心と創造力を育みます。</p>
         </div>
-        <div class="card reveal">
-          <h3>社内ナレッジ活用</h3>
-          <p>社内ドキュメント検索や業務マニュアル活用のためのチャットボット構築。散在する情報資産を有効活用し、業務効率と品質を向上させます。</p>
+
+        <div class="card-grid-2">
+          <div class="card reveal">
+            <h3>体験型AI活用授業</h3>
+            <p>画像生成、音楽作曲、動画制作など、AIツールを使って自分だけの作品を創り、発表する体験を通じてデジタルリテラシーを育成します。</p>
+          </div>
+          <div class="card reveal">
+            <h3>教科学習へのAI活用</h3>
+            <p>国語・算数・英語・理科・社会のそれぞれの教科学習にAIを活用し、子どもたちの理解度と学習効率を大幅に向上させます。</p>
+          </div>
+          <div class="card reveal">
+            <h3>家庭導入サポート</h3>
+            <p>オリジナル教材と専用アプリで家庭でも継続的に学べる環境を提供。保護者向けガイダンスでAIリテラシーを家族全体で高められます。</p>
+          </div>
+          <div class="card reveal">
+            <h3>月額制価格モデル</h3>
+            <p>月額制で授業時間・教材費・サポート費をすべて含む安心の料金体系。追加費用なしで質の高い学習体験を提供します。</p>
+          </div>
         </div>
-        <div class="card reveal">
-          <h3>プロンプト設計・自動化</h3>
-          <p>開発者不要でAPI連携を実現するプロンプト最適化。業務プロセスに合わせた最適なプロンプト設計と自動化により、AIの活用範囲を拡大します。</p>
-        </div>
-        <div class="card reveal">
-          <h3>ドキュメント生成支援</h3>
-          <p>AIによる提案書・プレゼン資料・議事録・マニュアルなどの自動作成システムを構築。作成時間を大幅に削減しながらクオリティを向上させます。</p>
-        </div>
-        <div class="card reveal">
-          <h3>セキュアAI環境構築</h3>
-          <p>オンプレミスで稼働するローカルLLMの導入支援。機密情報を外部に送信せず、セキュアな環境でのAI活用を実現します。</p>
-        </div>
-        <div class="card reveal">
-          <h3>継続的改善・運用支援</h3>
-          <p>導入後のモニタリングと継続的な改善支援。利用状況の分析と最適化提案により、長期的なAI活用の効果を最大化します。</p>
+
+        <div style="margin-top: 3rem;">
+          <h3 class="content-section-title reveal">保護者の声</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+            <div class="testimonial reveal">
+              <p class="quote-text">"子どもが自分からアイデアを出すようになりました。AIを使いこなす姿を見て、親の方が驚いています。"</p>
+              <p class="quote-attr">小学4年生の保護者様</p>
+            </div>
+            <div class="testimonial reveal">
+              <p class="quote-text">"苦手だった国語の読解問題にAIを活用し始めてから、考え方が整理できるようになったと子ども自身が実感しています。"</p>
+              <p class="quote-attr">中学1年生の保護者様</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- === 個別サービス タブ === -->
-  <section style="background: var(--surface); padding: 80px 0 2rem;">
-    <div class="container">
-      <h2 class="section-title">サービス一覧</h2>
-      <p class="section-subtitle">各サービスの詳細をご覧ください</p>
-    </div>
-  </section>
-  <section style="background: var(--light); padding: 2rem 0; border-bottom: 1px solid var(--border);">
-    <div class="container">
-      <div class="service-tabs" style="display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
-        <div class="service-tab" data-service="startup-support" style="cursor: pointer; padding: 1.5rem 2rem; background: var(--light); color: var(--dark); text-align: center; min-width: 180px; transition: all 0.3s ease; border: 1px solid var(--border);">
-          <h3 style="font-size: 1.1rem; font-weight: 600; margin: 0; font-family: var(--font-display);">創業サポートパック</h3>
-          <p style="font-size: 0.85rem; margin: 0.4rem 0 0; color: var(--text-sub);">起業の全準備を1日で</p>
-        </div>
-        <div class="service-tab" data-service="hp-creation" style="cursor: pointer; padding: 1.5rem 2rem; background: var(--light); color: var(--dark); text-align: center; min-width: 180px; transition: all 0.3s ease; border: 1px solid var(--border);">
-          <h3 style="font-size: 1.1rem; font-weight: 600; margin: 0; font-family: var(--font-display);">AI-powered HP制作</h3>
-          <p style="font-size: 0.85rem; margin: 0.4rem 0 0; color: var(--text-sub);">安心・成果が見えるWeb</p>
-        </div>
-        <div class="service-tab active" data-service="ai-video" style="cursor: pointer; padding: 1.5rem 2rem; background: var(--dark); color: var(--light); text-align: center; min-width: 180px; transition: all 0.3s ease; border: 1px solid var(--dark);">
-          <h3 style="font-size: 1.1rem; font-weight: 600; margin: 0; font-family: var(--font-display);">AI映像制作</h3>
-          <p style="font-size: 0.85rem; margin: 0.4rem 0 0; opacity: 0.7;">静止画に命を吹き込む</p>
-        </div>
-        <div class="service-tab" data-service="ai-photobook" style="cursor: pointer; padding: 1.5rem 2rem; background: var(--light); color: var(--dark); text-align: center; min-width: 180px; transition: all 0.3s ease; border: 1px solid var(--border);">
-          <h3 style="font-size: 1.1rem; font-weight: 600; margin: 0; font-family: var(--font-display);">AI写真集制作</h3>
-          <p style="font-size: 0.85rem; margin: 0.4rem 0 0; color: var(--text-sub);">記憶・物語・体験の再構築</p>
-        </div>
-        <div class="service-tab" data-service="local-llm" style="cursor: pointer; padding: 1.5rem 2rem; background: var(--light); color: var(--dark); text-align: center; min-width: 180px; transition: all 0.3s ease; border: 1px solid var(--border);">
-          <h3 style="font-size: 1.1rem; font-weight: 600; margin: 0; font-family: var(--font-display);">ローカルLLM導入</h3>
-          <p style="font-size: 0.85rem; margin: 0.4rem 0 0; color: var(--text-sub);">本番前提の生成AI基盤</p>
+  <hr>
+
+  <!-- === 04 — BtoB AI導入支援 === -->
+  <section class="section" id="ai-support">
+    <div class="grid-sidebar reveal">
+      <div class="sidebar-sticky">
+        <div class="kicker">04</div>
+        <h2 class="section-heading section-heading-sm" style="margin-top: 8px;">BtoB<br><em>AI導入支援</em></h2>
+      </div>
+      <div>
+        <p class="paragraph" style="margin-bottom: 40px;">企業の課題をAIで解決する包括的支援</p>
+        <div class="card-grid">
+          <div class="card reveal">
+            <h3>業務棚卸し・課題発見</h3>
+            <p>現状業務の詳細分析から、AI導入による効果が高い領域を特定。ROIを重視した導入計画から実証実験（PoC）の設計まで一気通貫でサポートします。</p>
+          </div>
+          <div class="card reveal">
+            <h3>社内ナレッジ活用</h3>
+            <p>社内ドキュメント検索や業務マニュアル活用のためのチャットボット構築。散在する情報資産を有効活用し、業務効率と品質を向上させます。</p>
+          </div>
+          <div class="card reveal">
+            <h3>プロンプト設計・自動化</h3>
+            <p>開発者不要でAPI連携を実現するプロンプト最適化。業務プロセスに合わせた最適なプロンプト設計と自動化により、AIの活用範囲を拡大します。</p>
+          </div>
+          <div class="card reveal">
+            <h3>ドキュメント生成支援</h3>
+            <p>AIによる提案書・プレゼン資料・議事録・マニュアルなどの自動作成システムを構築。作成時間を大幅に削減しながらクオリティを向上させます。</p>
+          </div>
+          <div class="card reveal">
+            <h3>セキュアAI環境構築</h3>
+            <p>オンプレミスで稼働するローカルLLMの導入支援。機密情報を外部に送信せず、セキュアな環境でのAI活用を実現します。</p>
+          </div>
+          <div class="card reveal">
+            <h3>継続的改善・運用支援</h3>
+            <p>導入後のモニタリングと継続的な改善支援。利用状況の分析と最適化提案により、長期的なAI活用の効果を最大化します。</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
+
+  <hr>
+
+  <!-- === 05 — サービス一覧タブ === -->
+  <section class="section" style="padding-bottom: 0;">
+    <div style="text-align: center;" class="reveal">
+      <div class="kicker">05</div>
+      <h2 class="section-heading section-heading-md" style="margin: 12px 0 8px;">サービス<em>一覧</em></h2>
+      <p class="paragraph" style="margin-bottom: 48px;">各サービスの詳細をご覧ください</p>
+    </div>
+    <div class="service-tabs reveal">
+      <div class="service-tab" data-service="startup-support">
+        <h3>創業サポートパック</h3>
+        <p>起業の全準備を1日で</p>
+      </div>
+      <div class="service-tab" data-service="hp-creation">
+        <h3>AI-powered HP制作</h3>
+        <p>安心・成果が見えるWeb</p>
+      </div>
+      <div class="service-tab active" data-service="ai-video">
+        <h3>AI映像制作</h3>
+        <p>静止画に命を吹き込む</p>
+      </div>
+      <div class="service-tab" data-service="ai-photobook">
+        <h3>AI写真集制作</h3>
+        <p>記憶・物語・体験の再構築</p>
+      </div>
+      <div class="service-tab" data-service="local-llm">
+        <h3>ローカルLLM導入</h3>
+        <p>本番前提の生成AI基盤</p>
+      </div>
+    </div>
+  </section>
+
+  <hr>
 
   <!-- === 創業サポートパック === -->
-  <section id="startup-support" class="service-content" data-service="startup-support" style="background: var(--surface); display: none;">
-    <div class="container">
-      <h2 class="section-title">創業サポートパック</h2>
-      <p class="section-subtitle">起業に必要なすべてを、たった1日で。外注なしで格安に、完成度の高いスタートを実現します</p>
+  <section id="startup-support" class="service-content" data-service="startup-support" style="display: none;">
+    <h2 class="content-title">創業サポートパック</h2>
+    <p class="content-subtitle">起業に必要なすべてを、たった1日で。外注なしで格安に、完成度の高いスタートを実現します</p>
 
-      <div class="reveal" style="max-width: 900px; margin: 0 auto 3rem;">
-        <div style="background: var(--light); border: 1px solid var(--border); border-top: 2px solid var(--accent); padding: 2.5rem; text-align: center;">
-          <h3 style="font-family: var(--font-display); font-size: 1.6rem; color: var(--dark); margin-bottom: 1rem; font-weight: 600; line-height: 1.6;">起業はスピードが命。<br>しかし、最初の一歩は準備が多くて大変。</h3>
-          <p style="font-size: 1.1rem; color: var(--text-sub); line-height: 1.8;">『創業サポートパック』なら、会社立ち上げ時に必要な全てを、たった1日で完結します。</p>
-        </div>
-      </div>
+    <div class="feature-box reveal">
+      <h3>起業はスピードが命。<br>しかし、最初の一歩は準備が多くて大変。</h3>
+      <p>『創業サポートパック』なら、会社立ち上げ時に必要な全てを、たった1日で完結します。</p>
+    </div>
 
-      <h3 class="reveal section-title" style="font-size: 1.6rem; margin-bottom: 2rem;">創業サポートパックのコンテンツ</h3>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
-        <div class="card reveal">
-          <h3>完成度の高いロゴ制作</h3>
-          <p>即日作成。追加費用なしで納得いくまで調整可能。</p>
-        </div>
-        <div class="card reveal">
-          <h3>集客力あるホームページ</h3>
-          <p>ターゲットを明確化し、1日で仕上げます。</p>
-        </div>
-        <div class="card reveal">
-          <h3>戦略的ビジネスプラン</h3>
-          <p>事業成功に欠かせないプランを短期間で策定。</p>
-        </div>
-        <div class="card reveal">
-          <h3>「売れる」営業チラシ</h3>
-          <p>顧客の心を効果的に掴むデザインと内容。</p>
-        </div>
-        <div class="card reveal">
-          <h3>専門家によるAI指導</h3>
-          <p>正しいAIツール活用法を学び、スタートダッシュをバックアップ。</p>
-        </div>
-        <div class="card reveal">
-          <h3>市場調査・競合分析</h3>
-          <p>ターゲット市場のニーズやトレンドを把握し、競合他社の強み・弱みを分析する。</p>
-        </div>
+    <h3 class="content-section-title reveal">創業サポートパックのコンテンツ</h3>
+    <div class="card-grid reveal" style="margin-bottom: 3rem;">
+      <div class="card">
+        <h3>完成度の高いロゴ制作</h3>
+        <p>即日作成。追加費用なしで納得いくまで調整可能。</p>
       </div>
+      <div class="card">
+        <h3>集客力あるホームページ</h3>
+        <p>ターゲットを明確化し、1日で仕上げます。</p>
+      </div>
+      <div class="card">
+        <h3>戦略的ビジネスプラン</h3>
+        <p>事業成功に欠かせないプランを短期間で策定。</p>
+      </div>
+      <div class="card">
+        <h3>「売れる」営業チラシ</h3>
+        <p>顧客の心を効果的に掴むデザインと内容。</p>
+      </div>
+      <div class="card">
+        <h3>専門家によるAI指導</h3>
+        <p>正しいAIツール活用法を学び、スタートダッシュをバックアップ。</p>
+      </div>
+      <div class="card">
+        <h3>市場調査・競合分析</h3>
+        <p>ターゲット市場のニーズやトレンドを把握し、競合他社の強み・弱みを分析する。</p>
+      </div>
+    </div>
 
-      <div class="cta-section" style="padding: 60px 0;">
-        <h3 style="font-family: var(--font-display); font-size: 1.6rem; margin-bottom: 1rem; font-weight: 600;">外注不要、余計なコストをかけず、スピーディかつシンプルに。</h3>
-        <p style="font-size: 1rem; margin-bottom: 1.5rem; opacity: 0.7; font-weight: 300;">準備期間を最短に、成果を最大に。情熱ひとつあれば十分。あとの準備はすべて1日で整います。</p>
-      </div>
+    <div style="background: var(--ink); padding: clamp(48px, 8vh, 80px) var(--page-pad); text-align: center; margin: 0 calc(-1 * var(--page-pad));">
+      <h3 style="font-family: var(--serif); font-size: clamp(22px, 3vw, 32px); font-weight: 400; color: var(--bg); margin: 0 0 12px;">外注不要、余計なコストをかけず、スピーディかつシンプルに。</h3>
+      <p style="color: rgba(250,248,245,0.5); font-size: 15px; margin: 0;">準備期間を最短に、成果を最大に。情熱ひとつあれば十分。あとの準備はすべて1日で整います。</p>
     </div>
   </section>
 
   <!-- === HP制作 === -->
   <section id="hp-creation" class="service-content" data-service="hp-creation" style="display: none;">
-    <div class="container">
-      <h2 class="section-title">AI-powered ホームページの制作</h2>
-      <p class="section-subtitle">面倒ゼロで、売れるHP。月4,980円、全部込み。</p>
+    <h2 class="content-title">AI-powered ホームページの制作</h2>
+    <p class="content-subtitle">面倒ゼロで、売れるHP。月4,980円、全部込み。</p>
 
-      <div class="reveal" style="max-width: 900px; margin: 0 auto 3rem;">
-        <div style="background: var(--light); border: 1px solid var(--border); border-top: 2px solid var(--accent); padding: 2.5rem; text-align: center;">
-          <h3 style="font-family: var(--font-display); font-size: 1.6rem; color: var(--dark); margin-bottom: 1rem; font-weight: 600; line-height: 1.6;">初期費用0円。ドメインもサーバーもお任せ。<br>AI導入で24時間お客様対応。最短5日で集客開始。</h3>
-          <p style="font-size: 1.1rem; color: var(--text-sub); line-height: 1.8;">AI技術による未来志向の成長支援で、あなたのビジネスを次のレベルへ押し上げます。</p>
+    <div class="feature-box reveal">
+      <h3>初期費用0円。ドメインもサーバーもお任せ。<br>AI導入で24時間お客様対応。最短5日で集客開始。</h3>
+      <p>AI技術による未来志向の成長支援で、あなたのビジネスを次のレベルへ押し上げます。</p>
+    </div>
+
+    <div class="reveal" style="margin-bottom: 3rem;">
+      <h3 class="content-section-title">こんなお悩み、すべて解決します</h3>
+      <div class="card" style="margin-top: 1rem;">
+        <ul class="problem-list">
+          <li>制作会社の見積もりが<span class="highlight-text">50万円以上</span>で手が出ない</li>
+          <li>古いホームページが<span class="highlight-text">恥ずかしくて</span>名刺に載せられない</li>
+          <li>問い合わせが<span class="highlight-text">月に1件も来ない</span></li>
+          <li>更新方法が分からず<span class="highlight-text">放置している</span></li>
+          <li><span class="highlight-text">夜間や休日</span>の問い合わせを逃している</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="reveal" style="margin-bottom: 3rem;">
+      <h3 class="content-section-title">3つの選ばれる理由</h3>
+      <div class="card-grid" style="margin-top: 1rem;">
+        <div class="card">
+          <h4>価格が明快で安心</h4>
+          <p>月額4,980円〜。ドメイン・サーバー・SSL証明書すべて込み。追加料金は一切ありません。年間契約なら10%オフでさらにお得です。</p>
+        </div>
+        <div class="card">
+          <h4>最短5日のスピード対応</h4>
+          <p>面倒な設定は全てお任せ。スマホで素材を送るだけで、プロが48時間以内に初回デザインをお見せします。修正も月3回まで無料対応。</p>
+        </div>
+        <div class="card">
+          <h4>AIで24時間売上アップ</h4>
+          <p>AIチャットボットが深夜でも休日でも自動対応。よくある質問への回答から予約受付まで、取りこぼしゼロの営業体制を構築できます。</p>
         </div>
       </div>
+    </div>
 
-      <div class="reveal" style="margin-bottom: 3rem;">
-        <h3 class="section-title" style="font-size: 1.6rem;">こんなお悩み、すべて解決します</h3>
-        <div class="card reveal" style="margin-top: 1.25rem;">
-          <ul class="problem-list">
-            <li>制作会社の見積もりが<span class="highlight-text">50万円以上</span>で手が出ない</li>
-            <li>古いホームページが<span class="highlight-text">恥ずかしくて</span>名刺に載せられない</li>
-            <li>問い合わせが<span class="highlight-text">月に1件も来ない</span></li>
-            <li>更新方法が分からず<span class="highlight-text">放置している</span></li>
-            <li><span class="highlight-text">夜間や休日</span>の問い合わせを逃している</li>
-          </ul>
+    <div class="reveal" style="margin-bottom: 3rem;">
+      <h3 class="content-section-title">料金プラン</h3>
+      <div class="card table-scroll" style="margin-top: 1rem;">
+        <table class="pricing-table">
+          <thead>
+            <tr>
+              <th>項目</th>
+              <th class="highlight">ベーシックプラン <span class="badge">おすすめ</span></th>
+              <th>AIフルサポートプラン</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>月額料金</td><td class="highlight">4,980円</td><td>8,800円</td></tr>
+            <tr><td>初期費用</td><td class="highlight">0円</td><td>0円</td></tr>
+            <tr><td>レスポンシブデザイン</td><td class="highlight">✓</td><td>✓</td></tr>
+            <tr><td>ドメイン・サーバー</td><td class="highlight">✓</td><td>✓</td></tr>
+            <tr><td>SSL証明書</td><td class="highlight">✓</td><td>✓</td></tr>
+            <tr><td>問い合わせフォーム</td><td class="highlight">✓</td><td>✓</td></tr>
+            <tr><td>月間修正回数</td><td class="highlight">3回</td><td>5回</td></tr>
+            <tr><td>Google Analytics設定</td><td class="highlight">✓</td><td>✓</td></tr>
+            <tr><td>基本SEO対策(Google Console)</td><td class="highlight">✓</td><td>✓</td></tr>
+            <tr><td>AIチャットボット</td><td class="highlight">-</td><td>✓</td></tr>
+            <tr><td>FAQ自動作成</td><td class="highlight">-</td><td>✓</td></tr>
+            <tr><td>月次レポート</td><td class="highlight">-</td><td>有り</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="reveal" style="margin-bottom: 3rem;">
+      <h3 class="content-section-title">ホームページ制作の特典</h3>
+      <div class="value-grid" style="margin-top: 1rem;">
+        <div class="value-card">
+          <h4 class="value-title">月3回までの無料修正</h4>
+          <p>お客様からの「ちょっとした修正をもう少し気軽にお願いしたい」という声に応え、月3回まで無料修正に対応します。これにより、営業時間の変更、新商品の追加、季節的なお知らせの更新など、日常的なビジネス変化に柔軟に対応できます。</p>
+        </div>
+        <div class="value-card">
+          <h4 class="value-title">効果測定の標準化</h4>
+          <p>Google AnalyticsとSearch Consoleの設定を標準で提供することで、サイト公開と同時に効果測定が可能になります。これまで「ホームページを作ったけれど効果が分からない」という課題を解決し、データに基づいた改善提案が可能となります。</p>
         </div>
       </div>
-
-      <div class="reveal" style="margin-bottom: 3rem;">
-        <h3 class="section-title" style="font-size: 1.6rem;">3つの選ばれる理由</h3>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
-          <div class="card reveal">
-            <h4>価格が明快で安心</h4>
-            <p>月額4,980円〜。ドメイン・サーバー・SSL証明書すべて込み。追加料金は一切ありません。年間契約なら10%オフでさらにお得です。</p>
-          </div>
-          <div class="card reveal">
-            <h4>最短5日のスピード対応</h4>
-            <p>面倒な設定は全てお任せ。スマホで素材を送るだけで、プロが48時間以内に初回デザインをお見せします。修正も月3回まで無料対応。</p>
-          </div>
-          <div class="card reveal">
-            <h4>AIで24時間売上アップ</h4>
-            <p>AIチャットボットが深夜でも休日でも自動対応。よくある質問への回答から予約受付まで、取りこぼしゼロの営業体制を構築できます。</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="reveal" style="margin-bottom: 3rem;">
-        <h3 class="section-title" style="font-size: 1.6rem;">料金プラン</h3>
-        <div class="card reveal table-scroll">
-          <table class="pricing-table">
-            <thead>
-              <tr>
-                <th>項目</th>
-                <th class="highlight">ベーシックプラン <span class="badge">おすすめ</span></th>
-                <th>AIフルサポートプラン</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td>月額料金</td><td class="highlight">4,980円</td><td>8,800円</td></tr>
-              <tr><td>初期費用</td><td class="highlight">0円</td><td>0円</td></tr>
-              <tr><td>レスポンシブデザイン</td><td class="highlight">✓</td><td>✓</td></tr>
-              <tr><td>ドメイン・サーバー</td><td class="highlight">✓</td><td>✓</td></tr>
-              <tr><td>SSL証明書</td><td class="highlight">✓</td><td>✓</td></tr>
-              <tr><td>問い合わせフォーム</td><td class="highlight">✓</td><td>✓</td></tr>
-              <tr><td>月間修正回数</td><td class="highlight">3回</td><td>5回</td></tr>
-              <tr><td>Google Analytics設定</td><td class="highlight">✓</td><td>✓</td></tr>
-              <tr><td>基本SEO対策(Google Console)</td><td class="highlight">✓</td><td>✓</td></tr>
-              <tr><td>AIチャットボット</td><td class="highlight">-</td><td>✓</td></tr>
-              <tr><td>FAQ自動作成</td><td class="highlight">-</td><td>✓</td></tr>
-              <tr><td>月次レポート</td><td class="highlight">-</td><td>有り</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <div class="reveal" style="margin-bottom: 3rem;">
-        <h3 class="section-title" style="font-size: 1.6rem;">ホームページ制作の特典</h3>
-        <div class="value-grid">
-          <div class="value-card">
-            <div class="value-header">
-              <h4 class="value-title">月3回までの無料修正</h4>
-            </div>
-            <p>お客様からの「ちょっとした修正をもう少し気軽にお願いしたい」という声に応え、月3回まで無料修正に対応します。これにより、営業時間の変更、新商品の追加、季節的なお知らせの更新など、日常的なビジネス変化に柔軟に対応できます。</p>
-          </div>
-          <div class="value-card">
-            <div class="value-header">
-              <h4 class="value-title">効果測定の標準化</h4>
-            </div>
-            <p>Google AnalyticsとSearch Consoleの設定を標準で提供することで、サイト公開と同時に効果測定が可能になります。これまで「ホームページを作ったけれど効果が分からない」という課題を解決し、データに基づいた改善提案が可能となります。</p>
-          </div>
-        </div>
-      </div>
-
-
-
-
-
     </div>
   </section>
 
-  <!-- === ロゴ・チラシ・名刺のAI映像制作 === -->
-  <section id="ai-video" class="service-content" data-service="ai-video" style="background: var(--surface);">
-    <div class="container">
-      <h2 class="section-title">ロゴ・チラシ・名刺のAI映像制作</h2>
-      <p class="section-subtitle">止まったデザインが、語り出す。あなたのブランドに"声"と"動き"を。</p>
+  <!-- === AI映像制作 === -->
+  <section id="ai-video" class="service-content" data-service="ai-video" style="background: var(--paper-2);">
+    <h2 class="content-title">ロゴ・チラシ・名刺のAI映像制作</h2>
+    <p class="content-subtitle">止まったデザインが、語り出す。あなたのブランドに"声"と"動き"を。</p>
 
-      <div class="reveal" style="max-width: 900px; margin: 0 auto 3rem;">
-        <div style="background: var(--light); border: 1px solid var(--border); border-top: 2px solid var(--accent); padding: 2.5rem; text-align: center;">
-          <div class="ai-video-hero-media" style="margin-bottom: 1.5rem;">
-            <img src="movie/Uchibori_02ok.gif" data-fallback="https://raw.githubusercontent.com/aiknowledgeworks/aikw.hp/main/movie/Uchibori_02ok.gif" alt="ロゴ・チラシ・名刺のAI映像制作アニメーション事例">
-          </div>
-          <h3 style="font-family: var(--font-display); font-size: 1.4rem; color: var(--dark); margin-bottom: 1rem; font-weight: 600; line-height: 1.6;">チラシのキャラクターが語り出す。Tシャツのロゴが自己紹介を始める。<br>「静止画」だった素材に命を吹き込み、伝わる短尺ムービーに。</h3>
-          <p style="font-size: 1rem; color: var(--text-sub); line-height: 1.8;">紙・ロゴ・写真——どんな素材でもOK。SNS、店内サイネージ、ECサイトなどにそのまま使える形で納品。字幕付き・サイズ最適化までワンストップで対応します。</p>
-          <p style="font-family: var(--font-display); font-size: 1.6rem; font-weight: 600; color: var(--dark); margin-top: 1.5rem;">2万円 / 件〜</p>
-          <p style="font-size: 0.9rem; color: var(--text-sub);">字幕・BGM・SNS用リサイズ含む。まとめて発注でお得なパックもご用意</p>
-        </div>
+    <div class="feature-box reveal" style="background: var(--paper);">
+      <div class="ai-video-hero-media">
+        <img src="movie/Uchibori_02ok.gif" data-fallback="https://raw.githubusercontent.com/aiknowledgeworks/aikw.hp/main/movie/Uchibori_02ok.gif" alt="ロゴ・チラシ・名刺のAI映像制作アニメーション事例">
       </div>
+      <h3>チラシのキャラクターが語り出す。Tシャツのロゴが自己紹介を始める。<br>「静止画」だった素材に命を吹き込み、伝わる短尺ムービーに。</h3>
+      <p>紙・ロゴ・写真——どんな素材でもOK。SNS、店内サイネージ、ECサイトなどにそのまま使える形で納品。字幕付き・サイズ最適化までワンストップで対応します。</p>
+      <div class="price">2万円 / 件〜</div>
+      <p class="price-note">字幕・BGM・SNS用リサイズ含む。まとめて発注でお得なパックもご用意</p>
+    </div>
 
-      <h3 class="reveal section-title" style="font-size: 1.6rem; margin-bottom: 2rem;">導入事例（動画）</h3>
-
-      <div class="reveal" style="margin-bottom: 3rem;">
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
-          <div style="background: var(--light); border: 1px solid var(--border); padding: 1.5rem; text-align: center;">
-            <video controls playsinline style="width: 100%; max-width: 100%; aspect-ratio: 16/9; margin-bottom: 0.75rem; object-fit: contain; background: #000;">
-              <source src="movie/Uchibori_01ok.mp4" type="video/mp4">
-              お使いのブラウザは動画再生に対応していません。
-            </video>
-            <p style="font-size: 0.9rem; color: var(--text-sub); margin: 0; font-weight: 500;">名刺アニメーション事例</p>
-          </div>
-          <div style="background: var(--light); border: 1px solid var(--border); padding: 1.5rem; text-align: center;">
-            <video controls playsinline style="width: 100%; max-width: 100%; aspect-ratio: 16/9; margin-bottom: 0.75rem; object-fit: contain; background: #000;">
-              <source src="movie/Uchibori_02ok.mp4" type="video/mp4">
-              お使いのブラウザは動画再生に対応していません。
-            </video>
-            <p style="font-size: 0.9rem; color: var(--text-sub); margin: 0; font-weight: 500;">字幕付き名刺アニメーション事例</p>
-          </div>
-          <div style="background: var(--light); border: 1px solid var(--border); padding: 1.5rem; text-align: center;">
-            <video controls playsinline style="width: 100%; max-width: 100%; aspect-ratio: 16/9; margin-bottom: 0.75rem; object-fit: contain; background: #000;">
-              <source src="movie/yamamoto_03ok.mp4" type="video/mp4">
-              お使いのブラウザは動画再生に対応していません。
-            </video>
-            <p style="font-size: 0.9rem; color: var(--text-sub); margin: 0; font-weight: 500;">名刺アニメーション事例</p>
-          </div>
-        </div>
+    <h3 class="content-section-title reveal">導入事例（動画）</h3>
+    <div class="video-gallery reveal" style="margin-bottom: 3rem;">
+      <div class="video-item">
+        <video controls playsinline>
+          <source src="movie/Uchibori_01ok.mp4" type="video/mp4">
+          お使いのブラウザは動画再生に対応していません。
+        </video>
+        <p>名刺アニメーション事例</p>
       </div>
+      <div class="video-item">
+        <video controls playsinline>
+          <source src="movie/Uchibori_02ok.mp4" type="video/mp4">
+          お使いのブラウザは動画再生に対応していません。
+        </video>
+        <p>字幕付き名刺アニメーション事例</p>
+      </div>
+      <div class="video-item">
+        <video controls playsinline>
+          <source src="movie/yamamoto_03ok.mp4" type="video/mp4">
+          お使いのブラウザは動画再生に対応していません。
+        </video>
+        <p>名刺アニメーション事例</p>
+      </div>
+    </div>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
-        <div class="card reveal">
-          <h4>「話すチラシ」</h4>
-          <p>キャラが口パク＆目パチで商品の魅力を30秒で紹介</p>
-        </div>
-        <div class="card reveal">
-          <h4>「ロゴが踊る」</h4>
-          <p>Tシャツやアイコンを使ったブランド動画</p>
-        </div>
-        <div class="card reveal">
-          <h4>「キャスト紹介」</h4>
-          <p>ナレーション付きの自己紹介ムービー（店内表示やSNS用に）</p>
-        </div>
-        <div class="card reveal">
-          <h4>「アイコン動画化」</h4>
-          <p>シンボルやマスコットが"要点"を解説する短尺映像</p>
-        </div>
+    <div class="card-grid reveal" style="margin-bottom: 3rem;">
+      <div class="card" style="background: var(--paper);">
+        <h4>「話すチラシ」</h4>
+        <p>キャラが口パク＆目パチで商品の魅力を30秒で紹介</p>
+      </div>
+      <div class="card" style="background: var(--paper);">
+        <h4>「ロゴが踊る」</h4>
+        <p>Tシャツやアイコンを使ったブランド動画</p>
+      </div>
+      <div class="card" style="background: var(--paper);">
+        <h4>「キャスト紹介」</h4>
+        <p>ナレーション付きの自己紹介ムービー（店内表示やSNS用に）</p>
+      </div>
+      <div class="card" style="background: var(--paper);">
+        <h4>「アイコン動画化」</h4>
+        <p>シンボルやマスコットが"要点"を解説する短尺映像</p>
       </div>
     </div>
   </section>
 
   <!-- === AI写真集制作 === -->
   <section id="ai-photobook" class="service-content" data-service="ai-photobook" style="display: none;">
-    <div class="container">
-      <h2 class="section-title">AI写真集制作サービス</h2>
-      <p class="section-subtitle">1枚の写真から、人生と空間を再想像しましょう。記憶・物語・体験の再構築。</p>
+    <h2 class="content-title">AI写真集制作サービス</h2>
+    <p class="content-subtitle">1枚の写真から、人生と空間を再想像しましょう。記憶・物語・体験の再構築。</p>
 
-      <div class="reveal" style="margin-bottom: 3rem;">
-        <h3 class="section-title" style="font-size: 1.6rem; margin-bottom: 2rem;">コアサービスの事例</h3>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
-          <div class="card reveal">
-            <h4>ストーリー写真集生成</h4>
-            <p>1枚の写真を起点に、AIが名所・季節・時間帯・アングルを設計し、物語として成立する写真集を生成します。</p>
-          </div>
-          <div class="card reveal">
-            <h4>故人写真の復元と拡張</h4>
-            <p>写真修復＋別シーン・別季節・時系列に再現します。</p>
-          </div>
-          <div class="card reveal">
-            <h4>没入型写真集（AR/VR）</h4>
-            <p>1枚から空間を推定生成し、「見る写真」から「入る写真」へ。</p>
-          </div>
-          <div class="card reveal">
-            <h4>パーソナル写真集</h4>
-            <p>プロフィール1枚から、統一世界観の大量ビジュアルを生成。SNS・ポートフォリオ・書籍に即利用。</p>
-          </div>
-        </div>
+    <h3 class="content-section-title reveal">コアサービスの事例</h3>
+    <div class="card-grid reveal" style="margin-bottom: 3rem;">
+      <div class="card">
+        <h4>ストーリー写真集生成</h4>
+        <p>1枚の写真を起点に、AIが名所・季節・時間帯・アングルを設計し、物語として成立する写真集を生成します。</p>
       </div>
+      <div class="card">
+        <h4>故人写真の復元と拡張</h4>
+        <p>写真修復＋別シーン・別季節・時系列に再現します。</p>
+      </div>
+      <div class="card">
+        <h4>没入型写真集（AR/VR）</h4>
+        <p>1枚から空間を推定生成し、「見る写真」から「入る写真」へ。</p>
+      </div>
+      <div class="card">
+        <h4>パーソナル写真集</h4>
+        <p>プロフィール1枚から、統一世界観の大量ビジュアルを生成。SNS・ポートフォリオ・書籍に即利用。</p>
+      </div>
+    </div>
 
-      <div class="reveal" style="max-width: 900px; margin: 0 auto 3rem;">
-        <div style="background: var(--light); border: 1px solid var(--border); border-left: 3px solid var(--accent); padding: 2.5rem;">
-          <h3 style="font-family: var(--font-display); font-size: 1.4rem; color: var(--dark); margin-bottom: 1.5rem; font-weight: 600;">提供価値の核心</h3>
-          <ul style="list-style: none; padding: 0;">
-            <li style="padding: 0.6rem 0; padding-left: 1.5rem; position: relative; color: var(--text-sub); font-size: 1rem;"><span style="position: absolute; left: 0; color: var(--accent);">—</span>撮れなかった瞬間を、肯定的に可視化</li>
-            <li style="padding: 0.6rem 0; padding-left: 1.5rem; position: relative; color: var(--text-sub); font-size: 1rem;"><span style="position: absolute; left: 0; color: var(--accent);">—</span>思い出を再体験可能な物語に変換</li>
-            <li style="padding: 0.6rem 0; padding-left: 1.5rem; position: relative; color: var(--text-sub); font-size: 1rem;"><span style="position: absolute; left: 0; color: var(--accent);">—</span>写真集をメディアから体験へ進化</li>
-          </ul>
-        </div>
-      </div>
+    <div class="quote-box reveal">
+      <h3>提供価値の核心</h3>
+      <ul>
+        <li><span>—</span>撮れなかった瞬間を、肯定的に可視化</li>
+        <li><span>—</span>思い出を再体験可能な物語に変換</li>
+        <li><span>—</span>写真集をメディアから体験へ進化</li>
+      </ul>
     </div>
   </section>
 
   <!-- === ローカルLLM導入 === -->
-  <section id="local-llm" class="service-content" data-service="local-llm" style="background: var(--surface); display: none;">
-    <div class="container">
-      <h2 class="section-title">ローカルLLM導入コンサルティング & 構築支援</h2>
-      <p class="section-subtitle">検証で終わらせない。最初から"本番前提"の生成AI導入。</p>
+  <section id="local-llm" class="service-content" data-service="local-llm" style="background: var(--paper-2); display: none;">
+    <h2 class="content-title">ローカルLLM導入コンサルティング & 構築支援</h2>
+    <p class="content-subtitle">検証で終わらせない。最初から"本番前提"の生成AI導入。</p>
 
-      <div class="reveal" style="max-width: 900px; margin: 0 auto 3rem;">
-        <div style="background: var(--light); border: 1px solid var(--border); border-top: 2px solid var(--accent); padding: 2.5rem; text-align: center;">
-          <h3 style="font-family: var(--font-display); font-size: 1.4rem; color: var(--dark); margin-bottom: 1rem; font-weight: 600; line-height: 1.6;">「PoC止まり」「現場で使われない」「セキュリティが不安」<br>そんな失敗が増えています。</h3>
-          <p style="font-size: 1.1rem; color: var(--text-sub); line-height: 1.8;">ローカルLLMを"実運用前提"で設計・構築し、御社だけの安全なAI環境を実現します。</p>
+    <div class="feature-box reveal" style="background: var(--paper);">
+      <h3>「PoC止まり」「現場で使われない」「セキュリティが不安」<br>そんな失敗が増えています。</h3>
+      <p>ローカルLLMを"実運用前提"で設計・構築し、御社だけの安全なAI環境を実現します。</p>
+    </div>
+
+    <div class="reveal" style="margin-bottom: 3rem;">
+      <h3 class="content-section-title">なぜローカルLLMなのか</h3>
+      <div class="card-grid" style="margin-top: 1rem;">
+        <div class="card" style="background: var(--paper);">
+          <h3>データ流出ゼロ</h3>
+          <p>貴社内データを外部クラウドに一切送信しません。セキュリティポリシーが厳しい環境でも安心して導入可能です。</p>
+        </div>
+        <div class="card" style="background: var(--paper);">
+          <h3>自社業務に最適化</h3>
+          <p>汎用的なAIではなく、自社の文書や業務知識（ナレッジ）に特化した、御社専用のAI脳を構築できます。</p>
+        </div>
+        <div class="card" style="background: var(--paper);">
+          <h3>コストの安定化</h3>
+          <p>トークン毎の従量課金に依存しないため、使えば使うほど割安に。長期的に安定したコスト構造を実現します。</p>
         </div>
       </div>
+    </div>
 
-      <div class="reveal" style="margin-bottom: 3rem;">
-        <h3 class="section-title" style="font-size: 1.6rem; margin-bottom: 2rem;">なぜローカルLLMなのか</h3>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
-          <div class="card reveal">
-            <h3>データ流出ゼロ</h3>
-            <p>貴社内データを外部クラウドに一切送信しません。セキュリティポリシーが厳しい環境でも安心して導入可能です。</p>
-          </div>
-          <div class="card reveal">
-            <h3>自社業務に最適化</h3>
-            <p>汎用的なAIではなく、自社の文書や業務知識（ナレッジ）に特化した、御社専用のAI脳を構築できます。</p>
-          </div>
-          <div class="card reveal">
-            <h3>コストの安定化</h3>
-            <p>トークン毎の従量課金に依存しないため、使えば使うほど割安に。長期的に安定したコスト構造を実現します。</p>
-          </div>
+    <div class="reveal" style="margin-bottom: 3rem;">
+      <h3 class="content-section-title">AIナレッジワークスの強み</h3>
+      <div class="card" style="border-left: 3px solid var(--accent); background: var(--paper); margin-top: 1rem;">
+        <h3>迷わず・止まらず・やり直さない導入支援</h3>
+        <p>ローカルLLMの導入は、モデル選定、インフラ構成、RAG設計、セキュリティなど判断ポイントが膨大です。私たちは、ローカルLLM特化の知見で検討段階から実運用まで一直線に導きます。</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem; margin-top: 1.25rem;">
+          <div style="padding: 0.75rem; background: var(--paper-2); border: 1px solid var(--rule); font-size: 0.9rem; font-weight: 600; color: var(--ink);">手戻りのない設計手法</div>
+          <div style="padding: 0.75rem; background: var(--paper-2); border: 1px solid var(--rule); font-size: 0.9rem; font-weight: 600; color: var(--ink);">セキュリティ重視の構成案</div>
+          <div style="padding: 0.75rem; background: var(--paper-2); border: 1px solid var(--rule); font-size: 0.9rem; font-weight: 600; color: var(--ink);">業務定着までの並走支援</div>
         </div>
       </div>
+    </div>
 
-      <div class="reveal" style="margin-bottom: 3rem;">
-        <h3 class="section-title" style="font-size: 1.6rem; margin-bottom: 2rem;">AIナレッジワークスの強み</h3>
-        <div class="card reveal" style="border-left: 3px solid var(--accent);">
-          <h3>迷わず・止まらず・やり直さない導入支援</h3>
-          <p style="margin-bottom: 1.5rem;">ローカルLLMの導入は、モデル選定、インフラ構成、RAG設計、セキュリティなど判断ポイントが膨大です。私たちは、ローカルLLM特化の知見で検討段階から実運用まで一直線に導きます。</p>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.75rem;">
-            <div style="padding: 0.75rem; background: var(--surface); border: 1px solid var(--border); font-size: 0.9rem; font-weight: 600; color: var(--dark);">手戻りのない設計手法</div>
-            <div style="padding: 0.75rem; background: var(--surface); border: 1px solid var(--border); font-size: 0.9rem; font-weight: 600; color: var(--dark);">セキュリティ重視の構成案</div>
-            <div style="padding: 0.75rem; background: var(--surface); border: 1px solid var(--border); font-size: 0.9rem; font-weight: 600; color: var(--dark);">業務定着までの並走支援</div>
-          </div>
+    <div class="reveal" style="margin-bottom: 3rem;">
+      <h3 class="content-section-title">サービス内容（導入まで）</h3>
+      <div class="process-grid" style="margin-top: 1rem;">
+        <div class="process-step reveal">
+          <div class="step-number">1</div>
+          <h4>要件整理・導入設計</h4>
+          <p>業務利用目的の整理、セキュリティ・運用制約の確認を行い、最適なローカルLLM構成を設計します。</p>
+        </div>
+        <div class="process-step reveal">
+          <div class="step-number">2</div>
+          <h4>環境構築</h4>
+          <p>オンプレミス/閉域環境への構築、LLMセットアップ、社内ドキュメント連携（RAG）の実装を行います。</p>
+        </div>
+        <div class="process-step reveal">
+          <div class="step-number">3</div>
+          <h4>初期運用調整</h4>
+          <p>応答精度・検索精度の調整、社内利用UIの整備など、「実運用可能な状態」まで仕上げます。</p>
         </div>
       </div>
+    </div>
 
-      <div class="reveal" style="margin-bottom: 3rem;">
-        <h3 class="section-title" style="font-size: 1.6rem; margin-bottom: 2rem;">サービス内容（導入まで）</h3>
-        <div class="process-grid">
-          <div class="process-step">
-            <div class="step-number">1</div>
-            <h4>要件整理・導入設計</h4>
-            <p>業務利用目的の整理、セキュリティ・運用制約の確認を行い、最適なローカルLLM構成を設計します。</p>
-          </div>
-          <div class="process-step">
-            <div class="step-number">2</div>
-            <h4>環境構築</h4>
-            <p>オンプレミス/閉域環境への構築、LLMセットアップ、社内ドキュメント連携（RAG）の実装を行います。</p>
-          </div>
-          <div class="process-step">
-            <div class="step-number">3</div>
-            <h4>初期運用調整</h4>
-            <p>応答精度・検索精度の調整、社内利用UIの整備など、「実運用可能な状態」まで仕上げます。</p>
-          </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
+      <div class="card reveal" style="background: var(--paper);">
+        <h3 style="color: var(--accent);">こんな企業様に向いています</h3>
+        <ul class="service-features">
+          <li>PoCではなく導入を前提にAIを検討している</li>
+          <li>機密情報を扱い、クラウドAIを使えない</li>
+          <li>社内ナレッジ検索・問い合わせ対応を本格導入したい</li>
+          <li>AIを一時的な施策で終わらせたくない</li>
+        </ul>
+      </div>
+      <div class="card-dark reveal">
+        <h3>導入費用について</h3>
+        <div style="text-align: center; padding: 1rem 0;">
+          <p style="font-size: 0.9rem; opacity: 0.6; margin: 0;">ライト導入（小〜中規模・基本構築）</p>
+          <p style="font-family: var(--serif); font-size: 2.2rem; font-weight: 500; margin: 0.75rem 0;">20万円<span style="font-size: 0.5em; font-weight: 400;"> から</span></p>
+          <p style="font-size: 0.85rem; opacity: 0.5; line-height: 1.5; margin: 0;">※要件に応じたお見積もりとなります。<br>ご予算に合わせた構成を提案いたします。</p>
         </div>
       </div>
+    </div>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
-        <div class="card reveal">
-          <h3 style="color: var(--accent);">こんな企業様に向いています</h3>
-          <ul class="service-features">
-            <li>PoCではなく導入を前提にAIを検討している</li>
-            <li>機密情報を扱い、クラウドAIを使えない</li>
-            <li>社内ナレッジ検索・問い合わせ対応を本格導入したい</li>
-            <li>AIを一時的な施策で終わらせたくない</li>
-          </ul>
-        </div>
-        <div class="card reveal" style="background: var(--dark); color: var(--light); border-color: var(--dark);">
-          <h3 style="color: var(--light);">導入費用について</h3>
-          <div style="text-align: center; padding: 1rem 0;">
-            <p style="font-size: 0.9rem; opacity: 0.7;">ライト導入（小〜中規模・基本構築）</p>
-            <p style="font-size: 2.2rem; font-weight: 600; font-family: var(--font-display); margin: 0.75rem 0;">20万円<span style="font-size: 0.9rem; font-weight: 400;"> から</span></p>
-            <p style="font-size: 0.85rem; opacity: 0.6; line-height: 1.5;">※要件に応じたお見積もりとなります。<br>ご予算に合わせた構成を提案いたします。</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="reveal" style="text-align: center;">
-        <p style="font-size: 1.05rem; font-weight: 600; color: var(--text-sub);">AIナレッジワークスは、「PoCを回す会社」ではなく、「AIを業務に根付かせる会社」です。</p>
-      </div>
+    <div class="reveal" style="text-align: center;">
+      <p class="paragraph" style="font-weight: 600;">AIナレッジワークスは、「PoCを回す会社」ではなく、「AIを業務に根付かせる会社」です。</p>
     </div>
   </section>
 
-  <!-- === お問い合わせ === -->
+  <!-- === CTA === -->
   <section class="cta-section">
-    <div class="container">
-      <h2>まずは無料相談から</h2>
-      <p>AI導入・研修について、お気軽にご相談ください。</p>
-      <a href="contact.html" class="cta-button">お問い合わせはこちら</a>
-    </div>
+    <div class="kicker">Contact</div>
+    <h2>まずは<br><em>ご相談</em>から。</h2>
+    <p>AI導入・研修について、お気軽にご相談ください。</p>
+    <a href="contact.html" class="btn-fill">お問い合わせはこちら &nbsp;&rarr;</a>
   </section>
 
   <!-- === Footer === -->
   <footer>
-    <div class="container">
-      <p>&copy; 2025 AI Knowledge Works, LLC. All rights reserved.</p>
+    <div class="footer-brand">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <img src="logo/AIナレッジワークス_logo_transparen.png" width="36" height="36" alt="" style="object-fit: contain;">
+        <span style="font-family: var(--serif); font-size: 17px; letter-spacing: 0.04em;">AI Knowledge Works</span>
+      </div>
+      <p>AIツールを使って自分だけの作品を創り、発表する体験を通じてデジタルリテラシーを育成する小さなスタジオ。</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Pages</div>
+      <a href="service.html">Services</a>
+      <a href="achievements.html">Achievements</a>
+      <a href="company.html">Company</a>
+      <a href="story.html">Story</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Connect</div>
+      <a href="https://www.youtube.com/@AIKnowledgeWorks" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://note.com/aiknowledgeworks" target="_blank" rel="noopener">Note</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Office</div>
+      <span style="font-size: 14px; color: var(--ink);">Tokyo, Japan</span>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2025 AI Knowledge Works, LLC.</span>
+      <span>Made with AI in Tokyo</span>
     </div>
   </footer>
 
   <!-- === Scripts === -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Animation with IntersectionObserver
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('active');
+      // Scroll reveal with .in class
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('in');
+            revealObserver.unobserve(e.target);
           }
         });
-      }, { threshold: 0.1 });
+      }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
 
-      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-      document.querySelectorAll('.service-card').forEach(el => observer.observe(el));
-      document.querySelectorAll('.process-step').forEach(el => observer.observe(el));
+      document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
+      // Fallback: reveal all after 3s
+      setTimeout(() => {
+        document.querySelectorAll('.reveal').forEach(el => {
+          if (!el.classList.contains('in')) el.classList.add('in');
+        });
+      }, 3000);
+
+      // Image fallback
       document.querySelectorAll('img[data-fallback]').forEach(img => {
         const fallback = img.dataset.fallback;
         if (!fallback) return;
         img.addEventListener('error', () => {
-          if (img.src !== fallback) {
-            img.src = fallback;
-          }
+          if (img.src !== fallback) img.src = fallback;
         }, { once: true });
       });
-      
-      // Service tab switching functionality
+
+      // Header scroll effect
+      const header = document.getElementById('site-header');
+      window.addEventListener('scroll', () => {
+        header.classList.toggle('scrolled', window.scrollY > 40);
+      }, { passive: true });
+
+      // Service tab switching
       const serviceTabs = document.querySelectorAll('.service-tab');
       const serviceContents = document.querySelectorAll('.service-content');
-      
+
       function switchService(targetService, updateUrl = true) {
-        
-        // Update tab styles
         serviceTabs.forEach(tab => {
           const isActive = tab.dataset.service === targetService;
           if (isActive) {
             tab.classList.add('active');
-            tab.style.background = 'var(--dark)';
-            tab.style.color = 'var(--light)';
-            tab.style.borderColor = 'var(--dark)';
           } else {
             tab.classList.remove('active');
-            tab.style.background = 'var(--light)';
-            tab.style.color = 'var(--dark)';
-            tab.style.borderColor = 'var(--border)';
           }
         });
-        
-        // Update content visibility
+
         serviceContents.forEach(content => {
           if (content.dataset.service === targetService) {
             content.style.display = 'block';
-            // Re-trigger animations for newly visible content
             setTimeout(() => {
               content.querySelectorAll('.reveal').forEach(el => {
-                observer.observe(el);
-                // Force trigger the reveal animation
-                if (!el.classList.contains('active')) {
-                  el.classList.add('active');
+                revealObserver.observe(el);
+                if (!el.classList.contains('in')) {
+                  el.classList.add('in');
                 }
               });
             }, 100);
@@ -1221,92 +1557,74 @@
             content.style.display = 'none';
           }
         });
-        
-        // Update URL hash if requested
+
         if (updateUrl) {
-          history.replaceState(null, null, `#${targetService}`);
+          history.replaceState(null, null, '#' + targetService);
         }
-        
-        // Save scroll position
+
         sessionStorage.setItem('serviceScrollPosition', window.scrollY);
       }
-      
+
       function getServiceFromHash() {
         const hash = window.location.hash.substring(1);
         const validServices = ['startup-support', 'hp-creation', 'ai-video', 'ai-photobook', 'local-llm'];
         return validServices.includes(hash) ? hash : 'ai-video';
       }
-      
+
       function restoreScrollPosition() {
-        const savedScrollPosition = sessionStorage.getItem('serviceScrollPosition');
-        if (savedScrollPosition) {
-          setTimeout(() => {
-            window.scrollTo(0, parseInt(savedScrollPosition));
-          }, 300);
+        const saved = sessionStorage.getItem('serviceScrollPosition');
+        if (saved) {
+          setTimeout(() => { window.scrollTo(0, parseInt(saved)); }, 300);
         }
       }
-      
-      // Initialize after a short delay to ensure all elements are ready
+
       setTimeout(() => {
-        const initialService = getServiceFromHash();
-        switchService(initialService, false);
+        switchService(getServiceFromHash(), false);
       }, 100);
-      
-      // Handle hash changes (browser back/forward)
+
       window.addEventListener('hashchange', () => {
-        const service = getServiceFromHash();
-        switchService(service, false);
+        switchService(getServiceFromHash(), false);
         restoreScrollPosition();
       });
-      
-      // Handle tab clicks
+
       serviceTabs.forEach(tab => {
         tab.addEventListener('click', () => {
-          // Add click effect
           tab.classList.add('clicked');
-          setTimeout(() => {
-            tab.classList.remove('clicked');
-          }, 150);
-
-          const targetService = tab.dataset.service;
-          switchService(targetService);
+          setTimeout(() => { tab.classList.remove('clicked'); }, 150);
+          switchService(tab.dataset.service);
         });
       });
-      
-      // Save scroll position before page unload
+
       window.addEventListener('beforeunload', () => {
         sessionStorage.setItem('serviceScrollPosition', window.scrollY);
       });
-      
-      // Restore scroll position after page load
+
       window.addEventListener('load', () => {
         restoreScrollPosition();
       });
-      
-      // Mobile menu functionality
+
+      // Mobile menu
       const hamburger = document.querySelector('.hamburger');
       const nav = document.querySelector('nav');
       const overlay = document.querySelector('.overlay');
       const navLinks = document.querySelectorAll('nav a');
-      
+
       function toggleMenu() {
         hamburger.classList.toggle('active');
         nav.classList.toggle('active');
         overlay.classList.toggle('active');
         document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
       }
-      
+
       hamburger.addEventListener('click', toggleMenu);
       overlay.addEventListener('click', toggleMenu);
-      
+
       navLinks.forEach(link => {
         link.addEventListener('click', () => {
-          if (nav.classList.contains('active')) {
-            toggleMenu();
-          }
+          if (nav.classList.contains('active')) toggleMenu();
         });
       });
     });
   </script>
 </body>
-</html> 
+</html>

@@ -25,1990 +25,1044 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-DWFLPN1EZH');
   </script>
 
-  
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;600;800&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&display=swap" rel="stylesheet" />
 
   <style>
-    /* === Design System === */
+    /* === Design System Tokens === */
     :root {
-      --brand-blue: #6db5ff;
-      --brand-mint: #a1e9d9;
-      --brand-gradient: linear-gradient(135deg, #6db5ff 0%, #a1e9d9 100%);
-      --dark: #0f1923;
-      --dark-sub: #2a3a4a;
-      --light: #ffffff;
-      --surface: #f4f7fa;
+      --bg: #FAF8F5;
+      --ink: #2C2A26;
+      --ink-80: #2C2A26CC;
+      --ink-60: #2C2A2699;
+      --ink-40: #2C2A2666;
+      --ink-15: #2C2A2626;
+      --ink-08: #2C2A2614;
+      --paper: #FFFFFF;
+      --paper-2: #F3EFE9;
+      --paper-3: #EBE6DD;
+      --rule: #D9D3C7;
+      --link: #1B5FA0;
       --accent: #3da8c7;
-      --accent-warm: #d4a26a;
-      --text: #1c2833;
-      --text-sub: #5a6e7f;
-      --border: #dfe6ed;
-      --font-display: "Shippori Mincho B1", "Georgia", serif;
-      --font-body: "Zen Kaku Gothic New", "Helvetica Neue", sans-serif;
+      --brand-gradient: linear-gradient(135deg, #6db5ff 0%, #a1e9d9 100%);
+
+      --serif: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+      --sans: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
+      --display: "Fraunces", "Noto Serif JP", serif;
+
+      --page-pad: clamp(24px, 5vw, 72px);
+      --measure: 64ch;
     }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    /* === Reset === */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
-      font-family: var(--font-body);
-      background: var(--light);
-      color: var(--text);
-      line-height: 1.85;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.8;
       font-weight: 400;
       letter-spacing: 0.02em;
       -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
     }
-    img { max-width: 100%; display: block; }
     a { color: inherit; text-decoration: none; }
-    ul { list-style: none; }
+    img { display: block; max-width: 100%; }
+    ul { list-style: none; padding: 0; margin: 0; }
+    hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 
-    /* === ヘッダー === */
+    /* === Grain overlay === */
+    body::after {
+      content: "";
+      position: fixed; inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.9'/></svg>");
+    }
+
+    /* === Selection === */
+    ::selection { background: var(--ink); color: var(--bg); }
+
+    /* === Scroll reveal === */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 1.2s cubic-bezier(.2,.7,.2,1), transform 1.2s cubic-bezier(.2,.7,.2,1);
+    }
+    .reveal.in {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* === Kicker label === */
+    .kicker {
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink-60);
+    }
+
+    /* === Section base === */
+    .section {
+      padding: clamp(96px, 14vh, 160px) var(--page-pad);
+      max-width: 1680px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* === Header / Nav === */
     header {
-      position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
-      background: rgba(255, 255, 255, .92); backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(0,0,0,.06);
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 28px var(--page-pad);
+      display: flex; align-items: center; justify-content: space-between;
+      background: transparent;
+      border-bottom: 1px solid transparent;
+      transition: all .5s cubic-bezier(.2,.7,.2,1);
     }
-    .container { width: 88%; max-width: 1140px; margin: 0 auto; }
-    .header-inner { display: flex; align-items: center; justify-content: space-between; padding: .85rem 0; }
-    .logo { display: flex; align-items: center; }
-    .logo img { height: 40px; }
-    .logo span { font-family: var(--font-display); font-weight: 600; margin-left: 12px; font-size: 1rem; letter-spacing: 0.04em; color: var(--dark); }
-    nav ul { display: flex; flex-wrap: wrap; gap: 1.6rem; }
-    nav a { font-weight: 500; font-size: 0.88rem; letter-spacing: 0.06em; transition: color .25s; color: var(--text-sub); }
-    nav a:hover { color: var(--accent); }
-
-    /* === セクション共通 === */
-    section { padding: 120px 0; }
-    .section-title {
-      font-family: var(--font-display);
-      font-size: 2rem;
-      font-weight: 600;
-      text-align: center;
-      margin-bottom: 1rem;
-      color: var(--dark);
+    header.scrolled {
+      padding-top: 14px; padding-bottom: 14px;
+      background: color-mix(in srgb, var(--bg) 85%, transparent);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom-color: var(--rule);
+    }
+    .logo-link {
+      display: flex; align-items: center; gap: 12px;
+    }
+    .logo-link img {
+      height: 40px;
+      transition: height .5s cubic-bezier(.2,.7,.2,1);
+    }
+    header.scrolled .logo-link img { height: 32px; }
+    .logo-link span {
+      font-family: var(--serif);
+      font-size: 17px;
       letter-spacing: 0.04em;
+      font-weight: 500;
     }
-    .section-subtitle { text-align: center; color: var(--text-sub); margin-bottom: 3rem; font-size: 0.95rem; font-weight: 300; letter-spacing: 0.03em; }
+    nav ul {
+      display: flex; gap: 28px; align-items: center;
+    }
+    nav a {
+      font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--ink-60);
+      transition: color .3s;
+    }
+    nav a:hover { color: var(--ink); }
+    .nav-cta {
+      padding: 10px 18px;
+      border: 1px solid var(--ink);
+      margin-left: 8px;
+      transition: all .3s;
+    }
+    .nav-cta:hover {
+      background: var(--ink);
+      color: var(--bg);
+    }
 
     /* === Hero === */
     .hero {
       height: 100vh;
-      background: var(--dark);
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      text-align: center; color: var(--light);
       position: relative;
+      display: flex; flex-direction: column;
+      background: #0f1923;
     }
-    .hero h1 { font-family: var(--font-display); font-size: 3rem; margin-bottom: .5rem; letter-spacing: 0.06em; font-weight: 600; }
-    .hero p.tagline { font-size: 1.2rem; font-weight: 300; opacity: 0.8; }
-
-    /* === グリッド・カード === */
-    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-    .card {
-      background: var(--light);
-      border: 1px solid var(--border);
-      padding: 2rem;
-      opacity: 0; transform: translateY(30px); transition: all .7s cubic-bezier(.23,1,.32,1);
-      position: relative;
-    }
-    .card::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--brand-gradient);
-      transition: width .5s cubic-bezier(.23,1,.32,1);
-    }
-    .card:hover::after { width: 100%; }
-    .card.active { opacity: 1; transform: translateY(0); }
-    .card h3 { font-family: var(--font-display); margin-bottom: .6rem; color: var(--dark); font-size: 1.15rem; font-weight: 600; }
-    .card p { color: var(--text-sub); font-size: 0.95rem; line-height: 1.8; }
-
-    /* === Values === */
-    .values-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 1.5rem; }
-    .value-item {
-      background: var(--light);
-      padding: 1.8rem;
-      border: 1px solid var(--border);
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all .7s cubic-bezier(.23,1,.32,1);
-      position: relative;
-    }
-    .value-item::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 3px;
-      height: 100%;
-      background: var(--brand-gradient);
-    }
-    .value-item.active { opacity: 1; transform: translateY(0); }
-    .value-item h4 {
-      color: var(--dark);
-      margin-bottom: .5rem;
-      font-size: 1rem;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      letter-spacing: 0.02em;
-    }
-    .value-item h4::before {
-      content: attr(data-icon);
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      width: 26px;
-      height: 26px;
-      margin-right: 10px;
-      font-size: 13px;
-      color: var(--accent);
-      background: none;
-      border: 1.5px solid var(--accent);
-      border-radius: 4px;
-    }
-    .value-item p { color: var(--text-sub); font-size: 0.9rem; }
-
-    /* === Pillars === */
-    .pillars-section-title {
-      position: relative;
-      text-align: center;
-      margin-bottom: 3rem;
-    }
-    .pillars-section-title:after {
-      content: '';
-      display: block;
-      width: 40px;
-      height: 2px;
-      background: var(--accent);
-      margin: 1.2rem auto;
-    }
-    .pillars-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-    .pillar {
-      background: var(--light);
-      padding: 2.5rem 2rem;
-      text-align: left;
-      border: 1px solid var(--border);
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all .7s cubic-bezier(.23,1,.32,1);
-      position: relative;
-      overflow: hidden;
-    }
-    .pillar.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .pillar:hover {
-      border-color: var(--accent);
-      transform: translateY(-4px);
-    }
-    .pillar:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: var(--brand-gradient);
-    }
-    .pillar-icon {
-      font-size: 2rem;
-      color: var(--accent);
-      margin-bottom: 1.2rem;
-      display: inline-block;
-    }
-    .pillar h4 {
-      font-family: var(--font-display);
-      font-size: 1.25rem;
-      margin-bottom: .8rem;
-      color: var(--dark);
-      font-weight: 600;
-    }
-    .pillar p {
-      color: var(--text-sub);
-      font-size: 1.05rem;
-    }
-
-    /* === Matrix === */
-    .matrix-table { width: 100%; border-collapse: collapse; font-size: .9rem; margin-top: 1.25rem; opacity: 0; transform: translateY(30px); transition: all .7s cubic-bezier(.23,1,.32,1); }
-    .matrix-table.active { opacity: 1; transform: translateY(0); }
-    .matrix-table th, .matrix-table td { border: 1px solid var(--border); padding: .75rem 1rem; }
-    .matrix-table th { background: var(--surface); font-family: var(--font-display); font-weight: 600; color: var(--dark); }
-
-    /* === Q&A === */
-    .qa-item { background: var(--light); padding: 1rem 1.25rem; border: 1px solid var(--border); margin-bottom: .75rem; opacity: 0; transform: translateY(30px); transition: all .7s cubic-bezier(.23,1,.32,1); }
-    .qa-item.active { opacity: 1; transform: translateY(0); }
-    .qa-item summary { font-family: var(--font-display); font-weight: 600; cursor: pointer; position: relative; padding: .5rem 0; color: var(--dark); }
-    .qa-item summary::-webkit-details-marker { display:none; }
-    .qa-item summary::after { content:'+'; position: absolute; right: 0; transition: transform .3s; color: var(--accent); font-weight: 300; font-size: 1.2rem; }
-    .qa-item[open] summary::after { transform: rotate(45deg); }
-
-    /* === 社員紹介 === */
-    .staff-intro {
-      background: var(--surface);
-      position: relative;
-      overflow: hidden;
-    }
-    
-    /* モバイル表示保証 - JavaScript無効時のフォールバック */
-    @media (max-width: 768px) {
-      .staff-intro .staff-member,
-      .staff-intro .reveal {
-        opacity: 1 !important;
-        transform: translateY(0) !important;
-      }
-    }
-    
-    /* アニメーション軽減設定 */
-    @media (prefers-reduced-motion: reduce) {
-      .staff-intro .staff-member,
-      .staff-intro .reveal,
-      .card,
-      .value-item {
-        opacity: 1 !important;
-        transform: none !important;
-        transition: none !important;
-      }
-    }
-    .staff-intro::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: radial-gradient(circle at 20% 50%, rgba(109,181,255,0.03) 0%, transparent 50%),
-                  radial-gradient(circle at 80% 80%, rgba(161,233,217,0.03) 0%, transparent 50%);
+    .hero-3d-frame {
+      width: 100%; height: 100%; border: none;
       pointer-events: none;
     }
-    .staff-member {
-      margin-bottom: 4rem;
-      position: relative;
+    .hero-overlay-touch {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      cursor: grab; z-index: 1;
     }
-    .staff-header {
-      display: flex;
-      align-items: center;
-      margin-bottom: 2.5rem;
-      gap: 2.5rem;
-      background: var(--light);
-      padding: 2.5rem;
-      border: 1px solid var(--border);
-    }
-    .staff-photo {
-      width: 160px;
-      height: 160px;
-      border-radius: 4px;
-      object-fit: cover;
-      border: none;
-      filter: grayscale(20%);
-      transition: all 0.4s ease;
-    }
-    .staff-photo:hover {
-      filter: grayscale(0%);
-      transform: scale(1.02);
-    }
-    
-    /* モバイルではhover効果を無効化 */
-    @media (max-width: 768px) {
-      .staff-photo:hover {
-        transform: none;
-        box-shadow: 0 15px 35px rgba(0,0,0,.15);
-      }
-    }
-    .staff-info h3 {
-      font-family: var(--font-display);
-      font-size: 1.8rem;
-      color: var(--dark);
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-    }
-    .staff-info .position {
-      font-size: 0.9rem;
-      color: var(--text-sub);
-      margin-bottom: 0.5rem;
-      padding: 0.35rem 0.9rem;
-      background: var(--surface);
-      display: inline-block;
-      border: 1px solid var(--border);
-      font-weight: 500;
-      letter-spacing: 0.04em;
-    }
-    .staff-info p:last-child {
-      color: var(--text-sub);
-      font-size: 1rem;
-      margin-top: 0.5rem;
-      font-weight: 400;
-    }
-    .story-section {
-      margin-bottom: 3rem;
-      background: var(--light);
-      padding: 2.5rem;
-      border: 1px solid var(--border);
-    }
-    .story-section h4 {
-      font-family: var(--font-display);
-      font-size: 1.4rem;
-      color: var(--dark);
-      margin-bottom: 1.5rem;
-      padding: 0;
-      padding-bottom: 1rem;
-      border-left: none;
-      border-bottom: 1px solid var(--border);
-      font-weight: 600;
-      position: relative;
-      background: none;
-      box-shadow: none;
-    }
-    .story-section h5 {
-      font-family: var(--font-display);
-      font-size: 1.15rem;
-      color: var(--dark);
-      margin: 2.5rem 0 1rem 0;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-    }
-    .story-content {
-      line-height: 2;
-      font-size: 1rem;
-    }
-    .story-content p {
-      margin-bottom: 1.5rem;
-      text-align: justify;
-      color: var(--text);
-    }
-    .story-content strong {
-      background: none;
-      color: var(--dark);
-      padding: 0;
-      font-weight: 700;
-      border-bottom: 2px solid var(--brand-blue);
-    }
-    .story-content ul {
-      background: var(--surface);
-      padding: 1.2rem 1.5rem;
-      border-left: 3px solid var(--accent);
-    }
-    .story-content ul li {
-      margin-bottom: 0.5rem;
-      font-weight: 400;
-      color: var(--text);
-    }
-    .highlight-quote {
-      background: var(--surface);
-      border: none;
-      border-left: 3px solid var(--accent);
-      padding: 2rem 2.5rem;
-      margin: 2.5rem 0;
-      font-family: var(--font-display);
-      font-style: normal;
-      font-weight: 600;
-      font-size: 1.25rem;
-      color: var(--dark);
-      position: relative;
-      text-align: left;
-      letter-spacing: 0.02em;
-      line-height: 1.8;
-    }
-    .highlight-quote::before {
-      content: none;
-    }
-    .chapter-divider {
-      text-align: center;
-      margin: 3rem 0;
-      font-family: var(--font-display);
-      font-size: 1.4rem;
-      color: var(--accent);
-      font-weight: 600;
-      position: relative;
-      padding: 1rem 0;
-      letter-spacing: 0.08em;
-    }
-    .chapter-divider::before,
-    .chapter-divider::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      width: 60px;
-      height: 1px;
-      background: var(--border);
-    }
-    .chapter-divider::before {
-      left: calc(50% - 160px);
-    }
-    .chapter-divider::after {
-      right: calc(50% - 160px);
-    }
-    /* === 特別テキストスタイル === */
-    .special-text {
-      font-size: 1.05em;
-      font-weight: 500;
-      color: var(--dark);
-      letter-spacing: 0.02em;
-    }
-    /* === ハイライト用のクラス === */
-    .highlight-text {
-      background: none;
-      padding: 0;
-      font-weight: 700;
-      color: var(--dark);
-      border-bottom: 3px solid var(--accent-warm);
-    }
-    .tech-highlight {
-      background: none;
-      padding: 0;
-      font-weight: 600;
-      color: var(--dark);
-      border-bottom: 1px solid var(--accent);
+    .hero-bottom-bar {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 20px var(--page-pad);
+      display: flex; justify-content: space-between;
+      font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      z-index: 2;
     }
 
-    /* === CTA セクション === */
-    .cta-section {
-      background: var(--dark);
-      color: var(--light);
+    /* === Marquee === */
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+    .marquee {
+      overflow: hidden;
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      padding: 28px 0;
+      white-space: nowrap;
+      background: var(--bg);
+    }
+    .marquee-track {
+      display: inline-flex; gap: 48px;
+      animation: marquee 40s linear infinite;
+      font-family: var(--serif);
+      font-size: 36px;
+      color: var(--ink);
+    }
+    .marquee-track span {
+      font-weight: 400;
+    }
+    .marquee-dot {
+      font-style: normal;
+      opacity: 0.35;
+    }
+    .marquee-word {
+      font-style: italic;
+    }
+
+    /* === Two-column layout === */
+    .grid-sidebar {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+    .sidebar-sticky {
+      position: sticky; top: 140px;
+    }
+
+    /* === Section headings === */
+    .section-heading {
+      font-family: var(--serif);
+      font-weight: 400;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      margin: 0;
+    }
+    .section-heading em {
+      font-family: var(--display);
+      font-style: italic;
+    }
+    .section-heading-lg {
+      font-size: clamp(40px, 6vw, 88px);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+    .section-heading-md {
+      font-size: clamp(34px, 4.5vw, 64px);
+    }
+    .section-heading-sm {
+      font-size: clamp(28px, 3.5vw, 48px);
+    }
+
+    /* === Card row (works/items style) === */
+    .item-row {
+      display: grid;
+      grid-template-columns: 80px 1fr auto;
+      gap: 32px;
+      align-items: center;
+      padding: 36px 0;
+      border-bottom: 1px solid var(--rule);
+      transition: padding .5s cubic-bezier(.2,.7,.2,1);
+    }
+    .item-row:hover { padding-left: 24px; }
+    .item-num {
+      font-size: 11px; letter-spacing: 0.22em;
+      color: var(--ink-60);
+      font-variant-numeric: tabular-nums;
+    }
+    .item-title {
+      font-family: var(--serif);
+      font-size: clamp(22px, 2.8vw, 36px);
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      transition: font-style .3s;
+    }
+    .item-row:hover .item-title { font-style: italic; }
+    .item-meta {
+      font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--ink-60);
+    }
+    .item-arrow {
+      font-size: 18px;
+      transform: translateX(0);
+      transition: transform .5s cubic-bezier(.2,.7,.2,1);
+    }
+    .item-row:hover .item-arrow { transform: translateX(8px); }
+
+    /* === Service items === */
+    .service-row {
+      display: grid;
+      grid-template-columns: 60px 1fr 2fr;
+      gap: 32px;
+      padding: 40px 0;
+      border-bottom: 1px solid var(--rule);
+      align-items: baseline;
+    }
+    .service-name {
+      font-family: var(--serif);
+      font-size: 26px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+    }
+    .service-jp {
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      color: var(--ink-60);
+      margin-top: 6px;
+    }
+    .service-desc {
+      margin: 0; font-size: 16px; line-height: 1.9;
+      color: var(--ink-60);
+      max-width: 42ch;
+    }
+
+    /* === Contact CTA === */
+    .cta-center {
       text-align: center;
-      padding: 80px 0;
+      max-width: 1100px;
+      margin: 0 auto;
     }
-    .cta-section h2 {
-      font-family: var(--font-display);
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
+    .btn-fill {
+      display: inline-flex; align-items: center;
+      padding: 20px 36px;
+      background: var(--ink);
+      color: var(--bg);
+      font-size: 14px; letter-spacing: 0.16em; text-transform: uppercase;
+      transition: all .3s;
     }
-    .cta-section p {
-      font-size: 1rem;
-      margin-bottom: 2.5rem;
-      opacity: 0.7;
-      font-weight: 300;
+    .btn-fill:hover {
+      opacity: 0.85;
     }
-    .cta-button {
-      display: inline-block;
-      background: transparent;
-      color: var(--light);
-      padding: .9rem 2.5rem;
-      border: 1px solid rgba(255,255,255,.4);
-      font-weight: 500;
-      text-decoration: none;
-      transition: all 0.35s ease;
-      font-size: 0.95rem;
-      letter-spacing: 0.08em;
+    .btn-outline {
+      display: inline-flex; align-items: center;
+      padding: 19px 35px;
+      border: 1px solid var(--ink);
+      color: var(--ink);
+      font-size: 14px; letter-spacing: 0.16em; text-transform: uppercase;
+      transition: all .3s;
     }
-    .cta-button:hover {
-      background: var(--light);
-      color: var(--dark);
-      border-color: var(--light);
+    .btn-outline:hover {
+      background: var(--ink);
+      color: var(--bg);
     }
 
     /* === Footer === */
-    footer { background: var(--dark); color: rgba(255,255,255,.5); padding: 2.5rem 0; text-align: center; border-top: 1px solid rgba(255,255,255,.08); }
-    footer p { font-size: .8rem; letter-spacing: 0.04em; }
-    footer a { color: rgba(255,255,255,.6); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.2); transition: color .25s; }
-    footer a:hover { color: var(--light); }
+    footer {
+      border-top: 1px solid var(--rule);
+      padding: 56px var(--page-pad) 40px;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      max-width: 1680px;
+      margin: 0 auto;
+    }
+    .footer-brand p {
+      font-size: 13px;
+      color: var(--ink-60);
+      line-height: 2;
+      margin-top: 16px;
+      max-width: 340px;
+    }
+    .footer-col-title {
+      font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--ink-60);
+      margin-bottom: 18px;
+    }
+    .footer-col a {
+      font-size: 14px;
+      color: var(--ink);
+      display: block;
+      margin-bottom: 10px;
+      transition: color .3s;
+    }
+    .footer-col a:hover { color: var(--ink-60); }
+    .footer-bottom {
+      grid-column: 1 / -1;
+      padding-top: 32px; margin-top: 16px;
+      border-top: 1px solid var(--rule);
+      display: flex; justify-content: space-between;
+      font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--ink-60);
+    }
 
-    /* 引用ボックスのスタイル */
-    blockquote {
-      background: var(--surface);
-      border-left: 3px solid var(--accent);
-      margin: 1.5em 0;
-      padding: 1.2em 1.5em;
+    /* === Video embed === */
+    .video-wrapper {
       position: relative;
-    }
-
-    blockquote::before {
-      content: none;
-    }
-
-    blockquote p {
-      margin: 0;
-      line-height: 1.8;
-      color: var(--text);
-    }
-
-    /* 好きのスタイル */
-    .suki {
-      font-family: var(--font-display);
-      font-size: 1.1em;
-      font-weight: 600;
-      color: var(--accent);
-      display: inline;
-      position: relative;
-      padding: 0 2px;
-      transform: none;
-    }
-    .suki::after {
-      content: '';
-      position: absolute;
-      bottom: 2px;
-      left: 0;
       width: 100%;
-      height: 2px;
-      background: var(--accent);
-      opacity: 0.5;
-    }
-    
-    /* できない→できる変換のスタイル */
-    .transform-text span {
-      display: inline-block;
-      position: relative;
-      transition: all 0.4s cubic-bezier(.23,1,.32,1);
-    }
-    .transform-text span:hover {
-      transform: translateY(-3px);
-    }
-    .transform-text .negative {
-      color: var(--text-sub);
-      opacity: 0.6;
-    }
-    .transform-text .positive {
-      color: var(--accent);
-    }
-    .transform-text .divider {
-      font-weight: normal;
-      color: var(--text-sub);
-    }
-    .transform-text .action {
-      color: var(--dark);
-    }
-
-    .transform-underline {
-      width: 0;
-      height: 2px;
-      background: var(--accent);
-      margin: 15px auto;
-      transition: width 1.2s cubic-bezier(.23,1,.32,1);
-    }
-    .transform-text.active + .transform-underline {
-      width: 60%;
-    }
-
-    @media (max-width: 768px) {
-      .hero h1 { font-size: 1.8rem; }
-      .hero p.tagline { font-size: 0.95rem; }
-      
-      /* グリッドレイアウト調整 */
-      .background-grid,
-      .training-grid,
-      .kids-lab-grid,
-      .mission-vision-container,
-      .video-content-grid {
-        grid-template-columns: 1fr !important;
-      }
-      
-      /* 動画セクション調整 */
-      .video-content-grid {
-        gap: 2rem !important;
-      }
-      
-      .video-container {
-        min-height: 350px !important;
-      }
-      
-      .video-container iframe {
-        height: 350px !important;
-      }
-      
-      /* ミッションスタイル調整 */
-      #founding .transform-text {
-        font-size: 1.6rem !important;
-      }
-      
-      #founding .transform-text .positive {
-        font-size: 1.9rem !important;
-      }
-      
-      #founding .transform-text .action {
-        font-size: 1.4rem !important;
-      }
-      
-      /* 創業のきっかけセクション調整 */
-      #founding .container > div {
-        grid-template-columns: 1fr !important;
-      }
-      
-      #founding .reveal:first-child {
-        margin-bottom: 2rem;
-      }
-      
-      /* 会社概要テーブル調整は.company-tableクラスに移行 */
-      
-      /* セクションの余白調整 */
-      section {
-        padding: 80px 0;
-      }
-      
-      .section-title {
-        font-size: 2rem;
-      }
-      
-      /* 値グリッドは480px以下で1列に */
-      .values-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
-      }
-      
-      @media (max-width: 480px) {
-        .values-grid {
-          grid-template-columns: 1fr !important;
-        }
-        
-        .section-title {
-          font-size: 1.8rem;
-        }
-        
-        .hero h1 {
-          font-size: 2rem;
-        }
-        
-        .card {
-          padding: 1.4rem;
-        }
-        
-        .card h3 {
-          font-size: 1.15rem;
-        }
-        
-        .section-subtitle {
-          font-size: 0.9rem;
-          margin-bottom: 1.5rem;
-        }
-      }
-      
-      /* Mobile navigation */
-      .header-inner {
-        padding: 0.75rem 0;
-        position: relative;
-      }
-      
-      .hamburger {
-        display: block;
-        width: 30px;
-        height: 30px;
-        position: relative;
-        cursor: pointer;
-        z-index: 1010;
-        margin-right: 0;
-        padding: 10px;
-        box-sizing: content-box;
-        margin: -10px;
-      }
-      
-      .hamburger span {
-        display: block;
-        position: absolute;
-        height: 1.5px;
-        width: 100%;
-        background: var(--dark);
-        border-radius: 0;
-        opacity: 1;
-        left: 0;
-        transform: rotate(0deg);
-        transition: .25s ease-in-out;
-      }
-      
-      .hamburger span:nth-child(1) {
-        top: 0px;
-      }
-      
-      .hamburger span:nth-child(2) {
-        top: 9px;
-      }
-      
-      .hamburger span:nth-child(3) {
-        top: 18px;
-      }
-      
-      .hamburger.active span:nth-child(1) {
-        top: 9px;
-        transform: rotate(135deg);
-      }
-      
-      .hamburger.active span:nth-child(2) {
-        opacity: 0;
-        left: -60px;
-      }
-      
-      .hamburger.active span:nth-child(3) {
-        top: 9px;
-        transform: rotate(-135deg);
-      }
-      
-      nav {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 80%;
-        max-width: 300px;
-        height: 100vh;
-        background: white;
-        box-shadow: -2px 0 10px rgba(0,0,0,0.1);
-        transition: 0.3s ease;
-        padding-top: 70px;
-        z-index: 1000;
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
-      }
-      
-      nav.active {
-        right: 0;
-      }
-      
-      nav ul {
-        flex-direction: column;
-        gap: 0;
-        padding: 0;
-        margin: 0;
-      }
-      
-      nav ul li {
-        width: 100%;
-      }
-      
-      nav ul li a {
-        padding: 15px 20px;
-        display: block;
-        border-bottom: 1px solid #eee;
-        font-size: 1.1rem;
-        position: relative;
-      }
-      
-      nav ul li a::after {
-        content: "›";
-        position: absolute;
-        right: 20px;
-        top: 50%;
-        transform: translateY(-50%);
-        font-size: 1.4rem;
-        opacity: 0.5;
-      }
-      
-      .overlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0,0,0,0.5);
-        z-index: 990;
-        -webkit-backdrop-filter: blur(2px);
-        backdrop-filter: blur(2px);
-        opacity: 0;
-        transition: opacity 0.3s ease;
-      }
-      
-      .overlay.active {
-        display: block;
-        opacity: 1;
-      }
-      
-      /* 社員紹介のモバイル対応 */
-      .staff-intro {
-        display: block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-      }
-      
-      .staff-header {
-        flex-direction: column !important;
-        text-align: center !important;
-        gap: 1rem !important;
-        padding: 1.5rem !important;
-      }
-      
-      .staff-photo {
-        width: 120px !important;
-        height: 120px !important;
-        margin: 0 auto !important;
-      }
-      
-      .staff-info h3 {
-        font-size: 1.5rem !important;
-        margin-bottom: 0.5rem !important;
-      }
-
-      .staff-info .position {
-        font-size: 0.85rem !important;
-        margin: 0.3rem auto !important;
-        display: block !important;
-        width: fit-content !important;
-      }
-      
-      .story-section {
-        padding: 1.5rem !important;
-        margin-bottom: 2rem !important;
-      }
-      
-      .story-section h4 {
-        font-size: 1.3rem !important;
-        padding: 1rem !important;
-      }
-      
-      .story-section h5 {
-        font-size: 1.1rem !important;
-        margin: 1.5rem 0 1rem 0 !important;
-      }
-      
-      .story-content {
-        font-size: 1rem !important;
-      }
-      
-      .story-content p {
-        text-align: left !important;
-        margin-bottom: 1rem !important;
-      }
-      
-      .highlight-quote {
-        font-size: 1.2rem !important;
-        padding: 1.5rem !important;
-        margin: 1.5rem 0 !important;
-      }
-      
-      .story-content ul {
-        margin-left: 1rem !important;
-        padding: 1rem !important;
-      }
-      
-      .chapter-divider::before,
-      .chapter-divider::after {
-        display: none !important;
-      }
-    }
-    
-    /* タブレット対応 */
-    @media (max-width: 1024px) and (min-width: 769px) {
-      .staff-intro {
-        display: block !important;
-        visibility: visible !important;
-      }
-      
-      .staff-header {
-        flex-direction: row !important;
-        text-align: left !important;
-        gap: 2rem !important;
-      }
-      
-      .staff-photo {
-        width: 150px !important;
-        height: 150px !important;
-        flex-shrink: 0 !important;
-      }
-      
-      .story-section h4 {
-        font-size: 1.4rem !important;
-      }
-      
-      .story-section h5 {
-        font-size: 1.2rem !important;
-      }
-      
-      .highlight-quote {
-        font-size: 1.3rem !important;
-      }
-    }
-
-    /* === AIKW Chatbot Styles === */
-    .aikw-chatbot-button {
-      position: fixed;
-      right: 20px;
-      bottom: 20px;
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      background: var(--dark);
-      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      z-index: 1100;
-      transition: transform .2s ease, opacity .2s ease;
-    }
-    .aikw-chatbot-button:hover { transform: translateY(-2px); }
-    .aikw-chatbot-button.aikw-hidden { opacity: 0; pointer-events: none; }
-    .aikw-chat-icon svg { display: block; }
-
-    .aikw-chatbot-window {
-      position: fixed;
-      right: 20px;
-      bottom: 20px;
-      width: 360px;
-      height: 560px;
-      max-height: calc(100vh - 80px);
-      display: none;
-      flex-direction: column;
-      background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 16px 40px rgba(0,0,0,0.2);
+      padding-bottom: 177.78%; /* 9:16 */
       overflow: hidden;
-      z-index: 1101;
-      transform: translateY(10px);
+      border: 1px solid var(--rule);
+    }
+    .video-wrapper iframe {
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: none;
+    }
+
+    /* === Paragraph style === */
+    .paragraph {
+      margin: 0;
+      font-size: 16px;
+      line-height: 2;
+      color: var(--ink-60);
+    }
+
+    /* === "suki" highlight === */
+    .suki {
+      font-family: var(--display);
+      font-style: italic;
+      color: var(--ink);
+      font-weight: 400;
+    }
+
+    /* === Logo breathing animation === */
+    @keyframes breathe {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      50% { transform: scale(1.04) rotate(2deg); }
+    }
+    .logo-breathe {
+      animation: breathe 6s ease-in-out infinite;
+      transform-origin: center;
+    }
+
+    /* === Hamburger === */
+    .hamburger {
+      display: none;
+      width: 30px; height: 30px;
+      position: relative; cursor: pointer; z-index: 1010;
+      padding: 10px; box-sizing: content-box; margin: -10px;
+    }
+    .hamburger span {
+      display: block; position: absolute;
+      height: 1.5px; width: 100%;
+      background: var(--ink);
+      opacity: 1; left: 0;
+      transform: rotate(0deg);
+      transition: .25s ease-in-out;
+    }
+    .hamburger span:nth-child(1) { top: 0; }
+    .hamburger span:nth-child(2) { top: 9px; }
+    .hamburger span:nth-child(3) { top: 18px; }
+    .hamburger.active span:nth-child(1) { top: 9px; transform: rotate(135deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; left: -60px; }
+    .hamburger.active span:nth-child(3) { top: 9px; transform: rotate(-135deg); }
+
+    .overlay {
+      display: none; position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.4);
+      z-index: 90;
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
       opacity: 0;
-      transition: transform .25s ease, opacity .25s ease;
+      transition: opacity 0.3s ease;
     }
-    .aikw-chatbot-window.aikw-open { transform: translateY(0); opacity: 1; }
+    .overlay.active { display: block; opacity: 1; }
 
+    /* === Chatbot Styles === */
+    .aikw-chatbot-button {
+      position: fixed; bottom: 30px; right: 30px;
+      width: 56px; height: 56px;
+      background: var(--ink); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+      z-index: 1000; border: none;
+    }
+    .aikw-chatbot-button:hover { transform: scale(1.06); }
+    .aikw-chatbot-button.aikw-hidden { opacity: 0; pointer-events: none; }
+    .aikw-chat-icon svg { width: 24px; height: 24px; fill: var(--bg); display: block; }
+    .aikw-chatbot-window {
+      position: fixed; bottom: 100px; right: 30px;
+      width: 380px; max-width: calc(100vw - 60px);
+      height: 500px; max-height: calc(100vh - 150px);
+      background: var(--paper); border-radius: 12px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.15);
+      display: none; flex-direction: column;
+      z-index: 1001; overflow: hidden;
+    }
+    .aikw-chatbot-window.open { display: flex; }
     .aikw-chatbot-header {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 12px 14px; background: var(--dark);
-      color: #fff;
+      background: var(--ink); color: var(--bg);
+      padding: 15px 20px; display: flex;
+      align-items: center; justify-content: space-between;
     }
-    .aikw-chatbot-title { display: flex; align-items: center; gap: 10px; font-weight: 700; }
-    .aikw-chatbot-logo { width: 28px; height: 28px; border-radius: 4px; }
-    
-    .aikw-header-actions { display: flex; align-items: center; gap: 12px; }
-    .aikw-clear-button { 
-      background: rgba(255,255,255,0.15); 
-      border: 1px solid rgba(255,255,255,0.3); 
-      color: #fff; 
-      padding: 4px 10px; 
-      border-radius: 6px; 
-      font-size: 11px; 
-      font-weight: 500; 
-      cursor: pointer; 
+    .aikw-chatbot-title { display: flex; align-items: center; font-weight: 600; font-size: 16px; }
+    .aikw-chatbot-logo { width: 28px; height: 28px; margin-right: 8px; border-radius: 4px; }
+    .aikw-header-actions { display: flex; gap: 8px; }
+    .aikw-clear-button {
+      background: rgba(255,255,255,0.2); color: white;
+      border: 1px solid rgba(255,255,255,0.3); border-radius: 4px;
+      padding: 4px 8px; font-size: 12px; cursor: pointer;
       transition: all 0.2s ease;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
     }
-    .aikw-clear-button:hover { 
-      background: rgba(255,255,255,0.25); 
-      transform: translateY(-1px);
+    .aikw-clear-button:hover { background: rgba(255,255,255,0.3); }
+    .aikw-chatbot-close {
+      background: none; border: none; color: white;
+      font-size: 20px; cursor: pointer; padding: 0;
+      width: 24px; height: 24px; display: flex;
+      align-items: center; justify-content: center;
+      border-radius: 50%; transition: all 0.2s ease;
     }
-    .aikw-chatbot-close { 
-      background: transparent; 
-      border: none; 
-      color: #fff; 
-      font-size: 22px; 
-      cursor: pointer; 
-      width: 32px;
-      height: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 6px;
-      transition: background 0.2s ease;
+    .aikw-chatbot-close:hover { background: rgba(255,255,255,0.2); }
+    .aikw-chatbot-body { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+    .aikw-chat-messages {
+      flex: 1; overflow-y: auto; padding: 15px;
+      display: flex; flex-direction: column; gap: 12px; background: var(--paper-2);
     }
-    .aikw-chatbot-close:hover {
-      background: rgba(255,255,255,0.2);
-    }
-
-    .aikw-chatbot-body { display: flex; flex-direction: column; height: 100%; }
-    .aikw-chat-messages { flex: 1; padding: 14px; overflow-y: auto; background: #f7fafc; }
-
-    .aikw-message { display: flex; margin-bottom: 10px; }
-    .aikw-bot-message { justify-content: flex-start; }
-    .aikw-user-message { justify-content: flex-end; }
-    .aikw-message-content { max-width: 80%; padding: 10px 12px; border-radius: 12px; font-size: 14px; line-height: 1.5; box-shadow: 0 2px 6px rgba(0,0,0,0.06); }
-    .aikw-bot-message .aikw-message-content { background: #fff; border: 1px solid #e6f0f7; }
-    .aikw-user-message .aikw-message-content { background: var(--dark); color: #fff; }
-    
-    /* New message highlight animations */
-    .aikw-message.aikw-new-message {
-      animation: aikw-highlight-fade 2s ease-out forwards;
-    }
-    
-    @keyframes aikw-highlight-fade {
-      0% {
-        background-color: rgba(109, 181, 255, 0.15);
-        transform: scale(1.02);
-        box-shadow: 0 4px 12px rgba(109, 181, 255, 0.3);
-      }
-      50% {
-        background-color: rgba(109, 181, 255, 0.1);
-        transform: scale(1.01);
-      }
-      100% {
-        background-color: transparent;
-        transform: scale(1);
-        box-shadow: none;
-      }
-    }
-    
-    .aikw-message.aikw-new-user-message {
-      animation: aikw-user-highlight-fade 2s ease-out forwards;
-    }
-    
-    @keyframes aikw-user-highlight-fade {
-      0% {
-        background-color: rgba(0, 201, 167, 0.15);
-        transform: scale(1.02);
-        box-shadow: 0 4px 12px rgba(0, 201, 167, 0.3);
-      }
-      50% {
-        background-color: rgba(0, 201, 167, 0.1);
-        transform: scale(1.01);
-      }
-      100% {
-        background-color: transparent;
-        transform: scale(1);
-        box-shadow: none;
-      }
-    }
-
-    /* Markdownハイライト用スタイル */
-    .aikw-message-content h2 { font-size: 1.1rem; margin: 0.4rem 0 0.2rem; color: #2c3e50; border-left: 3px solid #6db5ff; padding-left: 8px; }
-    .aikw-message-content h3 { font-size: 1.0rem; margin: 0.35rem 0 0.15rem; color: #334e68; }
-    .aikw-message-content h4 { font-size: 0.95rem; margin: 0.3rem 0 0.1rem; color: #486581; }
-    .aikw-message-content strong { font-weight: 700; color: #2c3e50; }
-    .aikw-user-message .aikw-message-content strong { color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,0.1); }
-    .aikw-message-content em { font-style: italic; color: #34495e; }
-    .aikw-user-message .aikw-message-content em { color: #f0f9ff; }
-    .aikw-message-content code { background: #f8f9fa; color: #e83e8c; padding: 2px 4px; border-radius: 4px; font-family: 'Courier New', monospace; font-size: 12px; }
-    .aikw-user-message .aikw-message-content code { background: rgba(255,255,255,0.2); color: #fff; }
-
+    .aikw-message { max-width: 80%; word-wrap: break-word; }
+    .aikw-bot-message { align-self: flex-start; }
+    .aikw-user-message { align-self: flex-end; }
+    .aikw-message-content { padding: 10px 14px; border-radius: 12px; line-height: 1.5; font-size: 14px; }
+    .aikw-bot-message .aikw-message-content { background: var(--paper); color: var(--ink); border: 1px solid var(--rule); border-bottom-left-radius: 4px; }
+    .aikw-user-message .aikw-message-content { background: var(--ink); color: var(--bg); border-bottom-right-radius: 4px; }
+    .aikw-message-content h2 { font-size: 1.1rem; margin: 0.4rem 0 0.2rem; color: var(--ink); border-left: 3px solid var(--accent); padding-left: 8px; }
+    .aikw-message-content h3 { font-size: 1.0rem; margin: 0.35rem 0 0.15rem; color: var(--ink); }
+    .aikw-message-content h4 { font-size: 0.95rem; margin: 0.3rem 0 0.1rem; color: var(--ink-80); }
+    .aikw-message-content strong { font-weight: 700; color: var(--ink); }
+    .aikw-user-message .aikw-message-content strong { color: var(--bg); }
+    .aikw-message-content em { font-style: italic; color: var(--ink-80); }
+    .aikw-user-message .aikw-message-content em { color: var(--bg); }
+    .aikw-message-content code { background: var(--paper-2); color: #c44; padding: 2px 4px; border-radius: 4px; font-family: monospace; font-size: 12px; }
+    .aikw-user-message .aikw-message-content code { background: rgba(255,255,255,0.2); color: var(--bg); }
     .aikw-typing-indicator { display: inline-flex; gap: 4px; align-items: center; }
-    .aikw-typing-indicator span { width: 6px; height: 6px; background: #9aa9b2; border-radius: 50%; display: inline-block; animation: aikw-bounce 1.2s infinite ease-in-out; }
+    .aikw-typing-indicator span { width: 6px; height: 6px; background: var(--ink-40); border-radius: 50%; display: inline-block; animation: aikw-bounce 1.2s infinite ease-in-out; }
     .aikw-typing-indicator span:nth-child(2) { animation-delay: .2s; }
     .aikw-typing-indicator span:nth-child(3) { animation-delay: .4s; }
     @keyframes aikw-bounce { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
-
-    .aikw-question-options { padding: 10px 14px; background: #fff; border-top: 1px solid #eef3f7; max-height: 220px; overflow-y: auto; }
-    
+    .aikw-question-options { padding: 15px; border-top: 1px solid var(--rule); }
     .aikw-tab-container { width: 100%; }
-    .aikw-tab-header {
-      display: flex;
-      border-bottom: 1px solid #e6f0f7;
-      background: #f8fafc;
-      border-radius: 8px 8px 0 0;
-    }
-    
+    .aikw-tab-header { display: flex; gap: 4px; }
     .aikw-tab-btn {
-      flex: 1;
-      padding: 8px 12px;
-      background: transparent;
-      border: none;
-      color: #64748b;
-      font-size: 12px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      border-radius: 8px 8px 0 0;
-      position: relative;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      background: var(--paper-2); border: 1px solid var(--rule);
+      border-radius: 6px; padding: 8px 12px; font-size: 12px;
+      cursor: pointer; transition: all 0.2s ease;
+      display: flex; justify-content: center; align-items: center;
+      flex: 1; white-space: nowrap; font-family: var(--sans);
     }
-    
-    .aikw-tab-arrow {
-      font-size: 10px;
-      transition: transform 0.2s ease;
-      opacity: 0.6;
-    }
-    
-    .aikw-tab-btn:hover {
-      background: rgba(0, 169, 142, 0.1);
-      color: #00a98e;
-    }
-    
-    .aikw-tab-btn.active {
-      background: #fff;
-      color: #00a98e;
-      font-weight: 600;
-    }
-    
-    .aikw-tab-btn.active .aikw-tab-arrow {
-      transform: rotate(180deg);
-      opacity: 1;
-    }
-    
-    .aikw-tab-btn.active::after {
-      content: '';
-      position: absolute;
-      bottom: -1px;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: #00a98e;
-    }
-    
-    .aikw-tab-content {
-      background: #fff;
-      border-radius: 0 0 8px 8px;
-      overflow: hidden;
-      transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
-    }
-    
-    .aikw-tab-content.expanded {
-      padding: 12px 8px 8px;
-      max-height: 200px;
-      opacity: 1;
-    }
-    
-    .aikw-tab-content.collapsed {
-      padding: 0;
-      max-height: 0;
-      opacity: 0;
-    }
-    
-    .aikw-questions-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-    
-    .aikw-question-btn { 
-      padding: 6px 12px; 
-      border-radius: 16px; 
-      background: #eef9f7; 
-      color: #007e6a; 
-      border: 1px solid #d6f3ee; 
-      cursor: pointer; 
-      font-size: 11px; 
-      transition: all 0.2s ease;
-      white-space: nowrap;
-    }
-    .aikw-question-btn:hover { 
-      background: #dff3ef; 
-      transform: translateY(-1px);
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-
-    .aikw-chat-input-area { padding: 10px 12px; background: #fff; border-top: 1px solid #eef3f7; }
-    .aikw-chat-input-container { display: flex; gap: 8px; }
-    #aikw-chat-input { flex: 1; padding: 10px 12px; border: 1px solid #e1e8ee; border-radius: 10px; font-size: 14px; }
-    #aikw-chat-send { padding: 10px 14px; background: var(--dark); color: #fff; border: none; border-radius: 10px; cursor: pointer; font-weight: 600; }
-    #aikw-chat-send:disabled { background: #c0c8d0; cursor: not-allowed; }
-
-    .aikw-back-button { margin-top: 8px; padding: 6px 10px; border: 1px solid #e1e8ee; background: #fff; border-radius: 8px; font-size: 12px; cursor: pointer; }
-    .aikw-chat-actions { display: flex; flex-wrap: wrap; }
-
-    /* Enhanced Mobile Responsive */
-    @media (max-width: 768px) {
-      .aikw-chatbot-button {
-        bottom: 20px;
-        right: 20px;
-        width: 56px;
-        height: 56px;
-        box-shadow: 0 4px 16px rgba(109, 181, 255, 0.4);
-      }
-
-      .aikw-chatbot-window {
-        right: 10px;
-        left: 10px;
-        bottom: 10px;
-        width: auto;
-        height: calc(100vh - 20px);
-        max-height: calc(100vh - 20px);
-        border-radius: 12px;
-      }
-
-      .aikw-chatbot-header {
-        padding: 16px;
-        border-radius: 12px 12px 0 0;
-      }
-
-      .aikw-chatbot-title {
-        font-size: 16px;
-      }
-
-      .aikw-chatbot-logo {
-        width: 24px;
-        height: 24px;
-      }
-
-      .aikw-chat-messages {
-        padding: 12px;
-        font-size: 15px;
-      }
-
-      .aikw-message-content {
-        max-width: 85%;
-        padding: 12px 14px;
-        font-size: 15px;
-        line-height: 1.6;
-        border-radius: 16px;
-      }
-
-      .aikw-question-options {
-        padding: 12px;
-        max-height: 180px;
-      }
-
-      .aikw-tab-btn {
-        padding: 10px 12px;
-        font-size: 14px;
-        min-height: 44px;
-      }
-
-      .aikw-question-btn {
-        padding: 12px 16px;
-        font-size: 15px;
-        line-height: 1.4;
-        min-height: 48px;
-      }
-
-      .aikw-chat-input-area {
-        padding: 12px;
-      }
-
-      #aikw-chat-input {
-        padding: 12px 16px;
-        font-size: 16px;
-        border-radius: 12px;
-        min-height: 48px;
-      }
-
-      #aikw-chat-send {
-        padding: 12px 18px;
-        font-size: 15px;
-        border-radius: 12px;
-        min-height: 48px;
-        min-width: 60px;
-      }
-
-      .aikw-back-button {
-        margin-top: 10px;
-        padding: 10px 14px;
-        font-size: 14px;
-        min-height: 44px;
-        border-radius: 10px;
-      }
-
-      .aikw-clear-button {
-        padding: 8px 12px;
-        font-size: 12px;
-        min-height: 36px;
-      }
-
-      .aikw-chatbot-close {
-        width: 36px;
-        height: 36px;
-        font-size: 20px;
-        min-height: 36px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .aikw-chatbot-window {
-        right: 5px;
-        left: 5px;
-        bottom: 5px;
-        height: calc(100vh - 10px);
-        max-height: calc(100vh - 10px);
-        border-radius: 10px;
-      }
-
-      .aikw-chatbot-header {
-        padding: 12px 16px;
-        border-radius: 10px 10px 0 0;
-      }
-
-      .aikw-chat-messages {
-        padding: 10px;
-      }
-
-      .aikw-question-options {
-        padding: 10px;
-        max-height: 160px;
-      }
-
-      .aikw-chat-input-area {
-        padding: 10px;
-      }
-
-      .aikw-message-content {
-        font-size: 14px;
-        padding: 10px 12px;
-      }
-    }
-
-    /* Touch-friendly improvements */
-    @media (hover: none) and (pointer: coarse) {
-      .aikw-chatbot-button:hover {
-        transform: none;
-        box-shadow: 0 4px 20px rgba(109, 181, 255, 0.3);
-      }
-
-      .aikw-question-btn,
-      .aikw-tab-btn,
-      #aikw-chat-send,
-      .aikw-back-button,
-      .aikw-clear-button,
-      .aikw-chatbot-close {
-        -webkit-tap-highlight-color: rgba(0,0,0,0.1);
-      }
-
-      .aikw-question-btn:active {
-        transform: scale(0.98);
-        background: #f0f7ff;
-      }
-
-      .aikw-tab-btn:active {
-        transform: scale(0.98);
-      }
-
-      #aikw-chat-send:active {
-        transform: scale(0.98);
-      }
-    }
-    
-    /* === Chatbot Styles === */
-    .aikw-chatbot-button {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      width: 56px;
-      height: 56px;
-      background: var(--dark);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-      transition: all 0.3s ease;
-      z-index: 1000;
-      border: none;
-    }
-
-    .aikw-chatbot-button:hover {
-      transform: scale(1.06);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-    }
-    
-    .aikw-chat-icon svg {
-      width: 24px;
-      height: 24px;
-      fill: white;
-    }
-    
-    .aikw-chatbot-window {
-      position: fixed;
-      bottom: 100px;
-      right: 30px;
-      width: 380px;
-      max-width: calc(100vw - 60px);
-      height: 500px;
-      max-height: calc(100vh - 150px);
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
-      display: none;
-      flex-direction: column;
-      z-index: 1001;
-      overflow: hidden;
-    }
-    
-    .aikw-chatbot-window.open {
-      display: flex;
-    }
-    
-    .aikw-chatbot-header {
-      background: var(--dark);
-      color: white;
-      padding: 15px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    
-    .aikw-chatbot-title {
-      display: flex;
-      align-items: center;
-      font-weight: 600;
-      font-size: 16px;
-    }
-    
-    .aikw-chatbot-logo {
-      width: 28px;
-      height: 28px;
-      margin-right: 8px;
-      border-radius: 4px;
-    }
-    
-    .aikw-header-actions {
-      display: flex;
-      gap: 8px;
-    }
-    
-    .aikw-clear-button {
-      background: rgba(255, 255, 255, 0.2);
-      color: white;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      border-radius: 4px;
-      padding: 4px 8px;
-      font-size: 12px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-    
-    .aikw-clear-button:hover {
-      background: rgba(255, 255, 255, 0.3);
-    }
-    
-    .aikw-chatbot-close {
-      background: none;
-      border: none;
-      color: white;
-      font-size: 20px;
-      cursor: pointer;
-      padding: 0;
-      width: 24px;
-      height: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      transition: all 0.2s ease;
-    }
-    
-    .aikw-chatbot-close:hover {
-      background: rgba(255, 255, 255, 0.2);
-    }
-    
-    .aikw-chatbot-body {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-    
-    .aikw-chat-messages {
-      flex: 1;
-      overflow-y: auto;
-      padding: 15px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    
-    .aikw-message {
-      max-width: 80%;
-      word-wrap: break-word;
-    }
-    
-    .aikw-bot-message {
-      align-self: flex-start;
-    }
-    
-    .aikw-user-message {
-      align-self: flex-end;
-    }
-    
-    .aikw-message-content {
-      padding: 10px 14px;
-      border-radius: 12px;
-      line-height: 1.4;
-      font-size: 14px;
-    }
-    
-    .aikw-bot-message .aikw-message-content {
-      background: #f8f9fa;
-      color: #333;
-      border-bottom-left-radius: 4px;
-    }
-    
-    .aikw-user-message .aikw-message-content {
-      background: linear-gradient(135deg, #6db5ff 0%, #a1e9d9 100%);
-      color: white;
-      border-bottom-right-radius: 4px;
-    }
-    
-    .aikw-question-options {
-      padding: 15px;
-      border-top: 1px solid #eee;
-    }
-    
-    .aikw-tab-container {
-      width: 100%;
-    }
-    
-    .aikw-tab-header {
-      display: flex;
-      flex-direction: row;
-      gap: 4px;
-    }
-    
-    .aikw-tab-btn {
-      background: #f8f9fa;
-      border: 1px solid #dee2e6;
-      border-radius: 6px;
-      padding: 8px 12px;
-      font-size: 12px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex: 1;
-      white-space: nowrap;
-    }
-    
-    .aikw-tab-btn:hover {
-      background: #e9ecef;
-      border-color: #adb5bd;
-    }
-    
-    .aikw-tab-btn.active {
-      background: linear-gradient(135deg, #6db5ff 0%, #a1e9d9 100%);
-      color: white;
-      border-color: transparent;
-    }
-    
-    .aikw-tab-arrow {
-      transition: transform 0.2s ease;
-      font-size: 12px;
-    }
-    
-    .aikw-tab-btn.active .aikw-tab-arrow {
-      transform: rotate(180deg);
-    }
-    
-    .aikw-tab-content {
-      margin-top: 12px;
-      overflow: hidden;
-      transition: all 0.3s ease;
-    }
-    
-    .aikw-tab-content.collapsed {
-      max-height: 0;
-      opacity: 0;
-    }
-    
-    .aikw-tab-content.expanded {
-      max-height: 200px;
-      opacity: 1;
-    }
-    
-    .aikw-questions-container {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    
+    .aikw-tab-btn:hover { background: var(--paper-3); border-color: var(--ink-40); }
+    .aikw-tab-btn.active { background: var(--ink); color: var(--bg); border-color: transparent; }
+    .aikw-tab-arrow { transition: transform 0.2s ease; font-size: 12px; }
+    .aikw-tab-btn.active .aikw-tab-arrow { transform: rotate(180deg); }
+    .aikw-tab-content { margin-top: 12px; overflow: hidden; transition: all 0.3s ease; }
+    .aikw-tab-content.collapsed { max-height: 0; opacity: 0; }
+    .aikw-tab-content.expanded { max-height: 200px; opacity: 1; }
+    .aikw-questions-container { display: flex; flex-direction: column; gap: 8px; }
     .aikw-question-btn {
-      background: white;
-      border: 1px solid #dee2e6;
-      border-radius: 6px;
-      padding: 8px 12px;
-      font-size: 13px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      text-align: left;
+      background: var(--paper); border: 1px solid var(--rule);
+      border-radius: 6px; padding: 8px 12px; font-size: 13px;
+      cursor: pointer; transition: all 0.2s ease; text-align: left;
+      font-family: var(--sans);
     }
-    
-    .aikw-question-btn:hover {
-      background: #f8f9fa;
-      border-color: #6db5ff;
-      transform: translateY(-1px);
-    }
-    
-    .aikw-chat-input-area {
-      padding: 15px;
-      border-top: 1px solid #eee;
-      background: white;
-    }
-    
-    .aikw-chat-input-container {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 8px;
-    }
-    
+    .aikw-question-btn:hover { background: var(--paper-2); border-color: var(--ink-40); transform: translateY(-1px); }
+    .aikw-chat-input-area { padding: 15px; border-top: 1px solid var(--rule); background: var(--paper); }
+    .aikw-chat-input-container { display: flex; gap: 8px; margin-bottom: 8px; }
     .aikw-chat-input-container input {
-      flex: 1;
-      padding: 8px 12px;
-      border: 1px solid #dee2e6;
-      border-radius: 6px;
-      font-size: 14px;
-      outline: none;
-      transition: border-color 0.2s ease;
+      flex: 1; padding: 8px 12px; border: 1px solid var(--rule);
+      border-radius: 6px; font-size: 14px; outline: none;
+      transition: border-color 0.2s ease; font-family: var(--sans);
+      background: var(--bg);
     }
-    
-    .aikw-chat-input-container input:focus {
-      border-color: #6db5ff;
-    }
-    
+    .aikw-chat-input-container input:focus { border-color: var(--ink); }
     .aikw-chat-input-container button {
-      background: linear-gradient(135deg, #6db5ff 0%, #a1e9d9 100%);
-      color: white;
-      border: none;
-      border-radius: 6px;
-      padding: 8px 16px;
-      font-size: 14px;
-      cursor: pointer;
-      transition: all 0.2s ease;
+      background: var(--ink); color: var(--bg); border: none;
+      border-radius: 6px; padding: 8px 16px; font-size: 14px;
+      cursor: pointer; transition: all 0.2s ease; font-family: var(--sans);
     }
-    
-    .aikw-chat-input-container button:disabled {
-      background: #dee2e6;
-      cursor: not-allowed;
-    }
-    
-    .aikw-chat-input-container button:not(:disabled):hover {
-      transform: translateY(-1px);
-      box-shadow: 0 2px 8px rgba(109, 181, 255, 0.3);
-    }
-    
+    .aikw-chat-input-container button:disabled { background: var(--ink-40); cursor: not-allowed; }
+    .aikw-chat-input-container button:not(:disabled):hover { opacity: 0.85; }
     .aikw-back-button {
-      background: #6c757d;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      padding: 6px 12px;
-      font-size: 12px;
-      cursor: pointer;
-      transition: all 0.2s ease;
+      background: var(--ink-60); color: var(--bg); border: none;
+      border-radius: 6px; padding: 6px 12px; font-size: 12px;
+      cursor: pointer; transition: all 0.2s ease; font-family: var(--sans);
     }
-    
-    .aikw-back-button:hover {
-      background: #5a6268;
-      transform: translateY(-1px);
+    .aikw-back-button:hover { opacity: 0.85; }
+    .aikw-chat-actions { display: flex; flex-wrap: wrap; }
+    .aikw-message.aikw-new-message { animation: aikw-highlight-fade 2s ease-out forwards; }
+    @keyframes aikw-highlight-fade {
+      0% { background-color: rgba(109,181,255,0.15); transform: scale(1.02); }
+      100% { background-color: transparent; transform: scale(1); }
     }
-    
-    .aikw-loading {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: #6c757d;
-      font-size: 14px;
-      font-style: italic;
+    .aikw-message.aikw-new-user-message { animation: aikw-user-highlight-fade 2s ease-out forwards; }
+    @keyframes aikw-user-highlight-fade {
+      0% { background-color: rgba(0,201,167,0.15); transform: scale(1.02); }
+      100% { background-color: transparent; transform: scale(1); }
     }
-    
-    .aikw-loading::after {
-      content: '';
-      width: 12px;
-      height: 12px;
-      border: 2px solid #dee2e6;
-      border-top-color: #6db5ff;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-    }
-    
-    @keyframes spin {
-      to {
-        transform: rotate(360deg);
+
+    /* === Responsive === */
+    @media (max-width: 1024px) {
+      .grid-sidebar {
+        grid-template-columns: 1fr;
+        gap: 32px;
       }
+      .sidebar-sticky { position: static; }
+      footer { grid-template-columns: 1fr 1fr; }
+      .service-row { grid-template-columns: 60px 1fr; }
+      .service-desc { grid-column: 1 / -1; padding-left: 92px; }
     }
-    
-    /* Tablet responsive */
-    @media (max-width: 768px) and (min-width: 481px) {
-      .aikw-chatbot-window {
-        width: 350px;
-        height: 500px;
+
+    @media (max-width: 768px) {
+      .section { padding: clamp(64px, 10vh, 96px) var(--page-pad); }
+      .marquee-track { font-size: 24px; gap: 32px; }
+      .item-row { grid-template-columns: 1fr; gap: 8px; padding: 24px 0; }
+      .item-row:hover { padding-left: 0; }
+      .item-num { display: none; }
+      .item-title { font-size: clamp(20px, 5vw, 28px); }
+      .service-row { grid-template-columns: 1fr; gap: 8px; }
+      .service-desc { padding-left: 0; grid-column: auto; }
+      footer {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 40px var(--page-pad);
       }
-      
-      .aikw-tab-btn {
-        font-size: 11px;
-        padding: 7px 10px;
+      .footer-bottom { flex-direction: column; gap: 8px; }
+
+      /* Mobile Nav */
+      .hamburger { display: block; }
+      nav {
+        position: fixed; top: 0; right: -100%;
+        width: 80%; max-width: 300px; height: 100vh;
+        background: var(--bg);
+        box-shadow: -2px 0 20px rgba(0,0,0,0.08);
+        transition: 0.3s ease;
+        padding-top: 80px; z-index: 95;
+        overflow-y: auto;
       }
-      
-      .aikw-message-content {
-        font-size: 13px;
+      nav.active { right: 0; }
+      nav ul {
+        flex-direction: column; gap: 0;
       }
+      nav ul li a {
+        padding: 18px 24px;
+        display: block;
+        border-bottom: 1px solid var(--rule);
+        font-size: 14px;
+        letter-spacing: 0.08em;
+        text-transform: none;
+        color: var(--ink);
+      }
+      nav ul li a::after {
+        content: "\203A";
+        float: right;
+        opacity: 0.4;
+        font-size: 1.2em;
+      }
+      .nav-cta {
+        border: none;
+        padding: 18px 24px;
+        margin-left: 0;
+        text-align: left;
+      }
+      .nav-cta:hover {
+        background: transparent;
+        color: var(--ink);
+      }
+
+      /* Hero bottom bar */
+      .hero-bottom-bar { font-size: 9px; padding: 12px var(--page-pad); }
+
+      /* Two-col grids become single col */
+      .grid-2-col { grid-template-columns: 1fr !important; }
+      .video-wrapper { padding-bottom: 56.25%; }
     }
-    
-    /* Mobile responsive */
+
     @media (max-width: 480px) {
+      .section-heading-lg { font-size: clamp(32px, 8vw, 48px); }
+      .section-heading-md { font-size: clamp(26px, 7vw, 36px); }
+      .section-heading-sm { font-size: clamp(22px, 6vw, 30px); }
+
       .aikw-chatbot-window {
-        width: calc(100vw - 20px);
-        right: 10px;
-        bottom: 90px;
-        height: 70vh;
-      }
-      
-      .aikw-chatbot-button {
-        right: 20px;
-        bottom: 20px;
-      }
-      
-      /* スマホ用のタブヘッダー調整 */
-      .aikw-tab-header {
-        flex-wrap: wrap;
-        gap: 6px;
-      }
-      
-      .aikw-tab-btn {
-        font-size: 11px;
-        padding: 6px 8px;
-        min-height: 40px;
-      }
-      
-      /* チャット入力エリアの調整 */
-      .aikw-chat-input-container input {
-        font-size: 14px;
-        padding: 8px 10px;
-      }
-      
-      .aikw-chat-input-container button {
-        font-size: 12px;
-        padding: 8px 12px;
-      }
-      
-      /* メッセージコンテンツの調整 */
-      .aikw-message-content {
-        font-size: 13px;
-        padding: 8px 12px;
-      }
-      
-      /* 質問ボタンの調整 */
-      .aikw-question-btn {
-        font-size: 12px;
-        padding: 6px 10px;
-      }
-      
-      /* チャットボットヘッダーの調整 */
-      .aikw-chatbot-header {
-        padding: 10px 12px;
-      }
-      
-      .aikw-chatbot-title {
-        font-size: 14px;
-      }
-      
-      .aikw-chatbot-logo {
-        width: 24px !important;
-        height: 24px !important;
-      }
-      
-      /* 質問オプションエリアの調整 */
-      .aikw-question-options {
-        padding: 8px 10px;
-        max-height: 180px;
-      }
-      
-      /* タブコンテンツの調整 */
-      .aikw-tab-content.expanded {
-        padding: 10px 6px 6px;
-        max-height: 150px;
+        width: calc(100vw - 20px); right: 10px;
+        bottom: 90px; height: 70vh;
       }
     }
-    
-    /* 極小スマホ対応 (iPhone SE等) */
-    @media (max-width: 375px) {
-      .aikw-chatbot-window {
-        width: calc(100vw - 16px);
-        right: 8px;
-        bottom: 80px;
-        height: 65vh;
-      }
-      
-      .aikw-tab-btn {
-        font-size: 10px;
-        padding: 5px 6px;
-        min-height: 36px;
-      }
-      
-      .aikw-message-content {
-        font-size: 12px;
-        padding: 6px 10px;
-      }
-      
-      .aikw-chat-input-container input {
-        font-size: 13px;
-        padding: 6px 8px;
-      }
-      
-      .aikw-chat-input-container button {
-        font-size: 11px;
-        padding: 6px 10px;
-      }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+      .logo-breathe { animation: none !important; }
+      .marquee-track { animation: none !important; }
     }
-    </style>
+  </style>
 </head>
 <body>
   <!-- === Header === -->
-  <header>
-    <div class="container header-inner">
-      <a href="#home" class="logo">
-        <img src="https://raw.githubusercontent.com/aiknowledgeworks/aikw.hp/main/logo/AI%E3%83%8A%E3%83%AC%E3%83%83%E3%82%B8%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9_logo_transparen.png" alt="AIナレッジワークス ロゴ">
-        <span>AIナレッジワークス / AIKW</span>
-      </a>
-      <div class="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <nav>
-        <ul>
-          <li><a href="#background">創業のきっかけ</a></li>
-          <li><a href="service.html">事業・サービス</a></li>
-          <li><a href="achievements.html">実績・展望</a></li>
-          <li><a href="company.html">会社概要</a></li>
-          <li><a href="contact.html">お問い合わせ</a></li>
-        </ul>
-      </nav>
-      <div class="overlay"></div>
+  <header id="site-header">
+    <a href="#home" class="logo-link">
+      <img src="logo/AIナレッジワークス_logo_transparen.png" alt="AIナレッジワークス ロゴ" class="logo-breathe">
+      <span>AI Knowledge Works</span>
+    </a>
+    <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
+    <nav>
+      <ul>
+        <li><a href="#background">Background</a></li>
+        <li><a href="service.html">Services</a></li>
+        <li><a href="achievements.html">Achievements</a></li>
+        <li><a href="company.html">Company</a></li>
+        <li><a href="contact.html" class="nav-cta">Contact &rarr;</a></li>
+      </ul>
+    </nav>
+    <div class="overlay"></div>
   </header>
 
   <!-- === Hero === -->
-  <section id="home" class="hero" style="padding: 0; overflow: hidden; position: relative;">
-    <iframe id="hero-3d" src="app-gallery/AIKW_index_3d.html" style="width: 100%; height: 100%; border: none; pointer-events: none;" title="AIKW 3D Animation"></iframe>
-    <div id="hero-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; cursor: grab; z-index: 1;"></div>
-  </section>
-
-  <!-- === Section A1: Background === -->
-  <section id="background" style="background: var(--surface);">
-    <div class="container">
-      <p class="section-subtitle" style="margin-bottom: 0.5rem; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent);">Why Now</p>
-      <h2 class="section-title">社会背景</h2>
-      <p class="section-subtitle">AI技術は急速に進化している。しかし、その恩恵はまだ一部にしか届いていない。</p>
-      <div class="background-grid reveal-group" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; max-width: 900px; margin: 0 auto;">
-        <div class="card reveal" style="height: 100%;">
-          <h3>AI技術の急速な進化</h3>
-          <p>企業や教育現場の多くの課題を解決する可能性が、いま急速に広がっています。</p>
-        </div>
-        <div class="card reveal" style="height: 100%;">
-          <h3>国内生成AI利用率 9.1%</h3>
-          <p>日本国内で生成AI経験がある人の割合は約9.1%。先進国の中でも低水準にとどまっています。</p>
-        </div>
-        <div class="card reveal" style="height: 100%;">
-          <h3>認知ギャップの存在</h3>
-          <p>活用方法が十分に浸透しておらず、理解不足そのものが導入の壁になっています。</p>
-        </div>
-        <div class="card reveal" style="height: 100%;">
-          <h3>クリエイティブ領域の拡大</h3>
-          <p>生成AIで独創的な表現や新たなプロセスが生まれ始めている。"好き" を探究できる基盤が拡大中。</p>
-        </div>
-      </div>
+  <section id="home" class="hero">
+    <iframe id="hero-3d" class="hero-3d-frame" src="app-gallery/AIKW_index_3d.html" title="AIKW 3D Animation"></iframe>
+    <div id="hero-overlay" class="hero-overlay-touch"></div>
+    <div class="hero-bottom-bar">
+      <span>Scroll &darr;</span>
+      <span>AI Knowledge Works LLC &mdash; Est. 2025</span>
+      <span>Tokyo, Japan</span>
     </div>
   </section>
 
-  <!-- === Founding === -->
-  <section id="founding">
-    <div class="container">
-      <p class="section-subtitle" style="margin-bottom: 0.5rem; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent);">Origin</p>
-      <h2 class="section-title">創業のきっかけ</h2>
-      <p class="section-subtitle"><span class="suki">"好き"</span>を実現できる社会をAIで実現する</p>
+  <!-- === Marquee === -->
+  <div class="marquee">
+    <div class="marquee-track">
+      <span class="marquee-word">AI Education</span>
+      <span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">Creative AI</span>
+      <span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">STEAM</span>
+      <span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">Consulting</span>
+      <span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">Digital Literacy</span>
+      <span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">Self-Realization</span>
+      <span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">Innovation</span>
+      <span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">AI Education</span>
+      <span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">Creative AI</span>
+      <span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">STEAM</span>
+      <span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">Consulting</span>
+      <span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">Digital Literacy</span>
+      <span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">Self-Realization</span>
+      <span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">Innovation</span>
+      <span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">AI Education</span>
+      <span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">Creative AI</span>
+      <span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">STEAM</span>
+      <span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">Consulting</span>
+      <span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">Digital Literacy</span>
+      <span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">Self-Realization</span>
+      <span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">Innovation</span>
+      <span class="marquee-dot">&bull;</span>
+    </div>
+  </div>
 
-      <div style="max-width: 960px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;">
-        <div class="reveal" style="background: var(--light); padding: 2.5rem; border: 1px solid var(--border);">
-          <div>
-            <h3 style="font-family: var(--font-display); color: var(--dark); font-size: 1.3rem; margin-bottom: 1.5rem; font-weight: 600; letter-spacing: 0.04em;">私たちのミッション</h3>
-            <p style="font-size: 1rem; line-height: 1.9;">
-              <span style="font-size: 1.05rem; font-weight: 500; display: block; margin-bottom: 2rem; color: var(--text);">生成AIの可能性を活かし、<br>誰もが自己実現できる世界を目指して創業しました。</span>
+  <!-- === 01 Background === -->
+  <section id="background" class="section">
+    <div class="grid-sidebar">
+      <div class="sidebar-sticky reveal">
+        <div class="kicker">01 &mdash; Why Now</div>
+      </div>
+      <div>
+        <h2 class="section-heading section-heading-md reveal" style="max-width: 20ch;">
+          AIの力を、<em>すべての人</em>の手に。
+        </h2>
 
-              <div style="margin: 20px 0; padding: 0;">
-                <div class="transform-text reveal" style="font-family: var(--font-display); font-size: 1.6rem; font-weight: 600; line-height: 1.6;">
-                  <span class="negative" style="text-align: left; display: block; margin-bottom: 0.5rem;">できないを</span>
-                  <span class="positive" style="font-size: 2.2rem; text-align: center; display: block; margin: 0.7rem 0;">できるに</span>
-                  <span class="action" style="font-size: 1.4rem; text-align: right; display: block; margin-top: 0.5rem;">変えます</span>
-                </div>
-                <div class="transform-underline" style="max-width: 200px; margin-left: auto;"></div>
-              </div>
-            </p>
+        <div style="margin-top: 64px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px;" class="grid-2-col">
+          <div class="reveal">
+            <div style="font-family: var(--serif); font-size: 48px; font-weight: 300; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 16px;">9.1<span style="font-size: 24px; color: var(--ink-40);">%</span></div>
+            <p class="paragraph">日本国内で生成AI経験がある人の割合。先進国の中でも低水準にとどまっています。認知ギャップの解消が急務です。</p>
+          </div>
+          <div class="reveal">
+            <div style="font-family: var(--serif); font-size: 48px; font-weight: 300; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 16px;">&infin;</div>
+            <p class="paragraph">生成AIで独創的な表現や新たなプロセスが生まれ始めている。"好き" を探究できる基盤が無限に拡大中。</p>
           </div>
         </div>
 
-        <div class="reveal">
-          <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=800&q=60" alt="創業イメージ" style="width: 100%; filter: grayscale(30%) contrast(1.05);">
+        <div style="margin-top: 64px; border-top: 1px solid var(--rule);">
+          <div class="item-row reveal">
+            <span class="item-num">01</span>
+            <span class="item-title">AI技術の急速な進化</span>
+            <span class="item-meta">企業や教育現場の多くの課題を解決する可能性が、いま急速に広がっています。</span>
+          </div>
+          <div class="item-row reveal">
+            <span class="item-num">02</span>
+            <span class="item-title">認知ギャップの存在</span>
+            <span class="item-meta">活用方法が十分に浸透しておらず、理解不足そのものが導入の壁に。</span>
+          </div>
+          <div class="item-row reveal">
+            <span class="item-num">03</span>
+            <span class="item-title">クリエイティブ領域の拡大</span>
+            <span class="item-meta">生成AIで独創的な表現が生まれ、誰もが創造者になれる時代へ。</span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- === Mission & Vision（要約） === -->
-  <section id="vision" style="background: var(--surface);">
-    <div class="container">
-      <p class="section-subtitle" style="margin-bottom: 0.5rem; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent);">Mission & Vision</p>
-      <h2 class="section-title">ミッション・ビジョン</h2>
-      <p class="section-subtitle"><span class="suki">"好き"</span>が未来を創る</p>
+  <hr>
 
-      <div class="mission-vision-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; max-width: 900px; margin: 0 auto;">
-        <div class="mission-box" style="background: var(--light); padding: 2.5rem; border: 1px solid var(--border); border-top: 2px solid var(--accent); height: 100%;">
-          <h3 style="font-family: var(--font-display); font-size: 0.8rem; margin-bottom: 1.2rem; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase;">
-            Mission
-          </h3>
-          <p style="font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; color: var(--dark); line-height: 1.8;">自己実現の大量生産 ─ 自分の<span class="suki">"好き"</span>が実現しまくる社会をつくる</p>
-        </div>
+  <!-- === 02 Origin === -->
+  <section id="founding" class="section">
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 80px;">
+      <div class="reveal">
+        <div class="kicker">02 &mdash; Origin</div>
+        <h2 class="section-heading section-heading-lg" style="margin: 12px 0 0;">
+          <span class="suki">"好き"</span>を、<br>
+          <em>実現する。</em>
+        </h2>
+      </div>
+    </div>
 
-        <div class="vision-box" style="background: var(--light); padding: 2.5rem; border: 1px solid var(--border); border-top: 2px solid var(--brand-blue); height: 100%;">
-          <h3 style="font-family: var(--font-display); font-size: 0.8rem; margin-bottom: 1.2rem; color: var(--brand-blue); letter-spacing: 0.15em; text-transform: uppercase;">
-            Vision
-          </h3>
-          <p style="font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; color: var(--dark); line-height: 1.8;">"余裕"が連鎖する未来 ─ 誰もが<span class="suki">"好き"</span>を起点に生きられる世界</p>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;" class="grid-2-col">
+      <div class="reveal">
+        <p class="paragraph" style="font-size: 17px; margin-bottom: 32px;">
+          生成AIの可能性を活かし、誰もが自己実現できる世界を目指して創業しました。
+        </p>
+        <p class="paragraph" style="margin-bottom: 40px;">
+          2018年にAIの世界に飛び込んだ代表・内堀。視力0.02というハンデを抱えながらも、生成AIツールとの出会いで「アイデアさえあれば何でもできる」と確信。2025年2月にはエンジニアの康平くんが参画。まったく毛色の違うメンバーが<strong style="font-weight: 600; color: var(--ink);">「AIでエリート専用の武器を大衆の手に届ける」</strong>という一点でタッグを組みました。
+        </p>
+        <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+          <a href="company.html" class="btn-outline">Company &rarr;</a>
         </div>
       </div>
-
-      <div style="text-align: center; margin-top: 2rem;">
-        <a href="company.html#philosophy" style="color: var(--accent); font-weight: 500; font-size: 0.95rem; letter-spacing: 0.04em;">コアバリュー・経営理念の詳細 &rarr;</a>
+      <div class="reveal">
+        <div style="border: 1px solid var(--rule); padding: clamp(24px, 3vw, 48px); position: relative;">
+          <div style="position: absolute; top: 16px; left: 16px; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-40);">Mission</div>
+          <div style="text-align: center; padding: 48px 0;">
+            <img src="logo/AIナレッジワークス_logo_transparen.png" alt="AIKW Logo" style="width: 180px; height: 180px; margin: 0 auto 32px; object-fit: contain;" class="logo-breathe">
+            <div style="font-family: var(--serif); font-size: clamp(20px, 3vw, 32px); font-weight: 400; line-height: 1.5;">
+              自己実現の大量生産
+            </div>
+            <div style="font-size: 13px; color: var(--ink-60); margin-top: 12px; letter-spacing: 0.08em;">
+              Mass production of self-realization
+            </div>
+          </div>
+          <div style="position: absolute; bottom: 16px; left: 16px; right: 16px; display: flex; justify-content: space-between; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-40);">
+            <span>Est. 2025.04.16</span>
+            <span>Tokyo, Japan</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- === Brand Video === -->
-  <section id="brand-video">
-    <div class="container">
-      <p class="section-subtitle" style="margin-bottom: 0.5rem; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent);">Brand Movie</p>
-      <h2 class="section-title">光が織りなす<span class="suki">"好き"</span>の物語</h2>
-      <p class="section-subtitle">Light to Breath, Breath to Code</p>
+  <hr>
 
-      <div class="video-content-grid reveal-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; max-width: 960px; margin: 0 auto;">
-        <div class="video-container reveal" style="position: relative; width: 100%; height: auto; min-height: 550px; overflow: hidden;">
+  <!-- === 03 Mission & Vision === -->
+  <section id="vision" class="section">
+    <div class="grid-sidebar">
+      <div class="sidebar-sticky reveal">
+        <div class="kicker">03 &mdash; Mission &amp; Vision</div>
+      </div>
+      <div>
+        <h2 class="section-heading section-heading-md reveal" style="max-width: 18ch; margin-bottom: 80px;">
+          <span class="suki">"好き"</span>が未来を創る。
+        </h2>
+
+        <div style="border-top: 1px solid var(--rule);">
+          <div class="service-row reveal">
+            <span class="item-num">M</span>
+            <div>
+              <div class="service-name">Mission</div>
+              <div class="service-jp">ミッション</div>
+            </div>
+            <p class="service-desc">自己実現の大量生産 &mdash; 自分の<span class="suki">"好き"</span>が実現しまくる社会をつくる</p>
+          </div>
+          <div class="service-row reveal">
+            <span class="item-num">V</span>
+            <div>
+              <div class="service-name">Vision</div>
+              <div class="service-jp">ビジョン</div>
+            </div>
+            <p class="service-desc">"余裕"が連鎖する未来 &mdash; 誰もが<span class="suki">"好き"</span>を起点に生きられる世界</p>
+          </div>
+        </div>
+
+        <div style="margin-top: 48px; text-align: left;" class="reveal">
+          <a href="company.html#philosophy" style="font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-60); border-bottom: 1px solid var(--ink-60); padding-bottom: 4px;">
+            Core Values &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- === 04 Services === -->
+  <section id="services" class="section">
+    <div class="grid-sidebar">
+      <div class="sidebar-sticky reveal">
+        <div class="kicker">04 &mdash; Practice</div>
+      </div>
+      <div>
+        <h2 class="section-heading section-heading-md reveal" style="max-width: 18ch; margin-bottom: 80px;">
+          What we do, <em>three</em>&nbsp;ways.
+        </h2>
+
+        <div style="border-top: 1px solid var(--rule);">
+          <div class="service-row reveal">
+            <span class="item-num">01</span>
+            <div>
+              <div class="service-name">AI Education</div>
+              <div class="service-jp">AI教育・STEAM教育</div>
+            </div>
+            <p class="service-desc">AIツールを使って自分だけの作品を創り、発表する体験を通じてデジタルリテラシーを育成します。</p>
+          </div>
+          <div class="service-row reveal">
+            <span class="item-num">02</span>
+            <div>
+              <div class="service-name">AI Consulting</div>
+              <div class="service-jp">AI導入コンサルティング</div>
+            </div>
+            <p class="service-desc">企業のAI導入を支援。業務効率化から新規事業開発まで、実践的なソリューションを提供します。</p>
+          </div>
+          <div class="service-row reveal">
+            <span class="item-num">03</span>
+            <div>
+              <div class="service-name">Creative AI</div>
+              <div class="service-jp">クリエイティブAI開発</div>
+            </div>
+            <p class="service-desc">生成AIを活用した独創的なコンテンツ制作・プロダクト開発をサポートします。</p>
+          </div>
+        </div>
+
+        <div style="margin-top: 48px;" class="reveal">
+          <a href="service.html" class="btn-fill">View Services &nbsp;&rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- === 05 Brand Movie === -->
+  <section id="brand-video" class="section">
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 64px;">
+      <div class="reveal">
+        <div class="kicker">05 &mdash; Brand Movie</div>
+        <h2 class="section-heading section-heading-lg" style="margin: 12px 0 0;">
+          光が織りなす<br><em><span class="suki">"好き"</span>の物語</em>
+        </h2>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;" class="grid-2-col">
+      <div class="reveal">
+        <div class="video-wrapper">
           <iframe
             src="https://www.youtube.com/embed/8cyoIow_exs?si=WNus0JQf759BVPb0&amp;controls=1&amp;rel=0&amp;playsinline=1&amp;modestbranding=1&amp;autoplay=0"
             title="AIナレッジワークス ブランドムービー"
-            frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen
-            style="width: 100%; height: 550px;">
+            allowfullscreen>
           </iframe>
         </div>
+      </div>
+      <div class="reveal">
+        <p class="paragraph" style="font-size: 17px; margin-bottom: 24px;">
+          暗闇の中の小さな光点から始まり、一人ひとりの心に眠る<span class="suki">"好き"</span>の種が芽吹き、やがて世界を結ぶ大きなネットワークへと成長していく物語。
+        </p>
+        <p class="paragraph" style="margin-bottom: 24px;">
+          個人の情熱が他者との出会いによって共鳴し、コミュニティを形成し、最終的には宇宙規模のビジョンへと昇華する様子を光の軌跡で表現しています。
+        </p>
+        <p class="paragraph" style="font-size: 14px;">
+          Light to Breath, Breath to Code &mdash; 私たちAIナレッジワークスが目指す「自己実現の大量生産」の世界観を、映像詩として描きました。
+        </p>
+      </div>
+    </div>
+  </section>
 
-        <div class="video-description reveal" style="padding: 0;">
-          <p style="font-size: 0.95rem; line-height: 2; margin-bottom: 1.5rem; color: var(--text);">
-            暗闇の中の小さな光点から始まり、一人ひとりの心に眠る<span class="suki">"好き"</span>の種が芽吹き、やがて世界を結ぶ大きなネットワークへと成長していく物語。
-          </p>
-          <p style="font-size: 0.95rem; line-height: 2; margin-bottom: 1.5rem; color: var(--text);">
-            個人の情熱が他者との出会いによって共鳴し、コミュニティを形成し、最終的には宇宙規模のビジョンへと昇華する様子を光の軌跡で表現しています。
-          </p>
-          <p style="font-size: 0.9rem; line-height: 2; color: var(--text-sub);">
-            私たちAIナレッジワークスが目指す「自己実現の大量生産」の世界観を、映像詩として描きました。
-          </p>
+  <hr>
+
+  <!-- === 06 Team === -->
+  <section id="team" class="section">
+    <div class="grid-sidebar">
+      <div class="sidebar-sticky reveal">
+        <div class="kicker">06 &mdash; Team</div>
+      </div>
+      <div>
+        <h2 class="section-heading section-heading-md reveal" style="max-width: 20ch; margin-bottom: 48px;">
+          人生をかけてAI革命に<em>挑む</em>仲間たち。
+        </h2>
+        <p class="paragraph reveal" style="max-width: 560px; margin-bottom: 48px;">
+          2018年にAIの世界に飛び込んだ代表・内堀。視力0.02というハンデを抱えながらも、生成AIツールとの出会いで「アイデアさえあれば何でもできる」と確信。2025年1月、AI研究者の会長と邂逅し、同年2月にはエンジニアの康平くんが参画。まったく毛色の違う3人が「AIでエリート専用の武器を大衆の手に届ける」という一点でタッグを組み、2025年4月16日にAIナレッジワークス合同会社を設立しました。
+        </p>
+        <div style="display: flex; gap: 16px; flex-wrap: wrap;" class="reveal">
+          <a href="company.html" class="btn-outline">About the Team &rarr;</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- === チーム紹介（要約） === -->
-  <section id="staff-intro" style="background: var(--surface);">
-    <div class="container">
-      <p class="section-subtitle" style="margin-bottom: 0.5rem; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent);">Team</p>
-      <h2 class="section-title">私たちについて</h2>
-      <p class="section-subtitle">人生をかけてAI革命に挑む仲間たち</p>
-
-      <div style="max-width: 900px; margin: 0 auto;">
-        <div class="card reveal" style="margin-bottom: 2rem;">
-          <p style="font-size: 1.05rem; line-height: 2; color: var(--text); margin-bottom: 1.5rem;">
-            2018年にAIの世界に飛び込んだ代表・内堀。視力0.02というハンデを抱えながらも、生成AIツールとの出会いで「アイデアさえあれば何でもできる」と確信。2025年1月、AI研究者の会長と邂逅し、同年2月にはエンジニアの康平くんが参画。まったく毛色の違う3人が<strong>「AIでエリート専用の武器を大衆の手に届ける」</strong>という一点でタッグを組み、2025年4月16日にAIナレッジワークス合同会社を設立しました。
-          </p>
-          <div style="text-align: center;">
-            <a href="#background" style="display: inline-block; padding: 0.8rem 2rem; border: 1px solid var(--accent); color: var(--accent); font-weight: 500; letter-spacing: 0.06em; transition: all 0.3s ease; font-size: 0.95rem;">創業ストーリーを読む &rarr;</a>
-          </div>
-        </div>
-      </div>
+  <!-- === Contact CTA === -->
+  <section id="contact" class="section" style="padding-top: 0; padding-bottom: 120px;">
+    <div class="reveal" style="width: 100%; height: 360px; position: relative; margin-bottom: 80px; border: 1px solid var(--rule); overflow: hidden;">
+      <iframe src="app-gallery/AIKW_index_3d.html" style="width: 100%; height: 100%; border: none; pointer-events: none;" title="AIKW 3D Animation"></iframe>
+      <div style="position: absolute; top: 16px; left: 16px; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.4);">AIKW &mdash; 3D Mark</div>
+      <div style="position: absolute; bottom: 16px; right: 16px; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.4);">Interactive &middot; WebGL</div>
     </div>
-  </section>
-
-  <!-- === Contact === -->
-  <section id="contact" class="cta-section">
-    <div class="container">
-      <h2>まずは無料相談から</h2>
-      <p>AI導入・研修について、お気軽にご相談ください。</p>
-      <a href="contact.html" class="cta-button">お問い合わせはこちら</a>
+    <div class="cta-center reveal">
+      <div class="kicker" style="display: inline-block;">Contact</div>
+      <h2 class="section-heading" style="font-size: clamp(48px, 8vw, 120px); line-height: 1.05; letter-spacing: -0.02em; margin: 20px 0;">
+        まずは<br><em>ご相談</em>から。
+      </h2>
+      <p class="paragraph" style="max-width: 520px; margin: 24px auto 48px; font-size: 17px;">
+        AI導入・研修について、お気軽にお問い合わせください。
+      </p>
+      <a href="contact.html" class="btn-fill">
+        お問い合わせはこちら &nbsp;&rarr;
+      </a>
     </div>
   </section>
 
   <!-- === Footer === -->
   <footer>
-    <div class="container">
-      <p>&copy; 2025 AI Knowledge Works, LLC. All rights reserved.</p>
+    <div class="footer-brand">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <img src="logo/AIナレッジワークス_logo_transparen.png" width="36" height="36" alt="" style="object-fit: contain;">
+        <span style="font-family: var(--serif); font-size: 17px; letter-spacing: 0.04em;">AI Knowledge Works</span>
+      </div>
+      <p>AIツールを使って自分だけの作品を創り、発表する体験を通じてデジタルリテラシーを育成する小さなスタジオ。</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Pages</div>
+      <a href="service.html">Services</a>
+      <a href="achievements.html">Achievements</a>
+      <a href="company.html">Company</a>
+      <a href="story.html">Story</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Connect</div>
+      <a href="https://www.youtube.com/@AIKnowledgeWorks" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://note.com/aiknowledgeworks" target="_blank" rel="noopener">Note</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Office</div>
+      <span style="font-size: 14px; color: var(--ink);">Tokyo, Japan</span>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2025 AI Knowledge Works, LLC.</span>
+      <span>Made with AI in Tokyo</span>
     </div>
   </footer>
 
@@ -2016,92 +1070,76 @@
   <script src="js/chatbot.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Animation with IntersectionObserver - Improved for mobile
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('active');
+      // Scroll reveal
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('in');
+            revealObserver.unobserve(e.target);
           }
         });
-      }, { 
-        threshold: 0.05,
-        rootMargin: '50px 0px -10px 0px'
-      });
+      }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
 
-      // Fallback for cases where IntersectionObserver might not work
-      const fallbackTimer = setTimeout(() => {
-        document.querySelectorAll('.reveal, .staff-member, .value-item').forEach(el => {
-          if (!el.classList.contains('active')) {
-            el.classList.add('active');
-          }
+      document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+      // Fallback
+      setTimeout(() => {
+        document.querySelectorAll('.reveal').forEach(el => {
+          if (!el.classList.contains('in')) el.classList.add('in');
         });
       }, 3000);
 
-      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-      document.querySelectorAll('.value-item').forEach(el => observer.observe(el));
-      document.querySelectorAll('.matrix-table').forEach(el => observer.observe(el));
-      document.querySelectorAll('.qa-item').forEach(el => observer.observe(el));
-      document.querySelectorAll('.staff-member').forEach(el => observer.observe(el));
-      document.querySelectorAll('.transform-text').forEach(el => {
-        observer.observe(el);
-        el.addEventListener('animationend', () => {
-          el.classList.add('active');
-        });
-      });
-      
-      // Check for hash in URL and scroll to that section after a delay
+      // Header scroll effect
+      const header = document.getElementById('site-header');
+      window.addEventListener('scroll', () => {
+        header.classList.toggle('scrolled', window.scrollY > 40);
+      }, { passive: true });
+
+      // Hash scroll
       if (window.location.hash) {
         setTimeout(() => {
-          const targetElement = document.querySelector(window.location.hash);
-          if (targetElement) {
-            window.scrollTo({
-              top: targetElement.offsetTop - 80,
-              behavior: 'smooth'
-            });
+          const target = document.querySelector(window.location.hash);
+          if (target) {
+            window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
           }
         }, 500);
       }
-      
-      // Mobile menu functionality
+
+      // Mobile menu
       const hamburger = document.querySelector('.hamburger');
       const nav = document.querySelector('nav');
       const overlay = document.querySelector('.overlay');
       const navLinks = document.querySelectorAll('nav a');
-      
+
       function toggleMenu() {
         hamburger.classList.toggle('active');
         nav.classList.toggle('active');
         overlay.classList.toggle('active');
         document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
       }
-      
+
       hamburger.addEventListener('click', toggleMenu);
       overlay.addEventListener('click', toggleMenu);
-      
+
       navLinks.forEach(link => {
         link.addEventListener('click', () => {
           if (nav.classList.contains('active')) {
             toggleMenu();
-            // スクロールをスムーズにするために少し遅延を入れる
             setTimeout(() => {
               const targetId = link.getAttribute('href');
               if (targetId.startsWith('#')) {
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                  targetElement.scrollIntoView({ behavior: 'smooth' });
-                }
+                const targetEl = document.querySelector(targetId);
+                if (targetEl) targetEl.scrollIntoView({ behavior: 'smooth' });
               }
             }, 300);
           }
         });
       });
 
-      // Hero 3D: オーバーレイがホイールをネイティブ処理（なめらかスクロール）
-      // mousedown時だけオーバーレイを消してiframeにドラッグを渡す
+      // Hero 3D interaction
       const heroOverlay = document.getElementById('hero-overlay');
       const hero3d = document.getElementById('hero-3d');
       if (heroOverlay && hero3d) {
-        // マウス位置をiframeに転送（ホバー反発効果のため）
         heroOverlay.addEventListener('mousemove', (e) => {
           const rect = hero3d.getBoundingClientRect();
           hero3d.contentWindow.postMessage({
@@ -2115,22 +1153,18 @@
           hero3d.contentWindow.postMessage('resetMouse', '*');
         });
 
-        // mousedown: オーバーレイを消してiframeにドラッグを渡す
-        heroOverlay.addEventListener('mousedown', (e) => {
+        heroOverlay.addEventListener('mousedown', () => {
           heroOverlay.style.pointerEvents = 'none';
           hero3d.style.pointerEvents = 'auto';
           heroOverlay.style.cursor = 'grabbing';
         });
 
-        // mouseup: オーバーレイを復元（ドキュメント全体で監視）
         document.addEventListener('mouseup', () => {
           heroOverlay.style.pointerEvents = 'auto';
           hero3d.style.pointerEvents = 'none';
           heroOverlay.style.cursor = 'grab';
         });
 
-        // ヘッダーhoveredでリセット
-        const header = document.querySelector('header');
         if (header) {
           header.addEventListener('mouseenter', () => {
             hero3d.contentWindow.postMessage('resetMouse', '*');
@@ -2139,6 +1173,5 @@
       }
     });
   </script>
-
 </body>
 </html>
