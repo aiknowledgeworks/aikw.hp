@@ -257,10 +257,14 @@
     .btn-fill:hover { opacity: 0.85; }
 
     @keyframes breathe {
-      0%, 100% { transform: scale(1) rotate(0deg); }
-      50% { transform: scale(1.12) rotate(4deg); }
+      0% { transform: scale(1) rotate(0deg); }
+      30% { transform: scale(1.13) rotate(4deg); }
+      45% { transform: scale(1.10) rotate(3.5deg); }
+      70% { transform: scale(1.02) rotate(0.5deg); }
+      85% { transform: scale(0.98) rotate(-1deg); }
+      100% { transform: scale(1) rotate(0deg); }
     }
-    .logo-breathe { animation: breathe 4s ease-in-out infinite; transform-origin: center; }
+    .logo-breathe { animation: breathe 5s cubic-bezier(.4,0,.2,1) infinite; transform-origin: center; }
 
     /* === Dify responsive === */
     @media (max-width: 1024px) and (min-width: 769px) {
