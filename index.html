@@ -711,7 +711,6 @@
     @media (prefers-reduced-motion: reduce) {
       .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
       .logo-breathe { animation: none !important; }
-      .marquee-track { transform: none !important; }
     }
   </style>
 </head>
@@ -1232,22 +1231,21 @@
     });
 
     // Marquee JS animation (CSS animation unreliable on iOS Safari)
-    (function() {
-      const track = document.querySelector('.marquee-track');
+    window.addEventListener('load', function() {
+      var track = document.querySelector('.marquee-track');
       if (!track) return;
-      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (prefersReduced) return;
-      let pos = 0;
-      const speed = 1;
+      var pos = 0;
+      var speed = 1;
+      var oneThird = 0;
       function tick() {
+        if (oneThird === 0) oneThird = track.scrollWidth / 3;
         pos -= speed;
-        const oneThird = track.scrollWidth / 3;
-        if (Math.abs(pos) >= oneThird) pos += oneThird;
+        if (oneThird > 0 && Math.abs(pos) >= oneThird) pos += oneThird;
         track.style.transform = 'translate3d(' + pos + 'px,0,0)';
         requestAnimationFrame(tick);
       }
       requestAnimationFrame(tick);
-    })();
+    });
   </script>
 </body>
 </html>
