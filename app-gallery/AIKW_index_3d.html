@@ -42,8 +42,8 @@
             if (isPortrait) {
                 const ratio = w / h;
                 const scale = Math.max(ratio / 0.8, 0.42);
-                cfg.textSize = Math.round(cfg.textSize * scale);
-                cfg.cameraZ = cfg.cameraZ / scale * 1.05;
+                cfg.textSize = Math.round(cfg.textSize * scale * 0.55);
+                cfg.cameraZ = cfg.cameraZ / scale * 1.8;
             }
             return cfg;
         }
