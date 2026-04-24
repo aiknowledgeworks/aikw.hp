@@ -129,14 +129,13 @@
     .nav-cta:hover { background: var(--ink); color: var(--bg); }
 
     @keyframes breathe {
-      0% { transform: scale(1) rotate(0deg); }
-      30% { transform: scale(1.13) rotate(4deg); }
-      45% { transform: scale(1.10) rotate(3.5deg); }
-      70% { transform: scale(1.02) rotate(0.5deg); }
-      85% { transform: scale(0.98) rotate(-1deg); }
-      100% { transform: scale(1) rotate(0deg); }
+      0%, 100% { transform: scale(1); }
+      12% { transform: scale(1.15); }
+      22% { transform: scale(1); }
+      32% { transform: scale(1.10); }
+      45% { transform: scale(1); }
     }
-    .logo-breathe { animation: breathe 5s cubic-bezier(.4,0,.2,1) infinite; transform-origin: center; }
+    .logo-breathe { animation: breathe 1.8s ease-in-out infinite; transform-origin: center; }
 
     /* === Hero === */
     .hero {
