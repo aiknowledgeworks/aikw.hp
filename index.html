@@ -173,6 +173,7 @@
     /* === Hero === */
     .hero {
       height: 100vh;
+      height: 100svh;
       position: relative;
       display: flex; flex-direction: column;
       background: #0f1923;
@@ -195,6 +196,10 @@
     }
 
     /* === Marquee === */
+    @-webkit-keyframes marquee {
+      from { -webkit-transform: translateX(0); transform: translateX(0); }
+      to { -webkit-transform: translateX(-50%); transform: translateX(-50%); }
+    }
     @keyframes marquee {
       from { transform: translateX(0); }
       to { transform: translateX(-50%); }
@@ -209,10 +214,14 @@
     }
     .marquee-track {
       display: inline-flex; gap: 48px;
+      -webkit-animation: marquee 40s linear infinite;
       animation: marquee 40s linear infinite;
       font-family: var(--serif);
       font-size: 36px;
       color: var(--ink);
+      width: max-content;
+      will-change: transform;
+      -webkit-transform: translateZ(0);
     }
     .marquee-track span {
       font-weight: 400;
@@ -629,6 +638,9 @@
       nav ul li a::after { content: "\203A"; float: right; opacity: 0.4; font-size: 1.2em; }
       .nav-cta { border: none; padding: 20px 32px; margin-left: 0; text-align: left; }
       .nav-cta:hover { background: transparent; color: var(--ink); }
+      .hero { height: 100svh; }
+      .hero-bottom-bar { font-size: 10px; }
+      .marquee-track { font-size: 28px; gap: 36px; }
     }
 
     @media (max-width: 768px) {
@@ -1190,6 +1202,36 @@
           heroOverlay.style.pointerEvents = 'auto';
           hero3d.style.pointerEvents = 'none';
           heroOverlay.style.cursor = 'grab';
+        });
+
+        heroOverlay.addEventListener('touchstart', (e) => {
+          if (e.touches.length > 0) {
+            const rect = hero3d.getBoundingClientRect();
+            hero3d.contentWindow.postMessage({
+              type: 'mousemove',
+              x: e.touches[0].clientX - rect.left,
+              y: e.touches[0].clientY - rect.top
+            }, '*');
+          }
+          heroOverlay.style.pointerEvents = 'none';
+          hero3d.style.pointerEvents = 'auto';
+        }, { passive: true });
+
+        heroOverlay.addEventListener('touchmove', (e) => {
+          if (e.touches.length > 0) {
+            const rect = hero3d.getBoundingClientRect();
+            hero3d.contentWindow.postMessage({
+              type: 'mousemove',
+              x: e.touches[0].clientX - rect.left,
+              y: e.touches[0].clientY - rect.top
+            }, '*');
+          }
+        }, { passive: true });
+
+        document.addEventListener('touchend', () => {
+          heroOverlay.style.pointerEvents = 'auto';
+          hero3d.style.pointerEvents = 'none';
+          hero3d.contentWindow.postMessage('resetMouse', '*');
         });
 
         if (header) {
