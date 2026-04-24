@@ -257,13 +257,10 @@
     .btn-fill:hover { opacity: 0.85; }
 
     @keyframes breathe {
-      0%, 100% { transform: scale(1); }
-      12% { transform: scale(1.15); }
-      22% { transform: scale(1); }
-      32% { transform: scale(1.10); }
-      45% { transform: scale(1); }
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      35% { transform: scale(1.12) rotate(4deg); }
     }
-    .logo-breathe { animation: breathe 1.8s ease-in-out infinite; transform-origin: center; }
+    .logo-breathe { animation: breathe 4s cubic-bezier(.3,.8,.3,.4) infinite; transform-origin: center; }
 
     /* === Dify responsive === */
     @media (max-width: 1024px) and (min-width: 769px) {
