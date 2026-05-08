@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>事業内容・サービス | AIナレッジワークス合同会社</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="logo/AIナレッジワークス_logo_transparen.png">
+  <link rel="shortcut icon" type="image/x-icon" href="logo/AIナレッジワークス_logo_transparen.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="logo/AIナレッジワークス_logo_transparen.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="logo/AIナレッジワークス_logo_transparen.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="logo/AIナレッジワークス_logo_transparen.png">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWFLPN1EZH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-DWFLPN1EZH');
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* === Design System Tokens === */
+    :root {
+      --bg: #FAF8F5;
+      --ink: #2C2A26;
+      --ink-80: #2C2A26CC;
+      --ink-60: #2C2A2699;
+      --ink-40: #2C2A2666;
+      --ink-15: #2C2A2626;
+      --ink-08: #2C2A2614;
+      --paper: #FFFFFF;
+      --paper-2: #F3EFE9;
+      --paper-3: #EBE6DD;
+      --rule: #D9D3C7;
+      --link: #1B5FA0;
+      --accent: #3da8c7;
+      --accent-warm: #d4a26a;
+      --brand-gradient: linear-gradient(135deg, #6db5ff 0%, #a1e9d9 100%);
+
+      --serif: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+      --sans: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
+      --display: "Fraunces", "Noto Serif JP", serif;
+
+      --page-pad: clamp(24px, 5vw, 72px);
+      --measure: 64ch;
+    }
+
+    /* === Reset === */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.8;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    ul { list-style: none; padding: 0; margin: 0; }
+    hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
+
+    /* === Grain overlay === */
+    body::after {
+      content: "";
+      position: fixed; inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.9'/></svg>");
+    }
+
+    /* === Selection === */
+    ::selection { background: var(--ink); color: var(--bg); }
+
+    /* === Scroll reveal === */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 1.2s cubic-bezier(.2,.7,.2,1), transform 1.2s cubic-bezier(.2,.7,.2,1);
+    }
+    .reveal.in {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* === Kicker label === */
+    .kicker {
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink-60);
+    }
+
+    /* === Section base === */
+    .section {
+      padding: clamp(96px, 14vh, 160px) var(--page-pad);
+      max-width: 1680px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* === Header / Nav === */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 28px var(--page-pad);
+      display: flex; align-items: center; justify-content: space-between;
+      background: transparent;
+      border-bottom: 1px solid transparent;
+      transition: all .5s cubic-bezier(.2,.7,.2,1);
+    }
+    header.scrolled {
+      padding-top: 14px; padding-bottom: 14px;
+      background: color-mix(in srgb, var(--bg) 85%, transparent);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom-color: var(--rule);
+    }
+    .logo-link {
+      display: flex; align-items: center; gap: 12px;
+    }
+    .logo-link img {
+      height: 40px;
+      transition: height .5s cubic-bezier(.2,.7,.2,1);
+    }
+    header.scrolled .logo-link img { height: 32px; }
+    .logo-link span {
+      font-family: var(--serif);
+      font-size: 17px;
+      letter-spacing: 0.04em;
+      font-weight: 500;
+    }
+    nav ul {
+      display: flex; gap: 28px; align-items: center;
+    }
+    nav a {
+      font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--ink-60);
+      transition: color .3s;
+    }
+    nav a:hover { color: var(--ink); }
+    .nav-cta {
+      padding: 10px 18px;
+      border: 1px solid var(--ink);
+      margin-left: 8px;
+      transition: all .3s;
+    }
+    .nav-cta:hover {
+      background: var(--ink);
+      color: var(--bg);
+    }
+
+    /* === Logo breathing === */
+    @keyframes breathe {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      25% { transform: scale(1.12) rotate(4deg); }
+    }
+    .logo-breathe {
+      animation: breathe 4s cubic-bezier(.3,.8,.3,.4) infinite;
+      transform-origin: center;
+    }
+
+    /* === Hero === */
+    .hero {
+      padding: 180px var(--page-pad) 100px;
+      max-width: 1680px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(40px, 6vw, 80px);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin: 0 0 20px;
+    }
+    .hero .tagline {
+      font-size: 17px;
+      color: var(--ink-60);
+      font-weight: 300;
+      margin: 0;
+    }
+
+    /* === Section headings === */
+    .section-heading {
+      font-family: var(--serif);
+      font-weight: 400;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      margin: 0;
+    }
+    .section-heading em {
+      font-family: var(--display);
+      font-style: italic;
+    }
+    .section-heading-lg {
+      font-size: clamp(40px, 6vw, 88px);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+    .section-heading-md {
+      font-size: clamp(34px, 4.5vw, 64px);
+    }
+    .section-heading-sm {
+      font-size: clamp(28px, 3.5vw, 48px);
+    }
+
+    /* === Two-column layout === */
+    .grid-sidebar {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+    .sidebar-sticky {
+      position: sticky; top: 140px;
+    }
+
+    /* === Paragraph style === */
+    .paragraph {
+      margin: 0;
+      font-size: 16px;
+      line-height: 2;
+      color: var(--ink-60);
+    }
+
+    /* === Card styles === */
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      padding: 2rem;
+    }
+    .card h3, .card h4 {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin: 0 0 .6rem;
+      color: var(--ink);
+    }
+    .card p {
+      font-size: 15px;
+      line-height: 1.9;
+      color: var(--ink-60);
+      margin: 0;
+    }
+
+    /* === Card grid === */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .card-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* === Service row (from index) === */
+    .service-row {
+      display: grid;
+      grid-template-columns: 60px 1fr 2fr;
+      gap: 32px;
+      padding: 40px 0;
+      border-bottom: 1px solid var(--rule);
+      align-items: baseline;
+    }
+    .service-name {
+      font-family: var(--serif);
+      font-size: 26px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+    }
+    .service-jp {
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      color: var(--ink-60);
+      margin-top: 6px;
+    }
+    .service-desc {
+      margin: 0; font-size: 16px; line-height: 1.9;
+      color: var(--ink-60);
+      max-width: 42ch;
+    }
+
+    /* === Pricing table === */
+    .table-scroll {
+      position: relative;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .pricing-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      min-width: 640px;
+    }
+    .pricing-table thead th {
+      background: var(--paper-2);
+      color: var(--ink);
+      font-weight: 600;
+      padding: 14px 16px;
+      border-bottom: 2px solid var(--rule);
+      text-align: center;
+      font-size: 14px;
+      letter-spacing: 0.02em;
+    }
+    .pricing-table tbody td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--rule);
+      text-align: center;
+      font-size: 14px;
+      color: var(--ink-80);
+    }
+    .pricing-table tbody tr:nth-child(even) td {
+      background: var(--paper-2);
+    }
+    .pricing-table th:first-child,
+    .pricing-table td:first-child {
+      text-align: left;
+      font-weight: 500;
+      color: var(--ink);
+    }
+    .pricing-table .highlight {
+      background: rgba(61,168,199,0.06);
+      font-weight: 600;
+    }
+
+    /* === Badge === */
+    .badge {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 999px;
+      padding: 0.2rem 0.55rem;
+      font-size: 0.7rem;
+      margin-left: 0.4rem;
+      vertical-align: middle;
+      letter-spacing: 0.04em;
+    }
+
+    /* === Value grid === */
+    .value-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+    .value-card {
+      background: var(--paper);
+      padding: 1.5rem;
+      border: 1px solid var(--rule);
+      position: relative;
+      overflow: hidden;
+    }
+    .value-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px; height: 100%;
+      background: var(--brand-gradient);
+    }
+    .value-title {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      margin: 0 0 .5rem;
+      color: var(--ink);
+      font-weight: 500;
+    }
+    .value-card p {
+      margin: 0;
+      color: var(--ink-60);
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    /* === Problem list === */
+    .problem-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 0.75rem;
+      padding: 0; margin: 0;
+      text-align: center;
+    }
+    .problem-list li {
+      position: relative;
+      list-style: none;
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      padding: 0.9rem 1rem;
+      font-size: 0.95rem;
+      color: var(--ink);
+      transition: transform .2s ease;
+    }
+    .problem-list li::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: var(--brand-gradient);
+    }
+    .problem-list li:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,.06);
+    }
+    .highlight-text {
+      background: none;
+      color: var(--ink);
+      padding: 0;
+      font-weight: 700;
+      border-bottom: 3px solid var(--accent-warm);
+    }
+
+    /* === Process steps === */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    .process-step {
+      background: var(--paper);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      border: 1px solid var(--rule);
+    }
+    .step-number {
+      display: inline-flex;
+      align-items: center; justify-content: center;
+      width: 36px; height: 36px;
+      background: var(--paper-2);
+      border: 1px solid var(--rule);
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      font-family: var(--serif);
+    }
+    .process-step h4 {
+      font-family: var(--serif);
+      color: var(--ink);
+      margin: 0 0 0.75rem;
+      font-weight: 500;
+      font-size: 1rem;
+    }
+    .process-step p {
+      color: var(--ink-60);
+      font-size: 14px;
+      margin: 0;
+      line-height: 1.8;
+    }
+
+    /* === Service features list === */
+    .service-features { margin-top: 0.5rem; }
+    .service-features li {
+      padding: 0.4rem 0 0.4rem 1.5rem;
+      position: relative;
+      color: var(--ink-60);
+      font-size: 0.9rem;
+    }
+    .service-features li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+
+    /* === Content headings === */
+    .content-title {
+      font-family: var(--serif);
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 400;
+      text-align: center;
+      margin: 0 0 12px;
+      letter-spacing: -0.01em;
+    }
+    .content-subtitle {
+      text-align: center;
+      color: var(--ink-60);
+      margin: 0 0 clamp(40px, 5vh, 64px);
+      font-size: 15px;
+      letter-spacing: 0.02em;
+    }
+    .content-section-title {
+      font-family: var(--serif);
+      font-size: clamp(22px, 3vw, 32px);
+      font-weight: 400;
+      margin: 0 0 1.5rem;
+      text-align: center;
+      letter-spacing: -0.01em;
+    }
+
+    /* === Feature box (hero-style) === */
+    .feature-box {
+      max-width: 900px;
+      margin: 0 auto 3rem;
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-top: 2px solid var(--accent);
+      padding: 2.5rem;
+      text-align: center;
+    }
+    .feature-box h3 {
+      font-family: var(--serif);
+      font-size: clamp(20px, 2.5vw, 28px);
+      color: var(--ink);
+      margin: 0 0 1rem;
+      font-weight: 400;
+      line-height: 1.6;
+    }
+    .feature-box p {
+      font-size: 15px;
+      color: var(--ink-60);
+      line-height: 1.8;
+      margin: 0;
+    }
+    .feature-box .price {
+      font-family: var(--serif);
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 500;
+      color: var(--ink);
+      margin-top: 1.5rem;
+    }
+    .feature-box .price small {
+      font-size: 0.5em;
+      font-weight: 400;
+    }
+    .feature-box .price-note {
+      font-size: 13px;
+      color: var(--ink-60);
+      margin-top: 4px;
+    }
+
+    /* === Video gallery === */
+    .video-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .video-item {
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      padding: 1.25rem;
+      text-align: center;
+    }
+    .video-item video {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: contain;
+      background: #0f1923;
+      margin-bottom: 0.75rem;
+    }
+    .video-item p {
+      font-size: 13px;
+      color: var(--ink-60);
+      margin: 0;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+
+
+    /* === Quote / callout === */
+    .quote-box {
+      max-width: 900px;
+      margin: 0 auto 3rem;
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      padding: 2.5rem;
+    }
+    .quote-box h3 {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      color: var(--ink);
+      margin: 0 0 1.25rem;
+      font-weight: 500;
+    }
+    .quote-box li {
+      padding: 0.5rem 0 0.5rem 1.5rem;
+      position: relative;
+      color: var(--ink-60);
+      font-size: 15px;
+    }
+    .quote-box li span {
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    /* === CTA section === */
+    .cta-center {
+      text-align: center;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .btn-fill {
+      display: inline-flex; align-items: center;
+      padding: 20px 36px;
+      background: var(--ink);
+      color: var(--bg);
+      font-size: 14px; letter-spacing: 0.16em; text-transform: uppercase;
+      transition: all .3s;
+    }
+    .btn-fill:hover { opacity: 0.85; }
+
+    /* === Testimonial cards === */
+    .testimonial {
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      padding: 1.5rem 1.25rem;
+    }
+    .testimonial .quote-text {
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--ink-60);
+      font-size: 15px;
+      line-height: 1.9;
+      margin: 0 0 .5rem;
+    }
+    .testimonial .quote-attr {
+      text-align: right;
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--ink);
+      margin: 0;
+    }
+
+    /* === Dark card === */
+    .card-dark {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+      padding: 2rem;
+    }
+    .card-dark h3 {
+      color: var(--bg);
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin: 0 0 1rem;
+    }
+
+    /* === Footer === */
+    footer {
+      border-top: 1px solid var(--rule);
+      padding: 56px var(--page-pad) 40px;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      max-width: 1680px;
+      margin: 0 auto;
+    }
+    .footer-brand p {
+      font-size: 13px;
+      color: var(--ink-60);
+      line-height: 2;
+      margin-top: 16px;
+      max-width: 340px;
+    }
+    .footer-col-title {
+      font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--ink-60);
+      margin-bottom: 18px;
+    }
+    .footer-col a {
+      font-size: 14px;
+      color: var(--ink);
+      display: block;
+      margin-bottom: 10px;
+      transition: color .3s;
+    }
+    .footer-col a:hover { color: var(--ink-60); }
+    .footer-bottom {
+      grid-column: 1 / -1;
+      padding-top: 32px; margin-top: 16px;
+      border-top: 1px solid var(--rule);
+      display: flex; justify-content: space-between;
+      font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--ink-60);
+    }
+
+    /* === Hamburger === */
+    .hamburger {
+      display: none;
+      width: 30px; height: 30px;
+      position: relative; cursor: pointer; z-index: 1010;
+      padding: 10px; box-sizing: content-box; margin: -10px;
+    }
+    .hamburger span {
+      display: block; position: absolute;
+      height: 1.5px; width: 100%;
+      background: var(--ink);
+      opacity: 1; left: 0;
+      transform: rotate(0deg);
+      transition: .25s ease-in-out;
+    }
+    .hamburger span:nth-child(1) { top: 0; }
+    .hamburger span:nth-child(2) { top: 9px; }
+    .hamburger span:nth-child(3) { top: 18px; }
+    .hamburger.active span:nth-child(1) { top: 9px; transform: rotate(135deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; left: -60px; }
+    .hamburger.active span:nth-child(3) { top: 9px; transform: rotate(-135deg); }
+
+    .overlay {
+      display: none; position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.4);
+      z-index: 90;
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .overlay.active { display: block; opacity: 1; }
+
+    /* === Responsive === */
+    @media (max-width: 1024px) {
+      .grid-sidebar {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .sidebar-sticky { position: static; }
+      footer { grid-template-columns: 1fr 1fr; }
+      .service-row { grid-template-columns: 60px 1fr; }
+      .service-desc { grid-column: 1 / -1; padding-left: 92px; }
+    }
+
+    /* === iPad (portrait) === */
+    @media (max-width: 1024px) and (min-width: 769px) {
+      .hamburger { display: block; }
+      nav {
+        position: fixed; top: 0; right: -100%;
+        width: 80%; max-width: 360px; height: 100vh;
+        background: var(--bg);
+        box-shadow: -2px 0 20px rgba(0,0,0,0.08);
+        transition: 0.3s ease;
+        padding-top: 80px; z-index: 95;
+        overflow-y: auto;
+      }
+      nav.active { right: 0; }
+      nav ul { flex-direction: column; gap: 0; }
+      nav ul li a {
+        padding: 20px 32px; display: block;
+        border-bottom: 1px solid var(--rule);
+        font-size: 15px; letter-spacing: 0.08em;
+        text-transform: none; color: var(--ink);
+      }
+      nav ul li a::after { content: "\203A"; float: right; opacity: 0.4; font-size: 1.2em; }
+      .nav-cta { border: none; padding: 20px 32px; margin-left: 0; text-align: left; }
+      .nav-cta:hover { background: transparent; color: var(--ink); }
+    }
+
+    @media (max-width: 768px) {
+      .hero { padding: 140px var(--page-pad) 80px; }
+      .hero h1 { font-size: clamp(32px, 8vw, 48px); }
+      .section { padding: clamp(64px, 10vh, 96px) var(--page-pad); }
+
+      /* Mobile nav */
+      .hamburger { display: block; }
+      nav {
+        position: fixed; top: 0; right: -100%;
+        width: 80%; max-width: 300px; height: 100vh;
+        background: var(--bg);
+        box-shadow: -2px 0 20px rgba(0,0,0,0.08);
+        transition: 0.3s ease;
+        padding-top: 80px; z-index: 95;
+        overflow-y: auto;
+      }
+      nav.active { right: 0; }
+      nav ul {
+        flex-direction: column; gap: 0;
+      }
+      nav ul li a {
+        padding: 18px 24px;
+        display: block;
+        border-bottom: 1px solid var(--rule);
+        font-size: 14px;
+        letter-spacing: 0.08em;
+        text-transform: none;
+        color: var(--ink);
+      }
+      nav ul li a::after {
+        content: "\203A";
+        float: right;
+        opacity: 0.4;
+        font-size: 1.2em;
+      }
+      .nav-cta {
+        border: none;
+        padding: 18px 24px;
+        margin-left: 0;
+        text-align: left;
+      }
+      .nav-cta:hover {
+        background: transparent;
+        color: var(--ink);
+      }
+
+      /* Grids */
+      .card-grid { grid-template-columns: 1fr; }
+      .card-grid-2 { grid-template-columns: 1fr; }
+      .value-grid { grid-template-columns: 1fr; }
+      .video-gallery { grid-template-columns: 1fr; }
+
+      .service-row { grid-template-columns: 1fr; gap: 8px; }
+      .service-desc { padding-left: 0; grid-column: auto; }
+
+      footer {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 40px var(--page-pad);
+      }
+      .footer-bottom { flex-direction: column; gap: 8px; }
+
+      .pricing-table { min-width: 560px; }
+    }
+
+    @media (max-width: 480px) {
+      .section-heading-lg { font-size: clamp(32px, 8vw, 48px); }
+      .section-heading-md { font-size: clamp(26px, 7vw, 36px); }
+      .section-heading-sm { font-size: clamp(22px, 6vw, 30px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+      .logo-breathe { animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <!-- === Header === -->
+  <header id="site-header">
+    <a href="index.html" class="logo-link">
+      <img src="logo/AIナレッジワークス_logo_transparen.png" alt="AIナレッジワークス ロゴ" class="logo-breathe">
+      <span>AI Knowledge Works</span>
+    </a>
+    <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html#background">Background</a></li>
+        <li><a href="service.html">Services</a></li>
+        <li><a href="achievements.html">Achievements</a></li>
+        <li><a href="company.html">Company</a></li>
+        <li><a href="story.html">Team</a></li>
+        <li><a href="volunteer.html">Volunteer</a></li>
+        <li><a href="contact.html" class="nav-cta">Contact &rarr;</a></li>
+      </ul>
+    </nav>
+    <div class="overlay"></div>
+  </header>
+
+  <!-- === Hero === -->
+  <section class="hero">
+    <h1>事業内容・サービス</h1>
+    <p class="tagline">3本柱でAI技術の普及と活用を支援</p>
+  </section>
+
+  <!-- === 01 — 3本柱の概要 === -->
+  <section class="section" id="pillars">
+    <div class="grid-sidebar reveal">
+      <div class="sidebar-sticky">
+        <div class="kicker">01</div>
+        <h2 class="section-heading section-heading-sm" style="margin-top: 8px;">3本柱の<br><em>事業</em></h2>
+      </div>
+      <div>
+        <p class="paragraph" style="margin-bottom: 40px;">AIナレッジワークスが提供する3つの事業領域</p>
+        <div class="service-row" style="border-top: 1px solid var(--rule);">
+          <div class="kicker" style="padding-top: 4px;">A</div>
+          <div>
+            <div class="service-name">Security Training</div>
+            <div class="service-jp">セキュリティ研修</div>
+          </div>
+          <p class="service-desc">企業のセキュリティリテラシー向上のための実践的プログラム。情報セキュリティの基礎からインシデント対応まで、組織の防御力を強化します。</p>
+        </div>
+        <div class="service-row">
+          <div class="kicker" style="padding-top: 4px;">B</div>
+          <div>
+            <div class="service-name">Microsoft Training</div>
+            <div class="service-jp">Microsoft ソリューション研修</div>
+          </div>
+          <p class="service-desc">MCT資格保有トレーナーが、Copilot・Microsoft 365・Azureなどの活用を実践的に指導します。</p>
+        </div>
+        <div class="service-row">
+          <div class="kicker" style="padding-top: 4px;">C</div>
+          <div>
+            <div class="service-name">Latest AI Training</div>
+            <div class="service-jp">最新AI研修</div>
+          </div>
+          <p class="service-desc">ChatGPT・Claude・画像生成AIなど、最新の生成AIツールを業務に活かすための実践的トレーニングを提供します。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- === 02 — Security Training === -->
+  <section class="section" id="security-training">
+    <div class="grid-sidebar reveal">
+      <div class="sidebar-sticky">
+        <div class="kicker">02</div>
+        <h2 class="section-heading section-heading-sm" style="margin-top: 8px;">Security<br><em>Training</em></h2>
+      </div>
+      <div>
+        <p class="paragraph" style="margin-bottom: 40px;">組織のセキュリティリテラシーを底上げする実践型プログラム</p>
+        <div class="card-grid-2">
+          <div class="card reveal">
+            <h3>情報セキュリティ基礎研修</h3>
+            <p>パスワード管理、フィッシング対策、情報漏洩防止など、全社員が身につけるべきセキュリティの基本を実例ベースで学びます。</p>
+          </div>
+          <div class="card reveal">
+            <h3>標的型攻撃・ランサムウェア対策</h3>
+            <p>近年急増するサイバー攻撃の最新手口と対策を解説。実際の攻撃事例をもとに、組織としての防御力を高めます。</p>
+          </div>
+          <div class="card reveal">
+            <h3>インシデント対応訓練</h3>
+            <p>セキュリティ事故発生時の初動対応から報告・復旧までのフローを実践的に訓練。有事に慌てない組織体制を構築します。</p>
+          </div>
+          <div class="card reveal">
+            <h3>生成AI時代のセキュリティ</h3>
+            <p>ChatGPTなど生成AIツール利用時の情報漏洩リスクと安全な活用ガイドライン策定を支援。AI時代に即したセキュリティポリシーを整備します。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- === 03 — Microsoft Training === -->
+  <section class="section" id="microsoft-training" style="background: var(--paper-2);">
+    <div class="grid-sidebar reveal">
+      <div class="sidebar-sticky">
+        <div class="kicker">03</div>
+        <h2 class="section-heading section-heading-sm" style="margin-top: 8px;">Microsoft<br><em>Training</em></h2>
+      </div>
+      <div>
+        <p class="paragraph" style="margin-bottom: 12px;">MCT（Microsoft Certified Trainer）資格保有トレーナーによる実践的な研修</p>
+        <p class="paragraph" style="margin-bottom: 40px; font-size: 13px; color: var(--ink-40);">※ 本研修はMicrosoft社の公式研修ではありません。MCT資格を保有する講師が独自カリキュラムで提供するものです。</p>
+        <div class="card-grid-2">
+          <div class="card reveal">
+            <h3>Microsoft 365 活用研修</h3>
+            <p>Teams・SharePoint・OneDrive・Power Automateなど、Microsoft 365の機能を業務に最大限活かすための実践トレーニング。日常業務の効率化を実現します。</p>
+          </div>
+          <div class="card reveal">
+            <h3>Microsoft Copilot 活用研修</h3>
+            <p>Word・Excel・PowerPoint・TeamsのCopilot機能を使いこなすための実践プログラム。AIアシスタントを業務に統合し、生産性を飛躍的に向上させます。</p>
+          </div>
+          <div class="card reveal">
+            <h3>Azure 基礎・活用研修</h3>
+            <p>Azure の基本概念からAIサービス（Azure OpenAI Service等）の活用まで。クラウド環境でのAI実装に必要な知識とスキルを習得します。</p>
+          </div>
+          <div class="card reveal">
+            <h3>Microsoft セキュリティ研修</h3>
+            <p>Microsoft Defender・Entra ID・Intune等を活用した企業のセキュリティ強化。ゼロトラストの考え方と具体的な実装方法を学びます。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- === 04 — Latest AI Training === -->
+  <section class="section" id="ai-training">
+    <div class="grid-sidebar reveal">
+      <div class="sidebar-sticky">
+        <div class="kicker">04</div>
+        <h2 class="section-heading section-heading-sm" style="margin-top: 8px;">Latest AI<br><em>Training</em></h2>
+      </div>
+      <div>
+        <p class="paragraph" style="margin-bottom: 40px;">最新の生成AIツールを業務に活かすための実践的トレーニング</p>
+        <div class="card-grid-2">
+          <div class="card reveal">
+            <h3>生成AI基礎研修</h3>
+            <p>ChatGPT・Claude・Geminiなど主要LLMの特徴と使い分けを理解し、プロンプトエンジニアリングの基礎から業務活用のベストプラクティスまでを習得します。</p>
+          </div>
+          <div class="card reveal">
+            <h3>画像・動画生成AI研修</h3>
+            <p>Midjourney・DALL-E・Stable Diffusion等の画像生成AIや、動画生成AIの実践的な活用方法を学び、クリエイティブ業務の効率化を実現します。</p>
+          </div>
+          <div class="card reveal">
+            <h3>業務自動化・AI実装研修</h3>
+            <p>ノーコード/ローコードツールとAI APIを組み合わせた業務自動化の設計・構築手法を学びます。開発経験がなくても実践できるカリキュラムです。</p>
+          </div>
+          <div class="card reveal">
+            <h3>AI活用戦略ワークショップ</h3>
+            <p>自社の業務課題を棚卸しし、AI導入による効果が高い領域を特定。ROIを重視した導入ロードマップを策定するハンズオン型ワークショップです。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- === Contact CTA === -->
+  <section class="section" style="padding-bottom: 120px;">
+    <div class="cta-center reveal">
+      <div class="kicker" style="display: inline-block;">Contact</div>
+      <h2 class="section-heading" style="font-size: clamp(48px, 8vw, 120px); line-height: 1.05; letter-spacing: -0.02em; margin: 20px 0;">
+        まずは<br><em>ご相談</em>から。
+      </h2>
+      <p class="paragraph" style="max-width: 520px; margin: 24px auto 48px; font-size: 17px;">
+        AI導入・研修について、お気軽にお問い合わせください。
+      </p>
+      <a href="contact.html" class="btn-fill">
+        お問い合わせはこちら &nbsp;&rarr;
+      </a>
+    </div>
+  </section>
+
+  <!-- === Footer === -->
+  <footer>
+    <div class="footer-brand">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <img src="logo/AIナレッジワークス_logo_transparen.png" width="36" height="36" alt="" style="object-fit: contain;">
+        <span style="font-family: var(--serif); font-size: 17px; letter-spacing: 0.04em;">AI Knowledge Works</span>
+      </div>
+      <p>誰もが安心して、"好き"をかたちにできる社会をつくる。</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Pages</div>
+      <a href="service.html">Services</a>
+      <a href="achievements.html">Achievements</a>
+      <a href="company.html">Company</a>
+      <a href="story.html">Team</a>
+      <a href="volunteer.html">Volunteer</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Connect</div>
+      <a href="https://www.youtube.com/@AIKnowledgeWorks" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://note.com/aiknowledgeworks" target="_blank" rel="noopener">Note</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Office</div>
+      <span style="font-size: 14px; color: var(--ink);">Osaka, Japan</span>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 AI Knowledge Works, LLC.</span>
+    </div>
+  </footer>
+
+  <!-- === Scripts === -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Scroll reveal with .in class
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('in');
+            revealObserver.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+      document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+      // Fallback: reveal all after 3s
+      setTimeout(() => {
+        document.querySelectorAll('.reveal').forEach(el => {
+          if (!el.classList.contains('in')) el.classList.add('in');
+        });
+      }, 3000);
+
+      // Image fallback
+      document.querySelectorAll('img[data-fallback]').forEach(img => {
+        const fallback = img.dataset.fallback;
+        if (!fallback) return;
+        img.addEventListener('error', () => {
+          if (img.src !== fallback) img.src = fallback;
+        }, { once: true });
+      });
+
+      // Header scroll effect
+      const header = document.getElementById('site-header');
+      window.addEventListener('scroll', () => {
+        header.classList.toggle('scrolled', window.scrollY > 40);
+      }, { passive: true });
+
+
+      // Mobile menu
+      const hamburger = document.querySelector('.hamburger');
+      const nav = document.querySelector('nav');
+      const overlay = document.querySelector('.overlay');
+      const navLinks = document.querySelectorAll('nav a');
+
+      function toggleMenu() {
+        hamburger.classList.toggle('active');
+        nav.classList.toggle('active');
+        overlay.classList.toggle('active');
+        document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
+      }
+
+      hamburger.addEventListener('click', toggleMenu);
+      overlay.addEventListener('click', toggleMenu);
+
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          if (nav.classList.contains('active')) toggleMenu();
+        });
+      });
+    });
+  </script>
+</body>
+</html>

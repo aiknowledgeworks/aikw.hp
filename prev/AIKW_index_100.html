@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AIKW Particle Reveal</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg-color: #05060a;
+        --fg-color: #f1f1f1;
+        --hint-color: #8a8dff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at center, #101223 0%, #05060a 60%, #020207 100%);
+        font-family: "Space Grotesk", "Noto Sans JP", system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+        overflow: hidden;
+      }
+
+      .overlay {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        pointer-events: none;
+      }
+
+      .overlay h1 {
+        font-size: clamp(3rem, 8vw, 8rem);
+        letter-spacing: 0.25em;
+        color: rgba(241, 241, 241, 0.06);
+        text-transform: uppercase;
+        text-align: center;
+        margin: 0;
+      }
+
+      canvas {
+        width: 100vw;
+        height: 100vh;
+        display: block;
+      }
+
+      .footer-hint {
+        position: fixed;
+        left: 50%;
+        bottom: 3vh;
+        transform: translateX(-50%);
+        font-size: 0.9rem;
+        letter-spacing: 0.35em;
+        text-transform: uppercase;
+        color: rgba(138, 141, 255, 0.45);
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="particle-canvas"></canvas>
+    <div class="overlay">
+      <h1>AIKW</h1>
+    </div>
+    <div class="footer-hint">Hover to stir the swarm • Formation Progress: <span id="progress">0%</span></div>
+
+    <script>
+      const canvas = document.getElementById('particle-canvas');
+      const ctx = canvas.getContext('2d');
+
+      const devicePixelRatioSafe = () => window.devicePixelRatio || 1;
+
+      const state = {
+        particles: [],
+        targets: [],
+        density: 0.05, // pixels to particle ratio - reduced for better performance
+        jitter: 0.15,
+        attraction: 0.12,
+        drag: 0.92,
+        backgroundAlpha: 0.15,
+        characters: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}|;:,.<>?/~`',
+        aikwCharacters: 'AIKW',
+        mouse: { x: 0, y: 0, active: false },
+        startTime: Date.now(),
+        formationDuration: 10000, // 10 seconds
+        isForming: true,
+        lastFrameTime: 0,
+        targetFPS: 60,
+      };
+
+      const offscreen = document.createElement('canvas');
+      const offCtx = offscreen.getContext('2d');
+
+      function resize() {
+        const { innerWidth, innerHeight } = window;
+        const dpr = devicePixelRatioSafe();
+        canvas.width = innerWidth * dpr;
+        canvas.height = innerHeight * dpr;
+        canvas.style.width = `${innerWidth}px`;
+        canvas.style.height = `${innerHeight}px`;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        sampleTextTargets(innerWidth, innerHeight);
+        resyncParticles();
+      }
+
+      function sampleTextTargets(width, height) {
+        const dpi = window.devicePixelRatio;
+        const fontSize = Math.min(width * 0.5, height * 0.35);
+        const buffer = Math.max(fontSize * 0.08, 32);
+
+        offscreen.width = width * dpi;
+        offscreen.height = height * dpi;
+        offCtx.save();
+        offCtx.scale(dpi, dpi);
+        offCtx.clearRect(0, 0, width, height);
+        offCtx.fillStyle = '#fff';
+        offCtx.textBaseline = 'middle';
+        offCtx.textAlign = 'center';
+        offCtx.font = `700 ${fontSize}px \"Space Grotesk\", sans-serif`;
+        offCtx.fillText('AIKW', width / 2, height / 2);
+        offCtx.restore();
+
+        const imageData = offCtx.getImageData(0, 0, offscreen.width, offscreen.height);
+        const pixels = imageData.data;
+        const step = Math.max(2, Math.round(1 / state.density));
+        state.targets = [];
+
+        for (let y = 0; y < offscreen.height; y += step) {
+          for (let x = 0; x < offscreen.width; x += step) {
+            const index = (y * offscreen.width + x) * 4 + 3;
+            const alpha = pixels[index];
+            if (alpha > 128) {
+              state.targets.push({
+                x: x / dpi,
+                y: y / dpi,
+              });
+            }
+          }
+        }
+
+        // Center the cluster with slight randomization for organic distribution
+        const centerX = width / 2;
+        const centerY = height / 2;
+        state.targets = state.targets.map(({ x, y }) => ({
+          x: x + randomBetween(-buffer, buffer) - width / 2 + centerX,
+          y: y + randomBetween(-buffer * 0.35, buffer * 0.35) - height / 2 + centerY,
+        }));
+      }
+
+      function resyncParticles() {
+        const dpr = devicePixelRatioSafe();
+        const width = canvas.width / dpr;
+        const height = canvas.height / dpr;
+        const totalTargets = state.targets.length;
+        const totalParticles = state.particles.length;
+
+        if (totalParticles > totalTargets) {
+          state.particles.length = totalTargets;
+        }
+
+        while (state.particles.length < totalTargets) {
+          state.particles.push(createParticle(Math.random() * width, Math.random() * height));
+        }
+
+        state.particles.forEach((particle, index) => {
+          const target = state.targets[index % totalTargets];
+          particle.tx = target.x;
+          particle.ty = target.y;
+
+          // Assign AIKW character based on position in targets
+          const targetIndex = index % totalTargets;
+          const aikwIndex = Math.floor(targetIndex / (totalTargets / 4));
+          particle.targetChar = state.aikwCharacters[Math.min(aikwIndex, 3)];
+        });
+      }
+
+      function createParticle(x, y) {
+        return {
+          x,
+          y,
+          vx: randomBetween(-1, 1),
+          vy: randomBetween(-1, 1),
+          size: randomBetween(8, 16),
+          char: randomCharacter(),
+          targetChar: null, // will be set to AIKW character when forming
+          tx: x,
+          ty: y,
+          opacity: 0.75 + Math.random() * 0.25,
+          rotationSpeed: randomBetween(-0.02, 0.02),
+          rotation: 0,
+        };
+      }
+
+      function randomBetween(min, max) {
+        return Math.random() * (max - min) + min;
+      }
+
+      function randomCharacter() {
+        const chars = state.characters;
+        return chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+
+      function updateParticle(particle) {
+        // Calculate formation progress (0 to 1 over 10 seconds)
+        const elapsed = Date.now() - state.startTime;
+        const formationProgress = Math.min(elapsed / state.formationDuration, 1);
+
+        // Character morphing: gradually change to target character
+        if (formationProgress > 0.3 && particle.targetChar && Math.random() < formationProgress * 0.02) {
+          particle.char = particle.targetChar;
+        }
+
+        const dx = particle.tx - particle.x;
+        const dy = particle.ty - particle.y;
+        const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+
+        // Increase attraction force as formation progresses
+        const attractForce = state.attraction * (1 + formationProgress * 2);
+        particle.vx += (dx / dist) * attractForce;
+        particle.vy += (dy / dist) * attractForce;
+
+        if (state.mouse.active) {
+          const influenceRadius = 160;
+          const mdx = particle.x - state.mouse.x;
+          const mdy = particle.y - state.mouse.y;
+          const distMouse = Math.sqrt(mdx * mdx + mdy * mdy) || 1;
+          if (distMouse < influenceRadius) {
+            const push = (1 - distMouse / influenceRadius) * 0.9;
+            particle.vx += (mdx / distMouse) * push;
+            particle.vy += (mdy / distMouse) * push;
+          }
+        }
+
+        // Reduce jitter as formation progresses
+        const currentJitter = state.jitter * (1 - formationProgress * 0.7);
+        particle.vx += randomBetween(-currentJitter, currentJitter);
+        particle.vy += randomBetween(-currentJitter, currentJitter);
+
+        particle.vx *= state.drag;
+        particle.vy *= state.drag;
+
+        particle.x += particle.vx;
+        particle.y += particle.vy;
+
+        // Update rotation
+        particle.rotation += particle.rotationSpeed;
+      }
+
+      function drawParticle(particle) {
+        ctx.save();
+        ctx.translate(particle.x, particle.y);
+        ctx.rotate(particle.rotation);
+
+        // Calculate formation progress for visual effects
+        const elapsed = Date.now() - state.startTime;
+        const formationProgress = Math.min(elapsed / state.formationDuration, 1);
+
+        // Enhance opacity as formation progresses
+        const finalOpacity = particle.opacity * (0.6 + formationProgress * 0.4);
+
+        // Color shift for AIKW characters
+        const isAIKWChar = state.aikwCharacters.includes(particle.char);
+        const color = isAIKWChar
+          ? `rgba(138, 141, 255, ${finalOpacity})`
+          : `rgba(241, 241, 241, ${finalOpacity})`;
+
+        ctx.fillStyle = color;
+        ctx.font = `${particle.size}px \"Space Grotesk\", monospace`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(particle.char, 0, 0);
+        ctx.restore();
+      }
+
+      function render(currentTime) {
+        // Frame rate limiting for better performance
+        const deltaTime = currentTime - state.lastFrameTime;
+        const targetFrameTime = 1000 / state.targetFPS;
+
+        if (deltaTime < targetFrameTime) {
+          requestAnimationFrame(render);
+          return;
+        }
+        state.lastFrameTime = currentTime;
+
+        const dpr = devicePixelRatioSafe();
+        const width = canvas.width / dpr;
+        const height = canvas.height / dpr;
+
+        // Progressive background clearing for performance
+        const elapsed = Date.now() - state.startTime;
+        const formationProgress = Math.min(elapsed / state.formationDuration, 1);
+        const bgAlpha = state.backgroundAlpha * (1 + formationProgress * 0.5);
+
+        ctx.fillStyle = `rgba(5, 6, 10, ${bgAlpha})`;
+        ctx.fillRect(0, 0, width, height);
+
+        // Batch particle updates for better performance
+        const particleCount = state.particles.length;
+        for (let i = 0; i < particleCount; i++) {
+          updateParticle(state.particles[i]);
+          drawParticle(state.particles[i]);
+        }
+
+        // Update progress display
+        const progressElement = document.getElementById('progress');
+        if (progressElement) {
+          progressElement.textContent = Math.round(formationProgress * 100) + '%';
+        }
+
+        // Show formation progress
+        if (formationProgress >= 1 && state.isForming) {
+          state.isForming = false;
+          console.log('AIKW formation complete!');
+          if (progressElement) {
+            progressElement.textContent = '100% - Complete!';
+          }
+        }
+
+        requestAnimationFrame(render);
+      }
+
+      function handlePointer(event) {
+        const rect = canvas.getBoundingClientRect();
+        state.mouse.x = event.clientX - rect.left;
+        state.mouse.y = event.clientY - rect.top;
+        state.mouse.active = true;
+      }
+
+      function handlePointerLeave() {
+        state.mouse.active = false;
+      }
+
+      window.addEventListener('resize', resize);
+      window.addEventListener('mousemove', handlePointer);
+      window.addEventListener('touchmove', (event) => {
+        const touch = event.touches[0];
+        if (touch) {
+          handlePointer(touch);
+        }
+      }, { passive: true });
+      window.addEventListener('mouseleave', handlePointerLeave);
+      window.addEventListener('touchend', handlePointerLeave);
+
+      resize();
+      requestAnimationFrame(render);
+    </script>
+  </body>
+</html>

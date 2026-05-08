@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>実績と展望 | AIナレッジワークス合同会社</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="logo/AIナレッジワークス_logo_transparen.png">
+  <link rel="shortcut icon" type="image/x-icon" href="logo/AIナレッジワークス_logo_transparen.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="logo/AIナレッジワークス_logo_transparen.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="logo/AIナレッジワークス_logo_transparen.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="logo/AIナレッジワークス_logo_transparen.png">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWFLPN1EZH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-DWFLPN1EZH');
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* === Design System Tokens === */
+    :root {
+      --bg: #FAF8F5;
+      --ink: #2C2A26;
+      --ink-80: #2C2A26CC;
+      --ink-60: #2C2A2699;
+      --ink-40: #2C2A2666;
+      --ink-15: #2C2A2626;
+      --ink-08: #2C2A2614;
+      --paper: #FFFFFF;
+      --paper-2: #F3EFE9;
+      --paper-3: #EBE6DD;
+      --rule: #D9D3C7;
+      --link: #1B5FA0;
+      --accent: #3da8c7;
+      --brand-gradient: linear-gradient(135deg, #6db5ff 0%, #a1e9d9 100%);
+      --serif: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+      --sans: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
+      --display: "Fraunces", "Noto Serif JP", serif;
+      --page-pad: clamp(24px, 5vw, 72px);
+      --measure: 64ch;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.8;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    ul { list-style: none; padding: 0; margin: 0; }
+    hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
+
+    body::after {
+      content: "";
+      position: fixed; inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.9'/></svg>");
+    }
+
+    ::selection { background: var(--ink); color: var(--bg); }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 1.2s cubic-bezier(.2,.7,.2,1), transform 1.2s cubic-bezier(.2,.7,.2,1);
+    }
+    .reveal.in { opacity: 1; transform: none; }
+
+    .kicker {
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink-60);
+    }
+
+    .section {
+      padding: clamp(96px, 14vh, 160px) var(--page-pad);
+      max-width: 1680px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* === Header === */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 28px var(--page-pad);
+      display: flex; align-items: center; justify-content: space-between;
+      background: transparent;
+      border-bottom: 1px solid transparent;
+      transition: all .5s cubic-bezier(.2,.7,.2,1);
+    }
+    header.scrolled {
+      padding-top: 14px; padding-bottom: 14px;
+      background: color-mix(in srgb, var(--bg) 85%, transparent);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom-color: var(--rule);
+    }
+    .logo-link { display: flex; align-items: center; gap: 12px; }
+    .logo-link img { height: 40px; transition: height .5s cubic-bezier(.2,.7,.2,1); }
+    header.scrolled .logo-link img { height: 32px; }
+    .logo-link span { font-family: var(--serif); font-size: 17px; letter-spacing: 0.04em; font-weight: 500; }
+    nav ul { display: flex; gap: 28px; align-items: center; }
+    nav a { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-60); transition: color .3s; }
+    nav a:hover { color: var(--ink); }
+    .nav-cta { padding: 10px 18px; border: 1px solid var(--ink); margin-left: 8px; transition: all .3s; }
+    .nav-cta:hover { background: var(--ink); color: var(--bg); }
+
+    /* === Hero === */
+    .hero {
+      padding: 180px var(--page-pad) 100px;
+      max-width: 1680px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(40px, 6vw, 80px);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin: 0 0 20px;
+    }
+    .hero .tagline { font-size: 17px; color: var(--ink-60); font-weight: 300; margin: 0; }
+
+    .suki { font-family: var(--display); font-style: italic; color: var(--ink); font-weight: 400; }
+
+    .grid-sidebar { display: grid; grid-template-columns: 200px 1fr; gap: 48px; align-items: start; }
+    .sidebar-sticky { position: sticky; top: 140px; }
+
+    .section-heading { font-family: var(--serif); font-weight: 400; line-height: 1.2; letter-spacing: -0.01em; margin: 0; }
+    .section-heading em { font-family: var(--display); font-style: italic; }
+    .section-heading-md { font-size: clamp(34px, 4.5vw, 64px); }
+
+    .paragraph { margin: 0; font-size: 16px; line-height: 2; color: var(--ink-60); }
+
+    /* === Stats === */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+      margin-top: 48px;
+    }
+    .stat-item {
+      background: var(--paper);
+      padding: 40px 24px;
+      text-align: center;
+    }
+    .stat-number {
+      font-family: var(--serif);
+      font-size: 48px;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      display: block;
+      margin-bottom: 8px;
+    }
+    .stat-label {
+      font-size: 13px;
+      color: var(--ink-60);
+      letter-spacing: 0.02em;
+    }
+
+    /* === Card grid === */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+    }
+    .card-item {
+      background: var(--paper);
+      padding: 32px;
+    }
+    .card-item h4 {
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 400;
+      margin: 0 0 12px;
+      color: var(--ink);
+    }
+    .card-item p {
+      font-size: 15px;
+      line-height: 1.9;
+      color: var(--ink-60);
+      margin: 0;
+    }
+
+    /* === Video === */
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      overflow: hidden;
+      border: 1px solid var(--rule);
+    }
+    .video-wrapper iframe {
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: none;
+    }
+
+    /* === CTA === */
+    .cta-center { text-align: center; max-width: 1100px; margin: 0 auto; }
+    .btn-fill {
+      display: inline-flex; align-items: center;
+      padding: 20px 36px;
+      background: var(--ink); color: var(--bg);
+      font-size: 14px; letter-spacing: 0.16em; text-transform: uppercase;
+      transition: all .3s;
+    }
+    .btn-fill:hover { opacity: 0.85; }
+
+    /* === Logo breathing === */
+    @keyframes breathe {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      25% { transform: scale(1.12) rotate(4deg); }
+    }
+    .logo-breathe { animation: breathe 4s cubic-bezier(.3,.8,.3,.4) infinite; transform-origin: center; }
+
+    /* === Footer === */
+    footer {
+      border-top: 1px solid var(--rule);
+      padding: 56px var(--page-pad) 40px;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      max-width: 1680px;
+      margin: 0 auto;
+    }
+    .footer-brand p { font-size: 13px; color: var(--ink-60); line-height: 2; margin-top: 16px; max-width: 340px; }
+    .footer-col-title { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-60); margin-bottom: 18px; }
+    .footer-col a { font-size: 14px; color: var(--ink); display: block; margin-bottom: 10px; transition: color .3s; }
+    .footer-col a:hover { color: var(--ink-60); }
+    .footer-bottom {
+      grid-column: 1 / -1;
+      padding-top: 32px; margin-top: 16px;
+      border-top: 1px solid var(--rule);
+      display: flex; justify-content: space-between;
+      font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--ink-60);
+    }
+
+    /* === Hamburger === */
+    .hamburger {
+      display: none; width: 30px; height: 30px;
+      position: relative; cursor: pointer; z-index: 1010;
+      padding: 10px; box-sizing: content-box; margin: -10px;
+    }
+    .hamburger span {
+      display: block; position: absolute;
+      height: 1.5px; width: 100%;
+      background: var(--ink); opacity: 1; left: 0;
+      transform: rotate(0deg); transition: .25s ease-in-out;
+    }
+    .hamburger span:nth-child(1) { top: 0; }
+    .hamburger span:nth-child(2) { top: 9px; }
+    .hamburger span:nth-child(3) { top: 18px; }
+    .hamburger.active span:nth-child(1) { top: 9px; transform: rotate(135deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; left: -60px; }
+    .hamburger.active span:nth-child(3) { top: 9px; transform: rotate(-135deg); }
+
+    .overlay {
+      display: none; position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.4); z-index: 90;
+      backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px);
+      opacity: 0; transition: opacity 0.3s ease;
+    }
+    .overlay.active { display: block; opacity: 1; }
+
+    /* === Responsive === */
+    @media (max-width: 1024px) {
+      .grid-sidebar { grid-template-columns: 1fr; gap: 32px; }
+      .sidebar-sticky { position: static; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      footer { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* === iPad (portrait) === */
+    @media (max-width: 1024px) and (min-width: 769px) {
+      .hamburger { display: block; }
+      nav {
+        position: fixed; top: 0; right: -100%;
+        width: 80%; max-width: 360px; height: 100vh;
+        background: var(--bg);
+        box-shadow: -2px 0 20px rgba(0,0,0,0.08);
+        transition: 0.3s ease;
+        padding-top: 80px; z-index: 95;
+        overflow-y: auto;
+      }
+      nav.active { right: 0; }
+      nav ul { flex-direction: column; gap: 0; }
+      nav ul li a {
+        padding: 20px 32px; display: block;
+        border-bottom: 1px solid var(--rule);
+        font-size: 15px; letter-spacing: 0.08em;
+        text-transform: none; color: var(--ink);
+      }
+      nav ul li a::after { content: "\203A"; float: right; opacity: 0.4; font-size: 1.2em; }
+      .nav-cta { border: none; padding: 20px 32px; margin-left: 0; text-align: left; }
+      .nav-cta:hover { background: transparent; color: var(--ink); }
+    }
+
+    @media (max-width: 768px) {
+      .section { padding: clamp(64px, 10vh, 96px) var(--page-pad); }
+      .hero { padding: 140px var(--page-pad) 80px; }
+      .hero h1 { font-size: clamp(32px, 8vw, 48px); }
+      .card-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: 1fr; }
+      .stat-number { font-size: 36px; }
+      .portfolio-grid { grid-template-columns: 1fr !important; }
+      .future-grid { grid-template-columns: 1fr !important; }
+      footer { grid-template-columns: 1fr; gap: 32px; padding: 40px var(--page-pad); }
+      .footer-bottom { flex-direction: column; gap: 8px; }
+
+      .hamburger { display: block; }
+      nav {
+        position: fixed; top: 0; right: -100%;
+        width: 80%; max-width: 300px; height: 100vh;
+        background: var(--bg);
+        box-shadow: -2px 0 20px rgba(0,0,0,0.08);
+        transition: 0.3s ease;
+        padding-top: 80px; z-index: 95;
+        overflow-y: auto;
+      }
+      nav.active { right: 0; }
+      nav ul { flex-direction: column; gap: 0; }
+      nav ul li a {
+        padding: 18px 24px; display: block;
+        border-bottom: 1px solid var(--rule);
+        font-size: 14px; letter-spacing: 0.08em;
+        text-transform: none; color: var(--ink);
+      }
+      nav ul li a::after { content: "\203A"; float: right; opacity: 0.4; font-size: 1.2em; }
+      .nav-cta { border: none; padding: 18px 24px; margin-left: 0; text-align: left; }
+      .nav-cta:hover { background: transparent; color: var(--ink); }
+    }
+
+    @media (max-width: 480px) {
+      .section-heading-md { font-size: clamp(26px, 7vw, 36px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+      .logo-breathe { animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <!-- === Header === -->
+  <header id="site-header">
+    <a href="index.html" class="logo-link">
+      <img src="logo/AIナレッジワークス_logo_transparen.png" alt="AIナレッジワークス ロゴ" class="logo-breathe">
+      <span>AI Knowledge Works</span>
+    </a>
+    <div class="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html#background">Background</a></li>
+        <li><a href="service.html">Services</a></li>
+        <li><a href="achievements.html">Achievements</a></li>
+        <li><a href="company.html">Company</a></li>
+        <li><a href="story.html">Team</a></li>
+        <li><a href="volunteer.html">Volunteer</a></li>
+        <li><a href="contact.html" class="nav-cta">Contact &rarr;</a></li>
+      </ul>
+    </nav>
+    <div class="overlay"></div>
+  </header>
+
+  <!-- === Hero === -->
+  <section class="hero">
+    <div class="reveal">
+      <h1>実績と展望</h1>
+      <p class="tagline"><span class="suki">"好き"</span>を実現するAI導入実績</p>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- === 01 Stats === -->
+  <section id="stats" class="section">
+    <div class="grid-sidebar">
+      <div class="sidebar-sticky reveal">
+        <div class="kicker">01 &mdash; Results</div>
+      </div>
+      <div>
+        <h2 class="section-heading section-heading-md reveal" style="max-width: 18ch; margin-bottom: 48px;">
+          実績<em>サマリー</em>
+        </h2>
+        <div class="stats-grid reveal">
+          <div class="stat-item">
+            <span class="stat-number">95<span style="font-size: 24px; color: var(--ink-40);">%</span></span>
+            <span class="stat-label">研修受講者のAI活用意向向上</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">80<span style="font-size: 24px; color: var(--ink-40);">%</span></span>
+            <span class="stat-label">議事録作成時間短縮</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">50<span style="font-size: 24px; color: var(--ink-40);">%</span></span>
+            <span class="stat-label">提案書作成時間短縮</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">4<span style="font-size: 24px; color: var(--ink-40);">+</span></span>
+            <span class="stat-label">導入実績企業数</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- === 02 Case Studies === -->
+  <section id="achievements" class="section">
+    <div class="grid-sidebar">
+      <div class="sidebar-sticky reveal">
+        <div class="kicker">02 &mdash; Case Studies</div>
+      </div>
+      <div>
+        <h2 class="section-heading section-heading-md reveal" style="max-width: 18ch; margin-bottom: 64px;">
+          導入事例<em>詳細</em>
+        </h2>
+
+        <div class="card-grid reveal">
+          <div class="card-item">
+            <h4>研修事例 A社</h4>
+            <p>営業部門への生成AI研修(Starter)を導入。受講者のマインドに大きな変化が見られ、95％の方が「これからAIを業務に活用していきたい」と回答。実際に提案書作成やメール作成の時間が50%短縮され、営業効率の大幅な向上を実現しました。</p>
+          </div>
+          <div class="card-item">
+            <h4>研修事例 B社</h4>
+            <p>生成AI研修(Starter)を導入し、社内会議の効率化を図りました。特に議事録の要約作業において、従来の手動作業と比較して80%の作業時間短縮を実現。会議後の作業負担が大幅に軽減され、より本質的な業務に集中できる環境を構築しました。</p>
+          </div>
+          <div class="card-item">
+            <h4>研修事例 C社</h4>
+            <p>生成AI研修(Expert)を実施し、企業内のより深いニーズを発掘。研修を通じて紙ベースで保管されていた社内資料のデジタル化とチャットボット化の提案を行い、現在導入を検討中。知識の共有とアクセシビリティの向上を目指しています。</p>
+          </div>
+          <div class="card-item">
+            <h4>研修事例 D社 - AI本格導入プロジェクト</h4>
+            <p>研修をきっかけに本格的なAI導入支援に発展した事例。自社専用チャットボットの構築とローカルLLMを活用した社内システムの開発支援を実施。セキュアな環境でのAI活用により、業務効率化と情報セキュリティの両立を実現しています。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- === 03 Portfolio === -->
+  <section id="portfolio" class="section">
+    <div class="grid-sidebar">
+      <div class="sidebar-sticky reveal">
+        <div class="kicker">03 &mdash; Portfolio</div>
+      </div>
+      <div>
+        <h2 class="section-heading section-heading-md reveal" style="max-width: 20ch; margin-bottom: 64px;">
+          制作物
+        </h2>
+
+        <div class="portfolio-grid reveal" style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;">
+          <div class="video-wrapper">
+            <iframe
+              src="https://www.youtube.com/embed/iHca8OIkf2I?rel=0&amp;playsinline=1&amp;modestbranding=1&amp;controls=1"
+              title="AIナレッジワークス 制作物紹介"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen>
+            </iframe>
+          </div>
+          <div>
+            <h3 style="font-family: var(--serif); font-size: 22px; font-weight: 400; margin: 0 0 24px; color: var(--ink);">創造性を拡張するAI活用</h3>
+            <p class="paragraph" style="margin-bottom: 20px;">
+              AIナレッジワークスでは、AIを単なる効率化ツールとしてではなく、人間の創造性を拡張するパートナーとして捉えています。
+            </p>
+            <p class="paragraph" style="margin-bottom: 20px;">
+              この動画では、AI技術を活用した私たちの創作活動や、クリエイティブな課題解決への取り組みをご紹介しています。
+            </p>
+            <p class="paragraph" style="font-size: 14px;">
+              技術と創造性の融合により、新たな可能性を切り拓く私たちの姿勢をご覧ください。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- === 05 Future Vision === -->
+  <section id="future" class="section" style="background: var(--paper-2);">
+    <div class="grid-sidebar">
+      <div class="sidebar-sticky reveal">
+        <div class="kicker">04 &mdash; Future</div>
+      </div>
+      <div>
+        <h2 class="section-heading section-heading-md reveal" style="max-width: 18ch; margin-bottom: 64px;">
+          今後の<em>展望</em>
+        </h2>
+
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule);" class="reveal future-grid">
+          <div style="background: var(--paper); padding: 32px;">
+            <h4 style="font-family: var(--serif); font-size: 18px; font-weight: 400; margin: 0 0 12px; color: var(--ink);">教育分野への拡大</h4>
+            <p style="font-size: 15px; line-height: 1.9; color: var(--ink-60); margin: 0;">子ども向けAI研修「AIまなびラボ」の本格展開により、次世代のAIネイティブ人材育成を加速。学校教育への導入から家庭学習まで、包括的なAI教育エコシステムの構築を目指します。</p>
+          </div>
+          <div style="background: var(--paper); padding: 32px;">
+            <h4 style="font-family: var(--serif); font-size: 18px; font-weight: 400; margin: 0 0 12px; color: var(--ink);">地域創生プロジェクト</h4>
+            <p style="font-size: 15px; line-height: 1.9; color: var(--ink-60); margin: 0;">地方企業や自治体との連携を通じて、AIによる地域課題解決に取り組みます。人口減少や労働力不足といった課題をAI技術で解決し、地域の持続可能な発展をサポートします。</p>
+          </div>
+          <div style="background: var(--paper); padding: 32px;">
+            <h4 style="font-family: var(--serif); font-size: 18px; font-weight: 400; margin: 0 0 12px; color: var(--ink);">AI×創造性の新領域</h4>
+            <p style="font-size: 15px; line-height: 1.9; color: var(--ink-60); margin: 0;">AIを単なる効率化ツールではなく、創造性を拡張するパートナーとして位置づけ、アート、音楽、文学など様々な創作分野でのAI活用支援を展開します。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- === Contact CTA === -->
+  <section class="section" style="padding-bottom: 120px;">
+    <div class="cta-center reveal">
+      <div class="kicker" style="display: inline-block;">Contact</div>
+      <h2 class="section-heading" style="font-size: clamp(48px, 8vw, 120px); line-height: 1.05; letter-spacing: -0.02em; margin: 20px 0;">
+        まずは<br><em>ご相談</em>から。
+      </h2>
+      <p class="paragraph" style="max-width: 520px; margin: 24px auto 48px; font-size: 17px;">
+        AI導入・研修について、お気軽にお問い合わせください。
+      </p>
+      <a href="contact.html" class="btn-fill">
+        お問い合わせはこちら &nbsp;&rarr;
+      </a>
+    </div>
+  </section>
+
+  <!-- === Footer === -->
+  <footer>
+    <div class="footer-brand">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <img src="logo/AIナレッジワークス_logo_transparen.png" width="36" height="36" alt="" style="object-fit: contain;">
+        <span style="font-family: var(--serif); font-size: 17px; letter-spacing: 0.04em;">AI Knowledge Works</span>
+      </div>
+      <p>誰もが安心して、"好き"をかたちにできる社会をつくる。</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Pages</div>
+      <a href="service.html">Services</a>
+      <a href="achievements.html">Achievements</a>
+      <a href="company.html">Company</a>
+      <a href="story.html">Team</a>
+      <a href="volunteer.html">Volunteer</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Connect</div>
+      <a href="https://www.youtube.com/@AIKnowledgeWorks" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://note.com/aiknowledgeworks" target="_blank" rel="noopener">Note</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Office</div>
+      <span style="font-size: 14px; color: var(--ink);">Osaka, Japan</span>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 AI Knowledge Works, LLC.</span>
+    </div>
+  </footer>
+
+  <!-- === Scripts === -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Scroll reveal
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('in');
+            revealObserver.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+      document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+      setTimeout(() => {
+        document.querySelectorAll('.reveal').forEach(el => {
+          if (!el.classList.contains('in')) el.classList.add('in');
+        });
+      }, 3000);
+
+      // Header scroll effect
+      const header = document.getElementById('site-header');
+      window.addEventListener('scroll', () => {
+        header.classList.toggle('scrolled', window.scrollY > 40);
+      }, { passive: true });
+
+      // Mobile menu
+      const hamburger = document.querySelector('.hamburger');
+      const nav = document.querySelector('nav');
+      const overlay = document.querySelector('.overlay');
+      const navLinks = document.querySelectorAll('nav a');
+
+      function toggleMenu() {
+        hamburger.classList.toggle('active');
+        nav.classList.toggle('active');
+        overlay.classList.toggle('active');
+        document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
+      }
+
+      hamburger.addEventListener('click', toggleMenu);
+      overlay.addEventListener('click', toggleMenu);
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          if (nav.classList.contains('active')) toggleMenu();
+        });
+      });
+
+    });
+  </script>
+</body>
+</html>

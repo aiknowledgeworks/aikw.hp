@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>アプリを作る道具たち（HTML/CSS/JS）</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap');
+    
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      font-family: 'M PLUS Rounded 1c', sans-serif;
+    }
+    
+    .slide-container {
+      width: 1280px;
+      height: 720px;
+      margin: 0 auto;
+      background-color: #a8e1f8;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .title {
+      color: #ff5a87;
+      text-shadow: 3px 3px 0 #ffffff, 5px 5px 0 #3bb4d7;
+      font-weight: 800;
+    }
+    
+    .content-box {
+      background-color: white;
+      border: 3px solid #3bb4d7;
+      border-radius: 20px;
+      box-shadow: 5px 5px 0 rgba(0,0,0,0.1);
+    }
+    
+    .tool-box {
+      background-color: white;
+      border: 3px solid #ffbe3d;
+      border-radius: 20px;
+      box-shadow: 5px 5px 0 rgba(0,0,0,0.1);
+    }
+    
+    .bubble {
+      position: absolute;
+      background-color: white;
+      border-radius: 50%;
+      opacity: 0.5;
+    }
+    
+    .decoration {
+      position: absolute;
+    }
+    
+    /* ルビタグのスタイル */
+    ruby {
+      ruby-align: center;
+    }
+    
+    rt {
+      font-size: 0.6em;
+      color: #666;
+      font-weight: normal;
+    }
+    
+    /* PDF化時のルビスタイル */
+    @media print {
+      rt {
+        font-size: 0.5em !important;
+        color: #333 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="slide-container p-6 flex flex-col">
+    <!-- 背景の装飾 -->
+    <div class="bubble" style="width: 80px; height: 80px; top: 10%; left: 5%;"></div>
+    <div class="bubble" style="width: 60px; height: 60px; top: 20%; right: 15%;"></div>
+    <div class="bubble" style="width: 100px; height: 100px; bottom: 15%; right: 5%;"></div>
+    <div class="bubble" style="width: 40px; height: 40px; bottom: 30%; left: 10%;"></div>
+    
+    <div class="decoration" style="top: 5%; right: 5%;">
+      <svg width="80" height="80" viewBox="0 0 100 100">
+        <polygon points="50,10 61,35 90,35 65,55 75,80 50,65 25,80 35,55 10,35 39,35" fill="#5ce68a" />
+      </svg>
+    </div>
+    
+    <div class="decoration" style="bottom: 5%; left: 5%;">
+      <svg width="60" height="60" viewBox="0 0 100 100">
+        <polygon points="50,10 61,35 90,35 65,55 75,80 50,65 25,80 35,55 10,35 39,35" fill="#ffbe3d" />
+      </svg>
+    </div>
+    
+    <!-- タイトル -->
+    <h1 class="title text-center text-4xl mb-4 mt-2">アプリを<ruby>作<rt>つく</rt></ruby>る<ruby>道具<rt>どうぐ</rt></ruby>たち（HTML/CSS/JS）</h1>
+    
+    <!-- 内容 -->
+    <div class="flex flex-col items-center justify-center flex-1">
+      <!-- イラスト・まとめ (メインに移動) -->
+      <div class="content-box p-6 w-4/5 mb-6 flex items-center justify-center text-center">
+        <div class="mx-4">
+          <i class="fas fa-laptop text-6xl text-purple-500 mb-2"></i>
+          <p class="text-2xl font-bold">この3つを<ruby>組<rt>く</rt></ruby>み<ruby>合<rt>あ</rt></ruby>わせると...</p>
+        </div>
+        
+        <div class="mx-8">
+          <i class="fas fa-arrow-right text-5xl text-gray-500"></i>
+        </div>
+        
+        <div class="mx-4">
+          <i class="fas fa-mobile-alt text-6xl text-green-500 mb-2"></i>
+          <p class="text-3xl font-bold text-green-600">すてきなアプリの<ruby>完成<rt>かんせい</rt></ruby>！</p>
+        </div>
+      </div>
+      
+      <!-- 下部に補足説明 -->
+      <div class="w-full flex justify-around mt-4">
+        <!-- HTML説明 -->
+        <div class="tool-box p-6 w-1/4">
+          <div class="flex items-center justify-center mb-4">
+            <div class="bg-blue-100 rounded-full p-6 w-24 h-24 flex items-center justify-center">
+              <i class="fas fa-cubes text-5xl text-blue-500"></i>
+            </div>
+          </div>
+          <h3 class="text-2xl font-bold text-blue-600 text-center">HTML</h3>
+          <span class="block text-center bg-blue-100 text-blue-700 font-bold px-3 py-2 rounded-full text-sm mb-3"><ruby>骨組<rt>ほねぐ</rt></ruby>み<ruby>担当<rt>たんとう</rt></ruby></span>
+        </div>
+        
+        <!-- CSS説明 -->
+        <div class="tool-box p-6 w-1/4">
+          <div class="flex items-center justify-center mb-4">
+            <div class="bg-pink-100 rounded-full p-6 w-24 h-24 flex items-center justify-center">
+              <i class="fas fa-paint-brush text-5xl text-pink-500"></i>
+            </div>
+          </div>
+          <h3 class="text-2xl font-bold text-pink-600 text-center">CSS</h3>
+          <span class="block text-center bg-pink-100 text-pink-700 font-bold px-3 py-2 rounded-full text-sm mb-3">おしゃれ<ruby>担当<rt>たんとう</rt></ruby></span>
+        </div>
+        
+        <!-- JavaScript説明 -->
+        <div class="tool-box p-6 w-1/4">
+          <div class="flex items-center justify-center mb-4">
+            <div class="bg-yellow-100 rounded-full p-6 w-24 h-24 flex items-center justify-center">
+              <i class="fas fa-magic text-5xl text-yellow-500"></i>
+            </div>
+          </div>
+          <h3 class="text-2xl font-bold text-yellow-600 text-center">JavaScript</h3>
+          <span class="block text-center bg-yellow-100 text-yellow-700 font-bold px-3 py-2 rounded-full text-sm mb-3"><ruby>魔法使<rt>まほうつか</rt></ruby>い</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="slide-nav-plusPDF.js"></script>
+</body>
+</html>

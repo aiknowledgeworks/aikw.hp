@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>AIKW 3D Reveal — Three.js Edition</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #05060a;
+            font-family: sans-serif;
+        }
+        canvas {
+            display: block;
+            width: 100vw;
+            height: 100vh;
+        }
+        #loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #8a8dff;
+            font-size: 1.2rem;
+            letter-spacing: 0.2em;
+            pointer-events: none;
+            transition: opacity 0.5s;
+        }
+        .ui-layer {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            pointer-events: none;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+    </style>
+    <!-- Import Map for Three.js -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="loading">INITIALIZING AIKW SYSTEM...</div>
+    <div class="ui-layer">Drag to Rotate &bull; Scroll to Zoom</div>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import { FontLoader } from 'three/addons/loaders/FontLoader.js';
+        import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+        import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+        import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+        import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+
+        // --- Configuration ---
+        const CONFIG = {
+            text: "AIKW",
+            color: 0x44aaff,
+            bloomStrength: 1.5,
+            bloomRadius: 0.4,
+            bloomThreshold: 0.1,
+            particleCount: 1500
+        };
+
+        // --- Scene Setup ---
+        const scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2(0x05060a, 0.02);
+
+        const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.set(0, 0, 40);
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.toneMapping = THREE.ReinhardToneMapping;
+        document.body.appendChild(renderer.domElement);
+
+        // --- Controls ---
+        const controls = new OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.05;
+        controls.autoRotate = true;
+        controls.autoRotateSpeed = 1.0;
+        controls.minDistance = 10;
+        controls.maxDistance = 100;
+
+        // --- Post Processing (Bloom) ---
+        const renderScene = new RenderPass(scene, camera);
+        const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.5, 0.4, 0.85);
+        bloomPass.threshold = CONFIG.bloomThreshold;
+        bloomPass.strength = CONFIG.bloomStrength;
+        bloomPass.radius = CONFIG.bloomRadius;
+
+        const composer = new EffectComposer(renderer);
+        composer.addPass(renderScene);
+        composer.addPass(bloomPass);
+
+        // --- Lighting ---
+        const ambientLight = new THREE.AmbientLight(0x404040);
+        scene.add(ambientLight);
+
+        const pointLight = new THREE.PointLight(0xffffff, 2, 100);
+        pointLight.position.set(10, 10, 10);
+        scene.add(pointLight);
+
+        const blueLight = new THREE.PointLight(0x0088ff, 5, 50);
+        blueLight.position.set(-10, -5, 5);
+        scene.add(blueLight);
+
+        // --- Objects ---
+        const textGroup = new THREE.Group();
+        scene.add(textGroup);
+        
+        const letterObjects = []; // Store individual letter data for animation
+
+        // Load Font and Create Text
+        const loader = new FontLoader();
+        loader.load('https://unpkg.com/three@0.160.0/examples/fonts/helvetiker_bold.typeface.json', function (font) {
+            
+            const chars = CONFIG.text.split('');
+            let currentX = 0;
+            const gap = 0.5; // Spacing between letters
+
+            // 1. Create meshes and calculate layout
+            const tempMeshes = chars.map(char => {
+                const geometry = new TextGeometry(char, {
+                    font: font,
+                    size: 6,
+                    height: 1,
+                    curveSegments: 12,
+                    bevelEnabled: true,
+                    bevelThickness: 0.1,
+                    bevelSize: 0.05,
+                    bevelOffset: 0,
+                    bevelSegments: 5
+                });
+                
+                geometry.computeBoundingBox();
+                const width = geometry.boundingBox.max.x - geometry.boundingBox.min.x;
+                
+                const material = new THREE.MeshStandardMaterial({
+                    color: CONFIG.color,
+                    metalness: 0.8,
+                    roughness: 0.2,
+                    emissive: 0x001133,
+                    emissiveIntensity: 0.5
+                });
+
+                const mesh = new THREE.Mesh(geometry, material);
+                
+                // Wireframe overlay
+                const wireframeGeometry = new THREE.WireframeGeometry(geometry);
+                const wireframeMaterial = new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.1 });
+                const wireframe = new THREE.LineSegments(wireframeGeometry, wireframeMaterial);
+                mesh.add(wireframe);
+
+                // Calculate advance for next letter
+                const advance = width + gap;
+                
+                // Store width for centering later
+                return { mesh, width, advance };
+            });
+
+            // 2. Calculate total width to center the group
+            // Sum of all advances minus the last gap
+            const totalWidth = tempMeshes.reduce((acc, item) => acc + item.advance, 0) - gap;
+            const startX = -totalWidth / 2;
+
+            // 3. Setup positions and add to group
+            let placeX = startX;
+            
+            tempMeshes.forEach((item, index) => {
+                const { mesh, advance } = item;
+                
+                // Target position (aligned)
+                const targetPos = new THREE.Vector3(placeX, 0, 0);
+                
+                // Start position (random scattered)
+                const startPos = new THREE.Vector3(
+                    (Math.random() - 0.5) * 150, // Wide spread X
+                    (Math.random() - 0.5) * 100, // Wide spread Y
+                    (Math.random() - 0.5) * 100 + 50 // Start from front/back
+                );
+
+                // Start rotation (random tumble)
+                const startRot = new THREE.Euler(
+                    Math.random() * Math.PI * 4,
+                    Math.random() * Math.PI * 4,
+                    Math.random() * Math.PI * 4
+                );
+
+                // Apply initial state
+                mesh.position.copy(startPos);
+                mesh.rotation.copy(startRot);
+
+                textGroup.add(mesh);
+                
+                letterObjects.push({
+                    mesh: mesh,
+                    startPos: startPos,
+                    targetPos: targetPos,
+                    startRot: startRot,
+                    targetRot: new THREE.Euler(0, 0, 0)
+                });
+
+                placeX += advance;
+            });
+
+            // Start Animation
+            animateIntro();
+
+            // Hide loading
+            document.getElementById('loading').style.opacity = 0;
+        });
+
+        // Create Background Particles
+        const particleGeometry = new THREE.BufferGeometry();
+        const particlePositions = [];
+        
+        for (let i = 0; i < CONFIG.particleCount; i++) {
+            const x = (Math.random() - 0.5) * 100;
+            const y = (Math.random() - 0.5) * 100;
+            const z = (Math.random() - 0.5) * 50 - 10;
+            particlePositions.push(x, y, z);
+        }
+
+        particleGeometry.setAttribute('position', new THREE.Float32BufferAttribute(particlePositions, 3));
+        const particleMaterial = new THREE.PointsMaterial({
+            color: 0x88ccff,
+            size: 0.15,
+            transparent: true,
+            opacity: 0.6,
+            blending: THREE.AdditiveBlending
+        });
+
+        const particleSystem = new THREE.Points(particleGeometry, particleMaterial);
+        scene.add(particleSystem);
+
+        // --- Animation Loop ---
+        
+        function animateIntro() {
+            const startTime = Date.now();
+            const duration = 3500; // ms
+
+            function step() {
+                const now = Date.now();
+                const progress = Math.min((now - startTime) / duration, 1);
+                
+                // Easing: easeOutExpo
+                const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+
+                letterObjects.forEach(obj => {
+                    // Interpolate Position
+                    obj.mesh.position.lerpVectors(obj.startPos, obj.targetPos, ease);
+                    
+                    // Interpolate Rotation
+                    obj.mesh.rotation.x = THREE.MathUtils.lerp(obj.startRot.x, obj.targetRot.x, ease);
+                    obj.mesh.rotation.y = THREE.MathUtils.lerp(obj.startRot.y, obj.targetRot.y, ease);
+                    obj.mesh.rotation.z = THREE.MathUtils.lerp(obj.startRot.z, obj.targetRot.z, ease);
+                });
+
+                if (progress < 1) {
+                    requestAnimationFrame(step);
+                }
+            }
+            step();
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+            const time = Date.now() * 0.001;
+
+            // Rotate particles
+            if (particleSystem) {
+                particleSystem.rotation.y += 0.001;
+                particleSystem.rotation.z += 0.0005;
+            }
+
+            // Float animation for entire text group
+            if (textGroup) {
+                textGroup.position.y = Math.sin(time) * 0.5;
+                textGroup.rotation.x = Math.sin(time * 0.5) * 0.05;
+            }
+
+            // Dynamic light
+            blueLight.position.x = Math.sin(time * 0.7) * 20;
+            blueLight.position.z = Math.cos(time * 0.5) * 20;
+
+            controls.update();
+            
+            // Use composer for bloom effect
+            composer.render();
+        }
+
+        // Handle Resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            composer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        animate();
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,1653 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>インターネットとアプリの世界を探検しよう！</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap');
+    
+    /* PDF化対応の基本スタイル */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+    }
+    
+    body {
+      font-family: 'M PLUS Rounded 1c', sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+      background: white;
+    }
+    
+    /* ルビタグのスタイル */
+    ruby {
+      ruby-align: center;
+    }
+    
+    rt {
+      font-size: 0.6em;
+      color: #666;
+      font-weight: normal;
+    }
+    
+    /* PDF化時の余白完全除去 */
+    @media print {
+      * {
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      
+      html, body {
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+      }
+      
+      @page {
+        margin: 0;
+        size: 1280px 720px;
+      }
+      
+      .main-container {
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 1280px !important;
+        height: 720px !important;
+        max-width: none !important;
+        max-height: none !important;
+        position: static !important;
+        left: auto !important;
+        transform: none !important;
+      }
+      
+      /* PDF化時のルビスタイル */
+      rt {
+        font-size: 0.5em !important;
+        color: #333 !important;
+      }
+    }
+    
+    /* PDF化対応メインコンテナ */
+    .main-container {
+      width: 1280px;
+      height: 720px;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #a8e1f8 0%, #f8d4e6 100%);
+    }
+    
+    /* PDF化対応セクション */
+    .section {
+      width: 1280px;
+      height: 720px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: flex;
+      flex-direction: column;
+      padding: 30px 40px;
+      opacity: 0;
+      transform: translateX(100%);
+      transition: all 0.5s ease-in-out;
+      visibility: hidden;
+    }
+    
+    .section.active {
+      opacity: 1;
+      transform: translateX(0);
+      visibility: visible;
+    }
+    
+    /* PDF化時のセクション最適化 */
+    @media print {
+      .section {
+        position: static !important;
+        width: 1280px !important;
+        height: 720px !important;
+        padding: 30px 40px !important;
+        margin: 0 !important;
+        opacity: 1 !important;
+        transform: none !important;
+        visibility: visible !important;
+        transition: none !important;
+        display: flex !important;
+        flex-direction: column !important;
+      }
+      
+      .section:not(.active) {
+        display: none !important;
+      }
+    }
+    
+    /* タイトルスタイル */
+    .title {
+      color: #ff5a87;
+      text-shadow: 3px 3px 0 #ffffff, 5px 5px 0 #3bb4d7;
+      font-weight: 800;
+      font-size: 2.8rem;
+      text-align: center;
+      margin-bottom: 20px;
+      animation: bounce 2s infinite;
+    }
+    
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    /* カード・ボックスのスタイル */
+    .content-box {
+      background-color: white;
+      border: 3px solid #3bb4d7;
+      border-radius: 20px;
+      padding: 15px 20px;
+      transition: all 0.3s;
+    }
+    
+    .content-box:hover {
+      transform: scale(1.05);
+    }
+    
+    /* デバイスカード */
+    .device-card {
+      background: white;
+      border: 4px solid #ffbe3d;
+      border-radius: 25px;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+      width: 300px;
+      height: 260px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .device-card:hover {
+      transform: translateY(-10px);
+    }
+    
+    .device-card.active {
+      background: linear-gradient(45deg, #ffeb3b, #ffc107);
+      transform: scale(1.1);
+    }
+    
+    .device-icon {
+      font-size: 100px;
+      margin-bottom: 10px;
+    }
+    
+    .tablet-icon {
+      font-size: 120px;
+      margin-bottom: -10px;
+    }
+    
+    /* インタラクティブボタン */
+    .interactive-btn {
+      background: linear-gradient(45deg, #5ce68a, #3bb4d7);
+      color: white;
+      border: none;
+      border-radius: 30px;
+      padding: 12px 25px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .interactive-btn:hover {
+      transform: translateY(-3px);
+    }
+    
+    .interactive-btn:active {
+      transform: translateY(0);
+    }
+    
+    /* ナビゲーション */
+    .navigation {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 15px;
+      z-index: 1000;
+    }
+    
+    /* PDF化時のナビゲーション非表示 */
+    @media print {
+      .navigation {
+        display: none !important;
+      }
+    }
+    
+    .nav-dot {
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.5);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .nav-dot.active {
+      background: #ff5a87;
+      transform: scale(1.3);
+    }
+    
+    /* アプリアイコン */
+    .app-icon {
+      width: 160px;
+      height: 160px;
+      background: white;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 80px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .app-icon:hover {
+      transform: scale(1.1) rotate(5deg);
+    }
+    
+    /* ミニゲーム要素 */
+    .mini-game {
+      background: rgba(255,255,255,0.9);
+      border-radius: 20px;
+      padding: 20px;
+      text-align: center;
+    }
+    
+    .drop-zone {
+      border: 3px dashed #3bb4d7;
+      border-radius: 15px;
+      padding: 15px;
+      min-height: 80px;
+      margin: 10px;
+      transition: all 0.3s;
+    }
+    
+    .drop-zone.drag-over {
+      background: rgba(59, 180, 215, 0.2);
+      transform: scale(1.05);
+    }
+    
+    .draggable {
+      cursor: grab;
+      transition: all 0.3s;
+    }
+    
+    .draggable:active {
+      cursor: grabbing;
+      opacity: 0.5;
+    }
+    
+    /* アニメーション */
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+    
+    .floating {
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    /* PDF化時の包括的最適化 */
+    @media print {
+      /* すべてのアニメーションを無効化 */
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+      
+      /* 浮動要素の固定 */
+      .floating {
+        animation: none !important;
+        transform: none !important;
+      }
+      
+      /* タイトルアニメーション無効化 */
+      .title {
+        animation: none !important;
+        transform: none !important;
+      }
+      
+      /* ホバー効果の無効化 */
+      .content-box:hover,
+      .device-card:hover,
+      .interactive-btn:hover,
+      .app-icon:hover,
+      .browser-window:hover {
+        transform: none !important;
+      }
+      
+      /* 余白の完全除去 */
+      body {
+        margin: 0 !important;
+        padding: 0 !important;
+        background: white !important;
+        overflow: visible !important;
+      }
+    }
+    
+    /* プログレスバー */
+    .progress-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 5px;
+      background: linear-gradient(to right, #ff5a87, #5ce68a);
+      transition: width 0.3s;
+      z-index: 1001;
+    }
+    
+    /* ブラウザウィンドウのスタイル */
+    .browser-window {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      margin: 10px;
+      transition: all 0.3s ease;
+    }
+    
+    .browser-window:hover {
+      transform: translateY(-5px);
+    }
+    
+    /* シンプルブラウザ（上の画像参考） */
+    .simple-browser {
+      width: 400px;
+      height: 300px;
+    }
+    
+    .simple-browser-header {
+      background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+      height: 60px;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid #e0e0e0;
+    }
+    
+    .window-controls {
+      display: flex;
+      gap: 8px;
+    }
+    
+    .control-button {
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      border: 2px solid #666;
+    }
+    
+    .minimize { background: #ffbd44; }
+    .maximize { background: #00ca4e; }
+    .close { background: #ff605c; }
+    
+    .simple-address-bar {
+      background: rgba(255,255,255,0.9);
+      border: 2px solid #333;
+      border-radius: 5px;
+      padding: 5px 10px;
+      font-family: monospace;
+      font-size: 14px;
+      color: #333;
+      width: 200px;
+    }
+    
+    .simple-browser-body {
+      height: calc(100% - 60px);
+      background: #f5f5f0;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: #666;
+    }
+    
+    /* 現代的ブラウザ（下の画像参考） */
+    .modern-browser {
+      width: 450px;
+      height: 350px;
+    }
+    
+    .modern-browser-header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      height: 80px;
+      padding: 10px 15px;
+    }
+    
+    .tab-bar {
+      display: flex;
+      gap: 5px;
+      margin-bottom: 10px;
+    }
+    
+    .tab {
+      background: rgba(255,255,255,0.9);
+      border-radius: 8px 8px 0 0;
+      padding: 8px 15px;
+      font-size: 12px;
+      color: #333;
+      min-width: 120px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .tab.active {
+      background: white;
+      transform: translateY(-2px);
+    }
+    
+    .nav-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .nav-buttons {
+      display: flex;
+      gap: 5px;
+    }
+    
+    .nav-btn {
+      background: rgba(255,255,255,0.8);
+      border: none;
+      border-radius: 5px;
+      width: 30px;
+      height: 25px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.3s;
+    }
+    
+    .nav-btn:hover {
+      background: white;
+      transform: scale(1.1);
+    }
+    
+    .modern-address-bar {
+      flex: 1;
+      background: white;
+      border: none;
+      border-radius: 20px;
+      padding: 8px 15px;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .search-icon {
+      color: #ff9500;
+      font-size: 16px;
+    }
+    
+    .address-text {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-family: monospace;
+      color: #333;
+    }
+    
+    .modern-browser-body {
+      height: calc(100% - 80px);
+      background: white;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    
+    .page-content {
+      flex: 1;
+      background: #f8f9fa;
+      border-radius: 10px;
+      padding: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      color: #555;
+    }
+    
+    .scrollbar {
+      position: absolute;
+      right: 10px;
+      top: 20px;
+      bottom: 20px;
+      width: 12px;
+      background: #e0e0e0;
+      border-radius: 6px;
+    }
+    
+    .scrollbar-thumb {
+      width: 100%;
+      height: 60px;
+      background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
+      border-radius: 6px;
+      animation: scroll-bounce 3s infinite;
+    }
+    
+    @keyframes scroll-bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(30px); }
+    }
+
+    /* ポップアップ */
+    .popup {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      background: white;
+      padding: 25px;
+      border-radius: 20px;
+      z-index: 2000;
+      transition: all 0.3s;
+      max-width: 500px;
+      max-height: 600px;
+      overflow-y: auto;
+    }
+    
+    .popup.show {
+      transform: translate(-50%, -50%) scale(1);
+    }
+    
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 1280px;
+      height: 720px;
+      background: rgba(0,0,0,0.5);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
+      z-index: 1999;
+    }
+    
+    .overlay.show {
+      opacity: 1;
+      visibility: visible;
+    }
+  </style>
+</head>
+<body>
+  <div class="main-container">
+    <!-- プログレスバー -->
+    <div class="progress-bar" id="progressBar"></div>
+    
+    <!-- セクション1: イントロダクション -->
+    <section class="section active" id="section1">
+      <h1 class="title">インターネットとアプリの<ruby>世界<rt>せかい</rt></ruby>を<ruby>探検<rt>たんけん</rt></ruby>しよう！</h1>
+      
+      <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <div class="content-box" style="max-width: 600px; margin-bottom: 20px;">
+          <h2 style="color: #3bb4d7; margin-bottom: 15px; font-size: 1.8rem;"><ruby>今日<rt>きょう</rt></ruby>は<ruby>楽<rt>たの</rt></ruby>しい<ruby>冒険<rt>ぼうけん</rt></ruby>に出かけよう！</h2>
+          <p style="font-size: 1.1rem; line-height: 1.6;">
+            パソコン、タブレット、スマートフォン...<br>
+            これらの<ruby>機械<rt>きかい</rt></ruby>の中にある、<br>
+            <ruby>不思議<rt>ふしぎ</rt></ruby>な<ruby>世界<rt>せかい</rt></ruby>を<ruby>一緒<rt>いっしょ</rt></ruby>に<ruby>探検<rt>たんけん</rt></ruby>しよう！
+          </p>
+        </div>
+        
+        <div style="display: flex; gap: 15px; justify-content: center; align-items: center;">
+          <button class="interactive-btn" onclick="startAdventure()">
+            🚀 <ruby>冒険<rt>ぼうけん</rt></ruby>をはじめる！
+          </button>
+          
+          <button class="interactive-btn" onclick="resetProgress()" 
+                  style="background: linear-gradient(45deg, #ff5a87, #ffbe3d); font-size: 0.9rem; padding: 10px 20px;">
+            🔄 <ruby>進行<rt>しんこう</rt></ruby><ruby>状況<rt>じょうきょう</rt></ruby>リセット
+          </button>
+        </div>
+      </div>
+      
+      <!-- 装飾的な要素 -->
+      <div class="floating" style="position: absolute; top: 100px; right: 100px;">
+        <div style="font-size: 100px;">🌐</div>
+      </div>
+      <div class="floating" style="position: absolute; bottom: 100px; left: 100px; animation-delay: 1s;">
+        <div style="font-size: 90px;">📱</div>
+      </div>
+      <div class="floating" style="position: absolute; top: 200px; left: 150px; animation-delay: 2s;">
+        <div style="font-size: 80px;">💻</div>
+      </div>
+    </section>
+    
+    <!-- セクション2: デバイスの紹介 -->
+    <section class="section" id="section2">
+      <h1 class="title" style="margin-bottom: 15px;">いろんな<ruby>機械<rt>きかい</rt></ruby>を知ろう！</h1>
+      
+      <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-between; padding: 0 20px;">
+        <div style="flex-shrink: 0;">
+          <p style="font-size: 1.3rem; margin-bottom: 15px; text-align: center; font-weight: 600;">
+            👇 それぞれの<ruby>機械<rt>きかい</rt></ruby>をクリックしてみよう！
+          </p>
+          
+          <div style="display: flex; gap: 20px; justify-content: center; align-items: flex-start;">
+            <div class="device-card" onclick="showDeviceInfo('pc')" style="width: 300px;">
+              <div class="device-icon">💻</div>
+              <h3 style="color: #ff5a87; margin-bottom: 8px; font-size: 1.3rem; font-weight: bold;">パソコン</h3>
+              <p style="font-size: 1rem; font-weight: 500; line-height: 1.4;"><ruby>大<rt>おお</rt></ruby>きな<ruby>画面<rt>がめん</rt></ruby>で<br>たくさんの<ruby>作業<rt>さぎょう</rt></ruby>ができる</p>
+            </div>
+            
+            <div class="device-card" onclick="showDeviceInfo('tablet')" style="width: 300px;">
+              <div class="device-icon tablet-icon">📱</div>
+              <h3 style="color: #5ce68a; margin-bottom: 8px; font-size: 1.3rem; font-weight: bold;">タブレット</h3>
+              <p style="font-size: 1rem; font-weight: 500; line-height: 1.4;"><ruby>持<rt>も</rt></ruby>ち<ruby>運<rt>はこ</rt></ruby>びやすくて<br>タッチで<ruby>操作<rt>そうさ</rt></ruby>できる</p>
+            </div>
+            
+            <div class="device-card" onclick="showDeviceInfo('smartphone')" style="width: 300px;">
+              <div class="device-icon">📱</div>
+              <h3 style="color: #3bb4d7; margin-bottom: 8px; font-size: 1.3rem; font-weight: bold;">スマートフォン</h3>
+              <p style="font-size: 1rem; font-weight: 500; line-height: 1.4;">いつでもどこでも<br><ruby>使<rt>つか</rt></ruby>える<ruby>小<rt>ちい</rt></ruby>さなコンピューター</p>
+            </div>
+          </div>
+        </div>
+        
+        <div id="deviceInfo" class="content-box" style="margin-top: 15px; max-width: 700px; min-height: 120px; padding: 12px 16px; display: none; align-self: center; flex-shrink: 0;">
+          <!-- デバイス情報がここに表示される -->
+        </div>
+      </div>
+    </section>
+    
+    <!-- セクション3: アプリって何？ -->
+    <section class="section" id="section3">
+      <h1 class="title">アプリってなーに？</h1>
+      
+      <div style="flex: 1; display: flex; gap: 30px; align-items: center;">
+        <div style="flex: 1;">
+          <div class="content-box" style="margin-bottom: 15px;">
+            <h3 style="color: #ff5a87; margin-bottom: 10px; font-size: 1.3rem;">アプリは「<ruby>道具<rt>どうぐ</rt></ruby>」みたい！</h3>
+            <p style="font-size: 1rem; line-height: 1.5;">
+              えんぴつで<ruby>字<rt>じ</rt></ruby>を<ruby>書<rt>か</rt></ruby>くように、<br>
+              アプリを<ruby>使<rt>つか</rt></ruby>っていろんなことができるよ！
+            </p>
+          </div>
+          
+          <div class="content-box">
+            <h3 style="color: #5ce68a; margin-bottom: 10px; font-size: 1.3rem;">いろんな<ruby>種類<rt>しゅるい</rt></ruby>があるよ</h3>
+            <ul style="font-size: 1rem; line-height: 1.6; list-style: none; padding-left: 0;">
+              <li>🎮 ゲームアプリ</li>
+              <li>📚 <ruby>勉強<rt>べんきょう</rt></ruby>アプリ</li>
+              <li>🎨 お<ruby>絵<rt>え</rt></ruby>かきアプリ</li>
+              <li>💬 お<ruby>話<rt>はなし</rt></ruby>しアプリ</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div style="flex: 1;">
+          <p style="text-align: center; margin-bottom: 15px; font-size: 1.1rem;">
+            👇 アプリをクリックして<ruby>体験<rt>たいけん</rt></ruby>しよう！
+          </p>
+          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; max-width: 200px; margin: 0 auto;">
+            <div class="app-icon" onclick="openMiniApp('paint')">🎨</div>
+            <div class="app-icon" onclick="openMiniApp('calculator')">🔢</div>
+            <div class="app-icon" onclick="openMiniApp('music')">🎵</div>
+            <div class="app-icon" onclick="openMiniApp('game')">🎮</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- セクション4: インターネットの仕組み -->
+    <section class="section" id="section4">
+      <h1 class="title">インターネットでつながる<ruby>世界<rt>せかい</rt></ruby></h1>
+      
+      <div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+        <div class="mini-game" style="width: 90%; max-width: 800px;">
+          <h2 style="color: #3bb4d7; margin-bottom: 15px; font-size: 1.5rem;">メッセージを<ruby>送<rt>おく</rt></ruby>ってみよう！</h2>
+          <p style="margin-bottom: 15px; font-size: 1rem;">インターネットを<ruby>使<rt>つか</rt></ruby>って、<ruby>世界中<rt>せかいじゅう</rt></ruby>にメッセージが<ruby>届<rt>とど</rt></ruby>くよ！</p>
+          
+          <div style="display: flex; align-items: center; justify-content: center; gap: 20px; margin: 20px 0;">
+            <div style="text-align: center;">
+              <div style="font-size: 100px;">👦</div>
+              <p style="font-size: 0.9rem;">あなた</p>
+            </div>
+            
+            <div id="messageAnimation" style="font-size: 60px; opacity: 0;">
+              ✉️➡️
+            </div>
+            
+            <div style="text-align: center;">
+              <div style="font-size: 100px;">🌐</div>
+              <p style="font-size: 0.9rem;">インターネット</p>
+            </div>
+            
+            <div id="messageAnimation2" style="font-size: 60px; opacity: 0;">
+              ➡️✉️
+            </div>
+            
+            <div style="text-align: center;">
+              <div style="font-size: 100px;">👧</div>
+              <p style="font-size: 0.9rem;"><ruby>友<rt>とも</rt></ruby>だち</p>
+            </div>
+          </div>
+          
+          <div style="margin-top: 15px;">
+            <input type="text" id="messageInput" placeholder="メッセージを<ruby>入力<rt>にゅうりょく</rt></ruby>してね" 
+                   style="padding: 8px 15px; border-radius: 20px; border: 2px solid #3bb4d7; font-size: 1rem; width: 250px;">
+            <button class="interactive-btn" onclick="sendMessage()" style="margin-left: 10px;">
+              <ruby>送信<rt>そうしん</rt></ruby>！
+            </button>
+          </div>
+          
+          <div id="messageResult" style="margin-top: 15px; font-size: 1.1rem; color: #5ce68a;"></div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- セクション5: ブラウザの世界 -->
+    <section class="section" id="section5">
+      <h1 class="title">ブラウザってなーに？</h1>
+      
+      <div style="flex: 1; display: flex; gap: 30px; align-items: center;">
+        <div style="flex: 1;">
+          <div class="content-box" style="margin-bottom: 15px;">
+            <h3 style="color: #ff5a87; margin-bottom: 10px; font-size: 1.3rem;">ブラウザは「インターネットの<ruby>入<rt>い</rt></ruby>り<ruby>口<rt>ぐち</rt></ruby>」</h3>
+            <p style="font-size: 1rem; line-height: 1.6;">
+              YouTube、Google、ゲームサイトを<ruby>見<rt>み</rt></ruby>るために<ruby>使<rt>つか</rt></ruby>う<strong><ruby>特別<rt>とくべつ</rt></ruby>なアプリ</strong>だよ！<br>
+              スマホやパソコンに<ruby>最初<rt>さいしょ</rt></ruby>から<ruby>入<rt>はい</rt></ruby>っているんだ。
+            </p>
+          </div>
+          
+          <div class="content-box" style="margin-bottom: 15px;">
+            <h3 style="color: #5ce68a; margin-bottom: 10px; font-size: 1.3rem;">どんなブラウザがある？</h3>
+            <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 10px;">
+              <div style="font-size: 40px;">🌐</div>
+              <div>
+                <p style="font-weight: bold; margin-bottom: 3px;">Chrome（クローム）</p>
+                <p style="font-size: 0.9rem; color: #666;">Google が<ruby>作<rt>つく</rt></ruby>った<ruby>人気<rt>にんき</rt></ruby>No.1ブラウザ</p>
+              </div>
+            </div>
+            <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 10px;">
+              <div style="font-size: 40px;">🧭</div>
+              <div>
+                <p style="font-weight: bold; margin-bottom: 3px;">Safari（サファリ）</p>
+                <p style="font-size: 0.9rem; color: #666;">iPhone・iPad に<ruby>入<rt>はい</rt></ruby>っているブラウザ</p>
+              </div>
+            </div>
+            <div style="display: flex; gap: 10px; align-items: center;">
+              <div style="font-size: 40px;">🌟</div>
+              <div>
+                <p style="font-weight: bold; margin-bottom: 3px;">Edge（エッジ）</p>
+                <p style="font-size: 0.9rem; color: #666;">Windows パソコンに<ruby>入<rt>はい</rt></ruby>っているブラウザ</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="content-box">
+            <h3 style="color: #3bb4d7; margin-bottom: 10px; font-size: 1.3rem;">ブラウザとアプリの<ruby>違<rt>ちが</rt></ruby>い</h3>
+            <p style="font-size: 1rem; line-height: 1.6;">
+              <strong>📱 <ruby>普通<rt>ふつう</rt></ruby>のアプリ：</strong> インストールが<ruby>必要<rt>ひつよう</rt></ruby><br>
+              <strong>🌐 ブラウザで<ruby>見<rt>み</rt></ruby>るもの：</strong> すぐに<ruby>使<rt>つか</rt></ruby>える！
+            </p>
+          </div>
+        </div>
+        
+        <div style="flex: 1; text-align: center;">
+          <div style="display: flex; flex-direction: column; gap: 20px; align-items: center; margin-top: 20px;">
+            <!-- ブラウザデモ -->
+            <div class="browser-window" style="width: 350px; height: 250px; border: 3px solid #333; border-radius: 10px; background: #f0f0f0; position: relative;">
+              <div style="height: 30px; background: #e0e0e0; border-radius: 7px 7px 0 0; display: flex; align-items: center; padding: 0 10px; border-bottom: 1px solid #ccc;">
+                <div style="display: flex; gap: 5px;">
+                  <div style="width: 8px; height: 8px; border-radius: 50%; background: #ff5f57;"></div>
+                  <div style="width: 8px; height: 8px; border-radius: 50%; background: #ffbd2e;"></div>
+                  <div style="width: 8px; height: 8px; border-radius: 50%; background: #28ca42;"></div>
+                </div>
+                <div id="addressBar" style="flex: 1; margin-left: 10px; background: white; height: 16px; border-radius: 8px; display: flex; align-items: center; padding: 0 8px; font-size: 0.7rem; color: #666;">🌐 www.youtube.com</div>
+              </div>
+              <div id="browserContent" style="height: calc(100% - 30px); background: white; display: flex; align-items: center; justify-content: center; transition: all 0.5s ease;">
+                <div style="text-align: center;">
+                  <div style="font-size: 60px; margin-bottom: 10px;">📺</div>
+                  <p style="font-size: 1rem; font-weight: bold;">YouTube</p>
+                  <p style="font-size: 0.8rem; color: #666;"><ruby>動画<rt>どうが</rt></ruby>を<ruby>見<rt>み</rt></ruby>よう！</p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- サイト切り替えボタン -->
+            <div style="display: flex; gap: 10px;">
+              <button class="interactive-btn" onclick="changeSite('youtube')" style="padding: 8px 12px; font-size: 0.9rem;">
+                📺 YouTube
+              </button>
+              <button class="interactive-btn" onclick="changeSite('google')" style="padding: 8px 12px; font-size: 0.9rem;">
+                🔍 Google
+              </button>
+              <button class="interactive-btn" onclick="changeSite('game')" style="padding: 8px 12px; font-size: 0.9rem;">
+                🎮 ゲーム
+              </button>
+            </div>
+            
+            <div class="content-box" style="max-width: 400px;">
+               <p style="font-size: 0.95rem; text-align: center; color: #3bb4d7;">
+                 <strong>すごいでしょ？</strong><br>
+                 ブラウザがあれば、<ruby>世界中<rt>せかいじゅう</rt></ruby>のサイトに<ruby>行<rt>い</rt></ruby>ける！
+               </p>
+               <div style="margin-top: 10px; padding: 10px; background: #fff8e1; border-radius: 8px; border-left: 4px solid #ffbe3d;">
+                 <p style="font-size: 0.9rem; color: #ff6f00; font-weight: bold; text-align: center;">
+                   💡 <ruby>次<rt>つぎ</rt></ruby>はブラウザで<ruby>使<rt>つか</rt></ruby>える「ウェブアプリ」について<ruby>学<rt>まな</rt></ruby>ぼう！
+                 </p>
+               </div>
+             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- セクション6: ウェブアプリ体験 -->
+    <section class="section" id="section6">
+      <h1 class="title">ウェブアプリを<ruby>使<rt>つか</rt></ruby>ってみよう！</h1>
+      
+      <div style="flex: 1; display: flex; gap: 20px;">
+        <div style="flex: 1;">
+          <div class="content-box">
+            <h3 style="color: #ff5a87; margin-bottom: 10px; font-size: 1.2rem;">ウェブアプリの<ruby>特徴<rt>とくちょう</rt></ruby></h3>
+            <ul style="font-size: 0.95rem; line-height: 1.6;">
+              <li>✨ インストール<ruby>不要<rt>ふよう</rt></ruby>！</li>
+              <li>🌍 どこからでもアクセス<ruby>可能<rt>かのう</rt></ruby></li>
+              <li>🔄 いつも<ruby>最新版<rt>さいしんばん</rt></ruby></li>
+              <li>📱 どんな<ruby>機械<rt>きかい</rt></ruby>でも<ruby>使<rt>つか</rt></ruby>える</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div style="flex: 2;">
+          <div class="mini-game">
+            <h3 style="color: #3bb4d7; margin-bottom: 15px; font-size: 1.3rem;">ドラッグ＆ドロップゲーム</h3>
+            <p style="margin-bottom: 15px; font-size: 0.95rem;"><ruby>正<rt>ただ</rt></ruby>しい<ruby>場所<rt>ばしょ</rt></ruby>にアイコンをドラッグしてね！</p>
+            
+            <div style="display: flex; gap: 15px; justify-content: center; margin-bottom: 20px;">
+              <div class="app-icon draggable" draggable="true" data-type="game" style="width: 140px; height: 140px; font-size: 70px;">🎮</div>
+              <div class="app-icon draggable" draggable="true" data-type="study" style="width: 140px; height: 140px; font-size: 70px;">📚</div>
+              <div class="app-icon draggable" draggable="true" data-type="art" style="width: 140px; height: 140px; font-size: 70px;">🎨</div>
+            </div>
+            
+            <div style="display: flex; gap: 15px; justify-content: center;">
+              <div class="drop-zone" data-accept="game">
+                <p style="margin: 0;">ゲーム</p>
+              </div>
+              <div class="drop-zone" data-accept="study">
+                <p style="margin: 0;"><ruby>勉強<rt>べんきょう</rt></ruby></p>
+              </div>
+              <div class="drop-zone" data-accept="art">
+                <p style="margin: 0;">アート</p>
+              </div>
+            </div>
+            
+            <div id="dragResult" style="margin-top: 15px; font-size: 1rem;"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- セクション7: まとめとクイズ -->
+    <section class="section" id="section7">
+      <h1 class="title"><ruby>今日<rt>きょう</rt></ruby>のまとめクイズ！</h1>
+      
+      <div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+        <div class="content-box" style="max-width: 700px;">
+          <div id="quizContainer">
+            <h2 id="quizQuestion" style="color: #3bb4d7; margin-bottom: 20px; font-size: 1.5rem;"><ruby>準備<rt>じゅんび</rt></ruby>はいい？</h2>
+            <div id="quizOptions" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
+              <!-- クイズオプションがここに表示される -->
+            </div>
+            <div id="quizResult" style="margin-top: 20px; font-size: 1.1rem; text-align: center;"></div>
+            <button class="interactive-btn" onclick="startQuiz()" style="margin-top: 15px;">
+              クイズを<ruby>始<rt>はじ</rt></ruby>める！
+            </button>
+          </div>
+          
+          <div id="congratulations" style="display: none; text-align: center;">
+            <h2 style="color: #5ce68a; font-size: 2rem; margin-bottom: 15px;">🎉 おめでとう！ 🎉</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+              インターネットとアプリの<ruby>世界<rt>せかい</rt></ruby>をマスターしたね！
+            </p>
+            <button class="interactive-btn" onclick="goToSection(1)">
+              <ruby>最初<rt>さいしょ</rt></ruby>から<ruby>見<rt>み</rt></ruby>る
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- ナビゲーション -->
+    <div class="navigation">
+      <div class="nav-dot active" onclick="goToSection(1)"></div>
+      <div class="nav-dot" onclick="goToSection(2)"></div>
+      <div class="nav-dot" onclick="goToSection(3)"></div>
+      <div class="nav-dot" onclick="goToSection(4)"></div>
+      <div class="nav-dot" onclick="goToSection(5)"></div>
+      <div class="nav-dot" onclick="goToSection(6)"></div>
+      <div class="nav-dot" onclick="goToSection(7)"></div>
+    </div>
+    
+    <!-- ポップアップ -->
+    <div class="overlay" id="overlay" onclick="closePopup()"></div>
+    <div class="popup" id="popup">
+      <div id="popupContent"></div>
+      <button class="interactive-btn" onclick="closePopup()" style="margin-top: 20px;">
+        <ruby>閉<rt>と</rt></ruby>じる
+      </button>
+    </div>
+  </div>
+  
+  <script>
+    // グローバル変数
+    let currentSection = 1;
+    let score = 0;
+    let quizIndex = 0;
+    
+    // 状態保存・復元機能
+    function saveState() {
+      const appState = {
+        currentSection: currentSection,
+        score: score,
+        quizIndex: quizIndex,
+        timestamp: Date.now()
+      };
+      localStorage.setItem('appdev02a_state', JSON.stringify(appState));
+    }
+    
+    function loadState() {
+      try {
+        const savedState = localStorage.getItem('appdev02a_state');
+        if (savedState) {
+          const appState = JSON.parse(savedState);
+          
+          // 24時間以内の状態のみ復元
+          const oneDay = 24 * 60 * 60 * 1000;
+          if (Date.now() - appState.timestamp < oneDay) {
+            currentSection = appState.currentSection || 1;
+            score = appState.score || 0;
+            quizIndex = appState.quizIndex || 0;
+            
+            // セクションを復元
+            restoreSection(currentSection);
+            return true;
+          }
+        }
+      } catch (error) {
+        console.log('状態の復元に失敗しました:', error);
+      }
+      return false;
+    }
+    
+    function restoreSection(sectionNum) {
+      // 全セクションを非表示
+      document.querySelectorAll('.section').forEach(section => {
+        section.classList.remove('active');
+      });
+      
+      // 指定セクションを表示
+      const targetSection = document.getElementById(`section${sectionNum}`);
+      if (targetSection) {
+        targetSection.classList.add('active');
+        
+        // ナビゲーションドットを更新
+        document.querySelectorAll('.nav-dot').forEach((dot, index) => {
+          dot.classList.toggle('active', index === sectionNum - 1);
+        });
+        
+        // プログレスバーを更新
+        const progress = (sectionNum / 7) * 100;
+        document.getElementById('progressBar').style.width = `${progress}%`;
+      }
+    }
+    
+    function clearState() {
+      localStorage.removeItem('appdev02a_state');
+    }
+    
+    // クイズデータ
+    const quizData = [
+      {
+        question: "インターネットを使うのに必要な機械は？",
+        options: ["えんぴつ", "パソコンやスマホ", "はさみ", "のり"],
+        correct: 1
+      },
+      {
+        question: "アプリは何に似ている？",
+        options: ["おもちゃ", "道具", "食べ物", "洋服"],
+        correct: 1
+      },
+      {
+        question: "ウェブアプリの良いところは？",
+        options: ["インストールが必要", "一つの機械でしか使えない", "どんな機械でも使える", "インターネットがいらない"],
+        correct: 2
+      }
+    ];
+    
+    // セクション切り替え
+    function goToSection(sectionNum) {
+      // 現在のセクションを非表示
+      document.getElementById(`section${currentSection}`).classList.remove('active');
+      
+      // 新しいセクションを表示
+      currentSection = sectionNum;
+      document.getElementById(`section${currentSection}`).classList.add('active');
+      
+      // ナビゲーションドットを更新
+      document.querySelectorAll('.nav-dot').forEach((dot, index) => {
+        dot.classList.toggle('active', index === sectionNum - 1);
+      });
+      
+      // プログレスバーを更新
+      const progress = (sectionNum / 7) * 100;
+      document.getElementById('progressBar').style.width = `${progress}%`;
+      
+      // 状態を保存
+      saveState();
+    }
+    
+    // 冒険を始める
+    function startAdventure() {
+      goToSection(2);
+    }
+    
+    // 進行状況をリセット
+    function resetProgress() {
+      if (confirm('進行状況をリセットしますか？最初からやり直しになります。')) {
+        clearState();
+        currentSection = 1;
+        score = 0;
+        quizIndex = 0;
+        goToSection(1);
+        
+        // クイズ関連の表示をリセット
+        document.getElementById('quizContainer').style.display = 'block';
+        document.getElementById('congratulations').style.display = 'none';
+        
+        alert('進行状況がリセットされました！');
+      }
+    }
+    
+    // デバイス情報表示
+    function showDeviceInfo(device) {
+      const deviceInfo = document.getElementById('deviceInfo');
+      const info = {
+        pc: {
+          title: "パソコン（PC）",
+          emoji: "💻",
+          description: "大きな画面とキーボードで、たくさんの作業ができる機械だよ！",
+          features: ["📝 文章を書く", "🎨 絵を描く", "🎮 ゲームをする", "📹 動画を見る"]
+        },
+        tablet: {
+          title: "タブレット",
+          emoji: "📱",
+          description: "画面をタッチして操作する、持ち運びやすい機械だよ！",
+          features: ["📖 本を読む", "✏️ 絵を描く", "🎯 ゲームをする", "📸 写真を撮る"]
+        },
+        smartphone: {
+          title: "スマートフォン",
+          emoji: "📱",
+          description: "ポケットに入る小さなコンピューター！いつでもどこでも使えるよ！",
+          features: ["📞 電話をかける", "💬 メッセージを送る", "📷 写真を撮る", "🗺️ 地図を見る"]
+        }
+      };
+      
+      const selected = info[device];
+      deviceInfo.innerHTML = `
+        <h3 style="color: #ff5a87; margin-bottom: 10px; font-size: 1.5rem;">
+          ${selected.emoji} ${selected.title}
+        </h3>
+        <p style="font-size: 1.1rem; margin-bottom: 10px; line-height: 1.5; font-weight: 500;">${selected.description}</p>
+        <h4 style="color: #3bb4d7; margin-bottom: 8px; font-size: 1.2rem;">できること：</h4>
+        <ul style="font-size: 1rem; line-height: 1.5; margin: 0; padding-left: 20px;">
+          ${selected.features.map(feature => `<li style="margin-bottom: 4px; font-weight: 500;">${feature}</li>`).join('')}
+        </ul>
+      `;
+      deviceInfo.style.display = 'block';
+      
+      // デバイスカードのハイライト
+      document.querySelectorAll('.device-card').forEach(card => {
+        card.classList.remove('active');
+      });
+      event.currentTarget.classList.add('active');
+    }
+    
+    // ミニアプリを開く
+    function openMiniApp(appType) {
+      const popup = document.getElementById('popup');
+      const popupContent = document.getElementById('popupContent');
+      const overlay = document.getElementById('overlay');
+      
+      const apps = {
+        paint: {
+          title: "🎨 お絵かきアプリ",
+          content: `
+            <h3 style="color: #ff5a87; margin-bottom: 20px;">キャンバスをクリックして絵を描こう！</h3>
+            <canvas id="paintCanvas" width="400" height="300" style="border: 2px solid #3bb4d7; border-radius: 10px; cursor: crosshair;"></canvas>
+            <div style="margin-top: 20px;">
+              <button onclick="clearCanvas()" class="interactive-btn" style="font-size: 1rem;">消す</button>
+            </div>
+          `
+        },
+        calculator: {
+          title: "🔢 計算アプリ",
+          content: `
+            <h3 style="color: #5ce68a; margin-bottom: 20px;">簡単な計算をしてみよう！</h3>
+            <input type="number" id="num1" placeholder="数字1" style="width: 100px; padding: 10px; margin: 5px;">
+            <span style="font-size: 1.5rem; margin: 0 10px;">+</span>
+            <input type="number" id="num2" placeholder="数字2" style="width: 100px; padding: 10px; margin: 5px;">
+            <button onclick="calculate()" class="interactive-btn" style="font-size: 1rem; margin-left: 10px;">計算</button>
+            <div id="calcResult" style="margin-top: 20px; font-size: 1.5rem; color: #3bb4d7;"></div>
+          `
+        },
+        music: {
+          title: "🎵 音楽アプリ",
+          content: `
+            <h3 style="color: #ff5a87; margin-bottom: 20px;">ボタンを押して音を鳴らそう！</h3>
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
+              ${['ド', 'レ', 'ミ', 'ファ', 'ソ', 'ラ', 'シ', 'ド'].map((note, index) => 
+                `<button class="interactive-btn" onclick="playNote(${261.63 * Math.pow(2, index/12)})" 
+                         style="font-size: 1.2rem; padding: 20px;">${note}</button>`
+              ).join('')}
+            </div>
+          `
+        },
+        game: {
+          title: "🎮 ゲームアプリ",
+          content: `
+            <h3 style="color: #3bb4d7; margin-bottom: 20px;">数字を覚えてね！</h3>
+            <div id="memoryGame" style="font-size: 3rem; margin: 30px 0;">
+              <span id="numberDisplay">?</span>
+            </div>
+            <button onclick="startMemoryGame()" class="interactive-btn">スタート</button>
+            <div id="gameButtons" style="display: none; margin-top: 20px;">
+              <button onclick="checkAnswer(1)" class="interactive-btn" style="margin: 5px;">1</button>
+              <button onclick="checkAnswer(2)" class="interactive-btn" style="margin: 5px;">2</button>
+              <button onclick="checkAnswer(3)" class="interactive-btn" style="margin: 5px;">3</button>
+              <button onclick="checkAnswer(4)" class="interactive-btn" style="margin: 5px;">4</button>
+            </div>
+            <div id="gameResult" style="margin-top: 20px; font-size: 1.2rem;"></div>
+          `
+        }
+      };
+      
+      const app = apps[appType];
+      popupContent.innerHTML = `<h2>${app.title}</h2>${app.content}`;
+      
+      popup.classList.add('show');
+      overlay.classList.add('show');
+      
+      // ペイントアプリの初期化
+      if (appType === 'paint') {
+        setTimeout(initPaintApp, 100);
+      }
+    }
+    
+    // ポップアップを閉じる
+    function closePopup() {
+      document.getElementById('popup').classList.remove('show');
+      document.getElementById('overlay').classList.remove('show');
+    }
+    
+    // ペイントアプリの機能
+    function initPaintApp() {
+      const canvas = document.getElementById('paintCanvas');
+      if (!canvas) return;
+      
+      const ctx = canvas.getContext('2d');
+      let isDrawing = false;
+      
+      canvas.addEventListener('mousedown', (e) => {
+        isDrawing = true;
+        const rect = canvas.getBoundingClientRect();
+        ctx.beginPath();
+        ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
+      });
+      
+      canvas.addEventListener('mousemove', (e) => {
+        if (!isDrawing) return;
+        const rect = canvas.getBoundingClientRect();
+        ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
+        ctx.strokeStyle = '#ff5a87';
+        ctx.lineWidth = 3;
+        ctx.stroke();
+      });
+      
+      canvas.addEventListener('mouseup', () => {
+        isDrawing = false;
+      });
+    }
+    
+    function clearCanvas() {
+      const canvas = document.getElementById('paintCanvas');
+      if (canvas) {
+        const ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+    }
+    
+    // 計算機能
+    function calculate() {
+      const num1 = parseFloat(document.getElementById('num1').value) || 0;
+      const num2 = parseFloat(document.getElementById('num2').value) || 0;
+      const result = num1 + num2;
+      document.getElementById('calcResult').textContent = `答え: ${result}`;
+    }
+    
+    // 音を鳴らす
+    function playNote(frequency) {
+      const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      const oscillator = audioContext.createOscillator();
+      const gainNode = audioContext.createGain();
+      
+      oscillator.connect(gainNode);
+      gainNode.connect(audioContext.destination);
+      
+      oscillator.frequency.value = frequency;
+      oscillator.type = 'sine';
+      
+      gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+      
+      oscillator.start(audioContext.currentTime);
+      oscillator.stop(audioContext.currentTime + 0.5);
+    }
+    
+    // メモリーゲーム
+    let memoryNumber = 0;
+    
+    function startMemoryGame() {
+      memoryNumber = Math.floor(Math.random() * 4) + 1;
+      document.getElementById('numberDisplay').textContent = memoryNumber;
+      document.getElementById('gameResult').textContent = '';
+      
+      setTimeout(() => {
+        document.getElementById('numberDisplay').textContent = '?';
+        document.getElementById('gameButtons').style.display = 'block';
+      }, 2000);
+    }
+    
+    function checkAnswer(answer) {
+      const result = document.getElementById('gameResult');
+      if (answer === memoryNumber) {
+        result.textContent = '🎉 正解！';
+        result.style.color = '#5ce68a';
+      } else {
+        result.textContent = '❌ もう一度挑戦！';
+        result.style.color = '#ff5a87';
+      }
+      document.getElementById('gameButtons').style.display = 'none';
+    }
+    
+    // メッセージ送信アニメーション
+    function sendMessage() {
+      const message = document.getElementById('messageInput').value;
+      if (!message) return;
+      
+      const anim1 = document.getElementById('messageAnimation');
+      const anim2 = document.getElementById('messageAnimation2');
+      const result = document.getElementById('messageResult');
+      
+      // アニメーション開始
+      anim1.style.opacity = '1';
+      anim1.style.transition = 'all 1s';
+      
+      setTimeout(() => {
+        anim2.style.opacity = '1';
+        anim2.style.transition = 'all 1s';
+      }, 500);
+      
+      setTimeout(() => {
+        result.textContent = `✅ 「${message}」が届いたよ！`;
+        anim1.style.opacity = '0';
+        anim2.style.opacity = '0';
+      }, 1500);
+      
+      document.getElementById('messageInput').value = '';
+    }
+    
+    // ドラッグ&ドロップ機能
+    let draggedElement = null;
+    
+    document.addEventListener('DOMContentLoaded', () => {
+      // ページロード時に状態を復元
+      loadState();
+      
+      // ドラッグ可能な要素の設定
+      document.querySelectorAll('.draggable').forEach(element => {
+        element.addEventListener('dragstart', (e) => {
+          draggedElement = e.target;
+          e.target.style.opacity = '0.5';
+        });
+        
+        element.addEventListener('dragend', (e) => {
+          e.target.style.opacity = '';
+        });
+      });
+      
+      // ドロップゾーンの設定
+      document.querySelectorAll('.drop-zone').forEach(zone => {
+        zone.addEventListener('dragover', (e) => {
+          e.preventDefault();
+          zone.classList.add('drag-over');
+        });
+        
+        zone.addEventListener('dragleave', () => {
+          zone.classList.remove('drag-over');
+        });
+        
+        zone.addEventListener('drop', (e) => {
+          e.preventDefault();
+          zone.classList.remove('drag-over');
+          
+          const dropType = zone.getAttribute('data-accept');
+          const dragType = draggedElement.getAttribute('data-type');
+          
+          if (dropType === dragType) {
+            zone.appendChild(draggedElement);
+            document.getElementById('dragResult').innerHTML = 
+              '<span style="color: #5ce68a;">✅ 正解！すごい！</span>';
+            
+            // 全部正解したかチェック
+            const allCorrect = document.querySelectorAll('.drop-zone .draggable').length === 3;
+            if (allCorrect) {
+              setTimeout(() => {
+                document.getElementById('dragResult').innerHTML = 
+                  '<span style="color: #ff5a87; font-size: 1.5rem;">🎉 全問正解！よくできました！</span>';
+              }, 500);
+            }
+          } else {
+            document.getElementById('dragResult').innerHTML = 
+              '<span style="color: #ff5a87;">❌ もう一度考えてみよう！</span>';
+          }
+        });
+      });
+    });
+    
+    // クイズ機能
+    function startQuiz() {
+      quizIndex = 0;
+      score = 0;
+      showQuizQuestion();
+      // 状態を保存
+      saveState();
+    }
+    
+    function showQuizQuestion() {
+      if (quizIndex >= quizData.length) {
+        // クイズ終了
+        document.getElementById('quizContainer').style.display = 'none';
+        document.getElementById('congratulations').style.display = 'block';
+        return;
+      }
+      
+      const quiz = quizData[quizIndex];
+      document.getElementById('quizQuestion').textContent = quiz.question;
+      
+      const optionsHtml = quiz.options.map((option, index) => `
+        <button class="content-box" onclick="answerQuiz(${index})" 
+                style="cursor: pointer; font-size: 1.2rem; padding: 20px;">
+          ${option}
+        </button>
+      `).join('');
+      
+      document.getElementById('quizOptions').innerHTML = optionsHtml;
+      document.getElementById('quizResult').textContent = '';
+    }
+    
+    function answerQuiz(answer) {
+      const quiz = quizData[quizIndex];
+      const result = document.getElementById('quizResult');
+      
+      if (answer === quiz.correct) {
+        result.innerHTML = '<span style="color: #5ce68a;">🎉 正解！</span>';
+        score++;
+      } else {
+        result.innerHTML = '<span style="color: #ff5a87;">❌ 残念！もう少し！</span>';
+      }
+      
+      // 状態を保存
+      saveState();
+      
+      setTimeout(() => {
+        quizIndex++;
+        showQuizQuestion();
+        // 状態を保存
+        saveState();
+      }, 1500);
+    }
+    
+    // ブラウザアニメーション
+    function changeSite(siteType) {
+      const addressBar = document.getElementById('addressBar');
+      const browserContent = document.getElementById('browserContent');
+      
+      // アニメーション効果
+      browserContent.style.opacity = '0.5';
+      browserContent.style.transform = 'scale(0.95)';
+      
+      setTimeout(() => {
+        if (siteType === 'youtube') {
+          addressBar.innerHTML = '🌐 www.youtube.com';
+          browserContent.innerHTML = `
+            <div style="text-align: center;">
+              <div style="font-size: 60px; margin-bottom: 10px;">📺</div>
+              <p style="font-size: 1rem; font-weight: bold;">YouTube</p>
+              <p style="font-size: 0.8rem; color: #666;"><ruby>動画<rt>どうが</rt></ruby>を<ruby>見<rt>み</rt></ruby>よう！</p>
+            </div>
+          `;
+        } else if (siteType === 'google') {
+          addressBar.innerHTML = '🌐 www.google.com';
+          browserContent.innerHTML = `
+            <div style="text-align: center;">
+              <div style="font-size: 60px; margin-bottom: 10px;">🔍</div>
+              <p style="font-size: 1rem; font-weight: bold;">Google</p>
+              <p style="font-size: 0.8rem; color: #666;">なんでも<ruby>検索<rt>けんさく</rt></ruby>！</p>
+            </div>
+          `;
+        } else if (siteType === 'game') {
+          addressBar.innerHTML = '🌐 www.kids-games.com';
+          browserContent.innerHTML = `
+            <div style="text-align: center;">
+              <div style="font-size: 60px; margin-bottom: 10px;">🎮</div>
+              <p style="font-size: 1rem; font-weight: bold;">ゲームサイト</p>
+              <p style="font-size: 0.8rem; color: #666;"><ruby>楽<rt>たの</rt></ruby>しく<ruby>遊<rt>あそ</rt></ruby>ぼう！</p>
+            </div>
+          `;
+        }
+        
+        // アニメーション復帰
+        browserContent.style.opacity = '1';
+        browserContent.style.transform = 'scale(1)';
+      }, 200);
+    }
+
+    // キーボードナビゲーション（統合機能使用）
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        navigateIntegrated('right');
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        navigateIntegrated('left');
+      }
+    });
+    
+    // タッチスワイプ対応
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    document.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+    
+    document.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    });
+    
+    function handleSwipe() {
+      if (touchEndX < touchStartX - 50) {
+        navigateIntegrated('right');
+      }
+      if (touchEndX > touchStartX + 50) {
+        navigateIntegrated('left');
+      }
+    }
+
+    // === 統合されたスライド間ナビゲーション機能 ===
+    const slides = ["AppDev_01.html", "AppDev_02.html", "AppDev_03.html", "AppDev_04.html", "AppDev_05.html", "AppDev_06a.html", "AppDev_06b.html", "AppDev_07.html", "AppDev_08.html", "AppDev_09.html", "AppDev_10.html"];
+    
+    let curName = location.pathname.split("/").pop();
+    if (!curName || !curName.includes(".")) curName = "index.html";
+    const curIdx = slides.indexOf(curName);
+
+    const goToSlide = (i) => {
+      if (i < 0 || i >= slides.length) return;
+      const dir = location.pathname.replace(/[^/]*$/, "");
+      location.href = dir + slides[i];
+    };
+
+    // 内部セクションと外部スライドを統合したナビゲーション
+    window.navigateIntegrated = function(direction) {
+      if (direction === 'right') {
+        if (currentSection < 7) {
+          // 最後のセクションでなければ次のセクションへ
+          goToSection(currentSection + 1);
+        } else {
+          // 最後のセクションでは次のスライドへ
+          goToSlide(curIdx + 1);
+        }
+      } else if (direction === 'left') {
+        if (currentSection > 1) {
+          // 最初のセクションでなければ前のセクションへ
+          goToSection(currentSection - 1);
+        } else {
+          // 最初のセクションでは前のスライドへ
+          goToSlide(curIdx - 1);
+        }
+      }
+    };
+
+    // 右下ナビゲーションボタンの作成
+    const navBox = document.createElement("div");
+    navBox.innerHTML = `
+      <button id="gs-back">Back</button>
+      <button id="gs-next">Next</button>
+      <button id="gs-zoom-in" title="拡大">＋</button>
+      <button id="gs-zoom-out" title="縮小">−</button>
+      <button id="gs-pdf-download" title="このページをPDF">📄</button>
+    `;
+    Object.assign(navBox.style, {
+      position: "fixed",
+      bottom: "12px",
+      right: "12px",
+      display: "flex",
+      gap: "8px",
+      zIndex: 9999,
+      pointerEvents: "auto",
+    });
+
+    // ボタンスタイル
+    const css = `
+      #gs-back, #gs-next, #gs-zoom-in, #gs-zoom-out, #gs-pdf-download {
+        padding: 8px 14px;
+        font: 14px/1 sans-serif;
+        border: 1px solid #666;
+        background: #fff;
+        border-radius: 6px;
+        cursor: pointer;
+        opacity: .85;
+        touch-action: manipulation;
+      }
+      #gs-back:hover, #gs-next:hover, #gs-zoom-in:hover, #gs-zoom-out:hover, #gs-pdf-download:hover { opacity: 1; }
+      #gs-pdf-download { background: #007bff; color: white; }
+    `;
+    const styleTag = document.createElement("style");
+    styleTag.textContent = css;
+    document.head.appendChild(styleTag);
+
+    navBox.addEventListener("click", (e) => e.stopPropagation());
+    document.body.appendChild(navBox);
+
+    document.getElementById("gs-back").addEventListener("click", (e) => {
+      e.stopPropagation();
+      navigateIntegrated('left');
+    });
+    document.getElementById("gs-next").addEventListener("click", (e) => {
+      e.stopPropagation();
+      navigateIntegrated('right');
+    });
+
+    // ズーム機能
+    let zoom = 1.0;
+    const ZOOM_MIN = 0.5;
+    const ZOOM_MAX = 2.0;
+    const ZOOM_STEP = 0.1;
+
+    function applyZoom() {
+      document.body.style.transform = `scale(${zoom})`;
+      document.body.style.transformOrigin = "0 0";
+      const slideElem = document.querySelector('.main-container') || document.body;
+      const slideWidth = slideElem.scrollWidth;
+      document.body.style.minWidth = (slideWidth * zoom) + "px";
+      document.documentElement.style.minWidth = (slideWidth * zoom) + "px";
+    }
+
+    document.getElementById("gs-zoom-in").addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (zoom < ZOOM_MAX) {
+        zoom = Math.round((zoom + ZOOM_STEP) * 100) / 100;
+        if (zoom > ZOOM_MAX) zoom = ZOOM_MAX;
+        applyZoom();
+      }
+    });
+
+    document.getElementById("gs-zoom-out").addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (zoom > ZOOM_MIN) {
+        zoom = Math.round((zoom - ZOOM_STEP) * 100) / 100;
+        if (zoom < ZOOM_MIN) zoom = ZOOM_MIN;
+        applyZoom();
+      }
+    });
+
+    // PDF機能
+    document.getElementById("gs-pdf-download").addEventListener("click", (e) => {
+      e.stopPropagation();
+      const currentSlideNum = slides.indexOf(location.pathname.split("/").pop()) + 1;
+      const originalTitle = document.title;
+      document.title = `AppDev_slide_${currentSlideNum.toString().padStart(2, '0')}_section_${currentSection}`;
+      window.print();
+      setTimeout(() => {
+        document.title = originalTitle;
+      }, 1000);
+    });
+  </script>
+  
+  <!-- スライドナビゲーション機能 - 内部に統合 -->
+  <!-- <script src="slide-nav-plusPDF.js"></script> -->
+</body>
+</html>

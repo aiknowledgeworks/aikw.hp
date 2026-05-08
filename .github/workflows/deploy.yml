@@ -1,0 +1,99 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+        
+    - name: Build site
+      env:
+        DIFY_API_KEY: ${{ secrets.DIFY_API_KEY }}
+      run: |
+        # Debug: Check API key availability
+        echo "🔍 Checking API key..."
+        if [ -z "$DIFY_API_KEY" ]; then
+          echo "❌ DIFY_API_KEY not found in repository secrets"
+          echo "📝 Please set DIFY_API_KEY in: Settings > Secrets and variables > Actions > Repository secrets"
+        else
+          echo "✅ API key found (${#DIFY_API_KEY} characters)"
+          echo "🔑 First 4 characters: ${DIFY_API_KEY:0:4}****"
+        fi
+        
+        # Create build directory and copy files
+        mkdir -p build
+        cp -r aitools company images js logo movie *.html CNAME build/ 2>/dev/null || true
+        
+        # Create runtime-config.js with proper API key handling
+        if [ -n "$DIFY_API_KEY" ] && [ "$DIFY_API_KEY" != "" ]; then
+          # Escape the key properly for JavaScript
+          ESCAPED_KEY=$(printf '%s' "$DIFY_API_KEY" | sed 's/\\/\\\\/g; s/"/\\"/g')
+          echo "window.DIFY_API_KEY = \"$ESCAPED_KEY\";" > build/js/runtime-config.js
+          echo "✅ API key successfully configured in runtime-config.js"
+
+          # No need to replace placeholder in contact.html - using direct API key
+          echo "✅ API key is already configured directly in contact.html"
+        else
+          echo "window.DIFY_API_KEY = undefined;" > build/js/runtime-config.js
+          echo "⚠️ No API key - creating development mode runtime-config.js"
+          echo "⚠️ Contact.html uses direct API key configuration"
+        fi
+        
+        # Show final result (without exposing the actual key)
+        echo "📄 runtime-config.js content:"
+        if grep -q "undefined" build/js/runtime-config.js; then
+          cat build/js/runtime-config.js
+          echo "⚠️  WARNING: API key was not configured properly!"
+        else
+          echo "window.DIFY_API_KEY = \"[CONFIGURED]\";"
+          echo "✅ API key successfully configured!"
+        fi
+
+        # Verify the file was created correctly
+        echo "🔍 Verifying runtime-config.js exists..."
+        if [ -f "build/js/runtime-config.js" ]; then
+          echo "✅ runtime-config.js exists"
+          ls -la build/js/runtime-config.js
+          echo "📄 Final runtime-config.js content preview:"
+          head -3 build/js/runtime-config.js
+        else
+          echo "❌ runtime-config.js not found!"
+          exit 1
+        fi
+
+        echo "🚀 Build process completed successfully!"
+        
+    - name: Setup Pages
+      uses: actions/configure-pages@v4
+      
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: './build'
+        
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    
+    steps:
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4

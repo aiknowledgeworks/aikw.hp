@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>会社概要 | AIナレッジワークス合同会社</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="logo/AIナレッジワークス_logo_transparen.png">
+  <link rel="shortcut icon" type="image/x-icon" href="logo/AIナレッジワークス_logo_transparen.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="logo/AIナレッジワークス_logo_transparen.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="logo/AIナレッジワークス_logo_transparen.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="logo/AIナレッジワークス_logo_transparen.png">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWFLPN1EZH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-DWFLPN1EZH');
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* === Design System Tokens === */
+    :root {
+      --bg: #FAF8F5;
+      --ink: #2C2A26;
+      --ink-80: #2C2A26CC;
+      --ink-60: #2C2A2699;
+      --ink-40: #2C2A2666;
+      --ink-15: #2C2A2626;
+      --ink-08: #2C2A2614;
+      --paper: #FFFFFF;
+      --paper-2: #F3EFE9;
+      --paper-3: #EBE6DD;
+      --rule: #D9D3C7;
+      --link: #1B5FA0;
+      --accent: #3da8c7;
+      --brand-gradient: linear-gradient(135deg, #6db5ff 0%, #a1e9d9 100%);
+      --serif: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+      --sans: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
+      --display: "Fraunces", "Noto Serif JP", serif;
+      --page-pad: clamp(24px, 5vw, 72px);
+      --measure: 64ch;
+    }
+
+    /* === Reset === */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.8;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    ul { list-style: none; padding: 0; margin: 0; }
+    hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
+
+    /* === Grain overlay === */
+    body::after {
+      content: "";
+      position: fixed; inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.9'/></svg>");
+    }
+
+    /* === Selection === */
+    ::selection { background: var(--ink); color: var(--bg); }
+
+    /* === Scroll reveal === */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 1.2s cubic-bezier(.2,.7,.2,1), transform 1.2s cubic-bezier(.2,.7,.2,1);
+    }
+    .reveal.in {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* === Kicker label === */
+    .kicker {
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink-60);
+    }
+
+    /* === Section base === */
+    .section {
+      padding: clamp(96px, 14vh, 160px) var(--page-pad);
+      max-width: 1680px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* === Header / Nav === */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 28px var(--page-pad);
+      display: flex; align-items: center; justify-content: space-between;
+      background: transparent;
+      border-bottom: 1px solid transparent;
+      transition: all .5s cubic-bezier(.2,.7,.2,1);
+    }
+    header.scrolled {
+      padding-top: 14px; padding-bottom: 14px;
+      background: color-mix(in srgb, var(--bg) 85%, transparent);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom-color: var(--rule);
+    }
+    .logo-link {
+      display: flex; align-items: center; gap: 12px;
+    }
+    .logo-link img {
+      height: 40px;
+      transition: height .5s cubic-bezier(.2,.7,.2,1);
+    }
+    header.scrolled .logo-link img { height: 32px; }
+    .logo-link span {
+      font-family: var(--serif);
+      font-size: 17px;
+      letter-spacing: 0.04em;
+      font-weight: 500;
+    }
+    nav ul {
+      display: flex; gap: 28px; align-items: center;
+    }
+    nav a {
+      font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--ink-60);
+      transition: color .3s;
+    }
+    nav a:hover { color: var(--ink); }
+    .nav-cta {
+      padding: 10px 18px;
+      border: 1px solid var(--ink);
+      margin-left: 8px;
+      transition: all .3s;
+    }
+    .nav-cta:hover {
+      background: var(--ink);
+      color: var(--bg);
+    }
+
+    /* === Hero === */
+    .hero {
+      padding: 180px var(--page-pad) 100px;
+      max-width: 1680px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(40px, 6vw, 80px);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin: 0 0 20px;
+    }
+    .hero .tagline {
+      font-size: 17px;
+      color: var(--ink-60);
+      font-weight: 300;
+      margin: 0;
+    }
+
+    /* === Suki highlight === */
+    .suki {
+      font-family: var(--display);
+      font-style: italic;
+      color: var(--ink);
+      font-weight: 400;
+    }
+
+    /* === Two-column layout === */
+    .grid-sidebar {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+    .sidebar-sticky {
+      position: sticky; top: 140px;
+    }
+
+    /* === Section headings === */
+    .section-heading {
+      font-family: var(--serif);
+      font-weight: 400;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      margin: 0;
+    }
+    .section-heading em {
+      font-family: var(--display);
+      font-style: italic;
+    }
+    .section-heading-md {
+      font-size: clamp(34px, 4.5vw, 64px);
+    }
+    .section-heading-sm {
+      font-size: clamp(28px, 3.5vw, 48px);
+    }
+
+    /* === Paragraph === */
+    .paragraph {
+      margin: 0;
+      font-size: 16px;
+      line-height: 2;
+      color: var(--ink-60);
+    }
+
+    /* === Service rows === */
+    .service-row {
+      display: grid;
+      grid-template-columns: 60px 1fr 2fr;
+      gap: 32px;
+      padding: 40px 0;
+      border-bottom: 1px solid var(--rule);
+      align-items: baseline;
+    }
+    .service-name {
+      font-family: var(--serif);
+      font-size: 26px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+    }
+    .service-jp {
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      color: var(--ink-60);
+      margin-top: 6px;
+    }
+    .service-desc {
+      margin: 0; font-size: 16px; line-height: 1.9;
+      color: var(--ink-60);
+      max-width: 42ch;
+    }
+    .item-num {
+      font-size: 11px; letter-spacing: 0.22em;
+      color: var(--ink-60);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* === Company table === */
+    .company-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .company-table th {
+      text-align: left;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--rule);
+      width: 130px;
+      font-size: 14px;
+      font-weight: 500;
+      vertical-align: top;
+      white-space: nowrap;
+      background: var(--paper-2);
+      color: var(--ink);
+    }
+    .company-table td {
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--rule);
+      font-size: 15px;
+      color: var(--ink-80);
+    }
+
+    /* === Card grid === */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+    }
+    .card-item {
+      background: var(--paper);
+      padding: 32px;
+    }
+    .card-item h4 {
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 400;
+      margin: 0 0 12px;
+      color: var(--ink);
+    }
+    .card-item p {
+      font-size: 15px;
+      line-height: 1.9;
+      color: var(--ink-60);
+      margin: 0;
+    }
+
+    /* === Value card === */
+    .value-item {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 0 20px;
+      align-items: baseline;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .value-item:last-child {
+      border-bottom: none;
+    }
+    .value-num {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.22em;
+      font-variant-numeric: tabular-nums;
+      color: var(--ink-60);
+      line-height: 1;
+      padding-top: 4px;
+    }
+    .value-item h4 {
+      font-family: var(--serif);
+      font-size: 17px;
+      font-weight: 400;
+      color: var(--ink);
+      margin: 0 0 6px;
+    }
+    .value-item p {
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--ink-60);
+      margin: 0;
+      grid-column: 2;
+    }
+
+    /* === CTA === */
+    .cta-center {
+      text-align: center;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .btn-fill {
+      display: inline-flex; align-items: center;
+      padding: 20px 36px;
+      background: var(--ink);
+      color: var(--bg);
+      font-size: 14px; letter-spacing: 0.16em; text-transform: uppercase;
+      transition: all .3s;
+    }
+    .btn-fill:hover {
+      opacity: 0.85;
+    }
+
+    /* === Story link card === */
+    .story-link-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+    }
+
+    /* === Logo breathing === */
+    @keyframes breathe {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      25% { transform: scale(1.12) rotate(4deg); }
+    }
+    .logo-breathe {
+      animation: breathe 4s cubic-bezier(.3,.8,.3,.4) infinite;
+      transform-origin: center;
+    }
+
+    /* === Footer === */
+    footer {
+      border-top: 1px solid var(--rule);
+      padding: 56px var(--page-pad) 40px;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      max-width: 1680px;
+      margin: 0 auto;
+    }
+    .footer-brand p {
+      font-size: 13px;
+      color: var(--ink-60);
+      line-height: 2;
+      margin-top: 16px;
+      max-width: 340px;
+    }
+    .footer-col-title {
+      font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--ink-60);
+      margin-bottom: 18px;
+    }
+    .footer-col a {
+      font-size: 14px;
+      color: var(--ink);
+      display: block;
+      margin-bottom: 10px;
+      transition: color .3s;
+    }
+    .footer-col a:hover { color: var(--ink-60); }
+    .footer-bottom {
+      grid-column: 1 / -1;
+      padding-top: 32px; margin-top: 16px;
+      border-top: 1px solid var(--rule);
+      display: flex; justify-content: space-between;
+      font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--ink-60);
+    }
+
+    /* === Hamburger === */
+    .hamburger {
+      display: none;
+      width: 30px; height: 30px;
+      position: relative; cursor: pointer; z-index: 1010;
+      padding: 10px; box-sizing: content-box; margin: -10px;
+    }
+    .hamburger span {
+      display: block; position: absolute;
+      height: 1.5px; width: 100%;
+      background: var(--ink);
+      opacity: 1; left: 0;
+      transform: rotate(0deg);
+      transition: .25s ease-in-out;
+    }
+    .hamburger span:nth-child(1) { top: 0; }
+    .hamburger span:nth-child(2) { top: 9px; }
+    .hamburger span:nth-child(3) { top: 18px; }
+    .hamburger.active span:nth-child(1) { top: 9px; transform: rotate(135deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; left: -60px; }
+    .hamburger.active span:nth-child(3) { top: 9px; transform: rotate(-135deg); }
+
+    .overlay {
+      display: none; position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.4);
+      z-index: 90;
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .overlay.active { display: block; opacity: 1; }
+
+    /* === Chatbot Styles === */
+    .aikw-chatbot-button {
+      position: fixed; bottom: 30px; right: 30px;
+      width: 56px; height: 56px;
+      background: var(--ink); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+      z-index: 1000; border: none;
+    }
+    .aikw-chatbot-button:hover { transform: scale(1.06); }
+    .aikw-chatbot-button.aikw-hidden { opacity: 0; pointer-events: none; }
+    .aikw-chat-icon svg { width: 24px; height: 24px; fill: var(--bg); display: block; }
+    .aikw-chatbot-window {
+      position: fixed; bottom: 100px; right: 30px;
+      width: 380px; max-width: calc(100vw - 60px);
+      height: 500px; max-height: calc(100vh - 150px);
+      background: var(--paper); border-radius: 12px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.15);
+      display: none; flex-direction: column;
+      z-index: 1001; overflow: hidden;
+    }
+    .aikw-chatbot-window.open { display: flex; }
+    .aikw-chatbot-header {
+      background: var(--ink); color: var(--bg);
+      padding: 15px 20px; display: flex;
+      align-items: center; justify-content: space-between;
+    }
+    .aikw-chatbot-title { display: flex; align-items: center; font-weight: 600; font-size: 16px; }
+    .aikw-chatbot-logo { width: 28px; height: 28px; margin-right: 8px; border-radius: 4px; }
+    .aikw-header-actions { display: flex; gap: 8px; }
+    .aikw-clear-button {
+      background: rgba(255,255,255,0.2); color: white;
+      border: 1px solid rgba(255,255,255,0.3); border-radius: 4px;
+      padding: 4px 8px; font-size: 12px; cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .aikw-clear-button:hover { background: rgba(255,255,255,0.3); }
+    .aikw-chatbot-close {
+      background: none; border: none; color: white;
+      font-size: 20px; cursor: pointer; padding: 0;
+      width: 24px; height: 24px; display: flex;
+      align-items: center; justify-content: center;
+      border-radius: 50%; transition: all 0.2s ease;
+    }
+    .aikw-chatbot-close:hover { background: rgba(255,255,255,0.2); }
+    .aikw-chatbot-body { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+    .aikw-chat-messages {
+      flex: 1; overflow-y: auto; padding: 15px;
+      display: flex; flex-direction: column; gap: 12px; background: var(--paper-2);
+    }
+    .aikw-message { max-width: 80%; word-wrap: break-word; }
+    .aikw-bot-message { align-self: flex-start; }
+    .aikw-user-message { align-self: flex-end; }
+    .aikw-message-content { padding: 10px 14px; border-radius: 12px; line-height: 1.5; font-size: 14px; }
+    .aikw-bot-message .aikw-message-content { background: var(--paper); color: var(--ink); border: 1px solid var(--rule); border-bottom-left-radius: 4px; }
+    .aikw-user-message .aikw-message-content { background: var(--ink); color: var(--bg); border-bottom-right-radius: 4px; }
+    .aikw-typing-indicator { display: inline-flex; gap: 4px; align-items: center; }
+    .aikw-typing-indicator span { width: 6px; height: 6px; background: var(--ink-40); border-radius: 50%; display: inline-block; animation: aikw-bounce 1.2s infinite ease-in-out; }
+    .aikw-typing-indicator span:nth-child(2) { animation-delay: .2s; }
+    .aikw-typing-indicator span:nth-child(3) { animation-delay: .4s; }
+    @keyframes aikw-bounce { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
+    .aikw-question-options { padding: 15px; border-top: 1px solid var(--rule); }
+    .aikw-tab-container { width: 100%; }
+    .aikw-tab-header { display: flex; gap: 4px; }
+    .aikw-tab-btn {
+      background: var(--paper-2); border: 1px solid var(--rule);
+      border-radius: 6px; padding: 8px 12px; font-size: 12px;
+      cursor: pointer; transition: all 0.2s ease;
+      display: flex; justify-content: center; align-items: center;
+      flex: 1; white-space: nowrap; font-family: var(--sans);
+    }
+    .aikw-tab-btn:hover { background: var(--paper-3); border-color: var(--ink-40); }
+    .aikw-tab-btn.active { background: var(--ink); color: var(--bg); border-color: transparent; }
+    .aikw-tab-content { margin-top: 12px; overflow: hidden; transition: all 0.3s ease; }
+    .aikw-tab-content.collapsed { max-height: 0; opacity: 0; }
+    .aikw-tab-content.expanded { max-height: 200px; opacity: 1; }
+    .aikw-questions-container { display: flex; flex-direction: column; gap: 8px; }
+    .aikw-question-btn {
+      background: var(--paper); border: 1px solid var(--rule);
+      border-radius: 6px; padding: 8px 12px; font-size: 13px;
+      cursor: pointer; transition: all 0.2s ease; text-align: left;
+      font-family: var(--sans);
+    }
+    .aikw-question-btn:hover { background: var(--paper-2); border-color: var(--ink-40); transform: translateY(-1px); }
+    .aikw-chat-input-area { padding: 15px; border-top: 1px solid var(--rule); background: var(--paper); }
+    .aikw-chat-input-container { display: flex; gap: 8px; margin-bottom: 8px; }
+    .aikw-chat-input-container input {
+      flex: 1; padding: 8px 12px; border: 1px solid var(--rule);
+      border-radius: 6px; font-size: 14px; outline: none;
+      transition: border-color 0.2s ease; font-family: var(--sans);
+      background: var(--bg);
+    }
+    .aikw-chat-input-container input:focus { border-color: var(--ink); }
+    .aikw-chat-input-container button {
+      background: var(--ink); color: var(--bg); border: none;
+      border-radius: 6px; padding: 8px 16px; font-size: 14px;
+      cursor: pointer; transition: all 0.2s ease; font-family: var(--sans);
+    }
+    .aikw-chat-input-container button:disabled { background: var(--ink-40); cursor: not-allowed; }
+    .aikw-chat-input-container button:not(:disabled):hover { opacity: 0.85; }
+    .aikw-back-button {
+      background: var(--ink-60); color: var(--bg); border: none;
+      border-radius: 6px; padding: 6px 12px; font-size: 12px;
+      cursor: pointer; transition: all 0.2s ease; font-family: var(--sans);
+    }
+    .aikw-back-button:hover { opacity: 0.85; }
+    .aikw-chat-actions { display: flex; flex-wrap: wrap; }
+
+    /* === Responsive === */
+    @media (max-width: 1024px) {
+      .grid-sidebar {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .sidebar-sticky { position: static; }
+      footer { grid-template-columns: 1fr 1fr; }
+      .service-row { grid-template-columns: 60px 1fr; }
+      .service-desc { grid-column: 1 / -1; padding-left: 92px; }
+    }
+
+    /* === iPad (portrait) === */
+    @media (max-width: 1024px) and (min-width: 769px) {
+      .hamburger { display: block; }
+      nav {
+        position: fixed; top: 0; right: -100%;
+        width: 80%; max-width: 360px; height: 100vh;
+        background: var(--bg);
+        box-shadow: -2px 0 20px rgba(0,0,0,0.08);
+        transition: 0.3s ease;
+        padding-top: 80px; z-index: 95;
+        overflow-y: auto;
+      }
+      nav.active { right: 0; }
+      nav ul { flex-direction: column; gap: 0; }
+      nav ul li a {
+        padding: 20px 32px; display: block;
+        border-bottom: 1px solid var(--rule);
+        font-size: 15px; letter-spacing: 0.08em;
+        text-transform: none; color: var(--ink);
+      }
+      nav ul li a::after { content: "\203A"; float: right; opacity: 0.4; font-size: 1.2em; }
+      .nav-cta { border: none; padding: 20px 32px; margin-left: 0; text-align: left; }
+      .nav-cta:hover { background: transparent; color: var(--ink); }
+    }
+
+    @media (max-width: 768px) {
+      .section { padding: clamp(64px, 10vh, 96px) var(--page-pad); }
+      .hero { padding: 140px var(--page-pad) 80px; }
+      .hero h1 { font-size: clamp(32px, 8vw, 48px); }
+      .service-row { grid-template-columns: 1fr; gap: 8px; }
+      .service-desc { padding-left: 0; grid-column: auto; }
+      .card-grid { grid-template-columns: 1fr; }
+      .grid-2-col { grid-template-columns: 1fr !important; gap: 40px !important; }
+      .company-table th { width: 90px; font-size: 13px; padding: 12px 14px; }
+      .company-table td { padding: 12px 16px; }
+      footer {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 40px var(--page-pad);
+      }
+      .footer-bottom { flex-direction: column; gap: 8px; }
+
+      /* Mobile Nav */
+      .hamburger { display: block; }
+      nav {
+        position: fixed; top: 0; right: -100%;
+        width: 80%; max-width: 300px; height: 100vh;
+        background: var(--bg);
+        box-shadow: -2px 0 20px rgba(0,0,0,0.08);
+        transition: 0.3s ease;
+        padding-top: 80px; z-index: 95;
+        overflow-y: auto;
+      }
+      nav.active { right: 0; }
+      nav ul {
+        flex-direction: column; gap: 0;
+      }
+      nav ul li a {
+        padding: 18px 24px;
+        display: block;
+        border-bottom: 1px solid var(--rule);
+        font-size: 14px;
+        letter-spacing: 0.08em;
+        text-transform: none;
+        color: var(--ink);
+      }
+      nav ul li a::after {
+        content: "\203A";
+        float: right;
+        opacity: 0.4;
+        font-size: 1.2em;
+      }
+      .nav-cta {
+        border: none;
+        padding: 18px 24px;
+        margin-left: 0;
+        text-align: left;
+      }
+      .nav-cta:hover {
+        background: transparent;
+        color: var(--ink);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .company-table-container { overflow-x: auto; }
+      .company-table { min-width: 460px; }
+    }
+
+    @media (max-width: 480px) {
+      .section-heading-md { font-size: clamp(26px, 7vw, 36px); }
+      .section-heading-sm { font-size: clamp(22px, 6vw, 30px); }
+      .aikw-chatbot-window {
+        width: calc(100vw - 20px); right: 10px;
+        bottom: 90px; height: 70vh;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+      .logo-breathe { animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <!-- === Header === -->
+  <header id="site-header">
+    <a href="index.html" class="logo-link">
+      <img src="logo/AIナレッジワークス_logo_transparen.png" alt="AIナレッジワークス ロゴ" class="logo-breathe">
+      <span>AI Knowledge Works</span>
+    </a>
+    <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html#background">Background</a></li>
+        <li><a href="service.html">Services</a></li>
+        <li><a href="achievements.html">Achievements</a></li>
+        <li><a href="company.html">Company</a></li>
+        <li><a href="story.html">Team</a></li>
+        <li><a href="volunteer.html">Volunteer</a></li>
+        <li><a href="contact.html" class="nav-cta">Contact &rarr;</a></li>
+      </ul>
+    </nav>
+    <div class="overlay"></div>
+  </header>
+
+  <!-- === Hero === -->
+  <section class="hero">
+    <div class="reveal">
+      <h1>会社概要</h1>
+      <p class="tagline"><span class="suki">"好き"</span>を信じ合える運命共同体</p>
+      <a href="story.html" style="display: inline-block; margin-top: 24px; font-size: 13px; letter-spacing: 0.12em; color: var(--ink-60); text-decoration: none; transition: color .3s;">チームを見る &rarr;</a>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- === 01 Company Info === -->
+  <section id="basic-info" class="section">
+    <div class="grid-sidebar">
+      <div class="sidebar-sticky reveal">
+        <div class="kicker">01 &mdash; Info</div>
+      </div>
+      <div>
+        <h2 class="section-heading section-heading-md reveal" style="max-width: 18ch; margin-bottom: 64px;">
+          基本情報
+        </h2>
+
+        <div class="reveal" style="background: var(--paper); border: 1px solid var(--rule); overflow: hidden;">
+          <div class="company-table-container">
+            <table class="company-table">
+              <tr>
+                <th>会社名</th>
+                <td>AIナレッジワークス合同会社</td>
+              </tr>
+              <tr>
+                <th>本店住所</th>
+                <td>大阪府大阪市浪速区湊町2丁目2番5号 2119号室</td>
+              </tr>
+              <tr>
+                <th>設立</th>
+                <td>2025年4月16日</td>
+              </tr>
+              <tr>
+                <th>社員</th>
+                <td>2名</td>
+              </tr>
+              <tr>
+                <th>事業目的</th>
+                <td style="white-space: normal;">
+                  <div style="margin-bottom: 5px;">・AI技術を活用したソフトウェア及びシステムの研究、企画、開発、販売、保守及びコンサルティング</div>
+                  <div style="margin-bottom: 5px;">・AIを活用した教育、研修、セミナー及びコンサルティング業務</div>
+                  <div style="margin-bottom: 5px;">・AI・データ分析を活用した市場調査及びコンサルティング業務</div>
+                  <div style="text-align: right;">他</div>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- === 02 Philosophy === -->
+  <section id="philosophy" class="section" style="background: var(--paper-2);">
+    <div class="grid-sidebar">
+      <div class="sidebar-sticky reveal">
+        <div class="kicker">02 &mdash; Philosophy</div>
+      </div>
+      <div>
+        <h2 class="section-heading section-heading-md reveal" style="max-width: 18ch; margin-bottom: 80px;">
+          <span class="suki">"好き"</span>が<br>未来を<em>創る。</em>
+        </h2>
+
+        <div style="border-top: 1px solid var(--rule);">
+          <div class="service-row reveal">
+            <span class="item-num">M</span>
+            <div>
+              <div class="service-name">Mission</div>
+              <div class="service-jp">ミッション</div>
+            </div>
+            <p class="service-desc">自己実現の大量生産 &mdash; 自分の<span class="suki">"好き"</span>が実現しまくる社会をつくる</p>
+          </div>
+          <div class="service-row reveal">
+            <span class="item-num">V</span>
+            <div>
+              <div class="service-name">Vision</div>
+              <div class="service-jp">ビジョン</div>
+            </div>
+            <p class="service-desc">"余裕"が連鎖する未来 &mdash; 誰もが<span class="suki">"好き"</span>を起点に生きられる世界</p>
+          </div>
+        </div>
+
+        <h3 style="font-family: var(--serif); font-size: 22px; font-weight: 400; margin: 64px 0 32px; color: var(--ink);" class="reveal">Core Values</h3>
+
+        <div class="reveal">
+          <div class="value-item">
+            <span class="value-num">01</span>
+            <div>
+              <h4>Self First</h4>
+              <p>まず自分を幸せに。その幸せを社会へ。</p>
+            </div>
+          </div>
+          <div class="value-item">
+            <span class="value-num">02</span>
+            <div>
+              <h4>Live from <span class="suki">"好き"</span></h4>
+              <p>"やりたい"を人生の起点に。</p>
+            </div>
+          </div>
+          <div class="value-item">
+            <span class="value-num">03</span>
+            <div>
+              <h4>Curiosity is Power</h4>
+              <p>好奇心が可能性をひらく。</p>
+            </div>
+          </div>
+          <div class="value-item">
+            <span class="value-num">04</span>
+            <div>
+              <h4>Be Fluid, Not Fixed</h4>
+              <p>変わり続けることを恐れない。</p>
+            </div>
+          </div>
+          <div class="value-item">
+            <span class="value-num">05</span>
+            <div>
+              <h4>Go at Your Own Pace</h4>
+              <p>速さより納得感。</p>
+            </div>
+          </div>
+          <div class="value-item">
+            <span class="value-num">06</span>
+            <div>
+              <h4>Trust the Process</h4>
+              <p>結果だけでなく、過程を信じる。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- === Contact CTA === -->
+  <section class="section" style="padding-bottom: 120px;">
+    <div class="cta-center reveal">
+      <div class="kicker" style="display: inline-block;">Contact</div>
+      <h2 class="section-heading" style="font-size: clamp(48px, 8vw, 120px); line-height: 1.05; letter-spacing: -0.02em; margin: 20px 0;">
+        まずは<br><em>ご相談</em>から。
+      </h2>
+      <p class="paragraph" style="max-width: 520px; margin: 24px auto 48px; font-size: 17px;">
+        AI導入・研修について、お気軽にお問い合わせください。
+      </p>
+      <a href="contact.html" class="btn-fill">
+        お問い合わせはこちら &nbsp;&rarr;
+      </a>
+    </div>
+  </section>
+
+  <!-- === Footer === -->
+  <footer>
+    <div class="footer-brand">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <img src="logo/AIナレッジワークス_logo_transparen.png" width="36" height="36" alt="" style="object-fit: contain;">
+        <span style="font-family: var(--serif); font-size: 17px; letter-spacing: 0.04em;">AI Knowledge Works</span>
+      </div>
+      <p>誰もが安心して、"好き"をかたちにできる社会をつくる。</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Pages</div>
+      <a href="service.html">Services</a>
+      <a href="achievements.html">Achievements</a>
+      <a href="company.html">Company</a>
+      <a href="story.html">Team</a>
+      <a href="volunteer.html">Volunteer</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Connect</div>
+      <a href="https://www.youtube.com/@AIKnowledgeWorks" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://note.com/aiknowledgeworks" target="_blank" rel="noopener">Note</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Office</div>
+      <span style="font-size: 14px; color: var(--ink);">Osaka, Japan</span>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 AI Knowledge Works, LLC.</span>
+    </div>
+  </footer>
+
+  <!-- === Scripts === -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Scroll reveal
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('in');
+            revealObserver.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+      document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+      // Fallback
+      setTimeout(() => {
+        document.querySelectorAll('.reveal').forEach(el => {
+          if (!el.classList.contains('in')) el.classList.add('in');
+        });
+      }, 3000);
+
+      // Header scroll effect
+      const header = document.getElementById('site-header');
+      window.addEventListener('scroll', () => {
+        header.classList.toggle('scrolled', window.scrollY > 40);
+      }, { passive: true });
+
+      // Hash scroll
+      if (window.location.hash) {
+        setTimeout(() => {
+          const target = document.querySelector(window.location.hash);
+          if (target) {
+            window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
+          }
+        }, 500);
+      }
+
+      // Mobile menu
+      const hamburger = document.querySelector('.hamburger');
+      const nav = document.querySelector('nav');
+      const overlay = document.querySelector('.overlay');
+      const navLinks = document.querySelectorAll('nav a');
+
+      function toggleMenu() {
+        hamburger.classList.toggle('active');
+        nav.classList.toggle('active');
+        overlay.classList.toggle('active');
+        document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
+      }
+
+      hamburger.addEventListener('click', toggleMenu);
+      overlay.addEventListener('click', toggleMenu);
+
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          if (nav.classList.contains('active')) toggleMenu();
+        });
+      });
+    });
+  </script>
+  <script src="js/chatbot_v2.js"></script>
+</body>
+</html>

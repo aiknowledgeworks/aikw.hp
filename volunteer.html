@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ボランティア活動 | AIナレッジワークス合同会社</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="logo/AIナレッジワークス_logo_transparen.png">
+  <link rel="shortcut icon" type="image/x-icon" href="logo/AIナレッジワークス_logo_transparen.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="logo/AIナレッジワークス_logo_transparen.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="logo/AIナレッジワークス_logo_transparen.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="logo/AIナレッジワークス_logo_transparen.png">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWFLPN1EZH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-DWFLPN1EZH');
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* === Design System Tokens === */
+    :root {
+      --bg: #FAF8F5;
+      --ink: #2C2A26;
+      --ink-80: #2C2A26CC;
+      --ink-60: #2C2A2699;
+      --ink-40: #2C2A2666;
+      --ink-15: #2C2A2626;
+      --ink-08: #2C2A2614;
+      --paper: #FFFFFF;
+      --paper-2: #F3EFE9;
+      --paper-3: #EBE6DD;
+      --rule: #D9D3C7;
+      --link: #1B5FA0;
+      --accent: #3da8c7;
+      --brand-gradient: linear-gradient(135deg, #6db5ff 0%, #a1e9d9 100%);
+      --serif: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+      --sans: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
+      --display: "Fraunces", "Noto Serif JP", serif;
+      --page-pad: clamp(24px, 5vw, 72px);
+      --measure: 64ch;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.8;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    ul { list-style: none; padding: 0; margin: 0; }
+    hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
+
+    body::after {
+      content: "";
+      position: fixed; inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.9'/></svg>");
+    }
+
+    ::selection { background: var(--ink); color: var(--bg); }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 1.2s cubic-bezier(.2,.7,.2,1), transform 1.2s cubic-bezier(.2,.7,.2,1);
+    }
+    .reveal.in { opacity: 1; transform: none; }
+
+    .kicker {
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink-60);
+    }
+
+    .section {
+      padding: clamp(96px, 14vh, 160px) var(--page-pad);
+      max-width: 1680px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* === Header / Nav === */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 28px var(--page-pad);
+      display: flex; align-items: center; justify-content: space-between;
+      background: transparent;
+      border-bottom: 1px solid transparent;
+      transition: all .5s cubic-bezier(.2,.7,.2,1);
+    }
+    header.scrolled {
+      padding-top: 14px; padding-bottom: 14px;
+      background: color-mix(in srgb, var(--bg) 85%, transparent);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom-color: var(--rule);
+    }
+    .logo-link { display: flex; align-items: center; gap: 12px; }
+    .logo-link img { height: 40px; transition: height .5s cubic-bezier(.2,.7,.2,1); }
+    header.scrolled .logo-link img { height: 32px; }
+    .logo-link span { font-family: var(--serif); font-size: 17px; letter-spacing: 0.04em; font-weight: 500; }
+    nav ul { display: flex; gap: 28px; align-items: center; }
+    nav a { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-60); transition: color .3s; }
+    nav a:hover { color: var(--ink); }
+    .nav-cta { padding: 10px 18px; border: 1px solid var(--ink); margin-left: 8px; transition: all .3s; }
+    .nav-cta:hover { background: var(--ink); color: var(--bg); }
+
+    /* === Hero === */
+    .hero {
+      padding: 180px var(--page-pad) 100px;
+      max-width: 1680px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(40px, 6vw, 80px);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin: 0 0 20px;
+    }
+    .hero h1 em { font-family: var(--display); font-style: italic; }
+    .hero .tagline {
+      font-size: 17px;
+      color: var(--ink-60);
+      font-weight: 300;
+      margin: 0;
+    }
+    .suki { font-family: var(--display); font-style: italic; color: var(--ink); font-weight: 400; }
+
+    /* === Section headings === */
+    .section-heading { font-family: var(--serif); font-weight: 400; line-height: 1.2; letter-spacing: -0.01em; margin: 0; }
+    .section-heading em { font-family: var(--display); font-style: italic; }
+    .section-heading-md { font-size: clamp(34px, 4.5vw, 64px); }
+    .section-heading-sm { font-size: clamp(28px, 3.5vw, 48px); }
+
+    .paragraph { margin: 0; font-size: 16px; line-height: 2; color: var(--ink-60); }
+
+    /* === Two-column layout === */
+    .grid-sidebar { display: grid; grid-template-columns: 200px 1fr; gap: 48px; align-items: start; }
+    .sidebar-sticky { position: sticky; top: 140px; }
+
+    /* === Cards === */
+    .card-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      padding: clamp(24px, 3vw, 40px);
+    }
+    .card h3 {
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 500;
+      margin: 0 0 12px;
+      color: var(--ink);
+    }
+    .card p {
+      font-size: 14px;
+      line-height: 1.9;
+      color: var(--ink-60);
+      margin: 0;
+    }
+
+    /* === CTA === */
+    .cta-center { text-align: center; max-width: 1100px; margin: 0 auto; }
+    .btn-fill {
+      display: inline-flex; align-items: center;
+      padding: 20px 36px;
+      background: var(--ink); color: var(--bg);
+      font-size: 14px; letter-spacing: 0.16em; text-transform: uppercase;
+      transition: all .3s;
+    }
+    .btn-fill:hover { opacity: 0.85; }
+
+    /* === Photo mosaic === */
+    .photo-mosaic {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: auto;
+      gap: 12px;
+      max-width: 1680px;
+      margin: 0 auto;
+      padding: 0 var(--page-pad);
+    }
+    .photo-mosaic .photo-item {
+      overflow: hidden;
+      border-radius: 6px;
+      position: relative;
+    }
+    .photo-mosaic .photo-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .6s cubic-bezier(.2,.7,.2,1);
+    }
+    .photo-mosaic .photo-item:hover img { transform: scale(1.04); }
+    .photo-item-hero { grid-column: 1 / 8; grid-row: 1 / 3; min-height: 420px; }
+    .photo-item-top { grid-column: 8 / 13; grid-row: 1 / 2; min-height: 204px; }
+    .photo-item-bottom-left { grid-column: 8 / 11; grid-row: 2 / 3; min-height: 204px; }
+    .photo-item-bottom-right { grid-column: 11 / 13; grid-row: 2 / 3; min-height: 204px; }
+
+    /* === Video showcase === */
+    .video-showcase {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .video-card {
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+      aspect-ratio: 9 / 14;
+      background: var(--ink);
+    }
+    .video-card video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* === Logo breathing === */
+    @keyframes breathe {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      25% { transform: scale(1.12) rotate(4deg); }
+    }
+    .logo-breathe { animation: breathe 4s cubic-bezier(.3,.8,.3,.4) infinite; transform-origin: center; }
+
+    /* === Footer === */
+    footer {
+      border-top: 1px solid var(--rule);
+      padding: 56px var(--page-pad) 40px;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      max-width: 1680px;
+      margin: 0 auto;
+    }
+    .footer-brand p { font-size: 13px; color: var(--ink-60); line-height: 2; margin-top: 16px; max-width: 340px; }
+    .footer-col-title { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-60); margin-bottom: 18px; }
+    .footer-col a { font-size: 14px; color: var(--ink); display: block; margin-bottom: 10px; transition: color .3s; }
+    .footer-col a:hover { color: var(--ink-60); }
+    .footer-bottom {
+      grid-column: 1 / -1;
+      padding-top: 32px; margin-top: 16px;
+      border-top: 1px solid var(--rule);
+      display: flex; justify-content: space-between;
+      font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--ink-60);
+    }
+
+    /* === Hamburger === */
+    .hamburger {
+      display: none;
+      width: 30px; height: 30px;
+      position: relative; cursor: pointer; z-index: 1010;
+      padding: 10px; box-sizing: content-box; margin: -10px;
+    }
+    .hamburger span {
+      display: block; position: absolute;
+      height: 1.5px; width: 100%;
+      background: var(--ink);
+      opacity: 1; left: 0;
+      transform: rotate(0deg);
+      transition: .25s ease-in-out;
+    }
+    .hamburger span:nth-child(1) { top: 0; }
+    .hamburger span:nth-child(2) { top: 9px; }
+    .hamburger span:nth-child(3) { top: 18px; }
+    .hamburger.active span:nth-child(1) { top: 9px; transform: rotate(135deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; left: -60px; }
+    .hamburger.active span:nth-child(3) { top: 9px; transform: rotate(-135deg); }
+
+    .overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.3);
+      z-index: 90;
+      opacity: 0; transition: opacity 0.3s ease;
+    }
+    .overlay.active { display: block; opacity: 1; }
+
+    /* === Responsive === */
+    @media (max-width: 1024px) {
+      .grid-sidebar { grid-template-columns: 1fr; gap: 32px; }
+      .sidebar-sticky { position: static; }
+      footer { grid-template-columns: 1fr 1fr; }
+      .photo-item-hero { grid-column: 1 / 13; grid-row: auto; min-height: 300px; }
+      .photo-item-top { grid-column: 1 / 13; grid-row: auto; min-height: 260px; }
+      .photo-item-bottom-left { grid-column: 1 / 7; grid-row: auto; min-height: 220px; }
+      .photo-item-bottom-right { grid-column: 7 / 13; grid-row: auto; min-height: 220px; }
+    }
+
+    @media (max-width: 1024px) and (min-width: 769px) {
+      .hamburger { display: block; }
+      nav {
+        position: fixed; top: 0; right: -100%;
+        width: 80%; max-width: 360px; height: 100vh;
+        background: var(--bg);
+        box-shadow: -2px 0 20px rgba(0,0,0,0.08);
+        transition: 0.3s ease;
+        padding-top: 80px; z-index: 95;
+        overflow-y: auto;
+      }
+      nav.active { right: 0; }
+      nav ul { flex-direction: column; gap: 0; }
+      nav ul li a {
+        padding: 20px 32px; display: block;
+        border-bottom: 1px solid var(--rule);
+        font-size: 15px; letter-spacing: 0.08em;
+        text-transform: none; color: var(--ink);
+      }
+      nav ul li a::after { content: "\203A"; float: right; opacity: 0.4; font-size: 1.2em; }
+      .nav-cta { border: none; padding: 20px 32px; margin-left: 0; text-align: left; }
+      .nav-cta:hover { background: transparent; color: var(--ink); }
+    }
+
+    @media (max-width: 768px) {
+      .section { padding: clamp(64px, 10vh, 96px) var(--page-pad); }
+      .hero { padding: 140px var(--page-pad) 80px; }
+      .hero h1 { font-size: clamp(32px, 8vw, 48px); }
+      .card-grid-2 { grid-template-columns: 1fr; }
+      footer {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 40px var(--page-pad);
+      }
+      .footer-bottom { flex-direction: column; gap: 8px; }
+      .photo-mosaic { gap: 8px; }
+      .photo-item-hero { min-height: 240px; }
+      .photo-item-top { min-height: 200px; }
+      .photo-item-bottom-left, .photo-item-bottom-right { min-height: 180px; }
+      .video-showcase { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+
+      .hamburger { display: block; }
+      nav {
+        position: fixed; top: 0; right: -100%;
+        width: 80%; max-width: 300px; height: 100vh;
+        background: var(--bg);
+        box-shadow: -2px 0 20px rgba(0,0,0,0.08);
+        transition: 0.3s ease;
+        padding-top: 80px; z-index: 95;
+        overflow-y: auto;
+      }
+      nav.active { right: 0; }
+      nav ul { flex-direction: column; gap: 0; }
+      nav ul li a {
+        padding: 18px 24px; display: block;
+        border-bottom: 1px solid var(--rule);
+        font-size: 14px; letter-spacing: 0.08em;
+        text-transform: none; color: var(--ink);
+      }
+      nav ul li a::after { content: "\203A"; float: right; opacity: 0.4; font-size: 1.2em; }
+      .nav-cta { border: none; padding: 18px 24px; margin-left: 0; text-align: left; }
+      .nav-cta:hover { background: transparent; color: var(--ink); }
+    }
+
+    @media (max-width: 480px) {
+      .section-heading-md { font-size: clamp(26px, 7vw, 36px); }
+      .section-heading-sm { font-size: clamp(22px, 6vw, 30px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+      .logo-breathe { animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <!-- === Header === -->
+  <header id="site-header">
+    <a href="index.html" class="logo-link">
+      <img src="logo/AIナレッジワークス_logo_transparen.png" alt="AIナレッジワークス ロゴ" class="logo-breathe">
+      <span>AI Knowledge Works</span>
+    </a>
+    <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html#background">Background</a></li>
+        <li><a href="service.html">Services</a></li>
+        <li><a href="achievements.html">Achievements</a></li>
+        <li><a href="company.html">Company</a></li>
+        <li><a href="story.html">Team</a></li>
+        <li><a href="volunteer.html">Volunteer</a></li>
+        <li><a href="contact.html" class="nav-cta">Contact &rarr;</a></li>
+      </ul>
+    </nav>
+    <div class="overlay"></div>
+  </header>
+
+  <!-- === Hero === -->
+  <section class="hero">
+    <h1>AIまなび<em>ラボ</em></h1>
+    <p class="tagline">学童の子どもたちへ届けるAI体験ボランティア</p>
+  </section>
+
+  <hr>
+
+  <!-- === 01 — About === -->
+  <section class="section">
+    <div class="grid-sidebar">
+      <div class="sidebar-sticky reveal">
+        <div class="kicker">01 &mdash; 概要</div>
+      </div>
+      <div>
+        <h2 class="section-heading section-heading-md reveal" style="max-width: 20ch; margin-bottom: 48px;">
+          遊びながら<em>学ぶ</em>、<br>AIとの出会い。
+        </h2>
+        <p class="paragraph reveal" style="max-width: 64ch; margin-bottom: 32px;">
+          AIまなびラボ は、学童保育に通う子どもたちを対象に、AIツールを使ったものづくり体験を無償で提供するボランティア活動です。
+        </p>
+        <p class="paragraph reveal" style="max-width: 64ch;">
+          「難しそう」「自分には関係ない」――そんなAIへの先入観を、楽しい創作体験を通じて取り払い、次世代のデジタルリテラシーの土台を育みます。事業としてではなく、社会貢献活動として取り組んでいます。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- === 活動の様子 === -->
+  <section class="section" style="background: var(--paper-2);">
+    <div class="grid-sidebar">
+      <div class="sidebar-sticky reveal">
+        <div class="kicker">02 &mdash; 活動の様子</div>
+      </div>
+      <div>
+        <h2 class="section-heading section-heading-md reveal" style="max-width: 20ch; margin-bottom: 48px;">
+          教室の<em>風景</em>。
+        </h2>
+      </div>
+    </div>
+    <div class="photo-mosaic reveal">
+      <div class="photo-item photo-item-hero">
+        <img src="images/volunteer/teaching.jpg" alt="ボランティアスタッフが子どもにタブレットの使い方を教えている様子" loading="lazy">
+      </div>
+      <div class="photo-item photo-item-top">
+        <img src="images/volunteer/collaboration.jpg" alt="子どもがPCでAI制作に取り組む様子" loading="lazy">
+      </div>
+      <div class="photo-item photo-item-bottom-left">
+        <img src="images/volunteer/creating.jpg" alt="女の子がAIで画像を生成している様子" loading="lazy" style="object-position: center 25%;">
+      </div>
+      <div class="photo-item photo-item-bottom-right">
+        <img src="images/volunteer/exploring.jpg" alt="子どもがiPadでAI生成アートを鑑賞している様子" loading="lazy" style="object-position: center 30%;">
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- === 03 — Programs === -->
+  <section class="section">
+    <div class="grid-sidebar">
+      <div class="sidebar-sticky reveal">
+        <div class="kicker">03 &mdash; プログラム</div>
+      </div>
+      <div>
+        <h2 class="section-heading section-heading-md reveal" style="max-width: 20ch; margin-bottom: 48px;">
+          4つの<em>体験</em>プログラム
+        </h2>
+        <div class="card-grid-2">
+          <div class="card reveal">
+            <h3>画像生成AIワークショップ</h3>
+            <p>自分だけのキャラクターやイラストをAIで生成する体験を通じて、想像力とデジタルリテラシーを育みます。作品は印刷してお持ち帰りいただけます。</p>
+          </div>
+          <div class="card reveal">
+            <h3>AI音楽・動画制作体験</h3>
+            <p>AIを使ったオリジナル音楽の作曲や、ショート動画の制作に挑戦。「自分でつくれた」という成功体験が、子どもたちの学びへの意欲を引き出します。</p>
+          </div>
+          <div class="card reveal">
+            <h3>AIチャットで調べ学習</h3>
+            <p>ChatGPTなどの対話AIを使って、興味のあるテーマを深掘りする調べ学習を体験。AIへの質問の仕方や情報の見極め方を楽しく学びます。</p>
+          </div>
+          <div class="card reveal">
+            <h3>プレゼンテーション発表会</h3>
+            <p>AIで制作した作品を友達の前で発表する体験を通じて、表現力とコミュニケーション能力を養います。創作と発信の楽しさを実感できるプログラムです。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- === 04 — Works === -->
+  <section class="section" style="background: var(--paper-2);">
+    <div class="grid-sidebar">
+      <div class="sidebar-sticky reveal">
+        <div class="kicker">04 &mdash; 作品</div>
+      </div>
+      <div>
+        <h2 class="section-heading section-heading-md reveal" style="max-width: 20ch; margin-bottom: 16px;">
+          子どもたちの<em>作品</em>。
+        </h2>
+        <p class="paragraph reveal" style="max-width: 64ch; margin-bottom: 48px;">
+          AIで生成した画像をもとに、動画AIで命を吹き込んだショートアニメーション。子どもたちの自由な発想が形になりました。
+        </p>
+        <div class="video-showcase">
+          <div class="video-card reveal">
+            <video autoplay muted loop playsinline>
+              <source src="images/volunteer/video3.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="video-card reveal">
+            <video autoplay muted loop playsinline>
+              <source src="images/volunteer/video2.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="video-card reveal">
+            <video autoplay muted loop playsinline>
+              <source src="images/volunteer/video1.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- === 05 — Vision === -->
+  <section class="section">
+    <div class="grid-sidebar">
+      <div class="sidebar-sticky reveal">
+        <div class="kicker">05 &mdash; ビジョン</div>
+      </div>
+      <div>
+        <h2 class="section-heading section-heading-md reveal" style="max-width: 20ch; margin-bottom: 48px;">
+          なぜ<em>ボランティア</em>で<br>取り組むのか。
+        </h2>
+        <p class="paragraph reveal" style="max-width: 64ch; margin-bottom: 32px;">
+          AIは一部の専門家だけのものではありません。子どもたちが幼いうちからAIに触れ、「自分のアイデアを形にできる」という原体験を持つことが、これからの社会にとって大きな意味を持つと私たちは考えています。
+        </p>
+        <p class="paragraph reveal" style="max-width: 64ch;">
+          経済的な事情や地域の環境に左右されず、すべての子どもたちにAI体験の機会を届けるために、この活動を無償のボランティアとして続けていきます。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- === CTA === -->
+  <section class="section" style="padding-bottom: 120px;">
+    <div class="cta-center reveal">
+      <div class="kicker" style="display: inline-block;">Contact</div>
+      <h2 class="section-heading" style="font-size: clamp(48px, 8vw, 120px); line-height: 1.05; letter-spacing: -0.02em; margin: 20px 0;">
+        まずは<br><em>ご相談</em>から。
+      </h2>
+      <p class="paragraph" style="max-width: 520px; margin: 24px auto 48px; font-size: 17px;">
+        学童・教育機関での実施をご検討の方は、お気軽にお問い合わせください。
+      </p>
+      <a href="contact.html" class="btn-fill">
+        お問い合わせはこちら &nbsp;&rarr;
+      </a>
+    </div>
+  </section>
+
+  <!-- === Footer === -->
+  <footer>
+    <div class="footer-brand">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <img src="logo/AIナレッジワークス_logo_transparen.png" width="36" height="36" alt="" style="object-fit: contain;">
+        <span style="font-family: var(--serif); font-size: 17px; letter-spacing: 0.04em;">AI Knowledge Works</span>
+      </div>
+      <p>誰もが安心して、"好き"をかたちにできる社会をつくる。</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Pages</div>
+      <a href="service.html">Services</a>
+      <a href="achievements.html">Achievements</a>
+      <a href="company.html">Company</a>
+      <a href="story.html">Team</a>
+      <a href="volunteer.html">Volunteer</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Connect</div>
+      <a href="https://www.youtube.com/@AIKnowledgeWorks" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://note.com/aiknowledgeworks" target="_blank" rel="noopener">Note</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Office</div>
+      <span style="font-size: 14px; color: var(--ink);">Osaka, Japan</span>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 AI Knowledge Works, LLC.</span>
+    </div>
+  </footer>
+
+  <!-- === Scripts === -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('in');
+            revealObserver.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+      document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+      setTimeout(() => {
+        document.querySelectorAll('.reveal').forEach(el => {
+          if (!el.classList.contains('in')) el.classList.add('in');
+        });
+      }, 3000);
+
+      const header = document.getElementById('site-header');
+      window.addEventListener('scroll', () => {
+        header.classList.toggle('scrolled', window.scrollY > 40);
+      }, { passive: true });
+
+      const hamburger = document.querySelector('.hamburger');
+      const nav = document.querySelector('nav');
+      const overlay = document.querySelector('.overlay');
+      const navLinks = document.querySelectorAll('nav a');
+
+      function toggleMenu() {
+        hamburger.classList.toggle('active');
+        nav.classList.toggle('active');
+        overlay.classList.toggle('active');
+        document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
+      }
+
+      hamburger.addEventListener('click', toggleMenu);
+      overlay.addEventListener('click', toggleMenu);
+
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          if (nav.classList.contains('active')) toggleMenu();
+        });
+      });
+    });
+  </script>
+  <script src="js/chatbot_v2.js"></script>
+</body>
+</html>

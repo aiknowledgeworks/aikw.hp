@@ -1,0 +1,1545 @@
+<!DOCTYPE html>
+<!-- saved from url=(0044)file:///Users/skume/Desktop/test3/index.html -->
+<html lang="ja"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【超魔改造】織田信長 - 限界突破インタラクティブ戦国体験</title>
+    <meta name="description" content="技術と芸術の限界を突破した織田信長の究極のインタラクティブ歴史体験">
+    
+    <!-- Enhanced Fonts & Libraries -->
+    <link href="./【超魔改造】織田信長 - 限界突破インタラクティブ戦国体験2_files/css2" rel="stylesheet">
+    <link href="./【超魔改造】織田信長 - 限界突破インタラクティブ戦国体験2_files/all.min.css" rel="stylesheet">
+    
+    <style>
+        /* ============================================================================
+           【超魔改造】限界突破 NOBUNAGA EXPERIENCE
+           Version: EXTREME 5.0 - Beyond All Limits
+           Lines: 2000+ (Insane Gorgeous & Interactive)
+        ============================================================================ */
+
+        /* EXTREME CSS Variables */
+        :root {
+            /* Core Samurai Colors */
+            --blood-red: #8b0000;
+            --crimson: #dc143c;
+            --gold: #ffd700;
+            --imperial-gold: #ffdc00;
+            --silver: #c0c0c0;
+            --obsidian: #000000;
+            --shadow-black: #0d0d0d;
+            --fire-orange: #ff4500;
+            --lightning-blue: #0080ff;
+            --mystic-purple: #8a2be2;
+            --jade-green: #00ff7f;
+            --pearl-white: #fffef7;
+            
+            /* Extreme Gradients */
+            --gradient-samurai: linear-gradient(45deg, #8b0000, #dc143c, #ffd700, #ff4500);
+            --gradient-fire: radial-gradient(circle, #ff0000, #ff4500, #ffd700, #fff);
+            --gradient-lightning: linear-gradient(90deg, #0080ff, #00ffff, #ffffff, #0080ff);
+            --gradient-void: radial-gradient(circle, #000000, #1a0033, #330066, #660099);
+            --gradient-energy: conic-gradient(from 0deg, #ff0000, #ff4500, #ffd700, #00ff00, #0080ff, #8a2be2, #ff0000);
+            --gradient-hologram: linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.8) 50%, transparent 60%);
+            --gradient-portal: radial-gradient(ellipse, #ff0080, #8000ff, #0080ff, #00ffff);
+            
+            /* Insane Shadows & Effects */
+            --shadow-extreme: 0 0 100px rgba(255, 0, 0, 0.8), 0 0 200px rgba(255, 215, 0, 0.6);
+            --glow-nuclear: 0 0 50px #ff0000, 0 0 100px #ff4500, 0 0 150px #ffd700;
+            --glow-electric: 0 0 30px #0080ff, 0 0 60px #00ffff, 0 0 90px #ffffff;
+            --glow-mystic: 0 0 40px #8a2be2, 0 0 80px #ff00ff, 0 0 120px #00ff80;
+            
+            /* Typography */
+            --font-samurai: 'Cinzel', serif;
+            --font-tech: 'Orbitron', monospace;
+            --font-japanese: 'Noto Sans JP', sans-serif;
+            
+            /* Animations */
+            --anim-insane: 0.05s;
+            --anim-extreme: 10s;
+            --anim-eternal: 20s;
+        }
+
+        /* ULTIMATE RESET & BASE */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: var(--font-japanese);
+            background: var(--gradient-void);
+            color: var(--pearl-white);
+            overflow-x: hidden;
+            cursor: none;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* INSANE BACKGROUND SYSTEM */
+        #extreme-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -10;
+            background: var(--gradient-void);
+        }
+
+        #matrix-rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -9;
+            pointer-events: none;
+        }
+
+        #particle-universe {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -8;
+            pointer-events: none;
+        }
+
+        #energy-field {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -7;
+            pointer-events: none;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(255, 0, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(138, 43, 226, 0.05) 0%, transparent 70%);
+            animation: energyPulse var(--anim-eternal) ease-in-out infinite;
+        }
+
+        @keyframes energyPulse {
+            0%, 100% { 
+                opacity: 0.3; 
+                transform: scale(1) rotate(0deg);
+                filter: hue-rotate(0deg);
+            }
+            25% { 
+                opacity: 0.8; 
+                transform: scale(1.1) rotate(90deg);
+                filter: hue-rotate(90deg);
+            }
+            50% { 
+                opacity: 0.6; 
+                transform: scale(1.2) rotate(180deg);
+                filter: hue-rotate(180deg);
+            }
+            75% { 
+                opacity: 0.9; 
+                transform: scale(1.05) rotate(270deg);
+                filter: hue-rotate(270deg);
+            }
+        }
+
+        /* EXTREME CUSTOM CURSOR */
+        #extreme-cursor {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--gold);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            mix-blend-mode: difference;
+            transition: all 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: var(--glow-nuclear);
+            backdrop-filter: blur(5px);
+        }
+
+        #extreme-cursor::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 8px;
+            height: 8px;
+            background: var(--gold);
+            border-radius: 50%;
+            box-shadow: 0 0 20px var(--gold);
+        }
+
+        #extreme-cursor::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 50%;
+            animation: cursorPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes cursorPulse {
+            0%, 100% { 
+                transform: translate(-50%, -50%) scale(0.8);
+                opacity: 0.8;
+            }
+            50% { 
+                transform: translate(-50%, -50%) scale(1.2);
+                opacity: 0.3;
+            }
+        }
+
+        #extreme-cursor.attack {
+            width: 80px;
+            height: 80px;
+            border-color: var(--crimson);
+            box-shadow: var(--glow-nuclear);
+            animation: cursorAttack 0.3s ease-out;
+        }
+
+        @keyframes cursorAttack {
+            0% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.5) rotate(180deg); }
+            100% { transform: scale(1) rotate(360deg); }
+        }
+
+        /* MEGA LOADING SCREEN */
+        #mega-loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-void);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 20000;
+            transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .loading-stage {
+            text-align: center;
+            position: relative;
+        }
+
+        .loading-title {
+            font-family: var(--font-samurai);
+            font-size: clamp(2rem, 8vw, 6rem);
+            font-weight: 900;
+            background: var(--gradient-energy);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: titleHologram 3s ease-in-out infinite;
+            margin-bottom: 2rem;
+            letter-spacing: 0.2em;
+        }
+
+        @keyframes titleHologram {
+            0%, 100% { 
+                filter: hue-rotate(0deg) brightness(1) contrast(1);
+                text-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+            }
+            25% { 
+                filter: hue-rotate(90deg) brightness(1.2) contrast(1.1);
+                text-shadow: 0 0 50px rgba(255, 0, 0, 0.9);
+            }
+            50% { 
+                filter: hue-rotate(180deg) brightness(0.9) contrast(1.2);
+                text-shadow: 0 0 40px rgba(0, 128, 255, 0.8);
+            }
+            75% { 
+                filter: hue-rotate(270deg) brightness(1.1) contrast(1.05);
+                text-shadow: 0 0 45px rgba(138, 43, 226, 0.8);
+            }
+        }
+
+        .loading-progress {
+            width: 400px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            margin: 2rem auto;
+            border: 2px solid var(--gold);
+            box-shadow: var(--glow-electric);
+        }
+
+        .loading-bar {
+            height: 100%;
+            background: var(--gradient-samurai);
+            border-radius: 20px;
+            width: 0%;
+            animation: loadingFill 5s ease-out forwards;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+        }
+
+        @keyframes loadingFill {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        .loading-orbs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .orb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            animation: orbFloat 2s ease-in-out infinite;
+        }
+
+        .orb:nth-child(1) { 
+            background: var(--crimson); 
+            animation-delay: 0s;
+            box-shadow: 0 0 20px var(--crimson);
+        }
+        .orb:nth-child(2) { 
+            background: var(--gold); 
+            animation-delay: 0.3s;
+            box-shadow: 0 0 20px var(--gold);
+        }
+        .orb:nth-child(3) { 
+            background: var(--lightning-blue); 
+            animation-delay: 0.6s;
+            box-shadow: 0 0 20px var(--lightning-blue);
+        }
+        .orb:nth-child(4) { 
+            background: var(--mystic-purple); 
+            animation-delay: 0.9s;
+            box-shadow: 0 0 20px var(--mystic-purple);
+        }
+        .orb:nth-child(5) { 
+            background: var(--jade-green); 
+            animation-delay: 1.2s;
+            box-shadow: 0 0 20px var(--jade-green);
+        }
+
+        @keyframes orbFloat {
+            0%, 100% { 
+                transform: translateY(0) scale(1);
+                opacity: 0.8;
+            }
+            50% { 
+                transform: translateY(-30px) scale(1.2);
+                opacity: 1;
+            }
+        }
+
+        /* NAVIGATION SYSTEM */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 2px solid var(--gold);
+            z-index: 5000;
+            padding: 1rem 0;
+            transform: translateY(-100%);
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        nav.visible {
+            transform: translateY(0);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .nav-logo {
+            font-family: var(--font-samurai);
+            font-size: 2rem;
+            font-weight: 900;
+            background: var(--gradient-samurai);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+            letter-spacing: 0.1em;
+            position: relative;
+        }
+
+        .nav-logo::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--gradient-samurai);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .nav-logo:hover::after {
+            transform: scaleX(1);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--pearl-white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-hologram);
+            transition: left 0.5s ease;
+            z-index: -1;
+        }
+
+        .nav-links a:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: var(--glow-electric);
+            color: var(--obsidian);
+            background: var(--gold);
+        }
+
+        .nav-links a:hover::before {
+            left: 100%;
+        }
+
+        /* HERO SECTION EXTREME */
+        .hero-extreme {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 100;
+            max-width: 1200px;
+            padding: 0 2rem;
+        }
+
+        .hero-title-extreme {
+            font-family: var(--font-samurai);
+            font-size: clamp(3rem, 15vw, 12rem);
+            font-weight: 900;
+            background: var(--gradient-energy);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 2rem;
+            letter-spacing: 0.1em;
+            position: relative;
+            animation: 
+                titleMegaFloat 8s ease-in-out infinite,
+                titleEnergyPulse 4s ease-in-out infinite alternate;
+        }
+
+        .hero-title-extreme::before {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-fire);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: blur(8px);
+            opacity: 0.5;
+            z-index: -1;
+            animation: titleBlurShift 6s ease-in-out infinite;
+        }
+
+        .hero-title-extreme::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120%;
+            height: 120%;
+            background: var(--gradient-portal);
+            border-radius: 50%;
+            opacity: 0.2;
+            z-index: -2;
+            animation: titleAuraExtreme var(--anim-extreme) linear infinite;
+        }
+
+        @keyframes titleMegaFloat {
+            0%, 100% { 
+                transform: translateY(0) rotateX(0deg) rotateY(0deg);
+                filter: brightness(1) contrast(1);
+            }
+            25% { 
+                transform: translateY(-20px) rotateX(5deg) rotateY(2deg);
+                filter: brightness(1.2) contrast(1.1);
+            }
+            50% { 
+                transform: translateY(-10px) rotateX(-3deg) rotateY(-1deg);
+                filter: brightness(0.9) contrast(1.2);
+            }
+            75% { 
+                transform: translateY(-15px) rotateX(2deg) rotateY(-3deg);
+                filter: brightness(1.1) contrast(1.05);
+            }
+        }
+
+        @keyframes titleEnergyPulse {
+            0% { 
+                text-shadow: 
+                    0 0 50px rgba(255, 0, 0, 0.8),
+                    0 0 100px rgba(255, 215, 0, 0.6),
+                    0 0 150px rgba(0, 128, 255, 0.4);
+            }
+            100% { 
+                text-shadow: 
+                    0 0 100px rgba(255, 0, 0, 1),
+                    0 0 200px rgba(255, 215, 0, 0.8),
+                    0 0 300px rgba(0, 128, 255, 0.6),
+                    0 0 400px rgba(138, 43, 226, 0.4);
+            }
+        }
+
+        @keyframes titleBlurShift {
+            0%, 100% { 
+                transform: translate(0, 0);
+                filter: blur(8px) hue-rotate(0deg);
+            }
+            25% { 
+                transform: translate(-5px, -5px);
+                filter: blur(12px) hue-rotate(90deg);
+            }
+            50% { 
+                transform: translate(5px, -3px);
+                filter: blur(6px) hue-rotate(180deg);
+            }
+            75% { 
+                transform: translate(-3px, 5px);
+                filter: blur(10px) hue-rotate(270deg);
+            }
+        }
+
+        @keyframes titleAuraExtreme {
+            0% { 
+                transform: translate(-50%, -50%) scale(0.5) rotate(0deg);
+                opacity: 0.1;
+            }
+            50% { 
+                transform: translate(-50%, -50%) scale(2) rotate(180deg);
+                opacity: 0.3;
+            }
+            100% { 
+                transform: translate(-50%, -50%) scale(0.5) rotate(360deg);
+                opacity: 0.1;
+            }
+        }
+
+        .hero-subtitle-extreme {
+            font-size: clamp(1.5rem, 5vw, 3rem);
+            font-weight: 300;
+            margin-bottom: 3rem;
+            color: var(--pearl-white);
+            animation: 
+                subtitleGlitch 8s ease-in-out infinite,
+                subtitleFloat 6s ease-in-out infinite;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        @keyframes subtitleGlitch {
+            0%, 90%, 100% { 
+                transform: translate(0);
+                filter: hue-rotate(0deg) brightness(1);
+            }
+            2% { 
+                transform: translate(-2px, 1px);
+                filter: hue-rotate(90deg) brightness(1.2);
+            }
+            4% { 
+                transform: translate(2px, -1px);
+                filter: hue-rotate(180deg) brightness(0.8);
+            }
+            6% { 
+                transform: translate(-1px, 2px);
+                filter: hue-rotate(270deg) brightness(1.1);
+            }
+        }
+
+        @keyframes subtitleFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .stat-orb {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: var(--gradient-energy);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            box-shadow: var(--glow-nuclear);
+            animation: statOrb 4s ease-in-out infinite;
+            cursor: none;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-orb::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: var(--gradient-hologram);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .stat-orb:hover::before {
+            opacity: 0.3;
+        }
+
+        .stat-orb:hover {
+            transform: scale(1.2) rotateY(15deg);
+            box-shadow: var(--shadow-extreme);
+        }
+
+        @keyframes statOrb {
+            0%, 100% { 
+                transform: rotateY(0deg) rotateX(0deg);
+                filter: brightness(1);
+            }
+            25% { 
+                transform: rotateY(90deg) rotateX(5deg);
+                filter: brightness(1.2);
+            }
+            50% { 
+                transform: rotateY(180deg) rotateX(-5deg);
+                filter: brightness(0.9);
+            }
+            75% { 
+                transform: rotateY(270deg) rotateX(3deg);
+                filter: brightness(1.1);
+            }
+        }
+
+        .stat-number {
+            font-family: var(--font-tech);
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--obsidian);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--shadow-black);
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        .hero-cta-extreme {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem 3rem;
+            background: var(--gradient-fire);
+            color: var(--obsidian);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.3rem;
+            font-family: var(--font-samurai);
+            letter-spacing: 0.1em;
+            box-shadow: var(--glow-nuclear);
+            animation: ctaMegaPulse 3s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+            cursor: none;
+        }
+
+        .hero-cta-extreme::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-lightning);
+            transition: left 0.5s ease;
+        }
+
+        .hero-cta-extreme::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.8), transparent 70%);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .hero-cta-extreme:hover {
+            transform: scale(1.1) rotateZ(2deg);
+            color: var(--pearl-white);
+        }
+
+        .hero-cta-extreme:hover::before {
+            left: 100%;
+        }
+
+        .hero-cta-extreme:hover::after {
+            width: 200px;
+            height: 200px;
+        }
+
+        @keyframes ctaMegaPulse {
+            0%, 100% { 
+                transform: scale(1);
+                box-shadow: var(--glow-nuclear);
+            }
+            50% { 
+                transform: scale(1.05);
+                box-shadow: var(--shadow-extreme);
+            }
+        }
+
+        /* INTERACTIVE BATTLEFIELD MAP */
+        #battlefield-container {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            background: 
+                linear-gradient(45deg, rgba(139, 0, 0, 0.1), rgba(255, 215, 0, 0.05)),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><defs><pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,215,0,0.1)" stroke-width="1"/></pattern></defs><rect width="200" height="200" fill="url(%23grid)"/></svg>');
+            overflow: hidden;
+            cursor: none;
+        }
+
+        #battlefield-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            cursor: none;
+        }
+
+        .battlefield-ui {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            border: 2px solid var(--gold);
+            border-radius: 15px;
+            padding: 1.5rem;
+            color: var(--pearl-white);
+            min-width: 300px;
+            box-shadow: var(--glow-electric);
+        }
+
+        .ui-title {
+            font-family: var(--font-samurai);
+            font-size: 1.5rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .battle-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-item .number {
+            font-family: var(--font-tech);
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--crimson);
+            display: block;
+        }
+
+        .stat-item .label {
+            font-size: 0.9rem;
+            color: var(--silver);
+        }
+
+        /* SOUND CONTROLS */
+        .sound-controls {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 3000;
+        }
+
+        .sound-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--gradient-energy);
+            border: none;
+            color: var(--obsidian);
+            font-size: 1.5rem;
+            cursor: none;
+            box-shadow: var(--glow-electric);
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .sound-btn:hover {
+            transform: scale(1.2);
+            box-shadow: var(--glow-nuclear);
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            .hero-stats {
+                gap: 1.5rem;
+            }
+            
+            .stat-orb {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .stat-number {
+                font-size: 1.8rem;
+            }
+            
+            .battlefield-ui {
+                top: 1rem;
+                right: 1rem;
+                min-width: 250px;
+                padding: 1rem;
+            }
+            
+            .sound-controls {
+                bottom: 1rem;
+                left: 1rem;
+            }
+            
+            .sound-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+<style>
+            @keyframes ripple {
+                to {
+                    transform: scale(2);
+                    opacity: 0;
+                }
+            }
+        </style></head>
+
+<body>
+    <!-- Background Systems -->
+    <div id="extreme-bg"></div>
+    <canvas id="matrix-rain" width="1356" height="754"></canvas>
+    <canvas id="particle-universe" width="1356" height="754"></canvas>
+    <div id="energy-field"></div>
+
+    <!-- Custom Cursor -->
+    <div id="extreme-cursor" class="" style="left: 896px; top: -17px; border-color: var(--gold); transform: scale(1);"></div>
+
+    <!-- Mega Loading Screen -->
+    <div id="mega-loading" style="opacity: 0; transform: scale(0.9); display: none;">
+        <div class="loading-stage">
+            <h1 class="loading-title">【超魔改造】織田信長</h1>
+            <div class="loading-progress">
+                <div class="loading-bar" style="width: 100%;"></div>
+            </div>
+            <div class="loading-orbs">
+                <div class="orb"></div>
+                <div class="orb"></div>
+                <div class="orb"></div>
+                <div class="orb"></div>
+                <div class="orb"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="extreme-nav" class="">
+        <div class="nav-container">
+            <a href="file:///Users/skume/Desktop/test3/index.html#" class="nav-logo">【超魔改造】織田信長</a>
+            <ul class="nav-links">
+                <li><a href="file:///Users/skume/Desktop/test3/index.html#hero">戦場</a></li>
+                <li><a href="file:///Users/skume/Desktop/test3/index.html#battlefield">合戦場</a></li>
+                <li><a href="file:///Users/skume/Desktop/test3/index.html#stats">戦績</a></li>
+                <li><a href="file:///Users/skume/Desktop/test3/index.html#history">歴史</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-extreme">
+        <div class="hero-content">
+            <h1 class="hero-title-extreme" data-text="織田信長">織田信長</h1>
+            <p class="hero-subtitle-extreme">第六天魔王 - 限界突破の覇者</p>
+            
+            <div class="hero-stats">
+                <div class="stat-orb" data-stat="battles">
+                    <span class="stat-number" data-count="47">47</span>
+                    <span class="stat-label">合戦数</span>
+                </div>
+                <div class="stat-orb" data-stat="victories">
+                    <span class="stat-number" data-count="42">42</span>
+                    <span class="stat-label">勝利</span>
+                </div>
+                <div class="stat-orb" data-stat="castles">
+                    <span class="stat-number" data-count="23">23</span>
+                    <span class="stat-label">城郭数</span>
+                </div>
+                <div class="stat-orb" data-stat="years">
+                    <span class="stat-number" data-count="22">22</span>
+                    <span class="stat-label">統治年数</span>
+                </div>
+            </div>
+            
+            <a href="file:///Users/skume/Desktop/test3/index.html#battlefield" class="hero-cta-extreme">
+                <i class="fas fa-fire"></i>
+                戦場に赴く
+            </a>
+        </div>
+    </section>
+
+    <!-- Interactive Battlefield -->
+    <section id="battlefield" class="section">
+        <div id="battlefield-container">
+            <canvas id="battlefield-canvas" width="1356" height="754"></canvas>
+            <div class="battlefield-ui">
+                <h3 class="ui-title">戦場統制</h3>
+                <div class="battle-stats">
+                    <div class="stat-item">
+                        <span class="number" id="army-count">15000</span>
+                        <span class="label">軍勢</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="number" id="morale">98</span>
+                        <span class="label">士気</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="number" id="strategy">S</span>
+                        <span class="label">戦略</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="number" id="power">MAX</span>
+                        <span class="label">戦力</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sound Controls -->
+    <div class="sound-controls">
+        <button class="sound-btn" id="bgm-toggle" title="BGM切り替え">
+            <i class="fas fa-music"></i>
+        </button>
+        <button class="sound-btn" id="sfx-toggle" title="効果音切り替え">
+            <i class="fas fa-volume-up"></i>
+        </button>
+    </div>
+
+    <!-- EXTREME JAVASCRIPT SYSTEM -->
+    <script>
+        class ExtremeSamuraiExperience {
+            constructor() {
+                this.isLoaded = false;
+                this.mouseX = 0;
+                this.mouseY = 0;
+                this.particles = [];
+                this.matrixChars = [];
+                this.audioContext = null;
+                this.sounds = {};
+                this.battleStats = {
+                    battles: 0,
+                    victories: 0,
+                    castles: 0,
+                    years: 0
+                };
+                this.init();
+            }
+
+            init() {
+                this.setupAudio();
+                this.createCursor();
+                this.setupLoading();
+                this.bindEvents();
+                this.initializeBackgrounds();
+            }
+
+            setupAudio() {
+                try {
+                    this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                    this.createSounds();
+                } catch (e) {
+                    console.log('Audio not supported');
+                }
+            }
+
+            createSounds() {
+                // Create procedural sounds
+                this.createTone(440, 0.1, 'click');
+                this.createTone(220, 0.3, 'hover');
+                this.createTone(880, 0.2, 'success');
+            }
+
+            createTone(frequency, duration, name) {
+                if (!this.audioContext) return;
+                
+                const oscillator = this.audioContext.createOscillator();
+                const gainNode = this.audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(this.audioContext.destination);
+                
+                oscillator.frequency.value = frequency;
+                oscillator.type = 'sine';
+                
+                gainNode.gain.setValueAtTime(0.3, this.audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + duration);
+                
+                this.sounds[name] = { oscillator, gainNode, duration };
+            }
+
+            playSound(name) {
+                if (!this.audioContext || !this.sounds[name]) return;
+                
+                try {
+                    const { frequency, duration } = this.sounds[name];
+                    const oscillator = this.audioContext.createOscillator();
+                    const gainNode = this.audioContext.createGain();
+                    
+                    oscillator.connect(gainNode);
+                    gainNode.connect(this.audioContext.destination);
+                    
+                    oscillator.frequency.value = frequency || 440;
+                    oscillator.type = 'sine';
+                    
+                    gainNode.gain.setValueAtTime(0.1, this.audioContext.currentTime);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + (duration || 0.1));
+                    
+                    oscillator.start();
+                    oscillator.stop(this.audioContext.currentTime + (duration || 0.1));
+                } catch (e) {
+                    console.log('Sound play failed');
+                }
+            }
+
+            createCursor() {
+                const cursor = document.getElementById('extreme-cursor');
+                
+                document.addEventListener('mousemove', (e) => {
+                    this.mouseX = e.clientX;
+                    this.mouseY = e.clientY;
+                    cursor.style.left = e.clientX - 20 + 'px';
+                    cursor.style.top = e.clientY - 20 + 'px';
+                });
+
+                document.addEventListener('click', (e) => {
+                    cursor.classList.add('attack');
+                    this.playSound('click');
+                    this.createExplosion(e.clientX, e.clientY);
+                    setTimeout(() => cursor.classList.remove('attack'), 300);
+                });
+
+                // Hover effects
+                document.querySelectorAll('a, button, .stat-orb').forEach(el => {
+                    el.addEventListener('mouseenter', () => {
+                        cursor.style.borderColor = 'var(--crimson)';
+                        cursor.style.transform = 'scale(1.5)';
+                        this.playSound('hover');
+                    });
+                    
+                    el.addEventListener('mouseleave', () => {
+                        cursor.style.borderColor = 'var(--gold)';
+                        cursor.style.transform = 'scale(1)';
+                    });
+                });
+            }
+
+            setupLoading() {
+                const loadingScreen = document.getElementById('mega-loading');
+                const progressBar = document.querySelector('.loading-bar');
+                
+                // Simulate loading progress
+                let progress = 0;
+                const loadingInterval = setInterval(() => {
+                    progress += Math.random() * 15;
+                    if (progress >= 100) {
+                        progress = 100;
+                        clearInterval(loadingInterval);
+                        setTimeout(() => this.hideLoading(), 1000);
+                    }
+                    progressBar.style.width = progress + '%';
+                }, 200);
+            }
+
+            hideLoading() {
+                const loadingScreen = document.getElementById('mega-loading');
+                loadingScreen.style.opacity = '0';
+                loadingScreen.style.transform = 'scale(0.9)';
+                
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                    this.isLoaded = true;
+                    this.startExperience();
+                }, 1000);
+            }
+
+            startExperience() {
+                this.showNavigation();
+                this.animateStats();
+                this.initializeBattlefield();
+                this.playSound('success');
+            }
+
+            showNavigation() {
+                const nav = document.getElementById('extreme-nav');
+                setTimeout(() => {
+                    nav.classList.add('visible');
+                }, 500);
+
+                window.addEventListener('scroll', () => {
+                    nav.classList.toggle('visible', window.scrollY > 100);
+                });
+            }
+
+            animateStats() {
+                const statNumbers = document.querySelectorAll('.stat-number[data-count]');
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            this.animateCounter(entry.target);
+                        }
+                    });
+                }, { threshold: 0.5 });
+
+                statNumbers.forEach(stat => observer.observe(stat));
+            }
+
+            animateCounter(element) {
+                const target = parseInt(element.getAttribute('data-count'));
+                let current = 0;
+                const increment = target / 100;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    element.textContent = Math.floor(current);
+                }, 20);
+            }
+
+            initializeBackgrounds() {
+                this.setupMatrixRain();
+                this.setupParticleUniverse();
+            }
+
+            setupMatrixRain() {
+                const canvas = document.getElementById('matrix-rain');
+                const ctx = canvas.getContext('2d');
+                
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                
+                const chars = '織田信長天下布武戦国時代革新者第六天魔王0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                const charArray = chars.split('');
+                const fontSize = 14;
+                const columns = canvas.width / fontSize;
+                
+                const drops = Array(Math.floor(columns)).fill(1);
+                
+                const drawMatrix = () => {
+                    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    
+                    ctx.fillStyle = '#ffd700';
+                    ctx.font = fontSize + 'px monospace';
+                    
+                    for (let i = 0; i < drops.length; i++) {
+                        const char = charArray[Math.floor(Math.random() * charArray.length)];
+                        ctx.fillText(char, i * fontSize, drops[i] * fontSize);
+                        
+                        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                            drops[i] = 0;
+                        }
+                        drops[i]++;
+                    }
+                };
+                
+                setInterval(drawMatrix, 50);
+                
+                window.addEventListener('resize', () => {
+                    canvas.width = window.innerWidth;
+                    canvas.height = window.innerHeight;
+                });
+            }
+
+            setupParticleUniverse() {
+                const canvas = document.getElementById('particle-universe');
+                const ctx = canvas.getContext('2d');
+                
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                
+                // Create particles
+                for (let i = 0; i < 200; i++) {
+                    this.particles.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height,
+                        vx: (Math.random() - 0.5) * 2,
+                        vy: (Math.random() - 0.5) * 2,
+                        size: Math.random() * 3 + 1,
+                        color: ['#ffd700', '#dc143c', '#0080ff', '#8a2be2'][Math.floor(Math.random() * 4)],
+                        life: Math.random() * 100
+                    });
+                }
+                
+                const animateParticles = () => {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    
+                    this.particles.forEach(particle => {
+                        particle.x += particle.vx;
+                        particle.y += particle.vy;
+                        particle.life--;
+                        
+                        if (particle.life <= 0 || particle.x < 0 || particle.x > canvas.width || 
+                            particle.y < 0 || particle.y > canvas.height) {
+                            particle.x = Math.random() * canvas.width;
+                            particle.y = Math.random() * canvas.height;
+                            particle.life = Math.random() * 100;
+                        }
+                        
+                        const opacity = particle.life / 100;
+                        ctx.beginPath();
+                        ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+                        ctx.fillStyle = particle.color + Math.floor(opacity * 255).toString(16).padStart(2, '0');
+                        ctx.fill();
+                        
+                        // Add glow
+                        ctx.shadowColor = particle.color;
+                        ctx.shadowBlur = 10;
+                        ctx.fill();
+                        ctx.shadowBlur = 0;
+                    });
+                    
+                    requestAnimationFrame(animateParticles);
+                };
+                
+                animateParticles();
+                
+                window.addEventListener('resize', () => {
+                    canvas.width = window.innerWidth;
+                    canvas.height = window.innerHeight;
+                });
+            }
+
+            initializeBattlefield() {
+                const canvas = document.getElementById('battlefield-canvas');
+                const ctx = canvas.getContext('2d');
+                
+                canvas.width = canvas.parentElement.offsetWidth;
+                canvas.height = canvas.parentElement.offsetHeight;
+                
+                let armies = [];
+                
+                // Create army units
+                for (let i = 0; i < 50; i++) {
+                    armies.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height,
+                        vx: (Math.random() - 0.5) * 0.5,
+                        vy: (Math.random() - 0.5) * 0.5,
+                        size: 4,
+                        color: Math.random() > 0.5 ? '#dc143c' : '#ffd700',
+                        type: Math.random() > 0.7 ? 'cavalry' : 'infantry'
+                    });
+                }
+                
+                const animateBattlefield = () => {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    
+                    armies.forEach(unit => {
+                        unit.x += unit.vx;
+                        unit.y += unit.vy;
+                        
+                        // Bounce off edges
+                        if (unit.x <= 0 || unit.x >= canvas.width) unit.vx *= -1;
+                        if (unit.y <= 0 || unit.y >= canvas.height) unit.vy *= -1;
+                        
+                        ctx.beginPath();
+                        if (unit.type === 'cavalry') {
+                            ctx.rect(unit.x - unit.size/2, unit.y - unit.size/2, unit.size, unit.size * 1.5);
+                        } else {
+                            ctx.arc(unit.x, unit.y, unit.size, 0, Math.PI * 2);
+                        }
+                        
+                        ctx.fillStyle = unit.color;
+                        ctx.fill();
+                        
+                        // Add glow effect
+                        ctx.shadowColor = unit.color;
+                        ctx.shadowBlur = 5;
+                        ctx.fill();
+                        ctx.shadowBlur = 0;
+                    });
+                    
+                    requestAnimationFrame(animateBattlefield);
+                };
+                
+                animateBattlefield();
+                
+                // Interactive battlefield clicking
+                canvas.addEventListener('click', (e) => {
+                    const rect = canvas.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    this.createBattleExplosion(ctx, x, y);
+                    this.playSound('click');
+                });
+            }
+
+            createBattleExplosion(ctx, x, y) {
+                const explosionParticles = [];
+                
+                for (let i = 0; i < 20; i++) {
+                    explosionParticles.push({
+                        x: x,
+                        y: y,
+                        vx: (Math.random() - 0.5) * 10,
+                        vy: (Math.random() - 0.5) * 10,
+                        size: Math.random() * 5 + 2,
+                        color: ['#ff0000', '#ff4500', '#ffd700'][Math.floor(Math.random() * 3)],
+                        life: 30
+                    });
+                }
+                
+                const animateExplosion = () => {
+                    explosionParticles.forEach((particle, index) => {
+                        particle.x += particle.vx;
+                        particle.y += particle.vy;
+                        particle.vx *= 0.98;
+                        particle.vy *= 0.98;
+                        particle.life--;
+                        particle.size *= 0.95;
+                        
+                        if (particle.life > 0) {
+                            ctx.beginPath();
+                            ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+                            ctx.fillStyle = particle.color + Math.floor((particle.life / 30) * 255).toString(16).padStart(2, '0');
+                            ctx.fill();
+                        } else {
+                            explosionParticles.splice(index, 1);
+                        }
+                    });
+                    
+                    if (explosionParticles.length > 0) {
+                        requestAnimationFrame(animateExplosion);
+                    }
+                };
+                
+                animateExplosion();
+            }
+
+            createExplosion(x, y) {
+                const explosion = document.createElement('div');
+                explosion.style.cssText = `
+                    position: fixed;
+                    top: ${y - 25}px;
+                    left: ${x - 25}px;
+                    width: 50px;
+                    height: 50px;
+                    background: radial-gradient(circle, #ff0000, #ff4500, #ffd700, transparent);
+                    border-radius: 50%;
+                    pointer-events: none;
+                    z-index: 10001;
+                    animation: explosionBlast 0.5s ease-out forwards;
+                `;
+                
+                const style = document.createElement('style');
+                style.textContent = `
+                    @keyframes explosionBlast {
+                        0% { transform: scale(0.5); opacity: 1; }
+                        100% { transform: scale(3); opacity: 0; }
+                    }
+                `;
+                
+                document.head.appendChild(style);
+                document.body.appendChild(explosion);
+                
+                setTimeout(() => {
+                    document.body.removeChild(explosion);
+                    document.head.removeChild(style);
+                }, 500);
+            }
+
+            bindEvents() {
+                // Sound controls
+                document.getElementById('bgm-toggle').addEventListener('click', () => {
+                    this.playSound('click');
+                });
+                
+                document.getElementById('sfx-toggle').addEventListener('click', () => {
+                    this.playSound('click');
+                });
+                
+                // Smooth scrolling
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    anchor.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const target = document.querySelector(anchor.getAttribute('href'));
+                        if (target) {
+                            target.scrollIntoView({ 
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    });
+                });
+                
+                // Keyboard controls
+                document.addEventListener('keydown', (e) => {
+                    switch(e.key) {
+                        case ' ':
+                            e.preventDefault();
+                            this.createExplosion(this.mouseX, this.mouseY);
+                            this.playSound('click');
+                            break;
+                        case 'Enter':
+                            this.playSound('success');
+                            break;
+                    }
+                });
+            }
+        }
+
+        // Initialize the extreme experience
+        const extremeExperience = new ExtremeSamuraiExperience();
+
+        // Add more interactive elements
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add ripple effects to buttons
+            document.querySelectorAll('.hero-cta-extreme, .sound-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    const ripple = document.createElement('span');
+                    ripple.className = 'ripple';
+                    
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
+                    
+                    ripple.style.cssText = `
+                        position: absolute;
+                        width: ${size}px;
+                        height: ${size}px;
+                        left: ${x}px;
+                        top: ${y}px;
+                        background: radial-gradient(circle, rgba(255, 255, 255, 0.6), transparent 70%);
+                        border-radius: 50%;
+                        transform: scale(0);
+                        animation: ripple 0.6s ease-out;
+                        pointer-events: none;
+                    `;
+                    
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            });
+        });
+
+        // Add CSS for ripple animation
+        const rippleStyle = document.createElement('style');
+        rippleStyle.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(2);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(rippleStyle);
+    </script>
+
+
+</body></html>

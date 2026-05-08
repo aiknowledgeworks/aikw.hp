@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>画像が動くページ v5 | Rich CSS + Longer Scroll + Optimized Rows</title>
+  <meta name="description" content="より長いスクロール領域と、列画像の表示遅延を改善した可逆スクロール演出。" />
+
+  <!-- Preload local row images to avoid late appearance when off-screen -->
+  <link rel="preload" as="image" href="assets/forest.jpg" />
+  <link rel="preload" as="image" href="assets/jellyfish.jpg" />
+  <link rel="preload" as="image" href="assets/snow.jpg" />
+  <link rel="preload" as="image" href="assets/lion.jpg" />
+  <link rel="preload" as="image" href="assets/street.jpg" />
+  <link rel="preload" as="image" href="assets/night.jpg" />
+  <link rel="preload" as="image" href="assets/woods.jpg" />
+  <link rel="preload" as="image" href="assets/lake.jpg" />
+
+  <style>
+    :root{
+      --bg: #0b0c10;
+      --bg-2: #0e121a;
+      --fg: #e6eef5;
+      --muted: #9fb3c8;
+      --accentA: #7dd3fc;
+      --accentB: #a78bfa;
+      --accentC: #f472b6;
+      --radius: 18px;
+      --radius-sm: 14px;
+      --shadow-lg: 0 30px 60px -10px rgba(0,0,0,.5), 0 16px 40px -20px rgba(0,0,0,.35);
+      --shadow-md: 0 22px 40px -12px rgba(0,0,0,.38);
+    }
+
+    html, body { height: 100%; }
+    body{
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--fg);
+      background:
+        radial-gradient(1200px 600px at 50% -10%, #121822 0%, var(--bg) 60%),
+        linear-gradient(135deg, #0a0f14 0%, #0e1014 100%);
+      overflow-x: hidden;
+    }
+
+    header{
+      position: sticky; top: 0; z-index: 10;
+      backdrop-filter: saturate(140%) blur(10px);
+      background: linear-gradient(to bottom, rgba(18,21,28,.76), rgba(18,21,28,.28));
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .container{ width: min(1200px, 92vw); margin: 0 auto; position: relative; z-index: 1; }
+    .header-inner{ display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 0; }
+    .logo{
+      font-weight: 800; letter-spacing: .4px; font-size: 1.05rem;
+      background: linear-gradient(90deg, var(--accentA), var(--accentB), var(--accentC));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .tag{ color: var(--muted); font-size: .92rem; }
+
+    .hero{ padding: clamp(48px, 8vw, 96px) 0 24px; text-align: center; }
+    .hero h1{ margin: 0 0 8px; font-size: clamp(28px, 4.2vw, 46px); line-height: 1.1; letter-spacing: .2px; }
+    .hero p{ margin: 0; color: var(--muted); font-size: clamp(14px, 2.2vw, 18px); }
+
+    .stage{ perspective: 1200px; overflow-x: visible; position: relative; z-index: 1; }
+
+    /* より長いスクロールにする（前より深いセクション） */
+    .section{ min-height: 160vh; display: grid; place-items: center; padding: 40px 0; }
+    .spacer{ height: 40vh; }
+    .spacer--bottom{ height: 80vh; } /* 末尾に余白を追加してノートを中央にできるように */
+
+    /* カード（グラデ境界） */
+    .card{
+      width: min(60vw, 680px); aspect-ratio: 4/3; border-radius: var(--radius);
+      position: relative; isolation: isolate; box-shadow: var(--shadow-lg);
+      background:
+        linear-gradient(#0e1217, #0e1217) padding-box,
+        conic-gradient(from 180deg, rgba(125,211,252,.55), rgba(167,139,250,.55), rgba(244,114,182,.55), rgba(125,211,252,.55)) border-box;
+      border: 1px solid transparent; overflow: hidden;
+    }
+    .card img{ width: 100%; height: 100%; object-fit: cover; display:block; border-radius: calc(var(--radius) - 6px); }
+
+    /* タイル（列の中） */
+    .tile{
+      --i: 0; flex: 0 0 auto; width: clamp(160px, 22vw, 240px); aspect-ratio: 4/3;
+      border-radius: var(--radius-sm); overflow: hidden; position: relative; box-shadow: var(--shadow-md);
+      background:
+        linear-gradient(#0f141b, #0f141b) padding-box,
+        linear-gradient(120deg, rgba(125,211,252,.5), rgba(167,139,250,.5)) border-box;
+      border: 1px solid transparent;
+    }
+    .tile img{ width:100%; height:100%; object-fit: cover; display:block; border-radius: calc(var(--radius-sm) - 6px); backface-visibility: hidden; }
+
+    /* 進捗 p（0..1）で線形補間。p=0は画面外、p=1は中央 */
+    .reveal{ --p: 0; will-change: transform; transition: none; }
+    .from-left  { --ox: -80vw; --ry0: 22deg;  --sDelta: .04; transform-origin: left  center; }
+    .from-right { --ox:  80vw; --ry0: -22deg; --sDelta: .04; transform-origin: right center; }
+    .from-bottom{ --oy:  80vh; --rx0: 18deg;  --sDelta: .06; transform-origin: center bottom; }
+    .reveal{ transform:
+        translate3d(
+          calc(var(--ox, 0vw) * (1 - var(--p))),
+          calc(var(--oy, 0vh) * (1 - var(--p))), 0)
+        rotateX(calc(var(--rx0, 0deg) * (1 - var(--p))))
+        rotateY(calc(var(--ry0, 0deg) * (1 - var(--p))))
+        scale(calc(1 - var(--sDelta, 0) * (1 - var(--p))));
+    }
+
+    /* 列（複数）: 親.rowのpを使い、列全体を可逆移動（間隔は常に一定） */
+    .row{ --p: 0; --dir: 1; --dist: 120vw; width: min(1200px, 92vw); display: flex; gap: clamp(12px, 2vw, 20px); flex-wrap: nowrap; align-items: center; justify-content: center; }
+    .row--from-left { --dir: -1; }
+    .row--grouped{ will-change: transform; transition: none; width: fit-content; margin-inline: auto; transform: translate3d(calc(var(--dir) * var(--dist) * (1 - var(--p))), 0, 0); }
+
+    .notes{ color: var(--muted); text-align:center; padding: 28px 0 80px; }
+    .notes code{ background: rgba(255,255,255,.08); padding: 2px 6px; border-radius: 6px; }
+
+    @media (prefers-reduced-motion: reduce){
+      .reveal, .row{ transform: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-inner">
+      <div class="logo">Animated Images v5</div>
+      <div class="tag">より長いスクロール + 列の遅延対策</div>
+    </div>
+  </header>
+
+  <main class="stage">
+    <section class="hero container">
+      <h1>長いスクロールでもリズムよく、可逆に</h1>
+      <p>列画像の“表示が遅れる”現象を回避するため、プリロードと eager ロードを採用しました。</p>
+    </section>
+
+    <!-- 単体（1〜2） -->
+    <section class="section">
+      <figure class="card reveal from-left">
+        <img src="assets/mountain.jpg" alt="霧がかった山と湖" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='assets/placeholder.svg';" />
+      </figure>
+    </section>
+    <section class="section">
+      <figure class="card reveal from-right">
+        <img src="assets/dog.jpg" alt="外を見つめる犬" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='assets/placeholder.svg';" />
+      </figure>
+    </section>
+
+    <!-- 列（3,4）: グループ移動で等間隔・重なりなし（eager 読み込みで遅延回避） -->
+    <section class="section">
+      <div class="row row--from-right row--grouped" aria-label="右から入場する画像列（グループ移動）">
+        <figure class="tile"><img src="assets/forest.jpg" alt="川辺の森" loading="eager" decoding="async" onerror="this.onerror=null;this.src='assets/placeholder.svg';" /></figure>
+        <figure class="tile"><img src="assets/jellyfish.jpg" alt="クラゲの写真" loading="eager" decoding="async" onerror="this.onerror=null;this.src='assets/placeholder.svg';" /></figure>
+        <figure class="tile"><img src="assets/snow.jpg" alt="雪山" loading="eager" decoding="async" onerror="this.onerror=null;this.src='assets/placeholder.svg';" /></figure>
+        <figure class="tile"><img src="assets/lion.jpg" alt="ライオンのポートレート" loading="eager" decoding="async" onerror="this.onerror=null;this.src='assets/placeholder.svg';" /></figure>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="row row--from-left row--grouped" aria-label="左から入場する画像列（グループ移動）">
+        <figure class="tile"><img src="assets/street.jpg" alt="街角" loading="eager" decoding="async" onerror="this.onerror=null;this.src='assets/placeholder.svg';" /></figure>
+        <figure class="tile"><img src="assets/night.jpg" alt="夜景" loading="eager" decoding="async" onerror="this.onerror=null;this.src='assets/placeholder.svg';" /></figure>
+        <figure class="tile"><img src="assets/woods.jpg" alt="森の風景" loading="eager" decoding="async" onerror="this.onerror=null;this.src='assets/placeholder.svg';" /></figure>
+        <figure class="tile"><img src="assets/lake.jpg" alt="湖畔" loading="eager" decoding="async" onerror="this.onerror=null;this.src='assets/placeholder.svg';" /></figure>
+      </div>
+    </section>
+
+    <section class="spacer"></section>
+    <section class="container notes" id="notes">
+      画像は <code>picsum.photos</code> を使用。列画像の遅延は <code>loading="lazy"</code> が原因となるため、行では <code>loading="eager"</code> と <code>preload</code> を併用しています。
+    </section>
+    <section class="spacer spacer--bottom" aria-hidden="true"></section>
+  </main>
+
+  <script>
+    // 可逆スクロール：要素中心とビューポート中央の距離から p(0..1) を算出
+    const singles = Array.from(document.querySelectorAll('.reveal'));
+    const rows    = Array.from(document.querySelectorAll('.row'));
+
+    function computeProgress(el, vh){
+      const r = el.getBoundingClientRect();
+      const cy = r.top + r.height / 2;      // 要素の中心
+      const c  = vh * 0.5;                   // 画面中央
+      const isRow = el.classList.contains('row');
+      const range   = vh * (isRow ? 0.82 : 0.54);   // 影響範囲（列は広め）
+      const plateau = vh * (isRow ? 0.22 : 0.08);   // 中央滞留帯
+      const diff = Math.abs(cy - c);
+      if (diff <= plateau) return 1;
+      const eff = diff - plateau;
+      let p = 1 - (eff / (range - plateau));
+      // 滑らかな出入り（smoothstep）
+      if (p > 0 && p < 1) p = p*p*(3 - 2*p);
+      return Math.max(0, Math.min(1, p));
+    }
+
+    let rafId = null;
+    function update(){
+      rafId = null;
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      for (const el of singles){ el.style.setProperty('--p', computeProgress(el, vh).toFixed(3)); }
+      for (const el of rows){    el.style.setProperty('--p', computeProgress(el, vh).toFixed(3)); }
+    }
+    function onScroll(){ if (!rafId) rafId = requestAnimationFrame(update); }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    window.addEventListener('orientationchange', onScroll, { passive: true });
+    update();
+  </script>
+</body>
+</html>

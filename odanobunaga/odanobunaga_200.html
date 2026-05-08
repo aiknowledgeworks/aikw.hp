@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cyber Effects Template</title>
+  <meta name="description" content="背景グリッド、サーキット、カスタムカーソル、ホログラフィック・ローディング、粒子エフェクトのテンプレート" />
+
+  <!-- Fonts (optional, for the same look & feel as test3) -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700;900&family=Cinzel:wght@700;900&family=Orbitron:wght@400;700;900&family=Iceland:wght@400&family=Monoton:wght@400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================================
+       Cyber Background & Effects Template (extracted from test3.html)
+       Focus: background animation + core effects only / reusable structure
+       Sections included: grid, circuits, cursor, holo-loading, nav holo, hero particles
+    ============================================================================ */
+
+    /* Color System & Tokens */
+    :root {
+      /* Neon Colors */
+      --neon-pink: #ff0080;
+      --neon-cyan: #00ffff;
+      --neon-green: #00ff00;
+      --neon-yellow: #ffff00;
+      --neon-purple: #8000ff;
+
+      /* Core */
+      --cyber-black: #0a0a0a;
+      --cyber-dark: #1a1a2e;
+      --cyber-blue: #16213e;
+      --cyber-purple: #0f3460;
+
+      /* Backgrounds */
+      --gradient-cyber: linear-gradient(45deg, #ff0080, #00ffff, #8000ff);
+      --gradient-hologram: linear-gradient(45deg, transparent 30%, rgba(0,255,255,0.7) 50%, transparent 70%);
+      --gradient-plasma: radial-gradient(circle, #ff0080, #8000ff, #00ffff, #00ff00);
+      --gradient-void: radial-gradient(ellipse, #0a0a0a, #1a1a2e, #16213e);
+
+      /* Effects */
+      --glow-neon: 0 0 20px currentColor, 0 0 40px currentColor, 0 0 80px currentColor;
+      --glow-cyber: 0 0 30px #00ffff, 0 0 60px #ff0080, 0 0 90px #8000ff;
+      --blur-glass: blur(10px);
+
+      /* Typography */
+      --font-cyber: 'Orbitron', monospace;
+      --font-matrix: 'Monoton', monospace;
+      --font-samurai: 'Cinzel', serif;
+      --font-jp: 'Noto Sans JP', sans-serif;
+
+      /* Timing */
+      --anim-hyper: 0.1s;
+      --anim-cyber: 2s;
+      --anim-matrix: 5s;
+      --anim-eternal: 20s;
+    }
+
+    /* Reset */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body {
+      font-family: var(--font-cyber);
+      background: var(--gradient-void);
+      color: var(--neon-cyan);
+      overflow-x: hidden;
+      cursor: none; /* custom cursor */
+      min-height: 100vh;
+    }
+
+    /* Background Grid */
+    .cyber-grid {
+      position: fixed;
+      inset: 0;
+      background:
+        linear-gradient(rgba(0,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,255,255,0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
+      z-index: -10;
+      animation: gridShift var(--anim-eternal) linear infinite;
+    }
+    @keyframes gridShift {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(50px, 50px); }
+    }
+
+    /* Neon Circuits (lines injected by JS) */
+    .neon-circuits { position: fixed; inset: 0; z-index: -9; opacity: 0.2; }
+    .circuit-line { position: absolute; background: var(--neon-cyan); box-shadow: var(--glow-neon); }
+    .circuit-line.horizontal { height: 2px; animation: pulseHorizontal var(--anim-cyber) ease-in-out infinite alternate; }
+    .circuit-line.vertical { width: 2px; animation: pulseVertical var(--anim-cyber) ease-in-out infinite alternate; }
+    @keyframes pulseHorizontal { 0% { width: 0%; opacity: .3; } 100% { width: 100%; opacity: 1; } }
+    @keyframes pulseVertical { 0% { height: 0%; opacity: .3; } 100% { height: 100%; opacity: 1; } }
+
+    /* Custom Cyber Cursor */
+    #cyber-cursor {
+      position: fixed; width: 50px; height: 50px; border: 2px solid var(--neon-cyan); border-radius: 50%;
+      pointer-events: none; z-index: 10000; transition: all var(--anim-hyper) cubic-bezier(0.25,0.46,0.45,0.94);
+      box-shadow: var(--glow-cyber); backdrop-filter: var(--blur-glass);
+      transform: translate(-50%, -50%);
+    }
+    #cyber-cursor::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 10px; height: 10px; background: var(--neon-cyan); border-radius: 50%; box-shadow: 0 0 20px var(--neon-cyan); }
+    #cyber-cursor::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(45deg); width: 80px; height: 80px; border: 1px solid rgba(0,255,255,0.3); border-radius: 10px; animation: cursorSpin var(--anim-cyber) linear infinite; }
+    @keyframes cursorSpin { 0% { transform: translate(-50%, -50%) rotate(0deg); } 100% { transform: translate(-50%, -50%) rotate(360deg); } }
+    #cyber-cursor.hack-mode { width: 100px; height: 100px; border-color: var(--neon-pink); box-shadow: 0 0 50px var(--neon-pink), 0 0 100px var(--neon-purple); animation: hackPulse 0.2s ease-in-out infinite; }
+    @keyframes hackPulse { 0%,100% { transform: translate(-50%, -50%) scale(1); } 50% { transform: translate(-50%, -50%) scale(1.2); } }
+
+    /* Holographic Loading */
+    #holo-loading { position: fixed; inset: 0; background: var(--gradient-void); display: flex; justify-content: center; align-items: center; z-index: 20000; transition: all 1.2s cubic-bezier(0.19,1,0.22,1); }
+    .loading-holo { text-align: center; position: relative; }
+    .holo-title { font-family: var(--font-matrix); font-size: clamp(2rem, 10vw, 8rem); color: var(--neon-cyan); text-shadow: var(--glow-cyber); animation: holoGlitch var(--anim-cyber) ease-in-out infinite; margin-bottom: 2.5rem; letter-spacing: 0.3em; }
+    @keyframes holoGlitch { 0%,90%,100% { opacity: 1; transform: translate(0); filter: hue-rotate(0deg);} 2%,4% { opacity:.8; transform: translate(-2px,1px); filter:hue-rotate(90deg);} 6%,8% { opacity:.9; transform: translate(2px,-1px); filter:hue-rotate(180deg);} }
+    .holo-scanner { width: min(500px, 80vw); height: 20px; background: rgba(0,255,255,0.1); border: 2px solid var(--neon-cyan); border-radius: 20px; overflow: hidden; margin: 1.5rem auto; position: relative; }
+    .scanner-beam { height: 100%; width: 100px; background: var(--gradient-cyber); border-radius: 20px; animation: scannerMove 3s ease-in-out infinite; box-shadow: var(--glow-cyber); }
+    @keyframes scannerMove { 0% { transform: translateX(-100px);} 100% { transform: translateX(500px);} }
+    .data-stream { font-family: var(--font-cyber); font-size: .85rem; color: var(--neon-green); margin-top: 1rem; text-align: left; max-width: 600px; line-height: 1.4; }
+    .data-line { opacity: 0; animation: dataAppear .5s ease-out forwards; }
+    .data-line:nth-child(1){animation-delay:.4s}.data-line:nth-child(2){animation-delay:.8s}.data-line:nth-child(3){animation-delay:1.2s}.data-line:nth-child(4){animation-delay:1.6s}.data-line:nth-child(5){animation-delay:2s}
+    @keyframes dataAppear { 0% { opacity:0; transform: translateX(-50px);} 100% { opacity:1; transform: translateX(0);} }
+
+    /* Holographic Navigation */
+    nav { position: fixed; top: 0; left: 0; width: 100%; background: rgba(10,10,10,0.9); backdrop-filter: var(--blur-glass); border-bottom: 2px solid var(--neon-cyan); z-index: 5000; padding: .75rem 0; transform: translateY(-100%); transition: all .5s cubic-bezier(0.34,1.56,0.64,1); }
+    nav.visible { transform: translateY(0); }
+    nav::before { content: ''; position: absolute; inset: 0; background: var(--gradient-hologram); opacity: .1; animation: holoSweep 4s ease-in-out infinite; }
+    @keyframes holoSweep { 0%,100% { transform: translateX(-100%);} 50% { transform: translateX(100%);} }
+    .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 1.5rem; position: relative; z-index: 2; }
+    .nav-logo { font-family: var(--font-matrix); font-size: 1.4rem; color: var(--neon-cyan); text-decoration: none; text-shadow: var(--glow-neon); letter-spacing: .08em; animation: logoFlicker var(--anim-cyber) ease-in-out infinite alternate; }
+    @keyframes logoFlicker { 0% { opacity: .8;} 100% { opacity: 1;} }
+    .nav-links { display: flex; list-style: none; gap: 1rem; }
+    .nav-link a { color: var(--neon-green); text-decoration: none; font-weight: 600; font-size: .95rem; padding: .6rem 1rem; border: 2px solid transparent; border-radius: 25px; background: rgba(0,255,0,0.1); backdrop-filter: var(--blur-glass); transition: all var(--anim-hyper) ease; position: relative; overflow: hidden; }
+    .nav-link a::before { content: ''; position: absolute; inset: 0; left: -100%; background: var(--gradient-hologram); transition: left .5s ease; }
+    .nav-link a:hover { border-color: var(--neon-cyan); color: var(--cyber-black); background: var(--neon-cyan); box-shadow: var(--glow-neon); transform: scale(1.05); }
+    .nav-link a:hover::before { left: 100%; }
+
+    /* Hero with Particle Canvas */
+    .hero-cyber { height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; perspective: 1000px; }
+    .hero-bg-effects { position: absolute; inset: 0; z-index: 1; }
+    .hero-content { position: relative; z-index: 100; text-align: center; max-width: 1100px; padding: 0 1.5rem; }
+    .cyber-title { position: relative; font-family: var(--font-matrix); font-size: clamp(3rem, 12vw, 8rem); background: var(--gradient-cyber); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 50px rgba(0,255,255,.5); margin-bottom: 1rem; letter-spacing: .08em; animation: cyberFloat var(--anim-matrix) ease-in-out infinite, cyberGlow var(--anim-cyber) ease-in-out infinite alternate; transform-style: preserve-3d; }
+    .cyber-title::before { content: attr(data-text); position: absolute; inset: 0; background: var(--gradient-plasma); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; filter: blur(10px); opacity: .7; z-index: -1; animation: titleDistort 3s ease-in-out infinite; }
+    @keyframes cyberFloat { 0%,100% { transform: rotateX(0) rotateY(0) translateZ(0);} 25% { transform: rotateX(5deg) rotateY(10deg) translateZ(20px);} 50% { transform: rotateX(-3deg) rotateY(-5deg) translateZ(-10px);} 75% { transform: rotateX(2deg) rotateY(-8deg) translateZ(15px);} }
+    @keyframes cyberGlow { 0% { filter: brightness(1) contrast(1) hue-rotate(0deg); text-shadow: 0 0 50px rgba(0,255,255,.5);} 100% { filter: brightness(1.3) contrast(1.2) hue-rotate(180deg); text-shadow: 0 0 100px rgba(255,0,128,.8);} }
+    @keyframes titleDistort { 0%,100% { transform: scale(1) skew(0deg); filter: blur(10px);} 50% { transform: scale(1.02) skew(1deg); filter: blur(15px);} }
+    .cyber-subtitle { font-family: var(--font-cyber); font-size: clamp(1rem, 3.5vw, 2rem); color: var(--neon-pink); opacity: .95; letter-spacing: .2em; }
+
+    /* Accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+    }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+    *:focus { outline: 2px solid var(--neon-cyan); outline-offset: 2px; }
+  </style>
+</head>
+
+<body>
+  <!-- Background Layers -->
+  <div class="cyber-grid"></div>
+  <div class="neon-circuits" id="neon-circuits"></div>
+
+  <!-- Custom Cursor -->
+  <div id="cyber-cursor" aria-hidden="true"></div>
+
+  <!-- Holographic Loading -->
+  <div id="holo-loading" role="status" aria-live="polite">
+    <div class="loading-holo">
+      <h1 class="holo-title">CYBER SAMURAI</h1>
+      <div class="holo-scanner">
+        <div class="scanner-beam"></div>
+      </div>
+      <div class="data-stream" aria-hidden="true">
+        <div class="data-line">&gt;&gt;&gt; システム初期化中...</div>
+        <div class="data-line">&gt;&gt;&gt; ホログラフィック・インターフェース展開</div>
+        <div class="data-line">&gt;&gt;&gt; サイバーサムライ・プロトコル起動</div>
+        <div class="data-line">&gt;&gt;&gt; 織田信長 AI システム読み込み中...</div>
+        <div class="data-line">&gt;&gt;&gt; 接続完了 - ようこそ</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation (minimal) -->
+  <nav id="cyber-nav">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo">CYBER 織田信長</a>
+      <ul class="nav-links">
+        <li class="nav-link"><a href="#hero">Hero</a></li>
+        <li class="nav-link"><a href="#effects">Effects</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero with particle background -->
+  <section id="hero" class="hero-cyber" aria-label="Hero">
+    <div class="hero-bg-effects">
+      <canvas id="hero-canvas"></canvas>
+    </div>
+    <div class="hero-content">
+      <h1 class="cyber-title" data-text="織田信長">織田信長</h1>
+      <p class="cyber-subtitle">CYBER SAMURAI - DIMENSION BREAKER</p>
+    </div>
+  </section>
+
+  <section id="effects" style="min-height: 50vh"></section>
+
+  <script>
+    // Cyber Effects (modular, reusable)
+    class CyberEffects {
+      constructor(options = {}) {
+        this.opts = Object.assign({
+          circuits: true,
+          cursor: true,
+          holoLoading: true,
+          navRevealOnLoad: true,
+          heroParticles: true,
+          smoothScroll: true,
+          hackBurstOnClick: true,
+        }, options);
+
+        // runtime state
+        this.mouseX = window.innerWidth / 2;
+        this.mouseY = window.innerHeight / 2;
+        this.cursorEl = document.getElementById('cyber-cursor');
+        this.navEl = document.getElementById('cyber-nav');
+        this.circuitsEl = document.getElementById('neon-circuits');
+        this.heroCanvas = document.getElementById('hero-canvas');
+        this.ctx = this.heroCanvas?.getContext('2d') || null;
+
+        this.init();
+      }
+
+      init() {
+        if (this.opts.circuits) this.initCircuits();
+        if (this.opts.cursor) this.initCursor();
+        if (this.opts.holoLoading) this.initHoloLoading();
+        if (this.opts.heroParticles) this.initHeroParticles();
+        if (this.opts.smoothScroll) this.bindSmoothScroll();
+        if (this.opts.hackBurstOnClick) this.bindHackBurst();
+        this.bindResize();
+      }
+
+      // Neon circuit lines
+      initCircuits() {
+        if (!this.circuitsEl) return;
+        const W = window.innerWidth;
+        const H = window.innerHeight;
+
+        const addLine = (type, pos) => {
+          const line = document.createElement('div');
+          line.className = `circuit-line ${type}`;
+          if (type === 'horizontal') {
+            line.style.top = pos + 'px';
+            line.style.left = '0';
+            line.style.width = '100%';
+          } else {
+            line.style.left = pos + 'px';
+            line.style.top = '0';
+            line.style.height = '100%';
+          }
+          this.circuitsEl.appendChild(line);
+        };
+
+        // sparse lines for subtle effect
+        const rows = 6, cols = 6;
+        for (let i = 1; i < rows; i++) addLine('horizontal', Math.floor((H / rows) * i));
+        for (let j = 1; j < cols; j++) addLine('vertical', Math.floor((W / cols) * j));
+      }
+
+      // Custom cursor with hack mode on mousedown
+      initCursor() {
+        if (!this.cursorEl) return;
+
+        const move = (e) => {
+          this.mouseX = e.clientX; this.mouseY = e.clientY;
+          this.cursorEl.style.transform = `translate(${this.mouseX}px, ${this.mouseY}px)`;
+        };
+        document.addEventListener('mousemove', move);
+
+        const down = () => { this.cursorEl.classList.add('hack-mode'); };
+        const up = () => { this.cursorEl.classList.remove('hack-mode'); };
+        document.addEventListener('mousedown', down);
+        document.addEventListener('mouseup', up);
+      }
+
+      // Holo loading splash then reveal nav
+      initHoloLoading() {
+        const loading = document.getElementById('holo-loading');
+        if (!loading) return;
+        const reveal = () => {
+          loading.style.opacity = '0';
+          loading.style.transform = 'scale(1.02)';
+          setTimeout(() => loading.remove(), 800);
+          if (this.navEl && this.opts.navRevealOnLoad) this.navEl.classList.add('visible');
+        };
+        window.addEventListener('load', () => setTimeout(reveal, 1000));
+      }
+
+      // Canvas particles behind hero
+      initHeroParticles() {
+        if (!this.heroCanvas || !this.ctx) return;
+        const canvas = this.heroCanvas, ctx = this.ctx;
+        const resize = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; };
+        resize();
+
+        const particles = [];
+        const createParticle = () => ({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          vx: (Math.random() - 0.5) * 1.2,
+          vy: (Math.random() - 0.5) * 1.2,
+          size: Math.random() * 2 + 0.5,
+          life: Math.floor(Math.random() * 200) + 100,
+          color: ['#00ffff', '#ff0080', '#8000ff'][Math.floor(Math.random() * 3)]
+        });
+        for (let i = 0; i < 150; i++) particles.push(createParticle());
+
+        const animate = () => {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          particles.forEach((p, i) => {
+            p.x += p.vx; p.y += p.vy; p.life--;
+            if (p.life <= 0) particles[i] = createParticle();
+            if (p.x <= 0 || p.x >= canvas.width) p.vx *= -1;
+            if (p.y <= 0 || p.y >= canvas.height) p.vy *= -1;
+            const opacity = Math.max(0, Math.min(1, p.life / 200));
+            ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+            ctx.fillStyle = p.color + Math.floor(opacity * 255).toString(16).padStart(2, '0');
+            ctx.shadowBlur = 20; ctx.shadowColor = p.color; ctx.fill(); ctx.shadowBlur = 0;
+          });
+          requestAnimationFrame(animate);
+        };
+        animate();
+      }
+
+      // Smooth anchor links
+      bindSmoothScroll() {
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+          a.addEventListener('click', (e) => {
+            const target = document.querySelector(a.getAttribute('href'));
+            if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+          });
+        });
+      }
+
+      // Hack burst particles (click or spacebar)
+      bindHackBurst() {
+        const burst = (x, y) => {
+          for (let i = 0; i < 20; i++) {
+            const particle = document.createElement('div');
+            particle.style.cssText = `position: fixed; top:${y}px; left:${x}px; width:4px; height:4px; background:#ff0080; pointer-events:none; z-index:10001; box-shadow:0 0 10px #ff0080; animation:hackParticle 1s ease-out forwards;`;
+            const angle = (Math.PI * 2 * i) / 20;
+            const dist = Math.random() * 100 + 50;
+            const endX = x + Math.cos(angle) * dist;
+            const endY = y + Math.sin(angle) * dist;
+            particle.style.setProperty('--end-x', endX + 'px');
+            particle.style.setProperty('--end-y', endY + 'px');
+            document.body.appendChild(particle);
+            setTimeout(() => particle.remove(), 1000);
+          }
+          // inject keyframes once
+          if (!document.getElementById('hack-particles-style')) {
+            const style = document.createElement('style');
+            style.id = 'hack-particles-style';
+            style.textContent = `@keyframes hackParticle{0%{transform:translate(0,0) scale(1);opacity:1;}100%{transform:translate(var(--end-x,100px),var(--end-y,100px)) scale(0);opacity:0;}}`;
+            document.head.appendChild(style);
+          }
+        };
+        document.addEventListener('click', (e) => burst(e.clientX, e.clientY));
+        document.addEventListener('keydown', (e) => { if (e.key === ' ') { e.preventDefault(); burst(this.mouseX, this.mouseY); } });
+      }
+
+      bindResize() {
+        window.addEventListener('resize', () => {
+          if (this.heroCanvas) {
+            this.heroCanvas.width = window.innerWidth;
+            this.heroCanvas.height = window.innerHeight;
+          }
+        });
+      }
+    }
+
+    // Initialize
+    new CyberEffects();
+  </script>
+</body>
+</html>
+

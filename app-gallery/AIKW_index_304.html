@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>AIKW Particle Animation</title>
+    <style>
+        body { margin: 0; overflow: hidden; background-color: #000; }
+        canvas { display: block; }
+    </style>
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+</head>
+<body>
+    <script type="module">
+        import * as THREE from 'three';
+        import { FontLoader } from 'three/addons/loaders/FontLoader.js';
+        import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+        import { MeshSurfaceSampler } from 'three/addons/math/MeshSurfaceSampler.js';
+
+        // 1. シーンのセットアップ
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x050510);
+        scene.fog = new THREE.FogExp2(0x050510, 0.002);
+
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.z = 80; // 少し近づける
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        document.body.appendChild(renderer.domElement);
+
+        const controls = new OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.autoRotate = true; // カメラを自動回転させて3D感を強調
+        controls.autoRotateSpeed = 1.0;
+
+        // 2. フォントのロードとジオメトリ生成
+        const loader = new FontLoader();
+        loader.load('https://unpkg.com/three@0.160.0/examples/fonts/helvetiker_bold.typeface.json', function (font) {
+            
+            const textGeometry = new TextGeometry('AIKW', {
+                font: font,
+                size: 40,
+                height: 10,      // 厚みを増やして3D感を強調 (5 -> 10)
+                curveSegments: 12,
+                bevelEnabled: true,
+                bevelThickness: 2, // ベベルも少し厚く
+                bevelSize: 0.5,
+                bevelOffset: 0,
+                bevelSegments: 5
+            });
+
+            textGeometry.center();
+
+            // 3. パーティクルシステムの作成
+            // MeshSurfaceSamplerを使用して、文字の表面上に均等にパーティクルを配置する
+            const material = new THREE.MeshBasicMaterial();
+            const mesh = new THREE.Mesh(textGeometry, material);
+            
+            const sampler = new MeshSurfaceSampler(mesh).build();
+
+            const count = 30000; // パーティクル数を増やして密度を上げる (12000 -> 30000)
+            const pointsGeometry = new THREE.BufferGeometry();
+            
+            const positions = new Float32Array(count * 3);
+            const targets = new Float32Array(count * 3);
+            
+            const tempPosition = new THREE.Vector3();
+
+            for (let i = 0; i < count; i++) {
+                // A. 目標位置（文字の表面からサンプリング）
+                sampler.sample(tempPosition);
+                targets[i * 3] = tempPosition.x;
+                targets[i * 3 + 1] = tempPosition.y;
+                targets[i * 3 + 2] = tempPosition.z;
+
+                // B. 初期位置（画面全体に散らす）
+                positions[i * 3] = (Math.random() - 0.5) * 600;
+                positions[i * 3 + 1] = (Math.random() - 0.5) * 600;
+                positions[i * 3 + 2] = (Math.random() - 0.5) * 600;
+            }
+
+            pointsGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            pointsGeometry.setAttribute('target', new THREE.BufferAttribute(targets, 3));
+
+            const particlesMaterial = new THREE.PointsMaterial({
+                color: 0x88AAFF,
+                size: 0.6, // 密度が上がったので少し小さく
+                sizeAttenuation: true,
+                transparent: true,
+                opacity: 0.8,
+                blending: THREE.AdditiveBlending
+            });
+
+            const particleSystem = new THREE.Points(pointsGeometry, particlesMaterial);
+            scene.add(particleSystem);
+
+            // 4. アニメーションループ
+            const clock = new THREE.Clock();
+            
+            function animate() {
+                requestAnimationFrame(animate);
+
+                const time = clock.getElapsedTime();
+                
+                // サイクル設定
+                const convergeDuration = 2.0; // 集合にかかる時間
+                const stayDuration = 3.0;     // 停止する時間 (3秒)
+                const scatterDuration = 2.0;  // 散らばる時間
+                const waitDuration = 1.0;     // 散らばったまま待機する時間
+                const totalCycle = convergeDuration + stayDuration + scatterDuration + waitDuration;
+
+                const t = time % totalCycle;
+                let ease = 0;
+
+                if (t < convergeDuration) {
+                    // 集合中 (0 -> 1)
+                    const p = t / convergeDuration;
+                    ease = 1 - Math.pow(1 - p, 3); // Ease Out Cubic
+                } else if (t < convergeDuration + stayDuration) {
+                    // 停止中 (1)
+                    ease = 1;
+                } else if (t < convergeDuration + stayDuration + scatterDuration) {
+                    // 散開中 (1 -> 0)
+                    const p = (t - (convergeDuration + stayDuration)) / scatterDuration;
+                    ease = 1 - Math.pow(p, 3); // Ease In Cubic (逆再生的な動き)
+                } else {
+                    // 散開待機 (0)
+                    ease = 0;
+                }
+
+                const positionAttribute = pointsGeometry.attributes.position;
+                const targetAttribute = pointsGeometry.attributes.target;
+
+                for (let i = 0; i < count; i++) {
+                    const tx = targetAttribute.array[i * 3];
+                    const ty = targetAttribute.array[i * 3 + 1];
+                    const tz = targetAttribute.array[i * 3 + 2];
+
+                    // 散らばる時のランダムオフセット
+                    // 毎回計算すると重い＆ちらつくので、iに基づいて決定論的に計算
+                    const scrambleRange = 400;
+                    const offsetX = Math.sin(i * 0.1 + time * 0.5) * scrambleRange;
+                    const offsetY = Math.cos(i * 0.2 + time * 0.5) * scrambleRange;
+                    const offsetZ = Math.sin(i * 0.3 + time * 0.5) * scrambleRange;
+
+                    // ease = 1 のときターゲット位置、0 のときオフセット位置
+                    const currentX = tx + offsetX * (1 - ease);
+                    const currentY = ty + offsetY * (1 - ease);
+                    const currentZ = tz + offsetZ * (1 - ease);
+
+                    positionAttribute.array[i * 3] = currentX;
+                    positionAttribute.array[i * 3 + 1] = currentY;
+                    positionAttribute.array[i * 3 + 2] = currentZ;
+                }
+
+                positionAttribute.needsUpdate = true;
+
+                // 全体をゆっくり回転させて立体感を見せる
+                controls.update();
+                renderer.render(scene, camera);
+            }
+
+            animate();
+        });
+
+        window.addEventListener('resize', onWindowResize, false);
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google AI Studioで使う新しい道具たち</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap');
+    
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      font-family: 'M PLUS Rounded 1c', sans-serif;
+    }
+    
+    .slide-container {
+      width: 1280px;
+      height: 720px;
+      margin: 0 auto;
+      background-color: #a8e1f8;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .title {
+      color: #ff5a87;
+      text-shadow: 3px 3px 0 #ffffff, 5px 5px 0 #3bb4d7;
+      font-weight: 800;
+    }
+    
+    .content-box {
+      background-color: white;
+      border: 3px solid #3bb4d7;
+      border-radius: 20px;
+      box-shadow: 5px 5px 0 rgba(0,0,0,0.1);
+    }
+    
+    .tool-box {
+      background-color: white;
+      border: 3px solid #ffbe3d;
+      border-radius: 20px;
+      box-shadow: 5px 5px 0 rgba(0,0,0,0.1);
+    }
+    
+    .bubble {
+      position: absolute;
+      background-color: white;
+      border-radius: 50%;
+      opacity: 0.5;
+    }
+    
+    .decoration {
+      position: absolute;
+    }
+    
+    /* ルビタグのスタイル */
+    ruby {
+      ruby-align: center;
+    }
+    
+    rt {
+      font-size: 0.6em;
+      color: #666;
+      font-weight: normal;
+    }
+    
+    /* PDF化時のルビスタイル */
+    @media print {
+      rt {
+        font-size: 0.5em !important;
+        color: #333 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="slide-container p-6 flex flex-col">
+    <!-- 背景の装飾 -->
+    <div class="bubble" style="width: 80px; height: 80px; top: 10%; left: 5%;"></div>
+    <div class="bubble" style="width: 60px; height: 60px; top: 20%; right: 15%;"></div>
+    <div class="bubble" style="width: 100px; height: 100px; bottom: calc(15% + 100px); right: 5%;"></div>
+    <div class="bubble" style="width: 40px; height: 40px; bottom: 30%; left: 10%;"></div>
+    
+    <div class="decoration" style="top: 5%; right: 5%;">
+      <svg width="80" height="80" viewBox="0 0 100 100">
+        <polygon points="50,10 61,35 90,35 65,55 75,80 50,65 25,80 35,55 10,35 39,35" fill="#5ce68a" />
+      </svg>
+    </div>
+    
+    <div class="decoration" style="bottom: 5%; left: 5%;">
+      <svg width="60" height="60" viewBox="0 0 100 100">
+        <polygon points="50,10 61,35 90,35 65,55 75,80 50,65 25,80 35,55 10,35 39,35" fill="#ffbe3d" />
+      </svg>
+    </div>
+    
+    <!-- タイトル -->
+    <h1 class="title text-center text-4xl mb-4 mt-2">Google AI Studio で<ruby>使<rt>つか</rt></ruby>う<ruby>新<rt>あたら</rt></ruby>しいAIの<ruby>道具<rt>どうぐ</rt></ruby>たち</h1>
+    
+    <!-- 内容 -->
+    <div class="flex flex-col items-center justify-center flex-1">
+      <!-- Google AI Studio の説明 -->
+      <div class="content-box p-6 w-4/5 mb-6 text-center">
+        <div class="mb-4 flex items-center justify-center">
+          <i class="fas fa-robot text-6xl text-purple-500 mr-4"></i>
+          <p class="text-3xl font-bold text-purple-600">Google AI Studio</p>
+        </div>
+        <p class="text-xl mb-4">HTML、CSS、JavaScript を<ruby>使<rt>つか</rt></ruby>わないけど、JavaScript の<ruby>進化版<rt>しんかばん</rt></ruby>（TypeScript）を<ruby>使<rt>つか</rt></ruby>うよ！</p>
+        
+        <div class="bg-yellow-100 p-4 rounded-lg mt-4">
+          <p class="text-lg font-bold text-orange-600">
+            <ruby>今日<rt>きょう</rt></ruby><ruby>使<rt>つか</rt></ruby>うのは、コンピュータが<ruby>得意<rt>とくい</rt></ruby>でもうよく<ruby>知<rt>し</rt></ruby>っているから、<ruby>特<rt>とく</rt></ruby>に<ruby>気<rt>き</rt></ruby>にしないで！！
+          </p>
+        </div>
+      </div>
+      
+      <!-- 下部に補足説明 -->
+      <div class="w-full flex justify-between mt-4 gap-4">
+        <!-- TypeScript説明 -->
+        <div class="tool-box p-4 w-1/3">
+          <div class="flex items-center justify-center mb-4">
+            <div class="bg-blue-100 rounded-full p-6 w-24 h-24 flex items-center justify-center">
+              <i class="fas fa-shield-alt text-5xl text-blue-500"></i>
+            </div>
+          </div>
+          <h3 class="text-2xl font-bold text-blue-600 text-center">TypeScript</h3>
+          <span class="block text-center bg-blue-100 text-blue-700 font-bold px-3 py-2 rounded-full text-sm mb-3">さきに、<ruby>間違<rt>まちが</rt></ruby>いを<ruby>教<rt>おし</rt></ruby>えてくれる</span>
+          <p class="text-sm text-center mt-2">「JavaScriptに<ruby>お助<rt>おたす</rt></ruby>け<ruby>機能<rt>きのう</rt></ruby>がついたもの」</p>
+        </div>
+        
+        <!-- JSX/TSX説明 -->
+        <div class="tool-box p-4 w-1/3">
+          <div class="flex items-center justify-center mb-4">
+            <div class="bg-pink-100 rounded-full p-6 w-24 h-24 flex items-center justify-center">
+              <i class="fas fa-code text-5xl text-pink-500"></i>
+            </div>
+          </div>
+          <h3 class="text-2xl font-bold text-pink-600 text-center">JSX / TSX</h3>
+          <span class="block text-center bg-pink-100 text-pink-700 font-bold px-3 py-2 rounded-full text-sm mb-3">HTMLみたいに<ruby>書<rt>か</rt></ruby>けるJavaScript。それだけ！</span>
+          
+          <!-- 結論追記 -->
+          <div class="bg-pink-50 p-1 rounded mt-1 border border-pink-200">
+            <p class="text-xs font-bold text-pink-700 text-center">💡「<ruby>見<rt>み</rt></ruby>た<ruby>目<rt>め</rt></ruby>はHTML、<ruby>中身<rt>なかみ</rt></ruby>はJavaScript」</p>
+          </div>
+          
+          <!-- 正体説明追記 -->
+          <div class="bg-white p-1 rounded mt-1 border border-pink-200">
+            <p class="text-xs text-center text-pink-700">🔍<ruby>新<rt>あたら</rt></ruby>しい<ruby>言語<rt>げんご</rt></ruby>じゃないよ！JavaScriptの<ruby>お手伝<rt>おてつだ</rt></ruby>い<ruby>機能<rt>きのう</rt></ruby></p>
+          </div>
+        </div>
+        
+        <!-- React説明 -->
+        <div class="tool-box p-4 w-1/3">
+          <div class="flex items-center justify-center mb-4">
+            <div class="bg-yellow-100 rounded-full p-6 w-24 h-24 flex items-center justify-center">
+              <i class="fas fa-puzzle-piece text-5xl text-yellow-500"></i>
+            </div>
+          </div>
+          <h3 class="text-2xl font-bold text-yellow-600 text-center">React</h3>
+          <span class="block text-center bg-yellow-100 text-yellow-700 font-bold px-3 py-2 rounded-full text-sm mb-3">ウェブアプリの<ruby>部品<rt>ぶひん</rt></ruby>の<ruby>組<rt>く</rt></ruby>み<ruby>合<rt>あ</rt></ruby>わせの<ruby>決<rt>き</rt></ruby>まった<ruby>方法<rt>ほうほう</rt></ruby></span>
+          <p class="text-sm text-center mt-2">「レゴブロックみたいに、パーツを<ruby>組<rt>く</rt></ruby>み<ruby>合<rt>あ</rt></ruby>わせる」</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="slide-nav-plusPDF.js"></script>
+</body>
+</html>
