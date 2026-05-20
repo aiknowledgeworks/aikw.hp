@@ -301,7 +301,9 @@
       padding: 40px 0;
       border-bottom: 1px solid var(--rule);
       align-items: baseline;
+      transition: padding .5s cubic-bezier(.2,.7,.2,1), background .4s ease;
     }
+    .service-row:hover { padding-left: 24px; background: var(--paper-2); }
     .service-name {
       font-family: var(--serif);
       font-size: 26px;
@@ -640,6 +642,7 @@
       .item-num { display: none; }
       .item-title { font-size: clamp(20px, 5vw, 28px); }
       .service-row { grid-template-columns: 1fr; gap: 8px; }
+      .service-row:hover { padding-left: 0; }
       .service-desc { padding-left: 0; grid-column: auto; }
       footer {
         grid-template-columns: 1fr;
