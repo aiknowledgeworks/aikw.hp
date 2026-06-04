@@ -266,6 +266,228 @@
       .cert-item img { width: 100px; }
     }
 
+    /* === 内堀 editorial profile === */
+    .uc-feature { max-width: 720px; margin: 0 auto; }
+
+    /* Hero additions (reuse .team-hero / img / h3) */
+    .uc-nick {
+      display: inline-block;
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      color: var(--ink-60);
+      margin: 10px 0 0;
+    }
+    .uc-nick::before { content: "\201C"; }
+    .uc-nick::after { content: "\201D"; }
+    .uc-role {
+      font-family: var(--sans);
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      color: var(--ink-60);
+      margin: 14px 0 0;
+      line-height: 1.7;
+    }
+
+    /* Serif lede directly under the name */
+    .uc-lede {
+      font-family: var(--serif);
+      font-size: clamp(20px, 2.8vw, 27px);
+      font-weight: 400;
+      line-height: 1.85;
+      color: var(--ink);
+      letter-spacing: 0.01em;
+      text-align: center;
+      max-width: 22em;
+      margin: 36px auto 0;
+    }
+    .uc-lede em { font-family: var(--display); font-style: italic; }
+
+    /* Micro-highlight strip */
+    .uc-stats {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0;
+      margin: 56px auto 0;
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      max-width: 640px;
+    }
+    .uc-stat {
+      flex: 1 1 auto;
+      padding: 22px 26px;
+      text-align: center;
+      border-left: 1px solid var(--rule);
+    }
+    .uc-stat:first-child { border-left: none; }
+    .uc-stat b {
+      display: block;
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--ink);
+      letter-spacing: 0.01em;
+    }
+    .uc-stat span {
+      display: block;
+      font-family: var(--sans);
+      font-size: 10.5px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-40);
+      margin-top: 8px;
+    }
+
+    /* Editorial section label */
+    .uc-label {
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink-60);
+      margin: 0 0 28px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .uc-label::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    /* Prose */
+    .uc-body { margin-top: 72px; }
+    .uc-prose { max-width: 38em; }
+    .uc-prose p {
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 2.05;
+      color: var(--ink-80);
+      letter-spacing: 0.02em;
+      margin: 0 0 1.55em;
+      text-align: justify;
+      text-justify: inter-character;
+    }
+    .uc-prose p:last-child { margin-bottom: 0; }
+
+    /* Pull-quotes — quiet serif statements, hairline framed */
+    .uc-quote {
+      font-family: var(--serif);
+      font-weight: 400;
+      color: var(--ink);
+      margin: 64px auto;
+      padding: 0 0 0 28px;
+      border-left: 1px solid var(--rule);
+      position: relative;
+      max-width: 30em;
+    }
+    .uc-quote::before {
+      content: "";
+      position: absolute;
+      left: -1px;
+      top: 0;
+      width: 1px;
+      height: 2.2em;
+      background: var(--accent);
+    }
+    .uc-quote .uc-q-line {
+      display: block;
+      font-size: clamp(21px, 3vw, 29px);
+      line-height: 1.7;
+      letter-spacing: 0.02em;
+    }
+    .uc-quote .uc-q-line + .uc-q-line { margin-top: 0.5em; }
+    .uc-quote-strong { margin: 80px auto; }
+    .uc-quote-strong .uc-q-line { font-size: clamp(23px, 3.4vw, 33px); }
+
+    /* Credentials — editorial frame around the kept badge grid */
+    .uc-creds { margin-top: 80px; }
+    .uc-creds-text {
+      list-style: none;
+      margin: 0 0 48px;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0 40px;
+    }
+    .uc-creds-text li {
+      font-family: var(--serif);
+      font-size: 15.5px;
+      color: var(--ink-80);
+      line-height: 1.6;
+      padding: 13px 0;
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+    .uc-creds-text li .uc-cred-tag {
+      font-family: var(--sans);
+      font-size: 9.5px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-40);
+      flex-shrink: 0;
+    }
+    .uc-creds-sub {
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-40);
+      margin: 0 0 24px;
+    }
+
+    /* Hobbies — warm, light list */
+    .uc-hobbies { margin-top: 80px; }
+    .uc-hobbies ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .uc-hobbies li {
+      font-family: var(--sans);
+      font-size: 15.5px;
+      line-height: 1.85;
+      color: var(--ink-80);
+      padding: 18px 0;
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      gap: 18px;
+      align-items: baseline;
+    }
+    .uc-hobbies li:first-child { border-top: 1px solid var(--rule); }
+    .uc-hobbies li .uc-hobby-mark {
+      font-family: var(--display);
+      font-style: italic;
+      font-size: 15px;
+      color: var(--accent);
+      flex-shrink: 0;
+      line-height: 1.85;
+    }
+
+    @media (max-width: 768px) {
+      .uc-stats { max-width: 100%; }
+      .uc-stat { flex: 1 1 45%; border-left: none; }
+      .uc-stat:nth-child(odd) { border-right: 1px solid var(--rule); }
+      .uc-stat:nth-child(n+3) { border-top: 1px solid var(--rule); }
+      .uc-prose p { text-align: left; }
+      .uc-creds-text { grid-template-columns: 1fr; }
+      .uc-body, .uc-creds, .uc-hobbies { margin-top: 56px; }
+    }
+    @media (max-width: 480px) {
+      .uc-lede { font-size: 19px; max-width: 100%; }
+      .uc-quote { padding-left: 20px; margin: 48px auto; }
+      .uc-quote .uc-q-line { font-size: 20px; }
+      .uc-quote-strong .uc-q-line { font-size: 21px; }
+      .uc-stat { padding: 18px 14px; }
+      .uc-stat b { font-size: 19px; }
+      .uc-prose p { font-size: 15px; line-height: 1.95; }
+    }
+
     /* === CTA === */
     .cta-section {
       background: var(--ink);
@@ -464,51 +686,106 @@
         </h2>
       </div>
 
-      <!-- 内堀 善史 -->
+      <!-- 内堀 善史 / うっち〜 -->
       <div class="team-member">
-        <div class="team-hero reveal">
-          <img src="images/uchibori.jpg" alt="内堀 善史">
-          <h3>内堀 善史</h3>
-        </div>
+        <div class="uc-feature">
+          <div class="team-hero reveal">
+            <img src="images/uchibori.jpg" alt="内堀 善史">
+            <h3>内堀 善史</h3>
+            <span class="uc-nick">うっち〜</span>
+            <p class="uc-role">AI活用研修講師　／　ほめ言葉コレクター</p>
+            <p class="uc-lede">AIと<em>ほめ言葉</em>で、<br>人の可能性を引き出す。</p>
+          </div>
 
-        <ul class="team-expert reveal">
-          <li><span class="expert-badge">Expert</span>Microsoft Certified: Cybersecurity Architect Expert</li>
-          <li><span class="expert-badge">Expert</span>Microsoft 365 Certified: Enterprise Administrator Expert</li>
-        </ul>
+          <div class="uc-stats reveal">
+            <div class="uc-stat"><b>968<small style="font-size:13px;"> 語</small></b><span>ほめ言葉 収集中</span></div>
+            <div class="uc-stat"><b>2<small style="font-size:13px;"> km</small></b><span>週 水泳</span></div>
+            <div class="uc-stat"><b>大阪</b><span>対面 &amp; オンライン</span></div>
+          </div>
 
-        <div class="team-certs-title reveal">Certifications</div>
-        <div class="team-certs reveal">
-          <div class="cert-item">
-            <img src="images/certs/mct.png" alt="MCT">
-            <span>Microsoft Certified<br>Trainer</span>
+          <div class="uc-body reveal">
+            <div class="uc-label">Profile</div>
+            <div class="uc-prose">
+              <p>3浪目の秋、重度のうつ病で寝たきりになった時期がありました。それでも少しずつ回復し、上智大学法学部へ進学しました。</p>
+              <p>遠回りの多い人生でした。だからこそ今は、AI・学び・言葉の力を使って、人が一歩踏み出すきっかけをつくる活動をしています。</p>
+            </div>
+
+            <blockquote class="uc-quote reveal">
+              <span class="uc-q-line">人は何歳からでも変われる。</span>
+            </blockquote>
+
+            <div class="uc-prose reveal">
+              <p>PowerPointやTeamsなどのMicrosoftツールに、CopilotやClaudeなどの生成AIを組み合わせた、実務向けのAI活用研修を行っています。また、Microsoft 365の管理やサイバーセキュリティの知識も活かし、安心してAIを使うための考え方もお伝えしています。不動産分野での実務経験など、幅広い学びと経験も重ねてきました。</p>
+              <p>昔、こだわりの強さが良い方向に働き、マークシート用鉛筆を発明して、テレビや受験雑誌に出たこともあります。</p>
+              <p>今いちばん興味があるのは、道具そのものよりも、人の中にある魅力や可能性を見つけることです。</p>
+              <p>現在は、研修活動と並行して、人の魅力を見つけるために、ほめ言葉を968語収集中。言葉ひとつで、人の表情が変わる瞬間が好きです。</p>
+              <p>AIが苦手な方にも、難しい言葉をできるだけ使わず、「これなら使えそう」と思ってもらえる研修を目指しています。</p>
+              <p>大阪を拠点に、対面・オンラインで活動しています。</p>
+              <p>がんばっている方、これから変わりたい方、AIに少し不安がある方の背中を、そっと押せる存在でありたいです。</p>
+            </div>
+
+            <blockquote class="uc-quote uc-quote-strong reveal">
+              <span class="uc-q-line">完璧な人より、復活できる人でありたい。</span>
+              <span class="uc-q-line">すごい人になれなくても、人を元気にできる人でありたい。</span>
+            </blockquote>
           </div>
-          <div class="cert-item">
-            <img src="images/certs/ms-900.png" alt="MS-900">
-            <span>Microsoft 365<br>Fundamentals</span>
+
+          <div class="uc-creds reveal">
+            <div class="uc-label">主な資格・認定</div>
+
+            <div class="uc-creds-sub">Microsoft Certifications</div>
+            <div class="team-certs">
+              <div class="cert-item">
+                <img src="images/certs/mct.png" alt="MCT">
+                <span>Microsoft Certified<br>Trainer</span>
+              </div>
+              <div class="cert-item">
+                <img src="images/certs/ms-102.png" alt="MS-102">
+                <span>Microsoft 365<br>Administrator Expert</span>
+              </div>
+              <div class="cert-item">
+                <img src="images/certs/sc-100.png" alt="SC-100">
+                <span>Cybersecurity<br>Architect Expert</span>
+              </div>
+              <div class="cert-item">
+                <img src="images/certs/ab-900.png" alt="AB-900">
+                <span>Copilot &amp; Agent<br>Admin Fundamentals</span>
+              </div>
+              <div class="cert-item">
+                <img src="images/certs/ab-730.png" alt="AB-730">
+                <span>Microsoft AI<br>Business Professional</span>
+              </div>
+              <div class="cert-item">
+                <img src="images/certs/ab-731.png" alt="AB-731">
+                <span>Microsoft AI<br>Transformation Leader</span>
+              </div>
+              <div class="cert-item">
+                <img src="images/certs/ms-900.png" alt="MS-900">
+                <span>Microsoft 365<br>Fundamentals</span>
+              </div>
+              <div class="cert-item">
+                <img src="images/certs/sc-300.png" alt="SC-300">
+                <span>Identity &amp; Access<br>Administrator</span>
+              </div>
+            </div>
+
+            <ul class="uc-creds-text" style="margin-top:48px;">
+              <li><span class="uc-cred-tag">Google</span>Google Cloud Generative AI Leader</li>
+              <li><span class="uc-cred-tag">国家資格</span>宅建士</li>
+              <li><span class="uc-cred-tag">国家資格</span>土地家屋調査士</li>
+              <li><span class="uc-cred-tag">国家資格</span>測量士補</li>
+              <li><span class="uc-cred-tag">国家資格</span>1級小型船舶操縦士</li>
+            </ul>
           </div>
-          <div class="cert-item">
-            <img src="images/certs/ms-102.png" alt="MS-102">
-            <span>Enterprise<br>Administrator Expert</span>
-          </div>
-          <div class="cert-item">
-            <img src="images/certs/sc-300.png" alt="SC-300">
-            <span>Identity &amp; Access<br>Administrator</span>
-          </div>
-          <div class="cert-item">
-            <img src="images/certs/sc-100.png" alt="SC-100">
-            <span>Cybersecurity<br>Architect Expert</span>
-          </div>
-          <div class="cert-item">
-            <img src="images/certs/ab-900.png" alt="AB-900">
-            <span>Copilot &amp; Agent<br>Admin Fundamentals</span>
-          </div>
-          <div class="cert-item">
-            <img src="images/certs/ab-730.png" alt="AB-730">
-            <span>AI Business<br>Professional</span>
-          </div>
-          <div class="cert-item">
-            <img src="images/certs/ab-731.png" alt="AB-731">
-            <span>AI Transformation<br>Leader</span>
+
+          <div class="uc-hobbies reveal">
+            <div class="uc-label">趣味・好きなこと</div>
+            <ul>
+              <li><span class="uc-hobby-mark">a.</span>水泳。毎週2kmほど泳いで、頭と体を整えています。</li>
+              <li><span class="uc-hobby-mark">b.</span>一人ひとりの魅力に合ったほめ言葉を30個以上見つけること。</li>
+              <li><span class="uc-hobby-mark">c.</span>新しいことにチャレンジすること。</li>
+              <li><span class="uc-hobby-mark">d.</span>ウサギと散歩すること。いわゆる「うさんぽ」で、かなり癒されています。</li>
+            </ul>
           </div>
         </div>
       </div>
