@@ -300,6 +300,76 @@
       max-width: 42ch;
     }
 
+    /* === Practical AI — courses & curriculum === */
+    .course { margin-top: 64px; }
+    .course-head { margin-bottom: 22px; }
+    .course-title {
+      font-family: var(--serif);
+      font-size: clamp(21px, 2.4vw, 27px);
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      line-height: 1.4;
+      color: var(--ink);
+      margin: 10px 0 8px;
+      overflow-wrap: anywhere;
+    }
+    .course-title em { font-family: var(--display); font-style: italic; }
+    .course-lead {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.85;
+      color: var(--ink-60);
+      max-width: 62ch;
+      overflow-wrap: anywhere;
+    }
+    .curriculum {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0 48px;
+      border-top: 1px solid var(--rule);
+      min-width: 0;
+    }
+    .mod {
+      display: grid;
+      grid-template-columns: 38px 1fr;
+      gap: 14px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--rule);
+      align-items: baseline;
+      min-width: 0;
+    }
+    .mod > div { min-width: 0; }
+    .mod-num {
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      color: var(--ink-40);
+      font-variant-numeric: tabular-nums;
+      padding-top: 4px;
+    }
+    .mod-title {
+      font-family: var(--serif);
+      font-size: 16.5px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      line-height: 1.5;
+      color: var(--ink);
+      margin: 0 0 5px;
+      overflow-wrap: anywhere;
+    }
+    .mod-desc {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.75;
+      color: var(--ink-60);
+      overflow-wrap: anywhere;
+    }
+    @media (max-width: 768px) {
+      .curriculum { grid-template-columns: 1fr; gap: 0; }
+      .mod { grid-template-columns: 34px 1fr; gap: 12px; padding: 16px 0; }
+      .course { margin-top: 48px; }
+    }
+
     /* === Pricing table === */
     .table-scroll {
       position: relative;
@@ -734,7 +804,9 @@
       .grid-sidebar {
         grid-template-columns: 1fr;
         gap: 32px;
+        min-width: 0;
       }
+      .grid-sidebar > * { min-width: 0; }
       .sidebar-sticky { position: static; }
       footer { grid-template-columns: 1fr 1fr; }
       .service-row { grid-template-columns: 60px 1fr; }
@@ -887,26 +959,26 @@
         <div class="service-row" style="border-top: 1px solid var(--rule);">
           <div class="kicker" style="padding-top: 4px;">A</div>
           <div>
+            <div class="service-name">Practical AI Training</div>
+            <div class="service-jp">実践AI研修</div>
+          </div>
+          <p class="service-desc">入門・経営者・実務（Copilot）の3コース構成で、生成AIの実践活用を体系的に習得。ルール遵守と情報漏洩対策を徹底し、安心して使いこなせる組織をつくります。</p>
+        </div>
+        <div class="service-row">
+          <div class="kicker" style="padding-top: 4px;">B</div>
+          <div>
             <div class="service-name">Security Training</div>
             <div class="service-jp">セキュリティ研修</div>
           </div>
           <p class="service-desc">企業のセキュリティリテラシー向上のための実践的プログラム。情報セキュリティの基礎からインシデント対応まで、組織の防御力を強化します。</p>
         </div>
         <div class="service-row">
-          <div class="kicker" style="padding-top: 4px;">B</div>
+          <div class="kicker" style="padding-top: 4px;">C</div>
           <div>
             <div class="service-name">Microsoft Training</div>
             <div class="service-jp">Microsoft ソリューション研修</div>
           </div>
           <p class="service-desc">MCT資格保有トレーナーが、Copilot・Microsoft 365・Azureなどの活用を実践的に指導します。</p>
-        </div>
-        <div class="service-row">
-          <div class="kicker" style="padding-top: 4px;">C</div>
-          <div>
-            <div class="service-name">Latest AI Training</div>
-            <div class="service-jp">最新AI研修</div>
-          </div>
-          <p class="service-desc">ChatGPT・Claude・画像生成AIなど、最新の生成AIツールを業務に活かすための実践的トレーニングを提供します。</p>
         </div>
       </div>
     </div>
@@ -914,11 +986,92 @@
 
   <hr>
 
-  <!-- === 02 — Security Training === -->
-  <section class="section" id="security-training">
+  <!-- === 02 — Practical AI Training === -->
+  <section class="section" id="practical-ai-training" style="background: var(--paper-2);">
     <div class="grid-sidebar reveal">
       <div class="sidebar-sticky">
         <div class="kicker">02</div>
+        <h2 class="section-heading section-heading-sm" style="margin-top: 8px;">Practical AI<br><em>Training</em></h2>
+      </div>
+      <div>
+        <p class="paragraph" style="margin-bottom: 8px;">立場に応じた3つのコースで、生成AIをルールを守って安心して使いこなせるようになる実践型プログラム。</p>
+        <p class="paragraph" style="margin-bottom: 8px; font-size: 13px; color: var(--ink-40);">入門 → 経営者 → 実務（Copilot）の3コース構成</p>
+
+        <!-- Course 01 — 入門 -->
+        <div class="course reveal">
+          <div class="course-head">
+            <div class="kicker">Course 01 — 入門</div>
+            <h3 class="course-title">はじめての<em>生成AI</em>活用研修</h3>
+            <p class="course-lead">〜 生成AIをルールを守り、安心して使いこなす 〜　はじめて使う方が、不安なく業務に取り入れられるようになる基礎コース。</p>
+          </div>
+          <div class="curriculum">
+            <div class="mod"><div class="mod-num">01</div><div><h4 class="mod-title">ChatGPT・Copilot・Gemini・Claudeの違い</h4><p class="mod-desc">ChatGPTはアイデア出し・文書作成・相談に、CopilotはOutlook・Teams等のM365連携に、GeminiはGoogle Workspaceと好相性。</p></div></div>
+            <div class="mod"><div class="mod-num">02</div><div><h4 class="mod-title">生成AIでできること・できないこと</h4><p class="mod-desc">できる：アイデア出し・メール下書き・要約・会議メモ整理・企画案。できない：法律や医療の最終判断、最新情報・機密情報の正確な確認。</p></div></div>
+            <div class="mod"><div class="mod-num">03</div><div><h4 class="mod-title">メール文・返信文の作成</h4><p class="mod-desc">取引先への丁寧な返信、日程調整メール（要確認）、おわび・スカウト・フォローアップメール。</p></div></div>
+            <div class="mod"><div class="mod-num">04</div><div><h4 class="mod-title">議事録・メモの要約</h4><p class="mod-desc">長い会議メモを短くまとめる、貼り付けて要点を抽出、次回会議のアジェンダ作成。</p></div></div>
+            <div class="mod"><div class="mod-num">05</div><div><h4 class="mod-title">企画案・アイデア出し</h4><p class="mod-desc">新商品・新サービスの案、SNS投稿案を複数、キャッチコピー、ターゲット別の宣伝文。</p></div></div>
+            <div class="mod"><div class="mod-num">06</div><div><h4 class="mod-title">Excel・PowerPointの活用</h4><p class="mod-desc">Excelでの表・グラフ作成、PowerPointでのスライド作成。</p></div></div>
+            <div class="mod"><div class="mod-num">07</div><div><h4 class="mod-title">入力していい情報・いけない情報</h4><p class="mod-desc">個人情報（氏名・住所・電話・メール）、契約書・見積書・請求書、ID・パスワード・APIキー・社員番号などの線引き。</p></div></div>
+            <div class="mod"><div class="mod-num">08</div><div><h4 class="mod-title">社内ルールを守る</h4><p class="mod-desc">使ってよいAIを決める、ビジネス向けモードを使う、重要事項は責任者に相談、入力可否の基準、無料版は個人利用向けと心得る。</p></div></div>
+          </div>
+        </div>
+
+        <!-- Course 02 — 経営者向け -->
+        <div class="course reveal">
+          <div class="course-head">
+            <div class="kicker">Course 02 — 経営者向け</div>
+            <h3 class="course-title">経営者のための<em>生成AI</em>導入・活用研修 〈Copilot編〉</h3>
+            <p class="course-lead">導入判断から社内ルール・情報漏洩対策、費用対効果まで、意思決定者の視点で生成AI活用を設計するコース。</p>
+          </div>
+          <div class="curriculum">
+            <div class="mod"><div class="mod-num">01</div><div><h4 class="mod-title">経営者が知るべき生成AIの現在地</h4><p class="mod-desc">なぜ今、社内で活用を考えるべきか。経営に与える影響と、ChatGPT・Copilot・Gemini・Claudeの違い。</p></div></div>
+            <div class="mod"><div class="mod-num">02</div><div><h4 class="mod-title">外注しなくてよくなるもの</h4><p class="mod-desc">簡単なデザイン、社内マニュアル、チラシ、研修資料、議事録、簡単なHP、ロゴ、名刺。採用難対策にも。</p></div></div>
+            <div class="mod"><div class="mod-num">03</div><div><h4 class="mod-title">人手不足対策としてのAI活用</h4><p class="mod-desc">定型業務の省力化、メール作成・返信の時短、会議メモから議事録・ToDoを自動整理し、業務負荷と離職リスクを下げる。</p></div></div>
+            <div class="mod"><div class="mod-num">04</div><div><h4 class="mod-title">導入効果が出やすい業務</h4><p class="mod-desc">クレーム対応・謝罪・営業メール、プレゼン資料、問い合わせ対応、営業準備。</p></div></div>
+            <div class="mod"><div class="mod-num">05</div><div><h4 class="mod-title">導入してはいけない業務</h4><p class="mod-desc">最終的な法的判断、人事評価、医療判断。</p></div></div>
+            <div class="mod"><div class="mod-num">06</div><div><h4 class="mod-title">社員にどう使わせるか</h4><p class="mod-desc">全社員に使わせるもの、一部の部署から始める判断、スクリーンショットの可否。</p></div></div>
+            <div class="mod"><div class="mod-num">07</div><div><h4 class="mod-title">情報漏洩をどう防ぐか</h4><p class="mod-desc">無料AIの利用、個人情報・顧客情報、SharePoint権限、社外秘資料の取り扱い。</p></div></div>
+            <div class="mod"><div class="mod-num">08</div><div><h4 class="mod-title">生成AI活用の社内ルール作成</h4><p class="mod-desc">使ってよいAI、禁止事項、確認フロー、責任者、社外提出前のチェック。</p></div></div>
+            <div class="mod"><div class="mod-num">09</div><div><h4 class="mod-title">導入ロードマップ</h4><p class="mod-desc">まず経営者だけで試す → 1部署 → 効果測定 → ルール整備 → 全社展開。</p></div></div>
+            <div class="mod"><div class="mod-num">10</div><div><h4 class="mod-title">費用対効果の考え方</h4><p class="mod-desc">ライセンス費用、人件費・外注費の削減、労働時間の短縮、作業品質の向上。</p></div></div>
+            <div class="mod"><div class="mod-num">11</div><div><h4 class="mod-title">AI導入で失敗する会社の特徴</h4><p class="mod-desc">丸投げ、ルールなし、責任者なし、教育なし、権限管理なし。</p></div></div>
+            <div class="mod"><div class="mod-num">12</div><div><h4 class="mod-title">AI時代に増える仕事</h4><p class="mod-desc">AIが作ったものの品質・基準チェック、AI生成物へのセカンドオピニオン、顧客がAIに伝えきれない事情の確認。</p></div></div>
+          </div>
+        </div>
+
+        <!-- Course 03 — 実務向け -->
+        <div class="course reveal">
+          <div class="course-head">
+            <div class="kicker">Course 03 — 実務向け</div>
+            <h3 class="course-title">仕事のための<em>生成AI</em>実践研修 〈Copilotコース〉</h3>
+            <p class="course-lead">Outlook・Word・Excel・Teams・PowerPointなど、Copilotを日々の業務でそのまま使いこなすための実務コース。</p>
+          </div>
+          <div class="curriculum">
+            <div class="mod"><div class="mod-num">01</div><div><h4 class="mod-title">Copilotの基本</h4><p class="mod-desc">Copilotでできること、ChatGPT・Geminiとの違い、Microsoft 365との関係。</p></div></div>
+            <div class="mod"><div class="mod-num">02</div><div><h4 class="mod-title">業務での活用場面</h4><p class="mod-desc">メール・議事録・資料・スライドの作成、契約書など。</p></div></div>
+            <div class="mod"><div class="mod-num">03</div><div><h4 class="mod-title">Outlookで活用</h4><p class="mod-desc">取引先への返信文、依頼メール、丁寧なお断り、信頼回復につながる対応文、受信メールの意図の分析。</p></div></div>
+            <div class="mod"><div class="mod-num">04</div><div><h4 class="mod-title">Wordで活用</h4><p class="mod-desc">契約書、案内文、報告書、要約、マニュアル。</p></div></div>
+            <div class="mod"><div class="mod-num">05</div><div><h4 class="mod-title">Excelで活用</h4><p class="mod-desc">顧客名簿、進捗管理表、比較表、分析・整理、ガントチャート・グラフ化。</p></div></div>
+            <div class="mod"><div class="mod-num">06</div><div><h4 class="mod-title">Teamsで活用</h4><p class="mod-desc">会議メモ、議事録、ToDo整理、打ち合わせ内容の要約。</p></div></div>
+            <div class="mod"><div class="mod-num">07</div><div><h4 class="mod-title">PowerPointで活用</h4><p class="mod-desc">セミナー資料、提案先への説明資料、社内資料。</p></div></div>
+            <div class="mod"><div class="mod-num">08</div><div><h4 class="mod-title">セキュリティ</h4><p class="mod-desc">入力していい情報、個人情報・顧客情報・契約情報、無料AIとの違い、守秘義務。</p></div></div>
+            <div class="mod"><div class="mod-num">09</div><div><h4 class="mod-title">生成AI活用の社内ルール作成</h4><p class="mod-desc">使ってよいAI、禁止事項、確認フロー、責任者、提出前チェック。</p></div></div>
+            <div class="mod"><div class="mod-num">10</div><div><h4 class="mod-title">実践演習</h4><p class="mod-desc">実務を想定したハンズオン演習。</p></div></div>
+            <div class="mod"><div class="mod-num">11</div><div><h4 class="mod-title">SharePoint・OneDrive</h4><p class="mod-desc">資料をどこに置くか、権限管理。</p></div></div>
+            <div class="mod"><div class="mod-num">12</div><div><h4 class="mod-title">AI時代に増える仕事</h4><p class="mod-desc">AIで作られた書類の品質チェック、AI生成物へのセカンドオピニオン、顧客がAIに伝えきれていない事情を引き出す。</p></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- === 03 — Security Training === -->
+  <section class="section" id="security-training">
+    <div class="grid-sidebar reveal">
+      <div class="sidebar-sticky">
+        <div class="kicker">03</div>
         <h2 class="section-heading section-heading-sm" style="margin-top: 8px;">Security<br><em>Training</em></h2>
       </div>
       <div>
@@ -947,11 +1100,11 @@
 
   <hr>
 
-  <!-- === 03 — Microsoft Training === -->
+  <!-- === 04 — Microsoft Training === -->
   <section class="section" id="microsoft-training" style="background: var(--paper-2);">
     <div class="grid-sidebar reveal">
       <div class="sidebar-sticky">
-        <div class="kicker">03</div>
+        <div class="kicker">04</div>
         <h2 class="section-heading section-heading-sm" style="margin-top: 8px;">Microsoft<br><em>Training</em></h2>
       </div>
       <div>
@@ -973,39 +1126,6 @@
           <div class="card reveal">
             <h3>Microsoft セキュリティ研修</h3>
             <p>Microsoft Defender・Entra ID・Intune等を活用した企業のセキュリティ強化。ゼロトラストの考え方と具体的な実装方法を学びます。</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr>
-
-  <!-- === 04 — Latest AI Training === -->
-  <section class="section" id="ai-training">
-    <div class="grid-sidebar reveal">
-      <div class="sidebar-sticky">
-        <div class="kicker">04</div>
-        <h2 class="section-heading section-heading-sm" style="margin-top: 8px;">Latest AI<br><em>Training</em></h2>
-      </div>
-      <div>
-        <p class="paragraph" style="margin-bottom: 40px;">最新の生成AIツールを業務に活かすための実践的トレーニング</p>
-        <div class="card-grid-2">
-          <div class="card reveal">
-            <h3>生成AI基礎研修</h3>
-            <p>ChatGPT・Claude・Geminiなど主要LLMの特徴と使い分けを理解し、プロンプトエンジニアリングの基礎から業務活用のベストプラクティスまでを習得します。</p>
-          </div>
-          <div class="card reveal">
-            <h3>画像・動画生成AI研修</h3>
-            <p>Midjourney・DALL-E・Stable Diffusion等の画像生成AIや、動画生成AIの実践的な活用方法を学び、クリエイティブ業務の効率化を実現します。</p>
-          </div>
-          <div class="card reveal">
-            <h3>業務自動化・AI実装研修</h3>
-            <p>ノーコード/ローコードツールとAI APIを組み合わせた業務自動化の設計・構築手法を学びます。開発経験がなくても実践できるカリキュラムです。</p>
-          </div>
-          <div class="card reveal">
-            <h3>AI活用戦略ワークショップ</h3>
-            <p>自社の業務課題を棚卸しし、AI導入による効果が高い領域を特定。ROIを重視した導入ロードマップを策定するハンズオン型ワークショップです。</p>
           </div>
         </div>
       </div>
