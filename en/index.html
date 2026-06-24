@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Knowledge Works | English</title>
+  <meta name="description" content="AI Knowledge Works helps people and organizations use generative AI, Microsoft technologies, and security training with confidence." />
+  <link rel="icon" type="image/png" href="../logo/AIナレッジワークス_logo_transparen.png">
+  <meta property="og:title" content="AI Knowledge Works" />
+  <meta property="og:description" content="AI training, Microsoft training, and security training for practical transformation." />
+  <meta property="og:image" content="https://aiknowledgeworks.net/logo/AIナレッジワークス_logo_transparen.png" />
+  <meta property="og:url" content="https://aiknowledgeworks.net/en/" />
+  <meta property="og:type" content="website" />
+  <link rel="alternate" hreflang="ja" href="https://aiknowledgeworks.net/" />
+  <link rel="alternate" hreflang="en" href="https://aiknowledgeworks.net/en/" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&display=swap" rel="stylesheet" />
+  <link rel="preload" as="video" href="../movie/reels/story-auto-mobile-premium.mp4" type="video/mp4" media="(max-width: 1180px)" fetchpriority="high">
+
+  <style>
+    :root {
+      --bg: #FAF8F5;
+      --ink: #2C2A26;
+      --ink-60: #2C2A2699;
+      --ink-40: #2C2A2666;
+      --paper: #FFFFFF;
+      --paper-2: #F3EFE9;
+      --rule: #D9D3C7;
+      --serif: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+      --sans: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
+      --display: "Fraunces", "Noto Serif JP", serif;
+      --page-pad: clamp(24px, 5vw, 72px);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.8;
+      letter-spacing: 0.02em;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    ul { list-style: none; padding: 0; margin: 0; }
+    hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
+
+    body::after {
+      content: "";
+      position: fixed; inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.9'/></svg>");
+    }
+    ::selection { background: var(--ink); color: var(--bg); }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 1.2s cubic-bezier(.2,.7,.2,1), transform 1.2s cubic-bezier(.2,.7,.2,1);
+    }
+    .reveal.in { opacity: 1; transform: none; }
+    .kicker {
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink-60);
+    }
+
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 28px var(--page-pad);
+      display: flex; align-items: center; justify-content: space-between;
+      background: transparent;
+      border-bottom: 1px solid transparent;
+      transition: padding .5s cubic-bezier(.2,.7,.2,1), background .35s ease, border-color .35s ease;
+    }
+    header.scrolled {
+      padding-top: 14px; padding-bottom: 14px;
+      background: color-mix(in srgb, var(--bg) 85%, transparent);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom-color: var(--rule);
+    }
+    header:not(.scrolled) .logo-link,
+    header:not(.scrolled) nav {
+      opacity: 0.34;
+      transition: opacity .35s ease;
+    }
+    header:not(.scrolled):hover .logo-link,
+    header:not(.scrolled):hover nav,
+    header:not(.scrolled):focus-within .logo-link,
+    header:not(.scrolled):focus-within nav { opacity: 0.92; }
+    header:not(.scrolled) .logo-link img { filter: brightness(0) invert(1); }
+    header:not(.scrolled) .logo-link span,
+    header:not(.scrolled) nav a { color: rgba(255,255,255,0.64); }
+    header:not(.scrolled) .nav-cta,
+    header:not(.scrolled) .lang-switch { border-color: rgba(255,255,255,0.30); }
+
+    .logo-link { display: flex; align-items: center; gap: 12px; }
+    .logo-link img { height: 40px; transition: height .5s cubic-bezier(.2,.7,.2,1); }
+    header.scrolled .logo-link img { height: 32px; }
+    .logo-link span {
+      font-family: var(--serif);
+      font-size: 17px;
+      letter-spacing: 0.04em;
+      font-weight: 500;
+    }
+    nav ul { display: flex; gap: 28px; align-items: center; }
+    nav a {
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-60);
+      transition: color .3s;
+    }
+    nav a:hover { color: var(--ink); }
+    .nav-cta {
+      padding: 10px 18px;
+      border: 1px solid var(--ink);
+      margin-left: 8px;
+      transition: all .3s;
+    }
+    .nav-cta:hover { background: var(--ink); color: var(--bg); }
+    .lang-switch {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 42px;
+      padding: 8px 10px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      color: var(--ink-60);
+    }
+
+    .hamburger {
+      display: none;
+      width: 28px; height: 20px;
+      position: relative;
+      z-index: 110;
+      cursor: pointer;
+    }
+    .hamburger span {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--ink);
+      transition: .3s;
+    }
+    .hamburger span:nth-child(1) { top: 0; }
+    .hamburger span:nth-child(2) { top: 9px; }
+    .hamburger span:nth-child(3) { top: 18px; }
+    .hamburger.active span:nth-child(1) { top: 9px; transform: rotate(135deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { top: 9px; transform: rotate(-135deg); }
+    .overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 90;
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
+      opacity: 0;
+      transition: opacity .3s;
+    }
+    .overlay.active { display: block; opacity: 1; }
+
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      min-height: 100svh;
+      background: #050607;
+      color: #fff;
+      overflow: clip;
+    }
+    .hero-video-stage {
+      position: relative;
+      min-height: 100vh;
+      min-height: 100svh;
+      overflow: hidden;
+      isolation: isolate;
+    }
+    .hero-video-stage::before {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 52%;
+      background:
+        radial-gradient(ellipse at 18% 72%, rgba(0,0,0,0.30) 0%, rgba(0,0,0,0.14) 34%, transparent 66%),
+        linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.16) 100%);
+      z-index: 2;
+      pointer-events: none;
+    }
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: translateZ(0);
+      backface-visibility: hidden;
+      will-change: transform;
+    }
+    .hero-video::-webkit-media-controls,
+    .hero-video::-webkit-media-controls-start-playback-button {
+      display: none !important;
+      -webkit-appearance: none;
+    }
+    .hero-story {
+      position: absolute;
+      left: var(--page-pad);
+      bottom: clamp(96px, 16vh, 170px);
+      z-index: 4;
+      width: min(720px, calc(100% - var(--page-pad) * 2));
+      color: #fff;
+      transform: translate3d(0, 0, 0);
+      transition: opacity 260ms ease, transform 260ms ease;
+      will-change: opacity, transform;
+    }
+    .hero-story.is-preparing {
+      opacity: 0;
+      transform: translate3d(0, 10px, 0);
+    }
+    .hero-story-title {
+      font-family: var(--serif);
+      font-size: clamp(48px, 8vw, 132px);
+      font-weight: 400;
+      line-height: 1.02;
+      letter-spacing: 0;
+      margin: 0;
+      text-shadow: 0 24px 80px rgba(0,0,0,0.45);
+    }
+    .hero-story-text {
+      width: min(520px, 100%);
+      margin: 24px 0 0;
+      font-size: 16px;
+      line-height: 2;
+      color: rgba(255,255,255,0.86);
+      text-shadow: 0 14px 48px rgba(0,0,0,0.55);
+    }
+
+    .marquee {
+      overflow: hidden;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--rule);
+      background: var(--bg);
+    }
+    .marquee-track {
+      display: flex;
+      gap: 48px;
+      width: max-content;
+      font-family: var(--serif);
+      font-size: 36px;
+      white-space: nowrap;
+      will-change: transform;
+    }
+    .marquee-word { font-style: italic; }
+    .marquee-dot { opacity: .35; }
+
+    .section {
+      padding: clamp(96px, 14vh, 160px) var(--page-pad);
+      max-width: 1680px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .grid-sidebar {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+    .sidebar-sticky { position: sticky; top: 140px; }
+    .section-heading {
+      font-family: var(--serif);
+      font-weight: 400;
+      line-height: 1.2;
+      letter-spacing: 0;
+      margin: 0;
+    }
+    .section-heading em {
+      font-family: var(--display);
+      font-style: italic;
+    }
+    .section-heading-lg { font-size: clamp(40px, 6vw, 88px); line-height: 1.1; }
+    .section-heading-md { font-size: clamp(34px, 4.5vw, 64px); }
+    .paragraph {
+      font-size: 16px;
+      line-height: 2.05;
+      color: var(--ink-60);
+      max-width: 660px;
+      margin: 0;
+    }
+
+    .service-row {
+      display: grid;
+      grid-template-columns: 60px 1fr 2fr;
+      gap: 32px;
+      padding: 40px 0;
+      border-bottom: 1px solid var(--rule);
+      align-items: baseline;
+      transition: padding .5s cubic-bezier(.2,.7,.2,1), background .4s ease;
+    }
+    .service-row:hover { padding-left: 24px; background: var(--paper-2); }
+    .item-num {
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      color: var(--ink-60);
+      font-variant-numeric: tabular-nums;
+    }
+    .service-name {
+      font-family: var(--serif);
+      font-size: 26px;
+      font-weight: 400;
+      letter-spacing: 0;
+    }
+    .service-jp {
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      color: var(--ink-60);
+      margin-top: 6px;
+    }
+    .service-desc {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.9;
+      color: var(--ink-60);
+      max-width: 46ch;
+    }
+
+    .value-item {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 0 20px;
+      align-items: baseline;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .value-item:last-child { border-bottom: none; }
+    .value-num {
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      color: var(--ink-60);
+      font-variant-numeric: tabular-nums;
+      line-height: 1;
+      padding-top: 4px;
+    }
+    .value-item h4 {
+      font-family: var(--serif);
+      font-size: 17px;
+      font-weight: 400;
+      margin: 0 0 6px;
+    }
+    .value-item p {
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--ink-60);
+      margin: 0;
+    }
+
+    .btn-fill {
+      display: inline-flex;
+      align-items: center;
+      padding: 20px 36px;
+      background: var(--ink);
+      color: var(--bg);
+      font-size: 14px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      transition: opacity .3s;
+    }
+    .btn-fill:hover { opacity: .85; }
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      padding: 18px 32px;
+      border: 1px solid var(--ink);
+      color: var(--ink);
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      transition: all .3s;
+    }
+    .btn-outline:hover { background: var(--ink); color: var(--bg); }
+    .cta-center {
+      text-align: center;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    footer {
+      padding: 56px var(--page-pad);
+      border-top: 1px solid var(--rule);
+      display: grid;
+      grid-template-columns: 2fr repeat(3, 1fr);
+      gap: 48px;
+      color: var(--ink-60);
+      font-size: 13px;
+    }
+    .footer-brand p { max-width: 280px; line-height: 1.8; }
+    .footer-col-title {
+      color: var(--ink);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .footer-col a { display: block; margin-bottom: 8px; }
+
+    @media (max-width: 1024px) {
+      .grid-sidebar { grid-template-columns: 1fr; gap: 32px; }
+      .sidebar-sticky { position: static; }
+      .service-row { grid-template-columns: 60px 1fr; }
+      .service-desc { grid-column: 1 / -1; padding-left: 92px; }
+      footer { grid-template-columns: 1fr 1fr; }
+      .hamburger { display: block; }
+      nav {
+        position: fixed; top: 0; right: -100%;
+        width: 80%; max-width: 360px; height: 100vh;
+        background: var(--bg);
+        box-shadow: -2px 0 20px rgba(0,0,0,0.08);
+        transition: .3s ease;
+        padding-top: 80px; z-index: 95;
+        overflow-y: auto;
+      }
+      nav.active { right: 0; }
+      nav ul { flex-direction: column; gap: 0; }
+      nav ul li a {
+        padding: 20px 32px;
+        display: block;
+        border-bottom: 1px solid var(--rule);
+        font-size: 15px;
+        letter-spacing: 0.08em;
+        text-transform: none;
+        color: var(--ink);
+      }
+      .nav-cta { border: none; padding: 20px 32px; margin-left: 0; text-align: left; }
+      .lang-switch { border-radius: 0; border: none; min-width: 0; justify-content: flex-start; }
+    }
+
+    @media (max-width: 768px) {
+      .section { padding: clamp(64px, 10vh, 96px) var(--page-pad); }
+      .hero-story { left: var(--page-pad); right: var(--page-pad); bottom: 92px; width: auto; }
+      .hero-story-title { font-size: clamp(34px, 11vw, 62px); }
+      .hero-story-text { font-size: 14px; line-height: 1.85; margin-top: 18px; }
+      .marquee-track { font-size: 24px; gap: 32px; }
+      .service-row { grid-template-columns: 1fr; gap: 8px; }
+      .service-row:hover { padding-left: 0; }
+      .service-desc { padding-left: 0; grid-column: auto; }
+      .item-num { display: none; }
+      footer { grid-template-columns: 1fr; gap: 32px; padding: 40px var(--page-pad); }
+    }
+
+    @media (max-width: 480px) {
+      .section-heading-lg { font-size: clamp(32px, 8vw, 48px); }
+      .section-heading-md { font-size: clamp(26px, 7vw, 36px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <header id="site-header">
+    <a href="#home" class="logo-link">
+      <img src="../logo/AIナレッジワークス_logo_transparen.png" alt="AI Knowledge Works logo" class="logo-breathe">
+      <span>AI Knowledge Works</span>
+    </a>
+    <div class="hamburger" aria-label="Open menu" role="button" tabindex="0">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#home">Top</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#company">Company</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#contact" class="nav-cta">Contact &rarr;</a></li>
+        <li><a href="../" class="lang-switch" lang="ja" aria-label="View Japanese page">JP</a></li>
+      </ul>
+    </nav>
+    <div class="overlay"></div>
+  </header>
+
+  <section id="home" class="hero">
+    <div class="hero-video-stage">
+      <video id="hero-story-video" class="hero-video" muted playsinline webkit-playsinline autoplay loop preload="auto" poster="../movie/reels/story-poster.jpg"></video>
+      <div class="hero-story">
+        <h1 id="hero-story-title" class="hero-story-title">AI for everyone.</h1>
+        <p id="hero-story-text" class="hero-story-text">
+          We turn generative AI from a special tool into a practical force that anyone can use with confidence.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee">
+    <div class="marquee-track">
+      <span class="marquee-word">Security Training</span><span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">Microsoft Training</span><span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">Practical AI Training</span><span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">Copilot</span><span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">Azure</span><span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">Self-Realization</span><span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">Innovation</span><span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">Security Training</span><span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">Microsoft Training</span><span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">Practical AI Training</span><span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">Copilot</span><span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">Azure</span><span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">Self-Realization</span><span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">Innovation</span><span class="marquee-dot">&bull;</span>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="grid-sidebar">
+      <div class="sidebar-sticky reveal">
+        <div class="kicker">01 &mdash; Why Now</div>
+      </div>
+      <div>
+        <h2 class="section-heading section-heading-md reveal" style="max-width: 19ch; margin-bottom: 64px;">
+          Put the power of AI in every person's hands.
+        </h2>
+        <div style="border-top: 1px solid var(--rule);">
+          <div class="service-row reveal">
+            <span class="item-num">01</span>
+            <div>
+              <div class="service-name">Rapid AI Evolution</div>
+              <div class="service-jp">Technology</div>
+            </div>
+            <p class="service-desc">Generative AI is quickly becoming a practical way to solve problems in business, education, and creative work.</p>
+          </div>
+          <div class="service-row reveal">
+            <span class="item-num">02</span>
+            <div>
+              <div class="service-name">Adoption Gap</div>
+              <div class="service-jp">Enablement</div>
+            </div>
+            <p class="service-desc">Many teams still struggle with how to use AI safely and effectively. We close that gap through training and implementation.</p>
+          </div>
+          <div class="service-row reveal">
+            <span class="item-num">03</span>
+            <div>
+              <div class="service-name">Creative Expansion</div>
+              <div class="service-jp">Future</div>
+            </div>
+            <p class="service-desc">AI is widening the range of what individuals and organizations can create, test, and bring into the world.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <section id="company" class="section">
+    <div class="grid-sidebar">
+      <div class="sidebar-sticky reveal">
+        <div class="kicker">02 &mdash; Company</div>
+      </div>
+      <div>
+        <h2 class="section-heading section-heading-lg reveal" style="max-width: 13ch; margin-bottom: 48px;">
+          Making what people love possible.
+        </h2>
+        <p class="paragraph reveal" style="margin-bottom: 32px;">
+          AI Knowledge Works was founded in Osaka in 2025 to help people use AI as a tool for self-realization, not as something reserved for experts.
+        </p>
+        <p class="paragraph reveal" style="margin-bottom: 48px;">
+          We combine practical AI education, Microsoft solution training, and security awareness to help organizations move from curiosity to confident adoption.
+        </p>
+
+        <div style="border-top: 1px solid var(--rule);">
+          <div class="service-row reveal">
+            <span class="item-num">M</span>
+            <div>
+              <div class="service-name">Mission</div>
+              <div class="service-jp">Our purpose</div>
+            </div>
+            <p class="service-desc">Mass production of self-realization: creating a society where people can realize what they love through AI.</p>
+          </div>
+          <div class="service-row reveal">
+            <span class="item-num">V</span>
+            <div>
+              <div class="service-name">Vision</div>
+              <div class="service-jp">Our future</div>
+            </div>
+            <p class="service-desc">A future where confidence and room to breathe spread from person to person, starting with what each person loves.</p>
+          </div>
+        </div>
+
+        <div style="margin-top: 64px;" class="reveal">
+          <h3 style="font-family: var(--serif); font-size: 22px; font-weight: 400; margin: 0 0 28px;">Core Values</h3>
+          <div style="border-top: 1px solid var(--rule);">
+            <div class="value-item"><span class="value-num">01</span><div><h4>Self First</h4><p>Start by taking care of yourself, then extend that margin to society.</p></div></div>
+            <div class="value-item"><span class="value-num">02</span><div><h4>Live from "Like"</h4><p>Let curiosity and enthusiasm become the starting point of work and life.</p></div></div>
+            <div class="value-item"><span class="value-num">03</span><div><h4>Curiosity is Power</h4><p>Turn curiosity into learning, implementation, and momentum.</p></div></div>
+            <div class="value-item"><span class="value-num">04</span><div><h4>Be Fluid, Not Fixed</h4><p>Keep updating the shape of work as technology and people change.</p></div></div>
+            <div class="value-item"><span class="value-num">05</span><div><h4>Go at Your Own Pace</h4><p>Move forward with conviction, not just speed.</p></div></div>
+            <div class="value-item"><span class="value-num">06</span><div><h4>Trust the Process</h4><p>Respect the process of trying, learning, and improving.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <section id="services" class="section">
+    <div class="grid-sidebar">
+      <div class="sidebar-sticky reveal">
+        <div class="kicker">03 &mdash; Services</div>
+      </div>
+      <div>
+        <h2 class="section-heading section-heading-md reveal" style="max-width: 18ch; margin-bottom: 80px;">
+          Practical training for real adoption.
+        </h2>
+        <div style="border-top: 1px solid var(--rule);">
+          <div class="service-row reveal">
+            <span class="item-num">01</span>
+            <div>
+              <div class="service-name">Security Training</div>
+              <div class="service-jp">For organizations</div>
+            </div>
+            <p class="service-desc">Practical programs that strengthen security literacy, from fundamentals to incident response.</p>
+          </div>
+          <div class="service-row reveal">
+            <span class="item-num">02</span>
+            <div>
+              <div class="service-name">Microsoft Training</div>
+              <div class="service-jp">Copilot / M365 / Azure</div>
+            </div>
+            <p class="service-desc">Hands-on training led by Microsoft Certified Trainer expertise for Copilot, Microsoft 365, Azure, and related solutions.</p>
+          </div>
+          <div class="service-row reveal">
+            <span class="item-num">03</span>
+            <div>
+              <div class="service-name">Practical AI Training</div>
+              <div class="service-jp">Generative AI</div>
+            </div>
+            <p class="service-desc">Structured programs for leaders and teams to use AI safely, productively, and in line with internal rules.</p>
+          </div>
+        </div>
+        <div style="margin-top: 48px;" class="reveal">
+          <a href="../service.html" class="btn-fill">View Japanese Services &nbsp;&rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <section id="team" class="section">
+    <div class="grid-sidebar">
+      <div class="sidebar-sticky reveal">
+        <div class="kicker">04 &mdash; Team</div>
+      </div>
+      <div>
+        <h2 class="section-heading section-heading-md reveal" style="max-width: 20ch; margin-bottom: 48px;">
+          A small team focused on practical AI transformation.
+        </h2>
+        <p class="paragraph reveal" style="margin-bottom: 48px;">
+          AI Knowledge Works is led by members with experience across training, Microsoft technologies, AI communities, and real-world business implementation.
+        </p>
+        <div class="reveal">
+          <a href="../story.html" class="btn-outline">View Team &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section" style="padding-top: 0; padding-bottom: 120px;">
+    <div class="cta-center reveal">
+      <div class="kicker" style="display: inline-block;">Contact</div>
+      <h2 class="section-heading" style="font-size: clamp(48px, 8vw, 120px); line-height: 1.05; letter-spacing: 0; margin: 20px 0;">
+        Start with<br><em>a conversation.</em>
+      </h2>
+      <p class="paragraph" style="max-width: 540px; margin: 24px auto 48px; font-size: 17px;">
+        Talk to us about AI adoption, internal training, Microsoft solutions, or security education.
+      </p>
+      <a href="../contact.html" class="btn-fill">Contact Us &nbsp;&rarr;</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-brand">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <img src="../logo/AIナレッジワークス_logo_transparen.png" width="36" height="36" alt="" style="object-fit: contain;">
+        <span style="font-family: var(--serif); font-size: 17px; letter-spacing: 0.04em;">AI Knowledge Works</span>
+      </div>
+      <p>Helping people and organizations use AI with confidence.</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Pages</div>
+      <a href="#services">Services</a>
+      <a href="#company">Company</a>
+      <a href="#team">Team</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Language</div>
+      <a href="../">Japanese</a>
+      <a href="./">English</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Company</div>
+      <span>Osaka, Japan</span><br>
+      <span>Est. 2025</span>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var reveals = document.querySelectorAll('.reveal');
+      var revealObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+      reveals.forEach(function(el) { revealObserver.observe(el); });
+
+      var story = document.getElementById('home');
+      var heroVideo = document.getElementById('hero-story-video');
+      var heroTitle = document.getElementById('hero-story-title');
+      var heroText = document.getElementById('hero-story-text');
+      var heroStory = document.querySelector('.hero-story');
+      var heroVideoSources = {
+        mobile: '../movie/reels/story-auto-mobile-premium.mp4',
+        desktop: '../movie/reels/story-auto-premium-smooth.mp4'
+      };
+      var heroSourceQuery = window.matchMedia('(max-width: 1180px)');
+      var storyScenes = [
+        {
+          start: 0,
+          title: 'AI for everyone.',
+          text: 'We turn generative AI from a special tool into a practical force that anyone can use with confidence.'
+        },
+        {
+          start: 6,
+          title: 'Close the gap.',
+          text: 'We make complex technologies understandable, usable, and safe for teams that need to move from interest to action.'
+        },
+        {
+          start: 12,
+          title: 'Build creators.',
+          text: 'Training is not just knowledge transfer. It is the moment people begin to test, shape, and create with AI.'
+        },
+        {
+          start: 18,
+          title: 'Spread capacity.',
+          text: 'When one person learns to use AI well, the time and confidence of the entire team begins to change.'
+        },
+        {
+          start: 24,
+          title: 'Move from what you love.',
+          text: 'AI Knowledge Works creates an entry point for people to turn curiosity, work, and self-realization into motion.'
+        }
+      ];
+      var activeStoryScene = -1;
+      var pendingStoryScene = -1;
+      var heroTickerId = null;
+      var storyFadeLead = 0.28;
+
+      function setHeroScene(index) {
+        if (index === activeStoryScene) return;
+        var isInitialScene = activeStoryScene === -1;
+        activeStoryScene = index;
+        pendingStoryScene = -1;
+        heroTitle.textContent = storyScenes[index].title;
+        heroText.textContent = storyScenes[index].text;
+        if (!heroStory) return;
+        if (isInitialScene) {
+          heroStory.classList.remove('is-preparing');
+          return;
+        }
+        window.requestAnimationFrame(function() {
+          heroStory.classList.remove('is-preparing');
+        });
+      }
+
+      function getHeroSceneIndex(current) {
+        var index = storyScenes.length - 1;
+        for (var i = 0; i < storyScenes.length; i++) {
+          var next = storyScenes[i + 1];
+          if (current >= storyScenes[i].start && (!next || current < next.start)) {
+            index = i;
+            break;
+          }
+        }
+        return index;
+      }
+
+      function updateHeroStory() {
+        if (!heroVideo || !Number.isFinite(heroVideo.duration) || heroVideo.duration <= 0) return;
+        var current = heroVideo.currentTime;
+        var index = getHeroSceneIndex(current);
+        var nextIndex = (index + 1) % storyScenes.length;
+        var nextStart = storyScenes[index + 1] ? storyScenes[index + 1].start : heroVideo.duration;
+        var timeToNext = nextStart - current;
+
+        if (index === activeStoryScene && timeToNext > 0 && timeToNext <= storyFadeLead) {
+          if (pendingStoryScene !== nextIndex && heroStory) {
+            pendingStoryScene = nextIndex;
+            heroStory.classList.add('is-preparing');
+          }
+        } else if (index === activeStoryScene && timeToNext > storyFadeLead && pendingStoryScene !== -1) {
+          pendingStoryScene = -1;
+          if (heroStory) heroStory.classList.remove('is-preparing');
+        }
+
+        setHeroScene(index);
+      }
+
+      function prepareHeroVideoForAutoplay() {
+        if (!heroVideo) return;
+        heroVideo.muted = true;
+        heroVideo.defaultMuted = true;
+        heroVideo.autoplay = true;
+        heroVideo.loop = true;
+        heroVideo.playsInline = true;
+        heroVideo.setAttribute('muted', '');
+        heroVideo.setAttribute('autoplay', '');
+        heroVideo.setAttribute('loop', '');
+        heroVideo.setAttribute('playsinline', '');
+        heroVideo.setAttribute('webkit-playsinline', '');
+        heroVideo.removeAttribute('controls');
+      }
+
+      function startHeroTicker() {
+        if (heroTickerId) return;
+        updateHeroStory();
+        heroTickerId = window.setInterval(updateHeroStory, 120);
+      }
+
+      function requestHeroPlayback() {
+        if (!heroVideo) return;
+        prepareHeroVideoForAutoplay();
+        var playAttempt = heroVideo.play();
+        if (playAttempt && typeof playAttempt.then === 'function') {
+          playAttempt.then(startHeroTicker).catch(function() {});
+        }
+      }
+
+      function syncHeroVideoSource() {
+        if (!heroVideo) return;
+        var nextSrc = heroSourceQuery.matches ? heroVideoSources.mobile : heroVideoSources.desktop;
+        if (heroVideo.dataset.activeSrc === nextSrc) return;
+        prepareHeroVideoForAutoplay();
+        heroVideo.dataset.activeSrc = nextSrc;
+        heroVideo.src = nextSrc;
+        heroVideo.load();
+        requestHeroPlayback();
+      }
+
+      function stopHeroTicker() {
+        if (!heroTickerId) return;
+        window.clearInterval(heroTickerId);
+        heroTickerId = null;
+      }
+
+      if (heroVideo) {
+        prepareHeroVideoForAutoplay();
+        syncHeroVideoSource();
+        if (heroSourceQuery.addEventListener) {
+          heroSourceQuery.addEventListener('change', syncHeroVideoSource);
+        } else if (heroSourceQuery.addListener) {
+          heroSourceQuery.addListener(syncHeroVideoSource);
+        }
+        heroVideo.addEventListener('loadedmetadata', updateHeroStory);
+        heroVideo.addEventListener('loadeddata', requestHeroPlayback);
+        heroVideo.addEventListener('canplay', requestHeroPlayback);
+        heroVideo.addEventListener('play', startHeroTicker);
+        heroVideo.addEventListener('pause', stopHeroTicker);
+        heroVideo.addEventListener('ended', stopHeroTicker);
+        document.addEventListener('visibilitychange', function() {
+          if (!document.hidden && heroVideo.paused) requestHeroPlayback();
+        });
+        window.addEventListener('pageshow', requestHeroPlayback);
+        window.addEventListener('pointerdown', requestHeroPlayback, { once: true, passive: true });
+        window.addEventListener('touchstart', requestHeroPlayback, { once: true, passive: true });
+        requestHeroPlayback();
+      }
+
+      var header = document.getElementById('site-header');
+      var headerScrollRaf = null;
+
+      function updateHeaderState() {
+        if (!header) return;
+        var heroBottom = story ? story.offsetTop + story.offsetHeight : window.innerHeight;
+        var pastHero = window.scrollY >= heroBottom - 80;
+        header.classList.toggle('scrolled', pastHero);
+        headerScrollRaf = null;
+      }
+
+      function requestHeaderStateUpdate() {
+        if (headerScrollRaf) return;
+        headerScrollRaf = window.requestAnimationFrame(updateHeaderState);
+      }
+
+      updateHeaderState();
+      window.addEventListener('scroll', requestHeaderStateUpdate, { passive: true });
+      window.addEventListener('resize', requestHeaderStateUpdate);
+
+      var hamburger = document.querySelector('.hamburger');
+      var nav = document.querySelector('nav');
+      var overlay = document.querySelector('.overlay');
+      var navLinks = document.querySelectorAll('nav a');
+
+      function toggleMenu() {
+        hamburger.classList.toggle('active');
+        nav.classList.toggle('active');
+        overlay.classList.toggle('active');
+        document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
+      }
+
+      hamburger.addEventListener('click', toggleMenu);
+      overlay.addEventListener('click', toggleMenu);
+      navLinks.forEach(function(link) {
+        link.addEventListener('click', function() {
+          if (nav.classList.contains('active')) toggleMenu();
+        });
+      });
+    });
+
+    window.addEventListener('load', function() {
+      var track = document.querySelector('.marquee-track');
+      if (!track) return;
+      var pos = 0;
+      var speed = 1;
+      var oneHalf = 0;
+      function tick() {
+        if (oneHalf === 0) oneHalf = track.scrollWidth / 2;
+        pos -= speed;
+        if (oneHalf > 0 && Math.abs(pos) >= oneHalf) pos += oneHalf;
+        track.style.transform = 'translate3d(' + pos + 'px,0,0)';
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    });
+  </script>
+</body>
+</html>

@@ -18,6 +18,8 @@
   <meta property="og:image" content="https://aiknowledgeworks.net/logo/AIナレッジワークス_logo_transparen.png" />
   <meta property="og:url" content="https://aiknowledgeworks.net" />
   <meta property="og:type" content="website" />
+  <link rel="alternate" hreflang="ja" href="https://aiknowledgeworks.net/" />
+  <link rel="alternate" hreflang="en" href="https://aiknowledgeworks.net/en/" />
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWFLPN1EZH"></script>
@@ -165,6 +167,10 @@
       background: rgba(255,255,255,0.14);
       color: #fff;
     }
+    header:not(.scrolled) .lang-switch {
+      border-color: rgba(255,255,255,0.28);
+      color: rgba(255,255,255,0.70);
+    }
     header:not(.scrolled) .hamburger span {
       background: rgba(255,255,255,0.86);
     }
@@ -203,6 +209,24 @@
     .nav-cta:hover {
       background: var(--ink);
       color: var(--bg);
+    }
+    .lang-switch {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 42px;
+      padding: 8px 10px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      color: var(--ink-60);
+      transition: border-color .3s, color .3s, background .3s;
+    }
+    .lang-switch:hover {
+      border-color: var(--ink);
+      color: var(--ink);
+      background: var(--paper);
     }
 
     /* === Hero === */
@@ -700,6 +724,7 @@
       nav ul li a::after { content: "\203A"; float: right; opacity: 0.4; font-size: 1.2em; }
       .nav-cta { border: none; padding: 20px 32px; margin-left: 0; text-align: left; }
       .nav-cta:hover { background: transparent; color: var(--ink); }
+      .lang-switch { border-radius: 0; border: none; min-width: 0; justify-content: flex-start; }
       .marquee-track { font-size: 28px; gap: 36px; }
     }
 
@@ -755,6 +780,12 @@
         padding: 18px 24px;
         margin-left: 0;
         text-align: left;
+      }
+      .lang-switch {
+        border-radius: 0;
+        border: none;
+        min-width: 0;
+        justify-content: flex-start;
       }
       .nav-cta:hover {
         background: transparent;
@@ -815,6 +846,7 @@
         <li><a href="story.html">Team</a></li>
         <li><a href="volunteer.html">Volunteer</a></li>
         <li><a href="contact.html" class="nav-cta">Contact &rarr;</a></li>
+        <li><a href="en/" class="lang-switch" lang="en" aria-label="View English page">EN</a></li>
       </ul>
     </nav>
     <div class="overlay"></div>
