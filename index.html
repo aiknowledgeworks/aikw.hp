@@ -32,6 +32,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&display=swap" rel="stylesheet" />
+  <link rel="preload" as="video" href="movie/reels/story-auto-mobile-premium.mp4" type="video/mp4" media="(max-width: 768px)" fetchpriority="high">
 
   <style>
     /* === Design System Tokens === */
@@ -1321,7 +1322,7 @@
       const heroText = document.getElementById('hero-story-text');
       const heroStory = document.querySelector('.hero-story');
       const heroVideoSources = {
-        mobile: 'movie/reels/story-auto-premium-smooth.mp4',
+        mobile: 'movie/reels/story-auto-mobile-premium.mp4',
         desktop: 'movie/reels/story-auto-premium-smooth.mp4'
       };
       const heroSourceQuery = window.matchMedia('(max-width: 768px)');
