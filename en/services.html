@@ -3,111 +3,1266 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Services | AI Knowledge Works</title>
-  <meta name="description" content="AI Knowledge Works services: practical AI training, security training, and Microsoft solution training." />
-  <link rel="icon" type="image/png" href="../logo/AI%E3%83%8A%E3%83%AC%E3%83%83%E3%82%B8%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9_logo_transparen.png">
-  <link rel="alternate" hreflang="ja" href="https://aiknowledgeworks.net/service.html" />
-  <link rel="alternate" hreflang="en" href="https://aiknowledgeworks.net/en/services.html" />
+  <title>Services | AI Knowledge Works LLC</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="../logo/AIナレッジワークス_logo_transparen.png">
+  <link rel="shortcut icon" type="image/x-icon" href="../logo/AIナレッジワークス_logo_transparen.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../logo/AIナレッジワークス_logo_transparen.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../logo/AIナレッジワークス_logo_transparen.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../logo/AIナレッジワークス_logo_transparen.png">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWFLPN1EZH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-DWFLPN1EZH');
+  </script>
+
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="site.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* === Design System Tokens === */
+    :root {
+      --bg: #FAF8F5;
+      --ink: #2C2A26;
+      --ink-80: #2C2A26CC;
+      --ink-60: #2C2A2699;
+      --ink-40: #2C2A2666;
+      --ink-15: #2C2A2626;
+      --ink-08: #2C2A2614;
+      --paper: #FFFFFF;
+      --paper-2: #F3EFE9;
+      --paper-3: #EBE6DD;
+      --rule: #D9D3C7;
+      --link: #1B5FA0;
+      --accent: #3da8c7;
+      --accent-warm: #d4a26a;
+      --brand-gradient: linear-gradient(135deg, #6db5ff 0%, #a1e9d9 100%);
+
+      --serif: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+      --sans: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
+      --display: "Fraunces", "Noto Serif JP", serif;
+
+      --page-pad: clamp(24px, 5vw, 72px);
+      --measure: 64ch;
+    }
+
+    /* === Reset === */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.8;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    ul { list-style: none; padding: 0; margin: 0; }
+    hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
+
+    /* === Grain overlay === */
+    body::after {
+      content: "";
+      position: fixed; inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.9'/></svg>");
+    }
+
+    /* === Selection === */
+    ::selection { background: var(--ink); color: var(--bg); }
+
+    /* === Scroll reveal === */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 1.2s cubic-bezier(.2,.7,.2,1), transform 1.2s cubic-bezier(.2,.7,.2,1);
+    }
+    .reveal.in {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* === Kicker label === */
+    .kicker {
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink-60);
+    }
+
+    /* === Section base === */
+    .section {
+      padding: clamp(96px, 14vh, 160px) var(--page-pad);
+      max-width: 1680px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* === Header / Nav === */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 28px var(--page-pad);
+      display: flex; align-items: center; justify-content: space-between;
+      background: transparent;
+      border-bottom: 1px solid transparent;
+      transition: all .5s cubic-bezier(.2,.7,.2,1);
+    }
+    header.scrolled {
+      padding-top: 14px; padding-bottom: 14px;
+      background: color-mix(in srgb, var(--bg) 85%, transparent);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom-color: var(--rule);
+    }
+    .logo-link {
+      display: flex; align-items: center; gap: 12px;
+    }
+    .logo-link img {
+      height: 40px;
+      transition: height .5s cubic-bezier(.2,.7,.2,1);
+    }
+    header.scrolled .logo-link img { height: 32px; }
+    .logo-link span {
+      font-family: var(--serif);
+      font-size: 17px;
+      letter-spacing: 0.04em;
+      font-weight: 500;
+    }
+    nav ul {
+      display: flex; gap: 28px; align-items: center;
+    }
+    nav a {
+      font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--ink-60);
+      transition: color .3s;
+    }
+    nav a:hover { color: var(--ink); }
+    .nav-cta {
+      padding: 10px 18px;
+      border: 1px solid var(--ink);
+      margin-left: 8px;
+      transition: all .3s;
+    }
+    .nav-cta:hover {
+      background: var(--ink);
+      color: var(--bg);
+    }
+
+    /* === Logo breathing === */
+    @keyframes breathe {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      25% { transform: scale(1.12) rotate(4deg); }
+    }
+    .logo-breathe {
+      animation: breathe 4s cubic-bezier(.3,.8,.3,.4) infinite;
+      transform-origin: center;
+    }
+    .lang-switch {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 42px;
+      padding: 8px 10px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      color: var(--ink-60);
+      transition: border-color 0.3s ease, color 0.3s ease, background 0.3s ease;
+    }
+
+    .lang-switch:hover {
+      border-color: var(--ink);
+      color: var(--ink);
+      background: var(--paper);
+    }
+
+
+    /* === Hero === */
+    .hero {
+      padding: 180px var(--page-pad) 100px;
+      max-width: 1680px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(40px, 6vw, 80px);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin: 0 0 20px;
+    }
+    .hero .tagline {
+      font-size: 17px;
+      color: var(--ink-60);
+      font-weight: 300;
+      margin: 0;
+    }
+
+    /* === Section headings === */
+    .section-heading {
+      font-family: var(--serif);
+      font-weight: 400;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      margin: 0;
+    }
+    .section-heading em {
+      font-family: var(--display);
+      font-style: italic;
+    }
+    .section-heading-lg {
+      font-size: clamp(40px, 6vw, 88px);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+    .section-heading-md {
+      font-size: clamp(34px, 4.5vw, 64px);
+    }
+    .section-heading-sm {
+      font-size: clamp(28px, 3.5vw, 48px);
+    }
+
+    /* === Two-column layout === */
+    .grid-sidebar {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+    .sidebar-sticky {
+      position: sticky; top: 140px;
+    }
+
+    /* === Paragraph style === */
+    .paragraph {
+      margin: 0;
+      font-size: 16px;
+      line-height: 2;
+      color: var(--ink-60);
+    }
+
+    /* === Card styles === */
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      padding: 2rem;
+    }
+    .card h3, .card h4 {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin: 0 0 .6rem;
+      color: var(--ink);
+    }
+    .card p {
+      font-size: 15px;
+      line-height: 1.9;
+      color: var(--ink-60);
+      margin: 0;
+    }
+
+    /* === Card grid === */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .card-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* === Service row (from index) === */
+    .service-row {
+      display: grid;
+      grid-template-columns: 60px 1fr 2fr;
+      gap: 32px;
+      padding: 40px 0;
+      border-bottom: 1px solid var(--rule);
+      align-items: baseline;
+    }
+    .service-name {
+      font-family: var(--serif);
+      font-size: 26px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+    }
+    .service-jp {
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      color: var(--ink-60);
+      margin-top: 6px;
+    }
+    .service-desc {
+      margin: 0; font-size: 16px; line-height: 1.9;
+      color: var(--ink-60);
+      max-width: 42ch;
+    }
+
+    /* === Practical AI — courses & curriculum === */
+    .course { margin-top: 64px; }
+    .course-head { margin-bottom: 22px; }
+    .course-title {
+      font-family: var(--serif);
+      font-size: clamp(21px, 2.4vw, 27px);
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      line-height: 1.4;
+      color: var(--ink);
+      margin: 10px 0 8px;
+      overflow-wrap: anywhere;
+    }
+    .course-title em { font-family: var(--display); font-style: italic; }
+    .course-lead {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.85;
+      color: var(--ink-60);
+      max-width: 62ch;
+      overflow-wrap: anywhere;
+    }
+    .curriculum {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0 48px;
+      border-top: 1px solid var(--rule);
+      min-width: 0;
+    }
+    .mod {
+      display: grid;
+      grid-template-columns: 38px 1fr;
+      gap: 14px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--rule);
+      align-items: baseline;
+      min-width: 0;
+    }
+    .mod > div { min-width: 0; }
+    .mod-num {
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      color: var(--ink-40);
+      font-variant-numeric: tabular-nums;
+      padding-top: 4px;
+    }
+    .mod-title {
+      font-family: var(--serif);
+      font-size: 16.5px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      line-height: 1.5;
+      color: var(--ink);
+      margin: 0 0 5px;
+      overflow-wrap: anywhere;
+    }
+    .mod-desc {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.75;
+      color: var(--ink-60);
+      overflow-wrap: anywhere;
+    }
+    @media (max-width: 768px) {
+      .curriculum { grid-template-columns: 1fr; gap: 0; }
+      .mod { grid-template-columns: 34px 1fr; gap: 12px; padding: 16px 0; }
+      .course { margin-top: 48px; }
+    }
+
+    /* === Pricing table === */
+    .table-scroll {
+      position: relative;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .pricing-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      min-width: 640px;
+    }
+    .pricing-table thead th {
+      background: var(--paper-2);
+      color: var(--ink);
+      font-weight: 600;
+      padding: 14px 16px;
+      border-bottom: 2px solid var(--rule);
+      text-align: center;
+      font-size: 14px;
+      letter-spacing: 0.02em;
+    }
+    .pricing-table tbody td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--rule);
+      text-align: center;
+      font-size: 14px;
+      color: var(--ink-80);
+    }
+    .pricing-table tbody tr:nth-child(even) td {
+      background: var(--paper-2);
+    }
+    .pricing-table th:first-child,
+    .pricing-table td:first-child {
+      text-align: left;
+      font-weight: 500;
+      color: var(--ink);
+    }
+    .pricing-table .highlight {
+      background: rgba(61,168,199,0.06);
+      font-weight: 600;
+    }
+
+    /* === Badge === */
+    .badge {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 999px;
+      padding: 0.2rem 0.55rem;
+      font-size: 0.7rem;
+      margin-left: 0.4rem;
+      vertical-align: middle;
+      letter-spacing: 0.04em;
+    }
+
+    /* === Value grid === */
+    .value-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+    .value-card {
+      background: var(--paper);
+      padding: 1.5rem;
+      border: 1px solid var(--rule);
+      position: relative;
+      overflow: hidden;
+    }
+    .value-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px; height: 100%;
+      background: var(--brand-gradient);
+    }
+    .value-title {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      margin: 0 0 .5rem;
+      color: var(--ink);
+      font-weight: 500;
+    }
+    .value-card p {
+      margin: 0;
+      color: var(--ink-60);
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    /* === Problem list === */
+    .problem-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 0.75rem;
+      padding: 0; margin: 0;
+      text-align: center;
+    }
+    .problem-list li {
+      position: relative;
+      list-style: none;
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      padding: 0.9rem 1rem;
+      font-size: 0.95rem;
+      color: var(--ink);
+      transition: transform .2s ease;
+    }
+    .problem-list li::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: var(--brand-gradient);
+    }
+    .problem-list li:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,.06);
+    }
+    .highlight-text {
+      background: none;
+      color: var(--ink);
+      padding: 0;
+      font-weight: 700;
+      border-bottom: 3px solid var(--accent-warm);
+    }
+
+    /* === Process steps === */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    .process-step {
+      background: var(--paper);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      border: 1px solid var(--rule);
+    }
+    .step-number {
+      display: inline-flex;
+      align-items: center; justify-content: center;
+      width: 36px; height: 36px;
+      background: var(--paper-2);
+      border: 1px solid var(--rule);
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      font-family: var(--serif);
+    }
+    .process-step h4 {
+      font-family: var(--serif);
+      color: var(--ink);
+      margin: 0 0 0.75rem;
+      font-weight: 500;
+      font-size: 1rem;
+    }
+    .process-step p {
+      color: var(--ink-60);
+      font-size: 14px;
+      margin: 0;
+      line-height: 1.8;
+    }
+
+    /* === Service features list === */
+    .service-features { margin-top: 0.5rem; }
+    .service-features li {
+      padding: 0.4rem 0 0.4rem 1.5rem;
+      position: relative;
+      color: var(--ink-60);
+      font-size: 0.9rem;
+    }
+    .service-features li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+
+    /* === Content headings === */
+    .content-title {
+      font-family: var(--serif);
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 400;
+      text-align: center;
+      margin: 0 0 12px;
+      letter-spacing: -0.01em;
+    }
+    .content-subtitle {
+      text-align: center;
+      color: var(--ink-60);
+      margin: 0 0 clamp(40px, 5vh, 64px);
+      font-size: 15px;
+      letter-spacing: 0.02em;
+    }
+    .content-section-title {
+      font-family: var(--serif);
+      font-size: clamp(22px, 3vw, 32px);
+      font-weight: 400;
+      margin: 0 0 1.5rem;
+      text-align: center;
+      letter-spacing: -0.01em;
+    }
+
+    /* === Feature box (hero-style) === */
+    .feature-box {
+      max-width: 900px;
+      margin: 0 auto 3rem;
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-top: 2px solid var(--accent);
+      padding: 2.5rem;
+      text-align: center;
+    }
+    .feature-box h3 {
+      font-family: var(--serif);
+      font-size: clamp(20px, 2.5vw, 28px);
+      color: var(--ink);
+      margin: 0 0 1rem;
+      font-weight: 400;
+      line-height: 1.6;
+    }
+    .feature-box p {
+      font-size: 15px;
+      color: var(--ink-60);
+      line-height: 1.8;
+      margin: 0;
+    }
+    .feature-box .price {
+      font-family: var(--serif);
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 500;
+      color: var(--ink);
+      margin-top: 1.5rem;
+    }
+    .feature-box .price small {
+      font-size: 0.5em;
+      font-weight: 400;
+    }
+    .feature-box .price-note {
+      font-size: 13px;
+      color: var(--ink-60);
+      margin-top: 4px;
+    }
+
+    /* === Video gallery === */
+    .video-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .video-item {
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      padding: 1.25rem;
+      text-align: center;
+    }
+    .video-item video {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: contain;
+      background: #0f1923;
+      margin-bottom: 0.75rem;
+    }
+    .video-item p {
+      font-size: 13px;
+      color: var(--ink-60);
+      margin: 0;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+
+
+    /* === Quote / callout === */
+    .quote-box {
+      max-width: 900px;
+      margin: 0 auto 3rem;
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      padding: 2.5rem;
+    }
+    .quote-box h3 {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      color: var(--ink);
+      margin: 0 0 1.25rem;
+      font-weight: 500;
+    }
+    .quote-box li {
+      padding: 0.5rem 0 0.5rem 1.5rem;
+      position: relative;
+      color: var(--ink-60);
+      font-size: 15px;
+    }
+    .quote-box li span {
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    /* === CTA section === */
+    .cta-center {
+      text-align: center;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .btn-fill {
+      display: inline-flex; align-items: center;
+      padding: 20px 36px;
+      background: var(--ink);
+      color: var(--bg);
+      font-size: 14px; letter-spacing: 0.16em; text-transform: uppercase;
+      transition: all .3s;
+    }
+    .btn-fill:hover { opacity: 0.85; }
+
+    /* === Testimonial cards === */
+    .testimonial {
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      padding: 1.5rem 1.25rem;
+    }
+    .testimonial .quote-text {
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--ink-60);
+      font-size: 15px;
+      line-height: 1.9;
+      margin: 0 0 .5rem;
+    }
+    .testimonial .quote-attr {
+      text-align: right;
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--ink);
+      margin: 0;
+    }
+
+    /* === Dark card === */
+    .card-dark {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+      padding: 2rem;
+    }
+    .card-dark h3 {
+      color: var(--bg);
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin: 0 0 1rem;
+    }
+
+    /* === Footer === */
+    footer {
+      border-top: 1px solid var(--rule);
+      padding: 56px var(--page-pad) 40px;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      max-width: 1680px;
+      margin: 0 auto;
+    }
+    .footer-brand p {
+      font-size: 13px;
+      color: var(--ink-60);
+      line-height: 2;
+      margin-top: 16px;
+      max-width: 340px;
+    }
+    .footer-col-title {
+      font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--ink-60);
+      margin-bottom: 18px;
+    }
+    .footer-col a {
+      font-size: 14px;
+      color: var(--ink);
+      display: block;
+      margin-bottom: 10px;
+      transition: color .3s;
+    }
+    .footer-col a:hover { color: var(--ink-60); }
+    .footer-bottom {
+      grid-column: 1 / -1;
+      padding-top: 32px; margin-top: 16px;
+      border-top: 1px solid var(--rule);
+      display: flex; justify-content: space-between;
+      font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--ink-60);
+    }
+
+    /* === Hamburger === */
+    .hamburger {
+      display: none;
+      width: 30px; height: 30px;
+      position: relative; cursor: pointer; z-index: 1010;
+      padding: 10px; box-sizing: content-box; margin: -10px;
+    }
+    .hamburger span {
+      display: block; position: absolute;
+      height: 1.5px; width: 100%;
+      background: var(--ink);
+      opacity: 1; left: 0;
+      transform: rotate(0deg);
+      transition: .25s ease-in-out;
+    }
+    .hamburger span:nth-child(1) { top: 0; }
+    .hamburger span:nth-child(2) { top: 9px; }
+    .hamburger span:nth-child(3) { top: 18px; }
+    .hamburger.active span:nth-child(1) { top: 9px; transform: rotate(135deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; left: -60px; }
+    .hamburger.active span:nth-child(3) { top: 9px; transform: rotate(-135deg); }
+
+    .overlay {
+      display: none; position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.4);
+      z-index: 90;
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .overlay.active { display: block; opacity: 1; }
+
+    /* === Responsive === */
+    @media (max-width: 1024px) {
+      .grid-sidebar {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        min-width: 0;
+      }
+      .grid-sidebar > * { min-width: 0; }
+      .sidebar-sticky { position: static; }
+      footer { grid-template-columns: 1fr 1fr; }
+      .service-row { grid-template-columns: 60px 1fr; }
+      .service-desc { grid-column: 1 / -1; padding-left: 92px; }
+    }
+
+    /* === iPad (portrait) === */
+    @media (max-width: 1024px) and (min-width: 769px) {
+      .hamburger { display: block; }
+      nav {
+        position: fixed; top: 0; right: -100%;
+        width: 80%; max-width: 360px; height: 100vh;
+        background: var(--bg);
+        box-shadow: -2px 0 20px rgba(0,0,0,0.08);
+        transition: 0.3s ease;
+        padding-top: 80px; z-index: 95;
+        overflow-y: auto;
+      }
+      nav.active { right: 0; }
+      nav ul { flex-direction: column; gap: 0; }
+      nav ul li a {
+        padding: 20px 32px; display: block;
+        border-bottom: 1px solid var(--rule);
+        font-size: 15px; letter-spacing: 0.08em;
+        text-transform: none; color: var(--ink);
+      }
+      nav ul li a::after { content: "\203A"; float: right; opacity: 0.4; font-size: 1.2em; }
+      .nav-cta { border: none; padding: 20px 32px; margin-left: 0; text-align: left; }
+      .nav-cta:hover { background: transparent; color: var(--ink); }
+    }
+
+    @media (max-width: 768px) {
+      .hero { padding: 140px var(--page-pad) 80px; }
+      .hero h1 { font-size: clamp(32px, 8vw, 48px); }
+      .section { padding: clamp(64px, 10vh, 96px) var(--page-pad); }
+
+      /* Mobile nav */
+      .hamburger { display: block; }
+      nav {
+        position: fixed; top: 0; right: -100%;
+        width: 80%; max-width: 300px; height: 100vh;
+        background: var(--bg);
+        box-shadow: -2px 0 20px rgba(0,0,0,0.08);
+        transition: 0.3s ease;
+        padding-top: 80px; z-index: 95;
+        overflow-y: auto;
+      }
+      nav.active { right: 0; }
+      nav ul {
+        flex-direction: column; gap: 0;
+      }
+      nav ul li a {
+        padding: 18px 24px;
+        display: block;
+        border-bottom: 1px solid var(--rule);
+        font-size: 14px;
+        letter-spacing: 0.08em;
+        text-transform: none;
+        color: var(--ink);
+      }
+      nav ul li a::after {
+        content: "\203A";
+        float: right;
+        opacity: 0.4;
+        font-size: 1.2em;
+      }
+      .nav-cta {
+        border: none;
+        padding: 18px 24px;
+        margin-left: 0;
+        text-align: left;
+      }
+      .nav-cta:hover {
+        background: transparent;
+        color: var(--ink);
+      }
+
+      /* Grids */
+      .card-grid { grid-template-columns: 1fr; }
+      .card-grid-2 { grid-template-columns: 1fr; }
+      .value-grid { grid-template-columns: 1fr; }
+      .video-gallery { grid-template-columns: 1fr; }
+
+      .service-row { grid-template-columns: 1fr; gap: 8px; }
+      .service-desc { padding-left: 0; grid-column: auto; }
+
+      footer {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 40px var(--page-pad);
+      }
+      .footer-bottom { flex-direction: column; gap: 8px; }
+
+      .pricing-table { min-width: 560px; }
+    }
+
+    @media (max-width: 480px) {
+      .section-heading-lg { font-size: clamp(32px, 8vw, 48px); }
+      .section-heading-md { font-size: clamp(26px, 7vw, 36px); }
+      .section-heading-sm { font-size: clamp(22px, 6vw, 30px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+      .logo-breathe { animation: none !important; }
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <a href="./" class="logo-link"><img src="../logo/AI%E3%83%8A%E3%83%AC%E3%83%83%E3%82%B8%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9_logo_transparen.png" alt="AI Knowledge Works logo"><span>AI Knowledge Works</span></a>
-    <div class="hamburger" aria-label="Open menu" role="button" tabindex="0"><span></span><span></span><span></span></div>
-    <nav><ul>
-      <li><a href="./#background">Background</a></li>
-      <li><a href="services.html">Services</a></li>
-      <li><a href="achievements.html">Achievements</a></li>
-      <li><a href="company.html">Company</a></li>
-      <li><a href="team.html">Team</a></li>
-      <li><a href="volunteer.html">Volunteer</a></li>
-      <li><a href="contact.html" class="nav-cta">Contact &rarr;</a></li>
-      <li><a href="../service.html" class="lang-switch" lang="ja">JP</a></li>
-    </ul></nav>
+  <!-- === Header === -->
+  <header id="site-header">
+    <a href="./" class="logo-link">
+      <img src="../logo/AIナレッジワークス_logo_transparen.png" alt="AI Knowledge Works Logo" class="logo-breathe">
+      <span>AI Knowledge Works</span>
+    </a>
+    <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="./#background">Background</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="achievements.html">Achievements</a></li>
+        <li><a href="company.html">Company</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="volunteer.html">Volunteer</a></li>
+        <li><a href="contact.html" class="nav-cta">Contact &rarr;</a></li>
+        <li><a href="../service.html" class="lang-switch" aria-label="View Japanese site">JP</a></li>
+      </ul>
+    </nav>
     <div class="overlay"></div>
   </header>
 
-  <main>
-    <section class="page-hero">
-      <div class="kicker">Services</div>
-      <h1>Business services and training.</h1>
-      <p>We support AI adoption through three pillars: practical generative AI training, security training, and Microsoft solution training.</p>
-    </section>
+  <!-- === Hero === -->
+  <section class="hero">
+    <h1>Services</h1>
+    <p class="tagline">Supporting AI adoption and practical use through three core pillars</p>
+  </section>
 
-    <section class="section" id="pillars">
-      <div class="grid-sidebar">
-        <div class="sidebar-sticky reveal"><div class="kicker">01</div><h2 class="section-heading">Three business pillars.</h2></div>
-        <div class="row-list">
-          <div class="info-row reveal"><span class="row-num">A</span><div><div class="row-title">Practical AI Training</div><div class="row-sub">Generative AI</div></div><p class="row-desc">A structured program that helps teams use generative AI safely and practically, from introductory use to business workflows with Copilot and other tools.</p></div>
-          <div class="info-row reveal"><span class="row-num">B</span><div><div class="row-title">Security Training</div><div class="row-sub">Security literacy</div></div><p class="row-desc">Hands-on training to raise security literacy across the organization, including information security basics, phishing, data leakage, and incident response.</p></div>
-          <div class="info-row reveal"><span class="row-num">C</span><div><div class="row-title">Microsoft Training</div><div class="row-sub">Copilot / M365 / Azure</div></div><p class="row-desc">Practical instruction by Microsoft Certified Trainer expertise for Copilot, Microsoft 365, Azure, Teams, SharePoint, and related business solutions.</p></div>
+  <!-- === 01 - Three Pillars Overview === -->
+  <section class="section" id="pillars">
+    <div class="grid-sidebar reveal">
+      <div class="sidebar-sticky">
+        <div class="kicker">01</div>
+        <h2 class="section-heading section-heading-sm" style="margin-top: 8px;">Three<br><em>Pillars</em></h2>
+      </div>
+      <div>
+        <p class="paragraph" style="margin-bottom: 40px;">The three business areas provided by AI Knowledge Works</p>
+        <div class="service-row" style="border-top: 1px solid var(--rule);">
+          <div class="kicker" style="padding-top: 4px;">A</div>
+          <div>
+            <div class="service-name">Practical AI Training</div>
+            <div class="service-jp">Practical AI Training</div>
+          </div>
+          <p class="service-desc">A structured set of introductory, executive, and practical Copilot courses for learning how to use generative AI safely and effectively.</p>
+        </div>
+        <div class="service-row">
+          <div class="kicker" style="padding-top: 4px;">B</div>
+          <div>
+            <div class="service-name">Security Training</div>
+            <div class="service-jp">Security Training</div>
+          </div>
+          <p class="service-desc">Practical programs that improve corporate security literacy, from information-security fundamentals to incident response.</p>
+        </div>
+        <div class="service-row">
+          <div class="kicker" style="padding-top: 4px;">C</div>
+          <div>
+            <div class="service-name">Microsoft Training</div>
+            <div class="service-jp">Microsoft Solution Training</div>
+          </div>
+          <p class="service-desc">MCT-certified trainers provide hands-on guidance for Copilot, Microsoft 365, Azure, and related solutions.</p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <hr>
+  <hr>
 
-    <section class="section" id="practical-ai-training">
-      <div class="grid-sidebar">
-        <div class="sidebar-sticky reveal"><div class="kicker">02</div><h2 class="section-heading">Practical AI Training.</h2></div>
-        <div>
-          <p class="paragraph reveal">This training is designed so participants can start using generative AI safely in real work. It covers tool differences, prompt writing, information handling, internal rules, and hands-on business examples.</p>
-          <div class="card-grid">
-            <div class="card reveal"><h3>Starter course</h3><p>For first-time users. Learn the differences between ChatGPT, Copilot, Gemini, and Claude, what AI can and cannot do, and how to use prompts safely.</p></div>
-            <div class="card reveal"><h3>Executive course</h3><p>For managers and decision makers. Learn how to evaluate AI adoption, set usage policies, prevent information leakage, and calculate business impact.</p></div>
-            <div class="card reveal"><h3>Practical Copilot course</h3><p>For business users. Practice Outlook, Word, Excel, Teams, PowerPoint, SharePoint, and daily workflows using Copilot and AI assistants.</p></div>
+  <!-- === 02 — Practical AI Training === -->
+  <section class="section" id="practical-ai-training" style="background: var(--paper-2);">
+    <div class="grid-sidebar reveal">
+      <div class="sidebar-sticky">
+        <div class="kicker">02</div>
+        <h2 class="section-heading section-heading-sm" style="margin-top: 8px;">Practical AI<br><em>Training</em></h2>
+      </div>
+      <div>
+        <p class="paragraph" style="margin-bottom: 8px;">A practical program with three courses by role, helping participants use generative AI safely while following rules.</p>
+        <p class="paragraph" style="margin-bottom: 8px; font-size: 13px; color: var(--ink-40);">Three courses: Introductory -> Executive -> Practical Work (Copilot)</p>
+
+        <!-- Course 01 - Introductory -->
+        <div class="course reveal">
+          <div class="course-head">
+            <div class="kicker">Course 01 - Introductory</div>
+            <h3 class="course-title">Introductory <em>Generative AI</em> Training</h3>
+            <p class="course-lead">A foundation course for first-time users to adopt generative AI in work safely and confidently while following rules.</p>
+          </div>
+          <div class="curriculum">
+            <div class="mod"><div class="mod-num">01</div><div><h4 class="mod-title">Differences between ChatGPT, Copilot, Gemini, and Claude</h4><p class="mod-desc">ChatGPT is useful for ideation, writing, and consultation; Copilot connects with M365 such as Outlook and Teams; Gemini works well with Google Workspace.</p></div></div>
+            <div class="mod"><div class="mod-num">02</div><div><h4 class="mod-title">What generative AI can and cannot do</h4><p class="mod-desc">Can do: ideation, email drafts, summaries, meeting-note organization, plans. Cannot do: final legal or medical judgments, accurate confirmation of latest or confidential information.</p></div></div>
+            <div class="mod"><div class="mod-num">03</div><div><h4 class="mod-title">Writing emails and replies</h4><p class="mod-desc">Polite client replies, scheduling emails requiring confirmation, apology, scouting, and follow-up emails.</p></div></div>
+            <div class="mod"><div class="mod-num">04</div><div><h4 class="mod-title">Summarizing minutes and notes</h4><p class="mod-desc">Condense long meeting notes, extract key points, and create the next meeting agenda.</p></div></div>
+            <div class="mod"><div class="mod-num">05</div><div><h4 class="mod-title">Planning and ideation</h4><p class="mod-desc">New product and service ideas, multiple social-post ideas, taglines, and promotional copy by target audience.</p></div></div>
+            <div class="mod"><div class="mod-num">06</div><div><h4 class="mod-title">Using Excel and PowerPoint</h4><p class="mod-desc">Creating tables and charts in Excel and slides in PowerPoint.</p></div></div>
+            <div class="mod"><div class="mod-num">07</div><div><h4 class="mod-title">Information that can and cannot be entered</h4><p class="mod-desc">Boundaries for personal information, contracts, estimates, invoices, IDs, passwords, API keys, and member numbers.</p></div></div>
+            <div class="mod"><div class="mod-num">08</div><div><h4 class="mod-title">Following internal rules</h4><p class="mod-desc">Define approved AI tools, use business modes, consult responsible owners on important matters, set input criteria, and understand free versions as personal-use tools.</p></div></div>
+          </div>
+        </div>
+
+        <!-- Course 02 - For Executives -->
+        <div class="course reveal">
+          <div class="course-head">
+            <div class="kicker">Course 02 - For Executives</div>
+            <h3 class="course-title"><em>Generative AI</em> Adoption and Use Training for Executives - Copilot Edition</h3>
+            <p class="course-lead">A course for designing generative AI use from a decision-maker perspective, covering adoption decisions, internal rules, data-leakage prevention, and ROI.</p>
+          </div>
+          <div class="curriculum">
+            <div class="mod"><div class="mod-num">01</div><div><h4 class="mod-title">The current state of generative AI executives should know</h4><p class="mod-desc">Why companies should consider internal use now, the impact on management, and differences between ChatGPT, Copilot, Gemini, and Claude.</p></div></div>
+            <div class="mod"><div class="mod-num">02</div><div><h4 class="mod-title">Work that may no longer need outsourcing</h4><p class="mod-desc">Simple designs, internal manuals, flyers, training materials, minutes, simple websites, logos, and business cards. It also helps address hiring difficulties.</p></div></div>
+            <div class="mod"><div class="mod-num">03</div><div><h4 class="mod-title">Using AI to address labor shortages</h4><p class="mod-desc">Reduce routine work, shorten email writing and replies, automatically organize minutes and ToDos from meeting notes, and lower workload and turnover risk.</p></div></div>
+            <div class="mod"><div class="mod-num">04</div><div><h4 class="mod-title">Work where adoption effects appear quickly</h4><p class="mod-desc">Complaint responses, apologies, sales emails, presentation materials, inquiries, and sales preparation.</p></div></div>
+            <div class="mod"><div class="mod-num">05</div><div><h4 class="mod-title">Work where AI should not be used</h4><p class="mod-desc">Final legal judgments, personnel evaluations, and medical judgments.</p></div></div>
+            <div class="mod"><div class="mod-num">06</div><div><h4 class="mod-title">How to have members use it</h4><p class="mod-desc">What all members should use, when to start with selected departments, and whether screenshots are allowed.</p></div></div>
+            <div class="mod"><div class="mod-num">07</div><div><h4 class="mod-title">How to prevent information leakage</h4><p class="mod-desc">Free AI use, personal and customer information, SharePoint permissions, and handling confidential documents.</p></div></div>
+            <div class="mod"><div class="mod-num">08</div><div><h4 class="mod-title">Creating internal rules for generative AI use</h4><p class="mod-desc">Approved AI tools, prohibited actions, review flow, responsible owners, and checks before external submission.</p></div></div>
+            <div class="mod"><div class="mod-num">09</div><div><h4 class="mod-title">Adoption roadmap</h4><p class="mod-desc">Start with executives -> one department -> measure effects -> establish rules -> company-wide rollout.</p></div></div>
+            <div class="mod"><div class="mod-num">10</div><div><h4 class="mod-title">How to think about ROI</h4><p class="mod-desc">License costs, reduced labor and outsourcing costs, shorter work time, and improved work quality.</p></div></div>
+            <div class="mod"><div class="mod-num">11</div><div><h4 class="mod-title">Traits of companies that fail with AI adoption</h4><p class="mod-desc">No ownership, no rules, no responsible person, no education, and no permission management.</p></div></div>
+            <div class="mod"><div class="mod-num">12</div><div><h4 class="mod-title">Work that increases in the AI era</h4><p class="mod-desc">Quality and standards checks for AI outputs, second opinions on AI-generated work, and confirming context customers cannot fully communicate to AI.</p></div></div>
+          </div>
+        </div>
+
+        <!-- Course 03 - Practical Work -->
+        <div class="course reveal">
+          <div class="course-head">
+            <div class="kicker">Course 03 - Practical Work</div>
+            <h3 class="course-title">Practical <em>Generative AI</em> Training for Work - Copilot Course</h3>
+            <p class="course-lead">A practical course for using Copilot directly in daily work across Outlook, Word, Excel, Teams, PowerPoint, and more.</p>
+          </div>
+          <div class="curriculum">
+            <div class="mod"><div class="mod-num">01</div><div><h4 class="mod-title">Copilot fundamentals</h4><p class="mod-desc">What Copilot can do, differences from ChatGPT and Gemini, and its relationship with Microsoft 365.</p></div></div>
+            <div class="mod"><div class="mod-num">02</div><div><h4 class="mod-title">Business use cases</h4><p class="mod-desc">Emails, minutes, documents, slides, contracts, and more.</p></div></div>
+            <div class="mod"><div class="mod-num">03</div><div><h4 class="mod-title">Using Outlook</h4><p class="mod-desc">Client replies, request emails, polite refusals, trust-recovery responses, and analysis of received-email intent.</p></div></div>
+            <div class="mod"><div class="mod-num">04</div><div><h4 class="mod-title">Using Word</h4><p class="mod-desc">Contracts, notices, reports, summaries, and manuals.</p></div></div>
+            <div class="mod"><div class="mod-num">05</div><div><h4 class="mod-title">Using Excel</h4><p class="mod-desc">Customer lists, progress tables, comparison tables, analysis, organization, Gantt charts, and graphs.</p></div></div>
+            <div class="mod"><div class="mod-num">06</div><div><h4 class="mod-title">Using Teams</h4><p class="mod-desc">Meeting notes, minutes, ToDo organization, and meeting summaries.</p></div></div>
+            <div class="mod"><div class="mod-num">07</div><div><h4 class="mod-title">Using PowerPoint</h4><p class="mod-desc">Seminar materials, proposal explanations, and internal documents.</p></div></div>
+            <div class="mod"><div class="mod-num">08</div><div><h4 class="mod-title">Security</h4><p class="mod-desc">Information that can be entered, personal/customer/contract information, differences from free AI, and confidentiality obligations.</p></div></div>
+            <div class="mod"><div class="mod-num">09</div><div><h4 class="mod-title">Creating internal rules for generative AI use</h4><p class="mod-desc">Approved AI tools, prohibited actions, review flow, responsible owners, and pre-submission checks.</p></div></div>
+            <div class="mod"><div class="mod-num">10</div><div><h4 class="mod-title">Hands-on exercises</h4><p class="mod-desc">Hands-on exercises based on real work scenarios.</p></div></div>
+            <div class="mod"><div class="mod-num">11</div><div><h4 class="mod-title">SharePoint・OneDrive</h4><p class="mod-desc">Where to store documents and how to manage permissions.</p></div></div>
+            <div class="mod"><div class="mod-num">12</div><div><h4 class="mod-title">Work that increases in the AI era</h4><p class="mod-desc">Quality checks for AI-created documents, second opinions on AI outputs, and drawing out context customers could not fully communicate to AI.</p></div></div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <hr>
+  <hr>
 
-    <section class="section" id="security-training">
-      <div class="grid-sidebar">
-        <div class="sidebar-sticky reveal"><div class="kicker">03</div><h2 class="section-heading">Security Training.</h2></div>
-        <div class="card-grid">
-          <div class="card reveal"><h3>Information security basics</h3><p>Password management, phishing prevention, information leakage prevention, and everyday security behavior for all employees.</p></div>
-          <div class="card reveal"><h3>Targeted attack and ransomware readiness</h3><p>Understand current attack patterns and the practical response steps organizations need before an incident occurs.</p></div>
-          <div class="card reveal"><h3>Incident response drills</h3><p>Practice the flow from first response to escalation, reporting, containment, and recovery.</p></div>
-          <div class="card reveal"><h3>Security for generative AI</h3><p>Define AI usage rules, protect confidential information, and build safe guidelines for AI tools in business.</p></div>
+  <!-- === 03 — Security Training === -->
+  <section class="section" id="security-training">
+    <div class="grid-sidebar reveal">
+      <div class="sidebar-sticky">
+        <div class="kicker">03</div>
+        <h2 class="section-heading section-heading-sm" style="margin-top: 8px;">Security<br><em>Training</em></h2>
+      </div>
+      <div>
+        <p class="paragraph" style="margin-bottom: 40px;">Practical programs that raise security literacy across the organization</p>
+        <div class="card-grid-2">
+          <div class="card reveal">
+            <h3>Information Security Fundamentals Training</h3>
+            <p>Learn security fundamentals every member should know, including password management, phishing countermeasures, and information-leakage prevention, through real examples.</p>
+          </div>
+          <div class="card reveal">
+            <h3>Targeted Attack and Ransomware Countermeasures</h3>
+            <p>Learn the latest methods and countermeasures for rapidly increasing cyberattacks, using real cases to strengthen organizational defenses.</p>
+          </div>
+          <div class="card reveal">
+            <h3>Incident Response Training</h3>
+            <p>Practice the flow from initial response to reporting and recovery during security incidents, building an organization that can respond calmly.</p>
+          </div>
+          <div class="card reveal">
+            <h3>Security in the Generative AI Era</h3>
+            <p>We support guidelines for safe use of generative AI tools such as ChatGPT and information-leakage prevention, building security policies fit for the AI era.</p>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <hr>
+  <hr>
 
-    <section class="section" id="microsoft-training">
-      <div class="grid-sidebar">
-        <div class="sidebar-sticky reveal"><div class="kicker">04</div><h2 class="section-heading">Microsoft Training.</h2></div>
-        <div class="card-grid">
-          <div class="card reveal"><h3>Microsoft 365</h3><p>Teams, SharePoint, OneDrive, Power Automate, and collaboration workflows that improve daily productivity.</p></div>
-          <div class="card reveal"><h3>Microsoft Copilot</h3><p>Use Copilot in Word, Excel, PowerPoint, Outlook, and Teams to improve document creation, meetings, and communication.</p></div>
-          <div class="card reveal"><h3>Azure fundamentals</h3><p>Learn the basic concepts required to understand cloud services and AI implementation on Azure.</p></div>
-          <div class="card reveal"><h3>Microsoft security</h3><p>Practical training using Microsoft Defender, Entra ID, Intune, and security administration concepts.</p></div>
+  <!-- === 04 — Microsoft Training === -->
+  <section class="section" id="microsoft-training" style="background: var(--paper-2);">
+    <div class="grid-sidebar reveal">
+      <div class="sidebar-sticky">
+        <div class="kicker">04</div>
+        <h2 class="section-heading section-heading-sm" style="margin-top: 8px;">Microsoft<br><em>Training</em></h2>
+      </div>
+      <div>
+        <p class="paragraph" style="margin-bottom: 12px;">Practical training by an MCT (Microsoft Certified Trainer) certified instructor</p>
+        <p class="paragraph" style="margin-bottom: 40px; font-size: 13px; color: var(--ink-40);">* This is not official Microsoft training. It is an original curriculum provided by an instructor who holds MCT certification.</p>
+        <div class="card-grid-2">
+          <div class="card reveal">
+            <h3>Microsoft 365 Training</h3>
+            <p>Hands-on training for making the most of Microsoft 365 tools such as Teams, SharePoint, OneDrive, and Power Automate in daily operations.</p>
+          </div>
+          <div class="card reveal">
+            <h3>Microsoft Copilot Training</h3>
+            <p>A practical program for mastering Copilot in Word, Excel, PowerPoint, and Teams, integrating AI assistance into everyday work.</p>
+          </div>
+          <div class="card reveal">
+            <h3>Azure Fundamentals and Practical Training</h3>
+            <p>From Azure fundamentals to AI services such as Azure OpenAI Service, this training covers the knowledge needed for AI implementation in the cloud.</p>
+          </div>
+          <div class="card reveal">
+            <h3>Microsoft Security Training</h3>
+            <p>Strengthen corporate security using Microsoft Defender, Entra ID, Intune, and related tools. Learn zero-trust concepts and concrete implementation methods.</p>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="section" style="padding-bottom: 120px;">
-      <div class="cta-center reveal">
-        <div class="kicker">Contact</div>
-        <h2 class="section-heading">Start with a consultation.</h2>
-        <p class="paragraph" style="max-width: 560px; margin: 24px auto 44px;">Tell us about your AI adoption, Microsoft training, or security education needs.</p>
-        <a href="contact.html" class="btn-fill">Contact Us &rarr;</a>
-      </div>
-    </section>
-  </main>
+  <hr>
 
+  <!-- === Contact CTA === -->
+  <section class="section" style="padding-bottom: 120px;">
+    <div class="cta-center reveal">
+      <div class="kicker" style="display: inline-block;">Contact</div>
+      <h2 class="section-heading" style="font-size: clamp(48px, 8vw, 120px); line-height: 1.05; letter-spacing: -0.02em; margin: 20px 0;">
+        Start with<br><em>a consultation</em>.
+      </h2>
+      <p class="paragraph" style="max-width: 520px; margin: 24px auto 48px; font-size: 17px;">
+        Contact us about AI adoption, training, and implementation.
+      </p>
+      <a href="contact.html" class="btn-fill">
+        Contact Us &nbsp;&rarr;
+      </a>
+    </div>
+  </section>
+
+  <!-- === Footer === -->
   <footer>
-    <div><div class="footer-title">AI Knowledge Works</div><p>Helping people and organizations use AI with confidence.</p></div>
-    <div><div class="footer-title">Pages</div><a href="./#background">Background</a><a href="services.html">Services</a><a href="achievements.html">Achievements</a></div>
-    <div><div class="footer-title">Company</div><a href="company.html">Company</a><a href="team.html">Team</a><a href="volunteer.html">Volunteer</a></div>
-    <div><div class="footer-title">Contact</div><a href="contact.html">Contact</a><a href="../service.html">Japanese</a></div>
+    <div class="footer-brand">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <img src="../logo/AIナレッジワークス_logo_transparen.png" width="36" height="36" alt="" style="object-fit: contain;">
+        <span style="font-family: var(--serif); font-size: 17px; letter-spacing: 0.04em;">AI Knowledge Works</span>
+      </div>
+      <p>Creating a society where everyone can confidently turn what they love into reality.</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Pages</div>
+      <a href="services.html">Services</a>
+      <a href="achievements.html">Achievements</a>
+      <a href="company.html">Company</a>
+      <a href="team.html">Team</a>
+      <a href="volunteer.html">Volunteer</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Connect</div>
+      <a href="https://www.youtube.com/@AIKnowledgeWorks" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://note.com/aiknowledgeworks" target="_blank" rel="noopener">Note</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Office</div>
+      <span style="font-size: 14px; color: var(--ink);">Osaka, Japan</span>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 AI Knowledge Works, LLC.</span>
+    </div>
   </footer>
-  <script src="site.js"></script>
+
+  <!-- === Scripts === -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Scroll reveal with .in class
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('in');
+            revealObserver.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+      document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+      // Fallback: reveal all after 3s
+      setTimeout(() => {
+        document.querySelectorAll('.reveal').forEach(el => {
+          if (!el.classList.contains('in')) el.classList.add('in');
+        });
+      }, 3000);
+
+      // Image fallback
+      document.querySelectorAll('img[data-fallback]').forEach(img => {
+        const fallback = img.dataset.fallback;
+        if (!fallback) return;
+        img.addEventListener('error', () => {
+          if (img.src !== fallback) img.src = fallback;
+        }, { once: true });
+      });
+
+      // Header scroll effect
+      const header = document.getElementById('site-header');
+      window.addEventListener('scroll', () => {
+        header.classList.toggle('scrolled', window.scrollY > 40);
+      }, { passive: true });
+
+
+      // Mobile menu
+      const hamburger = document.querySelector('.hamburger');
+      const nav = document.querySelector('nav');
+      const overlay = document.querySelector('.overlay');
+      const navLinks = document.querySelectorAll('nav a');
+
+      function toggleMenu() {
+        hamburger.classList.toggle('active');
+        nav.classList.toggle('active');
+        overlay.classList.toggle('active');
+        document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
+      }
+
+      hamburger.addEventListener('click', toggleMenu);
+      overlay.addEventListener('click', toggleMenu);
+
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          if (nav.classList.contains('active')) toggleMenu();
+        });
+      });
+    });
+  </script>
 </body>
 </html>

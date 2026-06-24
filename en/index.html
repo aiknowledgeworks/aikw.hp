@@ -3,37 +3,66 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Knowledge Works | English</title>
-  <meta name="description" content="AI Knowledge Works helps people and organizations use generative AI, Microsoft technologies, and security training with confidence." />
-  <link rel="icon" type="image/png" href="../logo/AI%E3%83%8A%E3%83%AC%E3%83%83%E3%82%B8%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9_logo_transparen.png">
-  <meta property="og:title" content="AI Knowledge Works" />
-  <meta property="og:description" content="AI training, Microsoft training, and security training for practical transformation." />
-  <meta property="og:image" content="https://aiknowledgeworks.net/logo/AI%E3%83%8A%E3%83%AC%E3%83%83%E3%82%B8%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9_logo_transparen.png" />
-  <meta property="og:url" content="https://aiknowledgeworks.net/en/" />
+  <title>AI Knowledge Works LLC | Official Website</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="../logo/AIナレッジワークス_logo_transparen.png">
+  <link rel="shortcut icon" type="image/x-icon" href="../logo/AIナレッジワークス_logo_transparen.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../logo/AIナレッジワークス_logo_transparen.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../logo/AIナレッジワークス_logo_transparen.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../logo/AIナレッジワークス_logo_transparen.png">
+
+  <!-- Open Graph Protocol -->
+  <meta property="og:title" content="AI Knowledge Works LLC | Official Website" />
+  <meta property="og:description" content="Creating a society where everyone can confidently turn what they love into reality." />
+  <meta property="og:image" content="https://aiknowledgeworks.net/logo/AIナレッジワークス_logo_transparen.png" />
+  <meta property="og:url" content="https://aiknowledgeworks.net" />
   <meta property="og:type" content="website" />
   <link rel="alternate" hreflang="ja" href="https://aiknowledgeworks.net/" />
   <link rel="alternate" hreflang="en" href="https://aiknowledgeworks.net/en/" />
 
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWFLPN1EZH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-DWFLPN1EZH');
+  </script>
+
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&display=swap" rel="stylesheet" />
   <link rel="preload" as="video" href="../movie/reels/story-auto-mobile-premium.mp4" type="video/mp4" media="(max-width: 1180px)" fetchpriority="high">
 
   <style>
+    /* === Design System Tokens === */
     :root {
       --bg: #FAF8F5;
       --ink: #2C2A26;
+      --ink-80: #2C2A26CC;
       --ink-60: #2C2A2699;
       --ink-40: #2C2A2666;
+      --ink-15: #2C2A2626;
+      --ink-08: #2C2A2614;
       --paper: #FFFFFF;
       --paper-2: #F3EFE9;
+      --paper-3: #EBE6DD;
       --rule: #D9D3C7;
+      --link: #1B5FA0;
+      --accent: #3da8c7;
+      --brand-gradient: linear-gradient(135deg, #6db5ff 0%, #a1e9d9 100%);
+
       --serif: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
       --sans: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
       --display: "Fraunces", "Noto Serif JP", serif;
+
       --page-pad: clamp(24px, 5vw, 72px);
+      --measure: 64ch;
     }
 
+    /* === Reset === */
     *, *::before, *::after { box-sizing: border-box; }
     html, body { margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -43,8 +72,10 @@
       font-family: var(--sans);
       font-size: 15px;
       line-height: 1.8;
+      font-weight: 400;
       letter-spacing: 0.02em;
       -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
       overflow-x: hidden;
     }
     a { color: inherit; text-decoration: none; }
@@ -52,6 +83,7 @@
     ul { list-style: none; padding: 0; margin: 0; }
     hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 
+    /* === Grain overlay === */
     body::after {
       content: "";
       position: fixed; inset: 0;
@@ -60,14 +92,22 @@
       opacity: 0.035;
       background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.9'/></svg>");
     }
+
+    /* === Selection === */
     ::selection { background: var(--ink); color: var(--bg); }
 
+    /* === Scroll reveal === */
     .reveal {
       opacity: 0;
       transform: translateY(24px);
       transition: opacity 1.2s cubic-bezier(.2,.7,.2,1), transform 1.2s cubic-bezier(.2,.7,.2,1);
     }
-    .reveal.in { opacity: 1; transform: none; }
+    .reveal.in {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* === Kicker label === */
     .kicker {
       font-size: 11px;
       letter-spacing: 0.22em;
@@ -75,6 +115,15 @@
       color: var(--ink-60);
     }
 
+    /* === Section base === */
+    .section {
+      padding: clamp(96px, 14vh, 160px) var(--page-pad);
+      max-width: 1680px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* === Header / Nav === */
     header {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       padding: 28px var(--page-pad);
@@ -90,6 +139,9 @@
       -webkit-backdrop-filter: blur(14px);
       border-bottom-color: var(--rule);
     }
+    header:not(.scrolled) {
+      border-bottom-color: transparent;
+    }
     header:not(.scrolled) .logo-link,
     header:not(.scrolled) nav {
       opacity: 0.34;
@@ -98,15 +150,40 @@
     header:not(.scrolled):hover .logo-link,
     header:not(.scrolled):hover nav,
     header:not(.scrolled):focus-within .logo-link,
-    header:not(.scrolled):focus-within nav { opacity: 0.92; }
-    header:not(.scrolled) .logo-link img { filter: brightness(0) invert(1); }
+    header:not(.scrolled):focus-within nav {
+      opacity: 0.92;
+    }
+    header:not(.scrolled) .logo-link img {
+      filter: brightness(0) invert(1);
+    }
     header:not(.scrolled) .logo-link span,
-    header:not(.scrolled) nav a { color: rgba(255,255,255,0.64); }
-    header:not(.scrolled) .nav-cta,
-    header:not(.scrolled) .lang-switch { border-color: rgba(255,255,255,0.30); }
-
-    .logo-link { display: flex; align-items: center; gap: 12px; }
-    .logo-link img { height: 40px; transition: height .5s cubic-bezier(.2,.7,.2,1); }
+    header:not(.scrolled) nav a {
+      color: rgba(255,255,255,0.64);
+    }
+    header:not(.scrolled) .nav-cta {
+      border-color: rgba(255,255,255,0.30);
+    }
+    header:not(.scrolled) .nav-cta:hover {
+      background: rgba(255,255,255,0.14);
+      color: #fff;
+    }
+    header:not(.scrolled) .lang-switch {
+      border-color: rgba(255,255,255,0.28);
+      color: rgba(255,255,255,0.70);
+    }
+    header:not(.scrolled) .hamburger span {
+      background: rgba(255,255,255,0.86);
+    }
+    header:not(.scrolled) nav.active a {
+      color: var(--ink);
+    }
+    .logo-link {
+      display: flex; align-items: center; gap: 12px;
+    }
+    .logo-link img {
+      height: 40px;
+      transition: height .5s cubic-bezier(.2,.7,.2,1);
+    }
     header.scrolled .logo-link img { height: 32px; }
     .logo-link span {
       font-family: var(--serif);
@@ -114,11 +191,11 @@
       letter-spacing: 0.04em;
       font-weight: 500;
     }
-    nav ul { display: flex; gap: 28px; align-items: center; }
+    nav ul {
+      display: flex; gap: 28px; align-items: center;
+    }
     nav a {
-      font-size: 12px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
+      font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
       color: var(--ink-60);
       transition: color .3s;
     }
@@ -129,7 +206,10 @@
       margin-left: 8px;
       transition: all .3s;
     }
-    .nav-cta:hover { background: var(--ink); color: var(--bg); }
+    .nav-cta:hover {
+      background: var(--ink);
+      color: var(--bg);
+    }
     .lang-switch {
       display: inline-flex;
       align-items: center;
@@ -141,40 +221,15 @@
       font-size: 11px;
       letter-spacing: 0.14em;
       color: var(--ink-60);
+      transition: border-color .3s, color .3s, background .3s;
+    }
+    .lang-switch:hover {
+      border-color: var(--ink);
+      color: var(--ink);
+      background: var(--paper);
     }
 
-    .hamburger {
-      display: none;
-      width: 28px; height: 20px;
-      position: relative;
-      z-index: 110;
-      cursor: pointer;
-    }
-    .hamburger span {
-      position: absolute;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: var(--ink);
-      transition: .3s;
-    }
-    .hamburger span:nth-child(1) { top: 0; }
-    .hamburger span:nth-child(2) { top: 9px; }
-    .hamburger span:nth-child(3) { top: 18px; }
-    .hamburger.active span:nth-child(1) { top: 9px; transform: rotate(135deg); }
-    .hamburger.active span:nth-child(2) { opacity: 0; }
-    .hamburger.active span:nth-child(3) { top: 9px; transform: rotate(-135deg); }
-    .overlay {
-      display: none; position: fixed; inset: 0;
-      background: rgba(0,0,0,0.4);
-      z-index: 90;
-      backdrop-filter: blur(2px);
-      -webkit-backdrop-filter: blur(2px);
-      opacity: 0;
-      transition: opacity .3s;
-    }
-    .overlay.active { display: block; opacity: 1; }
-
+    /* === Hero === */
     .hero {
       position: relative;
       min-height: 100vh;
@@ -193,7 +248,9 @@
     .hero-video-stage::before {
       content: "";
       position: absolute;
-      left: 0; right: 0; bottom: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
       height: 52%;
       background:
         radial-gradient(ellipse at 18% 72%, rgba(0,0,0,0.30) 0%, rgba(0,0,0,0.14) 34%, transparent 66%),
@@ -221,7 +278,7 @@
       left: var(--page-pad);
       bottom: clamp(96px, 16vh, 170px);
       z-index: 4;
-      width: min(720px, calc(100% - var(--page-pad) * 2));
+      width: min(680px, calc(100% - var(--page-pad) * 2));
       color: #fff;
       transform: translate3d(0, 0, 0);
       transition: opacity 260ms ease, transform 260ms ease;
@@ -238,48 +295,63 @@
       line-height: 1.02;
       letter-spacing: 0;
       margin: 0;
-      text-shadow: 0 24px 80px rgba(0,0,0,0.45);
+      text-shadow: 0 10px 34px rgba(0,0,0,0.72), 0 2px 10px rgba(0,0,0,0.42);
     }
     .hero-story-text {
-      width: min(520px, 100%);
-      margin: 24px 0 0;
-      font-size: 16px;
+      margin: 28px 0 0;
+      max-width: 600px;
+      font-size: clamp(15px, 1.35vw, 19px);
       line-height: 2;
       color: rgba(255,255,255,0.86);
-      text-shadow: 0 14px 48px rgba(0,0,0,0.55);
+      text-shadow: 0 5px 22px rgba(0,0,0,0.78), 0 1px 8px rgba(0,0,0,0.56);
+    }
+    #brand-video,
+    #motion-reels,
+    #team,
+    body > hr {
+      display: none;
     }
 
+    /* === Marquee === */
     .marquee {
       overflow: hidden;
-      padding: 28px 0;
+      border-top: 1px solid var(--rule);
       border-bottom: 1px solid var(--rule);
+      padding: 28px 0;
+      white-space: nowrap;
       background: var(--bg);
     }
     .marquee-track {
-      display: flex;
-      gap: 48px;
-      width: max-content;
+      display: flex; gap: 48px;
       font-family: var(--serif);
       font-size: 36px;
-      white-space: nowrap;
+      color: var(--ink);
+      width: max-content;
       will-change: transform;
     }
-    .marquee-word { font-style: italic; }
-    .marquee-dot { opacity: .35; }
-
-    .section {
-      padding: clamp(96px, 14vh, 160px) var(--page-pad);
-      max-width: 1680px;
-      margin: 0 auto;
-      width: 100%;
+    .marquee-track span {
+      font-weight: 400;
     }
+    .marquee-dot {
+      font-style: normal;
+      opacity: 0.35;
+    }
+    .marquee-word {
+      font-style: italic;
+    }
+
+    /* === Two-column layout === */
     .grid-sidebar {
       display: grid;
       grid-template-columns: 200px 1fr;
       gap: 48px;
       align-items: start;
     }
-    .sidebar-sticky { position: sticky; top: 140px; }
+    .sidebar-sticky {
+      position: sticky; top: 140px;
+    }
+
+    /* === Section headings === */
     .section-heading {
       font-family: var(--serif);
       font-weight: 400;
@@ -291,16 +363,54 @@
       font-family: var(--display);
       font-style: italic;
     }
-    .section-heading-lg { font-size: clamp(40px, 6vw, 88px); line-height: 1.1; }
-    .section-heading-md { font-size: clamp(34px, 4.5vw, 64px); }
-    .paragraph {
-      font-size: 16px;
-      line-height: 2.05;
-      color: var(--ink-60);
-      max-width: 660px;
-      margin: 0;
+    .section-heading-lg {
+      font-size: clamp(40px, 6vw, 88px);
+      line-height: 1.1;
+      letter-spacing: 0;
+    }
+    .section-heading-md {
+      font-size: clamp(34px, 4.5vw, 64px);
+    }
+    .section-heading-sm {
+      font-size: clamp(28px, 3.5vw, 48px);
     }
 
+    /* === Card row (works/items style) === */
+    .item-row {
+      display: grid;
+      grid-template-columns: 80px 1fr auto;
+      gap: 32px;
+      align-items: center;
+      padding: 36px 0;
+      border-bottom: 1px solid var(--rule);
+      transition: padding .5s cubic-bezier(.2,.7,.2,1), background .4s ease;
+    }
+    .item-row:hover { padding-left: 24px; background: var(--paper-2); }
+    .item-num {
+      font-size: 11px; letter-spacing: 0.22em;
+      color: var(--ink-60);
+      font-variant-numeric: tabular-nums;
+    }
+    .item-title {
+      font-family: var(--serif);
+      font-size: clamp(22px, 2.8vw, 36px);
+      font-weight: 400;
+      letter-spacing: 0;
+      transition: font-style .3s;
+    }
+    .item-row:hover .item-title { font-style: italic; }
+    .item-meta {
+      font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--ink-60);
+    }
+    .item-arrow {
+      font-size: 18px;
+      transform: translateX(0);
+      transition: transform .5s cubic-bezier(.2,.7,.2,1);
+    }
+    .item-row:hover .item-arrow { transform: translateX(8px); }
+
+    /* === Service items === */
     .service-row {
       display: grid;
       grid-template-columns: 60px 1fr 2fr;
@@ -311,12 +421,6 @@
       transition: padding .5s cubic-bezier(.2,.7,.2,1), background .4s ease;
     }
     .service-row:hover { padding-left: 24px; background: var(--paper-2); }
-    .item-num {
-      font-size: 11px;
-      letter-spacing: 0.22em;
-      color: var(--ink-60);
-      font-variant-numeric: tabular-nums;
-    }
     .service-name {
       font-family: var(--serif);
       font-size: 26px;
@@ -330,13 +434,12 @@
       margin-top: 6px;
     }
     .service-desc {
-      margin: 0;
-      font-size: 16px;
-      line-height: 1.9;
+      margin: 0; font-size: 16px; line-height: 1.9;
       color: var(--ink-60);
-      max-width: 46ch;
+      max-width: 42ch;
     }
 
+    /* === Values === */
     .value-item {
       display: grid;
       grid-template-columns: 48px 1fr;
@@ -345,7 +448,9 @@
       padding: 24px 0;
       border-bottom: 1px solid var(--rule);
     }
-    .value-item:last-child { border-bottom: none; }
+    .value-item:last-child {
+      border-bottom: none;
+    }
     .value-num {
       font-size: 11px;
       letter-spacing: 0.22em;
@@ -358,6 +463,7 @@
       font-family: var(--serif);
       font-size: 17px;
       font-weight: 400;
+      color: var(--ink);
       margin: 0 0 6px;
     }
     .value-item p {
@@ -367,102 +473,351 @@
       margin: 0;
     }
 
-    .btn-fill {
-      display: inline-flex;
-      align-items: center;
-      padding: 20px 36px;
-      background: var(--ink);
-      color: var(--bg);
-      font-size: 14px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      transition: opacity .3s;
-    }
-    .btn-fill:hover { opacity: .85; }
-    .btn-outline {
-      display: inline-flex;
-      align-items: center;
-      padding: 18px 32px;
-      border: 1px solid var(--ink);
-      color: var(--ink);
-      font-size: 13px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      transition: all .3s;
-    }
-    .btn-outline:hover { background: var(--ink); color: var(--bg); }
+    /* === Contact CTA === */
     .cta-center {
       text-align: center;
       max-width: 1100px;
       margin: 0 auto;
     }
-
-    footer {
-      padding: 56px var(--page-pad);
-      border-top: 1px solid var(--rule);
-      display: grid;
-      grid-template-columns: 2fr repeat(3, 1fr);
-      gap: 48px;
-      color: var(--ink-60);
-      font-size: 13px;
+    .btn-fill {
+      display: inline-flex; align-items: center;
+      padding: 20px 36px;
+      background: var(--ink);
+      color: var(--bg);
+      font-size: 14px; letter-spacing: 0.16em; text-transform: uppercase;
+      transition: all .3s;
     }
-    .footer-brand p { max-width: 280px; line-height: 1.8; }
-    .footer-col-title {
+    .btn-fill:hover {
+      opacity: 0.85;
+    }
+    .btn-outline {
+      display: inline-flex; align-items: center;
+      padding: 19px 35px;
+      border: 1px solid var(--ink);
       color: var(--ink);
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      margin-bottom: 16px;
+      font-size: 14px; letter-spacing: 0.16em; text-transform: uppercase;
+      transition: all .3s;
     }
-    .footer-col a { display: block; margin-bottom: 8px; }
+    .btn-outline:hover {
+      background: var(--ink);
+      color: var(--bg);
+    }
 
+    /* === Footer === */
+    footer {
+      border-top: 1px solid var(--rule);
+      padding: 56px var(--page-pad) 40px;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      max-width: 1680px;
+      margin: 0 auto;
+    }
+    .footer-brand p {
+      font-size: 13px;
+      color: var(--ink-60);
+      line-height: 2;
+      margin-top: 16px;
+      max-width: 340px;
+    }
+    .footer-col-title {
+      font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--ink-60);
+      margin-bottom: 18px;
+    }
+    .footer-col a {
+      font-size: 14px;
+      color: var(--ink);
+      display: block;
+      margin-bottom: 10px;
+      transition: color .3s;
+    }
+    .footer-col a:hover { color: var(--ink-60); }
+    .footer-bottom {
+      grid-column: 1 / -1;
+      padding-top: 32px; margin-top: 16px;
+      border-top: 1px solid var(--rule);
+      display: flex; justify-content: space-between;
+      font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--ink-60);
+    }
+
+    /* === Video embed === */
+    .video-wrapper {
+      width: 380px;
+      aspect-ratio: 9/16;
+      overflow: hidden;
+      border: 1px solid var(--rule);
+    }
+    .video-wrapper iframe {
+      width: 100%; height: 100%;
+      border: none;
+    }
+
+    /* === Motion reels === */
+    .motion-intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
+      gap: 48px;
+      align-items: end;
+      margin-bottom: 56px;
+    }
+    .motion-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: clamp(16px, 2vw, 28px);
+      align-items: stretch;
+    }
+    .motion-card {
+      grid-column: span 4;
+      min-height: 100%;
+      border: 1px solid var(--rule);
+      background: var(--paper);
+      overflow: hidden;
+      transform: translateY(28px);
+      transition:
+        transform 900ms cubic-bezier(.2,.7,.2,1),
+        opacity 900ms cubic-bezier(.2,.7,.2,1),
+        border-color 300ms ease;
+    }
+    .motion-card:nth-child(2),
+    .motion-card:nth-child(5) {
+      transform: translateY(64px);
+    }
+    .motion-card.in {
+      transform: translateY(0);
+    }
+    .motion-card:hover {
+      border-color: var(--ink-40);
+    }
+    .motion-card-wide {
+      grid-column: span 6;
+    }
+    .motion-media {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      background: var(--paper-2);
+      overflow: hidden;
+    }
+    .motion-media video {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+    .motion-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px 20px;
+      border-top: 1px solid var(--rule);
+    }
+    .motion-label {
+      font-family: var(--serif);
+      font-size: clamp(18px, 2vw, 24px);
+      line-height: 1.2;
+    }
+    .motion-count {
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      color: var(--ink-60);
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    /* === Paragraph style === */
+    .paragraph {
+      margin: 0;
+      font-size: 16px;
+      line-height: 2;
+      color: var(--ink-60);
+    }
+
+    /* === "suki" highlight === */
+    .suki {
+      font-family: var(--display);
+      font-style: italic;
+      color: var(--ink);
+      font-weight: 400;
+    }
+
+    /* === Logo breathing animation === */
+    @keyframes breathe {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      25% { transform: scale(1.12) rotate(4deg); }
+    }
+    .logo-breathe {
+      animation: breathe 4s cubic-bezier(.3,.8,.3,.4) infinite;
+      transform-origin: center;
+    }
+
+    /* === Hamburger === */
+    .hamburger {
+      display: none;
+      width: 30px; height: 30px;
+      position: relative; cursor: pointer; z-index: 1010;
+      padding: 10px; box-sizing: content-box; margin: -10px;
+    }
+    .hamburger span {
+      display: block; position: absolute;
+      height: 1.5px; width: 100%;
+      background: var(--ink);
+      opacity: 1; left: 0;
+      transform: rotate(0deg);
+      transition: .25s ease-in-out;
+    }
+    .hamburger span:nth-child(1) { top: 0; }
+    .hamburger span:nth-child(2) { top: 9px; }
+    .hamburger span:nth-child(3) { top: 18px; }
+    .hamburger.active span:nth-child(1) { top: 9px; transform: rotate(135deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; left: -60px; }
+    .hamburger.active span:nth-child(3) { top: 9px; transform: rotate(-135deg); }
+
+    .overlay {
+      display: none; position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.4);
+      z-index: 90;
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .overlay.active { display: block; opacity: 1; }
+
+    /* === Responsive === */
     @media (max-width: 1024px) {
-      .grid-sidebar { grid-template-columns: 1fr; gap: 32px; }
+      .grid-sidebar {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
       .sidebar-sticky { position: static; }
+      footer { grid-template-columns: 1fr 1fr; }
       .service-row { grid-template-columns: 60px 1fr; }
       .service-desc { grid-column: 1 / -1; padding-left: 92px; }
-      footer { grid-template-columns: 1fr 1fr; }
+      .motion-intro { grid-template-columns: 1fr; align-items: start; }
+      .motion-card,
+      .motion-card-wide { grid-column: span 6; }
+    }
+
+    /* === iPad (portrait) === */
+    @media (max-width: 1024px) and (min-width: 769px) {
       .hamburger { display: block; }
       nav {
         position: fixed; top: 0; right: -100%;
         width: 80%; max-width: 360px; height: 100vh;
         background: var(--bg);
         box-shadow: -2px 0 20px rgba(0,0,0,0.08);
-        transition: .3s ease;
+        transition: 0.3s ease;
         padding-top: 80px; z-index: 95;
         overflow-y: auto;
       }
       nav.active { right: 0; }
       nav ul { flex-direction: column; gap: 0; }
       nav ul li a {
-        padding: 20px 32px;
-        display: block;
+        padding: 20px 32px; display: block;
         border-bottom: 1px solid var(--rule);
-        font-size: 15px;
-        letter-spacing: 0.08em;
-        text-transform: none;
-        color: var(--ink);
+        font-size: 15px; letter-spacing: 0.08em;
+        text-transform: none; color: var(--ink);
       }
+      nav ul li a::after { content: "\203A"; float: right; opacity: 0.4; font-size: 1.2em; }
       .nav-cta { border: none; padding: 20px 32px; margin-left: 0; text-align: left; }
+      .nav-cta:hover { background: transparent; color: var(--ink); }
       .lang-switch { border-radius: 0; border: none; min-width: 0; justify-content: flex-start; }
+      .marquee-track { font-size: 28px; gap: 36px; }
     }
 
     @media (max-width: 768px) {
       .section { padding: clamp(64px, 10vh, 96px) var(--page-pad); }
-      .hero-story { left: var(--page-pad); right: var(--page-pad); bottom: 92px; width: auto; }
-      .hero-story-title { font-size: clamp(34px, 11vw, 62px); }
-      .hero-story-text { font-size: 14px; line-height: 1.85; margin-top: 18px; }
       .marquee-track { font-size: 24px; gap: 32px; }
+      .item-row { grid-template-columns: 1fr; gap: 8px; padding: 24px 0; }
+      .item-row:hover { padding-left: 0; }
+      .item-num { display: none; }
+      .item-title { font-size: clamp(20px, 5vw, 28px); }
       .service-row { grid-template-columns: 1fr; gap: 8px; }
       .service-row:hover { padding-left: 0; }
       .service-desc { padding-left: 0; grid-column: auto; }
-      .item-num { display: none; }
-      footer { grid-template-columns: 1fr; gap: 32px; padding: 40px var(--page-pad); }
+      footer {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 40px var(--page-pad);
+      }
+      .footer-bottom { flex-direction: column; gap: 8px; }
+
+      /* Mobile Nav */
+      .hamburger { display: block; }
+      nav {
+        position: fixed; top: 0; right: -100%;
+        width: 80%; max-width: 300px; height: 100vh;
+        background: var(--bg);
+        box-shadow: -2px 0 20px rgba(0,0,0,0.08);
+        transition: 0.3s ease;
+        padding-top: 80px; z-index: 95;
+        overflow-y: auto;
+      }
+      nav.active { right: 0; }
+      nav ul {
+        flex-direction: column; gap: 0;
+      }
+      nav ul li a {
+        padding: 18px 24px;
+        display: block;
+        border-bottom: 1px solid var(--rule);
+        font-size: 14px;
+        letter-spacing: 0.08em;
+        text-transform: none;
+        color: var(--ink);
+      }
+      nav ul li a::after {
+        content: "\203A";
+        float: right;
+        opacity: 0.4;
+        font-size: 1.2em;
+      }
+      .nav-cta {
+        border: none;
+        padding: 18px 24px;
+        margin-left: 0;
+        text-align: left;
+      }
+      .lang-switch {
+        border-radius: 0;
+        border: none;
+        min-width: 0;
+        justify-content: flex-start;
+      }
+      .nav-cta:hover {
+        background: transparent;
+        color: var(--ink);
+      }
+
+      /* Hero film */
+      .hero-story {
+        left: var(--page-pad);
+        right: var(--page-pad);
+        bottom: 92px;
+        width: auto;
+      }
+      .hero-story-title { font-size: clamp(34px, 11vw, 62px); }
+      .hero-story-text { font-size: 14px; line-height: 1.85; margin-top: 18px; }
+      /* Two-col grids become single col */
+      .grid-2-col { grid-template-columns: 1fr !important; }
+      .video-wrapper { width: 100%; max-width: 300px; height: auto; aspect-ratio: 9/16; margin: 0 auto; }
+      .motion-grid { grid-template-columns: 1fr; }
+      .motion-card,
+      .motion-card-wide { grid-column: auto; }
+      .motion-card:nth-child(2),
+      .motion-card:nth-child(5) { transform: translateY(28px); }
+      .motion-card.in { transform: translateY(0); }
+      .motion-meta { padding: 16px; }
     }
 
     @media (max-width: 480px) {
       .section-heading-lg { font-size: clamp(32px, 8vw, 48px); }
       .section-heading-md { font-size: clamp(26px, 7vw, 36px); }
+      .section-heading-sm { font-size: clamp(22px, 6vw, 30px); }
+
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -471,95 +826,133 @@
   </style>
 </head>
 <body>
+  <!-- === Header === -->
   <header id="site-header">
-    <a href="./" class="logo-link">
-      <img src="../logo/AI%E3%83%8A%E3%83%AC%E3%83%83%E3%82%B8%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9_logo_transparen.png" alt="AI Knowledge Works logo" class="logo-breathe">
+    <a href="#home" class="logo-link">
+      <img src="../logo/AIナレッジワークス_logo_transparen.png" alt="AI Knowledge Works Logo" class="logo-breathe">
       <span>AI Knowledge Works</span>
     </a>
-    <div class="hamburger" aria-label="Open menu" role="button" tabindex="0">
+    <div class="hamburger">
       <span></span>
       <span></span>
       <span></span>
     </div>
     <nav>
       <ul>
-        <li><a href="./#background">Background</a></li>
+        <li><a href="#home">Top</a></li>
         <li><a href="services.html">Services</a></li>
         <li><a href="achievements.html">Achievements</a></li>
         <li><a href="company.html">Company</a></li>
         <li><a href="team.html">Team</a></li>
         <li><a href="volunteer.html">Volunteer</a></li>
         <li><a href="contact.html" class="nav-cta">Contact &rarr;</a></li>
-        <li><a href="../" class="lang-switch" lang="ja" aria-label="View Japanese page">JP</a></li>
+        <li><a href="../" class="lang-switch" lang="ja" aria-label="View Japanese site">JP</a></li>
       </ul>
     </nav>
     <div class="overlay"></div>
   </header>
 
+  <!-- === Hero === -->
   <section id="home" class="hero">
     <div class="hero-video-stage">
-      <video id="hero-story-video" class="hero-video" muted playsinline webkit-playsinline autoplay loop preload="auto" poster="../movie/reels/story-poster.jpg"></video>
+      <video id="hero-story-video" class="hero-video" muted playsinline webkit-playsinline autoplay loop preload="auto" poster="../movie/reels/story-poster.jpg">
+      </video>
+
       <div class="hero-story">
-        <h1 id="hero-story-title" class="hero-story-title">AI for everyone.</h1>
+        <h1 id="hero-story-title" class="hero-story-title">AI, made usable for everyone.</h1>
         <p id="hero-story-text" class="hero-story-text">
-          We turn generative AI from a special tool into a practical force that anyone can use with confidence.
+          From spark to working reality. We make generative AI usable, not reserved for a select few.
         </p>
       </div>
+
     </div>
   </section>
 
+  <!-- === Marquee === -->
   <div class="marquee">
     <div class="marquee-track">
-      <span class="marquee-word">Security Training</span><span class="marquee-dot">&bull;</span>
-      <span class="marquee-word">Microsoft Training</span><span class="marquee-dot">&bull;</span>
-      <span class="marquee-word">Practical AI Training</span><span class="marquee-dot">&bull;</span>
-      <span class="marquee-word">Copilot</span><span class="marquee-dot">&bull;</span>
-      <span class="marquee-word">Azure</span><span class="marquee-dot">&bull;</span>
-      <span class="marquee-word">Self-Realization</span><span class="marquee-dot">&bull;</span>
-      <span class="marquee-word">Innovation</span><span class="marquee-dot">&bull;</span>
-      <span class="marquee-word">Security Training</span><span class="marquee-dot">&bull;</span>
-      <span class="marquee-word">Microsoft Training</span><span class="marquee-dot">&bull;</span>
-      <span class="marquee-word">Practical AI Training</span><span class="marquee-dot">&bull;</span>
-      <span class="marquee-word">Copilot</span><span class="marquee-dot">&bull;</span>
-      <span class="marquee-word">Azure</span><span class="marquee-dot">&bull;</span>
-      <span class="marquee-word">Self-Realization</span><span class="marquee-dot">&bull;</span>
-      <span class="marquee-word">Innovation</span><span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">Security Training</span>
+      <span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">Microsoft Training</span>
+      <span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">Practical AI Training</span>
+      <span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">Copilot</span>
+      <span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">Azure</span>
+      <span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">Self-Realization</span>
+      <span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">Innovation</span>
+      <span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">Security Training</span>
+      <span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">Microsoft Training</span>
+      <span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">Practical AI Training</span>
+      <span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">Copilot</span>
+      <span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">Azure</span>
+      <span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">Self-Realization</span>
+      <span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">Innovation</span>
+      <span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">Security Training</span>
+      <span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">Microsoft Training</span>
+      <span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">Practical AI Training</span>
+      <span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">Copilot</span>
+      <span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">Azure</span>
+      <span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">Self-Realization</span>
+      <span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">Innovation</span>
+      <span class="marquee-dot">&bull;</span>
     </div>
   </div>
 
+  <!-- === 01 Background === -->
   <section id="background" class="section">
     <div class="grid-sidebar">
       <div class="sidebar-sticky reveal">
         <div class="kicker">01 &mdash; Why Now</div>
       </div>
       <div>
-        <h2 class="section-heading section-heading-md reveal" style="max-width: 19ch; margin-bottom: 64px;">
-          Put the power of AI in every person's hands.
+        <h2 class="section-heading section-heading-md reveal" style="max-width: 20ch;">
+          Put the power of AI in <em>everyone's hands</em>.
         </h2>
-        <div style="border-top: 1px solid var(--rule);">
-          <div class="service-row reveal">
+
+        <div style="margin-top: 64px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px;" class="grid-2-col">
+          <div class="reveal">
+            <div style="font-family: var(--serif); font-size: 48px; font-weight: 300; letter-spacing: 0; color: var(--ink); margin-bottom: 16px;">26.7<span style="font-size: 24px; color: var(--ink-40);">%</span></div>
+            <p class="paragraph">Share of individuals in Japan using generative AI (MIC 2025 Information and Communications White Paper). Japan remains low among advanced economies.</p>
+          </div>
+          <div class="reveal">
+            <div style="font-family: var(--serif); font-size: 48px; font-weight: 300; letter-spacing: 0; color: var(--ink); margin-bottom: 16px;">&infin;</div>
+            <p class="paragraph">Generative AI is enabling original expression and new processes. The foundation for exploring what people love is expanding rapidly.</p>
+          </div>
+        </div>
+
+        <div style="margin-top: 64px; border-top: 1px solid var(--rule);">
+          <div class="item-row reveal">
             <span class="item-num">01</span>
-            <div>
-              <div class="service-name">Rapid AI Evolution</div>
-              <div class="service-jp">Technology</div>
-            </div>
-            <p class="service-desc">Generative AI is quickly becoming a practical way to solve problems in business, education, and creative work.</p>
+            <span class="item-title">Rapid evolution of AI technology</span>
+            <span class="item-meta">Its potential to solve challenges in business and education is expanding rapidly.</span>
           </div>
-          <div class="service-row reveal">
+          <div class="item-row reveal">
             <span class="item-num">02</span>
-            <div>
-              <div class="service-name">Adoption Gap</div>
-              <div class="service-jp">Enablement</div>
-            </div>
-            <p class="service-desc">Many teams still struggle with how to use AI safely and effectively. We close that gap through training and implementation.</p>
+            <span class="item-title">The adoption gap</span>
+            <span class="item-meta">Practical usage has not yet spread widely, and lack of understanding itself becomes a barrier to adoption.</span>
           </div>
-          <div class="service-row reveal">
+          <div class="item-row reveal">
             <span class="item-num">03</span>
-            <div>
-              <div class="service-name">Creative Expansion</div>
-              <div class="service-jp">Future</div>
-            </div>
-            <p class="service-desc">AI is widening the range of what individuals and organizations can create, test, and bring into the world.</p>
+            <span class="item-title">Expansion of creative fields</span>
+            <span class="item-meta">Generative AI is creating original expression and opening an era where anyone can become a creator.</span>
           </div>
         </div>
       </div>
@@ -568,50 +961,128 @@
 
   <hr>
 
-  <section id="company" class="section">
+  <!-- === 02 Origin === -->
+  <section id="founding" class="section">
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 80px;">
+      <div class="reveal">
+        <div class="kicker">02 &mdash; Origin</div>
+        <h2 class="section-heading section-heading-lg" style="margin: 12px 0 0;">
+          <span class="suki">What you love</span>,<br>
+          <em>possible.</em>
+        </h2>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;" class="grid-2-col">
+      <div class="reveal">
+        <p class="paragraph" style="font-size: 17px; margin-bottom: 32px;">
+          We were founded to create a world where anyone can achieve self-realization through the potential of generative AI.
+        </p>
+        <p class="paragraph" style="margin-bottom: 40px;">
+          Two founders with experience across different fields connected through the potential of generative AI and the vision of <strong style="font-weight: 600; color: var(--ink);">placing tools once reserved for elites into everyone's hands through AI</strong>.
+        </p>
+        <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+          <a href="company.html" class="btn-outline">Company &rarr;</a>
+        </div>
+      </div>
+      <div class="reveal">
+        <div style="border: 1px solid var(--rule); padding: clamp(24px, 3vw, 48px); position: relative;">
+          <div style="position: absolute; top: 16px; left: 16px; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-40);">Mission</div>
+          <div style="text-align: center; padding: 48px 0;">
+            <img src="../logo/AIナレッジワークス_logo_transparen.png" alt="AIKW Logo" style="width: 180px; height: 180px; margin: 0 auto 32px; object-fit: contain;" class="logo-breathe">
+            <div style="font-family: var(--serif); font-size: clamp(20px, 3vw, 32px); font-weight: 400; line-height: 1.5;">
+              Mass production of self-realization
+            </div>
+            <div style="font-size: 13px; color: var(--ink-60); margin-top: 12px; letter-spacing: 0.08em;">
+              Mass production of self-realization
+            </div>
+          </div>
+          <div style="position: absolute; bottom: 16px; left: 16px; right: 16px; display: flex; justify-content: space-between; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-40);">
+            <span>Est. 2025.04.16</span>
+            <span>Osaka, Japan</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- === 03 Mission & Vision === -->
+  <section id="vision" class="section">
     <div class="grid-sidebar">
       <div class="sidebar-sticky reveal">
-        <div class="kicker">02 &mdash; Company</div>
+        <div class="kicker">03 &mdash; Mission &amp; Vision</div>
       </div>
       <div>
-        <h2 class="section-heading section-heading-lg reveal" style="max-width: 13ch; margin-bottom: 48px;">
-          Making what people love possible.
+        <h2 class="section-heading section-heading-md reveal" style="max-width: 18ch; margin-bottom: 80px;">
+          <span class="suki">What you love</span> creates the future.
         </h2>
-        <p class="paragraph reveal" style="margin-bottom: 32px;">
-          AI Knowledge Works was founded in Osaka in 2025 to help people use AI as a tool for self-realization, not as something reserved for experts.
-        </p>
-        <p class="paragraph reveal" style="margin-bottom: 48px;">
-          We combine practical AI education, Microsoft solution training, and security awareness to help organizations move from curiosity to confident adoption.
-        </p>
 
         <div style="border-top: 1px solid var(--rule);">
           <div class="service-row reveal">
             <span class="item-num">M</span>
             <div>
               <div class="service-name">Mission</div>
-              <div class="service-jp">Our purpose</div>
+              <div class="service-jp">Mission</div>
             </div>
-            <p class="service-desc">Mass production of self-realization: creating a society where people can realize what they love through AI.</p>
+            <p class="service-desc">Mass production of self-realization &mdash; Creating a society where people can realize what they love again and again</p>
           </div>
           <div class="service-row reveal">
             <span class="item-num">V</span>
             <div>
               <div class="service-name">Vision</div>
-              <div class="service-jp">Our future</div>
+              <div class="service-jp">Vision</div>
             </div>
-            <p class="service-desc">A future where confidence and room to breathe spread from person to person, starting with what each person loves.</p>
+            <p class="service-desc">A future where capacity spreads &mdash; a world where everyone can live from what they love</p>
           </div>
         </div>
 
         <div style="margin-top: 64px;" class="reveal">
-          <h3 style="font-family: var(--serif); font-size: 22px; font-weight: 400; margin: 0 0 28px;">Core Values</h3>
+          <h3 style="font-family: var(--serif); font-size: 22px; font-weight: 400; margin: 0 0 28px; color: var(--ink);">Core Values</h3>
           <div style="border-top: 1px solid var(--rule);">
-            <div class="value-item"><span class="value-num">01</span><div><h4>Self First</h4><p>Start by taking care of yourself, then extend that margin to society.</p></div></div>
-            <div class="value-item"><span class="value-num">02</span><div><h4>Live from "Like"</h4><p>Let curiosity and enthusiasm become the starting point of work and life.</p></div></div>
-            <div class="value-item"><span class="value-num">03</span><div><h4>Curiosity is Power</h4><p>Turn curiosity into learning, implementation, and momentum.</p></div></div>
-            <div class="value-item"><span class="value-num">04</span><div><h4>Be Fluid, Not Fixed</h4><p>Keep updating the shape of work as technology and people change.</p></div></div>
-            <div class="value-item"><span class="value-num">05</span><div><h4>Go at Your Own Pace</h4><p>Move forward with conviction, not just speed.</p></div></div>
-            <div class="value-item"><span class="value-num">06</span><div><h4>Trust the Process</h4><p>Respect the process of trying, learning, and improving.</p></div></div>
+            <div class="value-item">
+              <span class="value-num">01</span>
+              <div>
+                <h4>Self First</h4>
+                <p>Start by making yourself happy, then spread that capacity into society.</p>
+              </div>
+            </div>
+            <div class="value-item">
+              <span class="value-num">02</span>
+              <div>
+                <h4>Live from <span class="suki">what you love</span></h4>
+                <p>Make what you want to do, learn, and create the starting point of life and work.</p>
+              </div>
+            </div>
+            <div class="value-item">
+              <span class="value-num">03</span>
+              <div>
+                <h4>Curiosity is Power</h4>
+                <p>Turn curiosity into energy for learning and implementation.</p>
+              </div>
+            </div>
+            <div class="value-item">
+              <span class="value-num">04</span>
+              <div>
+                <h4>Be Fluid, Not Fixed</h4>
+                <p>Keep testing and improving without fearing change.</p>
+              </div>
+            </div>
+            <div class="value-item">
+              <span class="value-num">05</span>
+              <div>
+                <h4>Go at Your Own Pace</h4>
+                <p>Move forward at your own pace, with conviction over speed.</p>
+              </div>
+            </div>
+            <div class="value-item">
+              <span class="value-num">06</span>
+              <div>
+                <h4>Trust the Process</h4>
+                <p>Trust not only the outcome, but also the process of trial and error.</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -620,41 +1091,44 @@
 
   <hr>
 
+  <!-- === 04 Services === -->
   <section id="services" class="section">
     <div class="grid-sidebar">
       <div class="sidebar-sticky reveal">
-        <div class="kicker">03 &mdash; Services</div>
+        <div class="kicker">04 &mdash; Practice</div>
       </div>
       <div>
         <h2 class="section-heading section-heading-md reveal" style="max-width: 18ch; margin-bottom: 80px;">
-          Practical training for real adoption.
+          What we do, <em>three</em>&nbsp;ways.
         </h2>
+
         <div style="border-top: 1px solid var(--rule);">
           <div class="service-row reveal">
             <span class="item-num">01</span>
             <div>
               <div class="service-name">Security Training</div>
-              <div class="service-jp">For organizations</div>
+              <div class="service-jp">Security Training</div>
             </div>
-            <p class="service-desc">Practical programs that strengthen security literacy, from fundamentals to incident response.</p>
+            <p class="service-desc">Practical programs that improve corporate security literacy, from information-security fundamentals to incident response.</p>
           </div>
           <div class="service-row reveal">
             <span class="item-num">02</span>
             <div>
               <div class="service-name">Microsoft Training</div>
-              <div class="service-jp">Copilot / M365 / Azure</div>
+              <div class="service-jp">Microsoft Solution Training</div>
             </div>
-            <p class="service-desc">Hands-on training led by Microsoft Certified Trainer expertise for Copilot, Microsoft 365, Azure, and related solutions.</p>
+            <p class="service-desc">MCT-certified trainers provide hands-on guidance for Copilot, Microsoft 365, Azure, and related solutions.</p>
           </div>
           <div class="service-row reveal">
             <span class="item-num">03</span>
             <div>
               <div class="service-name">Practical AI Training</div>
-              <div class="service-jp">Generative AI</div>
+              <div class="service-jp">Practical AI Training</div>
             </div>
-            <p class="service-desc">Structured programs for leaders and teams to use AI safely, productively, and in line with internal rules.</p>
+            <p class="service-desc">A structured set of introductory, executive, and practical Copilot courses for learning how to use generative AI safely and effectively.</p>
           </div>
         </div>
+
         <div style="margin-top: 48px;" class="reveal">
           <a href="services.html" class="btn-fill">View Services &nbsp;&rarr;</a>
         </div>
@@ -664,49 +1138,177 @@
 
   <hr>
 
-  <section id="team" class="section">
-    <div class="grid-sidebar">
-      <div class="sidebar-sticky reveal">
-        <div class="kicker">04 &mdash; Team</div>
-      </div>
-      <div>
-        <h2 class="section-heading section-heading-md reveal" style="max-width: 20ch; margin-bottom: 48px;">
-          A small team focused on practical AI transformation.
+  <!-- === 05 Brand Movie === -->
+  <section id="brand-video" class="section">
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 64px;">
+      <div class="reveal">
+        <div class="kicker">05 &mdash; Brand Movie</div>
+        <h2 class="section-heading section-heading-lg" style="margin: 12px 0 0;">
+          A story of<br><em><span class="suki">what people love</span> woven by light</em>
         </h2>
-        <p class="paragraph reveal" style="margin-bottom: 48px;">
-          AI Knowledge Works is led by members with experience across training, Microsoft technologies, AI communities, and real-world business implementation.
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: auto 1fr; gap: 64px; align-items: center;" class="grid-2-col">
+      <div class="reveal">
+        <div class="video-wrapper">
+          <iframe
+            src="https://www.youtube.com/embed/8cyoIow_exs?si=WNus0JQf759BVPb0&amp;controls=1&amp;rel=0&amp;playsinline=1&amp;modestbranding=1&amp;autoplay=0"
+            title="AI Knowledge Works Brand Movie"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+      <div class="reveal">
+        <div style="font-family: var(--display); font-style: italic; font-size: clamp(24px, 3vw, 32px); line-height: 1.4; color: var(--ink); margin-bottom: 32px;">
+          Light to Breath,<br>Breath to Code.
+        </div>
+        <p class="paragraph" style="font-size: 16px; margin-bottom: 24px;">
+          A story that begins with small points of light in the dark, where the seeds of what each person loves awaken and grow into a network connecting the world.
         </p>
-        <div class="reveal">
-          <a href="team.html" class="btn-outline">View Team &rarr;</a>
+        <p class="paragraph" style="font-size: 14px; color: var(--ink-40); margin-bottom: 32px;">
+          Trails of light express how individual passion resonates through encounters with others, forms communities, and ultimately rises into a vision on a cosmic scale.
+        </p>
+        <div style="border-top: 1px solid var(--rule); padding-top: 24px; font-size: 13px; letter-spacing: 0.04em; color: var(--ink-60); line-height: 1.8;">
+          We expressed the world AI Knowledge Works aims for -<br>mass production of self-realization -<br>as a visual poem.
         </div>
       </div>
     </div>
   </section>
 
-  <section id="contact" class="section" style="padding-top: 0; padding-bottom: 120px;">
-    <div class="cta-center reveal">
-      <div class="kicker" style="display: inline-block;">Contact</div>
-      <h2 class="section-heading" style="font-size: clamp(48px, 8vw, 120px); line-height: 1.05; letter-spacing: 0; margin: 20px 0;">
-        Start with<br><em>a conversation.</em>
-      </h2>
-      <p class="paragraph" style="max-width: 540px; margin: 24px auto 48px; font-size: 17px;">
-        Talk to us about AI adoption, internal training, Microsoft solutions, or security education.
+  <hr>
+
+  <!-- === 06 Motion Reels === -->
+  <section id="motion-reels" class="section">
+    <div class="motion-intro">
+      <div class="reveal">
+        <div class="kicker">06 &mdash; In Motion</div>
+        <h2 class="section-heading section-heading-lg" style="margin: 12px 0 0; max-width: 12ch;">
+          Capturing the energy<br><em>until ideas become real.</em>
+        </h2>
+      </div>
+      <p class="paragraph reveal" style="margin: 0;">
+        Short videos show the moments when ideas start moving and learning or creation takes shape.
       </p>
-      <a href="contact.html" class="btn-fill">Contact Us &nbsp;&rarr;</a>
+    </div>
+
+    <div class="motion-grid">
+      <article class="motion-card motion-card-wide reveal">
+        <div class="motion-media">
+          <video class="motion-video scroll-scrub-video" muted playsinline preload="metadata" poster="../movie/reels/reel-01.jpg">
+            <source src="../movie/reels/reel-01.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="motion-meta">
+          <div class="motion-label">Idea</div>
+          <div class="motion-count">Scene 01</div>
+        </div>
+      </article>
+
+      <article class="motion-card reveal">
+        <div class="motion-media">
+          <video class="motion-video scroll-scrub-video" muted playsinline preload="metadata" poster="../movie/reels/reel-02.jpg">
+            <source src="../movie/reels/reel-02.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="motion-meta">
+          <div class="motion-label">Learn</div>
+          <div class="motion-count">Scene 02</div>
+        </div>
+      </article>
+
+      <article class="motion-card reveal">
+        <div class="motion-media">
+          <video class="motion-video scroll-scrub-video" muted playsinline preload="metadata" poster="../movie/reels/reel-03.jpg">
+            <source src="../movie/reels/reel-03.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="motion-meta">
+          <div class="motion-label">Build</div>
+          <div class="motion-count">Scene 03</div>
+        </div>
+      </article>
+
+      <article class="motion-card reveal">
+        <div class="motion-media">
+          <video class="motion-video scroll-scrub-video" muted playsinline preload="metadata" poster="../movie/reels/reel-04.jpg">
+            <source src="../movie/reels/reel-04.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="motion-meta">
+          <div class="motion-label">Share</div>
+          <div class="motion-count">Scene 04</div>
+        </div>
+      </article>
+
+      <article class="motion-card motion-card-wide reveal">
+        <div class="motion-media">
+          <video class="motion-video scroll-scrub-video" muted playsinline preload="metadata" poster="../movie/reels/reel-05.jpg">
+            <source src="../movie/reels/reel-05.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="motion-meta">
+          <div class="motion-label">Expand</div>
+          <div class="motion-count">Scene 05</div>
+        </div>
+      </article>
     </div>
   </section>
 
+  <hr>
+
+  <!-- === 07 Team === -->
+  <section id="team" class="section">
+    <div class="grid-sidebar">
+      <div class="sidebar-sticky reveal">
+        <div class="kicker">07 &mdash; Team</div>
+      </div>
+      <div>
+        <h2 class="section-heading section-heading-md reveal" style="max-width: 20ch; margin-bottom: 48px;">
+          People who devote themselves to the <em>AI revolution</em>.
+        </h2>
+        <p class="paragraph reveal" style="max-width: 560px; margin-bottom: 48px;">
+          Two founders with experience across different fields connected through one belief: using AI to place tools once reserved for elites into everyone's hands. Together, they founded AI Knowledge Works LLC on April 16, 2025.
+        </p>
+        <div style="display: flex; gap: 16px; flex-wrap: wrap;" class="reveal">
+          <a href="company.html" class="btn-outline">About the Team &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === Contact CTA === -->
+  <section id="contact" class="section" style="padding-top: 0; padding-bottom: 120px;">
+    <div class="reveal" style="width: 100%; height: 360px; position: relative; margin-bottom: 80px; border: 1px solid var(--rule); overflow: hidden;">
+      <iframe src="../app-gallery/AIKW_index_3d.html" style="width: 100%; height: 100%; border: none; pointer-events: none;" title="AIKW 3D Animation"></iframe>
+    </div>
+    <div class="cta-center reveal">
+      <div class="kicker" style="display: inline-block;">Contact</div>
+      <h2 class="section-heading" style="font-size: clamp(48px, 8vw, 120px); line-height: 1.05; letter-spacing: 0; margin: 20px 0;">
+        Start with<br><em>a consultation</em>.
+      </h2>
+      <p class="paragraph" style="max-width: 520px; margin: 24px auto 48px; font-size: 17px;">
+        Contact us about AI adoption, training, and implementation.
+      </p>
+      <a href="contact.html" class="btn-fill">
+        Contact Us &nbsp;&rarr;
+      </a>
+    </div>
+  </section>
+
+  <!-- === Footer === -->
   <footer>
     <div class="footer-brand">
       <div style="display: flex; align-items: center; gap: 12px;">
-        <img src="../logo/AI%E3%83%8A%E3%83%AC%E3%83%83%E3%82%B8%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9_logo_transparen.png" width="36" height="36" alt="" style="object-fit: contain;">
+        <img src="../logo/AIナレッジワークス_logo_transparen.png" width="36" height="36" alt="" style="object-fit: contain;">
         <span style="font-family: var(--serif); font-size: 17px; letter-spacing: 0.04em;">AI Knowledge Works</span>
       </div>
-      <p>Helping people and organizations use AI with confidence.</p>
+      <p>Creating a society where everyone can confidently turn what they love into reality.</p>
     </div>
     <div class="footer-col">
       <div class="footer-col-title">Pages</div>
-      <a href="./#background">Background</a>
       <a href="services.html">Services</a>
       <a href="achievements.html">Achievements</a>
       <a href="company.html">Company</a>
@@ -715,75 +1317,87 @@
       <a href="contact.html">Contact</a>
     </div>
     <div class="footer-col">
-      <div class="footer-col-title">Language</div>
-      <a href="../">Japanese</a>
-      <a href="./">English</a>
+      <div class="footer-col-title">Connect</div>
+      <a href="https://www.youtube.com/@AIKnowledgeWorks" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://note.com/aiknowledgeworks" target="_blank" rel="noopener">Note</a>
     </div>
     <div class="footer-col">
-      <div class="footer-col-title">Company</div>
-      <span>Osaka, Japan</span><br>
-      <span>Est. 2025</span>
+      <div class="footer-col-title">Office</div>
+      <span style="font-size: 14px; color: var(--ink);">Osaka, Japan</span>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 AI Knowledge Works, LLC.</span>
     </div>
   </footer>
 
+  <!-- === Scripts === -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      var reveals = document.querySelectorAll('.reveal');
-      var revealObserver = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('in');
-            revealObserver.unobserve(entry.target);
+      // Scroll reveal
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('in');
+            revealObserver.unobserve(e.target);
           }
         });
-      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
-      reveals.forEach(function(el) { revealObserver.observe(el); });
+      }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
 
-      var story = document.getElementById('home');
-      var heroVideo = document.getElementById('hero-story-video');
-      var heroTitle = document.getElementById('hero-story-title');
-      var heroText = document.getElementById('hero-story-text');
-      var heroStory = document.querySelector('.hero-story');
-      var heroVideoSources = {
-        mobile: '../movie/reels/story-auto-mobile-premium.mp4',
-        desktop: '../movie/reels/story-auto-premium-smooth.mp4'
+      document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+      // Fallback
+      setTimeout(() => {
+        document.querySelectorAll('.reveal').forEach(el => {
+          if (!el.classList.contains('in')) el.classList.add('in');
+        });
+      }, 3000);
+
+      // Hero film: autoplay video and update the copy by playback time.
+      const story = document.getElementById('home');
+      const heroVideo = document.getElementById('hero-story-video');
+      const heroTitle = document.getElementById('hero-story-title');
+      const heroText = document.getElementById('hero-story-text');
+      const heroStory = document.querySelector('.hero-story');
+      const heroVideoSources = {
+        mobile: 'movie/reels/story-auto-mobile-premium.mp4',
+        desktop: 'movie/reels/story-auto-premium-smooth.mp4'
       };
-      var heroSourceQuery = window.matchMedia('(max-width: 1180px)');
-      var storyScenes = [
+      const heroSourceQuery = window.matchMedia('(max-width: 1180px)');
+      const storyScenes = [
         {
           start: 0,
-          title: 'AI for everyone.',
-          text: 'We turn generative AI from a special tool into a practical force that anyone can use with confidence.'
+          title: 'AI, made usable for everyone.',
+          text: 'From spark to working reality. We make generative AI usable, not reserved for a select few.'
         },
         {
           start: 6,
-          title: 'Close the gap.',
-          text: 'We make complex technologies understandable, usable, and safe for teams that need to move from interest to action.'
+          title: 'Create more moments of understanding.',
+          text: 'We turn difficult technology into something people can understand through hands-on work. Training delivers not just knowledge, but the feeling that it can be used.'
         },
         {
           start: 12,
-          title: 'Build creators.',
-          text: 'Training is not just knowledge transfer. It is the moment people begin to test, shape, and create with AI.'
+          title: 'Develop people who can create.',
+          text: 'We support the cycle of testing, refining, and shaping ideas so creative capability remains inside the workplace.'
         },
         {
           start: 18,
-          title: 'Spread capacity.',
-          text: 'When one person learns to use AI well, the time and confidence of the entire team begins to change.'
+          title: 'Capacity spreads.',
+          text: 'When one person learns to use AI, the team's time changes. We expand small successes into organizational movement.'
         },
         {
           start: 24,
-          title: 'Move from what you love.',
-          text: 'AI Knowledge Works creates an entry point for people to turn curiosity, work, and self-realization into motion.'
+          title: 'What people love moves society.',
+          text: 'Toward a world where anyone can take on challenges starting from their own interests. AI Knowledge Works creates that entry point.'
         }
       ];
-      var activeStoryScene = -1;
-      var pendingStoryScene = -1;
-      var heroTickerId = null;
-      var storyFadeLead = 0.28;
+      let activeStoryScene = -1;
+      let pendingStoryScene = -1;
+      let heroTickerId = null;
+      const storyFadeLead = 0.28;
 
       function setHeroScene(index) {
         if (index === activeStoryScene) return;
-        var isInitialScene = activeStoryScene === -1;
+        const isInitialScene = activeStoryScene === -1;
         activeStoryScene = index;
         pendingStoryScene = -1;
         heroTitle.textContent = storyScenes[index].title;
@@ -793,15 +1407,15 @@
           heroStory.classList.remove('is-preparing');
           return;
         }
-        window.requestAnimationFrame(function() {
+        window.requestAnimationFrame(() => {
           heroStory.classList.remove('is-preparing');
         });
       }
 
       function getHeroSceneIndex(current) {
-        var index = storyScenes.length - 1;
-        for (var i = 0; i < storyScenes.length; i++) {
-          var next = storyScenes[i + 1];
+        let index = storyScenes.length - 1;
+        for (let i = 0; i < storyScenes.length; i++) {
+          const next = storyScenes[i + 1];
           if (current >= storyScenes[i].start && (!next || current < next.start)) {
             index = i;
             break;
@@ -812,11 +1426,11 @@
 
       function updateHeroStory() {
         if (!heroVideo || !Number.isFinite(heroVideo.duration) || heroVideo.duration <= 0) return;
-        var current = heroVideo.currentTime;
-        var index = getHeroSceneIndex(current);
-        var nextIndex = (index + 1) % storyScenes.length;
-        var nextStart = storyScenes[index + 1] ? storyScenes[index + 1].start : heroVideo.duration;
-        var timeToNext = nextStart - current;
+        const current = heroVideo.currentTime;
+        const index = getHeroSceneIndex(current);
+        const nextIndex = (index + 1) % storyScenes.length;
+        const nextStart = storyScenes[index + 1] ? storyScenes[index + 1].start : heroVideo.duration;
+        const timeToNext = nextStart - current;
 
         if (index === activeStoryScene && timeToNext > 0 && timeToNext <= storyFadeLead) {
           if (pendingStoryScene !== nextIndex && heroStory) {
@@ -846,30 +1460,30 @@
         heroVideo.removeAttribute('controls');
       }
 
-      function startHeroTicker() {
-        if (heroTickerId) return;
-        updateHeroStory();
-        heroTickerId = window.setInterval(updateHeroStory, 120);
-      }
-
       function requestHeroPlayback() {
         if (!heroVideo) return;
         prepareHeroVideoForAutoplay();
-        var playAttempt = heroVideo.play();
+        const playAttempt = heroVideo.play();
         if (playAttempt && typeof playAttempt.then === 'function') {
-          playAttempt.then(startHeroTicker).catch(function() {});
+          playAttempt.then(startHeroTicker).catch(() => {});
         }
       }
 
       function syncHeroVideoSource() {
         if (!heroVideo) return;
-        var nextSrc = heroSourceQuery.matches ? heroVideoSources.mobile : heroVideoSources.desktop;
+        const nextSrc = heroSourceQuery.matches ? heroVideoSources.mobile : heroVideoSources.desktop;
         if (heroVideo.dataset.activeSrc === nextSrc) return;
         prepareHeroVideoForAutoplay();
         heroVideo.dataset.activeSrc = nextSrc;
         heroVideo.src = nextSrc;
         heroVideo.load();
         requestHeroPlayback();
+      }
+
+      function startHeroTicker() {
+        if (heroTickerId) return;
+        updateHeroStory();
+        heroTickerId = window.setInterval(updateHeroStory, 120);
       }
 
       function stopHeroTicker() {
@@ -892,7 +1506,7 @@
         heroVideo.addEventListener('play', startHeroTicker);
         heroVideo.addEventListener('pause', stopHeroTicker);
         heroVideo.addEventListener('ended', stopHeroTicker);
-        document.addEventListener('visibilitychange', function() {
+        document.addEventListener('visibilitychange', () => {
           if (!document.hidden && heroVideo.paused) requestHeroPlayback();
         });
         window.addEventListener('pageshow', requestHeroPlayback);
@@ -901,14 +1515,16 @@
         requestHeroPlayback();
       }
 
-      var header = document.getElementById('site-header');
-      var headerScrollRaf = null;
+      // Header scroll effect
+      const header = document.getElementById('site-header');
+      let headerScrollRaf = null;
 
       function updateHeaderState() {
         if (!header) return;
-        var heroBottom = story ? story.offsetTop + story.offsetHeight : window.innerHeight;
-        var pastHero = window.scrollY >= heroBottom - 80;
+        const heroBottom = story ? story.offsetTop + story.offsetHeight : window.innerHeight;
+        const pastHero = window.scrollY >= heroBottom - 80;
         header.classList.toggle('scrolled', pastHero);
+        document.body.classList.toggle('past-hero', pastHero);
         headerScrollRaf = null;
       }
 
@@ -921,10 +1537,21 @@
       window.addEventListener('scroll', requestHeaderStateUpdate, { passive: true });
       window.addEventListener('resize', requestHeaderStateUpdate);
 
-      var hamburger = document.querySelector('.hamburger');
-      var nav = document.querySelector('nav');
-      var overlay = document.querySelector('.overlay');
-      var navLinks = document.querySelectorAll('nav a');
+      // Hash scroll
+      if (window.location.hash) {
+        setTimeout(() => {
+          const target = document.querySelector(window.location.hash);
+          if (target) {
+            window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
+          }
+        }, 500);
+      }
+
+      // Mobile menu
+      const hamburger = document.querySelector('.hamburger');
+      const nav = document.querySelector('nav');
+      const overlay = document.querySelector('.overlay');
+      const navLinks = document.querySelectorAll('nav a');
 
       function toggleMenu() {
         hamburger.classList.toggle('active');
@@ -935,23 +1562,36 @@
 
       hamburger.addEventListener('click', toggleMenu);
       overlay.addEventListener('click', toggleMenu);
-      navLinks.forEach(function(link) {
-        link.addEventListener('click', function() {
-          if (nav.classList.contains('active')) toggleMenu();
+
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          if (nav.classList.contains('active')) {
+            toggleMenu();
+            setTimeout(() => {
+              const targetId = link.getAttribute('href');
+              if (targetId.startsWith('#')) {
+                const targetEl = document.querySelector(targetId);
+                if (targetEl) targetEl.scrollIntoView({ behavior: 'smooth' });
+              }
+            }, 300);
+          }
         });
       });
+
     });
 
+    // Marquee JS animation (CSS animation unreliable on iOS Safari)
     window.addEventListener('load', function() {
       var track = document.querySelector('.marquee-track');
       if (!track) return;
+      if (track.closest('.marquee') && track.closest('.marquee').offsetParent === null) return;
       var pos = 0;
       var speed = 1;
-      var oneHalf = 0;
+      var oneThird = 0;
       function tick() {
-        if (oneHalf === 0) oneHalf = track.scrollWidth / 2;
+        if (oneThird === 0) oneThird = track.scrollWidth / 3;
         pos -= speed;
-        if (oneHalf > 0 && Math.abs(pos) >= oneHalf) pos += oneHalf;
+        if (oneThird > 0 && Math.abs(pos) >= oneThird) pos += oneThird;
         track.style.transform = 'translate3d(' + pos + 'px,0,0)';
         requestAnimationFrame(tick);
       }
