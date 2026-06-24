@@ -127,7 +127,7 @@
       display: flex; align-items: center; justify-content: space-between;
       background: transparent;
       border-bottom: 1px solid transparent;
-      transition: all .5s cubic-bezier(.2,.7,.2,1);
+      transition: padding .5s cubic-bezier(.2,.7,.2,1), background .35s ease, border-color .35s ease;
     }
     header.scrolled {
       padding-top: 14px; padding-bottom: 14px;
@@ -228,8 +228,8 @@
       bottom: 0;
       height: 52%;
       background:
-        radial-gradient(ellipse at 18% 72%, rgba(0,0,0,0.52) 0%, rgba(0,0,0,0.30) 34%, transparent 66%),
-        linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.34) 100%);
+        radial-gradient(ellipse at 18% 72%, rgba(0,0,0,0.30) 0%, rgba(0,0,0,0.14) 34%, transparent 66%),
+        linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.16) 100%);
       z-index: 2;
       pointer-events: none;
     }
@@ -241,7 +241,7 @@
       object-fit: cover;
       transform: translateZ(0);
       backface-visibility: hidden;
-      filter: brightness(1.06) contrast(1.02) saturate(1.03);
+      will-change: transform;
     }
     .hero-story {
       position: absolute;
@@ -250,13 +250,13 @@
       z-index: 4;
       width: min(680px, calc(100% - var(--page-pad) * 2));
       color: #fff;
-      filter: blur(0);
-      transition: opacity 220ms ease, filter 220ms ease;
-      will-change: opacity, filter;
+      transform: translate3d(0, 0, 0);
+      transition: opacity 260ms ease, transform 260ms ease;
+      will-change: opacity, transform;
     }
     .hero-story.is-preparing {
       opacity: 0;
-      filter: blur(5px);
+      transform: translate3d(0, 10px, 0);
     }
     .hero-story-title {
       font-family: var(--serif);
@@ -1247,8 +1247,8 @@
       const heroText = document.getElementById('hero-story-text');
       const heroStory = document.querySelector('.hero-story');
       const heroVideoSources = {
-        mobile: 'movie/reels/story-auto-web.mp4',
-        desktop: 'movie/reels/story-auto-web.webm'
+        mobile: 'movie/reels/story-auto-premium-smooth.mp4',
+        desktop: 'movie/reels/story-auto-premium-smooth.mp4'
       };
       const heroSourceQuery = window.matchMedia('(max-width: 768px)');
       const storyScenes = [
@@ -1280,8 +1280,8 @@
       ];
       let activeStoryScene = -1;
       let pendingStoryScene = -1;
-      let heroRafId = null;
-      const storyFadeLead = 0.22;
+      let heroTickerId = null;
+      const storyFadeLead = 0.28;
 
       function setHeroScene(index) {
         if (index === activeStoryScene) return;
@@ -1347,18 +1347,15 @@
       }
 
       function startHeroTicker() {
-        if (heroRafId) return;
-        const tick = () => {
-          updateHeroStory();
-          heroRafId = window.requestAnimationFrame(tick);
-        };
-        tick();
+        if (heroTickerId) return;
+        updateHeroStory();
+        heroTickerId = window.setInterval(updateHeroStory, 120);
       }
 
       function stopHeroTicker() {
-        if (!heroRafId) return;
-        window.cancelAnimationFrame(heroRafId);
-        heroRafId = null;
+        if (!heroTickerId) return;
+        window.clearInterval(heroTickerId);
+        heroTickerId = null;
       }
 
       if (heroVideo) {
@@ -1377,12 +1374,25 @@
 
       // Header scroll effect
       const header = document.getElementById('site-header');
-      window.addEventListener('scroll', () => {
-        const storyEnd = story ? story.offsetTop + story.offsetHeight - window.innerHeight : 40;
-        const pastHero = window.scrollY > storyEnd - 40;
+      let headerScrollRaf = null;
+
+      function updateHeaderState() {
+        if (!header) return;
+        const heroBottom = story ? story.offsetTop + story.offsetHeight : window.innerHeight;
+        const pastHero = window.scrollY >= heroBottom - 80;
         header.classList.toggle('scrolled', pastHero);
         document.body.classList.toggle('past-hero', pastHero);
-      }, { passive: true });
+        headerScrollRaf = null;
+      }
+
+      function requestHeaderStateUpdate() {
+        if (headerScrollRaf) return;
+        headerScrollRaf = window.requestAnimationFrame(updateHeaderState);
+      }
+
+      updateHeaderState();
+      window.addEventListener('scroll', requestHeaderStateUpdate, { passive: true });
+      window.addEventListener('resize', requestHeaderStateUpdate);
 
       // Hash scroll
       if (window.location.hash) {
