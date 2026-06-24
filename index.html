@@ -264,13 +264,6 @@
       opacity: 0;
       filter: blur(5px);
     }
-    .hero-story-kicker {
-      font-size: 11px;
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.62);
-      margin-bottom: 22px;
-    }
     .hero-story-title {
       font-family: var(--serif);
       font-size: clamp(48px, 8vw, 132px);
@@ -302,46 +295,6 @@
       width: 0;
       height: 100%;
       background: rgba(255,255,255,0.86);
-    }
-    .hero-actions {
-      position: fixed;
-      left: var(--page-pad);
-      bottom: 28px;
-      z-index: 20;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-    .hero-actions a {
-      display: inline-flex;
-      align-items: center;
-      min-height: 44px;
-      padding: 0 18px;
-      border: 1px solid rgba(255,255,255,0.38);
-      font-size: 12px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.86);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      transition: background .3s ease, border-color .3s ease;
-    }
-    .hero-actions a:hover {
-      background: rgba(255,255,255,0.12);
-      border-color: rgba(255,255,255,0.72);
-    }
-    .hero-bottom-bar {
-      position: fixed;
-      right: var(--page-pad);
-      bottom: 40px;
-      z-index: 20;
-      font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
-      color: rgba(255,255,255,0.5);
-    }
-    body.past-hero .hero-actions,
-    body.past-hero .hero-bottom-bar {
-      opacity: 0;
-      pointer-events: none;
     }
     #brand-video,
     #motion-reels,
@@ -930,18 +883,6 @@
       .hero-story-title { font-size: clamp(34px, 11vw, 62px); }
       .hero-story-text { font-size: 14px; line-height: 1.85; margin-top: 18px; }
       .hero-progress { left: var(--page-pad); right: var(--page-pad); bottom: 16px; }
-      .hero-actions {
-        left: var(--page-pad);
-        right: var(--page-pad);
-        bottom: 18px;
-      }
-      .hero-actions a {
-        min-height: 42px;
-        padding: 0 12px;
-        font-size: 10px;
-      }
-      .hero-bottom-bar { display: none; }
-
       /* Two-col grids become single col */
       .grid-2-col { grid-template-columns: 1fr !important; }
       .video-wrapper { width: 100%; max-width: 300px; height: auto; aspect-ratio: 9/16; margin: 0 auto; }
@@ -1004,7 +945,6 @@
       </video>
 
       <div class="hero-story">
-        <div id="hero-story-kicker" class="hero-story-kicker">01 / 05 &mdash; Idea</div>
         <h1 id="hero-story-title" class="hero-story-title">AIを、誰もが使える力へ。</h1>
         <p id="hero-story-text" class="hero-story-text">
           ひらめきを、実際に動くものへ。生成AIの力を、特別な人だけのものにしない。
@@ -1013,12 +953,6 @@
 
       <div class="hero-progress" aria-hidden="true"><span id="hero-progress-bar"></span></div>
     </div>
-
-    <div class="hero-actions">
-      <a href="service.html">Services &rarr;</a>
-      <a href="contact.html">Contact &rarr;</a>
-    </div>
-    <div class="hero-bottom-bar">Playing the film</div>
   </section>
 
   <!-- === Marquee === -->
@@ -1469,7 +1403,6 @@
       // Hero film: autoplay video and update the copy by playback time.
       const story = document.getElementById('home');
       const heroVideo = document.getElementById('hero-story-video');
-      const heroKicker = document.getElementById('hero-story-kicker');
       const heroTitle = document.getElementById('hero-story-title');
       const heroText = document.getElementById('hero-story-text');
       const heroProgressBar = document.getElementById('hero-progress-bar');
@@ -1477,31 +1410,26 @@
       const storyScenes = [
         {
           start: 0,
-          kicker: '01 / 05 — Idea',
           title: 'AIを、誰もが使える力へ。',
           text: 'ひらめきを、実際に動くものへ。生成AIの力を、特別な人だけのものにしない。'
         },
         {
           start: 6,
-          kicker: '02 / 05 — Learn',
           title: 'わかる瞬間を、増やす。',
           text: '難しい技術を、手を動かしながら理解できる形に変える。研修は知識ではなく、使える感覚まで届けます。'
         },
         {
           start: 12,
-          kicker: '03 / 05 — Build',
           title: 'つくれる人を、育てる。',
           text: 'アイデアを試し、直し、形にする。その反復を支えることで、現場の中に創造する力を残します。'
         },
         {
           start: 18,
-          kicker: '04 / 05 — Share',
           title: '余裕が、連鎖する。',
           text: '一人が使えるようになると、チームの時間が変わる。小さな成功体験を、組織の動きへ広げます。'
         },
         {
           start: 24,
-          kicker: '05 / 05 — Expand',
           title: '好きが、社会を動かす。',
           text: '誰もが自分の関心を起点に挑戦できる世界へ。AIナレッジワークスは、その入口をつくります。'
         }
@@ -1516,7 +1444,6 @@
         const isInitialScene = activeStoryScene === -1;
         activeStoryScene = index;
         pendingStoryScene = -1;
-        heroKicker.textContent = storyScenes[index].kicker;
         heroTitle.textContent = storyScenes[index].title;
         heroText.textContent = storyScenes[index].text;
         if (!heroStory) return;
