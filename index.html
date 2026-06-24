@@ -409,6 +409,40 @@
       max-width: 42ch;
     }
 
+    /* === Values === */
+    .value-item {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 0 20px;
+      align-items: baseline;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .value-item:last-child {
+      border-bottom: none;
+    }
+    .value-num {
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      color: var(--ink-60);
+      font-variant-numeric: tabular-nums;
+      line-height: 1;
+      padding-top: 4px;
+    }
+    .value-item h4 {
+      font-family: var(--serif);
+      font-size: 17px;
+      font-weight: 400;
+      color: var(--ink);
+      margin: 0 0 6px;
+    }
+    .value-item p {
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--ink-60);
+      margin: 0;
+    }
+
     /* === Contact CTA === */
     .cta-center {
       text-align: center;
@@ -966,10 +1000,52 @@
           </div>
         </div>
 
-        <div style="margin-top: 48px; text-align: left;" class="reveal">
-          <a href="company.html#philosophy" style="font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-60); border-bottom: 1px solid var(--ink-60); padding-bottom: 4px;">
-            Core Values &rarr;
-          </a>
+        <div style="margin-top: 64px;" class="reveal">
+          <h3 style="font-family: var(--serif); font-size: 22px; font-weight: 400; margin: 0 0 28px; color: var(--ink);">Core Values</h3>
+          <div style="border-top: 1px solid var(--rule);">
+            <div class="value-item">
+              <span class="value-num">01</span>
+              <div>
+                <h4>Self First</h4>
+                <p>まず自分を幸せに。その余裕を社会へ広げる。</p>
+              </div>
+            </div>
+            <div class="value-item">
+              <span class="value-num">02</span>
+              <div>
+                <h4>Live from <span class="suki">"好き"</span></h4>
+                <p>やりたい、知りたい、つくりたいを人生と仕事の起点にする。</p>
+              </div>
+            </div>
+            <div class="value-item">
+              <span class="value-num">03</span>
+              <div>
+                <h4>Curiosity is Power</h4>
+                <p>好奇心を、学びと実装のエネルギーに変える。</p>
+              </div>
+            </div>
+            <div class="value-item">
+              <span class="value-num">04</span>
+              <div>
+                <h4>Be Fluid, Not Fixed</h4>
+                <p>変化を恐れず、試しながら最適な形へ更新し続ける。</p>
+              </div>
+            </div>
+            <div class="value-item">
+              <span class="value-num">05</span>
+              <div>
+                <h4>Go at Your Own Pace</h4>
+                <p>速さより納得感。自分の歩幅で前に進む。</p>
+              </div>
+            </div>
+            <div class="value-item">
+              <span class="value-num">06</span>
+              <div>
+                <h4>Trust the Process</h4>
+                <p>結果だけでなく、試行錯誤の過程を信じる。</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -1169,8 +1245,6 @@
   <section id="contact" class="section" style="padding-top: 0; padding-bottom: 120px;">
     <div class="reveal" style="width: 100%; height: 360px; position: relative; margin-bottom: 80px; border: 1px solid var(--rule); overflow: hidden;">
       <iframe src="app-gallery/AIKW_index_3d.html" style="width: 100%; height: 100%; border: none; pointer-events: none;" title="AIKW 3D Animation"></iframe>
-      <div style="position: absolute; top: 16px; left: 16px; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.4);">AIKW &mdash; 3D Mark</div>
-      <div style="position: absolute; bottom: 16px; right: 16px; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.4);">Interactive &middot; WebGL</div>
     </div>
     <div class="cta-center reveal">
       <div class="kicker" style="display: inline-block;">Contact</div>
