@@ -241,6 +241,7 @@
       object-fit: cover;
       transform: translateZ(0);
       backface-visibility: hidden;
+      filter: brightness(1.06) contrast(1.02) saturate(1.03);
     }
     .hero-story {
       position: absolute;
@@ -783,8 +784,6 @@
   <section id="home" class="hero">
     <div class="hero-video-stage">
       <video id="hero-story-video" class="hero-video" muted playsinline autoplay loop preload="auto" poster="movie/reels/story-poster.jpg">
-        <source src="movie/reels/story-auto-web.webm" type="video/webm">
-        <source src="movie/reels/story-auto-web.mp4" type="video/mp4">
       </video>
 
       <div class="hero-story">
@@ -1247,6 +1246,11 @@
       const heroTitle = document.getElementById('hero-story-title');
       const heroText = document.getElementById('hero-story-text');
       const heroStory = document.querySelector('.hero-story');
+      const heroVideoSources = {
+        mobile: 'movie/reels/story-auto-web.mp4',
+        desktop: 'movie/reels/story-auto-web.webm'
+      };
+      const heroSourceQuery = window.matchMedia('(max-width: 768px)');
       const storyScenes = [
         {
           start: 0,
@@ -1329,6 +1333,19 @@
         setHeroScene(index);
       }
 
+      function syncHeroVideoSource() {
+        if (!heroVideo) return;
+        const nextSrc = heroSourceQuery.matches ? heroVideoSources.mobile : heroVideoSources.desktop;
+        if (heroVideo.dataset.activeSrc === nextSrc) return;
+        const wasPlaying = !heroVideo.paused;
+        heroVideo.dataset.activeSrc = nextSrc;
+        heroVideo.src = nextSrc;
+        heroVideo.load();
+        if (wasPlaying) {
+          heroVideo.play().catch(() => {});
+        }
+      }
+
       function startHeroTicker() {
         if (heroRafId) return;
         const tick = () => {
@@ -1345,7 +1362,13 @@
       }
 
       if (heroVideo) {
-        heroVideo.addEventListener('loadedmetadata', updateHeroStory, { once: true });
+        syncHeroVideoSource();
+        if (heroSourceQuery.addEventListener) {
+          heroSourceQuery.addEventListener('change', syncHeroVideoSource);
+        } else if (heroSourceQuery.addListener) {
+          heroSourceQuery.addListener(syncHeroVideoSource);
+        }
+        heroVideo.addEventListener('loadedmetadata', updateHeroStory);
         heroVideo.addEventListener('play', startHeroTicker);
         heroVideo.addEventListener('pause', stopHeroTicker);
         heroVideo.addEventListener('ended', stopHeroTicker);
