@@ -32,7 +32,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&display=swap" rel="stylesheet" />
-  <link rel="preload" as="video" href="movie/reels/story-auto-mobile-premium.mp4" type="video/mp4" media="(max-width: 768px)" fetchpriority="high">
+  <link rel="preload" as="video" href="movie/reels/story-auto-mobile-premium.mp4" type="video/mp4" media="(max-width: 1180px)" fetchpriority="high">
 
   <style>
     /* === Design System Tokens === */
@@ -243,6 +243,11 @@
       transform: translateZ(0);
       backface-visibility: hidden;
       will-change: transform;
+    }
+    .hero-video::-webkit-media-controls,
+    .hero-video::-webkit-media-controls-start-playback-button {
+      display: none !important;
+      -webkit-appearance: none;
     }
     .hero-story {
       position: absolute;
@@ -818,7 +823,7 @@
   <!-- === Hero === -->
   <section id="home" class="hero">
     <div class="hero-video-stage">
-      <video id="hero-story-video" class="hero-video" muted playsinline autoplay loop preload="auto" poster="movie/reels/story-poster.jpg">
+      <video id="hero-story-video" class="hero-video" muted playsinline webkit-playsinline autoplay loop preload="auto" poster="movie/reels/story-poster.jpg">
       </video>
 
       <div class="hero-story">
@@ -1325,7 +1330,7 @@
         mobile: 'movie/reels/story-auto-mobile-premium.mp4',
         desktop: 'movie/reels/story-auto-premium-smooth.mp4'
       };
-      const heroSourceQuery = window.matchMedia('(max-width: 768px)');
+      const heroSourceQuery = window.matchMedia('(max-width: 1180px)');
       const storyScenes = [
         {
           start: 0,
@@ -1408,17 +1413,39 @@
         setHeroScene(index);
       }
 
+      function prepareHeroVideoForAutoplay() {
+        if (!heroVideo) return;
+        heroVideo.muted = true;
+        heroVideo.defaultMuted = true;
+        heroVideo.autoplay = true;
+        heroVideo.loop = true;
+        heroVideo.playsInline = true;
+        heroVideo.setAttribute('muted', '');
+        heroVideo.setAttribute('autoplay', '');
+        heroVideo.setAttribute('loop', '');
+        heroVideo.setAttribute('playsinline', '');
+        heroVideo.setAttribute('webkit-playsinline', '');
+        heroVideo.removeAttribute('controls');
+      }
+
+      function requestHeroPlayback() {
+        if (!heroVideo) return;
+        prepareHeroVideoForAutoplay();
+        const playAttempt = heroVideo.play();
+        if (playAttempt && typeof playAttempt.then === 'function') {
+          playAttempt.then(startHeroTicker).catch(() => {});
+        }
+      }
+
       function syncHeroVideoSource() {
         if (!heroVideo) return;
         const nextSrc = heroSourceQuery.matches ? heroVideoSources.mobile : heroVideoSources.desktop;
         if (heroVideo.dataset.activeSrc === nextSrc) return;
-        const wasPlaying = !heroVideo.paused;
+        prepareHeroVideoForAutoplay();
         heroVideo.dataset.activeSrc = nextSrc;
         heroVideo.src = nextSrc;
         heroVideo.load();
-        if (wasPlaying) {
-          heroVideo.play().catch(() => {});
-        }
+        requestHeroPlayback();
       }
 
       function startHeroTicker() {
@@ -1434,6 +1461,7 @@
       }
 
       if (heroVideo) {
+        prepareHeroVideoForAutoplay();
         syncHeroVideoSource();
         if (heroSourceQuery.addEventListener) {
           heroSourceQuery.addEventListener('change', syncHeroVideoSource);
@@ -1441,10 +1469,18 @@
           heroSourceQuery.addListener(syncHeroVideoSource);
         }
         heroVideo.addEventListener('loadedmetadata', updateHeroStory);
+        heroVideo.addEventListener('loadeddata', requestHeroPlayback);
+        heroVideo.addEventListener('canplay', requestHeroPlayback);
         heroVideo.addEventListener('play', startHeroTicker);
         heroVideo.addEventListener('pause', stopHeroTicker);
         heroVideo.addEventListener('ended', stopHeroTicker);
-        heroVideo.play().then(startHeroTicker).catch(startHeroTicker);
+        document.addEventListener('visibilitychange', () => {
+          if (!document.hidden && heroVideo.paused) requestHeroPlayback();
+        });
+        window.addEventListener('pageshow', requestHeroPlayback);
+        window.addEventListener('pointerdown', requestHeroPlayback, { once: true, passive: true });
+        window.addEventListener('touchstart', requestHeroPlayback, { once: true, passive: true });
+        requestHeroPlayback();
       }
 
       // Header scroll effect
