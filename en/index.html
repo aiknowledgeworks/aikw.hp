@@ -98,8 +98,8 @@
 
     /* === Scroll reveal === */
     .reveal {
-      opacity: 1;
-      transform: translateY(0);
+      opacity: 0;
+      transform: translateY(24px);
       transition: opacity 1.2s cubic-bezier(.2,.7,.2,1), transform 1.2s cubic-bezier(.2,.7,.2,1);
     }
     .reveal.in {
@@ -305,6 +305,13 @@
       color: rgba(255,255,255,0.86);
       text-shadow: 0 5px 22px rgba(0,0,0,0.78), 0 1px 8px rgba(0,0,0,0.56);
     }
+    #brand-video,
+    #motion-reels,
+    #team,
+    body > hr {
+      display: none;
+    }
+
     /* === Marquee === */
     .marquee {
       overflow: hidden;
@@ -320,7 +327,6 @@
       font-size: 36px;
       color: var(--ink);
       width: max-content;
-      animation: marquee-scroll 34s linear infinite;
       will-change: transform;
     }
     .marquee-track span {
@@ -334,11 +340,6 @@
     .marquee-word {
       font-style: italic;
     }
-    @keyframes marquee-scroll {
-      from { transform: translate3d(0, 0, 0); }
-      to { transform: translate3d(-33.333%, 0, 0); }
-    }
-
     /* === Two-column layout === */
     .grid-sidebar {
       display: grid;
@@ -839,7 +840,6 @@
     <nav>
       <ul>
         <li><a href="#home">Top</a></li>
-        <li><a href="#background">Background</a></li>
         <li><a href="services.html">Services</a></li>
         <li><a href="achievements.html">Achievements</a></li>
         <li><a href="company.html">Company</a></li>
@@ -1580,6 +1580,23 @@
 
     });
 
+    // Marquee JS animation (CSS animation unreliable on iOS Safari)
+    window.addEventListener('load', function() {
+      var track = document.querySelector('.marquee-track');
+      if (!track) return;
+      if (track.closest('.marquee') && track.closest('.marquee').offsetParent === null) return;
+      var pos = 0;
+      var speed = 1;
+      var oneThird = 0;
+      function tick() {
+        if (oneThird === 0) oneThird = track.scrollWidth / 3;
+        pos -= speed;
+        if (oneThird > 0 && Math.abs(pos) >= oneThird) pos += oneThird;
+        track.style.transform = 'translate3d(' + pos + 'px,0,0)';
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    });
   </script>
 </body>
 </html>
