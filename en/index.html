@@ -35,6 +35,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&display=swap" rel="stylesheet" />
   <link rel="preload" as="video" href="../movie/reels/story-auto-mobile-premium.mp4" type="video/mp4" media="(max-width: 1180px)" fetchpriority="high">
+  <link rel="preload" as="video" href="../movie/reels/story-auto-premium-smooth.mp4" type="video/mp4" media="(min-width: 1181px)" fetchpriority="high">
 
   <style>
     /* === Design System Tokens === */
@@ -861,7 +862,18 @@
   <!-- === Hero === -->
   <section id="home" class="hero">
     <div class="hero-video-stage">
-      <video id="hero-story-video" class="hero-video" muted playsinline webkit-playsinline autoplay loop preload="auto" poster="../movie/reels/story-poster.jpg">
+      <video
+        id="hero-story-video"
+        class="hero-video"
+        muted
+        playsinline
+        webkit-playsinline
+        autoplay
+        loop
+        preload="auto"
+        poster="../movie/reels/story-poster.jpg">
+        <source src="../movie/reels/story-auto-mobile-premium.mp4" type="video/mp4" media="(max-width: 1180px)">
+        <source src="../movie/reels/story-auto-premium-smooth.mp4" type="video/mp4">
       </video>
 
       <div class="hero-story">
@@ -1388,7 +1400,7 @@
         {
           start: 18,
           title: 'Capacity spreads.',
-          text: 'When one person learns to use AI, the team's time changes. We expand small successes into organizational movement.'
+          text: "When one person learns to use AI, the team's time changes. We expand small successes into organizational movement."
         },
         {
           start: 24,
@@ -1399,6 +1411,8 @@
       let activeStoryScene = -1;
       let pendingStoryScene = -1;
       let heroTickerId = null;
+      let heroPlaybackRetryTimer = null;
+      let heroPlaybackAttempts = 0;
       const storyFadeLead = 0.28;
 
       function setHeroScene(index) {
@@ -1469,10 +1483,27 @@
       function requestHeroPlayback() {
         if (!heroVideo) return;
         prepareHeroVideoForAutoplay();
+        if (heroVideo.readyState >= 2 && !heroVideo.paused) {
+          startHeroTicker();
+          return;
+        }
         const playAttempt = heroVideo.play();
         if (playAttempt && typeof playAttempt.then === 'function') {
-          playAttempt.then(startHeroTicker).catch(() => {});
+          playAttempt.then(() => {
+            heroPlaybackAttempts = 0;
+            startHeroTicker();
+          }).catch(scheduleHeroPlaybackRetry);
         }
+      }
+
+      function scheduleHeroPlaybackRetry() {
+        if (!heroVideo || heroPlaybackRetryTimer || heroPlaybackAttempts >= 8) return;
+        const delay = Math.min(1600, 180 + heroPlaybackAttempts * 180);
+        heroPlaybackAttempts += 1;
+        heroPlaybackRetryTimer = window.setTimeout(() => {
+          heroPlaybackRetryTimer = null;
+          if (!document.hidden && heroVideo.paused) requestHeroPlayback();
+        }, delay);
       }
 
       function syncHeroVideoSource() {
@@ -1483,6 +1514,7 @@
         heroVideo.dataset.activeSrc = nextSrc;
         heroVideo.src = nextSrc;
         heroVideo.load();
+        heroPlaybackAttempts = 0;
         requestHeroPlayback();
       }
 
@@ -1509,8 +1541,13 @@
         heroVideo.addEventListener('loadedmetadata', updateHeroStory);
         heroVideo.addEventListener('loadeddata', requestHeroPlayback);
         heroVideo.addEventListener('canplay', requestHeroPlayback);
+        heroVideo.addEventListener('stalled', scheduleHeroPlaybackRetry);
+        heroVideo.addEventListener('suspend', scheduleHeroPlaybackRetry);
         heroVideo.addEventListener('play', startHeroTicker);
-        heroVideo.addEventListener('pause', stopHeroTicker);
+        heroVideo.addEventListener('pause', () => {
+          stopHeroTicker();
+          if (!document.hidden) scheduleHeroPlaybackRetry();
+        });
         heroVideo.addEventListener('ended', stopHeroTicker);
         document.addEventListener('visibilitychange', () => {
           if (!document.hidden && heroVideo.paused) requestHeroPlayback();
