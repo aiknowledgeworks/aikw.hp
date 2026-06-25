@@ -322,7 +322,7 @@
     /* === Service row (from index) === */
     .service-row {
       display: grid;
-      grid-template-columns: 60px 1fr 2fr;
+      grid-template-columns: minmax(220px, 1fr) 2fr;
       gap: 32px;
       padding: 40px 0;
       border-bottom: 1px solid var(--rule);
@@ -855,8 +855,8 @@
       .grid-sidebar > * { min-width: 0; }
       .sidebar-sticky { position: static; }
       footer { grid-template-columns: 1fr 1fr; }
-      .service-row { grid-template-columns: 60px 1fr; }
-      .service-desc { grid-column: 1 / -1; padding-left: 92px; }
+      .service-row { grid-template-columns: 1fr; }
+      .service-desc { grid-column: 1 / -1; padding-left: 0; }
     }
 
     /* === iPad (portrait) === */
@@ -998,13 +998,11 @@
   <section class="section" id="pillars">
     <div class="grid-sidebar reveal">
       <div class="sidebar-sticky">
-        <div class="kicker">01</div>
         <h2 class="section-heading section-heading-sm" style="margin-top: 8px;">三大<br><em>支柱</em></h2>
       </div>
       <div>
         <p class="paragraph" style="margin-bottom: 40px;">AI Knowledge Works提供的三大业务领域</p>
         <div class="service-row" style="border-top: 1px solid var(--rule);">
-          <div class="kicker" style="padding-top: 4px;">A</div>
           <div>
             <div class="service-name">实践AI 培训</div>
             <div class="service-jp">实践AI 培训</div>
@@ -1012,7 +1010,6 @@
           <p class="service-desc">A structured set of introductory, executive, and practical Copilot courses for learning how to use generative AI safely and effectively.</p>
         </div>
         <div class="service-row">
-          <div class="kicker" style="padding-top: 4px;">B</div>
           <div>
             <div class="service-name">安全 培训</div>
             <div class="service-jp">安全 培训</div>
@@ -1020,7 +1017,6 @@
           <p class="service-desc">实务 programs that improve corporate security literacy, from information-security fundamentals to incident response.</p>
         </div>
         <div class="service-row">
-          <div class="kicker" style="padding-top: 4px;">C</div>
           <div>
             <div class="service-name">Microsoft 培训</div>
             <div class="service-jp">Microsoft Solution 培训</div>
@@ -1037,7 +1033,6 @@
   <section class="section" id="practical-ai-training" style="background: var(--paper-2);">
     <div class="grid-sidebar reveal">
       <div class="sidebar-sticky">
-        <div class="kicker">02</div>
         <h2 class="section-heading section-heading-sm" style="margin-top: 8px;">实践AI<br><em>培训</em></h2>
       </div>
       <div>
@@ -1118,7 +1113,6 @@
   <section class="section" id="security-training">
     <div class="grid-sidebar reveal">
       <div class="sidebar-sticky">
-        <div class="kicker">03</div>
         <h2 class="section-heading section-heading-sm" style="margin-top: 8px;">安全<br><em>培训</em></h2>
       </div>
       <div>
@@ -1151,7 +1145,6 @@
   <section class="section" id="microsoft-training" style="background: var(--paper-2);">
     <div class="grid-sidebar reveal">
       <div class="sidebar-sticky">
-        <div class="kicker">04</div>
         <h2 class="section-heading section-heading-sm" style="margin-top: 8px;">Microsoft<br><em>培训</em></h2>
       </div>
       <div>
