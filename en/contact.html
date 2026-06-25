@@ -5,7 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact | AI Knowledge Works LLC</title>
 
-  <!-- Favicon -->
+
+  <link rel="alternate" hreflang="ja" href="https://aiknowledgeworks.net/contact.html" />
+  <link rel="alternate" hreflang="en" href="https://aiknowledgeworks.net/en/contact.html" />
+  <link rel="alternate" hreflang="zh-CN" href="https://aiknowledgeworks.net/zh/contact.html" />
+  <link rel="alternate" hreflang="x-default" href="https://aiknowledgeworks.net/contact.html" />
+<!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="../logo/AIナレッジワークス_logo_transparen.png">
   <link rel="shortcut icon" type="image/x-icon" href="../logo/AIナレッジワークス_logo_transparen.png">
   <link rel="apple-touch-icon" sizes="180x180" href="../logo/AIナレッジワークス_logo_transparen.png">
@@ -162,6 +167,22 @@
       color: var(--ink);
       background: var(--paper);
     }
+    .lang-switch-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .lang-switch.is-active {
+      border-color: var(--ink);
+      color: var(--ink);
+      background: var(--paper);
+    }
+    header:not(.scrolled) .lang-switch.is-active {
+      border-color: rgba(255,255,255,0.70);
+      color: #fff;
+      background: rgba(255,255,255,0.12);
+    }
+
 
 
     /* === Hero === */
@@ -443,7 +464,7 @@
         <li><a href="team.html">Team</a></li>
         <li><a href="volunteer.html">Volunteer</a></li>
         <li><a href="contact.html" class="nav-cta">Contact &rarr;</a></li>
-        <li><a href="../contact.html" class="lang-switch" aria-label="View Japanese site">JP</a></li>
+        <li class="lang-switch-group"><a href="../contact.html" class="lang-switch" lang="ja">JP</a><a href="contact.html" class="lang-switch is-active" aria-current="page" lang="en">EN</a><a href="../zh/contact.html" class="lang-switch" lang="zh-CN">ZH</a></li>
       </ul>
     </nav>
     <div class="overlay"></div>

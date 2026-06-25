@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Knowledge Works LLC | Official Website</title>
+  <title>AI Knowledge Works有限公司｜官方网站</title>
+  <meta name="description" content="让每个人都能安心地将“热爱”变为现实。AI培训、导入支援与安全咨询。" />
 
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="../logo/AIナレッジワークス_logo_transparen.png">
@@ -13,16 +14,19 @@
   <link rel="icon" type="image/png" sizes="16x16" href="../logo/AIナレッジワークス_logo_transparen.png">
 
   <!-- Open Graph Protocol -->
-  <meta property="og:title" content="AI Knowledge Works LLC | Official Website" />
-  <meta property="og:description" content="Creating a society where everyone can confidently turn what they love into reality." />
+  <meta property="og:title" content="AI Knowledge Works有限公司｜官方网站" />
+  <meta property="og:description" content="让每个人都能安心地将“热爱”变为现实。AI培训、导入支援与安全咨询。" />
   <meta property="og:image" content="https://aiknowledgeworks.net/logo/AIナレッジワークス_logo_transparen.png" />
-  <meta property="og:url" content="https://aiknowledgeworks.net" />
+  <meta property="og:url" content="https://aiknowledgeworks.net/zh/" />
   <meta property="og:type" content="website" />
   <link rel="alternate" hreflang="ja" href="https://aiknowledgeworks.net/" />
   <link rel="alternate" hreflang="en" href="https://aiknowledgeworks.net/en/" />
+  <link rel="alternate" hreflang="zh-CN" href="https://aiknowledgeworks.net/zh/" />
+  <link rel="alternate" hreflang="x-default" href="https://aiknowledgeworks.net/" />
 
 
-  <link rel="alternate" hreflang="zh-CN" href="https://aiknowledgeworks.net/zh/" /><!-- Google tag (gtag.js) -->
+
+  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWFLPN1EZH"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -34,7 +38,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&display=swap" rel="stylesheet" />
   <link rel="preload" as="video" href="../movie/reels/story-auto-mobile-premium.mp4" type="video/mp4" media="(max-width: 1180px)" fetchpriority="high">
   <link rel="preload" as="video" href="../movie/reels/story-auto-premium-smooth.mp4" type="video/mp4" media="(min-width: 1181px)" fetchpriority="high">
 
@@ -57,7 +61,7 @@
       --brand-gradient: linear-gradient(135deg, #6db5ff 0%, #a1e9d9 100%);
 
       --serif: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
-      --sans: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
+      --sans: "Noto Sans SC", "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
       --display: "Fraunces", "Noto Serif JP", serif;
 
       --page-pad: clamp(24px, 5vw, 72px);
@@ -79,6 +83,10 @@
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
       overflow-x: hidden;
+    }
+    :lang(zh-CN) p {
+      text-align: justify;
+      text-justify: inter-ideograph;
     }
     a { color: inherit; text-decoration: none; }
     img { display: block; max-width: 100%; }
@@ -497,7 +505,7 @@
       margin: 0;
     }
 
-    /* === Contact CTA === */
+    /* === 联系 CTA === */
     .cta-center {
       text-align: center;
       max-width: 1100px;
@@ -863,14 +871,14 @@
     </div>
     <nav>
       <ul>
-        <li><a href="#home">Top</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="achievements.html">Achievements</a></li>
-        <li><a href="company.html">Company</a></li>
-        <li><a href="team.html">Team</a></li>
-        <li><a href="volunteer.html">Volunteer</a></li>
-        <li><a href="contact.html" class="nav-cta">Contact &rarr;</a></li>
-        <li class="lang-switch-group"><a href="../" class="lang-switch" lang="ja">JP</a><a href="./" class="lang-switch is-active" aria-current="page" lang="en">EN</a><a href="../zh/" class="lang-switch" lang="zh-CN">ZH</a></li>
+        <li><a href="#home">首页</a></li>
+        <li><a href="services.html">服务</a></li>
+        <li><a href="achievements.html">业绩</a></li>
+        <li><a href="company.html">公司</a></li>
+        <li><a href="team.html">团队</a></li>
+        <li><a href="volunteer.html">志愿者</a></li>
+        <li><a href="contact.html" class="nav-cta">联系 &rarr;</a></li>
+        <li class="lang-switch-group"><a href="../" class="lang-switch" lang="ja">JP</a><a href="../en/" class="lang-switch" lang="en">EN</a><a href="./" class="lang-switch is-active" aria-current="page" lang="zh-CN">ZH</a></li>
       </ul>
     </nav>
     <div class="overlay"></div>
@@ -894,9 +902,9 @@
       </video>
 
       <div class="hero-story">
-        <h1 id="hero-story-title" class="hero-story-title">AI, made usable for everyone.</h1>
+        <h1 id="hero-story-title" class="hero-story-title">让AI成为人人可用的力量。</h1>
         <p id="hero-story-text" class="hero-story-text">
-          From spark to working reality. We make generative AI usable, not reserved for a select few.
+          从灵感到真正落地。我们让生成式AI成为每个人都能使用的工具，而不是少数人的专属武器。
         </p>
       </div>
 
@@ -906,47 +914,47 @@
   <!-- === Marquee === -->
   <div class="marquee">
     <div class="marquee-track">
-      <span class="marquee-word">Security Training</span>
+      <span class="marquee-word">安全培训</span>
       <span class="marquee-dot">&bull;</span>
-      <span class="marquee-word">Microsoft Solution Training</span>
+      <span class="marquee-word">Microsoft解决方案培训</span>
       <span class="marquee-dot">&bull;</span>
-      <span class="marquee-word">Practical AI Training</span>
-      <span class="marquee-dot">&bull;</span>
-      <span class="marquee-word">Copilot</span>
-      <span class="marquee-dot">&bull;</span>
-      <span class="marquee-word">Azure</span>
-      <span class="marquee-dot">&bull;</span>
-      <span class="marquee-word">Self-Realization</span>
-      <span class="marquee-dot">&bull;</span>
-      <span class="marquee-word">Innovation</span>
-      <span class="marquee-dot">&bull;</span>
-      <span class="marquee-word">Security Training</span>
-      <span class="marquee-dot">&bull;</span>
-      <span class="marquee-word">Microsoft Solution Training</span>
-      <span class="marquee-dot">&bull;</span>
-      <span class="marquee-word">Practical AI Training</span>
+      <span class="marquee-word">实践AI培训</span>
       <span class="marquee-dot">&bull;</span>
       <span class="marquee-word">Copilot</span>
       <span class="marquee-dot">&bull;</span>
       <span class="marquee-word">Azure</span>
       <span class="marquee-dot">&bull;</span>
-      <span class="marquee-word">Self-Realization</span>
+      <span class="marquee-word">自我实现</span>
       <span class="marquee-dot">&bull;</span>
-      <span class="marquee-word">Innovation</span>
+      <span class="marquee-word">创新</span>
       <span class="marquee-dot">&bull;</span>
-      <span class="marquee-word">Security Training</span>
+      <span class="marquee-word">安全培训</span>
       <span class="marquee-dot">&bull;</span>
-      <span class="marquee-word">Microsoft Solution Training</span>
+      <span class="marquee-word">Microsoft解决方案培训</span>
       <span class="marquee-dot">&bull;</span>
-      <span class="marquee-word">Practical AI Training</span>
+      <span class="marquee-word">实践AI培训</span>
       <span class="marquee-dot">&bull;</span>
       <span class="marquee-word">Copilot</span>
       <span class="marquee-dot">&bull;</span>
       <span class="marquee-word">Azure</span>
       <span class="marquee-dot">&bull;</span>
-      <span class="marquee-word">Self-Realization</span>
+      <span class="marquee-word">自我实现</span>
       <span class="marquee-dot">&bull;</span>
-      <span class="marquee-word">Innovation</span>
+      <span class="marquee-word">创新</span>
+      <span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">安全培训</span>
+      <span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">Microsoft解决方案培训</span>
+      <span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">实践AI培训</span>
+      <span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">Copilot</span>
+      <span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">Azure</span>
+      <span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">自我实现</span>
+      <span class="marquee-dot">&bull;</span>
+      <span class="marquee-word">创新</span>
       <span class="marquee-dot">&bull;</span>
     </div>
   </div>
@@ -955,39 +963,39 @@
   <section id="background" class="section">
     <div class="grid-sidebar">
       <div class="sidebar-sticky reveal">
-        <div class="kicker">01 &mdash; Why Now</div>
+        <div class="kicker">01 &mdash; 时代背景</div>
       </div>
       <div>
         <h2 class="section-heading section-heading-md reveal" style="max-width: 20ch;">
-          Put the power of AI in <em>everyone's hands</em>.
+          把AI的力量交到 <em>每个人手中</em>.
         </h2>
 
         <div style="margin-top: 64px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px;" class="grid-2-col">
           <div class="reveal">
             <div style="font-family: var(--serif); font-size: 48px; font-weight: 300; letter-spacing: 0; color: var(--ink); margin-bottom: 16px;">26.7<span style="font-size: 24px; color: var(--ink-40);">%</span></div>
-            <p class="paragraph">Share of individuals in Japan using generative AI (MIC 2025 Information and Communications White Paper). Japan remains low among advanced economies.</p>
+            <p class="paragraph">日本国内使用生成式AI的个人比例（总务省《2025年信息通信白皮书》）。在发达国家中，日本仍处于较低水平。</p>
           </div>
           <div class="reveal">
             <div style="font-family: var(--serif); font-size: 48px; font-weight: 300; letter-spacing: 0; color: var(--ink); margin-bottom: 16px;">&infin;</div>
-            <p class="paragraph">Generative AI is enabling original expression and new processes. The foundation for exploring what people love is expanding rapidly.</p>
+            <p class="paragraph">生成式AI正在催生原创表达与新的流程。让人们探索“热爱”的基础正在迅速扩大。</p>
           </div>
         </div>
 
         <div style="margin-top: 64px; border-top: 1px solid var(--rule);">
           <div class="item-row reveal">
             <span class="item-num">01</span>
-            <span class="item-title">Rapid evolution of AI technology</span>
-            <span class="item-meta">Its potential to solve challenges in business and education is expanding rapidly.</span>
+            <span class="item-title">AI技术的快速进化</span>
+            <span class="item-meta">它解决企业与教育现场课题的可能性正在迅速扩大。</span>
           </div>
           <div class="item-row reveal">
             <span class="item-num">02</span>
-            <span class="item-title">The adoption gap</span>
-            <span class="item-meta">Practical usage has not yet spread widely, and lack of understanding itself becomes a barrier to adoption.</span>
+            <span class="item-title">认知与应用差距</span>
+            <span class="item-meta">实际应用方式尚未充分普及，对AI的理解不足本身也成为导入障碍。</span>
           </div>
           <div class="item-row reveal">
             <span class="item-num">03</span>
-            <span class="item-title">Expansion of creative fields</span>
-            <span class="item-meta">Generative AI is creating original expression and opening an era where anyone can become a creator.</span>
+            <span class="item-title">创意领域的扩展</span>
+            <span class="item-meta">生成式AI正在创造原创表达，开启人人都能成为创作者的时代。</span>
           </div>
         </div>
       </div>
@@ -1000,10 +1008,10 @@
   <section id="founding" class="section">
     <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 80px;">
       <div class="reveal">
-        <div class="kicker">02 &mdash; Origin</div>
+        <div class="kicker">02 &mdash; 创立起点</div>
         <h2 class="section-heading section-heading-lg" style="margin: 12px 0 0;">
-          <span class="suki">What you love</span>,<br>
-          <em>possible.</em>
+          <span class="suki">让“热爱”</span>,<br>
+          <em>成为现实。</em>
         </h2>
       </div>
     </div>
@@ -1011,30 +1019,30 @@
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;" class="grid-2-col">
       <div class="reveal">
         <p class="paragraph" style="font-size: 17px; margin-bottom: 32px;">
-          We were founded to create a world where anyone can achieve self-realization through the potential of generative AI.
+          我们创立这家公司，是为了借助生成式AI的可能性，创造一个任何人都能实现自我的世界。
         </p>
         <p class="paragraph" style="margin-bottom: 40px;">
-          Two founders with experience across different fields connected through the potential of generative AI and the vision of <strong style="font-weight: 600; color: var(--ink);">placing tools once reserved for elites into everyone's hands through AI</strong>.
+          两位拥有不同领域经验的创始人，因认同生成式AI的可能性，以及同一个愿景而走到一起： <strong style="font-weight: 600; color: var(--ink);">placing tools once reserved for elites into 每个人手中 through AI</strong>.
         </p>
         <div style="display: flex; gap: 16px; flex-wrap: wrap;">
-          <a href="company.html" class="btn-outline">Company &rarr;</a>
+          <a href="company.html" class="btn-outline">公司 &rarr;</a>
         </div>
       </div>
       <div class="reveal">
         <div style="border: 1px solid var(--rule); padding: clamp(24px, 3vw, 48px); position: relative;">
-          <div style="position: absolute; top: 16px; left: 16px; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-40);">Mission</div>
+          <div style="position: absolute; top: 16px; left: 16px; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-40);">使命</div>
           <div style="text-align: center; padding: 48px 0;">
             <img src="../logo/AIナレッジワークス_logo_transparen.png" alt="AIKW Logo" style="width: 180px; height: 180px; margin: 0 auto 32px; object-fit: contain;" class="logo-breathe">
             <div style="font-family: var(--serif); font-size: clamp(20px, 3vw, 32px); font-weight: 400; line-height: 1.5;">
-              Mass production of self-realization
+              自我实现的批量生产
             </div>
             <div style="font-size: 13px; color: var(--ink-60); margin-top: 12px; letter-spacing: 0.08em;">
-              Mass production of self-realization
+              自我实现的批量生产
             </div>
           </div>
           <div style="position: absolute; bottom: 16px; left: 16px; right: 16px; display: flex; justify-content: space-between; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-40);">
-            <span>Est. 2025.04.16</span>
-            <span>Osaka, Japan</span>
+            <span>成立于 2025.04.16</span>
+            <span>日本大阪</span>
           </div>
         </div>
       </div>
@@ -1043,79 +1051,79 @@
 
   <hr>
 
-  <!-- === 03 Mission & Vision === -->
+  <!-- === 03 使命 & 愿景 === -->
   <section id="vision" class="section">
     <div class="grid-sidebar">
       <div class="sidebar-sticky reveal">
-        <div class="kicker">03 &mdash; Mission &amp; Vision</div>
+        <div class="kicker">03 &mdash; 使命 &amp; 愿景</div>
       </div>
       <div>
         <h2 class="section-heading section-heading-md reveal" style="max-width: 18ch; margin-bottom: 80px;">
-          <span class="suki">What you love</span> creates the future.
+          <span class="suki">让“热爱”</span> 创造未来。
         </h2>
 
         <div style="border-top: 1px solid var(--rule);">
           <div class="service-row reveal">
             <span class="item-num">M</span>
             <div>
-              <div class="service-name">Mission</div>
-              <div class="service-jp">Mission</div>
+              <div class="service-name">使命</div>
+              <div class="service-jp">使命</div>
             </div>
-            <p class="service-desc">Mass production of self-realization &mdash; Creating a society where people can realize what they love again and again</p>
+            <p class="service-desc">自我实现的批量生产 &mdash; Creating a society where people can realize what they love again and again</p>
           </div>
           <div class="service-row reveal">
             <span class="item-num">V</span>
             <div>
-              <div class="service-name">Vision</div>
-              <div class="service-jp">Vision</div>
+              <div class="service-name">愿景</div>
+              <div class="service-jp">愿景</div>
             </div>
-            <p class="service-desc">A future where capacity spreads &mdash; a world where everyone can live from what they love</p>
+            <p class="service-desc">“从容”不断传递的未来 &mdash; 每个人都能以“热爱”为起点生活的世界</p>
           </div>
         </div>
 
         <div style="margin-top: 64px;" class="reveal">
-          <h3 style="font-family: var(--serif); font-size: 22px; font-weight: 400; margin: 0 0 28px; color: var(--ink);">Core Values</h3>
+          <h3 style="font-family: var(--serif); font-size: 22px; font-weight: 400; margin: 0 0 28px; color: var(--ink);">核心价值观</h3>
           <div style="border-top: 1px solid var(--rule);">
             <div class="value-item">
               <span class="value-num">01</span>
               <div>
                 <h4>Self First</h4>
-                <p>Start by making yourself happy, then spread that capacity into society.</p>
+                <p>先让自己幸福，再把这种从容扩展到社会。</p>
               </div>
             </div>
             <div class="value-item">
               <span class="value-num">02</span>
               <div>
-                <h4>Live from <span class="suki">what you love</span></h4>
-                <p>Make what you want to do, learn, and create the starting point of life and work.</p>
+                <h4>以 <span class="suki">“热爱”为起点而活</span></h4>
+                <p>把想做、想学、想创造的事，作为生活与工作的起点。</p>
               </div>
             </div>
             <div class="value-item">
               <span class="value-num">03</span>
               <div>
                 <h4>Curiosity is Power</h4>
-                <p>Turn curiosity into energy for learning and implementation.</p>
+                <p>把好奇心转化为学习与实践的能量。</p>
               </div>
             </div>
             <div class="value-item">
               <span class="value-num">04</span>
               <div>
                 <h4>Be Fluid, Not Fixed</h4>
-                <p>Keep testing and improving without fearing change.</p>
+                <p>不惧变化，持续尝试与改进。</p>
               </div>
             </div>
             <div class="value-item">
               <span class="value-num">05</span>
               <div>
                 <h4>Go at Your Own Pace</h4>
-                <p>Move forward at your own pace, with conviction over speed.</p>
+                <p>以自己的节奏前进，比速度更重要的是确信。</p>
               </div>
             </div>
             <div class="value-item">
               <span class="value-num">06</span>
               <div>
                 <h4>Trust the Process</h4>
-                <p>Trust not only the outcome, but also the process of trial and error.</p>
+                <p>相信结果，也相信反复尝试的过程。</p>
               </div>
             </div>
           </div>
@@ -1126,46 +1134,46 @@
 
   <hr>
 
-  <!-- === 04 Services === -->
+  <!-- === 04 服务 === -->
   <section id="services" class="section">
     <div class="grid-sidebar">
       <div class="sidebar-sticky reveal">
-        <div class="kicker">04 &mdash; Practice</div>
+        <div class="kicker">04 &mdash; 实践</div>
       </div>
       <div>
         <h2 class="section-heading section-heading-md reveal" style="max-width: 18ch; margin-bottom: 80px;">
-          What we do, <em>three</em>&nbsp;ways.
+          我们以 <em>三种方式</em>&nbsp;开展实践。
         </h2>
 
         <div style="border-top: 1px solid var(--rule);">
           <div class="service-row reveal">
             <span class="item-num">01</span>
             <div>
-              <div class="service-name">Security Training</div>
-              <div class="service-jp">Security Training</div>
+              <div class="service-name">安全培训</div>
+              <div class="service-jp">安全培训</div>
             </div>
-            <p class="service-desc">Practical programs that improve corporate security literacy, from information-security fundamentals to incident response.</p>
+            <p class="service-desc">从信息安全基础到事件响应，提供提升企业安全素养的实践型项目。</p>
           </div>
           <div class="service-row reveal">
             <span class="item-num">02</span>
             <div>
-              <div class="service-name">Microsoft Training</div>
-              <div class="service-jp">Microsoft Solution Training</div>
+              <div class="service-name">Microsoft培训</div>
+              <div class="service-jp">Microsoft解决方案培训</div>
             </div>
-            <p class="service-desc">MCT-certified trainers provide hands-on guidance for Copilot, Microsoft 365, Azure, and related solutions.</p>
+            <p class="service-desc">由持有MCT认证的讲师，围绕Copilot、Microsoft 365、Azure等解决方案提供实践指导。</p>
           </div>
           <div class="service-row reveal">
             <span class="item-num">03</span>
             <div>
-              <div class="service-name">Practical AI Training</div>
-              <div class="service-jp">Practical AI Training</div>
+              <div class="service-name">实践AI培训</div>
+              <div class="service-jp">实践AI培训</div>
             </div>
-            <p class="service-desc">A structured set of introductory, executive, and practical Copilot courses for learning how to use generative AI safely and effectively.</p>
+            <p class="service-desc">通过入门、经营层、实务Copilot等课程，系统学习如何安全且有效地使用生成式AI。</p>
           </div>
         </div>
 
         <div style="margin-top: 48px;" class="reveal">
-          <a href="services.html" class="btn-fill">View Services &nbsp;&rarr;</a>
+          <a href="services.html" class="btn-fill">View 服务 &nbsp;&rarr;</a>
         </div>
       </div>
     </div>
@@ -1177,9 +1185,9 @@
   <section id="brand-video" class="section">
     <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 64px;">
       <div class="reveal">
-        <div class="kicker">05 &mdash; Brand Movie</div>
+        <div class="kicker">05 &mdash; 品牌影片</div>
         <h2 class="section-heading section-heading-lg" style="margin: 12px 0 0;">
-          A story of<br><em><span class="suki">what people love</span> woven by light</em>
+          一段由光编织的<br><em><span class="suki">what people love</span> “热爱”故事</em>
         </h2>
       </div>
     </div>
@@ -1198,16 +1206,16 @@
       </div>
       <div class="reveal">
         <div style="font-family: var(--display); font-style: italic; font-size: clamp(24px, 3vw, 32px); line-height: 1.4; color: var(--ink); margin-bottom: 32px;">
-          Light to Breath,<br>Breath to Code.
+          从光到呼吸，<br>从呼吸到代码。
         </div>
         <p class="paragraph" style="font-size: 16px; margin-bottom: 24px;">
-          A story that begins with small points of light in the dark, where the seeds of what each person loves awaken and grow into a network connecting the world.
+          故事从黑暗中的微光开始。每个人心中的“热爱”种子被唤醒，并成长为连接世界的网络。
         </p>
         <p class="paragraph" style="font-size: 14px; color: var(--ink-40); margin-bottom: 32px;">
-          Trails of light express how individual passion resonates through encounters with others, forms communities, and ultimately rises into a vision on a cosmic scale.
+          光的轨迹象征着个人热情如何在相遇中产生共鸣、形成共同体，并最终上升为广阔的愿景。
         </p>
         <div style="border-top: 1px solid var(--rule); padding-top: 24px; font-size: 13px; letter-spacing: 0.04em; color: var(--ink-60); line-height: 1.8;">
-          We expressed the world AI Knowledge Works aims for -<br>mass production of self-realization -<br>as a visual poem.
+          我们将AI Knowledge Works所追求的世界——<br>自我实现的批量生产——<br>表现为一首视觉诗。
         </div>
       </div>
     </div>
@@ -1219,13 +1227,13 @@
   <section id="motion-reels" class="section">
     <div class="motion-intro">
       <div class="reveal">
-        <div class="kicker">06 &mdash; In Motion</div>
+        <div class="kicker">06 &mdash; 动态片段</div>
         <h2 class="section-heading section-heading-lg" style="margin: 12px 0 0; max-width: 12ch;">
-          Capturing the energy<br><em>until ideas become real.</em>
+          捕捉想法成为现实前的<br><em>能量。</em>
         </h2>
       </div>
       <p class="paragraph reveal" style="margin: 0;">
-        Short videos show the moments when ideas start moving and learning or creation takes shape.
+        这些短片记录了想法开始运转、学习与创作逐渐成形的瞬间。
       </p>
     </div>
 
@@ -1237,8 +1245,8 @@
           </video>
         </div>
         <div class="motion-meta">
-          <div class="motion-label">Idea</div>
-          <div class="motion-count">Scene 01</div>
+          <div class="motion-label">想法</div>
+          <div class="motion-count">场景 01</div>
         </div>
       </article>
 
@@ -1249,8 +1257,8 @@
           </video>
         </div>
         <div class="motion-meta">
-          <div class="motion-label">Learn</div>
-          <div class="motion-count">Scene 02</div>
+          <div class="motion-label">学习</div>
+          <div class="motion-count">场景 02</div>
         </div>
       </article>
 
@@ -1261,8 +1269,8 @@
           </video>
         </div>
         <div class="motion-meta">
-          <div class="motion-label">Build</div>
-          <div class="motion-count">Scene 03</div>
+          <div class="motion-label">构建</div>
+          <div class="motion-count">场景 03</div>
         </div>
       </article>
 
@@ -1273,8 +1281,8 @@
           </video>
         </div>
         <div class="motion-meta">
-          <div class="motion-label">Share</div>
-          <div class="motion-count">Scene 04</div>
+          <div class="motion-label">分享</div>
+          <div class="motion-count">场景 04</div>
         </div>
       </article>
 
@@ -1285,8 +1293,8 @@
           </video>
         </div>
         <div class="motion-meta">
-          <div class="motion-label">Expand</div>
-          <div class="motion-count">Scene 05</div>
+          <div class="motion-label">扩展</div>
+          <div class="motion-count">场景 05</div>
         </div>
       </article>
     </div>
@@ -1294,41 +1302,41 @@
 
   <hr>
 
-  <!-- === 07 Team === -->
+  <!-- === 07 团队 === -->
   <section id="team" class="section">
     <div class="grid-sidebar">
       <div class="sidebar-sticky reveal">
-        <div class="kicker">07 &mdash; Team</div>
+        <div class="kicker">07 &mdash; 团队</div>
       </div>
       <div>
         <h2 class="section-heading section-heading-md reveal" style="max-width: 20ch; margin-bottom: 48px;">
-          People who devote themselves to the <em>AI revolution</em>.
+          投身于 <em>AI革命的人们</em>.
         </h2>
         <p class="paragraph reveal" style="max-width: 560px; margin-bottom: 48px;">
-          Two founders with experience across different fields connected through one belief: using AI to place tools once reserved for elites into everyone's hands. Together, they founded AI Knowledge Works LLC on April 16, 2025.
+          Two founders with experience across different fields connected through one belief: using AI to place tools once reserved for elites into 每个人手中. Together, they founded AI Knowledge Works有限公司 on April 16, 2025.
         </p>
         <div style="display: flex; gap: 16px; flex-wrap: wrap;" class="reveal">
-          <a href="company.html" class="btn-outline">About the Team &rarr;</a>
+          <a href="company.html" class="btn-outline">About the 团队 &rarr;</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- === Contact CTA === -->
+  <!-- === 联系 CTA === -->
   <section id="contact" class="section" style="padding-top: 0; padding-bottom: 120px;">
     <div class="reveal" style="width: 100%; height: 360px; position: relative; margin-bottom: 80px; border: 1px solid var(--rule); overflow: hidden;">
       <iframe src="../app-gallery/AIKW_index_3d.html" style="width: 100%; height: 100%; border: none; pointer-events: none;" title="AIKW 3D Animation"></iframe>
     </div>
     <div class="cta-center reveal">
-      <div class="kicker" style="display: inline-block;">Contact</div>
+      <div class="kicker" style="display: inline-block;">联系</div>
       <h2 class="section-heading" style="font-size: clamp(48px, 8vw, 120px); line-height: 1.05; letter-spacing: 0; margin: 20px 0;">
-        Start with<br><em>a consultation</em>.
+        先从<br><em>咨询开始</em>.
       </h2>
       <p class="paragraph" style="max-width: 520px; margin: 24px auto 48px; font-size: 17px;">
-        Contact us about AI adoption, training, and implementation.
+        联系 us about AI adoption, training, and implementation.
       </p>
       <a href="contact.html" class="btn-fill">
-        Contact Us &nbsp;&rarr;
+        联系 Us &nbsp;&rarr;
       </a>
     </div>
   </section>
@@ -1340,28 +1348,28 @@
         <img src="../logo/AIナレッジワークス_logo_transparen.png" width="36" height="36" alt="" style="object-fit: contain;">
         <span style="font-family: var(--serif); font-size: 17px; letter-spacing: 0.04em;">AI Knowledge Works</span>
       </div>
-      <p>Creating a society where everyone can confidently turn what they love into reality.</p>
+      <p>创造一个让每个人都能安心地把“热爱”变为现实的社会。</p>
     </div>
     <div class="footer-col">
-      <div class="footer-col-title">Pages</div>
-      <a href="services.html">Services</a>
-      <a href="achievements.html">Achievements</a>
-      <a href="company.html">Company</a>
-      <a href="team.html">Team</a>
-      <a href="volunteer.html">Volunteer</a>
-      <a href="contact.html">Contact</a>
+      <div class="footer-col-title">页面</div>
+      <a href="services.html">服务</a>
+      <a href="achievements.html">业绩</a>
+      <a href="company.html">公司</a>
+      <a href="team.html">团队</a>
+      <a href="volunteer.html">志愿者</a>
+      <a href="contact.html">联系</a>
     </div>
     <div class="footer-col">
-      <div class="footer-col-title">Connect</div>
+      <div class="footer-col-title">连接</div>
       <a href="https://www.youtube.com/@AIKnowledgeWorks" target="_blank" rel="noopener">YouTube</a>
       <a href="https://note.com/aiknowledgeworks" target="_blank" rel="noopener">Note</a>
     </div>
     <div class="footer-col">
-      <div class="footer-col-title">Office</div>
-      <span style="font-size: 14px; color: var(--ink);">Osaka, Japan</span>
+      <div class="footer-col-title">办公室</div>
+      <span style="font-size: 14px; color: var(--ink);">日本大阪</span>
     </div>
     <div class="footer-bottom">
-      <span>&copy; 2026 AI Knowledge Works, LLC.</span>
+      <span>&copy; 2026 AI Knowledge Works有限公司。</span>
     </div>
   </footer>
 
@@ -1401,28 +1409,28 @@
       const storyScenes = [
         {
           start: 0,
-          title: 'AI, made usable for everyone.',
-          text: 'From spark to working reality. We make generative AI usable, not reserved for a select few.'
+          title: '让AI成为人人可用的力量。',
+          text: '从灵感到真正落地。我们让生成式AI成为每个人都能使用的工具，而不是少数人的专属武器。'
         },
         {
           start: 6,
-          title: 'Create more moments of understanding.',
-          text: 'We turn difficult technology into something people can understand through hands-on work. Training delivers not just knowledge, but the feeling that it can be used.'
+          title: '创造更多“我懂了”的瞬间。',
+          text: '我们把复杂的技术转化为人们能通过实践理解的形式。培训交付的不只是知识，更是“我能用起来”的真实感。'
         },
         {
           start: 12,
-          title: 'Develop people who can create.',
-          text: 'We support the cycle of testing, refining, and shaping ideas so creative capability remains inside the workplace.'
+          title: '培养能够创造的人。',
+          text: '我们支持从尝试、打磨到成形的循环，让创造能力留在企业与现场之中。'
         },
         {
           start: 18,
-          title: 'Capacity spreads.',
-          text: "When one person learns to use AI, the team's time changes. We expand small successes into organizational movement."
+          title: '从容，会不断扩散。',
+          text: '当一个人开始会用AI，团队的时间使用方式就会改变。我们把小小的成功体验扩展为组织的行动。'
         },
         {
           start: 24,
-          title: 'What people love moves society.',
-          text: 'Toward a world where anyone can take on challenges starting from their own interests. AI Knowledge Works creates that entry point.'
+          title: '热爱，会推动社会。',
+          text: '迈向一个任何人都能从自己的兴趣出发进行挑战的世界。AI Knowledge Works创造通往那个世界的入口。'
         }
       ];
       let activeStoryScene = -1;

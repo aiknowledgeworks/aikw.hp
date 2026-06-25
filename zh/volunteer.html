@@ -1,24 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Volunteer Activities | AI Knowledge Works LLC</title>
+  <title>AI学习实验室｜AI Knowledge 作品</title>
+  <meta name="description" content="面向学童的免费AI体验志愿者活动，让孩子们通过创作接触AI。" />
 
-
-  <link rel="alternate" hreflang="ja" href="https://aiknowledgeworks.net/volunteer.html" />
-  <link rel="alternate" hreflang="en" href="https://aiknowledgeworks.net/en/volunteer.html" />
-  <link rel="alternate" hreflang="zh-CN" href="https://aiknowledgeworks.net/zh/volunteer.html" />
-  <link rel="alternate" hreflang="x-default" href="https://aiknowledgeworks.net/volunteer.html" />
-<!-- Favicon -->
+  <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="../logo/AIナレッジワークス_logo_transparen.png">
   <link rel="shortcut icon" type="image/x-icon" href="../logo/AIナレッジワークス_logo_transparen.png">
   <link rel="apple-touch-icon" sizes="180x180" href="../logo/AIナレッジワークス_logo_transparen.png">
   <link rel="icon" type="image/png" sizes="32x32" href="../logo/AIナレッジワークス_logo_transparen.png">
   <link rel="icon" type="image/png" sizes="16x16" href="../logo/AIナレッジワークス_logo_transparen.png">
+  <link rel="alternate" hreflang="ja" href="https://aiknowledgeworks.net/volunteer.html" />
+  <link rel="alternate" hreflang="en" href="https://aiknowledgeworks.net/en/volunteer.html" />
+  <link rel="alternate" hreflang="zh-CN" href="https://aiknowledgeworks.net/zh/volunteer.html" />
+  <link rel="alternate" hreflang="x-default" href="https://aiknowledgeworks.net/volunteer.html" />
+
 
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWFLPN1EZH"></script>
+  <script 志愿者活动ync src="https://www.googletagmanager.com/gtag/js?id=G-DWFLPN1EZH"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -29,7 +30,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&display=swap" rel="stylesheet" />
 
   <style>
     /* === Design System Tokens === */
@@ -49,10 +50,10 @@
       --accent: #3da8c7;
       --brand-gradient: linear-gradient(135deg, #6db5ff 0%, #a1e9d9 100%);
       --serif: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
-      --sans: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
+      --sans: "Noto Sans SC", "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
       --display: "Fraunces", "Noto Serif JP", serif;
       --page-pad: clamp(24px, 5vw, 72px);
-      --measure: 64ch;
+      --me志愿者活动ure: 64ch;
     }
 
     *, *::before, *::after { box-sizing: border-box; }
@@ -66,9 +67,13 @@
       line-height: 1.8;
       font-weight: 400;
       letter-spacing: 0.02em;
-      -webkit-font-smoothing: antialiased;
+      -webkit-font-smoothing: antiali志愿者活动ed;
       text-rendering: optimizeLegibility;
       overflow-x: hidden;
+    }
+    :lang(zh-CN) p {
+      text-align: justify;
+      text-justify: inter-ideograph;
     }
     a { color: inherit; text-decoration: none; }
     img { display: block; max-width: 100%; }
@@ -81,7 +86,7 @@
       pointer-events: none;
       z-index: 9999;
       opacity: 0.035;
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.9'/></svg>");
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence b志愿者活动eFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.9'/></svg>");
     }
 
     ::selection { background: var(--ink); color: var(--bg); }
@@ -96,7 +101,7 @@
     .kicker {
       font-size: 11px;
       letter-spacing: 0.22em;
-      text-transform: uppercase;
+      text-transform: upperc志愿者活动e;
       color: var(--ink-60);
     }
 
@@ -128,7 +133,7 @@
     header.scrolled .logo-link img { height: 32px; }
     .logo-link span { font-family: var(--serif); font-size: 17px; letter-spacing: 0.04em; font-weight: 500; }
     nav ul { display: flex; gap: 28px; align-items: center; }
-    nav a { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-60); transition: color .3s; }
+    nav a { font-size: 12px; letter-spacing: 0.18em; text-transform: upperc志愿者活动e; color: var(--ink-60); transition: color .3s; }
     nav a:hover { color: var(--ink); }
     .nav-cta { padding: 10px 18px; border: 1px solid var(--ink); margin-left: 8px; transition: all .3s; }
     .nav-cta:hover { background: var(--ink); color: var(--bg); }
@@ -143,7 +148,7 @@
       font-size: 11px;
       letter-spacing: 0.14em;
       color: var(--ink-60);
-      transition: border-color 0.3s ease, color 0.3s ease, background 0.3s ease;
+      transition: border-color 0.3s e志愿者活动e, color 0.3s e志愿者活动e, background 0.3s e志愿者活动e;
     }
 
     .lang-switch:hover {
@@ -236,7 +241,7 @@
       display: inline-flex; align-items: center;
       padding: 20px 36px;
       background: var(--ink); color: var(--bg);
-      font-size: 14px; letter-spacing: 0.16em; text-transform: uppercase;
+      font-size: 14px; letter-spacing: 0.16em; text-transform: upperc志愿者活动e;
       transition: all .3s;
     }
     .btn-fill:hover { opacity: 0.85; }
@@ -279,7 +284,7 @@
       position: relative;
       border-radius: 8px;
       overflow: hidden;
-      aspect-ratio: 9 / 14;
+      志愿者活动pect-ratio: 9 / 14;
       background: var(--ink);
     }
     .video-card video {
@@ -307,7 +312,7 @@
       margin: 0 auto;
     }
     .footer-brand p { font-size: 13px; color: var(--ink-60); line-height: 2; margin-top: 16px; max-width: 340px; }
-    .footer-col-title { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-60); margin-bottom: 18px; }
+    .footer-col-title { font-size: 11px; letter-spacing: 0.22em; text-transform: upperc志愿者活动e; color: var(--ink-60); margin-bottom: 18px; }
     .footer-col a { font-size: 14px; color: var(--ink); display: block; margin-bottom: 10px; transition: color .3s; }
     .footer-col a:hover { color: var(--ink-60); }
     .footer-bottom {
@@ -315,7 +320,7 @@
       padding-top: 32px; margin-top: 16px;
       border-top: 1px solid var(--rule);
       display: flex; justify-content: space-between;
-      font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+      font-size: 11px; letter-spacing: 0.18em; text-transform: upperc志愿者活动e;
       color: var(--ink-60);
     }
 
@@ -332,7 +337,7 @@
       background: var(--ink);
       opacity: 1; left: 0;
       transform: rotate(0deg);
-      transition: .25s ease-in-out;
+      transition: .25s e志愿者活动e-in-out;
     }
     .hamburger span:nth-child(1) { top: 0; }
     .hamburger span:nth-child(2) { top: 9px; }
@@ -345,7 +350,7 @@
       display: none; position: fixed; inset: 0;
       background: rgba(0,0,0,0.3);
       z-index: 90;
-      opacity: 0; transition: opacity 0.3s ease;
+      opacity: 0; transition: opacity 0.3s e志愿者活动e;
     }
     .overlay.active { display: block; opacity: 1; }
 
@@ -367,7 +372,7 @@
         width: 80%; max-width: 360px; height: 100vh;
         background: var(--bg);
         box-shadow: -2px 0 20px rgba(0,0,0,0.08);
-        transition: 0.3s ease;
+        transition: 0.3s e志愿者活动e;
         padding-top: 80px; z-index: 95;
         overflow-y: auto;
       }
@@ -407,7 +412,7 @@
         width: 80%; max-width: 300px; height: 100vh;
         background: var(--bg);
         box-shadow: -2px 0 20px rgba(0,0,0,0.08);
-        transition: 0.3s ease;
+        transition: 0.3s e志愿者活动e;
         padding-top: 80px; z-index: 95;
         overflow-y: auto;
       }
@@ -440,7 +445,7 @@
   <header id="site-header">
     <a href="./" class="logo-link">
       <img src="../logo/AIナレッジワークス_logo_transparen.png" alt="AI Knowledge Works Logo" class="logo-breathe">
-      <span>AI Knowledge Works</span>
+      <span>AI Knowledge 作品</span>
     </a>
     <div class="hamburger">
       <span></span>
@@ -449,14 +454,14 @@
     </div>
     <nav>
       <ul>
-        <li><a href="./">Top</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="achievements.html">Achievements</a></li>
-        <li><a href="company.html">Company</a></li>
-        <li><a href="team.html">Team</a></li>
-        <li><a href="volunteer.html">Volunteer</a></li>
-        <li><a href="contact.html" class="nav-cta">Contact &rarr;</a></li>
-        <li class="lang-switch-group"><a href="../volunteer.html" class="lang-switch" lang="ja">JP</a><a href="volunteer.html" class="lang-switch is-active" aria-current="page" lang="en">EN</a><a href="../zh/volunteer.html" class="lang-switch" lang="zh-CN">ZH</a></li>
+        <li><a href="./">首页</a></li>
+        <li><a href="services.html">服务</a></li>
+        <li><a href="achievements.html">业绩</a></li>
+        <li><a href="company.html">公司</a></li>
+        <li><a href="team.html">团队</a></li>
+        <li><a href="volunteer.html">志愿者</a></li>
+        <li><a href="contact.html" class="nav-cta">联系 &rarr;</a></li>
+        <li class="lang-switch-group"><a href="../volunteer.html" class="lang-switch" lang="ja">JP</a><a href="../en/volunteer.html" class="lang-switch" lang="en">EN</a><a href="volunteer.html" class="lang-switch is-active" aria-current="page" lang="zh-CN">ZH</a></li>
       </ul>
     </nav>
     <div class="overlay"></div>
@@ -464,8 +469,8 @@
 
   <!-- === Hero === -->
   <section class="hero">
-    <h1>AI Learning <em>Lab</em></h1>
-    <p class="tagline">Volunteer AI experiences for children in after-school programs</p>
+    <h1>AI学习 <em>实验室</em></h1>
+    <p class="tagline">志愿者 AI experiences for children in after-school programs</p>
   </section>
 
   <hr>
@@ -474,17 +479,17 @@
   <section class="section">
     <div class="grid-sidebar">
       <div class="sidebar-sticky reveal">
-        <div class="kicker">01 &mdash; Overview</div>
+        <div class="kicker">01 &mdash; 概要</div>
       </div>
       <div>
         <h2 class="section-heading section-heading-md reveal" style="max-width: 20ch; margin-bottom: 48px;">
-          A first encounter with AI,<br><em>learning</em> through play.
+          与AI的第一次相遇，<br><em>在玩中学习。</em>
         </h2>
         <p class="paragraph reveal" style="max-width: 64ch; margin-bottom: 32px;">
-          AI Learning Lab is a volunteer activity that provides free making experiences using AI tools for children in after-school care.
+          AI学习 实验室 is a volunteer activity that provides free making experiences using AI tools for children in after-school care.
         </p>
         <p class="paragraph reveal" style="max-width: 64ch;">
-          Through enjoyable creative experiences, we remove assumptions such as AI looks difficult or has nothing to do with me, and help build the foundation for next-generation digital literacy. This is social contribution work, not a commercial service.
+          通过有趣的创作体验，我们希望消除“AI看起来很难”“和我没关系”等先入为主的想法，帮助孩子建立下一代数字素养的基础。这是社会贡献活动，并非商业服务。
         </p>
       </div>
     </div>
@@ -496,17 +501,17 @@
   <section class="section" style="background: var(--paper-2);">
     <div class="grid-sidebar">
       <div class="sidebar-sticky reveal">
-        <div class="kicker">02 &mdash; Activities</div>
+        <div class="kicker">02 &mdash; 活动现场</div>
       </div>
       <div>
         <h2 class="section-heading section-heading-md reveal" style="max-width: 20ch; margin-bottom: 48px;">
-          Scenes from the <em>classroom</em>.
+          课堂 <em>风景</em>.
         </h2>
       </div>
     </div>
     <div class="photo-mosaic reveal">
       <div class="photo-item photo-item-hero">
-        <img src="../images/volunteer/teaching.jpg" alt="Volunteer staff teaching a child how to use a tablet" loading="lazy">
+        <img src="../images/volunteer/teaching.jpg" alt="志愿者 staff teaching a child how to use a tablet" loading="lazy">
       </div>
       <div class="photo-item photo-item-top">
         <img src="../images/volunteer/collaboration.jpg" alt="A child working on AI creation with a PC" loading="lazy">
@@ -522,31 +527,31 @@
 
   <hr>
 
-  <!-- === 03 — Programs === -->
+  <!-- === 03 — 项目 === -->
   <section class="section">
     <div class="grid-sidebar">
       <div class="sidebar-sticky reveal">
-        <div class="kicker">03 &mdash; Program</div>
+        <div class="kicker">03 &mdash; 项目</div>
       </div>
       <div>
         <h2 class="section-heading section-heading-md reveal" style="max-width: 20ch; margin-bottom: 48px;">
-          Four <em>Experience</em> Programs
+          四种 <em>体验</em> 项目
         </h2>
         <div class="card-grid-2">
           <div class="card reveal">
-            <h3>Image Generation AI Workshop</h3>
+            <h3>图像生成AI工作坊</h3>
             <p>Children build imagination and digital literacy by generating their own characters and illustrations with AI. Printed works can be taken home.</p>
           </div>
           <div class="card reveal">
-            <h3>AI Music and Video Creation Experience</h3>
+            <h3>AI Music and Video Creation 体验</h3>
             <p>Children try composing original music and creating short videos with AI. The success of making something themselves encourages motivation to learn.</p>
           </div>
           <div class="card reveal">
-            <h3>Research Learning with AI Chat</h3>
-            <p>Children use conversational AI such as ChatGPT to explore topics they care about, learning how to ask AI questions and evaluate information.</p>
+            <h3>使用AI聊天进行探究学习</h3>
+            <p>Children use conversational AI such 志愿者活动 ChatGPT to explore topics they care about, 在玩中学习。 how to 志愿者活动k AI questions and evaluate information.</p>
           </div>
           <div class="card reveal">
-            <h3>Presentation Session</h3>
+            <h3>作品发表会</h3>
             <p>By presenting AI-created works to friends, children develop expression and communication skills while experiencing the joy of creating and sharing.</p>
           </div>
         </div>
@@ -556,18 +561,18 @@
 
   <hr>
 
-  <!-- === 04 — Works === -->
+  <!-- === 04 — 作品 === -->
   <section class="section" style="background: var(--paper-2);">
     <div class="grid-sidebar">
       <div class="sidebar-sticky reveal">
-        <div class="kicker">04 &mdash; Works</div>
+        <div class="kicker">04 &mdash; 作品</div>
       </div>
       <div>
         <h2 class="section-heading section-heading-md reveal" style="max-width: 20ch; margin-bottom: 16px;">
-          Children's <em>Works</em>.
+          孩子们的 <em>作品</em>.
         </h2>
         <p class="paragraph reveal" style="max-width: 64ch; margin-bottom: 48px;">
-          Short animations brought to life with video AI from AI-generated images. Children's free ideas took shape.
+          Short animations brought to life with video AI from AI-generated images. 孩子们的 free ide志愿者活动 took shape.
         </p>
         <div class="video-showcase">
           <div class="video-card reveal">
@@ -596,14 +601,14 @@
   <section class="section">
     <div class="grid-sidebar">
       <div class="sidebar-sticky reveal">
-        <div class="kicker">05 &mdash; Vision</div>
+        <div class="kicker">05 &mdash; 愿景</div>
       </div>
       <div>
         <h2 class="section-heading section-heading-md reveal" style="max-width: 20ch; margin-bottom: 48px;">
-          Why we do this<br>as <em>volunteer work</em>.
+          为什么我们以<br>志愿者活动 <em>持续开展</em>.
         </h2>
         <p class="paragraph reveal" style="max-width: 64ch; margin-bottom: 32px;">
-          AI is not only for specialists. We believe it is deeply meaningful for children to experience AI early and feel that they can turn their own ideas into reality.
+          AI is not only for specialists. We believe it is deeply meaningful for children to experience AI early and feel that they can turn their own ide志愿者活动 into reality.
         </p>
         <p class="paragraph reveal" style="max-width: 64ch;">
           We continue this free volunteer activity so every child can access AI experiences regardless of economic circumstances or local environment.
@@ -615,15 +620,15 @@
   <!-- === CTA === -->
   <section class="section" style="padding-bottom: 120px;">
     <div class="cta-center reveal">
-      <div class="kicker" style="display: inline-block;">Contact</div>
+      <div class="kicker" style="display: inline-block;">联系</div>
       <h2 class="section-heading" style="font-size: clamp(48px, 8vw, 120px); line-height: 1.05; letter-spacing: -0.02em; margin: 20px 0;">
-        Start with<br><em>a consultation</em>.
+        先从<br><em>咨询开始</em>.
       </h2>
       <p class="paragraph" style="max-width: 520px; margin: 24px auto 48px; font-size: 17px;">
-        If you are considering implementation at an after-school program or educational institution, please contact us.
+        If you are considering implementation at an after-school program or educational institution, ple志愿者活动e contact us.
       </p>
       <a href="contact.html" class="btn-fill">
-        Contact Us &nbsp;&rarr;
+        联系 Us &nbsp;&rarr;
       </a>
     </div>
   </section>
@@ -633,30 +638,30 @@
     <div class="footer-brand">
       <div style="display: flex; align-items: center; gap: 12px;">
         <img src="../logo/AIナレッジワークス_logo_transparen.png" width="36" height="36" alt="" style="object-fit: contain;">
-        <span style="font-family: var(--serif); font-size: 17px; letter-spacing: 0.04em;">AI Knowledge Works</span>
+        <span style="font-family: var(--serif); font-size: 17px; letter-spacing: 0.04em;">AI Knowledge 作品</span>
       </div>
-      <p>Creating a society where everyone can confidently turn what they love into reality.</p>
+      <p>创造一个让每个人都能安心地把“热爱”变为现实的社会。</p>
     </div>
     <div class="footer-col">
-      <div class="footer-col-title">Pages</div>
-      <a href="services.html">Services</a>
-      <a href="achievements.html">Achievements</a>
-      <a href="company.html">Company</a>
-      <a href="team.html">Team</a>
-      <a href="volunteer.html">Volunteer</a>
-      <a href="contact.html">Contact</a>
+      <div class="footer-col-title">页面</div>
+      <a href="services.html">服务</a>
+      <a href="achievements.html">业绩</a>
+      <a href="company.html">公司</a>
+      <a href="team.html">团队</a>
+      <a href="volunteer.html">志愿者</a>
+      <a href="contact.html">联系</a>
     </div>
     <div class="footer-col">
-      <div class="footer-col-title">Connect</div>
-      <a href="https://www.youtube.com/@AIKnowledgeWorks" target="_blank" rel="noopener">YouTube</a>
+      <div class="footer-col-title">连接</div>
+      <a href="https://www.youtube.com/@AIKnowledge作品" target="_blank" rel="noopener">YouTube</a>
       <a href="https://note.com/aiknowledgeworks" target="_blank" rel="noopener">Note</a>
     </div>
     <div class="footer-col">
-      <div class="footer-col-title">Office</div>
-      <span style="font-size: 14px; color: var(--ink);">Osaka, Japan</span>
+      <div class="footer-col-title">办公室</div>
+      <span style="font-size: 14px; color: var(--ink);">日本大阪</span>
     </div>
     <div class="footer-bottom">
-      <span>&copy; 2026 AI Knowledge Works, LLC.</span>
+      <span>&copy; 2026 AI Knowledge 作品有限公司。</span>
     </div>
   </footer>
 
@@ -683,7 +688,7 @@
       const header = document.getElementById('site-header');
       window.addEventListener('scroll', () => {
         header.classList.toggle('scrolled', window.scrollY > 40);
-      }, { passive: true });
+      }, { p志愿者活动sive: true });
 
       const hamburger = document.querySelector('.hamburger');
       const nav = document.querySelector('nav');

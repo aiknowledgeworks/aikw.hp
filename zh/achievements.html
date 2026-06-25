@@ -1,21 +1,22 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>実績と展望 | AIナレッジワークス合同会社</title>
+  <title>业绩与展望｜AI Knowledge Works</title>
+  <meta name="description" content="介绍AI培训与导入支援的实践成果、案例以及未来展望。" />
 
-
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="../logo/AIナレッジワークス_logo_transparen.png">
+  <link rel="shortcut icon" type="image/x-icon" href="../logo/AIナレッジワークス_logo_transparen.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../logo/AIナレッジワークス_logo_transparen.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../logo/AIナレッジワークス_logo_transparen.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../logo/AIナレッジワークス_logo_transparen.png">
   <link rel="alternate" hreflang="ja" href="https://aiknowledgeworks.net/achievements.html" />
   <link rel="alternate" hreflang="en" href="https://aiknowledgeworks.net/en/achievements.html" />
   <link rel="alternate" hreflang="zh-CN" href="https://aiknowledgeworks.net/zh/achievements.html" />
   <link rel="alternate" hreflang="x-default" href="https://aiknowledgeworks.net/achievements.html" />
-<!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="logo/AIナレッジワークス_logo_transparen.png">
-  <link rel="shortcut icon" type="image/x-icon" href="logo/AIナレッジワークス_logo_transparen.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="logo/AIナレッジワークス_logo_transparen.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="logo/AIナレッジワークス_logo_transparen.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="logo/AIナレッジワークス_logo_transparen.png">
+
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWFLPN1EZH"></script>
@@ -29,7 +30,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&display=swap" rel="stylesheet" />
 
   <style>
     /* === Design System Tokens === */
@@ -49,7 +50,7 @@
       --accent: #3da8c7;
       --brand-gradient: linear-gradient(135deg, #6db5ff 0%, #a1e9d9 100%);
       --serif: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
-      --sans: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
+      --sans: "Noto Sans SC", "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
       --display: "Fraunces", "Noto Serif JP", serif;
       --page-pad: clamp(24px, 5vw, 72px);
       --measure: 64ch;
@@ -69,6 +70,10 @@
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
       overflow-x: hidden;
+    }
+    :lang(zh-CN) p {
+      text-align: justify;
+      text-justify: inter-ideograph;
     }
     a { color: inherit; text-decoration: none; }
     img { display: block; max-width: 100%; }
@@ -132,6 +137,42 @@
     nav a:hover { color: var(--ink); }
     .nav-cta { padding: 10px 18px; border: 1px solid var(--ink); margin-left: 8px; transition: all .3s; }
     .nav-cta:hover { background: var(--ink); color: var(--bg); }
+    .lang-switch {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 42px;
+      padding: 8px 10px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      color: var(--ink-60);
+      transition: border-color 0.3s ease, color 0.3s ease, background 0.3s ease;
+    }
+
+    .lang-switch:hover {
+      border-color: var(--ink);
+      color: var(--ink);
+      background: var(--paper);
+    }
+    .lang-switch-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .lang-switch.is-active {
+      border-color: var(--ink);
+      color: var(--ink);
+      background: var(--paper);
+    }
+    header:not(.scrolled) .lang-switch.is-active {
+      border-color: rgba(255,255,255,0.70);
+      color: #fff;
+      background: rgba(255,255,255,0.12);
+    }
+
+
 
     /* === Hero === */
     .hero {
@@ -248,31 +289,7 @@
     }
     .logo-breathe { animation: breathe 4s cubic-bezier(.3,.8,.3,.4) infinite; transform-origin: center; }
 
-
-    .lang-switch-group {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .lang-switch {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 38px;
-      padding: 7px 9px;
-      border: 1px solid var(--rule);
-      border-radius: 999px;
-      font-size: 11px;
-      letter-spacing: 0.14em;
-      color: var(--ink-60);
-      transition: border-color .3s, color .3s, background .3s;
-    }
-    .lang-switch:hover,
-    .lang-switch.is-active {
-      border-color: var(--ink);
-      color: var(--ink);
-      background: var(--paper);
-    }    /* === Footer === */
+    /* === Footer === */
     footer {
       border-top: 1px solid var(--rule);
       padding: 56px var(--page-pad) 40px;
@@ -404,8 +421,8 @@
 <body>
   <!-- === Header === -->
   <header id="site-header">
-    <a href="index.html" class="logo-link">
-      <img src="logo/AIナレッジワークス_logo_transparen.png" alt="AIナレッジワークス ロゴ" class="logo-breathe">
+    <a href="./" class="logo-link">
+      <img src="../logo/AIナレッジワークス_logo_transparen.png" alt="AI Knowledge Works Logo" class="logo-breathe">
       <span>AI Knowledge Works</span>
     </a>
     <div class="hamburger">
@@ -413,14 +430,14 @@
     </div>
     <nav>
       <ul>
-        <li><a href="index.html#background">Background</a></li>
-        <li><a href="service.html">Services</a></li>
-        <li><a href="achievements.html">Achievements</a></li>
-        <li><a href="company.html">Company</a></li>
-        <li><a href="story.html">Team</a></li>
-        <li><a href="volunteer.html">Volunteer</a></li>
-        <li><a href="contact.html" class="nav-cta">Contact &rarr;</a></li>
-        <li class="lang-switch-group"><a href="achievements.html" class="lang-switch is-active" aria-current="page" lang="ja">JP</a><a href="en/achievements.html" class="lang-switch" lang="en">EN</a><a href="zh/achievements.html" class="lang-switch" lang="zh-CN">ZH</a></li>
+        <li><a href="./">首页</a></li>
+        <li><a href="services.html">服务</a></li>
+        <li><a href="achievements.html">业绩</a></li>
+        <li><a href="company.html">公司</a></li>
+        <li><a href="team.html">团队</a></li>
+        <li><a href="volunteer.html">志愿者</a></li>
+        <li><a href="contact.html" class="nav-cta">联系 &rarr;</a></li>
+        <li class="lang-switch-group"><a href="../achievements.html" class="lang-switch" lang="ja">JP</a><a href="../en/achievements.html" class="lang-switch" lang="en">EN</a><a href="achievements.html" class="lang-switch is-active" aria-current="page" lang="zh-CN">ZH</a></li>
       </ul>
     </nav>
     <div class="overlay"></div>
@@ -429,8 +446,8 @@
   <!-- === Hero === -->
   <section class="hero">
     <div class="reveal">
-      <h1>実績と展望</h1>
-      <p class="tagline"><span class="suki">"好き"</span>を実現するAI導入実績</p>
+      <h1>业绩 and 展望</h1>
+      <p class="tagline">让“热爱”成为现实的AI导入成果</p>
     </div>
   </section>
 
@@ -440,28 +457,28 @@
   <section id="stats" class="section">
     <div class="grid-sidebar">
       <div class="sidebar-sticky reveal">
-        <div class="kicker">01 &mdash; Results</div>
+        <div class="kicker">01 &mdash; 成果</div>
       </div>
       <div>
         <h2 class="section-heading section-heading-md reveal" style="max-width: 18ch; margin-bottom: 48px;">
-          実績<em>サマリー</em>
+          成果 <em>概要</em>
         </h2>
         <div class="stats-grid reveal">
           <div class="stat-item">
             <span class="stat-number">95<span style="font-size: 24px; color: var(--ink-40);">%</span></span>
-            <span class="stat-label">研修受講者のAI活用意向向上</span>
+            <span class="stat-label">表示今后想在工作中使用AI的参与者比例提升</span>
           </div>
           <div class="stat-item">
             <span class="stat-number">80<span style="font-size: 24px; color: var(--ink-40);">%</span></span>
-            <span class="stat-label">議事録作成時間短縮</span>
+            <span class="stat-label">会议纪要制作时间缩短</span>
           </div>
           <div class="stat-item">
             <span class="stat-number">50<span style="font-size: 24px; color: var(--ink-40);">%</span></span>
-            <span class="stat-label">提案書作成時間短縮</span>
+            <span class="stat-label">提案准备时间缩短</span>
           </div>
           <div class="stat-item">
             <span class="stat-number">4<span style="font-size: 24px; color: var(--ink-40);">+</span></span>
-            <span class="stat-label">導入実績企業数</span>
+            <span class="stat-label">支援企业数量</span>
           </div>
         </div>
       </div>
@@ -474,29 +491,29 @@
   <section id="achievements" class="section">
     <div class="grid-sidebar">
       <div class="sidebar-sticky reveal">
-        <div class="kicker">02 &mdash; Case Studies</div>
+        <div class="kicker">02 &mdash; 案例</div>
       </div>
       <div>
         <h2 class="section-heading section-heading-md reveal" style="max-width: 18ch; margin-bottom: 64px;">
-          導入事例<em>詳細</em>
+          案例 <em>详情</em>
         </h2>
 
         <div class="card-grid reveal">
           <div class="card-item">
-            <h4>研修事例 A社</h4>
-            <p>営業部門への生成AI研修(Starter)を導入。受講者のマインドに大きな変化が見られ、95％の方が「これからAIを業務に活用していきたい」と回答。実際に提案書作成やメール作成の時間が50%短縮され、営業効率の大幅な向上を実現しました。</p>
+            <h4>培训案例A</h4>
+            <p>Introduced generative AI training (Starter) for a sales department. Participant attitudes changed significantly, and 95% said they wanted to use AI in their work going forward. Proposal and email creation time was reduced by 50%, improving sales efficiency.</p>
           </div>
           <div class="card-item">
-            <h4>研修事例 B社</h4>
-            <p>生成AI研修(Starter)を導入し、社内会議の効率化を図りました。特に議事録の要約作業において、従来の手動作業と比較して80%の作業時間短縮を実現。会議後の作業負担が大幅に軽減され、より本質的な業務に集中できる環境を構築しました。</p>
+            <h4>培训案例B</h4>
+            <p>Introduced generative AI training (Starter) to improve internal meeting efficiency. Minutes summarization time was reduced by 80% compared with manual work, reducing post-meeting burden and enabling teams to focus on more essential work.</p>
           </div>
           <div class="card-item">
-            <h4>研修事例 C社</h4>
-            <p>生成AI研修(Expert)を実施し、企業内のより深いニーズを発掘。研修を通じて紙ベースで保管されていた社内資料のデジタル化とチャットボット化の提案を行い、現在導入を検討中。知識の共有とアクセシビリティの向上を目指しています。</p>
+            <h4>培训案例C</h4>
+            <p>Delivered generative AI training (Expert) and uncovered deeper organizational needs. We proposed digitizing paper-based internal materials and turning them into a chatbot, now under consideration, with the goal of improving knowledge sharing and accessibility.</p>
           </div>
           <div class="card-item">
-            <h4>研修事例 D社 - AI本格導入プロジェクト</h4>
-            <p>研修をきっかけに本格的なAI導入支援に発展した事例。自社専用チャットボットの構築とローカルLLMを活用した社内システムの開発支援を実施。セキュアな環境でのAI活用により、業務効率化と情報セキュリティの両立を実現しています。</p>
+            <h4>培训案例D - 全面AI导入项目</h4>
+            <p>A case where training developed into full AI adoption support. We supported construction of a company-specific chatbot and internal systems using a local LLM, balancing operational efficiency with information security in a secure environment.</p>
           </div>
         </div>
       </div>
@@ -505,37 +522,37 @@
 
   <hr>
 
-  <!-- === 03 Portfolio === -->
+  <!-- === 03 作品集 === -->
   <section id="portfolio" class="section">
     <div class="grid-sidebar">
       <div class="sidebar-sticky reveal">
-        <div class="kicker">03 &mdash; Portfolio</div>
+        <div class="kicker">03 &mdash; 作品集</div>
       </div>
       <div>
         <h2 class="section-heading section-heading-md reveal" style="max-width: 20ch; margin-bottom: 64px;">
-          制作物
+          作品集
         </h2>
 
         <div class="portfolio-grid reveal" style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;">
           <div class="video-wrapper">
             <iframe
               src="https://www.youtube.com/embed/iHca8OIkf2I?rel=0&amp;playsinline=1&amp;modestbranding=1&amp;controls=1"
-              title="AIナレッジワークス 制作物紹介"
+              title="AI Knowledge Works 作品集"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerpolicy="strict-origin-when-cross-origin"
               allowfullscreen>
             </iframe>
           </div>
           <div>
-            <h3 style="font-family: var(--serif); font-size: 22px; font-weight: 400; margin: 0 0 24px; color: var(--ink);">創造性を拡張するAI活用</h3>
+            <h3 style="font-family: var(--serif); font-size: 22px; font-weight: 400; margin: 0 0 24px; color: var(--ink);">用AI扩展创造力</h3>
             <p class="paragraph" style="margin-bottom: 20px;">
-              AIナレッジワークスでは、AIを単なる効率化ツールとしてではなく、人間の創造性を拡張するパートナーとして捉えています。
+              在AI Knowledge Works，我们不仅把AI视为效率工具，更视为扩展人类创造力的伙伴。
             </p>
             <p class="paragraph" style="margin-bottom: 20px;">
-              この動画では、AI技術を活用した私たちの創作活動や、クリエイティブな課題解決への取り組みをご紹介しています。
+              这段视频介绍了我们运用AI技术进行创作的实践，以及解决创意课题的方法。
             </p>
             <p class="paragraph" style="font-size: 14px;">
-              技術と創造性の融合により、新たな可能性を切り拓く私たちの姿勢をご覧ください。
+              请观看我们如何通过技术与创意的结合打开新的可能性。
             </p>
           </div>
         </div>
@@ -545,29 +562,29 @@
 
   <hr>
 
-  <!-- === 05 Future Vision === -->
+  <!-- === 05 未来 Vision === -->
   <section id="future" class="section" style="background: var(--paper-2);">
     <div class="grid-sidebar">
       <div class="sidebar-sticky reveal">
-        <div class="kicker">04 &mdash; Future</div>
+        <div class="kicker">04 &mdash; 未来</div>
       </div>
       <div>
         <h2 class="section-heading section-heading-md reveal" style="max-width: 18ch; margin-bottom: 64px;">
-          今後の<em>展望</em>
+          未来 <em>展望</em>
         </h2>
 
         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule);" class="reveal future-grid">
           <div style="background: var(--paper); padding: 32px;">
-            <h4 style="font-family: var(--serif); font-size: 18px; font-weight: 400; margin: 0 0 12px; color: var(--ink);">教育分野への拡大</h4>
-            <p style="font-size: 15px; line-height: 1.9; color: var(--ink-60); margin: 0;">子ども向けAI研修「AIまなびラボ」の本格展開により、次世代のAIネイティブ人材育成を加速。学校教育への導入から家庭学習まで、包括的なAI教育エコシステムの構築を目指します。</p>
+            <h4 style="font-family: var(--serif); font-size: 18px; font-weight: 400; margin: 0 0 12px; color: var(--ink);">向教育领域扩展</h4>
+            <p style="font-size: 15px; line-height: 1.9; color: var(--ink-60); margin: 0;">Through full development of AI Learning Lab for children, we will accelerate the growth of the next generation of AI-native talent, building a comprehensive AI education ecosystem from schools to home learning.</p>
           </div>
           <div style="background: var(--paper); padding: 32px;">
-            <h4 style="font-family: var(--serif); font-size: 18px; font-weight: 400; margin: 0 0 12px; color: var(--ink);">地域創生プロジェクト</h4>
-            <p style="font-size: 15px; line-height: 1.9; color: var(--ink-60); margin: 0;">地方企業や自治体との連携を通じて、AIによる地域課題解決に取り組みます。人口減少や労働力不足といった課題をAI技術で解決し、地域の持続可能な発展をサポートします。</p>
+            <h4 style="font-family: var(--serif); font-size: 18px; font-weight: 400; margin: 0 0 12px; color: var(--ink);">地方振兴项目</h4>
+            <p style="font-size: 15px; line-height: 1.9; color: var(--ink-60); margin: 0;">We work with regional companies and local governments to solve community challenges with AI, supporting sustainable regional development in the face of population decline and labor shortages.</p>
           </div>
           <div style="background: var(--paper); padding: 32px;">
-            <h4 style="font-family: var(--serif); font-size: 18px; font-weight: 400; margin: 0 0 12px; color: var(--ink);">AI×創造性の新領域</h4>
-            <p style="font-size: 15px; line-height: 1.9; color: var(--ink-60); margin: 0;">AIを単なる効率化ツールではなく、創造性を拡張するパートナーとして位置づけ、アート、音楽、文学など様々な創作分野でのAI活用支援を展開します。</p>
+            <h4 style="font-family: var(--serif); font-size: 18px; font-weight: 400; margin: 0 0 12px; color: var(--ink);">AI与创意的新领域</h4>
+            <p style="font-size: 15px; line-height: 1.9; color: var(--ink-60); margin: 0;">We position AI not just as an efficiency tool but as a partner that expands creativity, supporting AI use in creative fields such as art, music, and literature.</p>
           </div>
         </div>
       </div>
@@ -576,18 +593,18 @@
 
   <hr>
 
-  <!-- === Contact CTA === -->
+  <!-- === 联系 CTA === -->
   <section class="section" style="padding-bottom: 120px;">
     <div class="cta-center reveal">
-      <div class="kicker" style="display: inline-block;">Contact</div>
+      <div class="kicker" style="display: inline-block;">联系</div>
       <h2 class="section-heading" style="font-size: clamp(48px, 8vw, 120px); line-height: 1.05; letter-spacing: -0.02em; margin: 20px 0;">
-        まずは<br><em>ご相談</em>から。
+        先从<br><em>咨询开始</em>.
       </h2>
       <p class="paragraph" style="max-width: 520px; margin: 24px auto 48px; font-size: 17px;">
-        AI導入・研修について、お気軽にお問い合わせください。
+        联系 us about AI adoption, training, and implementation.
       </p>
       <a href="contact.html" class="btn-fill">
-        お問い合わせはこちら &nbsp;&rarr;
+        联系 Us &nbsp;&rarr;
       </a>
     </div>
   </section>
@@ -596,31 +613,31 @@
   <footer>
     <div class="footer-brand">
       <div style="display: flex; align-items: center; gap: 12px;">
-        <img src="logo/AIナレッジワークス_logo_transparen.png" width="36" height="36" alt="" style="object-fit: contain;">
+        <img src="../logo/AIナレッジワークス_logo_transparen.png" width="36" height="36" alt="" style="object-fit: contain;">
         <span style="font-family: var(--serif); font-size: 17px; letter-spacing: 0.04em;">AI Knowledge Works</span>
       </div>
-      <p>誰もが安心して、"好き"をかたちにできる社会をつくる。</p>
+      <p>创造一个让每个人都能安心地把“热爱”变为现实的社会。</p>
     </div>
     <div class="footer-col">
-      <div class="footer-col-title">Pages</div>
-      <a href="service.html">Services</a>
-      <a href="achievements.html">Achievements</a>
-      <a href="company.html">Company</a>
-      <a href="story.html">Team</a>
-      <a href="volunteer.html">Volunteer</a>
-      <a href="contact.html">Contact</a>
+      <div class="footer-col-title">页面</div>
+      <a href="services.html">服务</a>
+      <a href="achievements.html">业绩</a>
+      <a href="company.html">公司</a>
+      <a href="team.html">团队</a>
+      <a href="volunteer.html">志愿者</a>
+      <a href="contact.html">联系</a>
     </div>
     <div class="footer-col">
-      <div class="footer-col-title">Connect</div>
+      <div class="footer-col-title">连接</div>
       <a href="https://www.youtube.com/@AIKnowledgeWorks" target="_blank" rel="noopener">YouTube</a>
       <a href="https://note.com/aiknowledgeworks" target="_blank" rel="noopener">Note</a>
     </div>
     <div class="footer-col">
-      <div class="footer-col-title">Office</div>
-      <span style="font-size: 14px; color: var(--ink);">Osaka, Japan</span>
+      <div class="footer-col-title">办公室</div>
+      <span style="font-size: 14px; color: var(--ink);">日本大阪</span>
     </div>
     <div class="footer-bottom">
-      <span>&copy; 2026 AI Knowledge Works, LLC.</span>
+      <span>&copy; 2026 AI Knowledge Works有限公司。</span>
     </div>
   </footer>
 

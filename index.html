@@ -21,7 +21,8 @@
   <link rel="alternate" hreflang="ja" href="https://aiknowledgeworks.net/" />
   <link rel="alternate" hreflang="en" href="https://aiknowledgeworks.net/en/" />
 
-  <!-- Google tag (gtag.js) -->
+
+  <link rel="alternate" hreflang="zh-CN" href="https://aiknowledgeworks.net/zh/" /><!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWFLPN1EZH"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -228,6 +229,22 @@
       color: var(--ink);
       background: var(--paper);
     }
+    .lang-switch-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .lang-switch.is-active {
+      border-color: var(--ink);
+      color: var(--ink);
+      background: var(--paper);
+    }
+    header:not(.scrolled) .lang-switch.is-active {
+      border-color: rgba(255,255,255,0.70);
+      color: #fff;
+      background: rgba(255,255,255,0.12);
+    }
+
 
     /* === Hero === */
     .hero {
@@ -846,7 +863,7 @@
         <li><a href="story.html">Team</a></li>
         <li><a href="volunteer.html">Volunteer</a></li>
         <li><a href="contact.html" class="nav-cta">Contact &rarr;</a></li>
-        <li><a href="en/" class="lang-switch" lang="en" aria-label="View English page">EN</a></li>
+        <li class="lang-switch-group"><a href="./" class="lang-switch is-active" aria-current="page" lang="ja">JP</a><a href="en/" class="lang-switch" lang="en">EN</a><a href="zh/" class="lang-switch" lang="zh-CN">ZH</a></li>
       </ul>
     </nav>
     <div class="overlay"></div>

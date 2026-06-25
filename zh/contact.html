@@ -1,21 +1,22 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>お問い合わせ | AIナレッジワークス合同会社</title>
+  <title>联系我们｜AI Knowledge Works</title>
+  <meta name="description" content="AI导入、AI培训、安全培训与Microsoft解决方案培训相关咨询，请随时联系我们。" />
 
-
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="../logo/AIナレッジワークス_logo_transparen.png">
+  <link rel="shortcut icon" type="image/x-icon" href="../logo/AIナレッジワークス_logo_transparen.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../logo/AIナレッジワークス_logo_transparen.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../logo/AIナレッジワークス_logo_transparen.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../logo/AIナレッジワークス_logo_transparen.png">
   <link rel="alternate" hreflang="ja" href="https://aiknowledgeworks.net/contact.html" />
   <link rel="alternate" hreflang="en" href="https://aiknowledgeworks.net/en/contact.html" />
   <link rel="alternate" hreflang="zh-CN" href="https://aiknowledgeworks.net/zh/contact.html" />
   <link rel="alternate" hreflang="x-default" href="https://aiknowledgeworks.net/contact.html" />
-<!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="logo/AIナレッジワークス_logo_transparen.png">
-  <link rel="shortcut icon" type="image/x-icon" href="logo/AIナレッジワークス_logo_transparen.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="logo/AIナレッジワークス_logo_transparen.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="logo/AIナレッジワークス_logo_transparen.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="logo/AIナレッジワークス_logo_transparen.png">
+
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWFLPN1EZH"></script>
@@ -53,7 +54,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&display=swap" rel="stylesheet" />
 
 
   <style>
@@ -74,7 +75,7 @@
       --accent: #3da8c7;
       --brand-gradient: linear-gradient(135deg, #6db5ff 0%, #a1e9d9 100%);
       --serif: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
-      --sans: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
+      --sans: "Noto Sans SC", "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
       --display: "Fraunces", "Noto Serif JP", serif;
       --page-pad: clamp(24px, 5vw, 72px);
       --measure: 64ch;
@@ -94,6 +95,10 @@
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
       overflow-x: hidden;
+    }
+    :lang(zh-CN) p {
+      text-align: justify;
+      text-justify: inter-ideograph;
     }
     a { color: inherit; text-decoration: none; }
     img { display: block; max-width: 100%; }
@@ -148,6 +153,42 @@
     nav a:hover { color: var(--ink); }
     .nav-cta { padding: 10px 18px; border: 1px solid var(--ink); margin-left: 8px; transition: all .3s; }
     .nav-cta:hover { background: var(--ink); color: var(--bg); }
+    .lang-switch {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 42px;
+      padding: 8px 10px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      color: var(--ink-60);
+      transition: border-color 0.3s ease, color 0.3s ease, background 0.3s ease;
+    }
+
+    .lang-switch:hover {
+      border-color: var(--ink);
+      color: var(--ink);
+      background: var(--paper);
+    }
+    .lang-switch-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .lang-switch.is-active {
+      border-color: var(--ink);
+      color: var(--ink);
+      background: var(--paper);
+    }
+    header:not(.scrolled) .lang-switch.is-active {
+      border-color: rgba(255,255,255,0.70);
+      color: #fff;
+      background: rgba(255,255,255,0.12);
+    }
+
+
 
     /* === Hero === */
     .hero {
@@ -291,31 +332,7 @@
       }
     }
 
-
-    .lang-switch-group {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .lang-switch {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 38px;
-      padding: 7px 9px;
-      border: 1px solid var(--rule);
-      border-radius: 999px;
-      font-size: 11px;
-      letter-spacing: 0.14em;
-      color: var(--ink-60);
-      transition: border-color .3s, color .3s, background .3s;
-    }
-    .lang-switch:hover,
-    .lang-switch.is-active {
-      border-color: var(--ink);
-      color: var(--ink);
-      background: var(--paper);
-    }    /* === Footer === */
+    /* === Footer === */
     footer {
       border-top: 1px solid var(--rule);
       padding: 56px var(--page-pad) 40px;
@@ -436,8 +453,8 @@
 <body>
   <!-- === Header === -->
   <header id="site-header">
-    <a href="index.html" class="logo-link">
-      <img src="logo/AIナレッジワークス_logo_transparen.png" alt="AIナレッジワークス ロゴ" class="logo-breathe">
+    <a href="./" class="logo-link">
+      <img src="../logo/AIナレッジワークス_logo_transparen.png" alt="AI Knowledge Works Logo" class="logo-breathe">
       <span>AI Knowledge Works</span>
     </a>
     <div class="hamburger">
@@ -445,14 +462,14 @@
     </div>
     <nav>
       <ul>
-        <li><a href="index.html#background">Background</a></li>
-        <li><a href="service.html">Services</a></li>
-        <li><a href="achievements.html">Achievements</a></li>
-        <li><a href="company.html">Company</a></li>
-        <li><a href="story.html">Team</a></li>
-        <li><a href="volunteer.html">Volunteer</a></li>
-        <li><a href="contact.html" class="nav-cta">Contact &rarr;</a></li>
-        <li class="lang-switch-group"><a href="contact.html" class="lang-switch is-active" aria-current="page" lang="ja">JP</a><a href="en/contact.html" class="lang-switch" lang="en">EN</a><a href="zh/contact.html" class="lang-switch" lang="zh-CN">ZH</a></li>
+        <li><a href="./">首页</a></li>
+        <li><a href="services.html">服务</a></li>
+        <li><a href="achievements.html">业绩</a></li>
+        <li><a href="company.html">公司</a></li>
+        <li><a href="team.html">团队</a></li>
+        <li><a href="volunteer.html">志愿者</a></li>
+        <li><a href="contact.html" class="nav-cta">联系 &rarr;</a></li>
+        <li class="lang-switch-group"><a href="../contact.html" class="lang-switch" lang="ja">JP</a><a href="../en/contact.html" class="lang-switch" lang="en">EN</a><a href="contact.html" class="lang-switch is-active" aria-current="page" lang="zh-CN">ZH</a></li>
       </ul>
     </nav>
     <div class="overlay"></div>
@@ -460,49 +477,49 @@
 
   <!-- === Hero === -->
   <section class="hero">
-    <h1>お問い合わせ</h1>
-    <p class="tagline">AI導入・研修についてお気軽にご相談ください</p>
+    <h1>联系</h1>
+    <p class="tagline">联系 us about AI adoption and training.</p>
   </section>
 
   <hr>
 
-  <!-- === 01 Before Contact === -->
+  <!-- === 01 Before 联系 === -->
   <section id="contact-details" class="section" style="background: var(--paper-2);">
     <div class="grid-sidebar">
       <div class="sidebar-sticky reveal">
-        <div class="kicker">01 &mdash; Before You Contact</div>
+        <div class="kicker">01 &mdash; 在 联系</div>
       </div>
       <div>
         <h2 class="section-heading section-heading-md reveal" style="max-width: 20ch; margin-bottom: 64px;">
-          お問い合わせの<em>前に</em>
+          在 <em>联系 Us</em>
         </h2>
 
         <div class="card reveal" style="max-width: 800px;">
-          <h3>セキュリティ研修をご検討の場合</h3>
+          <h3>如果您正在考虑安全培训</h3>
           <ul>
-            <li>研修対象者の人数と部署</li>
-            <li>現在のセキュリティ対策状況</li>
-            <li>関心のある領域（情報セキュリティ基礎・標的型攻撃対策・インシデント対応・生成AI時代のセキュリティ）</li>
-            <li>ご希望の研修形式（対面・オンライン）</li>
-            <li>実施希望時期</li>
+            <li>参加人数与部门</li>
+            <li>当前安全措施</li>
+            <li>感兴趣的领域（安全基础、定向攻击对策、事件响应、生成式AI时代的安全）</li>
+            <li>希望形式（线下 / 在线）</li>
+            <li>希望实施时间</li>
           </ul>
 
-          <h3>Microsoft ソリューション研修をご検討の場合</h3>
+          <h3>如果您正在考虑Microsoft解决方案培训</h3>
           <ul>
-            <li>関心のある領域（Microsoft 365・Copilot・Azure・セキュリティ）</li>
-            <li>現在のMicrosoft製品の導入・活用状況</li>
-            <li>研修対象者のスキルレベル</li>
-            <li>ご希望の研修形式（対面・オンライン）</li>
-            <li>実施希望時期</li>
+            <li>感兴趣的领域（Microsoft 365、Copilot、Azure、安全）</li>
+            <li>当前Microsoft产品导入与使用情况</li>
+            <li>参加者技能水平</li>
+            <li>希望形式（线下 / 在线）</li>
+            <li>希望实施时间</li>
           </ul>
 
-          <h3>実践AI研修をご検討の場合</h3>
+          <h3>如果您正在考虑实践AI培训</h3>
           <ul style="margin-bottom: 0;">
-            <li>関心のある領域（入門／経営者向け／実務・Copilot）</li>
-            <li>現在のAI活用状況</li>
-            <li>研修対象者の人数と部署</li>
-            <li>研修の目的と期待する効果</li>
-            <li>実施希望時期</li>
+            <li>感兴趣的领域（入门 / 经营层 / Copilot实务）</li>
+            <li>当前AI使用情况</li>
+            <li>参加人数与部门</li>
+            <li>培训目标与期待成果</li>
+            <li>希望实施时间</li>
           </ul>
         </div>
       </div>
@@ -511,53 +528,53 @@
 
   <hr>
 
-  <!-- === 02 Contact Form === -->
+  <!-- === 02 联系 Form === -->
   <section id="contact" class="section">
     <div class="grid-sidebar">
       <div class="sidebar-sticky reveal">
-        <div class="kicker">02 &mdash; Get in Touch</div>
+        <div class="kicker">02 &mdash; 联系我们</div>
       </div>
       <div>
         <h2 class="section-heading section-heading-md reveal" style="max-width: 18ch; margin-bottom: 64px;">
-          お問い合わせ
+          联系
         </h2>
 
         <div class="card reveal" style="max-width: 700px;">
           <form action="mailto:otoiawase20250416@aiknowledgeworks.net" method="post" enctype="text/plain">
             <div class="form-group">
-              <label class="form-label">お名前<span class="required">*</span></label>
+              <label class="form-label">姓名<span class="required">*</span></label>
               <input type="text" name="name" required class="form-input">
             </div>
             <div class="form-group">
-              <label class="form-label">会社名</label>
+              <label class="form-label">公司 姓名</label>
               <input type="text" name="company" class="form-input">
             </div>
             <div class="form-group">
-              <label class="form-label">メールアドレス<span class="required">*</span></label>
+              <label class="form-label">邮箱地址<span class="required">*</span></label>
               <input type="email" name="email" required class="form-input">
             </div>
             <div class="form-group">
-              <label class="form-label">ご相談内容<span class="required">*</span></label>
+              <label class="form-label">咨询主题<span class="required">*</span></label>
               <select name="category" required class="form-select">
-                <option value="">選択してください</option>
-                <option value="corporate-training">企業向けAI研修</option>
-                <option value="kids-training">子ども向けAI教育</option>
-                <option value="ai-consulting">AI導入支援</option>
-                <option value="ai-security">AIセキュリティ</option>
-                <option value="startup-pack">創業サポートパック</option>
-                <option value="other">その他</option>
+                <option value="">请选择</option>
+                <option value="corporate-training">企业AI培训</option>
+                <option value="kids-training">儿童AI教育</option>
+                <option value="ai-consulting">AI导入支援</option>
+                <option value="ai-security">AI安全</option>
+                <option value="startup-pack">创业支援套餐</option>
+                <option value="other">其他</option>
               </select>
             </div>
             <div class="form-group">
-              <label class="form-label">お問い合わせ内容<span class="required">*</span></label>
+              <label class="form-label">咨询内容<span class="required">*</span></label>
               <textarea name="message" rows="6" required class="form-textarea"></textarea>
             </div>
             <div style="text-align: center;">
-              <button type="submit" class="btn-fill">送信する &nbsp;&rarr;</button>
+              <button type="submit" class="btn-fill">发送 &nbsp;&rarr;</button>
             </div>
           </form>
           <p style="text-align: center; margin-top: 24px; font-size: 14px; color: var(--ink-60);">
-            メールでも受付中：<a href="mailto:otoiawase20250416@aiknowledgeworks.net" style="color: var(--accent); border-bottom: 1px solid var(--accent);">otoiawase20250416@aiknowledgeworks.net</a>
+            也可通过电子邮件咨询： <a href="mailto:otoiawase20250416@aiknowledgeworks.net" style="color: var(--accent); border-bottom: 1px solid var(--accent);">otoiawase20250416@aiknowledgeworks.net</a>
           </p>
         </div>
       </div>
@@ -568,31 +585,31 @@
   <footer>
     <div class="footer-brand">
       <div style="display: flex; align-items: center; gap: 12px;">
-        <img src="logo/AIナレッジワークス_logo_transparen.png" width="36" height="36" alt="" style="object-fit: contain;">
+        <img src="../logo/AIナレッジワークス_logo_transparen.png" width="36" height="36" alt="" style="object-fit: contain;">
         <span style="font-family: var(--serif); font-size: 17px; letter-spacing: 0.04em;">AI Knowledge Works</span>
       </div>
-      <p>誰もが安心して、"好き"をかたちにできる社会をつくる。</p>
+      <p>创造一个让每个人都能安心地把“热爱”变为现实的社会。</p>
     </div>
     <div class="footer-col">
-      <div class="footer-col-title">Pages</div>
-      <a href="service.html">Services</a>
-      <a href="achievements.html">Achievements</a>
-      <a href="company.html">Company</a>
-      <a href="story.html">Team</a>
-      <a href="volunteer.html">Volunteer</a>
-      <a href="contact.html">Contact</a>
+      <div class="footer-col-title">页面</div>
+      <a href="services.html">服务</a>
+      <a href="achievements.html">业绩</a>
+      <a href="company.html">公司</a>
+      <a href="team.html">团队</a>
+      <a href="volunteer.html">志愿者</a>
+      <a href="contact.html">联系</a>
     </div>
     <div class="footer-col">
-      <div class="footer-col-title">Connect</div>
+      <div class="footer-col-title">连接</div>
       <a href="https://www.youtube.com/@AIKnowledgeWorks" target="_blank" rel="noopener">YouTube</a>
       <a href="https://note.com/aiknowledgeworks" target="_blank" rel="noopener">Note</a>
     </div>
     <div class="footer-col">
-      <div class="footer-col-title">Office</div>
-      <span style="font-size: 14px; color: var(--ink);">Osaka, Japan</span>
+      <div class="footer-col-title">办公室</div>
+      <span style="font-size: 14px; color: var(--ink);">日本大阪</span>
     </div>
     <div class="footer-bottom">
-      <span>&copy; 2026 AI Knowledge Works, LLC.</span>
+      <span>&copy; 2026 AI Knowledge Works有限公司。</span>
     </div>
   </footer>
 

@@ -1,21 +1,22 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>事業内容・サービス | AIナレッジワークス合同会社</title>
+  <title>服务介绍｜AI Knowledge Works</title>
+  <meta name="description" content="从实践AI培训、安全培训到Microsoft解决方案培训，提供面向企业现场的AI导入与应用支援。" />
 
-
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="../logo/AIナレッジワークス_logo_transparen.png">
+  <link rel="shortcut icon" type="image/x-icon" href="../logo/AIナレッジワークス_logo_transparen.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../logo/AIナレッジワークス_logo_transparen.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../logo/AIナレッジワークス_logo_transparen.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../logo/AIナレッジワークス_logo_transparen.png">
   <link rel="alternate" hreflang="ja" href="https://aiknowledgeworks.net/service.html" />
   <link rel="alternate" hreflang="en" href="https://aiknowledgeworks.net/en/services.html" />
   <link rel="alternate" hreflang="zh-CN" href="https://aiknowledgeworks.net/zh/services.html" />
   <link rel="alternate" hreflang="x-default" href="https://aiknowledgeworks.net/service.html" />
-<!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="logo/AIナレッジワークス_logo_transparen.png">
-  <link rel="shortcut icon" type="image/x-icon" href="logo/AIナレッジワークス_logo_transparen.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="logo/AIナレッジワークス_logo_transparen.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="logo/AIナレッジワークス_logo_transparen.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="logo/AIナレッジワークス_logo_transparen.png">
+
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWFLPN1EZH"></script>
@@ -29,7 +30,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&display=swap" rel="stylesheet" />
 
   <style>
     /* === Design System Tokens === */
@@ -51,7 +52,7 @@
       --brand-gradient: linear-gradient(135deg, #6db5ff 0%, #a1e9d9 100%);
 
       --serif: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
-      --sans: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
+      --sans: "Noto Sans SC", "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
       --display: "Fraunces", "Noto Serif JP", serif;
 
       --page-pad: clamp(24px, 5vw, 72px);
@@ -73,6 +74,10 @@
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
       overflow-x: hidden;
+    }
+    :lang(zh-CN) p {
+      text-align: justify;
+      text-justify: inter-ideograph;
     }
     a { color: inherit; text-decoration: none; }
     img { display: block; max-width: 100%; }
@@ -178,6 +183,42 @@
       animation: breathe 4s cubic-bezier(.3,.8,.3,.4) infinite;
       transform-origin: center;
     }
+    .lang-switch {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 42px;
+      padding: 8px 10px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      color: var(--ink-60);
+      transition: border-color 0.3s ease, color 0.3s ease, background 0.3s ease;
+    }
+
+    .lang-switch:hover {
+      border-color: var(--ink);
+      color: var(--ink);
+      background: var(--paper);
+    }
+    .lang-switch-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .lang-switch.is-active {
+      border-color: var(--ink);
+      color: var(--ink);
+      background: var(--paper);
+    }
+    header:not(.scrolled) .lang-switch.is-active {
+      border-color: rgba(255,255,255,0.70);
+      color: #fff;
+      background: rgba(255,255,255,0.12);
+    }
+
+
 
     /* === Hero === */
     .hero {
@@ -305,7 +346,7 @@
       max-width: 42ch;
     }
 
-    /* === Practical AI — courses & curriculum === */
+    /* === 实践AI — courses & curriculum === */
     .course { margin-top: 64px; }
     .course-head { margin-bottom: 22px; }
     .course-title {
@@ -731,31 +772,7 @@
       margin: 0 0 1rem;
     }
 
-
-    .lang-switch-group {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .lang-switch {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 38px;
-      padding: 7px 9px;
-      border: 1px solid var(--rule);
-      border-radius: 999px;
-      font-size: 11px;
-      letter-spacing: 0.14em;
-      color: var(--ink-60);
-      transition: border-color .3s, color .3s, background .3s;
-    }
-    .lang-switch:hover,
-    .lang-switch.is-active {
-      border-color: var(--ink);
-      color: var(--ink);
-      background: var(--paper);
-    }    /* === Footer === */
+    /* === Footer === */
     footer {
       border-top: 1px solid var(--rule);
       padding: 56px var(--page-pad) 40px;
@@ -947,8 +964,8 @@
 <body>
   <!-- === Header === -->
   <header id="site-header">
-    <a href="index.html" class="logo-link">
-      <img src="logo/AIナレッジワークス_logo_transparen.png" alt="AIナレッジワークス ロゴ" class="logo-breathe">
+    <a href="./" class="logo-link">
+      <img src="../logo/AIナレッジワークス_logo_transparen.png" alt="AI Knowledge Works Logo" class="logo-breathe">
       <span>AI Knowledge Works</span>
     </a>
     <div class="hamburger">
@@ -958,14 +975,14 @@
     </div>
     <nav>
       <ul>
-        <li><a href="index.html#background">Background</a></li>
-        <li><a href="service.html">Services</a></li>
-        <li><a href="achievements.html">Achievements</a></li>
-        <li><a href="company.html">Company</a></li>
-        <li><a href="story.html">Team</a></li>
-        <li><a href="volunteer.html">Volunteer</a></li>
-        <li><a href="contact.html" class="nav-cta">Contact &rarr;</a></li>
-        <li class="lang-switch-group"><a href="service.html" class="lang-switch is-active" aria-current="page" lang="ja">JP</a><a href="en/services.html" class="lang-switch" lang="en">EN</a><a href="zh/services.html" class="lang-switch" lang="zh-CN">ZH</a></li>
+        <li><a href="./">首页</a></li>
+        <li><a href="services.html">服务</a></li>
+        <li><a href="achievements.html">业绩</a></li>
+        <li><a href="company.html">公司</a></li>
+        <li><a href="team.html">团队</a></li>
+        <li><a href="volunteer.html">志愿者</a></li>
+        <li><a href="contact.html" class="nav-cta">联系 &rarr;</a></li>
+        <li class="lang-switch-group"><a href="../service.html" class="lang-switch" lang="ja">JP</a><a href="../en/services.html" class="lang-switch" lang="en">EN</a><a href="services.html" class="lang-switch is-active" aria-current="page" lang="zh-CN">ZH</a></li>
       </ul>
     </nav>
     <div class="overlay"></div>
@@ -973,42 +990,42 @@
 
   <!-- === Hero === -->
   <section class="hero">
-    <h1>事業内容・サービス</h1>
-    <p class="tagline">3本柱でAI技術の普及と活用を支援</p>
+    <h1>服务</h1>
+    <p class="tagline">通过三大支柱支持AI导入与实际应用</p>
   </section>
 
-  <!-- === 01 — 3本柱の概要 === -->
+  <!-- === 01 - 三大 支柱 Overview === -->
   <section class="section" id="pillars">
     <div class="grid-sidebar reveal">
       <div class="sidebar-sticky">
         <div class="kicker">01</div>
-        <h2 class="section-heading section-heading-sm" style="margin-top: 8px;">3本柱の<br><em>事業</em></h2>
+        <h2 class="section-heading section-heading-sm" style="margin-top: 8px;">三大<br><em>支柱</em></h2>
       </div>
       <div>
-        <p class="paragraph" style="margin-bottom: 40px;">AIナレッジワークスが提供する3つの事業領域</p>
+        <p class="paragraph" style="margin-bottom: 40px;">AI Knowledge Works提供的三大业务领域</p>
         <div class="service-row" style="border-top: 1px solid var(--rule);">
           <div class="kicker" style="padding-top: 4px;">A</div>
           <div>
-            <div class="service-name">Practical AI Training</div>
-            <div class="service-jp">実践AI研修</div>
+            <div class="service-name">实践AI 培训</div>
+            <div class="service-jp">实践AI 培训</div>
           </div>
-          <p class="service-desc">入門・経営者・実務（Copilot）の3コース構成で、生成AIの実践活用を体系的に習得。ルール遵守と情報漏洩対策を徹底し、安心して使いこなせる組織をつくります。</p>
+          <p class="service-desc">A structured set of introductory, executive, and practical Copilot courses for learning how to use generative AI safely and effectively.</p>
         </div>
         <div class="service-row">
           <div class="kicker" style="padding-top: 4px;">B</div>
           <div>
-            <div class="service-name">Security Training</div>
-            <div class="service-jp">セキュリティ研修</div>
+            <div class="service-name">安全 培训</div>
+            <div class="service-jp">安全 培训</div>
           </div>
-          <p class="service-desc">企業のセキュリティリテラシー向上のための実践的プログラム。情報セキュリティの基礎からインシデント対応まで、組織の防御力を強化します。</p>
+          <p class="service-desc">实务 programs that improve corporate security literacy, from information-security fundamentals to incident response.</p>
         </div>
         <div class="service-row">
           <div class="kicker" style="padding-top: 4px;">C</div>
           <div>
-            <div class="service-name">Microsoft Training</div>
-            <div class="service-jp">Microsoft ソリューション研修</div>
+            <div class="service-name">Microsoft 培训</div>
+            <div class="service-jp">Microsoft Solution 培训</div>
           </div>
-          <p class="service-desc">MCT資格保有トレーナーが、Copilot・Microsoft 365・Azureなどの活用を実践的に指導します。</p>
+          <p class="service-desc">MCT-certified trainers provide hands-on guidance for Copilot, Microsoft 365, Azure, and related solutions.</p>
         </div>
       </div>
     </div>
@@ -1016,79 +1033,79 @@
 
   <hr>
 
-  <!-- === 02 — Practical AI Training === -->
+  <!-- === 02 — 实践AI 培训 === -->
   <section class="section" id="practical-ai-training" style="background: var(--paper-2);">
     <div class="grid-sidebar reveal">
       <div class="sidebar-sticky">
         <div class="kicker">02</div>
-        <h2 class="section-heading section-heading-sm" style="margin-top: 8px;">Practical AI<br><em>Training</em></h2>
+        <h2 class="section-heading section-heading-sm" style="margin-top: 8px;">实践AI<br><em>培训</em></h2>
       </div>
       <div>
-        <p class="paragraph" style="margin-bottom: 8px;">立場に応じた3つのコースで、生成AIをルールを守って安心して使いこなせるようになる実践型プログラム。</p>
-        <p class="paragraph" style="margin-bottom: 8px; font-size: 13px; color: var(--ink-40);">入門 → 経営者 → 実務（Copilot）の3コース構成</p>
+        <p class="paragraph" style="margin-bottom: 8px;">按角色设计三类课程，帮助参与者在遵守规则的同时安全使用生成式AI。</p>
+        <p class="paragraph" style="margin-bottom: 8px; font-size: 13px; color: var(--ink-40);">三大 courses: 入门 -> Executive -> 实务应用（Copilot）</p>
 
-        <!-- Course 01 — 入門 -->
+        <!-- 课程01 - 入门 -->
         <div class="course reveal">
           <div class="course-head">
-            <div class="kicker">Course 01 — 入門</div>
-            <h3 class="course-title">はじめての<em>生成AI</em>活用研修</h3>
-            <p class="course-lead">〜 生成AIをルールを守り、安心して使いこなす 〜　はじめて使う方が、不安なく業務に取り入れられるようになる基礎コース。</p>
+            <div class="kicker">课程01 - 入门</div>
+            <h3 class="course-title">入门 <em>生成式AI</em> 培训</h3>
+            <p class="course-lead">面向首次使用者的基础课程，帮助大家在遵守规则的前提下安心把生成式AI用于工作。</p>
           </div>
           <div class="curriculum">
-            <div class="mod"><div class="mod-num">01</div><div><h4 class="mod-title">ChatGPT・Copilot・Gemini・Claudeの違い</h4><p class="mod-desc">ChatGPTはアイデア出し・文書作成・相談に、CopilotはOutlook・Teams等のM365連携に、GeminiはGoogle Workspaceと好相性。</p></div></div>
-            <div class="mod"><div class="mod-num">02</div><div><h4 class="mod-title">生成AIでできること・できないこと</h4><p class="mod-desc">できる：アイデア出し・メール下書き・要約・会議メモ整理・企画案。できない：法律や医療の最終判断、最新情報・機密情報の正確な確認。</p></div></div>
-            <div class="mod"><div class="mod-num">03</div><div><h4 class="mod-title">メール文・返信文の作成</h4><p class="mod-desc">取引先への丁寧な返信、日程調整メール（要確認）、おわび・スカウト・フォローアップメール。</p></div></div>
-            <div class="mod"><div class="mod-num">04</div><div><h4 class="mod-title">議事録・メモの要約</h4><p class="mod-desc">長い会議メモを短くまとめる、貼り付けて要点を抽出、次回会議のアジェンダ作成。</p></div></div>
-            <div class="mod"><div class="mod-num">05</div><div><h4 class="mod-title">企画案・アイデア出し</h4><p class="mod-desc">新商品・新サービスの案、SNS投稿案を複数、キャッチコピー、ターゲット別の宣伝文。</p></div></div>
-            <div class="mod"><div class="mod-num">06</div><div><h4 class="mod-title">Excel・PowerPointの活用</h4><p class="mod-desc">Excelでの表・グラフ作成、PowerPointでのスライド作成。</p></div></div>
-            <div class="mod"><div class="mod-num">07</div><div><h4 class="mod-title">入力していい情報・いけない情報</h4><p class="mod-desc">個人情報（氏名・住所・電話・メール）、契約書・見積書・請求書、ID・パスワード・APIキー・社員番号などの線引き。</p></div></div>
-            <div class="mod"><div class="mod-num">08</div><div><h4 class="mod-title">社内ルールを守る</h4><p class="mod-desc">使ってよいAIを決める、ビジネス向けモードを使う、重要事項は責任者に相談、入力可否の基準、無料版は個人利用向けと心得る。</p></div></div>
+            <div class="mod"><div class="mod-num">01</div><div><h4 class="mod-title">ChatGPT、Copilot、Gemini与Claude的区别</h4><p class="mod-desc">ChatGPT is useful for ideation, writing, and consultation; Copilot connects with M365 such as Outlook and 团队s; Gemini works well with Google Workspace.</p></div></div>
+            <div class="mod"><div class="mod-num">02</div><div><h4 class="mod-title">生成式AI能做什么、不能做什么</h4><p class="mod-desc">能做：构思、邮件草稿、摘要、会议记录整理、计划制定。不能做：最终法律或医疗判断、对最新或机密信息的准确确认。</p></div></div>
+            <div class="mod"><div class="mod-num">03</div><div><h4 class="mod-title">撰写邮件与回复</h4><p class="mod-desc">客户礼貌回复、日程确认邮件、道歉、邀约与跟进邮件。</p></div></div>
+            <div class="mod"><div class="mod-num">04</div><div><h4 class="mod-title">会议纪要与笔记摘要</h4><p class="mod-desc">压缩长篇会议记录、提取重点，并生成下次会议议程。</p></div></div>
+            <div class="mod"><div class="mod-num">05</div><div><h4 class="mod-title">企划与创意构思</h4><p class="mod-desc">新产品与服务构思、社交媒体发文点子、标语以及按目标受众设计的宣传文案。</p></div></div>
+            <div class="mod"><div class="mod-num">06</div><div><h4 class="mod-title">使用Excel与PowerPoint</h4><p class="mod-desc">在Excel中制作表格与图表，在PowerPoint中制作幻灯片。</p></div></div>
+            <div class="mod"><div class="mod-num">07</div><div><h4 class="mod-title">可以输入与不能输入的信息</h4><p class="mod-desc">个人信息、合同、报价单、发票、ID、密码、API Key、会员编号等信息的边界。</p></div></div>
+            <div class="mod"><div class="mod-num">08</div><div><h4 class="mod-title">遵守内部规则</h4><p class="mod-desc">明确可使用的AI工具，使用商务模式，重要事项咨询负责人，设定输入标准，并理解免费版工具的个人使用属性。</p></div></div>
           </div>
         </div>
 
-        <!-- Course 02 — 経営者向け -->
+        <!-- 课程02 - 面向经营层 -->
         <div class="course reveal">
           <div class="course-head">
-            <div class="kicker">Course 02 — 経営者向け</div>
-            <h3 class="course-title">経営者のための<em>生成AI</em>導入・活用研修 〈Copilot編〉</h3>
-            <p class="course-lead">導入判断から社内ルール・情報漏洩対策、費用対効果まで、意思決定者の視点で生成AI活用を設計するコース。</p>
+            <div class="kicker">课程02 - 面向经营层</div>
+            <h3 class="course-title"><em>生成式AI</em> Adoption and Use 培训 for Executives - Copilot Edition</h3>
+            <p class="course-lead">从决策者视角设计生成式AI应用，涵盖导入判断、内部规则、信息泄露防止与ROI。</p>
           </div>
           <div class="curriculum">
-            <div class="mod"><div class="mod-num">01</div><div><h4 class="mod-title">経営者が知るべき生成AIの現在地</h4><p class="mod-desc">なぜ今、社内で活用を考えるべきか。経営に与える影響と、ChatGPT・Copilot・Gemini・Claudeの違い。</p></div></div>
-            <div class="mod"><div class="mod-num">02</div><div><h4 class="mod-title">外注しなくてよくなるもの</h4><p class="mod-desc">簡単なデザイン、社内マニュアル、チラシ、研修資料、議事録、簡単なHP、ロゴ、名刺。採用難対策にも。</p></div></div>
-            <div class="mod"><div class="mod-num">03</div><div><h4 class="mod-title">人手不足対策としてのAI活用</h4><p class="mod-desc">定型業務の省力化、メール作成・返信の時短、会議メモから議事録・ToDoを自動整理し、業務負荷と離職リスクを下げる。</p></div></div>
-            <div class="mod"><div class="mod-num">04</div><div><h4 class="mod-title">導入効果が出やすい業務</h4><p class="mod-desc">クレーム対応・謝罪・営業メール、プレゼン資料、問い合わせ対応、営業準備。</p></div></div>
-            <div class="mod"><div class="mod-num">05</div><div><h4 class="mod-title">導入してはいけない業務</h4><p class="mod-desc">最終的な法的判断、人事評価、医療判断。</p></div></div>
-            <div class="mod"><div class="mod-num">06</div><div><h4 class="mod-title">社員にどう使わせるか</h4><p class="mod-desc">全社員に使わせるもの、一部の部署から始める判断、スクリーンショットの可否。</p></div></div>
-            <div class="mod"><div class="mod-num">07</div><div><h4 class="mod-title">情報漏洩をどう防ぐか</h4><p class="mod-desc">無料AIの利用、個人情報・顧客情報、SharePoint権限、社外秘資料の取り扱い。</p></div></div>
-            <div class="mod"><div class="mod-num">08</div><div><h4 class="mod-title">生成AI活用の社内ルール作成</h4><p class="mod-desc">使ってよいAI、禁止事項、確認フロー、責任者、社外提出前のチェック。</p></div></div>
-            <div class="mod"><div class="mod-num">09</div><div><h4 class="mod-title">導入ロードマップ</h4><p class="mod-desc">まず経営者だけで試す → 1部署 → 効果測定 → ルール整備 → 全社展開。</p></div></div>
-            <div class="mod"><div class="mod-num">10</div><div><h4 class="mod-title">費用対効果の考え方</h4><p class="mod-desc">ライセンス費用、人件費・外注費の削減、労働時間の短縮、作業品質の向上。</p></div></div>
-            <div class="mod"><div class="mod-num">11</div><div><h4 class="mod-title">AI導入で失敗する会社の特徴</h4><p class="mod-desc">丸投げ、ルールなし、責任者なし、教育なし、権限管理なし。</p></div></div>
-            <div class="mod"><div class="mod-num">12</div><div><h4 class="mod-title">AI時代に増える仕事</h4><p class="mod-desc">AIが作ったものの品質・基準チェック、AI生成物へのセカンドオピニオン、顧客がAIに伝えきれない事情の確認。</p></div></div>
+            <div class="mod"><div class="mod-num">01</div><div><h4 class="mod-title">经营层应了解的生成式AI现状</h4><p class="mod-desc">为什么企业现在应考虑内部应用、对经营的影响，以及ChatGPT、Copilot、Gemini、Claude的差异。</p></div></div>
+            <div class="mod"><div class="mod-num">02</div><div><h4 class="mod-title">Work that may no longer need outsourcing</h4><p class="mod-desc">Simple designs, internal manuals, flyers, training materials, minutes, simple websites, logos, and business cards. It also helps address hiring difficulties.</p></div></div>
+            <div class="mod"><div class="mod-num">03</div><div><h4 class="mod-title">用AI应对人手不足</h4><p class="mod-desc">减少例行工作，缩短邮件撰写与回复时间，自动整理会议记录和ToDo，降低工作负担与离职风险。</p></div></div>
+            <div class="mod"><div class="mod-num">04</div><div><h4 class="mod-title">Work where adoption effects appear quickly</h4><p class="mod-desc">Complaint responses, apologies, sales emails, presentation materials, inquiries, and sales preparation.</p></div></div>
+            <div class="mod"><div class="mod-num">05</div><div><h4 class="mod-title">Work where AI should not be used</h4><p class="mod-desc">Final legal judgments, personnel evaluations, and medical judgments.</p></div></div>
+            <div class="mod"><div class="mod-num">06</div><div><h4 class="mod-title">How to have members use it</h4><p class="mod-desc">What all members should use, when to start with selected departments, and whether screenshots are allowed.</p></div></div>
+            <div class="mod"><div class="mod-num">07</div><div><h4 class="mod-title">How to prevent information leakage</h4><p class="mod-desc">Free AI use, personal and customer information, SharePoint permissions, and handling confidential documents.</p></div></div>
+            <div class="mod"><div class="mod-num">08</div><div><h4 class="mod-title">Creating internal rules for generative AI use</h4><p class="mod-desc">Approved AI tools, prohibited actions, review flow, responsible owners, and checks before external submission.</p></div></div>
+            <div class="mod"><div class="mod-num">09</div><div><h4 class="mod-title">导入路线图</h4><p class="mod-desc">先从 executives -> one department -> measure effects -> establish rules -> company-wide rollout.</p></div></div>
+            <div class="mod"><div class="mod-num">10</div><div><h4 class="mod-title">ROI的思考方式</h4><p class="mod-desc">License costs, reduced labor and outsourcing costs, shorter work time, and improved work quality.</p></div></div>
+            <div class="mod"><div class="mod-num">11</div><div><h4 class="mod-title">Traits of companies that fail with AI adoption</h4><p class="mod-desc">No ownership, no rules, no responsible person, no education, and no permission management.</p></div></div>
+            <div class="mod"><div class="mod-num">12</div><div><h4 class="mod-title">Work that increases in the AI era</h4><p class="mod-desc">Quality and standards checks for AI outputs, second opinions on AI-generated work, and confirming context customers cannot fully communicate to AI.</p></div></div>
           </div>
         </div>
 
-        <!-- Course 03 — 実務向け -->
+        <!-- 课程03 - 实务应用 -->
         <div class="course reveal">
           <div class="course-head">
-            <div class="kicker">Course 03 — 実務向け</div>
-            <h3 class="course-title">仕事のための<em>生成AI</em>実践研修 〈Copilotコース〉</h3>
-            <p class="course-lead">Outlook・Word・Excel・Teams・PowerPointなど、Copilotを日々の業務でそのまま使いこなすための実務コース。</p>
+            <div class="kicker">课程03 - 实务应用</div>
+            <h3 class="course-title">实务 <em>生成式AI</em> 培训 for Work - Copilot Course</h3>
+            <p class="course-lead">A practical course for using Copilot directly in daily work across Outlook, Word, Excel, 团队s, PowerPoint, and more.</p>
           </div>
           <div class="curriculum">
-            <div class="mod"><div class="mod-num">01</div><div><h4 class="mod-title">Copilotの基本</h4><p class="mod-desc">Copilotでできること、ChatGPT・Geminiとの違い、Microsoft 365との関係。</p></div></div>
-            <div class="mod"><div class="mod-num">02</div><div><h4 class="mod-title">業務での活用場面</h4><p class="mod-desc">メール・議事録・資料・スライドの作成、契約書など。</p></div></div>
-            <div class="mod"><div class="mod-num">03</div><div><h4 class="mod-title">Outlookで活用</h4><p class="mod-desc">取引先への返信文、依頼メール、丁寧なお断り、信頼回復につながる対応文、受信メールの意図の分析。</p></div></div>
-            <div class="mod"><div class="mod-num">04</div><div><h4 class="mod-title">Wordで活用</h4><p class="mod-desc">契約書、案内文、報告書、要約、マニュアル。</p></div></div>
-            <div class="mod"><div class="mod-num">05</div><div><h4 class="mod-title">Excelで活用</h4><p class="mod-desc">顧客名簿、進捗管理表、比較表、分析・整理、ガントチャート・グラフ化。</p></div></div>
-            <div class="mod"><div class="mod-num">06</div><div><h4 class="mod-title">Teamsで活用</h4><p class="mod-desc">会議メモ、議事録、ToDo整理、打ち合わせ内容の要約。</p></div></div>
-            <div class="mod"><div class="mod-num">07</div><div><h4 class="mod-title">PowerPointで活用</h4><p class="mod-desc">セミナー資料、提案先への説明資料、社内資料。</p></div></div>
-            <div class="mod"><div class="mod-num">08</div><div><h4 class="mod-title">セキュリティ</h4><p class="mod-desc">入力していい情報、個人情報・顧客情報・契約情報、無料AIとの違い、守秘義務。</p></div></div>
-            <div class="mod"><div class="mod-num">09</div><div><h4 class="mod-title">生成AI活用の社内ルール作成</h4><p class="mod-desc">使ってよいAI、禁止事項、確認フロー、責任者、提出前チェック。</p></div></div>
-            <div class="mod"><div class="mod-num">10</div><div><h4 class="mod-title">実践演習</h4><p class="mod-desc">実務を想定したハンズオン演習。</p></div></div>
-            <div class="mod"><div class="mod-num">11</div><div><h4 class="mod-title">SharePoint・OneDrive</h4><p class="mod-desc">資料をどこに置くか、権限管理。</p></div></div>
-            <div class="mod"><div class="mod-num">12</div><div><h4 class="mod-title">AI時代に増える仕事</h4><p class="mod-desc">AIで作られた書類の品質チェック、AI生成物へのセカンドオピニオン、顧客がAIに伝えきれていない事情を引き出す。</p></div></div>
+            <div class="mod"><div class="mod-num">01</div><div><h4 class="mod-title">Copilot基础</h4><p class="mod-desc">What Copilot can do, differences from ChatGPT and Gemini, and its relationship with Microsoft 365.</p></div></div>
+            <div class="mod"><div class="mod-num">02</div><div><h4 class="mod-title">业务应用场景</h4><p class="mod-desc">Emails, minutes, documents, slides, contracts, and more.</p></div></div>
+            <div class="mod"><div class="mod-num">03</div><div><h4 class="mod-title">使用Outlook</h4><p class="mod-desc">Client replies, request emails, polite refusals, trust-recovery responses, and analysis of received-email intent.</p></div></div>
+            <div class="mod"><div class="mod-num">04</div><div><h4 class="mod-title">使用Word</h4><p class="mod-desc">Contracts, notices, reports, summaries, and manuals.</p></div></div>
+            <div class="mod"><div class="mod-num">05</div><div><h4 class="mod-title">使用Excel</h4><p class="mod-desc">Customer lists, progress tables, comparison tables, analysis, organization, Gantt charts, and graphs.</p></div></div>
+            <div class="mod"><div class="mod-num">06</div><div><h4 class="mod-title">Using 团队s</h4><p class="mod-desc">Meeting notes, minutes, ToDo organization, and meeting summaries.</p></div></div>
+            <div class="mod"><div class="mod-num">07</div><div><h4 class="mod-title">使用PowerPoint</h4><p class="mod-desc">Seminar materials, proposal explanations, and internal documents.</p></div></div>
+            <div class="mod"><div class="mod-num">08</div><div><h4 class="mod-title">安全</h4><p class="mod-desc">Information that can be entered, personal/customer/contract information, differences from free AI, and confidentiality obligations.</p></div></div>
+            <div class="mod"><div class="mod-num">09</div><div><h4 class="mod-title">Creating internal rules for generative AI use</h4><p class="mod-desc">Approved AI tools, prohibited actions, review flow, responsible owners, and pre-submission checks.</p></div></div>
+            <div class="mod"><div class="mod-num">10</div><div><h4 class="mod-title">实践练习</h4><p class="mod-desc">实践练习 based on real work scenarios.</p></div></div>
+            <div class="mod"><div class="mod-num">11</div><div><h4 class="mod-title">SharePoint・OneDrive</h4><p class="mod-desc">Where to store documents and how to manage permissions.</p></div></div>
+            <div class="mod"><div class="mod-num">12</div><div><h4 class="mod-title">Work that increases in the AI era</h4><p class="mod-desc">Quality checks for AI-created documents, second opinions on AI outputs, and drawing out context customers could not fully communicate to AI.</p></div></div>
           </div>
         </div>
       </div>
@@ -1097,31 +1114,31 @@
 
   <hr>
 
-  <!-- === 03 — Security Training === -->
+  <!-- === 03 — 安全 培训 === -->
   <section class="section" id="security-training">
     <div class="grid-sidebar reveal">
       <div class="sidebar-sticky">
         <div class="kicker">03</div>
-        <h2 class="section-heading section-heading-sm" style="margin-top: 8px;">Security<br><em>Training</em></h2>
+        <h2 class="section-heading section-heading-sm" style="margin-top: 8px;">安全<br><em>培训</em></h2>
       </div>
       <div>
-        <p class="paragraph" style="margin-bottom: 40px;">組織のセキュリティリテラシーを底上げする実践型プログラム</p>
+        <p class="paragraph" style="margin-bottom: 40px;">实务 programs that raise security literacy across the organization</p>
         <div class="card-grid-2">
           <div class="card reveal">
-            <h3>情報セキュリティ基礎研修</h3>
-            <p>パスワード管理、フィッシング対策、情報漏洩防止など、全社員が身につけるべきセキュリティの基本を実例ベースで学びます。</p>
+            <h3>Information 安全 Fundamentals 培训</h3>
+            <p>Learn security fundamentals every member should know, including password management, phishing countermeasures, and information-leakage prevention, through real examples.</p>
           </div>
           <div class="card reveal">
-            <h3>標的型攻撃・ランサムウェア対策</h3>
-            <p>近年急増するサイバー攻撃の最新手口と対策を解説。実際の攻撃事例をもとに、組織としての防御力を高めます。</p>
+            <h3>定向攻击与勒索软件对策</h3>
+            <p>Learn the latest methods and countermeasures for rapidly increasing cyberattacks, using real cases to strengthen organizational defenses.</p>
           </div>
           <div class="card reveal">
-            <h3>インシデント対応訓練</h3>
-            <p>セキュリティ事故発生時の初動対応から報告・復旧までのフローを実践的に訓練。有事に慌てない組織体制を構築します。</p>
+            <h3>Incident Response 培训</h3>
+            <p>Practice the flow from initial response to reporting and recovery during security incidents, building an organization that can respond calmly.</p>
           </div>
           <div class="card reveal">
-            <h3>生成AI時代のセキュリティ</h3>
-            <p>ChatGPTなど生成AIツール利用時の情報漏洩リスクと安全な活用ガイドライン策定を支援。AI時代に即したセキュリティポリシーを整備します。</p>
+            <h3>安全 in the 生成式AI Era</h3>
+            <p>We support guidelines for safe use of generative AI tools such as ChatGPT and information-leakage prevention, building security policies fit for the AI era.</p>
           </div>
         </div>
       </div>
@@ -1130,32 +1147,32 @@
 
   <hr>
 
-  <!-- === 04 — Microsoft Training === -->
+  <!-- === 04 — Microsoft 培训 === -->
   <section class="section" id="microsoft-training" style="background: var(--paper-2);">
     <div class="grid-sidebar reveal">
       <div class="sidebar-sticky">
         <div class="kicker">04</div>
-        <h2 class="section-heading section-heading-sm" style="margin-top: 8px;">Microsoft<br><em>Training</em></h2>
+        <h2 class="section-heading section-heading-sm" style="margin-top: 8px;">Microsoft<br><em>培训</em></h2>
       </div>
       <div>
-        <p class="paragraph" style="margin-bottom: 12px;">MCT（Microsoft Certified Trainer）資格保有トレーナーによる実践的な研修</p>
-        <p class="paragraph" style="margin-bottom: 40px; font-size: 13px; color: var(--ink-40);">※ 本研修はMicrosoft社の公式研修ではありません。MCT資格を保有する講師が独自カリキュラムで提供するものです。</p>
+        <p class="paragraph" style="margin-bottom: 12px;">实务 training by an MCT (Microsoft Certified Trainer) certified instructor</p>
+        <p class="paragraph" style="margin-bottom: 40px; font-size: 13px; color: var(--ink-40);">* 本培训并非Microsoft官方培训，而是由持有MCT认证的讲师提供的原创课程。</p>
         <div class="card-grid-2">
           <div class="card reveal">
-            <h3>Microsoft 365 活用研修</h3>
-            <p>Teams・SharePoint・OneDrive・Power Automateなど、Microsoft 365の機能を業務に最大限活かすための実践トレーニング。日常業務の効率化を実現します。</p>
+            <h3>Microsoft 365 培训</h3>
+            <p>Hands-on training for making the most of Microsoft 365 tools such as 团队s, SharePoint, OneDrive, and Power Automate in daily operations.</p>
           </div>
           <div class="card reveal">
-            <h3>Microsoft Copilot 活用研修</h3>
-            <p>Word・Excel・PowerPoint・TeamsのCopilot機能を使いこなすための実践プログラム。AIアシスタントを業務に統合し、生産性を飛躍的に向上させます。</p>
+            <h3>Microsoft Copilot 培训</h3>
+            <p>A practical program for mastering Copilot in Word, Excel, PowerPoint, and 团队s, integrating AI assistance into everyday work.</p>
           </div>
           <div class="card reveal">
-            <h3>Azure 基礎・活用研修</h3>
-            <p>Azure の基本概念からAIサービス（Azure OpenAI Service等）の活用まで。クラウド環境でのAI実装に必要な知識とスキルを習得します。</p>
+            <h3>Azure Fundamentals and 实务 培训</h3>
+            <p>From Azure fundamentals to AI services such as Azure OpenAI Service, this training covers the knowledge needed for AI implementation in the cloud.</p>
           </div>
           <div class="card reveal">
-            <h3>Microsoft セキュリティ研修</h3>
-            <p>Microsoft Defender・Entra ID・Intune等を活用した企業のセキュリティ強化。ゼロトラストの考え方と具体的な実装方法を学びます。</p>
+            <h3>Microsoft 安全 培训</h3>
+            <p>Strengthen corporate security using Microsoft Defender, Entra ID, Intune, and related tools. Learn zero-trust concepts and concrete implementation methods.</p>
           </div>
         </div>
       </div>
@@ -1164,18 +1181,18 @@
 
   <hr>
 
-  <!-- === Contact CTA === -->
+  <!-- === 联系 CTA === -->
   <section class="section" style="padding-bottom: 120px;">
     <div class="cta-center reveal">
-      <div class="kicker" style="display: inline-block;">Contact</div>
+      <div class="kicker" style="display: inline-block;">联系</div>
       <h2 class="section-heading" style="font-size: clamp(48px, 8vw, 120px); line-height: 1.05; letter-spacing: -0.02em; margin: 20px 0;">
-        まずは<br><em>ご相談</em>から。
+        先从<br><em>咨询开始</em>.
       </h2>
       <p class="paragraph" style="max-width: 520px; margin: 24px auto 48px; font-size: 17px;">
-        AI導入・研修について、お気軽にお問い合わせください。
+        联系 us about AI adoption, training, and implementation.
       </p>
       <a href="contact.html" class="btn-fill">
-        お問い合わせはこちら &nbsp;&rarr;
+        联系 Us &nbsp;&rarr;
       </a>
     </div>
   </section>
@@ -1184,31 +1201,31 @@
   <footer>
     <div class="footer-brand">
       <div style="display: flex; align-items: center; gap: 12px;">
-        <img src="logo/AIナレッジワークス_logo_transparen.png" width="36" height="36" alt="" style="object-fit: contain;">
+        <img src="../logo/AIナレッジワークス_logo_transparen.png" width="36" height="36" alt="" style="object-fit: contain;">
         <span style="font-family: var(--serif); font-size: 17px; letter-spacing: 0.04em;">AI Knowledge Works</span>
       </div>
-      <p>誰もが安心して、"好き"をかたちにできる社会をつくる。</p>
+      <p>创造一个让每个人都能安心地把“热爱”变为现实的社会。</p>
     </div>
     <div class="footer-col">
-      <div class="footer-col-title">Pages</div>
-      <a href="service.html">Services</a>
-      <a href="achievements.html">Achievements</a>
-      <a href="company.html">Company</a>
-      <a href="story.html">Team</a>
-      <a href="volunteer.html">Volunteer</a>
-      <a href="contact.html">Contact</a>
+      <div class="footer-col-title">页面</div>
+      <a href="services.html">服务</a>
+      <a href="achievements.html">业绩</a>
+      <a href="company.html">公司</a>
+      <a href="team.html">团队</a>
+      <a href="volunteer.html">志愿者</a>
+      <a href="contact.html">联系</a>
     </div>
     <div class="footer-col">
-      <div class="footer-col-title">Connect</div>
+      <div class="footer-col-title">连接</div>
       <a href="https://www.youtube.com/@AIKnowledgeWorks" target="_blank" rel="noopener">YouTube</a>
       <a href="https://note.com/aiknowledgeworks" target="_blank" rel="noopener">Note</a>
     </div>
     <div class="footer-col">
-      <div class="footer-col-title">Office</div>
-      <span style="font-size: 14px; color: var(--ink);">Osaka, Japan</span>
+      <div class="footer-col-title">办公室</div>
+      <span style="font-size: 14px; color: var(--ink);">日本大阪</span>
     </div>
     <div class="footer-bottom">
-      <span>&copy; 2026 AI Knowledge Works, LLC.</span>
+      <span>&copy; 2026 AI Knowledge Works有限公司。</span>
     </div>
   </footer>
 

@@ -5,7 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ボランティア活動 | AIナレッジワークス合同会社</title>
 
-  <!-- Favicon -->
+
+  <link rel="alternate" hreflang="ja" href="https://aiknowledgeworks.net/volunteer.html" />
+  <link rel="alternate" hreflang="en" href="https://aiknowledgeworks.net/en/volunteer.html" />
+  <link rel="alternate" hreflang="zh-CN" href="https://aiknowledgeworks.net/zh/volunteer.html" />
+  <link rel="alternate" hreflang="x-default" href="https://aiknowledgeworks.net/volunteer.html" />
+<!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="logo/AIナレッジワークス_logo_transparen.png">
   <link rel="shortcut icon" type="image/x-icon" href="logo/AIナレッジワークス_logo_transparen.png">
   <link rel="apple-touch-icon" sizes="180x180" href="logo/AIナレッジワークス_logo_transparen.png">
@@ -255,7 +260,31 @@
     }
     .logo-breathe { animation: breathe 4s cubic-bezier(.3,.8,.3,.4) infinite; transform-origin: center; }
 
-    /* === Footer === */
+
+    .lang-switch-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .lang-switch {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 38px;
+      padding: 7px 9px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      color: var(--ink-60);
+      transition: border-color .3s, color .3s, background .3s;
+    }
+    .lang-switch:hover,
+    .lang-switch.is-active {
+      border-color: var(--ink);
+      color: var(--ink);
+      background: var(--paper);
+    }    /* === Footer === */
     footer {
       border-top: 1px solid var(--rule);
       padding: 56px var(--page-pad) 40px;
@@ -415,6 +444,7 @@
         <li><a href="story.html">Team</a></li>
         <li><a href="volunteer.html">Volunteer</a></li>
         <li><a href="contact.html" class="nav-cta">Contact &rarr;</a></li>
+        <li class="lang-switch-group"><a href="volunteer.html" class="lang-switch is-active" aria-current="page" lang="ja">JP</a><a href="en/volunteer.html" class="lang-switch" lang="en">EN</a><a href="zh/volunteer.html" class="lang-switch" lang="zh-CN">ZH</a></li>
       </ul>
     </nav>
     <div class="overlay"></div>

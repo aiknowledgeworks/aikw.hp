@@ -1,21 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Company | AI Knowledge Works LLC</title>
+  <title>公司概况｜AI Knowledge Works</title>
+  <meta name="description" content="AI Knowledge Works以“自我实现的批量生产”为使命，于2025年创立于大阪。" />
 
-
-  <link rel="alternate" hreflang="ja" href="https://aiknowledgeworks.net/company.html" />
-  <link rel="alternate" hreflang="en" href="https://aiknowledgeworks.net/en/company.html" />
-  <link rel="alternate" hreflang="zh-CN" href="https://aiknowledgeworks.net/zh/company.html" />
-  <link rel="alternate" hreflang="x-default" href="https://aiknowledgeworks.net/company.html" />
-<!-- Favicon -->
+  <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="../logo/AIナレッジワークス_logo_transparen.png">
   <link rel="shortcut icon" type="image/x-icon" href="../logo/AIナレッジワークス_logo_transparen.png">
   <link rel="apple-touch-icon" sizes="180x180" href="../logo/AIナレッジワークス_logo_transparen.png">
   <link rel="icon" type="image/png" sizes="32x32" href="../logo/AIナレッジワークス_logo_transparen.png">
   <link rel="icon" type="image/png" sizes="16x16" href="../logo/AIナレッジワークス_logo_transparen.png">
+  <link rel="alternate" hreflang="ja" href="https://aiknowledgeworks.net/company.html" />
+  <link rel="alternate" hreflang="en" href="https://aiknowledgeworks.net/en/company.html" />
+  <link rel="alternate" hreflang="zh-CN" href="https://aiknowledgeworks.net/zh/company.html" />
+  <link rel="alternate" hreflang="x-default" href="https://aiknowledgeworks.net/company.html" />
+
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWFLPN1EZH"></script>
@@ -29,7 +30,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&display=swap" rel="stylesheet" />
 
   <style>
     /* === Design System Tokens === */
@@ -49,7 +50,7 @@
       --accent: #3da8c7;
       --brand-gradient: linear-gradient(135deg, #6db5ff 0%, #a1e9d9 100%);
       --serif: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
-      --sans: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
+      --sans: "Noto Sans SC", "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
       --display: "Fraunces", "Noto Serif JP", serif;
       --page-pad: clamp(24px, 5vw, 72px);
       --measure: 64ch;
@@ -70,6 +71,10 @@
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
       overflow-x: hidden;
+    }
+    :lang(zh-CN) p {
+      text-align: justify;
+      text-justify: inter-ideograph;
     }
     a { color: inherit; text-decoration: none; }
     img { display: block; max-width: 100%; }
@@ -302,7 +307,7 @@
       font-variant-numeric: tabular-nums;
     }
 
-    /* === Company table === */
+    /* === 公司 table === */
     .company-table {
       width: 100%;
       border-collapse: collapse;
@@ -736,14 +741,14 @@
     </div>
     <nav>
       <ul>
-        <li><a href="./">Top</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="achievements.html">Achievements</a></li>
-        <li><a href="company.html">Company</a></li>
-        <li><a href="team.html">Team</a></li>
-        <li><a href="volunteer.html">Volunteer</a></li>
-        <li><a href="contact.html" class="nav-cta">Contact &rarr;</a></li>
-        <li class="lang-switch-group"><a href="../company.html" class="lang-switch" lang="ja">JP</a><a href="company.html" class="lang-switch is-active" aria-current="page" lang="en">EN</a><a href="../zh/company.html" class="lang-switch" lang="zh-CN">ZH</a></li>
+        <li><a href="./">首页</a></li>
+        <li><a href="services.html">服务</a></li>
+        <li><a href="achievements.html">业绩</a></li>
+        <li><a href="company.html">公司</a></li>
+        <li><a href="team.html">团队</a></li>
+        <li><a href="volunteer.html">志愿者</a></li>
+        <li><a href="contact.html" class="nav-cta">联系 &rarr;</a></li>
+        <li class="lang-switch-group"><a href="../company.html" class="lang-switch" lang="ja">JP</a><a href="../en/company.html" class="lang-switch" lang="en">EN</a><a href="company.html" class="lang-switch is-active" aria-current="page" lang="zh-CN">ZH</a></li>
       </ul>
     </nav>
     <div class="overlay"></div>
@@ -752,51 +757,51 @@
   <!-- === Hero === -->
   <section class="hero">
     <div class="reveal">
-      <h1>Company Profile</h1>
-      <p class="tagline">A team that believes in what people love</p>
-      <a href="team.html" style="display: inline-block; margin-top: 24px; font-size: 13px; letter-spacing: 0.12em; color: var(--ink-60); text-decoration: none; transition: color .3s;">View Team &rarr;</a>
+      <h1>公司 Profile</h1>
+      <p class="tagline">相信“热爱”力量的团队</p>
+      <a href="team.html" style="display: inline-block; margin-top: 24px; font-size: 13px; letter-spacing: 0.12em; color: var(--ink-60); text-decoration: none; transition: color .3s;">View 团队 &rarr;</a>
     </div>
   </section>
 
   <hr>
 
-  <!-- === 01 Company Info === -->
+  <!-- === 01 公司 Info === -->
   <section id="basic-info" class="section">
     <div class="grid-sidebar">
       <div class="sidebar-sticky reveal">
-        <div class="kicker">01 &mdash; Info</div>
+        <div class="kicker">01 &mdash; 基本信息</div>
       </div>
       <div>
         <h2 class="section-heading section-heading-md reveal" style="max-width: 18ch; margin-bottom: 64px;">
-          Basic Information
+          基本信息
         </h2>
 
         <div class="reveal" style="background: var(--paper); border: 1px solid var(--rule); overflow: hidden;">
           <div class="company-table-container">
             <table class="company-table">
               <tr>
-                <th>Company Name</th>
-                <td>AI Knowledge Works LLC</td>
+                <th>公司 Name</th>
+                <td>AI Knowledge Works有限公司</td>
               </tr>
               <tr>
-                <th>Head Office</th>
-                <td>Room 2119, 2-2-5 Minatomachi, Naniwa-ku, Osaka, Japan</td>
+                <th>Head 办公室</th>
+                <td>Room 2119, 2-2-5 Minatomachi, Naniwa-ku, 日本大阪</td>
               </tr>
               <tr>
-                <th>Established</th>
-                <td>April 16, 2025</td>
+                <th>成立日期</th>
+                <td>2025年4月16日</td>
               </tr>
               <tr>
-                <th>Members</th>
-                <td>2 members</td>
+                <th>成员</th>
+                <td>2名成员</td>
               </tr>
               <tr>
-                <th>Business Purpose</th>
+                <th>业务目的</th>
                 <td style="white-space: normal;">
                   <div style="margin-bottom: 5px;">- Research, planning, development, sales, maintenance, and consulting for software and systems using AI technology</div>
                   <div style="margin-bottom: 5px;">- Education, training, seminars, and consulting using AI</div>
                   <div style="margin-bottom: 5px;">- Market research and consulting using AI and data analysis</div>
-                  <div style="text-align: right;">Other related business</div>
+                  <div style="text-align: right;">其他相关业务</div>
                 </td>
               </tr>
             </table>
@@ -812,11 +817,11 @@
   <section id="philosophy" class="section" style="background: var(--paper-2);">
     <div class="grid-sidebar">
       <div class="sidebar-sticky reveal">
-        <div class="kicker">02 &mdash; Philosophy</div>
+        <div class="kicker">02 &mdash; 理念</div>
       </div>
       <div>
         <h2 class="section-heading section-heading-md reveal" style="max-width: 18ch; margin-bottom: 80px;">
-          <span class="suki">What you love</span><br><em>creates the future.</em>
+          <span class="suki">“热爱”</span><br><em>创造未来。</em>
         </h2>
 
         <div style="border-top: 1px solid var(--rule);">
@@ -843,18 +848,18 @@
 
   <hr>
 
-  <!-- === Contact CTA === -->
+  <!-- === 联系 CTA === -->
   <section class="section" style="padding-bottom: 120px;">
     <div class="cta-center reveal">
-      <div class="kicker" style="display: inline-block;">Contact</div>
+      <div class="kicker" style="display: inline-block;">联系</div>
       <h2 class="section-heading" style="font-size: clamp(48px, 8vw, 120px); line-height: 1.05; letter-spacing: -0.02em; margin: 20px 0;">
-        Start with<br><em>a consultation</em>.
+        先从<br><em>咨询开始</em>.
       </h2>
       <p class="paragraph" style="max-width: 520px; margin: 24px auto 48px; font-size: 17px;">
-        Contact us about AI adoption, training, and implementation.
+        联系 us about AI adoption, training, and implementation.
       </p>
       <a href="contact.html" class="btn-fill">
-        Contact Us &nbsp;&rarr;
+        联系 Us &nbsp;&rarr;
       </a>
     </div>
   </section>
@@ -866,28 +871,28 @@
         <img src="../logo/AIナレッジワークス_logo_transparen.png" width="36" height="36" alt="" style="object-fit: contain;">
         <span style="font-family: var(--serif); font-size: 17px; letter-spacing: 0.04em;">AI Knowledge Works</span>
       </div>
-      <p>Creating a society where everyone can confidently turn what they love into reality.</p>
+      <p>创造一个让每个人都能安心地把“热爱”变为现实的社会。</p>
     </div>
     <div class="footer-col">
-      <div class="footer-col-title">Pages</div>
-      <a href="services.html">Services</a>
-      <a href="achievements.html">Achievements</a>
-      <a href="company.html">Company</a>
-      <a href="team.html">Team</a>
-      <a href="volunteer.html">Volunteer</a>
-      <a href="contact.html">Contact</a>
+      <div class="footer-col-title">页面</div>
+      <a href="services.html">服务</a>
+      <a href="achievements.html">业绩</a>
+      <a href="company.html">公司</a>
+      <a href="team.html">团队</a>
+      <a href="volunteer.html">志愿者</a>
+      <a href="contact.html">联系</a>
     </div>
     <div class="footer-col">
-      <div class="footer-col-title">Connect</div>
+      <div class="footer-col-title">连接</div>
       <a href="https://www.youtube.com/@AIKnowledgeWorks" target="_blank" rel="noopener">YouTube</a>
       <a href="https://note.com/aiknowledgeworks" target="_blank" rel="noopener">Note</a>
     </div>
     <div class="footer-col">
-      <div class="footer-col-title">Office</div>
-      <span style="font-size: 14px; color: var(--ink);">Osaka, Japan</span>
+      <div class="footer-col-title">办公室</div>
+      <span style="font-size: 14px; color: var(--ink);">日本大阪</span>
     </div>
     <div class="footer-bottom">
-      <span>&copy; 2026 AI Knowledge Works, LLC.</span>
+      <span>&copy; 2026 AI Knowledge Works有限公司。</span>
     </div>
   </footer>
 
