@@ -118,9 +118,12 @@
 
         // 親ウィンドウからのメッセージを受け取る（リセット・マウス位置転送）
         window.addEventListener('message', (event) => {
+            if (event.origin !== window.location.origin) return;
+
             if (event.data === 'resetMouse') {
                 resetMouse();
-            } else if (event.data && event.data.type === 'mousemove') {
+            } else if (event.data && event.data.type === 'mousemove' &&
+                       Number.isFinite(event.data.x) && Number.isFinite(event.data.y)) {
                 updateMouse(event.data.x, event.data.y);
             }
         });

@@ -19,13 +19,20 @@ jobs:
     
     steps:
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      with:
+        persist-credentials: false
         
     - name: Build site
       run: |
         # Create build directory and copy files
         mkdir -p build
         cp -r aitools app-gallery company en zh images js logo movie *.html sitemap.xml CNAME build/ 2>/dev/null || true
+
+        # Apply browser-enforced policies that GitHub Pages cannot set as response headers.
+        while IFS= read -r -d '' page; do
+          perl -0pi -e "s#<head>#<head>\n  <meta name=\"referrer\" content=\"strict-origin-when-cross-origin\">\n  <meta http-equiv=\"Content-Security-Policy\" content=\"object-src 'none'; base-uri 'self'; upgrade-insecure-requests\">#i unless /http-equiv=\"Content-Security-Policy\"/i" "$page"
+        done < <(find build -type f -name '*.html' -print0)
 
         # API credentials must never be included in the public Pages artifact.
         if [ -e build/js/runtime-config.js ] || grep -R -q "DIFY_API_KEY" build; then
@@ -36,10 +43,10 @@ jobs:
         echo "🚀 Build process completed successfully!"
         
     - name: Setup Pages
-      uses: actions/configure-pages@v4
+      uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
       
     - name: Upload artifact
-      uses: actions/upload-pages-artifact@v3
+      uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
       with:
         path: './build'
         
@@ -53,4 +60,4 @@ jobs:
     steps:
     - name: Deploy to GitHub Pages
       id: deployment
-      uses: actions/deploy-pages@v4
+      uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
